@@ -6,7 +6,13 @@ param(
     [string]$InputFile,
     
     [Parameter(Mandatory = $false)]
-    [double]$TargetLufs
+    [double]$TargetLufs,
+    
+    [Parameter(Mandatory = $false)]
+    [double]$OnsetThresholdDb = -30,
+    
+    [Parameter(Mandatory = $false)]
+    [double]$OnsetMinDur = 0.05
 )
 
 $ErrorActionPreference = "Stop"
@@ -51,6 +57,27 @@ function Get-Lufs {
     return $iVal
 }
 
+function Get-Onsets {
+    # ffmpeg silencedetect (inverse logic: silence_end = onset of sound)
+    # silencedetect=noise=-30dB:d=0.05
+    $filter = "silencedetect=noise=$($OnsetThresholdDb)dB:d=$($OnsetMinDur)"
+    
+    $p = Start-Process ffmpeg -ArgumentList "-i", $InputFile, "-af", $filter, "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "onset_err.txt"
+    $err = Get-Content "onset_err.txt"
+    
+    # Parse "silence_end: 12.345"
+    # Actually, silence_end marks the END of silence, i.e., the START of sound. This is a good proxy for onsets in sparse audio.
+    # For dense audio, this metric is less useful (will just see one long sound), but instructions specifically asked for this.
+    
+    $count = 0
+    foreach ($line in $err) {
+        if ($line -match "silence_end:\s+([\d\.]+)") {
+            $count++
+        }
+    }
+    return $count
+}
+
 function Get-Beats {
     # ffmpeg bpm
     $p = Start-Process ffmpeg -ArgumentList "-i", $InputFile, "-af", "bpm", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "bpm_err.txt"
@@ -58,9 +85,12 @@ function Get-Beats {
     $bpmLines = $err | Select-String "BPM"
     
     if ($bpmLines) {
-        # naive parse of last line: "BPM 123.45"
+        # strict parse of last line: "^\[Parsed_bpm.*\] BPM (\d+\.?\d*)" or just match number
+        # Previously found lines like "BPM 123.45"
+        # Improve regex to avoid partial matches
         $last = $bpmLines[-1].Line
-        if ($last -match "BPM (\d+\.?\d*)") {
+        # Typical output: "[Parsed_bpm @ ...] BPM 120.000000"
+        if ($last -match "BPM\s+(\d+\.?\d*)") {
             return [double]$Matches[1]
         }
     }
@@ -148,22 +178,44 @@ Write-Host "Analyzing $InputFile..."
 
 $loudness = Get-Loudness
 $lufsI = Get-Lufs
+$onsetCount = Get-Onsets
 $bpm = Get-Beats
 $pitch = Get-PitchEstimate
 $dur = Get-Info
 
+# Conversions for density
+# dur might be string "0.500...", convert to double
+$durVal = if ($dur -ne "Unknown") { [double]$dur } else { 0.0 }
+$density = if ($durVal -gt 0) { $onsetCount / $durVal } else { 0 }
+
+# Crest
+$crest = $null
+if ($loudness.Peak_dB -ne $null -and $loudness.RMS_dB -ne $null) {
+    $crest = $loudness.Peak_dB - $loudness.RMS_dB
+}
+
 $analysis = [ordered]@{
-    tempo_bpm = $bpm
-    pitch_hz  = $pitch
-    rms_db    = $loudness.RMS_dB
-    peak_db   = $loudness.Peak_dB
-    lufs_i    = $lufsI
-    duration  = $dur
+    tempo_bpm     = $bpm
+    pitch_hz      = $pitch
+    rms_db        = $loudness.RMS_dB
+    peak_db       = $loudness.Peak_dB
+    crest_db      = $crest
+    lufs_i        = $lufsI
+    onset_count   = $onsetCount
+    onset_density = $density
+    duration      = $dur
 }
 
 $warnings = @()
 if (-not $bpm) { $warnings += "Could not detect BPM" }
 if (-not $pitch) { $warnings += "Could not estimate Pitch" }
+
+if ($onsetCount -eq 0 -and $durVal -gt 0.5) {
+    $warnings += "Zero onsets detected for substantial audio duration ($durVal s). Threshold ($OnsetThresholdDb dB) may be too low."
+}
+if ($onsetCount -gt 0 -and $density -eq 0) {
+    $warnings += "Density calculation failed (Duration=$dur, Count=$onsetCount)."
+}
 
 if ($TargetLufs) {
     if ($null -eq $analysis.lufs_i) {
@@ -200,7 +252,9 @@ $report += "BPM:   $($analysis.tempo_bpm)`n"
 $report += "Pitch: $($analysis.pitch_hz) Hz`n"
 $report += "RMS:   $($analysis.rms_db) dB`n"
 $report += "Peak:  $($analysis.peak_db) dB`n"
+$report += "Crest: $(if ($analysis.crest_db) { $analysis.crest_db.ToString("F2") } else { "N/A" }) dB`n"
 $report += "LUFS:  $($analysis.lufs_i)`n"
+$report += "Onsets: $($analysis.onset_count) (Density: $($analysis.onset_density.ToString("F2"))/s)`n"
 $report += "Dur:   $($analysis.duration)`n"
 if ($warnings.Count -gt 0) {
     $report += "`nWarnings:`n" + ($warnings -join "`n")
@@ -213,3 +267,4 @@ Write-Host "Text: $txtPath"
 if (Test-Path "vol_err.txt") { Remove-Item "vol_err.txt" -ErrorAction SilentlyContinue }
 if (Test-Path "lufs_err.txt") { Remove-Item "lufs_err.txt" -ErrorAction SilentlyContinue }
 if (Test-Path "bpm_err.txt") { Remove-Item "bpm_err.txt" -ErrorAction SilentlyContinue }
+if (Test-Path "onset_err.txt") { Remove-Item "onset_err.txt" -ErrorAction SilentlyContinue }

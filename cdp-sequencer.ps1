@@ -5,6 +5,7 @@ param(
     [string]$MetaPath, # Optional path to meta.json
     [double]$MasterLufs, # Optional LUFS target
     [double]$MasterLimitDb, # Optional TP Limit
+    [switch]$MasterGlue, # Optional Bus Compressor
     [switch]$Play,
     [switch]$KeepTemp # Sprint 7: Default cleans up notes
 )
@@ -149,9 +150,12 @@ try {
         param(
             [string]$InputFile,
             [string]$OutputFile,
-            [object]$Effect
+            [object]$Effect,
+            [string]$WorkDir,
+            [string]$TrackName,
+            [double]$TrackDurationSec
         )
-    
+
         # REVERB USAGE:
         # reverb infile outfile rgain mix rvbtime absorb lpfreq tail [times.txt]
         # We will map:
@@ -161,38 +165,129 @@ try {
         #   absorb <- 0.5
         #   lpfreq <- 5000 (default)
         #   tail <- 1.0 (extra time)
-    
+
         # MODIFY SPEED USAGE:
         # modify speed 1 infile outfile ratio
-    
+
         $fxType = Get-Prop $Effect "type" "unknown"
 
         if ($fxType -eq "reverb") {
             if (-not (Test-Path $reverbExe)) { throw "Missing reverb.exe at $reverbExe needed for effect" }
-        
+
             $rvbtime = Get-Prop $Effect "room_size" 1.0
             $mix = Get-Prop $Effect "mix" 0.5
-        
+
             # Helper params
             $rgain = 0.6
             $absorb = 0.5
             $lpfreq = 4000
             $tail = 1.0
-        
+
             $args = @($InputFile, $OutputFile, $rgain, $mix, $rvbtime, $absorb, $lpfreq, $tail)
-        
+
             $p = Start-Process -FilePath $reverbExe -ArgumentList $args -NoNewWindow -PassThru -Wait
             if ($p.ExitCode -ne 0) { throw "Effect reverb failed with code $($p.ExitCode)" }
         }
         elseif ($fxType -eq "pitch") {
             if (-not (Test-Path $modifyExe)) { throw "Missing modify.exe at $modifyExe needed for effect" }
-        
+
             $semitones = Get-Prop $Effect "semitones" 0
             $ratio = [Math]::Pow(2, $semitones / 12)
-        
+
             $args = @("speed", 1, $InputFile, $OutputFile, $ratio)
             $p = Start-Process -FilePath $modifyExe -ArgumentList $args -NoNewWindow -PassThru -Wait
             if ($p.ExitCode -ne 0) { throw "Effect pitch (modify speed) failed with code $($p.ExitCode)" }
+        }
+        elseif ($fxType -eq "tremolo") {
+            $depth = Get-Prop $Effect "depth" 0.85
+            $rateHz = Get-Prop $Effect "rateHz" $null
+            $wubsPerBeat = Get-Prop $Effect "wubsPerBeat" $null
+            $rateMap = Get-Prop $Effect "rateMap" $null
+
+            if ($null -ne $wubsPerBeat) {
+                $rateHz = [double]$wubsPerBeat * ($tempo / 60.0)
+            }
+
+            if ($rateMap) {
+                if ($TrackDurationSec -le 0) { throw "Tremolo rateMap requires a valid track duration." }
+
+                $sortedMap = $rateMap | Sort-Object time
+                $segFiles = @()
+                $segFxFiles = @()
+
+                for ($idx = 0; $idx -lt $sortedMap.Count; $idx++) {
+                    $entry = $sortedMap[$idx]
+                    $startVal = Get-Prop $entry "time" 0.0
+                    $startSec = Get-Seconds $startVal
+
+                    $endSec = $TrackDurationSec
+                    if ($idx -lt ($sortedMap.Count - 1)) {
+                        $endVal = Get-Prop $sortedMap[$idx + 1] "time" $TrackDurationSec
+                        $endSec = Get-Seconds $endVal
+                    }
+
+                    $segDur = [double]$endSec - [double]$startSec
+                    if ($segDur -le 0) { continue }
+
+                    $entryRate = Get-Prop $entry "rateHz" $null
+                    $entryWubs = Get-Prop $entry "wubsPerBeat" $null
+                    if ($null -ne $entryWubs) {
+                        $entryRate = [double]$entryWubs * ($tempo / 60.0)
+                    }
+                    if ($null -eq $entryRate -or $entryRate -le 0) {
+                        throw "Tremolo rateMap entry must include rateHz or wubsPerBeat."
+                    }
+
+                    $segFile = Join-Path $WorkDir "track_${TrackName}_seg$idx.wav"
+                    $segFx = Join-Path $WorkDir "track_${TrackName}_seg${idx}_fx.wav"
+
+                    $cutArgs = @("-y", "-i", $InputFile, "-ss", $startSec, "-t", $segDur, $segFile)
+                    $pCut = Start-Process -FilePath "ffmpeg" -ArgumentList $cutArgs -NoNewWindow -PassThru -Wait
+                    if ($pCut.ExitCode -ne 0) { throw "Tremolo segment cut failed for $TrackName" }
+
+                    $rateStr = ([double]$entryRate).ToString("0.000", [System.Globalization.CultureInfo]::InvariantCulture)
+                    $depthStr = ([double]$depth).ToString("0.000", [System.Globalization.CultureInfo]::InvariantCulture)
+                    $fxArgs = @("-y", "-i", $segFile, "-filter:a", "tremolo=f=${rateStr}:d=${depthStr}", $segFx)
+                    $pFx = Start-Process -FilePath "ffmpeg" -ArgumentList $fxArgs -NoNewWindow -PassThru -Wait
+                    if ($pFx.ExitCode -ne 0) { throw "Tremolo effect failed for $TrackName" }
+
+                    $segFiles += $segFile
+                    $segFxFiles += $segFx
+                }
+
+                if ($segFxFiles.Count -eq 0) { throw "Tremolo rateMap produced no segments." }
+                if ($segFxFiles.Count -eq 1) {
+                    Move-Item -Force $segFxFiles[0] $OutputFile
+                }
+                else {
+                    $listFile = Join-Path $WorkDir "track_${TrackName}_tremolo_concat.txt"
+                    $listLines = $segFxFiles | ForEach-Object {
+                        $safePath = $_ -replace "'", "''"
+                        "file '$safePath'"
+                    }
+                    Set-Content -Path $listFile -Value $listLines -Encoding ascii
+                    $concatArgs = @("-y", "-f", "concat", "-safe", "0", "-i", $listFile, "-c:a", "pcm_s16le", $OutputFile)
+                    $pCat = Start-Process -FilePath "ffmpeg" -ArgumentList $concatArgs -NoNewWindow -PassThru -Wait
+                    if ($pCat.ExitCode -ne 0) { throw "Tremolo concat failed for $TrackName" }
+                }
+
+                if (-not $KeepTemp) {
+                    foreach ($f in $segFiles) { Remove-Item $f -ErrorAction SilentlyContinue }
+                    foreach ($f in $segFxFiles) { Remove-Item $f -ErrorAction SilentlyContinue }
+                    Remove-Item $listFile -ErrorAction SilentlyContinue
+                }
+            }
+            else {
+                if ($null -eq $rateHz -or $rateHz -le 0) {
+                    throw "Tremolo requires rateHz or wubsPerBeat."
+                }
+
+                $rateStr = ([double]$rateHz).ToString("0.000", [System.Globalization.CultureInfo]::InvariantCulture)
+                $depthStr = ([double]$depth).ToString("0.000", [System.Globalization.CultureInfo]::InvariantCulture)
+                $args = @("-y", "-i", $InputFile, "-filter:a", "tremolo=f=${rateStr}:d=${depthStr}", $OutputFile)
+                $p = Start-Process -FilePath "ffmpeg" -ArgumentList $args -NoNewWindow -PassThru -Wait
+                if ($p.ExitCode -ne 0) { throw "Effect tremolo failed with code $($p.ExitCode)" }
+            }
         }
         else {
             throw "Effect '$fxType' is not supported."
@@ -221,28 +316,67 @@ try {
         return 2 # Default to stereo
     }
 
+    function Get-DurationSec {
+        param($File)
+        $probeFile = Join-Path $workDir "probe_duration.txt"
+
+        try {
+            & "ffmpeg" "-i" $File 2> $probeFile | Out-Null
+        }
+        catch {}
+
+        if (Test-Path $probeFile) {
+            $info = Get-Content $probeFile -Raw
+            if ($info -match "Duration:\s+(\d+):(\d+):(\d+)\.(\d+)") {
+                $h = [int]$Matches[1]
+                $m = [int]$Matches[2]
+                $s = [int]$Matches[3]
+                $frac = [double]("0." + $Matches[4])
+                return ($h * 3600) + ($m * 60) + $s + $frac
+            }
+        }
+        return 0.0
+    }
+
     function Apply-Mixer {
         param($InputFile, $TrackName, $GainDb, $Pan, $WorkDir)
         
         $mixOut = Join-Path $WorkDir "track_${TrackName}_mix.wav"
 
         $pVal = ($Pan + 1.0) / 2.0
-        $pStr = $pVal.ToString("0.00", [System.Globalization.CultureInfo]::InvariantCulture)
+        # Pre-calc coefficients to avoid (1-x) string parsing issue in ffmpeg
+        $vLeft = 1.0 - $pVal
+        $vRight = $pVal
+        
+        $sL = $vLeft.ToString("0.0000", [System.Globalization.CultureInfo]::InvariantCulture)
+        $sR = $vRight.ToString("0.0000", [System.Globalization.CultureInfo]::InvariantCulture)
+        
         $gStr = $GainDb.ToString("0.00", [System.Globalization.CultureInfo]::InvariantCulture)
         
         $ch = Get-Channels $InputFile
+        $filters = @("volume=${gStr}dB")
         
-        if ($ch -eq 1) {
-            # Mono source: distribute to L/R based on pan
-            # Parser-safe arithmetic: c0=(1-P)*c0
-            $panFilter = "pan=stereo|c0=(1-$pStr)*c0|c1=$pStr*c0"
-        }
-        else {
-            # Stereo source: Balance (attenuate opposite channel)
-            $panFilter = "pan=stereo|c0=(1-$pStr)*c0|c1=$pStr*c1" 
+        # Only Apply Pan if non-center
+        # However, for Mono sources, explicit pan=stereo is good to ensure 2-ch output if we want specific placement.
+        # But instructions say "If pan is null/0, do not apply pan filter at all."
+        # If we skip pan on mono, ffmpeg amix usually centers it.
+        
+        if ($Pan -ne 0.0 -and $null -ne $Pan) {
+            if ($ch -eq 1) {
+                # Mono -> Stereo Pan
+                # c0=c0*Left, c1=c0*Right
+                $filters += "pan=stereo|c0=c0*$sL|c1=c0*$sR"
+            }
+            else {
+                # Stereo Balance
+                # c0=c0*Left, c1=c1*Right (Balance)
+                $filters += "pan=stereo|c0=c0*$sL|c1=c1*$sR"
+            }
         }
         
-        $argsMix = @("-y", "-i", $InputFile, "-filter_complex", "volume=${gStr}dB,$panFilter", $mixOut)
+        $filterStr = $filters -join ","
+        
+        $argsMix = @("-y", "-i", $InputFile, "-filter_complex", $filterStr, $mixOut)
         
         $pMix = Start-Process -FilePath "ffmpeg" -ArgumentList $argsMix -NoNewWindow -PassThru -Wait
         if ($pMix.ExitCode -ne 0) {
@@ -325,6 +459,8 @@ try {
                         foreach ($ef in $eventFiles) { Remove-Item $ef.File -ErrorAction SilentlyContinue }
                     }
 
+                    $trackDurationSec = Get-DurationSec $trackStem
+
                     # Apply Effects for Synth Track
                     if ($track.PSObject.Properties['effects'] -and $track.effects) {
                         foreach ($fx in $track.effects) {
@@ -332,7 +468,7 @@ try {
                             $fxType = Get-Prop $fx "type" "unknown"
                             Write-Host "Applying effect: $fxType"
                             $fxOut = Join-Path $workDir "track_$($track.name)_fx.wav"
-                            Apply-Effect -InputFile $trackStem -OutputFile $fxOut -Effect $fx
+                            Apply-Effect -InputFile $trackStem -OutputFile $fxOut -Effect $fx -WorkDir $workDir -TrackName $track.name -TrackDurationSec $trackDurationSec
                             Move-Item -Force $fxOut $trackStem
                         }
                     }
@@ -501,6 +637,8 @@ try {
                         Remove-Item (Join-Path $workDir "t$($track.name)_s*_temp.wav") -ErrorAction SilentlyContinue
                     }
 
+                    $trackDurationSec = Get-DurationSec $trackStem
+
                     # Apply Effects for Sample Track
                     if ($track.PSObject.Properties['effects'] -and $track.effects) {
                         foreach ($fx in $track.effects) {
@@ -508,7 +646,7 @@ try {
                             $fxType = Get-Prop $fx "type" "unknown"
                             Write-Host "Applying effect: $fxType"
                             $fxOut = Join-Path $workDir "track_$($track.name)_fx.wav"
-                            Apply-Effect -InputFile $trackStem -OutputFile $fxOut -Effect $fx
+                            Apply-Effect -InputFile $trackStem -OutputFile $fxOut -Effect $fx -WorkDir $workDir -TrackName $track.name -TrackDurationSec $trackDurationSec
                             Move-Item -Force $fxOut $trackStem
                         }
                     }
@@ -549,39 +687,36 @@ try {
         if ($p.ExitCode -ne 0) { throw "FFmpeg master mix failed." }
         
         # --- Mastering Pass ---
-        if ($MasterLufs -or $MasterLimitDb) {
+        if ($MasterLufs -or $MasterLimitDb -or $MasterGlue) {
             Write-Host "Applying Mastering..."
             $masterIn = $OutWav
-            # Create a suffix filename to avoid overwrite clash on same file input
             $masterOut = $OutWav.Replace(".wav", "_master.wav")
             
-            $filter = ""
+            $filters = @()
+            
+            if ($MasterGlue) {
+                $filters += "acompressor=threshold=-18dB:ratio=2:attack=5:release=50:makeup=2"
+            }
+            
             if ($MasterLufs) {
-                # loudnorm
-                # If Limit not specified, default to -1.0
+                # loudnorm (includes TP limiter)
                 $tp = -1.0
                 if ($MasterLimitDb) { $tp = $MasterLimitDb }
-                
-                # loudnorm=I=-14:TP=-1:LRA=11
-                $filter = "loudnorm=I=$($MasterLufs):TP=$($tp):LRA=11"
+                $filters += "loudnorm=I=$($MasterLufs):TP=$($tp):LRA=11"
             }
             elseif ($MasterLimitDb) {
                 # alimiter only
-                # alimiter=limit=1:level_in=1:level_out=1:measure=0
-                # Limit must be linear. 10^(db/20)
                 $lin = [Math]::Pow(10, $MasterLimitDb / 20)
-                # Invariant string
                 $linStr = $lin.ToString("0.0000", [System.Globalization.CultureInfo]::InvariantCulture)
-                $filter = "alimiter=limit=$($linStr):level_in=1:level_out=1:measure=0"
+                $filters += "alimiter=limit=$($linStr):level_in=1:level_out=1:measure=0"
             }
             
-            if ($filter) {
-                Write-Host "Master Filter: $filter"
-                $p = Start-Process "ffmpeg" -ArgumentList "-y", "-i", $masterIn, "-filter_complex", $filter, $masterOut -NoNewWindow -PassThru -Wait
+            $filterStr = $filters -join ","
+            
+            if ($filterStr) {
+                Write-Host "Master Filter: $filterStr"
+                $p = Start-Process "ffmpeg" -ArgumentList "-y", "-i", $masterIn, "-filter_complex", $filterStr, $masterOut -NoNewWindow -PassThru -Wait
                 if ($p.ExitCode -eq 0) {
-                    # Replace original (or keep both? Instruction says 'write new file suffix _master unless -OutWav given')
-                    # Actually, we *are* writing to OutWav originally. 
-                    # If we write to _master, we should update OutWav to point to it for MP3/Play steps.
                     $OutWav = $masterOut
                     Write-Host "Mastered Output: $OutWav" -ForegroundColor Green
                 }

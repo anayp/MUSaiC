@@ -1,0 +1,197 @@
+{
+  "key": "C Major",
+  "key_mode": "Major",
+  "key_root": "C",
+  "key_confidence": 11.699999999999818,
+  "key_candidates": [
+    {
+      "Root": 0,
+      "Type": "Major",
+      "Score": 1787.8
+    },
+    {
+      "Root": 9,
+      "Type": "Minor",
+      "Score": 1776.1000000000001
+    },
+    {
+      "Root": 4,
+      "Type": "Minor",
+      "Score": 1672.44
+    }
+  ],
+  "pitch_class_histogram": [
+    92.0,
+    0,
+    32.0,
+    0,
+    54.0,
+    42.0,
+    0,
+    70.0,
+    0,
+    64.0,
+    0,
+    30.0
+  ],
+  "scale_degree_histogram": [
+    92.0,
+    0,
+    32.0,
+    0,
+    54.0,
+    42.0,
+    0,
+    70.0,
+    0,
+    64.0,
+    0,
+    30.0
+  ],
+  "out_of_key_ratio": 0,
+  "out_of_key_notes": {},
+  "chords": [
+    {
+      "Start": 0,
+      "Name": "CMaj",
+      "Roman": "I",
+      "Score": 22.5
+    },
+    {
+      "Start": 4.0,
+      "Name": "EMin7",
+      "Roman": "iii",
+      "Score": 22.5
+    },
+    {
+      "Start": 8.0,
+      "Name": "FMaj7",
+      "Roman": "IV",
+      "Score": 21.0
+    },
+    {
+      "Start": 12.0,
+      "Name": "DMin7",
+      "Roman": "ii",
+      "Score": 21.0
+    },
+    {
+      "Start": 16.0,
+      "Name": "CMaj",
+      "Roman": "I",
+      "Score": 22.5
+    },
+    {
+      "Start": 20.0,
+      "Name": "EMin7",
+      "Roman": "iii",
+      "Score": 22.5
+    },
+    {
+      "Start": 24.0,
+      "Name": "FMaj7",
+      "Roman": "IV",
+      "Score": 21.0
+    },
+    {
+      "Start": 28.0,
+      "Name": "DMin7",
+      "Roman": "ii",
+      "Score": 21.0
+    },
+    {
+      "Start": 32.0,
+      "Name": "CMaj",
+      "Roman": "I",
+      "Score": 22.5
+    },
+    {
+      "Start": 36.0,
+      "Name": "EMin7",
+      "Roman": "iii",
+      "Score": 22.5
+    },
+    {
+      "Start": 40.0,
+      "Name": "FMaj7",
+      "Roman": "IV",
+      "Score": 21.0
+    },
+    {
+      "Start": 44.0,
+      "Name": "DMin7",
+      "Roman": "ii",
+      "Score": 21.0
+    },
+    {
+      "Start": 48.0,
+      "Name": "CMaj",
+      "Roman": "I",
+      "Score": 22.5
+    },
+    {
+      "Start": 52.0,
+      "Name": "EMin7",
+      "Roman": "iii",
+      "Score": 22.5
+    },
+    {
+      "Start": 56.0,
+      "Name": "FMaj7",
+      "Roman": "IV",
+      "Score": 21.0
+    },
+    {
+      "Start": 60.0,
+      "Name": "DMin7",
+      "Roman": "ii",
+      "Score": 21.0
+    }
+  ],
+  "roman_numerals": [
+    "I",
+    "iii",
+    "IV",
+    "ii",
+    "I",
+    "iii",
+    "IV",
+    "ii",
+    "I",
+    "iii",
+    "IV",
+    "ii",
+    "I",
+    "iii",
+    "IV",
+    "ii"
+  ],
+  "cadences": null,
+  "track_stats": {
+    "Bass": {
+      "StepwiseRatio": "27%",
+      "LeapRatio": "20%",
+      "Range": "41 - 48",
+      "AvgInterval": "4.3"
+    },
+    "ArpHarpsichord": {
+      "StepwiseRatio": "3%",
+      "LeapRatio": "6%",
+      "Range": "53 - 72",
+      "AvgInterval": "4.1"
+    },
+    "Melody": {
+      "StepwiseRatio": "87%",
+      "LeapRatio": "0%",
+      "Range": "67 - 79",
+      "AvgInterval": "1.9"
+    },
+    "PadStrings": {
+      "StepwiseRatio": "2%",
+      "LeapRatio": "26%",
+      "Range": "53 - 67",
+      "AvgInterval": "4.9"
+    }
+  },
+  "warnings": []
+}

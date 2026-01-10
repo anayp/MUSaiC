@@ -6,8 +6,8 @@ description: Use the Composer Desktop Project (CDP/CDPR8) CLI tools to synthesiz
 # CDP CLI Skill
 
 ## Paths
-- CDP root: `F:\CDP\CDPR8`
-- CDP binaries: `F:\CDP\CDPR8\_cdp\_cdprogs`
+- CDP root: `./CDPR8`
+- CDP binaries: `./CDPR8/_cdp/_cdprogs`
 - Helper scripts (repo): 
     - **CDP Sequencer** (`cdp-sequencer.ps1`): 
       - Renders JSON scores to WAV/MP3.
@@ -26,20 +26,25 @@ Returns JSON object with:
 - `rms_db`: RMS amplitude
 - `peak_db`: Peak amplitude
 - `lufs_i`: Integrated Loudness (LUFS)
+- `onset_count`: Note onset count
+- `onset_density`: Onsets per second
 - `duration`: Length in seconds
 
 Optional:
 - `-TargetLufs <double>`: Validates output against target (+/- 1.0 LU).
+- `-OnsetThresholdDb`: Silence threshold for onsets.
     - **Transform** (`cdp-transform.ps1`): Supports `-ConfigPath`; `-Method pvoc` automatically bypasses legacy tool issues by checking for `stretch`/`strans` first.
     - **Timeline** (`cdp-timeline.ps1`): Visualizes JSON scores as ASCII lanes locally (`-Resolution ticks/beats/bars`).
     - **Metadata** (`cdp-meta.ps1`): Manages project context (`-Init`, `-Show`, `-Update`) in `meta.json`.
+    - **Theory** (`cdp-theory.ps1`): Symbolic analysis (Key, Chords, Cadences).
     - **Sequencer**: Accepts `-MetaPath` to fallback to project tempo/units if missing in score.
       - `-MetaPath <path>` (optional): Path to `meta.json` project context.
       - `-MasterLufs <double>` (optional): Target Integrated LUFS (e.g. -14).
       - `-MasterLimitDb <double>` (optional): True Peak Limit in dB (e.g. -1.0).
+      - `-MasterGlue`: Optional bus compressor.
       - `-Play` (switch): Auto-play result.
 - **Assets**: `examples/kick.wav` (generated test sample).
-- Outputs: `F:\CDP\output`
+- Outputs: `./output`
 
 ## Quick Usage
 ### DAW / Sequencer (Recommended)

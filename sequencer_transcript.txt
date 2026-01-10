@@ -1911,3 +1911,1619 @@ loop_demo_s9.wav  1
 ]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
 PS>cd 'f:\CDP'
 ]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>git add .
+warning: in the working
+copy of 'mem_map/server.
+js', LF will be replaced
+ by CRLF the next time G
+it touches it
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath examples\sample_loop_demo.json -OutWav output\sample_loop_demo_s9.wav
+Loading score: examples\sample_loop_demo.json
+Target Output: F:\CDP\output\sample_loop_demo_s9.wav
+Timing Mode: beats (Tempo: 140 BPM)
+Processing Track: LoopedKick (sample)
+Processing Sample Track: LoopedKick
+WARNING: Mixer failed for track LoopedKick
+Mixing Master...
+Rendered to F:\CDP\output\sample_loop_demo_s9.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>git status
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>git add .
+e next time Git touc
+hes it
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>git commit -m "Sprint 9: verify outputs, docs, pvoc behavior, and fixes"
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>Get-Item output\sample_loop_demo_s9.wav | Select-Object Name, LastWriteTime
+
+Name
+----               
+sample_loop_demo_s…
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+]633;D]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>git remote -v
+ub.com/anayp/MUSaiC.
+git (push)
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>git commit --amend -m "Sprint 9: verify outputs, docs, and pvoc behavior
+
+- Finally taught the mixer pan math to speak ffmpeg without yelling.
+- Synth amp is now folded into gainDb, because decimal flags are apparently too advanced for 2016-era binaries.
+- pvoc ?intelligence? now means ?try stretch/strans first, then admit defeat gracefully.?
+- Auto-clean temp files so we stop hoarding WAV confetti; KeepTemp exists for the brave.
+- Verified outputs: output/mixer_demo_s9.wav, output/sample_loop_demo_s9.wav, output/tempo_s9.wav, output/pitch_s9.wav.
+- Docs updated to match reality, not ambition."
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>git push origin master
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>git log -1
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>Get-ChildItem output\mixer_demo_s9.wav, output\sample_loop_demo_s9.wav, output\tempo_s9.wav, output\pitch_s9.wav | Select-Object Name, Length, LastWriteTime
+
+Name
+----               
+mixer_demo_s9.wav
+sample_loop_demo_s…
+tempo_s9.wav
+pitch_s9.wav
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-timeline.ps1 -ScorePath examples\mixer_demo.json
+
+CDP TIMELINE: examples\mixer_demo.json (Resolution: beats, Tempo: 120)
+------------------------------------------------------------------------------------------------------------------------
+                |1...
+LeftKick        |#.#.
+RightSynth      |.#.#
+MutedTrack      |#===
+
+Legend: [#] Note Start  [=] Sustain  [.] Empty
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+]633;D]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-timeline.ps1 -ScorePath examples\musaic_breakbeat_blast_short.json -Resolution ticks -Width 80
+
+CDP TIMELINE: examples\musaic_breakbeat_blast_short.json (Resolution: ticks, Tempo: 140)
+--------------------------------------------------------------------------------
+                ||   .   .   .   |   .   .   .   |   .   .   .   |   .   .   .
+Pad             |#===============#===============#===============#==============
+Arp             |###############################################################
+Lead            |#=#=#.#...#=#.###=#=#.#...#=#.###=#=#.#...#=#.###=#=#.#...#=#.#
+Bass            |#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+Hat             |###############################################################
+Snare           |....#.......#.......#.......#.......#.......#.......#.......#..
+Ghost           |.......#.....#.........#.....#.........#.....#.........#.....#.
+Perc            |..#...#...#...#...#...#...#...#...#...#...#...#...#...#...#...#
+Kick            |#..#..#.#..#..#.#...#..#..#.#..##.#...#..#..#.#.#....#..#..#.#.
+
+--------------------------------------------------------------------------------
+                | |   .   .   .   |   .   .   .   |   .   .   .   |   .   .   .
+Pad             |=#===============#===============#===============#=============
+Arp             |###############################################################
+Lead            |##=#=#.#...#=#.###=#=#.#...#=#.###=#=#.#...#=#.###=#=#.#...#=#.
+Bass            |=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=
+Hat             |###############################################################
+Snare           |.....#.......#.......#.......#.......#.......#.......#.......#.
+Ghost           |........#.....#.........#.....#.........#.....#.........#.....#
+Perc            |...#...#...#...#...#...#...#...#...#...#...#...#...#...#...#...
+Kick            |##..#..#.#..#..#.#...#..#..#.#..##.#...#..#..#.#.#....#..#..#.#
+
+--------------------------------------------------------------------------------
+                |
+Pad             |==
+Arp             |##
+Lead            |##
+Bass            |#=
+Hat             |##
+Snare           |..
+Ghost           |..
+Perc            |#.
+Kick            |.#
+
+Legend: [#] Note Start  [=] Sustain  [.] Empty
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-meta.ps1 -Init output\test_meta.json
+Initialized metadata at: output\test_meta.json
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+]633;D]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-meta.ps1 -Update output\test_meta.json -Set "tempo=155"
+Updated: tempo -> 155
+Saved changes to output\test_meta.json
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+]633;D]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-meta.ps1 -Show output\test_meta.json
+
+PROJECT: New MUSaiC Project
+Context: 155 BPM | C major
+Sections:
+
+name length notes
+---- ------ -----
+init     16 Placeho…
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath output\meta_fallback_test.json -MetaPath output\test_meta.json
+Loading score: output\meta_fallback_test.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: seconds (Tempo: 120 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath output\meta_fallback_test.json -MetaPath output\test_meta.json
+Loading score: output\meta_fallback_test.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>Get-Content f:\CDP\cdp-sequencer.ps1 -TotalCount 20
+param(
+    [string]$ScorePath = ".\\examples\\effects_demo.json",
+    [string]$OutWav, # Optional override
+    [string]$OutMp3, # Optional mp3 output
+    [string]$MetaPath, # Optional path to meta.json
+    [switch]$Play,
+    [switch]$KeepTemp # Sprint 7: Default cleans up notes
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+# --- Dependency Checks ---
+if (-not (Get-Command "ffmpeg" -ErrorAction SilentlyContinue)) {
+    throw "ffmpeg is not in your PATH. Please install ffmpeg."
+}
+
+try {
+    # --- Configuration ---
+    $cdpBin = Join-Path $PSScriptRoot "CDPR8\\_cdp\\_cdprogs"
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath output\meta_fallback_test.json -MetaPath output\test_meta.json
+Loading score: output\meta_fallback_test.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath output\meta_fallback_test.json
+Loading score: output\meta_fallback_test.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: seconds (Tempo: 120 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath output\meta_fallback_test.json -MetaPath output\test_meta.json
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\test_debug.ps1 -ScorePath output\meta_fallback_test.json -MetaPath output\test_meta.json
+DBG: Params received: Score=output\meta_fallback_test.json, Meta=output\test_meta.json
+DBG: Loading Score...
+DBG: Score loaded object type: PSCustomObject
+DBG: Loading Meta...
+DBG: Meta loaded.
+PS>TerminatingError(test_debug.ps1): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: CRASH: The property 'tempo' cannot be found on this object. Verify that the property exists."
+>> TerminatingError(test_debug.ps1): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: CRASH: The property 'tempo' cannot be found on this object. Verify that the property exists."
+>> TerminatingError(test_debug.ps1): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: CRASH: The property 'tempo' cannot be found on this object. Verify that the property exists."
+The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: CRASH: The property 'tempo' cannot be found on this object. Verify that the property exists.
+Write-Error: CRASH: The property 'tempo' cannot be found on this object. Verify that the property exists.
+]633;D;1]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath output\meta_fallback_test.json -MetaPath output\test_meta.json
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+DEBUG: Validation Complete
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+DEBUG: Extracted Snippet
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+DEBUG: Entering Mix Loop
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+DEBUG: Mix Loop Finished
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+PS>TerminatingError(): "The variable '$pVal' cannot be retrieved because it has not been set."
+>> TerminatingError(cdp-sequencer.ps1): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Sequencer Error: The variable '$pVal' cannot be retrieved because it has not been set."
+>> TerminatingError(cdp-sequencer.ps1): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Sequencer Error: The variable '$pVal' cannot be retrieved because it has not been set."
+>> TerminatingError(cdp-sequencer.ps1): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Sequencer Error: The variable '$pVal' cannot be retrieved because it has not been set."
+The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Sequencer Error: The variable '$pVal' cannot be retrieved because it has not been set.
+Write-Error: Sequencer Error: The variable '$pVal' cannot be retrieved because it has not been set.
+]633;D;1]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+PS>TerminatingError(): "The variable '$mixOut' cannot be retrieved because it has not been set."
+>> TerminatingError(cdp-sequencer.ps1): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Sequencer Error: The variable '$mixOut' cannot be retrieved because it has not been set."
+>> TerminatingError(cdp-sequencer.ps1): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Sequencer Error: The variable '$mixOut' cannot be retrieved because it has not been set."
+>> TerminatingError(cdp-sequencer.ps1): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Sequencer Error: The variable '$mixOut' cannot be retrieved because it has not been set."
+The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Sequencer Error: The variable '$mixOut' cannot be retrieved because it has not been set.
+Write-Error: Sequencer Error: The variable '$mixOut' cannot be retrieved because it has not been set.
+]633;D;1]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+ParserError: F:\CDP\cdp-sequencer.ps1:18:5
+Line |
+  18 |  try {
+     |      ~
+     | Missing closing '}' in statement block or type definition.
+ParserError: F:\CDP\cdp-sequencer.ps1:18:5
+Line |
+  18 |  try {
+     |      ~
+     | Missing
+     | closing '}'
+     | in statement
+     | block or
+     | type
+     | definition.
+
+]633;D;1]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+ParserError: F:\CDP\cdp-sequencer.ps1:18:5
+Line |
+  18 |  try {
+     |      ~
+     | Missing closing '}' in statement block or type definition.
+ParserError: F:\CDP\cdp-sequencer.ps1:18:5
+Line |
+  18 |  try {
+     |      ~
+     | Missing
+     | closing '}'
+     | in statement
+     | block or
+     | type
+     | definition.
+
+]633;D;1]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath "output\meta_fallback_test.json" -MetaPath "output\test_meta.json"
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\test_meta.json
+Loading Metadata: output\test_meta.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 155 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 00000283920769c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_Kick.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:00.39, bitrate: 769 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath examples\mixer_demo.json -OutWav output\mixer_demo_s12.wav
+Loading score: examples\mixer_demo.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath:
+Target Output: F:\CDP\output\mixer_demo_s12.wav
+Timing Mode: beats (Tempo: 120 BPM)
+Processing Track: LeftKick (sample)
+Processing Sample Track: LeftKick
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000002a84230d4c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_LeftKick.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.50, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track LeftKick
+Processing Track: RightSynth (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 0000012652a869c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_RightSynth.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.75, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track RightSynth
+Processing Track: MutedTrack (synth)
+Track MutedTrack Muted.
+Mixing Master...
+Rendered to F:\CDP\output\mixer_demo_s12.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>dir output\mixer_demo_s12.wav
+
+    Directory:
+F:\CDP\output
+
+Mode    LastWriteTi
+                 me
+----    -----------
+-a---    1/10/2026
+           11:21 PM
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>del test_debug.ps1
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-meta.ps1 -Init output\test_nested.json
+Initialized metadata at: output\test_nested.json
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-meta.ps1 -Update output\test_nested.json -Set "sections.0.name=TEST_SEC" -Set "sections.0.length=99"
+>> TerminatingError(cdp-meta.ps1): "Cannot bind parameter because parameter 'Set' is specified more than once. To provide multiple values to parameters that can accept multiple values, use the array syntax. For example, "-parameter value1,value2,value3"."
+cdp-meta.ps1: Cannot bind parameter because parameter 'Set' is specified more than once. To provide multiple values to parameters that can accept multiple values, use the array syntax. For example, "-parameter value1,value2,value3".
+cdp-meta.ps1: Cannot bind parameter because parameter 'Set' is specified more than once. To provide multiple values to parameters that can accept multiple values, use the array syntax. For example, "-parameter value1,value2,value3".
+]633;D;1]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-meta.ps1 -Update output\test_nested.json -Set "sections.0.name=TEST_SEC", "sections.0.length=99"
+Updated: sections.0.name -> TEST_SEC
+Updated: sections.0.length -> 99
+Saved changes to output\test_nested.json
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-meta.ps1 -Show output\test_nested.json
+
+PROJECT: New MUSaiC Project
+Context: 120 BPM | C major
+Sections:
+
+name     length note
+                s
+----     ------ ----
+TEST_SEC     99 Pla…
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>del output\meta_new.json
+Remove-Item: Cannot find path 'F:\CDP\output\meta_new.json' because it does not exist.
+Remove-Item: Cannot find path 'F:\CDP\output\meta_new.json' because it does not exist.
+]633;D;1]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+]633;D]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-meta.ps1 -Init output\meta_new.json
+Initialized metadata at: output\meta_new.json
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-meta.ps1 -Update output\meta_new.json -Set "sections.0.name=intro", "sections.0.length=16"
+Updated: sections.0.name -> intro
+Updated: sections.0.length -> 16
+Saved changes to output\meta_new.json
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+]633;D]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-meta.ps1 -Show output\meta_new.json
+
+PROJECT: New MUSaiC Project
+Context: 120 BPM | C major
+Sections:
+
+name  length notes
+----  ------ -----
+intro     16 Placeh…
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath output\meta_fallback_test.json -MetaPath output\meta_new.json
+Loading score: output\meta_fallback_test.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath: output\meta_new.json
+Loading Metadata: output\meta_new.json
+Target Output: F:\CDP\output\Meta_Fallback_Test-master.wav
+Timing Mode: beats (Tempo: 120 BPM)
+Processing Track: Kick (sample)
+Processing Sample Track: Kick
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000002335cea69c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_Kick.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:00.50, bitrate: 769 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track Kick
+Mixing Master...
+Rendered to F:\CDP\output\Meta_Fallback_Test-master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>del output\test_nested.json
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath examples\mixer_demo.json -OutWav output\mixer_demo_loud.wav -MasterLufs -14 -MasterLimitDb -1
+Loading score: examples\mixer_demo.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath:
+Target Output: F:\CDP\output\mixer_demo_loud.wav
+Timing Mode: beats (Tempo: 120 BPM)
+Processing Track: LeftKick (sample)
+Processing Sample Track: LeftKick
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 0000018e30dfd4c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_LeftKick.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.50, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track LeftKick
+Processing Track: RightSynth (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 0000013e538a69c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_RightSynth.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.75, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track RightSynth
+Processing Track: MutedTrack (synth)
+Track MutedTrack Muted.
+Mixing Master...
+Applying Mastering...
+Master Filter: loudnorm=I=-14:TP=-1:LRA=11
+Mastered Output: F:\CDP\output\mixer_demo_loud_master.wav
+Rendered to F:\CDP\output\mixer_demo_loud_master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath examples\mixer_demo.json -OutWav output\mixer_demo_loud.wav -MasterLufs "-14.0" -MasterLimitDb "-1.0"
+Loading score: examples\mixer_demo.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath:
+Target Output: F:\CDP\output\mixer_demo_loud.wav
+Timing Mode: beats (Tempo: 120 BPM)
+Processing Track: LeftKick (sample)
+Processing Sample Track: LeftKick
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000001eb17a6d4c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_LeftKick.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.50, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track LeftKick
+Processing Track: RightSynth (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 00000268833469c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_RightSynth.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.75, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track RightSynth
+Processing Track: MutedTrack (synth)
+Track MutedTrack Muted.
+Mixing Master...
+Applying Mastering...
+Master Filter: loudnorm=I=-14:TP=-1:LRA=11
+Mastered Output: F:\CDP\output\mixer_demo_loud_master.wav
+Rendered to F:\CDP\output\mixer_demo_loud_master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath examples\mixer_demo.json -OutWav output\debug_loud.wav -MasterLufs "-14.0" -MasterLimitDb "-1.0"
+Loading score: examples\mixer_demo.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath:
+Target Output: F:\CDP\output\debug_loud.wav
+Timing Mode: beats (Tempo: 120 BPM)
+Processing Track: LeftKick (sample)
+Processing Sample Track: LeftKick
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000002736160d4c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_LeftKick.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.50, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track LeftKick
+Processing Track: RightSynth (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000001b9983f69c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_RightSynth.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.75, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track RightSynth
+Processing Track: MutedTrack (synth)
+Track MutedTrack Muted.
+Mixing Master...
+Applying Mastering...
+Master Filter: loudnorm=I=-14:TP=-1:LRA=11
+Mastered Output: F:\CDP\output\debug_loud_master.wav
+Rendered to F:\CDP\output\debug_loud_master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-analyze.ps1 -InputFile output\debug_loud_master.wav -TargetLufs -14
+Analyzing F:\CDP\output\debug_loud_master.wav...
+WARNING: Pitch analysis tool failed. Skipping pitch detection.
+JSON: F:\CDP\output\analysis\debug_loud_master.json
+Text: F:\CDP\output\analysis\debug_loud_master.txt
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>type output\analysis\debug_loud_master.txt
+Analysis Report: debug_loud_master
+----------------------------
+BPM:
+Pitch:  Hz
+RMS:   -12.1 dB
+Peak:  -4.8 dB
+LUFS:  -14
+Dur:   1.750000
+
+Warnings:
+Could not detect BPM
+Could not estimate Pitch
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>type output\analysis\debug_loud_master.json
+{
+  "details": {
+    "filesize": 672102
+  },
+  "warnings": [
+    "Could not detect BPM",
+    "Could not estimate Pitch"
+  ],
+  "analysis": {
+    "tempo_bpm": null,
+    "pitch_hz": null,
+    "rms_db": -12.1,
+    "peak_db": -4.8,
+    "lufs_i": -14.0,
+    "duration": "1.750000"
+  }
+}
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>powershell -Command "(Get-Content output\analysis\debug_loud_master.json | ConvertFrom-Json).analysis.lufs_i"
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>del output\mixer_demo_loud.wav, output\mixer_demo_loud_master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+]633;D]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath examples\mixer_demo.json -OutWav output\mixer_demo_loud.wav -MasterLufs "-14.0" -MasterLimitDb "-1.0"
+Loading score: examples\mixer_demo.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath:
+Target Output: F:\CDP\output\mixer_demo_loud.wav
+Timing Mode: beats (Tempo: 120 BPM)
+Processing Track: LeftKick (sample)
+Processing Sample Track: LeftKick
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 0000026933e3d4c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_LeftKick.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.50, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track LeftKick
+Processing Track: RightSynth (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000001c2eb3f69c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_RightSynth.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.75, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track RightSynth
+Processing Track: MutedTrack (synth)
+Track MutedTrack Muted.
+Mixing Master...
+Applying Mastering...
+Master Filter: loudnorm=I=-14:TP=-1:LRA=11
+Mastered Output: F:\CDP\output\mixer_demo_loud_master.wav
+Rendered to F:\CDP\output\mixer_demo_loud_master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>dir output\mixer_demo_loud*
+
+    Directory:
+F:\CDP\output
+
+Mode    LastWriteTi
+                 me
+----    -----------
+-a---    1/11/2026
+           12:00 AM
+-a---    1/11/2026
+           12:00 AM
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-analyze.ps1 -InputFile output\mixer_demo_loud_master.wav -TargetLufs -14
+Analyzing F:\CDP\output\mixer_demo_loud_master.wav...
+WARNING: Pitch analysis tool failed. Skipping pitch detection.
+JSON: F:\CDP\output\analysis\mixer_demo_loud_master.json
+Text: F:\CDP\output\analysis\mixer_demo_loud_master.txt
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>powershell -Command "(Get-Content output\analysis\mixer_demo_loud_master.json | ConvertFrom-Json).analysis.lufs_i"
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>del output\meta_fallback_test.json, output\meta_new.json, output\test_meta.json
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>dir examples\*.json
+
+    Directory:
+F:\CDP\examples
+
+Mode    LastWriteTi
+                 me
+----    -----------
+-a---    1/10/2026
+            2:19 PM
+-a---    1/10/2026
+            1:19 PM
+-a---    1/11/2026
+           12:17 AM
+-a---    1/10/2026
+           12:37 PM
+-a---    1/10/2026
+            4:37 PM
+-a---    1/10/2026
+            8:02 PM
+-a---    1/10/2026
+            7:51 PM
+-a---    1/10/2026
+            3:53 PM
+-a---    1/10/2026
+            4:37 PM
+-a---    1/10/2026
+            4:46 PM
+-a---    1/10/2026
+            4:22 PM
+-a---    1/10/2026
+           11:10 PM
+-a---    1/10/2026
+            4:23 PM
+-a---    1/10/2026
+            4:23 PM
+-a---    1/10/2026
+            3:09 PM
+-a---    1/10/2026
+            4:42 PM
+-a---    1/10/2026
+           11:44 AM
+-a---    1/10/2026
+           12:36 PM
+-a---    1/10/2026
+            4:39 PM
+
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-theory.ps1 -ScorePath examples\cheesy_classical_16bars.json; .\cdp-sequencer.ps1 -ScorePath examples\mixer_demo.json -OutWav output\mixer_demo_panfix.wav -MasterLufs -14; .\cdp-analyze.ps1 -InputFile examples\kick.wav -OnsetThresholdDb -25; .\cdp-analyze.ps1 -InputFile output\mixer_demo_panfix_master.wav
+JSON: examples\..\output\analysis\cheesy_classical_16bars_theory.json
+Report: examples\..\output\analysis\cheesy_classical_16bars_theory.txt
+Loading score: examples\mixer_demo.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath:
+Target Output: F:\CDP\output\mixer_demo_panfix.wav
+Timing Mode: beats (Tempo: 120 BPM)
+Processing Track: LeftKick (sample)
+Processing Sample Track: LeftKick
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000001c69cf3d4c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_LeftKick.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.50, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track LeftKick
+Processing Track: RightSynth (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 00000137d20569c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_RightSynth.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.75, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track RightSynth
+Processing Track: MutedTrack (synth)
+Track MutedTrack Muted.
+Mixing Master...
+Applying Mastering...
+Master Filter: loudnorm=I=-14:TP=-1:LRA=11
+Mastered Output: F:\CDP\output\mixer_demo_panfix_master.wav
+Rendered to F:\CDP\output\mixer_demo_panfix_master.wav
+ParserError: F:\CDP\cdp-analyze.ps1:9:24
+Line |
+   9 |      [double]$TargetLufs
+     |                         ~
+     | Missing ')' in function parameter list.
+ParserError: F:\CDP\cdp-analyze.ps1:9:24
+Line |
+   9 |      [double]$TargetLufs
+     |                         ~
+     | Missing ')'
+     | in function
+     | parameter
+     | list.
+
+ParserError: F:\CDP\cdp-analyze.ps1:9:24
+Line |
+   9 |      [double]$TargetLufs
+     |                         ~
+     | Missing ')' in function parameter list.
+ParserError: F:\CDP\cdp-analyze.ps1:9:24
+Line |
+   9 |      [double]$TargetLufs
+     |                         ~
+     | Missing ')'
+     | in function
+     | parameter
+     | list.
+
+]633;D;1]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+]633;D]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-theory.ps1 -ScorePath examples\cheesy_classical_16bars.json; .\cdp-sequencer.ps1 -ScorePath examples\mixer_demo.json -OutWav output\mixer_demo_panfix.wav -MasterLufs -14; .\cdp-analyze.ps1 -InputFile examples\kick.wav -OnsetThresholdDb -25; .\cdp-analyze.ps1 -InputFile output\mixer_demo_panfix_master.wav
+JSON: examples\..\output\analysis\cheesy_classical_16bars_theory.json
+Report: examples\..\output\analysis\cheesy_classical_16bars_theory.txt
+Loading score: examples\mixer_demo.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath:
+Target Output: F:\CDP\output\mixer_demo_panfix.wav
+Timing Mode: beats (Tempo: 120 BPM)
+Processing Track: LeftKick (sample)
+Processing Sample Track: LeftKick
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000001743721d4c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_LeftKick.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.50, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track LeftKick
+Processing Track: RightSynth (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000001ef843e69c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_RightSynth.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:01.75, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+WARNING: Mixer failed for track RightSynth
+Processing Track: MutedTrack (synth)
+Track MutedTrack Muted.
+Mixing Master...
+Applying Mastering...
+Master Filter: loudnorm=I=-14:TP=-1:LRA=11
+Mastered Output: F:\CDP\output\mixer_demo_panfix_master.wav
+Rendered to F:\CDP\output\mixer_demo_panfix_master.wav
+Analyzing F:\CDP\examples\kick.wav...
+WARNING: Pitch analysis tool failed. Skipping pitch detection.
+JSON: F:\CDP\output\analysis\kick.json
+Text: F:\CDP\output\analysis\kick.txt
+Analyzing F:\CDP\output\mixer_demo_panfix_master.wav...
+WARNING: Pitch analysis tool failed. Skipping pitch detection.
+JSON: F:\CDP\output\analysis\mixer_demo_panfix_master.json
+Text: F:\CDP\output\analysis\mixer_demo_panfix_master.txt
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+]633;D]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>type output\analysis\cheesy_classical_16bars_theory.txt; type output\analysis\kick.json; type output\analysis\mixer_demo_panfix_master.txt
+Theory Report: cheesy_classical_16bars.json
+Key: C Major (Conf: 0.00)
+Scale Mismatch: 0.0%
+
+Chords:
+
+Tracks:
+
+{
+  "details": {
+    "filesize": 50128
+  },
+  "warnings": [
+    "Could not detect BPM",
+    "Could not estimate Pitch"
+  ],
+  "analysis": {
+    "tempo_bpm": null,
+    "pitch_hz": null,
+    "rms_db": -5.0,
+    "peak_db": -1.9,
+    "crest_db": 3.1,
+    "lufs_i": -6.8,
+    "onset_cnt": 0,
+    "onset_dens": 0.0,
+    "duration": "0.500000"
+  }
+}
+Analysis Report: mixer_demo_panfix_master
+----------------------------
+BPM:
+Pitch:  Hz
+RMS:   -12.1 dB
+Peak:  -4.8 dB
+Crest: 7.30 dB
+LUFS:  -14
+Onsets: 1 (Density: 0.57/s)
+Dur:   1.750000
+
+Warnings:
+Could not detect BPM
+Could not estimate Pitch
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-theory.ps1 -ScorePath examples\cheesy_classical_16bars.json; .\cdp-analyze.ps1 -InputFile output\mixer_demo_panfix_master.wav
+WARNING: No pitch content found. Defaulting to C Major.
+JSON: examples\..\output\analysis\cheesy_classical_16bars_theory.json
+Report: examples\..\output\analysis\cheesy_classical_16bars_theory.txt
+Analyzing F:\CDP\output\mixer_demo_panfix_master.wav...
+WARNING: Pitch analysis tool failed. Skipping pitch detection.
+JSON: F:\CDP\output\analysis\mixer_demo_panfix_master.json
+Text: F:\CDP\output\analysis\mixer_demo_panfix_master.txt
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+]633;D]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>type output\analysis\cheesy_classical_16bars_theory.txt; type output\analysis\mixer_demo_panfix_master.txt
+Theory Report: cheesy_classical_16bars.json
+Key: C Major (Conf: 0.00)
+Scale Mismatch: 0.0%
+
+Chords:
+
+Tracks:
+
+Analysis Report: mixer_demo_panfix_master
+----------------------------
+BPM:
+Pitch:  Hz
+RMS:   -12.1 dB
+Peak:  -4.8 dB
+Crest: 7.30 dB
+LUFS:  -14
+Onsets: 1 (Density: 0.57/s)
+Dur:   1.750000
+
+Warnings:
+Could not detect BPM
+Could not estimate Pitch
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-theory.ps1 -ScorePath examples\cheesy_classical_16bars.json
+Track: ArpHarpsichord, EventCount: 128
+Track: Melody, EventCount: 64
+Track: PadStrings, EventCount: 48
+Track: Bass, EventCount: 16
+WARNING: No pitch content found. Defaulting to C Major.
+JSON: examples\..\output\analysis\cheesy_classical_16bars_theory.json
+Report: examples\..\output\analysis\cheesy_classical_16bars_theory.txt
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>type output\analysis\mixer_demo_panfix_master.txt
+Analysis Report: mixer_demo_panfix_master
+----------------------------
+BPM:
+Pitch:  Hz
+RMS:   -12.1 dB
+Peak:  -4.8 dB
+Crest: 7.30 dB
+LUFS:  -14
+Onsets: 1 (Density: 0.57/s)
+Dur:   1.750000
+
+Warnings:
+Could not detect BPM
+Could not estimate Pitch
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-theory.ps1 -ScorePath examples\cheesy_classical_16bars.json
+PS>TerminatingError(cdp-theory.ps1): "The property 'Count' cannot be found on this object. Verify that the property exists."
+cdp-theory.ps1: The property 'Count' cannot be found on this object. Verify that the property exists.
+cdp-theory.ps1: The property 'Count' cannot be found on this object. Verify that the property exists.
+]633;D;1]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath examples\cheesy_classical_16bars.json -OutWav output\cheesy_classical_16bars_glue.wav -MasterGlue -MasterLufs -14 -MasterLimitDb -1
+Loading score: examples\cheesy_classical_16bars.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath:
+Target Output: F:\CDP\output\cheesy_classical_16bars_glue.wav
+Timing Mode: beats (Tempo: 120 BPM)
+Processing Track: ArpHarpsichord (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000001c8d58b69c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_ArpHarpsichord.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:32.00, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+Processing Track: Melody (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 0000018cdeda69c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_Melody.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:32.00, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+Processing Track: PadStrings (synth)
+Applying effect: reverb
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 00000213ca210e00] Guessed Channel Layout: stereo
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_PadStrings.wav':
+  Duration: 00:00:33.00, bitrate: 1536 kb/s
+  Chapters:
+    Chapter #0:0: start 0.000000, end 33.000000
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, stereo, s16, 1536 kb/s
+At least one output file must be specified
+Processing Track: Bass (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000001a35aaa69c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_Bass.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:32.00, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+Mixing Master...
+Applying Mastering...
+Master Filter: acompressor=threshold=-18dB:ratio=2:attack=5:release=50:makeup=2,loudnorm=I=-14:TP=-1:LRA=11
+Mastered Output: F:\CDP\output\cheesy_classical_16bars_glue_master.wav
+Rendered to F:\CDP\output\cheesy_classical_16bars_glue_master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-analyze.ps1 -InputFile output\cheesy_classical_16bars_glue_master.wav -TargetLufs -14
+Analyzing F:\CDP\output\cheesy_classical_16bars_glue_master.wav...
+WARNING: Pitch analysis tool failed. Skipping pitch detection.
+JSON: F:\CDP\output\analysis\cheesy_classical_16bars_glue_master.json
+Text: F:\CDP\output\analysis\cheesy_classical_16bars_glue_master.txt
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-theory.ps1 -ScorePath examples\cheesy_classical_16bars.json
+PS>TerminatingError(cdp-theory.ps1): "The property 'Count' cannot be found on this object. Verify that the property exists."
+cdp-theory.ps1: The property 'Count' cannot be found on this object. Verify that the property exists.
+cdp-theory.ps1: The property 'Count' cannot be found on this object. Verify that the property exists.
+]633;D;1]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>cd 'f:\CDP'
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-theory.ps1 -ScorePath examples\cheesy_classical_16bars.json
+JSON: examples\..\output\analysis\cheesy_classical_16bars_theory.json
+PS>TerminatingError(cdp-theory.ps1): "The property 'Count' cannot be found on this object. Verify that the property exists."
+cdp-theory.ps1: The property 'Count' cannot be found on this object. Verify that the property exists.
+cdp-theory.ps1: The property 'Count' cannot be found on this object. Verify that the property exists.
+]633;D;1]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-sequencer.ps1 -ScorePath examples\cheesy_classical_16bars.json -OutWav output\cheesy_classical_16bars_glue.wav -MasterGlue -MasterLufs -14 -MasterLimitDb -1
+Loading score: examples\cheesy_classical_16bars.json
+DEBUG: Reading content...
+DEBUG: Score loaded. Checking MetaPath:
+Target Output: F:\CDP\output\cheesy_classical_16bars_glue.wav
+Timing Mode: beats (Tempo: 120 BPM)
+Processing Track: ArpHarpsichord (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 00000213986d69c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_ArpHarpsichord.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:32.00, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+Processing Track: Melody (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000001e7188c69c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_Melody.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:32.00, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+Processing Track: PadStrings (synth)
+Applying effect: reverb
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 0000020dc7e50e00] Guessed Channel Layout: stereo
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_PadStrings.wav':
+  Duration: 00:00:33.00, bitrate: 1536 kb/s
+  Chapters:
+    Chapter #0:0: start 0.000000, end 33.000000
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, stereo, s16, 1536 kb/s
+At least one output file must be specified
+Processing Track: Bass (synth)
+ffmpeg version 7.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[aist#0:0/pcm_s16le @ 000002af905269c0] Guessed Channel Layout: mono
+Input #0, wav, from 'F:\CDP\output\\tmp_sequencer\track_Bass.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:32.00, bitrate: 768 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s16, 768 kb/s
+At least one output file must be specified
+Mixing Master...
+Applying Mastering...
+Master Filter: acompressor=threshold=-18dB:ratio=2:attack=5:release=50:makeup=2,loudnorm=I=-14:TP=-1:LRA=11
+Mastered Output: F:\CDP\output\cheesy_classical_16bars_glue_master.wav
+Rendered to F:\CDP\output\cheesy_classical_16bars_glue_master.wav
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B
+PS>.\cdp-analyze.ps1 -InputFile output\cheesy_classical_16bars_glue_master.wav -TargetLufs -14
+Analyzing F:\CDP\output\cheesy_classical_16bars_glue_master.wav...
+WARNING: Pitch analysis tool failed. Skipping pitch detection.
+JSON: F:\CDP\output\analysis\cheesy_classical_16bars_glue_master.json
+Text: F:\CDP\output\analysis\cheesy_classical_16bars_glue_master.txt
+]633;D;0]633;A]633;P;Cwd=F:\x5cCDPPS F:\CDP> ]633;B

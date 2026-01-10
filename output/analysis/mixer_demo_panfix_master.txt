@@ -1,0 +1,14 @@
+Analysis Report: mixer_demo_panfix_master
+----------------------------
+BPM:   
+Pitch:  Hz
+RMS:   -12.1 dB
+Peak:  -4.8 dB
+Crest: 7.30 dB
+LUFS:  -14
+Onsets: 1 (Density: 0.57/s)
+Dur:   1.750000
+
+Warnings:
+Could not detect BPM
+Could not estimate Pitch

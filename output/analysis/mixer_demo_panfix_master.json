@@ -1,0 +1,20 @@
+{
+  "details": {
+    "filesize": 672102
+  },
+  "warnings": [
+    "Could not detect BPM",
+    "Could not estimate Pitch"
+  ],
+  "analysis": {
+    "tempo_bpm": null,
+    "pitch_hz": null,
+    "rms_db": -12.1,
+    "peak_db": -4.8,
+    "crest_db": 7.3,
+    "lufs_i": -14.0,
+    "onset_count": 1,
+    "onset_density": 0.5714285714285714,
+    "duration": "1.750000"
+  }
+}

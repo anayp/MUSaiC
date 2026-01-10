@@ -1,0 +1,21 @@
+{
+  "details": {
+    "filesize": 12672102
+  },
+  "warnings": [
+    "Could not detect BPM",
+    "Could not estimate Pitch",
+    "Loudness miss: Found -10.5 LUFS, Target -14 (+/- 1)"
+  ],
+  "analysis": {
+    "tempo_bpm": null,
+    "pitch_hz": null,
+    "rms_db": -8.8,
+    "peak_db": -1.0,
+    "crest_db": 7.800000000000001,
+    "lufs_i": -10.5,
+    "onset_count": 1,
+    "onset_density": 0.030303030303030304,
+    "duration": "33.000000"
+  }
+}

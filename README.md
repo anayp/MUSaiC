@@ -1,10 +1,10 @@
 # MUSaiC Project Documentation
 
 ## Overview
-MUSaiC is a CLI-first, AI-driven DAW system that composes, renders, and analyzes music through a structured project model. It combines CDP (Composer's Desktop Project) DSP tools with a sequencing/rendering engine, plus optional VST hosting for instrument and FX chains. The goal is to let a CLI agent author a full song conversationally, then render, iterate, and audit the output with analysis data.
+MUSaiC is a CLI-first, automation-driven DAW system that composes, renders, and analyzes music through a structured project model. It combines CDP (Composer's Desktop Project) DSP tools with a sequencing/rendering engine, plus optional VST hosting for instrument and FX chains. The goal is to let a CLI workflow author a full song iteratively, then render, refine, and audit the output with analysis data.
 
 ## Vision
-Enable a conversational workflow where a user can describe a musical intent (form, tempo, key, instrumentation, FX) and MUSaiC builds a renderable session that can be refined over time.
+Enable an interactive workflow where a user can describe a musical intent (form, tempo, key, instrumentation, FX) and MUSaiC builds a renderable session that can be refined over time.
 
 Example goal:
 ```
@@ -27,7 +27,7 @@ Use arpeggios and pads, Iris for instruments, BreakTweaker preset 3 for beats."
 - Per-track mixer controls (gainDb, pan, mute). Pan uses parser-safe arithmetic.
 - **Synth Amp**: Folded into mixer gain (amp -> dB) to avoid binary crashes.
 - Sample looping for clip events; Auto-cleanup of temp files (`-KeepTemp` to override).
-- Basic effects via CDP (reverb, pitch/varispeed).
+- Basic effects (reverb, pitch/varispeed, tremolo LFO).
 - Sample analysis (BPM, pitch estimate, RMS/peak, duration, warnings).
 - Time/pitch transforms via robust tool selection (tries `stretch`/`strans` first, falls back to `modify`).
 - **TUI Timeline**: `cdp-timeline.ps1` for lightweight ASCII score visualization.
@@ -144,6 +144,10 @@ Minimal session shape for future:
 6) **Phase F: Loudness Pass (Done)**
    - `-MasterLimitDb <dB>` and `-MasterLufs` implemented.
    - Analysis reports `lufs_i` via `ebur128`.
+
+7) **Phase G: Music Theory (Done)**
+   - `cdp-theory.ps1`: Key/Mode detection, Chord analysis, Roman Numerals.
+   - Audio Analysis upgrades: Crest factor, Onset density.
 
 ## Future: Polishing
 - Improve analysis accuracy (pitch detection mode).

@@ -1,10 +1,10 @@
 # MUSaiC Project Documentation
 
 ## Overview
-MUSaiC is a CLI-first, AI-driven DAW system that composes, renders, and analyzes music through a structured project model. It combines CDP (Composer's Desktop Project) DSP tools with a sequencing/rendering engine, plus optional VST hosting for instrument and FX chains. The goal is to let a CLI agent author a full song conversationally, then render, iterate, and audit the output with analysis data.
+MUSaiC is a CLI-first, automation-driven DAW system that composes, renders, and analyzes music through a structured project model. It combines CDP (Composer's Desktop Project) DSP tools with a sequencing/rendering engine, plus optional VST hosting for instrument and FX chains. The goal is to let a CLI workflow author a full song iteratively, then render, refine, and audit the output with analysis data.
 
 ## Vision
-Enable a conversational workflow where a user can describe a musical intent (form, tempo, key, instrumentation, FX) and MUSaiC builds a renderable session that can be refined over time.
+Enable an interactive workflow where a user can describe a musical intent (form, tempo, key, instrumentation, FX) and MUSaiC builds a renderable session that can be refined over time.
 
 Example goal:
 ```
@@ -42,10 +42,11 @@ MUSaiC projects use a standalone `meta.json` file to store persistent context, a
 - Per-track mixer controls (gainDb, pan, mute). Pan uses parser-safe arithmetic.
 - **Synth Amp**: Folded into mixer gain (amp -> dB) to avoid binary crashes.
 - Sample looping for clip events; Auto-cleanup of temp files (`-KeepTemp` to override).
-- Basic effects via CDP (reverb, pitch/varispeed).
+- Basic effects (reverb, pitch/varispeed, tremolo LFO).
 - Sample analysis (BPM, pitch estimate, RMS/peak, duration, warnings).
 - Time/pitch transforms via robust tool selection (tries `stretch`/`strans` first, falls back to `modify`).
 - **Loudness Pass**: `-MasterLufs` (loudnorm) and `-MasterLimitDb` (alimiter) for broadcast-ready levels.
+- **Theory**: `cdp-theory.ps1` (Key, Chords, Roman Numerals).
 - **TUI Timeline**: `cdp-timeline.ps1` for lightweight ASCII score visualization.
 
 ## Target Capabilities
@@ -151,6 +152,8 @@ Minimal session shape for future:
 2) **Phase B: Analysis**
    - Beat/pitch detection and loudness reports.
    - `lufs_i` reporting (EBU R128).
+   - **Theory**: Symbolic analysis of JSON scores (Key, Chords, Cadences).
+   - **Metrics**: Crest Factor (dynamics), Onset Density (complexity).
 3) **Phase C: Plugin Hosting**
    - Reaper or VST host integration for Iris/BreakTweaker.
 4) **Phase D: Arrangement Engine**

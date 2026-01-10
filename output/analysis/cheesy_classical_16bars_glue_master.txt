@@ -1,0 +1,15 @@
+Analysis Report: cheesy_classical_16bars_glue_master
+----------------------------
+BPM:   
+Pitch:  Hz
+RMS:   -8.8 dB
+Peak:  -1 dB
+Crest: 7.80 dB
+LUFS:  -10.5
+Onsets: 1 (Density: 0.03/s)
+Dur:   33.000000
+
+Warnings:
+Could not detect BPM
+Could not estimate Pitch
+Loudness miss: Found -10.5 LUFS, Target -14 (+/- 1)

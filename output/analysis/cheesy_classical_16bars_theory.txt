@@ -1,0 +1,8 @@
+Theory Report: cheesy_classical_16bars.json
+Key: C Major (Conf: 0.00)
+Scale Mismatch: 0.0%
+
+Chords:
+
+Tracks:
+

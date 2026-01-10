@@ -20,6 +20,7 @@ CLI- **Parameters**:
   - `-MetaPath <path>` (optional): Path to `meta.json` project context.
   - `-MasterLufs <double>` (optional): Target Integrated LUFS (e.g. -14).
   - `-MasterLimitDb <double>` (optional): True Peak Limit in dB (e.g. -1.0).
+  - `-MasterGlue` (optional switch): Applies bus compression (ratio 2:1, slow attack) before mastering.
 - **Mixer**:
   - Supports `gainDb`, `pan` (-1.0 to 1.0), and `mute`.
   - Synth tracks are generated at full amplitude; track `amp` is converted to dB and applied at mix time.
@@ -41,7 +42,8 @@ Scores are defined in JSON files.
       "amp": 0.5,
       "effects": [
           { "type": "reverb", "room_size": 2.0, "mix": 0.5 },
-          { "type": "pitch", "semitones": -12 }
+          { "type": "pitch", "semitones": -12 },
+          { "type": "tremolo", "depth": 0.9, "wubsPerBeat": 2 }
       ],
       // Track-level controls
       // Looping:
@@ -92,7 +94,42 @@ See:
 - `examples/mixer_demo.json`
 - `examples/sample_loop_demo.json`
 
-## 5. Helper Tools
+Tremolo notes:
+- `wubsPerBeat` converts to LFO frequency (Hz): `rateHz = wubsPerBeat * tempo / 60`.
+- `rateMap` may be used for automation:
+  ```json
+  "effects": [
+    {
+      "type": "tremolo",
+      "depth": 0.9,
+      "rateMap": [
+        { "time": 0, "wubsPerBeat": 1 },
+        { "time": 8, "wubsPerBeat": 2 }
+      ]
+    }
+  ]
+  ```
+
+### 6. Music Theory (`cdp-theory.ps1`)
+`cdp-theory.ps1 -ScorePath <json> [-OutJson <path>]`
+Analyzes a MUSaiC JSON score for harmonic content.
+- **Key Detection**: Uses Krumhansl-Schmuckler profiles (Major/Minor/Modes).
+- **Chords**: Windowed chord detection (Triads, 7ths, Sus).
+- **Roman Numerals**: Maps chords to key (e.g. `V`, `iv`, `I`).
+- **Cadences**: Detects V-I, IV-I resolution points.
+- **Histograms**: Pitch Class (Durational) and Scale Degree usage.
+- **Metrics**: Voice leading stats, stepwise movement ratio, range.
+
+#### Theory JSON Output
+- `key`: "C Major"
+- `key_candidates`: Top 3 [{Root, Type, Score}...]
+- `pitch_class_histogram`: Array[12] of durations per PC.
+- `scale_degree_histogram`: Array[12] of durations relative to key root.
+- `chords`: List of {Start, Name, Roman}
+- `cadences`: List of strings descibing cadence points.
+
+
+### 7. Helper Tools
 ### Analysis (`cdp-analyze.ps1`)
 `cdp-analyze.ps1 -InputFile <wav>`
 Returns JSON object with:
@@ -100,11 +137,15 @@ Returns JSON object with:
 - `pitch_hz`: Estimated average pitch
 - `rms_db`: RMS amplitude
 - `peak_db`: Peak amplitude
+- `crest_db`: Dynamic range (Peak - RMS)
 - `lufs_i`: Integrated Loudness (LUFS)
+- `onset_count`: Note onset count (via silencedetect)
+- `onset_density`: Onsets per second
 - `duration`: Length in seconds
 
 Optional:
 - `-TargetLufs <double>`: Validates output against target (+/- 1.0 LU).
+- `-OnsetThresholdDb` / `-OnsetMinDur`: Tuning for onset detection.
 Standardized JSON analysis including BPM, pitch estimate, loudness, and duration.
 ```powershell
 .\cdp-analyze.ps1 -InputFile "loop.wav"
@@ -147,7 +188,7 @@ Manage global project context.
 ```
 
 ## Scripts
-- **cdp-sequencer.ps1**: Core engine. Parses JSON, renders synth notes via `synth.exe`, trims samples via `ffmpeg`, applies effects (reverb/pitch), and mixes everything.
+- **cdp-sequencer.ps1**: Core engine. Parses JSON, renders synth notes via `synth.exe`, trims samples via `ffmpeg`, applies effects (reverb/pitch/tremolo), and mixes everything.
 - Mixer note: if `ffmpeg` pan/gain filters error, the sequencer warns and keeps the raw stem.
 - **cdp-wrapper.ps1**: Interactive menu to browse `examples/*.json` and render/play them.
 - **cdp-meta.ps1**: CLI for managing `meta.json` files.

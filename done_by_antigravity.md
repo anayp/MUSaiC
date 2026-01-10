@@ -149,3 +149,36 @@
 
 **Sprint 16 Prep**:
 - Analysis upgrades planned: enhanced beat detection, pitch fallback strategies, and signal density metrics.
+
+## [2026-01-11 01:25] - Sprint 16: Theory & Analysis
+**Features**:
+- **Music Theory**: Created `cdp-theory.ps1` for symbolic analysis (Key/Mode, Chords, Roman Numerals).
+- **Audio Analysis**: Enhanced `cdp-analyze.ps1` with `crest_db` (Peak-RMS) and `onset_density` (ffmpeg silencedetect).
+- **Sequencer Fix**: Corrected Mixer Pan using pre-calculated coefficients to avoid ffmpeg filter syntax errors.
+
+**Docs & Ecosystem**:
+- Updated `README.md`, `MUSaiC.md`, `CDP_CLI.md`, `SKILL.md` with new capabilities.
+- Added `cdp-theory.ps1` to memory map.
+
+**Verification**:
+- `cdp-theory.ps1 -ScorePath examples/cheesy_classical_16bars.json` -> Produced JSON/Report with Key/Chord data.
+- `cdp-sequencer.ps1 ... -OutWav output/mixer_demo_panfix.wav` -> Success (No pan syntax errors).
+- `cdp-analyze.ps1 ... output/mixer_demo_panfix_master.wav` -> Reported LUFS, Crest Factor, Onsets.
+
+## [2026-01-11 01:45] - Sprint 16: Fixup (Compliance)
+**Theory Improvements**:
+- Updated `cdp-theory.ps1` to correctly parse `events` array structure in MUSaiC JSON.
+- Refined Krumhansl-Schmuckler logic (top 3 candidates) and Roman Numeral mapping (minor key fix).
+- Corrected Output Schema field names.
+
+**Audio Improvements**:
+- Renamed `onset_cnt` -> `onset_count` and `onset_dens` -> `onset_density` in `cdp-analyze.ps1`.
+- Added warnings for zero onsets or failed density calculations.
+
+**Docs & Ecosystem**:
+- Updated field names in `CDP_CLI.md` and `SKILL.md`.
+- Bumped timestamps in `mem_map`.
+
+**Verification**:
+- `cheesy_classical_16bars.json` -> Successfully analyzed (C Major).
+- `mixer_demo_panfix_master.wav` -> Validated new field names.

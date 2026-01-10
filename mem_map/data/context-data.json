@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-01-11T00:07:00Z",
+  "updated_at": "2026-01-11T02:00:00Z",
   "repo": {
     "name": "CDP",
     "root": "F:/CDP"
@@ -11,13 +11,19 @@
         "id": "cdp-analyze.ps1",
         "type": "file",
         "desc": "Analyzes audio (BPM, Pitch, Vol). Includes EBU R128 LUFS measurement.",
-        "updated_at": "2026-01-11T00:07:00Z"
+        "updated_at": "2026-01-11T01:25:00Z"
       },
       {
         "id": "cdp-sequencer.ps1",
         "type": "file",
-        "desc": "Primary audio rendering engine using CDP binaries and ffmpeg mixing. Now supports loudness normalization (-MasterLufs) and limiting (-MasterLimitDb).",
-        "updated_at": "2026-01-11T00:07:00Z"
+        "desc": "Primary audio rendering engine using CDP binaries and ffmpeg mixing. Now supports loudness normalization (-MasterLufs), limiting (-MasterLimitDb), and glue compression (-MasterGlue).",
+        "updated_at": "2026-01-11T02:00:00Z"
+      },
+      {
+        "id": "cdp-theory.ps1",
+        "type": "file",
+        "desc": "Symbolic analysis: Key Detection (Krumhansl-Schmuckler), Chord finding, Roman Numeral analysis, Cadences, Histograms.",
+        "updated_at": "2026-01-11T02:00:00Z"
       },
       {
         "id": "cdp-timeline.ps1",

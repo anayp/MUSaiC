@@ -1,0 +1,1185 @@
+{
+  "project": "Dubstep Drop 8 Bars",
+  "tempo": 140,
+  "timeUnits": "beats",
+  "tracks": [
+    {
+      "name": "Kick",
+      "type": "sample",
+      "source": "examples/kick.wav",
+      "gainDb": -2.0,
+      "events": [
+        {
+          "time": 0.0,
+          "dur": 0.25
+        },
+        {
+          "time": 3.5,
+          "dur": 0.25
+        },
+        {
+          "time": 4.0,
+          "dur": 0.25
+        },
+        {
+          "time": 7.5,
+          "dur": 0.25
+        },
+        {
+          "time": 8.0,
+          "dur": 0.25
+        },
+        {
+          "time": 11.5,
+          "dur": 0.25
+        },
+        {
+          "time": 12.0,
+          "dur": 0.25
+        },
+        {
+          "time": 15.5,
+          "dur": 0.25
+        },
+        {
+          "time": 16.0,
+          "dur": 0.25
+        },
+        {
+          "time": 19.5,
+          "dur": 0.25
+        },
+        {
+          "time": 20.0,
+          "dur": 0.25
+        },
+        {
+          "time": 23.5,
+          "dur": 0.25
+        },
+        {
+          "time": 24.0,
+          "dur": 0.25
+        },
+        {
+          "time": 27.5,
+          "dur": 0.25
+        },
+        {
+          "time": 28.0,
+          "dur": 0.25
+        },
+        {
+          "time": 31.5,
+          "dur": 0.25
+        }
+      ]
+    },
+    {
+      "name": "SnareSynth",
+      "type": "synth",
+      "waveform": "square",
+      "gainDb": -8.0,
+      "effects": [
+        {
+          "room_size": 1.2,
+          "mix": 0.35,
+          "type": "reverb"
+        }
+      ],
+      "events": [
+        {
+          "time": 2.0,
+          "dur": 0.25,
+          "pitch": 84
+        },
+        {
+          "time": 6.0,
+          "dur": 0.25,
+          "pitch": 84
+        },
+        {
+          "time": 10.0,
+          "dur": 0.25,
+          "pitch": 84
+        },
+        {
+          "time": 14.0,
+          "dur": 0.25,
+          "pitch": 84
+        },
+        {
+          "time": 18.0,
+          "dur": 0.25,
+          "pitch": 84
+        },
+        {
+          "time": 22.0,
+          "dur": 0.25,
+          "pitch": 84
+        },
+        {
+          "time": 26.0,
+          "dur": 0.25,
+          "pitch": 84
+        },
+        {
+          "time": 30.0,
+          "dur": 0.25,
+          "pitch": 84
+        }
+      ]
+    },
+    {
+      "name": "HiHats",
+      "type": "synth",
+      "waveform": "square",
+      "gainDb": -16.0,
+      "events": [
+        {
+          "time": 0.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 0.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 0.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 1.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 1.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 1.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 2.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 2.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 2.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 3.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 3.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 3.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 4.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 4.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 4.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 5.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 5.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 5.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 6.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 6.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 6.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 7.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 7.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 7.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 8.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 8.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 8.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 9.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 9.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 9.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 10.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 10.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 10.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 11.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 11.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 11.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 12.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 12.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 12.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 13.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 13.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 13.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 14.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 14.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 14.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 15.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 15.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 15.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 16.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 16.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 16.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 17.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 17.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 17.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 18.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 18.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 18.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 19.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 19.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 19.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 20.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 20.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 20.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 21.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 21.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 21.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 22.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 22.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 22.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 23.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 23.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 23.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 24.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 24.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 24.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 25.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 25.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 25.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 26.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 26.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 26.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 27.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 27.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 27.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 28.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 28.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 28.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 29.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 29.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 29.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 30.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 30.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 30.75,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 31.25,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 31.5,
+          "dur": 0.125,
+          "pitch": 96
+        },
+        {
+          "time": 31.75,
+          "dur": 0.125,
+          "pitch": 96
+        }
+      ]
+    },
+    {
+      "name": "WobbleBass",
+      "type": "synth",
+      "waveform": "square",
+      "gainDb": -6.0,
+      "effects": [
+        {
+          "type": "tremolo",
+          "depth": 0.9,
+          "rateMap": [
+            { "time": 0.0, "wubsPerBeat": 1 },
+            { "time": 8.0, "wubsPerBeat": 2 },
+            { "time": 16.0, "wubsPerBeat": 3 },
+            { "time": 24.0, "wubsPerBeat": 4 }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "time": 0.0,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 0.5,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 1.0,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 1.5,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 2.0,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 2.5,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 3.0,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 3.5,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 4.0,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 4.5,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 5.0,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 5.5,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 6.0,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 6.5,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 7.0,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 7.5,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 8.0,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 8.5,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 9.0,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 9.5,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 10.0,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 10.5,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 11.0,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 11.5,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 12.0,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 12.5,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 13.0,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 13.5,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 14.0,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 14.5,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 15.0,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 15.5,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 16.0,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 16.5,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 17.0,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 17.5,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 18.0,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 18.5,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 19.0,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 19.5,
+          "dur": 0.5,
+          "pitch": 41
+        },
+        {
+          "time": 20.0,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 20.5,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 21.0,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 21.5,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 22.0,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 22.5,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 23.0,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 23.5,
+          "dur": 0.5,
+          "pitch": 43
+        },
+        {
+          "time": 24.0,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 24.5,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 25.0,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 25.5,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 26.0,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 26.5,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 27.0,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 27.5,
+          "dur": 0.5,
+          "pitch": 44
+        },
+        {
+          "time": 28.0,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 28.5,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 29.0,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 29.5,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 30.0,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 30.5,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 31.0,
+          "dur": 0.5,
+          "pitch": 38
+        },
+        {
+          "time": 31.5,
+          "dur": 0.5,
+          "pitch": 38
+        }
+      ]
+    },
+    {
+      "name": "Sub",
+      "type": "synth",
+      "waveform": "sine",
+      "gainDb": -4.0,
+      "events": [
+        {
+          "time": 0.0,
+          "dur": 4.0,
+          "pitch": 29
+        },
+        {
+          "time": 4.0,
+          "dur": 4.0,
+          "pitch": 31
+        },
+        {
+          "time": 8.0,
+          "dur": 4.0,
+          "pitch": 32
+        },
+        {
+          "time": 12.0,
+          "dur": 4.0,
+          "pitch": 26
+        },
+        {
+          "time": 16.0,
+          "dur": 4.0,
+          "pitch": 29
+        },
+        {
+          "time": 20.0,
+          "dur": 4.0,
+          "pitch": 31
+        },
+        {
+          "time": 24.0,
+          "dur": 4.0,
+          "pitch": 32
+        },
+        {
+          "time": 28.0,
+          "dur": 4.0,
+          "pitch": 26
+        }
+      ]
+    },
+    {
+      "name": "Lead",
+      "type": "synth",
+      "waveform": "saw",
+      "gainDb": -12.0,
+      "effects": [
+        {
+          "room_size": 1.6,
+          "mix": 0.25,
+          "type": "reverb"
+        }
+      ],
+      "events": [
+        {
+          "time": 16.0,
+          "dur": 0.5,
+          "pitch": 72
+        },
+        {
+          "time": 16.5,
+          "dur": 0.5,
+          "pitch": 74
+        },
+        {
+          "time": 17.0,
+          "dur": 0.5,
+          "pitch": 75
+        },
+        {
+          "time": 17.5,
+          "dur": 0.5,
+          "pitch": 77
+        },
+        {
+          "time": 18.0,
+          "dur": 0.5,
+          "pitch": 79
+        },
+        {
+          "time": 18.5,
+          "dur": 0.5,
+          "pitch": 77
+        },
+        {
+          "time": 19.0,
+          "dur": 0.5,
+          "pitch": 75
+        },
+        {
+          "time": 19.5,
+          "dur": 0.5,
+          "pitch": 74
+        },
+        {
+          "time": 20.0,
+          "dur": 0.5,
+          "pitch": 72
+        },
+        {
+          "time": 20.5,
+          "dur": 0.5,
+          "pitch": 74
+        },
+        {
+          "time": 21.0,
+          "dur": 0.5,
+          "pitch": 75
+        },
+        {
+          "time": 21.5,
+          "dur": 0.5,
+          "pitch": 77
+        },
+        {
+          "time": 22.0,
+          "dur": 0.5,
+          "pitch": 79
+        },
+        {
+          "time": 22.5,
+          "dur": 0.5,
+          "pitch": 77
+        },
+        {
+          "time": 23.0,
+          "dur": 0.5,
+          "pitch": 75
+        },
+        {
+          "time": 23.5,
+          "dur": 0.5,
+          "pitch": 74
+        },
+        {
+          "time": 24.0,
+          "dur": 0.5,
+          "pitch": 72
+        },
+        {
+          "time": 24.5,
+          "dur": 0.5,
+          "pitch": 74
+        },
+        {
+          "time": 25.0,
+          "dur": 0.5,
+          "pitch": 75
+        },
+        {
+          "time": 25.5,
+          "dur": 0.5,
+          "pitch": 77
+        },
+        {
+          "time": 26.0,
+          "dur": 0.5,
+          "pitch": 79
+        },
+        {
+          "time": 26.5,
+          "dur": 0.5,
+          "pitch": 77
+        },
+        {
+          "time": 27.0,
+          "dur": 0.5,
+          "pitch": 75
+        },
+        {
+          "time": 27.5,
+          "dur": 0.5,
+          "pitch": 74
+        },
+        {
+          "time": 28.0,
+          "dur": 0.5,
+          "pitch": 72
+        },
+        {
+          "time": 28.5,
+          "dur": 0.5,
+          "pitch": 74
+        },
+        {
+          "time": 29.0,
+          "dur": 0.5,
+          "pitch": 75
+        },
+        {
+          "time": 29.5,
+          "dur": 0.5,
+          "pitch": 77
+        },
+        {
+          "time": 30.0,
+          "dur": 0.5,
+          "pitch": 79
+        },
+        {
+          "time": 30.5,
+          "dur": 0.5,
+          "pitch": 77
+        },
+        {
+          "time": 31.0,
+          "dur": 0.5,
+          "pitch": 75
+        },
+        {
+          "time": 31.5,
+          "dur": 0.5,
+          "pitch": 74
+        }
+      ]
+    }
+  ]
+}
