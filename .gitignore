@@ -7,6 +7,7 @@ sequencer_transcript.txt
 strict_debug*.txt
 instructions_for_antigravity.md
 done_by_antigravity.md
+MUSaiC_Architecture_Review.md
 *.log
 *.zip
 .vscode/
