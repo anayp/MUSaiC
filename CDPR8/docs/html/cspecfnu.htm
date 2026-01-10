@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cspecfnu.htm - HTML5 version -->
+<html>
+
+<head>
+<title>CDP SPECFNU Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cspecndx.htm" Target="_top"><b>Spectral Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#SPECFNULIST"><b>SPECFNU MODES:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#NARROW"><b>1 NARROW</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SQUEEZE"><b>2 SQUEEZE</b></a> 
+  <dt>&nbsp;&nbsp;<a href = "#INVERT"><b>3 INVERT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ROTATE"><b>4 ROTATE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#NEGATIVE"><b>5 NEGATIVE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SUPPRESS"><b>6 SUPPRESS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FILTER"><b>7 FILTER</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#MOVEBY"><b>8 MOVE BY</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#MOVETO"><b>9 MOVE TO</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ARPEGG"><b>10 ARPEGGIATE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#OCTSHIFT"><b>11 OCTSHIFT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TRANSPOSE"><b>12 TRANSPOSE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FREQSHIFT"><b>13 FREQSHIFT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RESPACE"><b>14 RESPACE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PCHINVERT"><b>15 PCH-INVERT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PCHEXAGG"><b>16 PCH-EXAGG</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PCHQUANT"><b>17 PCH-QUANT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PCHRAND"><b>18 PCH-RAND</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RANDSHIFT"><b>19 RANDOMISE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SEESPECENV"><b>20 SEE SPECENV</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SEESPECPKS"><b>21 SEE SPECPKS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#GETTROFS"><b>22 GET TROUGHS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SINESPEECH"><b>23 SINE SPEECH</b></a>
+
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <br> 
+    <div align=center>
+    <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+    </div>
+
+   <h1 align=center>
+   SPECFNU: SPECTRAL FUNCTIONS UNDER FORMANTS</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="SPECFNULIST">Modify spectral shape in relation to formant peaks, or show formant data.</h2>
+
+<p>
+<!-- <em>(Names in brackets mean that these are separate programs.  The others are sub-modules of SPECNU.)</em> -->
+</p>
+
+
+<blockquote>
+SPECFNU is in effect a group of 23 individual processes, all of which manipulate frequency analysis files to modify the spectral shape while retaining the original formants. This is particularly important for processing vocal sounds, which have well-defined formant frequencies, but also applies to any sound where you wish to retain the original formant peaks. 
+</p><p>
+For vocal sounds, some understanding of formants and the key formant frequencies is useful. See for example: the article <b><a href="https://www.voicescienceworks.org/harmonics-vs-formants.html" Target="_top">Harmonics vs formants</a></b> or the <b><a href="https://en.wikipedia.org/wiki/Formant" Target="_top">Wikipedia</a></b> article.
+</p><p>
+    The command line usage in each case is:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  <b> specfnu specfnu 1-23 </b> <i>inanalfile outanalfile</i> [<i>parameters</i>]
+   
+	</blockquote>
+	<h3>
+    SPECFNU MODES:
+    </h3>
+ <dl>
+<dt><a href="#NARROW">  <b>1  NARROW FORMANTS </b></a> <dd>Steepen skirts of formant peaks by power factor</dd>
+<dt><a href="#SQUEEZE"> <b>2  SQUEEZE SPECTRUM </b></a> <dd>Squeeze spectrum around specified formant</dd>
+<dt><a href="#INVERT">  <b>3  INVERT FORMANTS </b></a> <dd>Formant peaks become troughs, and troughs peaks</dd>
+<dt><a href="#ROTATE">  <b>4  ROTATE FORMANTS </b></a> <dd>Formant peaks & freqs move up (or down) spectrum, <br>
+        re-appearing at foot (or top) on reaching formants' edge</dd>
+<dt><a href="#NEGATIVE"><b>5  SPECTRAL NEGATIVE </b></a> <dd>Spectral values inverted for each channel</dd>
+<dt><a href="#SUPPRESS"><b>6  SUPPRESS FORMANTS</b></a> <dd>Suppress the selected formant(s)</dd>
+<dt><a href="#FILTER"><b>7  GENERATE FILTER(S) FROM FORMANTS</b></a> <dd>Output Varibank filter data based on formant peaks</dd>
+<dt><a href="#MOVEBY"><b>8  MOVE FORMANTS BY</b></a> <dd>Displace individual formants by a Hz value</dd>
+<dt><a href="#MOVETO"><b>9  MOVE FORMANTS TO</b></a> <dd>Displace individual formants to specified frequencies</dd>
+<dt><a href="#ARPEGG"><b>10 ARPEGGIATE</b></a> <dd>Arppegiate partials of sound, under formants</dd>
+<dt><a href="#OCTSHIFT "><b>11 OCTAVE-SHIFT</b></a> <dd>Octave-shift pitch of sound, under formants</dd>
+<dt><a href="#TRANSPOSE"><b>12 TRANSPOSE</b></a> <dd>Transpose pitch of sound, under formants </dd>
+<dt><a href="#FREQSHIFT"><b>13 FREQ-SHIFT</b></a> <dd>Frequency shift partials of source sound, under formants  </dd>
+<dt><a href="#RESPACE"><b>14 RESPACE PARTIALS</b></a> <dd>Respace partials in source spectrum, retaining formants.</dd>
+<dt><a href="#PCHINVERT"><b>15 PITCH-INVERT</b></a> <dd>Invert pitch of sound, under formants</dd>
+<dt><a href="#PCHEXAGG"><b>16 PITCH-EXAGG/SMOOTH</b></a> <dd>Exaggerate/Smooth pitch line, under formants</dd>
+<dt><a href="#PCHQUANT"><b>17 PITCH-QUANTISE</b></a> <dd>Force pitch onto pitch field, under formants</dd>
+<dt><a href="#PCHRAND"><b>18 PITCH-RANDOMISE</b></a> <dd>Randomise pitch of source, under formants</dd>
+<dt><a href="#RANDSHIFT"><b>19 RANDOMISE PARTIALS </b></a> <dd>Random-shift partials of sound, under formants</dd>
+<dt><a href="#SEESPECENV "><b>20 SEE SPEC ENVELOPES</b></a> <dd>Outputs viewable (not playable) soundfile</dd>
+<dt><a href="#SEESPECPKS "><b>21 SEE SPEC PEAKS/TROUGHS</b></a> <dd>Print textfile of frequencies of peaks & troughs per window</dd>
+<dt><a href="#GETTROFS"><b>22 GET LOUDNESS TROUGHS</b></a> <dd>Print textfile of times-of-troughs between syllables</dd>
+<dt><a href="#SINESPEECH"><b>23 SINE SPEECH </b></a> <dd>Convert formant frequencies to sine tones. A single sine wave represents each formant.</dd>
+</dl>
+
+<p>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for the CDP System.<br />
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+
+<h2 align = "center" >SPECFNU: Usage and Parameters for each Mode</h2>
+
+
+<h2 id="NARROW">SPECFNU MODE 1<br> 
+NARROW FORMANTS &#150; Steepen skirts of formant peaks by power factor</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 1</b> <i>inanalfil outanalfil narrow </i> [<b>-g</b><i>gain</i>] [<b>-o</b><i>off</i>] [<b>-t</b>] [<b>-f</b>] [<b>-s</b>] [<b>-x</b> |<b>-k</b>] [<b>-r</b>] <br>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfil</i> &#150; input analysis file.<br>
+<i>outanalfil</i> &#150; output analysis file.<br>
+<i>narrow</i> &#150; narrowing of individual formant peaks; may vary through time. (Range: 1 to 1000).<br>
+<b>-g</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-o</b><i>off</i> &#150; text list of which formants to suppress (up to 4),<br> 
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		e.g. "1" means suppress 1st, while "134" means suppress 1st, 3rd and 4th.<br>
+<b>-t</b> &#150;  zero top of spectrum (above fourth formant).<br>
+<b>-f</b> &#150;  force lowest formant to use fundamental frequency as peak.<br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-k</b> &#150;  kill harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.
+</blockquote>
+
+<h3>
+Understanding SPECFNU Mode 1: NARROW FORMANTS
+</h3>
+
+<blockquote>
+<p>
+Narrowing the formants focuses on the spectral peaks and therefore acts like an increasingly tight filter: the material between the peaks is diminished and eventually disappears. <i>Narrow</i> can normally be set quite high (in 100s) and is also time-variable, which will alter the timbre as the sound progresses. You can also choose to omit some of the first four formants altogther (<i>off</i>). As the overall level is reduced, it is often useful to set some extra <i>gain</i> to compensate. 
+</p><p>
+Spectral window-size: if the "force fundamental" option (-f) is used, selecting a large window will find the fundamental, whereas a short window ( option -s) may not.
+</p><p>
+The process may be compared with <a href="cfocus.htm#EXAG">FOCUS EXAG</a>.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="cfocus.htm#EXAG"><b>FOCUS EXAG</b></a>
+</p>
+
+<p>
+End of SPECFNU Mode 1: NARROW FORMANTS<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+
+<h2 id="SQUEEZE">SPECFNU MODE 2<br> 
+SQUEEZE SPECTRUM AROUND FORMANT &#150; Squeeze around specified formant</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 2</b> <i>inanal outanal squeeze centre </i> [<b>-g</b><i>gain</i>] [<b>-t</b>] [<b>-f</b>] [<b>-s</b>] [<b>-x</b> |<b>-k</b>] [<b>-r</b>] <br>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>squeeze</i> &#150;  squeeze factor; may vary through time. (Range: 1 to 10)<br>
+<i>centre</i>  &#150; formant peak at centre of squeeze. (Range: 1 to 4)<br>
+
+<b>-g</b><i>gain</i> &#150;  output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-t</b> &#150;  squeeze around trough above specified peak.<br>
+<b>-f</b> &#150;  force lowest formant to use fundamental frequency as peak.<br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-k</b> &#150;  kill harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 2: SQUEEZE SPECTRUM
+</h3>
+
+<blockquote>
+<p>
+This mode squeezes the spectrum around a specified formant. It is not yet clear what this means technically, but the result typically turns a female speaker into a deep hoarse voice. 
+</p><p>
+Spectral window-size: 
+if the "force fundamental" option (-f) is used, selecting a large window will find the fundamental, whereas a short window ( option -s) may not.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="cspecnu.htm#SQUEEZE"><b>SPECNU SQUEEZE</b></a>
+</p>  
+
+<p>
+End of SPECFNU Mode 2: SQUEEZE SPECTRUM <br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="INVERT">SPECFNU MODE 3<br> 
+INVERT FORMANTS &#150; Formant peaks become troughs, and troughs peaks</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 3</b> <i>inanal outanal vibrate </i> [<b>-g</b><i>gain</i>] [<b>-s</b>] [<b>-x</b> |<b>-k</b>] [<b>-r</b>] <br>
+
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>vibrate</i> &#150; if not zero, cycle between original and inverted values at this frequency; may vary through time. (Range: 0 to 300 Hz)<br>
+<b>-g</b><i>gain</i> &#150;  output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-k</b> &#150;  kill harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 3: INVERT FORMANTS
+</h3>
+
+<blockquote>
+<p>
+A spectral peak is an area of higher amplitude among the frequencies of the spectrum.  A trough is an area of low amplitude between spectral peaks. The INVERT mode swaps these, so that the peaks become troughs and vice versa. This should make the sound noisier, with buzzy high frequencies. 
+</p><p>
+<i>Vibrate</i> allow you to oscillate between the original and inverted states. 
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 3: INVERT FORMANTS<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="ROTATE">SPECFNU MODE 4<br> 
+ROTATE FORMANTS &#150; Formant peaks & frequencies move up (or down) spectrum</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 4</b> <i>inanal outanal rspeed </i> [<b>-g</b><i>gain</i>] [<b>-s</b>] [<b>-x</b> |<b>-k</b>] [<b>-r</b>]<br>
+
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>rspeed</i> &#150; How quickly the spectrum rotates every second; may vary through time. (Range: -300 to +300 rotations per second)<br>
+<b>-g</b><i>gain</i> &#150;  output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-k</b> &#150;  kill harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.
+
+</blockquote>
+
+<h3>
+Understanding SPECFNU Mode 4: ROTATE FORMANTS
+</h3>
+
+<blockquote>
+<p>
+In this ROTATE mode, the formants move up (or down) in frequency, reappearing at the foot (or top) on reaching formants' edge. The result is a rather wobbly sound.
+</p><p>
+To move the formants down instead of up, set a negative value for <i>rspeed</i>. Note that this is time-variable, so the formants could rotate both ways throught the sound.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 4: ROTATE FORMANTS<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="NEGATIVE">SPECFNU MODE 5<br> 
+SPECTRAL NEGATIVE &#150; Spectral values are inverted for each channel</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 5</b> <i>inanal outanal </i> [<b>-g</b><i>gain</i>]  [<b>-f</b>] <br>
+
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<b>-g</b><i>gain</i> &#150;  output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-f</b> &#150; flat: does not re-envelope the output spectrum. 
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 5: SPECTRAL NEGATIVE
+</h3>
+
+<blockquote>
+<p>
+This mode inverts the spectral values for each channel, usually producing a highly distorted output. It appears to flip the spectral envelope in some way (still to be clarified).  Users are recommended to set the -f ('flat') flag, at least at first, particularly as the only other control (<i>gain</i>) often produces this obscure error message: SUPPRESS NON-HARMONICS WITH SUPPRESS-HARMONICS WILL PRODUCE ZERO SIGNAL LEVEL.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 5: SPECTRAL NEGATIVE<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="SUPPRESS">SPECFNU MODE 6<br> 
+SUPPRESS FORMANTS &#150; Suppress the selected formant(s)</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 6</b> <i>inanalfile outanalfile formantlist</i> [<b>-g</b><i>gain</i>] [<b>-s</b>] [<b>-x</b>] <br>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150; input analysis file.<br>
+<i>outanalfile</i> &#150; output analysis file.<br>
+<i>formantlist</i> &#150; text list of which formants to suppress (up to 4),<br> 
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		e.g. "1" means suppress 1st, while "134" means suppress 1st, 3rd and 4th.<br>
+<b>-g</b><i>gain</i> &#150;  amplitude gain attenuation. (Range: 0.1 to 10)<br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 6: SUPPRESS FORMANTS
+</h3>
+
+<blockquote>
+<p>
+This mode suppresses the selected formant(s), which is a selective type of filtering. Suppressing formant 1 makes the sound shriller, whereas suppressing formant 4 may have only a slightly dulling effect on the upper frequencies.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<h3> Related Functions</h3>
+<p>
+<a href="cblur.htm#SUPPRESS"><b>BLUR SUPPRESS</b></a><br>
+<a href="cblur.htm#SUPPRESSBND"><b>SUPPRESS PARTIALS</b></a>
+</p>
+
+<p>
+End of SPECFNU Mode 6: SUPPRESS FORMANTS<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="FILTER">SPECFNU MODE 7<br> 
+GENERATE FILTER(S) FROM FORMANTS &#150; Output textfile of Varibank filter data based on formant peaks</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 7</b> <i>inanalfile outfiltfile datafile filtcnt </i> [<b>-b</b><i>below</i>] [<b>-k</b> |<b>-i</b>] [<b>-f</b>] [<b>-s</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150; input analysis file.<br>
+<i>outfiltfile</i> &#150; output text file in VARIBANK format.<br>
+<i>datafile</i> &#150; textfile containing:
+
+<blockquote>
+    (1) List of times at which source is to be divided into blocks for analysis.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;       
+        Resulting filter step-changes between values created from each block.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Value <b>ZERO</b> means use the entire source to make one fixed filter.<br>
+    (2) Data about grid on which pitches you are searching for must lie.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+        There must first be a marker indicating the grid type. These are:<br>
+
+<blockquote>
+        <b>#HS</b> followed by listed MIDI pitches to search for.<br>
+        <b>#HF</b> followed by listed MIDI pitches to search for in all octaves.<br>
+        <b>#SCALE</b> followed by just TWO values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (a) the number of equal pitch divisions in an octave.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (b) MIDI pitch of any pitch to tune the scales to.<br>
+        <b>#ELACS</b> followed by just THREE values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (a) size of "octave" in (possibly fractional) semitones.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (b) the number of equal pitch divisions in the "octave".<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (c) MIDI-pitch of any pitch to tune the scales to.<br>
+</blockquote>
+</blockquote>
+
+
+
+
+<i>filtcnt</i> &#150; (max) no. of peaks from each formant to use. (Default: 1)<br>
+<b>-b</b><i>below</i> &#150; try to ensure 1 (or more) pitches below MIDI pitch value "below".<br>
+<b>-k</b> &#150; keep relative (summed) loudnesses of peaks as part of filter design.<br>
+<b>-i</b> &#150; keep inverse of loudnesses as part of filter design. (Default: all filter amplitudes set to 1.0)<br>
+<b>-f</b> &#150; force fundamental as pitch in lowest formant.<br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 7: GENERATE FILTERS
+</h3>
+
+<blockquote>
+<p>
+There is a clear link between formant peaks and filtering, as the peaks carry the most energy in the sound. This mode produces time-varying filter data in <a href="cgrofilt.htm#VARIBANK">VARIBANK</a> format, which can then be used by FILTER VARIBANK itself, or other processes which employ this format, such as TUNEVARY and SYNFILT.   
+</p><p>
+Trevor Wishart adds: "with a time-varying filter, the transitions between time blocks can be extreme. It's wise to cut the input into segments and produce fixed filters for each, or pre-envelope the input file to zero the level around transitions, deriving appropriate envelope times from the filter file times."
+</p><p>
+Spectral window-size: 
+if the "force fundamental" option (-f) is used, selecting a large window will find the fundamental, whereas a short window ( option -s) may not.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 7: GENERATE FILTERS<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="MOVEBY">SPECFNU MODE 8<br> 
+MOVE FORMANTS BY &#150; Displace individual formants by a given frequency value</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 8</b> <i>inanal outanal mov1 mov2 mov3 mov4</i> [<b>-g</b><i>gain</i>] [<b>-t</b>]  [<b>-s</b>] [<b>-x</b> |<b>-k</b>] [<b>-r</b>]<br>
+
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>mov1</i> &#150;  frequency displacement, up or down, of formant 1 (in Hz).<br>
+<i>mov2, mov3, mov4</i> &#150; similarly for the other formants. Mov1, 2, 3 and 4 may vary through time.<br>  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    Note that formants moving below zero or above nyquist/2 will disappear.<br>
+<b>-g</b><i>gain</i> &#150;  output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-t</b> &#150;  zero top of spectrum.<br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-k</b> &#150;  kill harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 8: MOVE FORMANTS BY
+</h3>
+
+<blockquote>
+<p>
+This mode moves the formant frequencies by a specified amount up or down. There is a control for 
+each of four formants (<i>mov1, mov2, mov3, mov4</i>. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 8: MOVE FORMANTS BY<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="MOVETO">SPECFNU MODE 9<br> 
+MOVE FORMANTS TO &#150; Displace individual formants to specified frequencies</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 9</b> <i>inanal outanal frq1 frq2 frq2 frq4 </i>
+[<b>-g</b><i>gain</i>] [<b>-t</b>]  [<b>-s</b>] [<b>-n</b>] [<b>-x</b> |<b>-k</b>] [<b>-r</b>]
+<br>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>frq1</i> &#150; new frequency of formant 1 (Hz).<br>
+<i>frq2, frq3, frq4</i> &#150; similarly for the other formants.  Frq1, 2, 3 and 4 may vary through time.<br> 
+<b>-g</b><i>gain</i> &#150;  output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-t</b> &#150;  zero top of spectrum.<br>
+<b>-n</b> &#150;  use narrow formant bands.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     Using narrow bands can give counter-intuitive results: it doesn't capture so many harmonic peaks, so sounds duller.<br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-k</b> &#150;  kill harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 9: MOVE FORMANTS TO
+</h3>
+
+<blockquote>
+<p>
+This mode complement Mode 8 ("Move formants by"): here the formants are moved to specific frequencies. As with Mode 8, there is a control for each of four formants (<i>frq1, frq2, frq3, frq4</i>). 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 9: MOVE FORMANTS TO<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="ARPEGG">SPECFNU MODE 10<br> 
+ARPEGGIATE &#150; Arpeggiate spectrum of source, under formants</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 10</b> <i>inanal outanal arprate</i> [<b>-g</b><i>gain</i>]   
+[<b>-s</b>] [<b>-x</b>] [<b>-r</b>] [<b>-d</b> |<b>-c</b>]
+<br>
+
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>arprate</i> &#150; rate of arpeggiation of spectrum. (Range: -50 to +50 Hz)<br>
+<b>-g</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-s</b> &#150; use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.<br>
+<b>-d</b> &#150;  arpeggiate downwards (default upwards).<br>
+<b>-c</b> &#150; arpeggiate up and down (default upwards).<br>
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 10: ARPEGGIATE
+</h3>
+
+<blockquote>
+<p>
+This mode creates a sweeping-filter effect, based on formants. (Use STRETCH TIME to slow this down and hear the process in detail.)
+</p><p>
+The arpeggiation here is not like that of HILITE ARPEG, which causes a waveform at a specified frequency to sweep through the spectrum of a sound, emphasizing individual partials in turn. 
+</p><p>
+NB: On some PCs (e.g., Windows 7) this operation may give a silent output. This is currently under investigation.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 10: ARPEGGIATE<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="OCTSHIFT">SPECFNU MODE 11<br> 
+OCTAVE-SHIFT &#150; Octave-shift pitch of sound, under formants</h2>
+
+<h3>
+Usage
+</h3>
+
+<b>specfnu specfnu 11</b> <i>inanal outanal octshift</i>
+[<b>-g</b><i>gain</i>] [<b>-p</b><i>arprate</i>] [<b>-l</b><i>locut</i>] [<b>-h</b><i>hicut</i>]  
+[<b>-s</b>] [<b>-x</b>] [<b>-r</b>] [<b>-d</b> |<b>-c</b>] [<b>-f</b>]
+<br>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>octshift</i> &#150; octave-shift; may vary through time. (Range: -4 to + 4 8ves)<br>
+<b>-g</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-p</b><i>arprate</i> &#150; rate of arpeggiation of spectrum. (Range: -50 to +50 Hz)<br>
+<b>-l</b><i>locut</i> &#150; cut off frequencies below this. (Range: 0 to 10000 Hz)<br>
+<b>-h</b><i>hicut</i> &#150; cut off frequencies above this. (Range: 50 to 10000 Hz)<br>
+<b>-s</b> &#150; use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.<br>
+<b>-d</b> &#150;  arpeggiate downwards (default upwards).<br>
+<b>-c</b> &#150; arpeggiate up and down (default upwards).<br>
+<b>-f</b> &#150; if transposing downwards, fill spectrum top with extra harmonics.
+
+</blockquote>
+
+
+<h3>
+Understanding SPECFNU Mode 11: OCTAVE-SHIFT
+</h3>
+
+<blockquote>
+<p>
+This mode transposes the pitch of the sound, while retaining the original formants. It may be compared with REPITCH PITCHSHIFT/TRANSPOSEF or PITCH OCTMOVE. In tests, the SPECFNU version produced more noticeable artefacts, but these could be suppressed by setting the "silence unpitched" flag (<b>-r</b>) and boosting the output level (with <i>gain</i>).   
+</p><p>
+You can optionally filter out frequencies below <i>locut</i> or above <i>hicut</i>, as required.
+It is also possible to arpeggiate the spectrum. Set <i>arprate</i> if you want arpeggiation; otherwise, do NOT set it. Note also the two flags for the direction of arpeggiation (<b>-d</b> and <b>-c</b>.) 
+</p><p>
+<b>See also: SPECFNU Mode 12.</b> 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<h3> Related Functions</h3>
+<p>
+<a href="crepitch.htm#TRANSPOSEF"><b>REPITCH TRANSPOSEF</b></a><br>
+<a href="cpitch.htm#OCTMOVE"><b>PITCH OCTMOVE</b></a><br>
+<a href="crepitch.htm#PCHSHIFT"><b>REPITCH PCHSHIFT</b></a>
+</p>
+
+<p>
+End of SPECFNU Mode 11: OCTAVE-SHIFT<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="TRANSPOSE">SPECFNU MODE 12<br> 
+TRANSPOSE &#150; Transpose pitch of sound, under formants</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 12</b> <i>inanal outanal transpos</i>
+[<b>-g</b><i>gain</i>] [<b>-p</b><i>arprate</i>] [<b>-l</b><i>locut</i>] [<b>-h</b><i>hicut</i>]  
+[<b>-s</b>] [<b>-x</b>] [<b>-r</b>] [<b>-d</b> |<b>-c</b>] [<b>-f</b>]
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>transpos</i> &#150; semitone shift; may vary through time. (Range: -48 to + 48 semitones)<br>
+<b>-g</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-p</b><i>arprate</i> &#150; rate of arpeggiation of spectrum. (Range: -50 to +50 Hz)<br>
+<b>-l</b><i>locut</i> &#150; cut off frequencies below this. (Range: 0 to 10000 Hz)<br>
+<b>-h</b><i>hicut</i> &#150; cut off frequencies above this. (Range: 50 to 10000 Hz)<br>
+<b>-s</b> &#150; use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.<br>
+<b>-d</b> &#150;  arpeggiate downwards (default upwards).<br>
+<b>-c</b> &#150; arpeggiate up and down (default upwards).<br>
+<b>-f</b> &#150; if transposing downwards, fill spectrum top with extra harmonics.
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 12: TRANSPOSE 
+</h3>
+
+<blockquote>
+<p>
+This mode transposes the pitch of the sound, while retaining the original formants. It may be compared with REPITCH PITCHSHIFT/TRANSPOSEF or PITCH OCTMOVE.  In tests, the SPECFNU version produced more noticeable artefacts, but these could be suppressed by setting the "silence unpitched" flag (<b>-r</b>) and boosting the output level (with <i>gain</i>).   
+</p><p>
+You can optionally filter out frequencies below <i>locut</i> or above <i>hicut</i>, as required. It is also possible to arpeggiate the spectrum. Set <i>arprate</i> if you want arpeggiation; otherwise, do NOT set it. Note also the two flags for the direction of arpeggiation (<b>-d</b> and <b>-c</b>.) 
+</p><p>
+<b>See also SPECFNU Mode 11.</b> 
+</p>
+</blockquote>
+
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<h3> Related Functions</h3>
+<p>
+<a href="crepitch.htm#TRANSPOSEF"><b>REPITCH TRANSPOSEF</b></a><br>
+<a href="cpitch.htm#OCTMOVE"><b>PITCH OCTMOVE</b></a><br>
+<a href="crepitch.htm#PCHSHIFT"><b>REPITCH PCHSHIFT</b></a>
+</p>
+
+<p>
+End of SPECFNU Mode 12: TRANSPOSE <br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="FREQSHIFT">SPECFNU MODE 13<br> 
+FREQUENCY SHIFT &#150; Frequency-shift partials of source sound, under formants</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 13</b> <i>inanal outanal frqshift</i>
+[<b>-g</b><i>gain</i>] [<b>-p</b><i>arprate</i>] [<b>-l</b><i>locut</i>] [<b>-h</b><i>hicut</i>]  
+[<b>-s</b>] [<b>-x</b>] [<b>-r</b>] [<b>-d</b> |<b>-c</b>] [<b>-f</b>]
+
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>frqshift</i> &#150; frequency shift; may vary through time. (Range: -1000 to +1000 Hz)<br>
+<b>-g</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-p</b><i>arprate</i> &#150; rate of arpeggiation of spectrum. (Range: -50 to +50 Hz)<br>
+<b>-l</b><i>locut</i> &#150; cut off frequencies below this. (Range: 0 to 10000 Hz)<br>
+<b>-h</b><i>hicut</i> &#150; cut off frequencies above this. (Range: 50 to 10000 Hz)<br>
+<b>-s</b> &#150; use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.<br>
+<b>-d</b> &#150;  arpeggiate downwards (default upwards). (Only set when <i>arprate</i> &gt; 0.)<br>
+<b>-c</b> &#150; arpeggiate up and down (default upwards).(Only set when <i>arprate</i> &gt; 0.)<br>
+<b>-f</b> &#150; if transposing downwards, fill spectrum top with extra harmonics.
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 13: FREQUENCY SHIFT
+</h3>
+
+<blockquote>
+<p>
+This mode shifts the frequencies in the sound by a sepcified amount (producing, for example, inharmonic sounds out of harmonic ones). This process may be compared with STRANGE SHIFT, which does not preserve the formants.
+</p><p>
+As with Modes 11 and 12, there many artefacts present. To cure this problem, set the "exclude non-harmonic partials" flag (<b>-x</b>).  (Unlike Modes 11 and 12, do not set the "silence unpitched" flag (<b>-r</b>), or the output will be seriously quiet.)
+</p><p>
+You can optionally filter out frequencies below <i>locut</i> or above <i>hicut</i>, as required.
+It is also possible to arpeggiate the spectrum. Set <i>arprate</i> if you want arpeggiation; otherwise, do NOT set it. Note also the two flags for the direction of arpeggiation (<b>-d</b> and <b>-c</b>.) 
+</p><p>
+<b>SEE ALSO: SPECFNU MODE 14 &#150 Respace</b>
+</p>
+</blockquote>
+
+
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="cstrange.htm#SHIFT"><b>FREQ. SHIFT</b></a> not reatining partials
+</p>
+
+<p>
+End of SPECFNU Mode 13: FREQUENCY SHIFT <br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="RESPACE">SPECFNU MODE 14<br> 
+RESPACE PARTIALS &#150; Respace partials in source spectrum, retaining formants</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 14</b> <i>inanal outanal respace</i>
+[<b>-g</b><i>gain</i>] [<b>-p</b><i>arprate</i>] [<b>-l</b><i>locut</i>] [<b>-h</b><i>hicut</i>]  
+[<b>-s</b>] [<b>-x</b>] [<b>-r</b>] [<b>-d</b> |<b>-c</b>] [<b>-f</b>]
+
+
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>respace</i> &#150; new frequency spacing of partials; may vary through time. (Range: 1 to 1000 Hz)<br>
+<b>-g</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-p</b><i>arprate</i> &#150; rate of arpeggiation of spectrum. (Range: -50 to +50 Hz)<br>
+<b>-l</b><i>locut</i> &#150; cut off frequencies below this. (Range: 0 to 10000 Hz)<br>
+<b>-h</b><i>hicut</i> &#150; cut off frequencies above this. (Range: 50 to 10000 Hz)<br>
+<b>-s</b> &#150; use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.<br>
+<b>-d</b> &#150;  arpeggiate downwards (default upwards). (Only set when <i>arprate</i> &gt; 0.)<br>
+<b>-c</b> &#150; arpeggiate up and down (default upwards).(Only set when <i>arprate</i> &gt; 0.)<br>
+<b>-f</b> &#150; if narrowed spacing, fill spectrum top with extra shifted partials.
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 14: RESPACE PARTIALS
+</h3>
+
+<blockquote>
+<p>
+In this mode, <i>respace</i> sets a new fundamental for the sound, as well as re-spacing the partials as harmonics of this fundamental, while retaining the existing formants. 
+</p><p>
+With a vocal source, the "exclude non-harmonic partials" flag (<b>-x</b>) seemed generally redundant, while the "silence unpitched" flag (<b>-r</b>) produced a high-pass filter effect. However, with a non-harmonic source (handbell), the process produced many artefacts which, though suppressed by the "silence unpitched" flag (<b>-r</b>), left gaps in the sound. 
+</p><p>
+You can optionally filter out frequencies below <i>locut</i> or above <i>hicut</i>, as required.
+It is also possible to arpeggiate the spectrum. Set <i>arprate</i> if you want arpeggiation; otherwise, do NOT set it. Note also the two flags for the direction of arpeggiation (<b>-d</b> and <b>-c</b>.)  
+</p><p>
+<b>SEE ALSO: SPECFNU MODE 13 &#150 Frequency Shift and MODE 19 &#150 Randomise Partials</b> 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 14: RESPACE PARTIALS<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="PCHINVERT">SPECFNU MODE 15<br> 
+PITCH-INVERT &#150; Invert pitch of sound, under formants</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 15</b> <i>inanal outanal map about </i>
+[<b>-g</b><i>gain</i>] [<b>-p</b><i>arprate</i>] [<b>-l</b><i>locut</i>] [<b>-h</b><i>hicut</i>] 
+[<b>-b</b><i>lopch</i>] [<b>-t</b><i>hipch</i>] 
+[<b>-s</b>] [<b>-x</b>] [<b>-r</b>] [<b>-d</b> |<b>-c</b>]
+
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+
+<i>map</i> &#150; set to zero if no mapping is required; otherwise, map is a textfile of paired values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+	    showing how the intervals (in semitones) are to be mapped onto their inversions.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (Range: +/-96.000000 semitones, possibly fractional) <br>       
+<i>about</i> &#150; pitch about which to invert the pitch of the source; may vary through time.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+        (Range: 4 to 127, as MIDI, possibly fractional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        If the value zero is entered, the mean pitch of the input is used.<br>
+
+<b>-g</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-p</b><i>arprate</i> &#150; rate of arpeggiation of spectrum. (Range: -50 to +50 Hz)<br>
+<b>-l</b><i>locut</i> &#150; cut off frequencies below this. (Range: 0 to 10000 Hz)<br>
+<b>-h</b><i>hicut</i> &#150; cut off frequencies above this. (Range: 50 to 10000 Hz)<br>
+<b>-b</b><i>lopch</i> &#150; minimum acceptable pitch. (Range: 1-127, as MIDI, possibly fractional)<br>
+<b>-t</b><i>hipch</i> &#150; maximum acceptable pitch. (Range: 1-127, as MIDI, possibly fractional)<br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.<br>
+<b>-d</b> &#150;  arpeggiate downwards (default upwards). (Only set when <i>arprate</i> &gt; 0.)<br>
+<b>-c</b> &#150; arpeggiate up and down (default upwards). (Only set when <i>arprate</i> &gt; 0.)
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 15: PITCH-INVERT
+</h3>
+
+<blockquote>
+<p>
+This mode inverts the pitch around a given MIDI pitch, so that frequencies above this frequency are mirrored below it and vice versa. It may be compared with REPITCH INVERT, which also inverts the pitch, or with SPECNU SLICE 5 (invert frequency).
+</p><p>
+In tests, a MIDI pitch of 60 (middle C) or lower gave coherent results, whereas a high wrap-around pitch (MIDI 80) produced many artefacts.
+</p><p>
+You can optionally restrict the pitch range with <i>lopch</i> and <i>hipch</i> and filter out frequencies below <i>locut</i> or above <i>hicut</i>, as required.
+It is also possible to arpeggiate the spectrum. Set <i>arprate</i> if you want arpeggiation; otherwise, do NOT set it. Note also the two flags for the direction of arpeggiation (<b>-d</b> and <b>-c</b>.) 
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="crepitch.htm#INVERT"><b>REPITCH INVERT</b></a>
+</p>
+
+<p>
+End of SPECFNU Mode 15: PITCH-INVERT<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="PCHEXAGG">SPECFNU MODE 16<br> 
+PITCH-EXAGGERATE/SMOOTH UNDER FORMANTS &#150; <br>
+Exaggerate or smooth the pitch-line, retaining the formants.</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 16</b> <i>inanal outanal about rang</i>
+[<b>-g</b><i>gain</i>] [<b>-p</b><i>arprate</i>] [<b>-l</b><i>locut</i>] [<b>-h</b><i>hicut</i>] 
+[<b>-b</b><i>lopch</i>] [<b>-t</b><i>hipch</i>] <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<b>-T</b>] [<b>-F</b>] [<b>-M</b>] [<b>-A</b>] [<b>-B</b>]
+[<b>-s</b>] [<b>-x</b>] [<b>-r</b>] [<b>-d</b> |<b>-c</b>]
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>about</i> &#150; pitch about which to exaggerate or smooth pitch line of the source; may vary through time.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+        (Range: 4 to 127, as MIDI, possibly fractional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         If the value zero is entered, the mean pitch of the input is used.<br>
+<i>rang</i> &#150; expand or contract the range of the pitch line. (Range: 0 to 1)<br>
+
+<b>-g</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-p</b><i>arprate</i> &#150; rate of arpeggiation of spectrum. (Range: -50 to +50 Hz)<br>
+<b>-l</b><i>locut</i> &#150; cut off frequencies below this. (Range: 0 to 10000 Hz)<br>
+<b>-h</b><i>hicut</i> &#150; cut off frequencies above this. (Range: 50 to 10000 Hz)<br>
+<b>-b</b><i>lopch</i> &#150; minimum acceptable pitch. (Range: 1-127, as MIDI, possibly fractional)<br>
+<b>-t</b><i>hipch</i> &#150; maximum acceptable pitch. (Range: 1-127, as MIDI, possibly fractional)<br>
+<b>-T</b> &#150; tie to top of pitch range.<br>
+<b>-F</b> &#150; tie to foot of pitch range.<br>
+<b>-M</b> &#150; tie to range middle: only if "-T" and "-F" flags are also set.<br> 
+<b>-A</b> &#150; do range change above mean only.<br>
+<b>-B</b> &#150; do range change below mean only.<br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.<br>
+<b>-d</b> &#150;  arpeggiate downwards (default upwards). (Only set when <i>arprate</i> &gt; 0.)<br>
+<b>-c</b> &#150; arpeggiate up and down (default upwards). (Only set when <i>arprate</i> &gt; 0.)
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 16: PITCH-EXAGG/SMOOTH
+</h3>
+
+<blockquote>
+<p>
+This mode aims to exaggerate the pitch line, under the existing formants. The range parameter (<i>rang</i>) sets the degree of possible change; some settings may produce a consistent transposition.
+</p><p>
+The various flags set options for restricting the pitch range that might be exaggerated.
+</p><p>
+You can optionally restrict the pitch range with <i>lopch</i> and <i>hipch</i> and filter out frequencies below <i>locut</i> or above <i>hicut</i>, as required. It is also possible to arpeggiate the spectrum. Set <i>arprate</i> if you want arpeggiation; otherwise, do NOT set it. Note also the two flags for the direction of arpeggiation (<b>-d</b> and <b>-c</b>.) 
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="crepitch.htm#EXAG"><b>REPITCH EXAG</b></a>
+</p>
+
+<p>
+End of SPECFNU Mode 16: PITCH-EXAGG/SMOOTH<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="PCHQUANT">SPECFNU MODE 17<br> 
+PITCH-QUANTISE &#150; Force pitch onto a specified pitch field, under formants</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 17</b> <i>inanal outanal datafile </i>
+[<b>-g</b><i>gain</i>] [<b>-p</b><i>arprate</i>] [<b>-l</b><i>locut</i>] [<b>-h</b><i>hicut</i>] 
+[<b>-b</b><i>lopch</i>] [<b>-t</b><i>hipch</i>] 
+<!-- <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+[<b>-s</b>] [<b>-x</b>] [<b>-r</b>] [<b>-d</b> |<b>-c</b>] [<b>-o</b>] [<b>-n</b>]
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+
+<i>datafile</i> &#150; textfile containing data about pitches to quantise to, as follows:<br>
+<blockquote>
+        There must first be a marker indicating the grid type. These are:<br>
+        <b>#HS</b> followed by listed MIDI pitches to quantise to (harmonic set).<br>
+        <b>#HF</b> followed by listed MIDI pitches to quantise to in all octaves (hamronic field).<br>
+        <b>#THF</b> followed by lines each with time plus a list of MIDI pitches (timed harmonic field).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               First time must be zero & times must increase.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               Each MIDI list must be the same length.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               To change the number of pitches from line to line, duplicate values.<br>
+        <b>#SCALE</b> followed by just TWO values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (a) the number of equal pitch divisions in an octave.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (b) MIDI pitch of any pitch to tune the scales to.<br>
+        <b>#ELACS</b> followed by just THREE values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (a) size of "pseudo-octave" in (possibly fractional) semitones.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (b) the number of equal pitch divisions in the pseudo-octave.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (c) MIDI-pitch of any pitch to tune the scales to.<br>
+</blockquote>
+
+<b>-g</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-p</b><i>arprate</i> &#150; rate of arpeggiation of spectrum. (Range: -50 to +50 Hz)<br>
+<b>-l</b><i>locut</i> &#150; cut off frequencies below this. (Range: 0 to 10000 Hz)<br>
+<b>-h</b><i>hicut</i> &#150; cut off frequencies above this. (Range: 50 to 10000 Hz)<br>
+<b>-b</b><i>lopch</i> &#150; minimum acceptable pitch. (Range: 1-127, as MIDI, possibly fractional)<br>
+<b>-t</b><i>hipch</i> &#150; maximum acceptable pitch. (Range: 1-127, as MIDI, possibly fractional)<br>
+
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.<br>
+<b>-d</b> &#150;  arpeggiate downwards (default upwards). (Only set when <i>arprate</i> &gt; 0.)<br>
+<b>-c</b> &#150; arpeggiate up and down (default upwards). (Only set when <i>arprate</i> &gt; 0.)<br>
+<b>-o</b> &#150; allow ornaments in the quantised pitch-line.<br>
+<b>-n</b> &#150; no smoothing of transitions between pitches.<br>
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 17: PITCH-QUANTISE 
+</h3>
+
+<blockquote>
+<p>
+Mode 17 quantizes the pitch content in a sound while preserving the original formants. The actual pitches are forced onto the nearest listed pitch value. The process needs a text <i>datafile</i> about pitches to quantize to. 
+</p><p>
+The format of the pitch data file is much more flexible than that of REPITCH QUANTISE. There are five possible types, each preceded by a different initial text marker:
+1. #HS (harmonic set) + a list of pitches; 2. #HF (harmonic field) + a list of pitches to be duplicated in all 8ves; 3. #THF (timed harmonic field) + a time-changing list of pitches; 4.  #SCALE: an equal-tempered scale dividing the octave, plus a pitch to tune the scale to; e) #ELACS: as d) but using a pseudo-octave of any size.
+</p><p>
+You can optionally restrict the pitch range with <i>lopch</i> and <i>hipch</i> and filter out frequencies below <i>locut</i> or above <i>hicut</i>, as required. There is also an arpeggiation option, triggered by the optional <i>arprate</i>, with options to arpeggiate downwards and/or upwards instead of up.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="crepitch.htm#QUANTISE"><b>REPITCH QUANTISE</b></a>
+</p>
+
+<p>
+End of SPECFNU Mode 17: PITCH-QUANTISE<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="PCHRAND">SPECFNU MODE 18<br> 
+PITCH RANDOMISE &#150; Randomise pitch of source, under formants</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 18</b> <i>inanal outanal datafile range slew </i>
+[<b>-g</b><i>gain</i>] [<b>-p</b><i>arprate</i>] [<b>-l</b><i>locut</i>] [<b>-h</b><i>hicut</i>] 
+[<b>-b</b><i>lopch</i>] [<b>-t</b><i>hipch</i>] 
+[<b>-s</b>] [<b>-x</b>] [<b>-r</b>] [<b>-d</b> |<b>-c</b>] [<b>-o</b>] [<b>-n</b>] [<b>-k</b>]
+
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+
+
+<i>datafile</i> &#150; if set to zero, no pre-quantisation of pitch takes place;<br>
+<blockquote>
+        Otherwise, this a textfile containing data about pitches to quantise to, as follows:
+<br><br>
+        There must first be a marker indicating the grid type. These are:<br>
+        <b>#HS</b> followed by listed MIDI pitches to quantise to.<br>
+        <b>#HF</b> followed by listed MIDI pitches to quantise to in all octaves.<br>
+        <b>#THF</b> followed by lines each with time plus a list of MIDI pitches.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               First time must be zero & times must increase.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               Each MIDI list must be the same length.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               To change the number of pitches from line to line, duplicate values.<br>
+        <b>#SCALE</b> followed by just TWO values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (a) the number of equal pitch divisions in an octave.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (b) MIDI pitch of any pitch to tune the scales to.<br>
+        <b>#ELACS</b> followed by just THREE values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (a) size of "pseudo-octave" in (possibly fractional) semitones.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (b) the number of equal pitch divisions in the pseudo-octave.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (c) MIDI-pitch of any pitch to tune the scales to.<br>
+
+<i>range</i> &#150; semitone range within which random offsets are generated. (Range: 0 to 96 semitones)<br>
+<i>slew</i> &#150; relationship between (possible) upward & downward random variation,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        e.g. 2: uprange = 2 * downrange <br>      
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             0.5: uprange = 0.5 * downrange. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (Ranges 0.1 to 10, where 1 has no effect )<br>
+
+<b>-g</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-p</b><i>arprate</i> &#150; rate of arpeggiation of spectrum. (Range: -50 to +50 Hz)<br>
+<b>-l</b><i>locut</i> &#150; cut off frequencies below this. (Range: 0 to 10000 Hz)<br>
+<b>-h</b><i>hicut</i> &#150; cut off frequencies above this. (Range: 50 to 10000 Hz)<br>
+<b>-b</b><i>lopch</i> &#150; minimum acceptable pitch. (Range: 1-127, as MIDI, possibly fractional)<br>
+<b>-t</b><i>hipch</i> &#150; maximum acceptable pitch. (Range: 1-127, as MIDI, possibly fractional)<br>
+
+<b>-s</b> &#150; use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150; exclude non-harmonic partials.<br>
+<b>-r</b> &#150; replace unpitched (or extremely quiet) windows by silence.<br>
+<b>-d</b> &#150; arpeggiate downwards (default upwards).  (Only set when <i>arprate</i> &gt; 0.)<br>
+<b>-c</b> &#150; arpeggiate up and down (default upwards). (Only set when <i>arprate</i> &gt; 0.)<br>
+<b>-o</b> &#150; open up fast movement in the quantised pitch-line.<br>
+<b>-n</b> &#150; no smoothing of transitions between pitches.<br>
+<b>-k</b> &#150; kill-off formant reshaping.
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 18: PITCH-RANDOMISE
+</h3>
+
+<blockquote>
+<p>
+Mode 18 randomises pitch under the existing formants. It may be compared with REPITCH RANDOMISE.
+</p><p>
+Before randomising, the pitch may optionally be quantised as in Mode 17, with the same type of datafile.
+</p><p>
+As with Mode 17, you can optionally restrict the pitch range with <i>lopch</i> and <i>hipch</i> and filter out frequencies below <i>locut</i> or above <i>hicut</i>, as required. There is also an arpeggiation option, triggered by the optional <i>arprate</i>, with options to arpeggiate downwards and/or upwards instead of up.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="crepitch.htm#RANDOMISE"><b>REPITCH RANDOMISE</b></a>
+</p>
+
+<p>
+End of SPECFNU Mode 18: PITCH-RANDOMISE<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="RANDSHIFT">SPECFNU MODE 19<br> 
+RANDOMISE PARTIALS &#150; Random-shift partials, under formants</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 19</b> <i>inanal outanal rand </i>
+[<b>-g</b><i>gain</i>] [<b>-p</b><i>arprate</i>] [<b>-l</b><i>locut</i>] [<b>-h</b><i>hicut</i>] 
+[<b>-s</b>] [<b>-x</b>] [<b>-r</b>] [<b>-d</b> |<b>-c</b>] [<b>-o</b>] 
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanal</i> &#150; input analysis file.<br>
+<i>outanal</i> &#150; output analysis file.<br>
+<i>rand</i> &#150; randomisation of partial frequencies; may vary through time. (Range: 0 to 1)<br>
+<b>-g</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-p</b><i>arprate</i> &#150; rate of arpeggiation of spectrum. (Range: -50 to +50 Hz)<br>
+<b>-l</b><i>locut</i> &#150; cut off frequencies below this. (Range: 0 to 10000 Hz)<br>
+<b>-h</b><i>hicut</i> &#150; cut off frequencies above this. (Range: 50 to 10000 Hz)<br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+<b>-x</b> &#150;  exclude non-harmonic partials.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.<br>
+<b>-d</b> &#150; arpeggiate downwards (default upwards).  (Only set when <i>arprate</i> &gt; 0.)<br>
+<b>-c</b> &#150; arpeggiate up and down (default upwards). (Only set when <i>arprate</i> &gt; 0.)<br>
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 19: RANDOMISE PARTIALS
+</h3>
+
+<blockquote>
+<p>
+In Mode 19, the partials are randomised (as opposed to the pitch in Mode 18). The degree of randomisation is set by <i>rand</i>.
+</p><p>
+You can optionally filter out frequencies below <i>locut</i> or above <i>hicut</i>, as required. There is also an arpeggiation option, triggered by the optional <i>arprate</i>, with options to arpeggiate downwards and/or upwards instead of up.
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="cfocus.htm#SPECFOLD"><b>SPECFOLD</b></a> Mode 3 (randomise spectrum)
+</p>
+<p>
+End of SPECFNU Mode 19: RANDOMISE PARTIALS<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="SEESPECENV">SPECFNU MODE 20<br> 
+SEE SPECTRAL ENVELOPE &#150; output viewable (not playable) soundfile</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 20</b> <i>inanalfile outpseudosndfile </i> [<b>-s</b>] <br>
+
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150; input analysis file.<br>
+<i>outpseudosndfile</i> &#150; output psuedo-soundfile (DO NOT PLAY THIS!) <br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 20: SEE SPECTRAL ENVELOPE
+</h3>
+
+<blockquote>
+<p>
+The function creates a viewable (but not playable) soundfile showing the spectral envelope at each window as a block of positive samples.
+
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 20: SEE SPECTRAL ENVELOPE<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="SEESPECPKS">SPECFNU MODE 21<br> 
+SEE SPECTRAL PEAKS &amp; TROUGHS &#150; Print textfile of frequencies of peaks & troughs per window</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 21</b> <i>inanalfile outtextfile </i> [<b>-s</b>] <br>
+
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150; input analysis file.<br>
+<i>outtextfile</i> &#150;output text file of peaks and troughs per window. Output format:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  <b>Trough  Peak-1  Trough  Peak-2  Trough  Peak-3  Trough  Peak-4  Trough</b><br>
+<b>-s</b> &#150;  use a short window for extracting spectral envelope (default is large window).<br>
+
+
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 21: SEE SPECTRAL PEAKS/TROUGHS
+</h3>
+
+<blockquote>
+<p>
+
+
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 21: SEE SPECTRAL PEAKS/TROUGHS<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="GETTROFS">SPECFNU MODE 22<br> 
+GET LOUDNESS TROUGHS &#150; Print textfile of times-of-troughs between syllables</h2>
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 22</b> <i>inanalfile outtextfile </i>
+[<b>-s</b><i>syldur</i>] [<b>-p</b><i>pktrof</i>] [<b>-P</b> |<b>-B</b>]
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150; input analysis file.<br>
+<i>outtextfile</i> &#150; output text file of trough times between syllables.<br>
+<b>-s</b><i>syldur</i> &#150; minimum acceptable duration to define a syllable (default 0.0800).<br>
+<b>-p</b><i>pktrof</i> &#150; minimum height of peak above the surrounding troughs (default 0.0800). 
+                The maximum possible height is 1.0.<br>
+<b>-P</b> &#150; get peaks.<br>
+<b>-B</b> &#150; get both troughs and peaks.
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 22: GET LOUDNESS TROUGHS
+</h3>
+
+<blockquote>
+<p>
+The output text file will usually need post-correction "by hand".
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 22: GET LOUDNESS TROUGHS<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="SINESPEECH">SPECFNU MODE 23<br> 
+SINE SPEECH &#150; Convert formant frequencies to sine tones.</h2>
+ 
+
+<h3>
+Usage
+</h3>
+<b>specfnu specfnu 23</b> <i>inanalfile outanalfile hffile sining  </i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<b>-a</b><i>gain</i>]
+[<b>-b</b><i>amp1</i>] [<b>-c</b><i>amp2</i>] [<b>-d</b><i>amp3</i>] [<b>-e</b><i>amp4</i>] 
+[<b>-nq</b><i>dep1</i>] [<b>-oq</b><i>dep2</i>] [<b>-pq</b><i>dep3</i>] [<b>-qq</b><i>dep4</i>]
+[<b>-s</b>] [<b>-f</b>] [<b>-r</b>] [<b>-S</b>] 
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150; input analysis file.<br>
+<i>outanalfile</i> &#150; output analysis file.<br>
+
+<i>hffile</i> &#150; if set to zero, no pitch quantisation takes place.<br>
+<blockquote>
+        Otherwise, this a textfile containing data about pitches to quantise to, as follows:
+<br><br>
+        There must first be a marker indicating the grid type. These are:<br>
+        <b>#HS</b> followed by listed MIDI pitches to quantise to.<br>
+        <b>#HF</b> followed by listed MIDI pitches to quantise to in all octaves.<br>
+        <b>#THF</b> followed by lines each with time plus a list of MIDI pitches.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               First time must be zero & times must increase.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               Each MIDI list must be the same length.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               To change the number of pitches from line to line, duplicate values.<br>
+        <b>#SCALE</b> followed by just TWO values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (a) the number of equal pitch divisions in an octave.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (b) MIDI pitch of any pitch to tune the scales to.<br>
+        <b>#ELACS</b> followed by just THREE values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (a) size of "pseudo-octave" in (possibly fractional) semitones.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (b) the number of equal pitch divisions in the pseudo-octave.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (c) MIDI-pitch of any pitch to tune the scales to.<br>
+
+
+</blockquote>
+
+<i>sining</i> &#150; degree of sinusoidisation. (Range: 0 to 1)<br>
+<b>-a</b><i>gain</i> &#150; output gain or attenuation. (Range: 0.01 to 10)<br>
+<b>-b</b><i>amp1</i> &#150; relative gain or attenuation of formant 1. (Range: 0.01 to 10)<br>
+<b>-c</b><i>amp2</i>, <b>-d</b><i>amp3</i>, <b>-e</b><i>amp4</i> &#150; similarly for the other formants.<br>
+<b>-nq</b><i>dep1</i> &#150; if HF is applied (hffile non-zero), how strongly to force pitches' formant 1 to hf. (Range: 0-1)<br>
+<b>-oq</b><i>dep2</i>, <b>-pq</b><i>dep3</i>, <b>-qq</b><i>dep4</i> &#150; similarly for the other formant bands.<br>
+<b>-s</b> &#150; use a short window for extracting spectral envelope (default is large window).<br>
+<b>-f</b> &#150; force lowest formant to use fundamental frequency as peak.<br>
+<b>-r</b> &#150;  replace unpitched (or extremely quiet) windows by silence.<br>
+<b>-S</b> &#150; smoothing between pitches in formant traces.
+
+
+</blockquote>
+
+
+
+<h3>
+Understanding SPECFNU Mode 23: SINE SPEECH 
+</h3>
+
+<blockquote>
+<p>
+The final mode of SPECFNU replaces formant frequencies with sine tones. A single sine wave represents each formant. The original vocal sound is usually preserved in "shadow" form. Each of the main four formants has an optional level control (<i>amp1, amp2, amp3, amp4</i>). 
+</p><p>
+Before converting, the pitch may optionally be quantised as in Modes 17 and 18, with the same type of datafile. If quantisation is employed, then each of the main four formants has a control for the degree of forcing the formant onto the pitch set (<i>dep1, dep2, dep3, dep4</i>). 
+
+</p><p>
+Spectral window-size: 
+if the "force fundamental" option (-f) is used, selecting a large window will find the fundamental, whereas a short window ( option -s) may not.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of SPECFNU Mode 23: SINE SPEECH<br />
+<a href="#SPECFNULIST"><b>Return</b></a> to list of SPECFNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 28 Apr 2023 for CDP8<br />
+    Documentation: Archer Endrich and Robert Fraser<br />
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

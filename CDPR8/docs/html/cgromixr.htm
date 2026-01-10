@@ -1,0 +1,2727 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cgromixr.htm  - SUBMIX HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP SUBMIX Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id="left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#SUBMIXLIST"><b>SUBMIX:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ADDTOMIX"><b>ADDTOMIX</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ATSTEP"><b>ATSTEP</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ATTENUATE"><b>ATTENUATE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#BALANCE"><b>BALANCE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CROSSFADE"><b>CROSSFADE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#DUMMY"><b>DUMMY</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FADERS"><b>FADERS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FILEFORMAT"><b>FILEFORMAT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#GETLEVEL"><b>GETLEVEL</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INBETWEEN"><b>INBETWEEN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INBETWEEN2"><b>INBETWEEN2</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INTERLEAVE"><b>INTERLEAVE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#MERGE"><b>MERGE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#MERGEMANY"><b>MERGEMANY</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#MIX"><b>MIX</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#MODEL"><b>MODEL</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ONGRID"><b>ONGRID</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PAN"><b>PAN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SHUFFLE"><b>SHUFFLE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SPACEWARP"><b>SPACEWARP</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SYNC"><b>SYNC</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SYNCATTACK"><b>SYNCATTACK</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TEST"><b>TEST</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TIMEWARP"><b>TIMEWARP</b></a>
+
+<br><br>
+  <dt><a href = "filestxt.htm#MIXFILES"><b>MIXFILES FORMAT</b></a>
+  <br><br>
+ <b>SEE ALSO:</b><br>
+ <dt>&nbsp;&nbsp;<a href="cgromc.htm#MULTIMIX"><b>MULTIMIX CREATE</b></a> 
+ <dt>&nbsp;&nbsp;<a href="cgromc.htm#NEWMIX"><b>NEWMIX</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+     <div align=center>
+     <br>
+     <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+     </div>
+
+   <h1 align=center>CDP SUBMIX Functions</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="SUBMIXLIST">Functions to MIX soundfiles</h2>
+
+<!--
+<p>
+<b><i>Names in brackets mean that these are separate programs.  The others are sub-modules of SUBMIX.</b></i>
+</p>
+-->
+
+<dl>
+<dt><a href="#ADDTOMIX"><b>ADDTOMIX</b></a> <dd>Add soundfiles (at 
+maximum level and time zero) to an existing mixfile</dd>
+<dt><a href="#ATSTEP"><b>ATSTEP</b></a> <dd>Convert a list of soundfiles to a 
+mixfile (fixed time-step)</dd>
+<dt><a href="#ATTENUATE"><b>ATTENUATE</b></a> <dd>Alter the overall level of a 
+mixfile</dd>
+<dt><a href="#BALANCE"><b>BALANCE</b></a> <dd>Mix between two soundfiles, using 
+a balance function</dd>
+<dt><a href="#CROSSFADE"><b>CROSSFADE</b></a> <dd>Quick crossfade between 2 
+soundfiles (with same number of channels)</dd>
+<dt><a href="#DUMMY"><b>DUMMY</b></a> <dd>Convert list of sound names to a 
+basic mixfile (for editing)</dd>
+<dt><a href="#FADERS"><b>FADERS</b></a> <dd>Mix several mono or stereo files 
+using a time-changing balance function</dd>
+<dt><a href="#FILEFORMAT"><b>FILEFORMAT</b></a> <dd>Display format of a mixfile</dd>
+<dt><a href="#GETLEVEL"><b>GETLEVEL</b></a> <dd>Test maximum level of a mix, 
+defined in a mixfile</dd>
+<dt><a href="#INBETWEEN"><b>INBETWEEN</b></a> <dd>Generate a set of sounds 
+inbetween the 2 input sounds, through weighted mixes of the input sounds, 
+from mostly sound1 to mostly sound2</dd>
+<dt><a href="#INBETWEEN2"><b>INBETWEEN2</b></a> <dd>Generate a set of sounds 
+in-between the 2 input sounds by interpolation pegged to zero-crossings</dd>
+<dt><a href="#INTERLEAVE"><b>INTERLEAVE</b></a> <dd>Interleave mono files to make 
+a single multichannel outfile</dd>
+<dt><a href="#MERGE"><b>MERGE</b></a> <dd>Quick mix of 2 soundfiles (with 
+the same number of channels)</dd>
+<dt><a href="#MERGEMANY"><b>MERGEMANY</b></a> <dd>Quick mix of several soundfiles 
+(with the same number of channels)</dd>
+<dt><a href="#MIX"><b>MIX</b></a> <dd>Mix sounds as instructed in a mixfile</dd>
+<dt><a href="#MODEL"><b>MODEL</b></a> <dd>Replace soundfiles in an existing mixfile</dd>
+<dt><a href="#ONGRID"><b>ONGRID</b></a> <dd>Convert listed soundfiles to a 
+basic mixfile on a timed grid (for editing)</dd>
+<dt><a href="#PAN"><b>PAN</b></a> <dd>Pan sound positions in a mixfile</dd>
+<dt><a href="#SHUFFLE"><b>SHUFFLE</b></a> <dd>Shuffle the data in a mixfile</dd>
+<dt><a href="#SPACEWARP"><b>SPACEWARP</b></a> <dd>Alter the spatial distribution 
+of a mixfile</dd>
+<dt><a href="#SYNC"><b>SYNC</b></a> <dd>Synchronise soundfiles in a mixfile, or 
+generate such a mixfile from a list of soundfiles</dd>
+<dt><a href="#SYNCATTACK"><b>SYNCATTACK</b></a> <dd>Synchronise the attacks of 
+soundfiles in a mixfile, or generate such a mixfile from a list of soundfiles</dd>
+<dt><a href="#TEST"><b>TEST</b></a> <dd>Test the syntax of a mixfile</dd>
+<dt><a href="#TIMEWARP"><b>TIMEWARP</b></a><dd>Timewarp the data in a mixfile</dd>
+<br>
+<dt><a href = "filestxt.htm#MIXFILES"><b>Mixfiles Format</b></a> <dd>Examples of <b>.mix</b> files and multi-channel <b>.mmx</b> files</dd>
+
+
+<br><b>SEE ALSO:</b><br>
+<dt><a href="cgromc.htm#MULTIMIX"><b>MULTIMIX CREATE</b></a><dd>Create a multi-channel mixfile</dd>
+<dt><a href="cgromc.htm#NEWMIX"><b>NEWMIX</b></a><dd>Mix from a multi-channel mixfile to give a multi-channel soundfile output</dd>
+
+</dl>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="ADDTOMIX">SUBMIX ADDTOMIX &#150; Add soundfiles (at 
+maximum level and time zero) to an existing mixfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix addtomix</b> <i>inmixfile sndfile1 sndfile2 
+[sndfile3 ...] outmixfile</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inmixfile</i> &#150; input <i>mixfile</i> to which to add sounds<br />
+<i>sndfile1</i> &#150; first sound to add<br />
+<i>sndfile2</i> &#150; second sound to add<br />
+<i>[sndfile3 ...]</i> &#150; optional third sound to add, etc. <br />
+<i>outmixfile</i> &#150; <i></i> resultant output <i>mixfile</i><br />
+</blockquote>
+
+<h3>
+Understanding the SUBMIX ADDTOMIX Function
+</h3>
+
+<blockquote>
+<p>
+Further sounds can be added to a <i>mixfile</i> simply by listing 
+the original <i>mixfile</i> and the new sounds as inputs to the 
+process.   A new <i>mixfile</i> is created with the new sounds added 
+at the foot of the file but all at start-time zero, and with 
+maximum loudness.  This new file can then be edited to re-position 
+the start times of the new sounds in the new mix, and at the 
+level you require. 
+</p>
+
+<p>
+The standard extension for a CDP <i>mixfile</i> is <b>.mix</b>, 
+but is not required.  <i>Sound Loom</i> uses <b>.txt</b> for 
+all its text files.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is a simple utility designed to facilitate expanding the 
+contents of a <i>mixfile</i>.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX ADDTOMIX<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="ATSTEP">SUBMIX ATSTEP &#150; Convert a list of soundfiles to a 
+mixfile (fixed time-step)
+
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix atstep</b> <i>infile1 infile2 [infile3...] outmixfile step</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1</i> &#150; first soundfile in list<br />
+<i>infile2</i> &#150; second soundfile in list<br />
+<i>[infile3...]</i> &#150; optional third soundfile in list, etc.<br />
+<i>outmixfile</i> &#150; output mixfile produced by the 
+program<br />
+<i>step</b></i> &#150; time, in seconds, between the start 
+times of each sound
+</blockquote>
+
+<h3>
+Understanding the SUBMIX ATSTEP Function
+</h3>
+
+<blockquote>
+<p>
+Similar to <a href="#ADDTOMIX"><b>SUBMIX ADDTOMIX</b></a>, but here you specify a 
+fixed time-interval between the entry of each sound in the mix.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+SUBMIX ATSTEP is useful if you want to use <i>mixfiles</i> 
+for generating strictly rhythmic sequences of sounds.  
+(You can 'naturalise' the rhythmic  feel of the output by 
+using existing CDP processes to slightly randomise the 
+entry times of the sounds).  See <a href="#TIMEWARP">
+<b>SUBMIX TIMEWARP</b></a>. 
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX ATSTEP<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="ATTENUATE">SUBMIX ATTENUATE &#150; Alter the overall level of a 
+mixfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix attenuate</b> <i>inmixfile outmixfile gainval</i> 
+[<b>-s</b><i>startline</i>] [<b>-e</b><i>endline</i>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inmixfile</i>  the input is a mixfile<br>
+<i>outmixfile</i>  the output is the adjusted mixfile<br>
+<i>gainval</i> gain factor to be applied (Must be &gt; 0.0)<br>
+<b>-s</b><i>startline</i> line at which attenuation begins (Default: 
+1<super>st</super> line in mixfile<br>
+<b>-e</b><i>endline</i> line at which attenuation begins (Default: 
+last line in mixfile)
+</blockquote>
+
+<h3>
+Understanding the SUBMIX ATTENUATE Function
+</h3>
+<blockquote>
+
+<p>
+The <i>gainval</i> parameter is a multiplier and is applied to the 
+levels of all the sounds listed in the mixfile.  The levels in the 
+mixfile may be notated in dB (e.g., 0dB) or as floating point values 
+(e.g., 1.0).  Values &gt; 1 will increase the level.
+</p>
+
+<p>
+The gain may be applied to selected sounds in the mixfile by specifying 
+'start' and 'end' lines in the mixfile.  Only one line will be affected 
+if 'start' and 'end' are given the same line number.  (The line count 
+starts at 1.)
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+CDP mixfiles may list a large number of sounds &#150; no limit is encoded 
+in the software.  It may sometimes, therefore, be useful to adjust the 
+attenuation of whole groups of sounds in the mixfile.  This can be done 
+easily with SUBMIX ATTENUATE.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX ATTENUATE<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="BALANCE">SUBMIX BALANCE &#150; Mix between 2 soundfiles, using a 
+balance function
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix balance</b> <i>sndfile1 sndfile2 outfile</i> 
+[<b>-k</b><i>balance</i>] [<b>-b</b><i>start</i>] [<b>-e</b><i>end</i>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>sndfile1</i>	first soundfile to be mixed<br>
+<i>sndfile2</i>	second soundfile to be mixed<br>
+	<blockquote>
+	The input soundfiles may or may not have a different number 
+	of channels.
+	</blockquote>
+<i>outfile</i>	resultant mix<br>
+<b>-k</b><i>balance</i> &#150; describes the relative level of the two 
+sounds (Range: 0 to 1)
+	<ul>
+	<li>The level of <i>sndfile1</i> is multiplied by the <i>balance</i>
+	function.</li>
+	<li>The level of <i>sndfile2</i> is multiplied by the <b>inverse</b> 
+	of the <i>balance</i> function.</li>
+	<li><i>Balance</i> may vary over time.</li>
+	</ul>
+<b>-b</b><i>start</i> &#150; start the mix at the time specified<br>
+<b>-e</b><i>end</i> &#150; stop the mix at the time specified
+</blockquote>
+
+<h3>
+Understanding the SUBMIX BALANCE Process
+</h3>
+<blockquote>
+
+<p>
+This is a 'quick mix' function like <a href="#MERGE"><b>SUBMIX MERGE</b></a> 
+except that one can easily vary the loudness of the sounds relative 
+to one another by means of the <i>balance</i> parameter.
+</p>
+
+<p>
+The 'inverse of the balance' means that the second soundfile will 
+become as much softer as the <i>balance</i> multiplier makes the 
+first soundfile louder, and <i>v.vs.</i>.  The first file is multiplied 
+by <i>balance</i>, and the second file by 1-<i>balance</i>.
+</p>
+
+<p>
+For example, if two soundfiles are mixed without any reduction of 
+their levels, their amplitudes will be summed (and probably go over).  
+With SUBMIX BALANCE, their amplitudes relative to one another are 
+adjusted such that they never exceed unity (maximum amplitude).
+	<ul>
+	<li>If <i>balance</i> is 0.7 and the amplitude of both 
+	files is 10000, the first file will become 10000 * 0.7 = 
+	7000, and the second file will become 10000 * (1-0.7, i.e., 
+	0.3) = 3000.</li>
+	<li>If <i>balance</i> is 0.3 and the amplitude of both 
+	files is 10000, the first file will become 10000 * 0.3 = 
+	3000, and the second file will become 10000 * (1-0.3, i.e., 
+	0.7) = 7000.</li>
+	</ul>
+In other words, as the level of <i>sndfile1</i> goes up, the level of 
+<i>sndfile2</i> goes down, etc., <b>but the some of both of them is 
+always 1</b>, so they don't overload:  the <b>total</b> amplitude remains 
+the same.
+</p>
+
+<p>
+If either file is less than maximum amplitude, the output will also 
+be less than maximum amplitude.  The output will always remain within 
+an acceptable range.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+For very simple mixing jobs, where two input files need to be 
+mixed, BALANCE offers another easier alternative to MIX.  The files 
+may be of any length, and the restriction on having similar sampling 
+rates and numbers of channels is removed.
+</p>
+
+<p>
+You are assured that overload is avoided by adjusting the relative 
+volumes of the two soundfiles, matching them equally at <i>balance</i> = 
+0.5, making the first soundfile softer and the second louder when 
+<i>balance</i> is &lt; 0.5, and making the first soundfile louder and 
+the second softer when <i>balance</i> is &gt; 0.5.  The relative 
+volumes of the two sounds in the output, however, also depends on 
+their respective levels in the first place.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX BALANCE<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="CROSSFADE">SUBMIX CROSSFADE &#150; Quick crossfade between 2 
+soundfiles (with same number of channels)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix crossfade 1</b> <i>sndfile1 sndfile2 outfile </i>
+ [<b>-s</b><i>stagger</i>] [<b>-b</b><i>begin</i>] [<b>-e</b><i>end</i>]<br>
+OR<br>
+<b>submix crossfade 2</b> <i>sndfile1 sndfile2 outfile </i> 
+[<b>-s</b><i>stagger</i>] [<b>-b</b><i>begin</i>] [<b>-e</b><i>end</i>] 
+[<b>-p</b><i>powfac</i>]<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Linear crossfade<br>
+<b>2</b>&nbsp; Cosinusoidal crossfade<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>sndfile1</i> &#150; first input soundfile, from which crossfade will 
+emerge<br>
+<i>sndfile2</i> &#150; second input soundfile, into which crossfade will 
+move<br>
+<i>outfile</i> &#150; output soundfile, which will start in the first 
+soundfile and end in the second<br>
+<b>-s</b><i>stagger</i> &#150; 2<super>nd</super> file starts <i>stagger</i> 
+seconds after 1<super>st</super>  (Default:  0)<br>
+<b>-b</b><i>begin</i> &#150; crossfade starts at <i>begin</i> seconds;  
+must be &gt; <i>stagger</i>  (Default: 0)<br>
+<b>-e</b><i>end</i> &#150;  crossfade ends at <i>end</i> seconds;  
+must be &gt; <i>begin</i>  (Default: end of shortest file)<br>
+	<blockquote>
+	If crossfade ends before end of <i>sndfile2</i>, the remainder of 
+	<i>sndfile2</i> plays on.<br>
+	</blockquote>
+<b>-p</b><i>powfac</i> &#150; Crossfade skew:<br>
+	<blockquote>
+	If <i>powfac</i> = 1, cosinusoidal crossfade is normal<br>
+	In range 0.13 to 1, cosinusoidal crossfade begins rapidly and then 
+	slows.<br>
+	In range 1 to 8, cosinusoidal crossfade begins slowly and then 
+	speeds up.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the SUBMIX CROSSFADE Process
+</h3>
+<blockquote>
+
+<p>
+SUBMIX CROSSFADE is a mixing process applied directly to soundfiles.  It 
+does not entail the use of a mixfile.  It mixes the two sounds, making a 
+gradual transition from the first to the second.
+</p>
+
+<p>
+The <i>stagger</i> parameter operates in steps of 100<sup>ths</sup> 
+of a second.  If a more precise gap is required, the author suggests splicing 
+a silence of a specific duration onto the beginning of the second soundfile, 
+and then using a <i>stagger</i> of 0.  Alternatively, SUBMIX MIX can be 
+used, in which the start time of the second soundfile can be precisely defined.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Note that only spectral morphing will create a true morph between two 
+sounds.  The CROSSFADE transition can, however, be useful to prepare 
+sounds for morphing, as well as to create transitions in which the 
+smooth merging of spectra is not the key issue.
+</p>
+
+<p>
+Transition is one of the key principles of effective musical composition, 
+as it creates a movement over time.  In this case, the movement is 
+between sounds, a process well known in the orchestration of instrumental 
+music, but one uniquely suited to further development in an electroacoustic 
+composing environment.  The types of sounds and nature of the transition 
+are determined by the compositional logic.
+</p>
+
+<p>
+CDP has several functions with which to approach the transition 
+process. <b>ALSO SEE:</b><br>
+<blockquote>
+<a href="cstrange.htm#GLIS"><b>STRANGE GLIS</b></a> &#150; glissando effects 
+within a sound<br>
+<a href="cmorph.htm#BRIDGE"><b>MORPH BRIDGE</b></a> &#150; an interpolation 
+between 2 sounds, like CROSSFADE, but in the spectral dimension<br>
+<a href="cmorph.htm#GLIDE"><b>MORPH GLIDE</b></a> &#150; a movement between 
+2 windows 'grabbed' from the same or different analysis files (with 
+<a href="cspecedi.htm#GRAB"><b>SPEC GRAB</b>)<br>
+<a href="cmorph.htm#MORPH"><b>MORPH MORPH</b></a> &#150; full spectral 
+morphing between 2 sounds<br>
+</blockquote>
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX CROSSFADE<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="DUMMY">SUBMIX DUMMY &#150; Convert list of soundfiles into a 
+basic mixfile (for editing)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix dummy mode</b> <i>infile1 infile2</i> [<i>infile3..</i>] 
+mixfile</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; All files start at time zero<br>
+<b>2</b>&nbsp; Each file starts where previous file ends
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1 infile2</i> [<i>infile3..</i>] &#150; list of soundfile names; 
+	<ul>
+	<li><b>NB:</b> Entering the name of a text file containing a list 
+	of soundfiles on the command line is no longer supported.</li>
+	<li>As there may be various CDP extensions for files with 
+	the same root name, <b>it is necessary to include the soundfile 
+	extensions</b>.</li>
+	</ul>
+<i>mixfile</i> &#150; output mixfile
+</blockquote>
+
+<h3>
+Understanding the SUBMIX DUMMY Function
+</h3>
+<blockquote>
+
+<p>
+The list of soundfile names should not include the extension if the 
+CDP_SOUND_EXT environment variable has been set &#150; it will normally 
+be set!  The output is a mixfile with default settings, which can then 
+be edited to suit.
+</p>
+
+<p>
+<b>SUBMIX DUMMY</b> then turns this list of sounds into a prototype mixfile.  
+It is not as much of a 'dummy' as it makes out:  it interrogates the 
+headers of the soundfiles to find out the number of channels and check 
+the sample rates (they all need to be the same in a mixfile).
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+This is a simple utility which may speed up the process of creating 
+a mixfile.  The graphic user interfaces have their own way of doing 
+this.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX DUMMY<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="FADERS">SUBMIX FADERS &#150; Mix several mono or stereo files 
+using a time-changing balance function
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix faders</b> <i>insndfile1 insndfile2 [insndfile3...] outsndfile 
+balance-data envelope-data</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile1</i> &#150; first input soundfile<br />
+<i>insndfile2</i> &#150; second input soundfile<br />
+<i>[insndfile3...]</i> &#150; optional third and subsequent input 
+soundfiles<br />
+<i>outsndfile</i> &#150; output soundfile produced by the program<br />
+<i>balance-data</i> &#150; text file containing 'value sets' to 
+specify levels.  Each value set consists of a <i>time</i> 
+followed by the <i>relative-level</i> of each soundfile in the 
+mix at that time.  Level values entered on a given line are 
+scaled (by the program) to add up to 1.0, so as to avoid 
+overload.  E.g., for a mixfile with 3 soundfiles:
+<blockquote>
+<pre>
+[time relative levels for 3 soundfiles in the mix]
+0.0	0.4 0.7 0.9
+4.0	0.5 0.5 0.5
+8.0	0.9 0.7 0.4
+</pre>
+</blockquote>
+<i>envelope-data</i> &#150; the loudness envelope to apply 
+to the overall sound.<br />
+	<p>
+	<blockquote>
+	<i>Balance-data</i> by definition varies over time.<br />  
+	<i>Envelope-data</i> may be a single value or vary over time.
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the SUBMIX FADERS Process
+</h3>
+
+<blockquote>
+<p>
+This is the equivalent of mixing several sounds using 
+movable faders, or with imposed envelopes on each sound. One 
+file specifies the relative balance of each input file, from 
+moment to moment. A second value or breakpoint datafile specifies 
+the overall level of the mix, which may be time-varying.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is a remarkably straightforward way to achieve time-varying 
+relative level changes in a mix.  Previously, each soundfile in the 
+mix would have to be enveloped separately.  It is therefore a 
+controlled way to have level 'automation' in a mix.  Also, the 
+<i>mixfile</i> stage is by-passed, going directly to a soundfile 
+output.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX FADERS<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions 
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="FILEFORMAT">SUBMIX FILEFORMAT &#150; Display format of a mixfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix fileformat</b><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+None
+</blockquote>
+
+<h3>
+Understanding the SUBMIX FILEFORMAT Function
+</h3>
+<blockquote>
+
+<p>
+This function displays for your information the required format options for 
+a mixfile.  The following repeats this information for your convenience.
+</p>
+
+<p>
+<blockquote>
+<b>Mixfiles consist of lines with one of the following formats:</b><br>
+	<ul>
+	<b>
+	sndname starttime_in_mix chans level<br>
+	sndname starttime_in_mix 1&nbsp;&nbsp;&nbsp;&nbsp; level pan<br>
+	sndname starttime_in_mix 2&nbsp;&nbsp;&nbsp;&nbsp; left_level 
+	left_pan right_level right_pan<br>
+	</b>
+	</ul>
+
+	<p>
+	<blockquote>
+	SNDNAME is the name of a Mono or Stereo soundfile.  All soundfiles 
+	must have the same sample rate. There must be no gaps in the path or filename.<br>
+	CHANS is the number of channels in this&#47;these soundfile(s) 
+	(1 or 2 only)<br>
+	LEVEL is loudness expressed as a number (1 = unity gain) or as 
+	dB (0dB = unity gain)<br>
+		<blockquote>
+		Mono AND Stereo soundfiles may have a single level and 
+		no Pan data.  In this case, Mono soundfiles in stereo 
+		mixes are panned centrally.  Otherwise:<br>
+		<ul>
+		<li>Mono soundfiles must have 1 level and 1 pan parameter 
+		(only)</li>
+		<li>Stereo soundfiles must have 2 level and 2 pan parameters 
+		(one for each channel)</li>
+		</ul>
+		</blockquote>
+	PAN is spatial positioning of file (or file channel) in output mix<br>
+		<blockquote>
+		<ul>
+		<li><b>-1</b> = Hard left : <b>0</b> = Centre : <b>1</b> 
+		= Hard right</li>
+		<li><b>&lt; -1</b> = Hard left &amp; attenuated : 
+		<b>&gt; 1</b> = Hard right &amp; attenuated</li>
+		</ul>
+		</blockquote>
+	</blockquote>
+</blockquote>
+</p>
+
+<p>
+Also note the following:
+	<ol>
+	<li>The <i>mixfile</i> list need not be in starttime order</li>
+	<li>Silence at the start of the mix is ignored (splice on 
+	afterwards, if it's needed)</li>
+	<li>With exclusively mono inputs and with no pan information, OR, 
+	when all soundfiles are panned hard left, or all soundfiles are 
+	panned hard right, <b>the output will be Mono</b>.  All other 
+	situations produce a Stereo output.</li>
+	<li><b>Take care when panning both channels of a Stereo 
+	soundfile</b>;  the channel contributions sum, so, for example, 
+	if both channels are panned to the same position without 
+	attenuation, overload is possible.</li>
+	<li>You may test for maximum level in your mix output with the 
+	function SUBMIX LEVEL.  If it necessary to reduce the mixfile 
+	level, you can do so with SUBMIX ATTENUATE.</li>
+	<li>You may put comment lines in a mixfile:  they start with 
+	a semi-colon (';').  Blank lines are ignored.</li>
+	</ol>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+The mixfile is submitted as data to <a href="#MIX"><b>SUBMIX MIX</b></a>.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX FILEFORMAT<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="GETLEVEL">SUBMIX GETLEVEL &#150; Test maximum level of a mix, 
+defined in a mixfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix getlevel 1</b> <i>mixfile</i> [<b>-s</b><i>start</i>] 
+[<b>-e</b><i>end</i>]<br>
+<b>submix getlevel 2&#150;3</b> <i>mixfile outtextfile</i> 
+[<b>-s</b><i>start</i>] [<b>-e</b><i>end</i>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>mixfile</i> &#150; mixfile submitted to SUBMIX GETLEVEL for level test<br>
+<i>outtextfile</i> &#150; report is written to a text file<br>
+<b>-s</b><i>start</i> &#150; start position in seconds at which to begin 
+testing the output level of the mix<br>
+<b>-e</b><i>end</i> &#150; end position in seconds at which to finish 
+testing the output level of the mix<br>
+</blockquote>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Find the maximum level in the mix<br>
+<b>2</b>&nbsp; Find the time-locations where clipping occurs in the mix<br>
+<b>3</b>&nbsp; Find both the maximum level in the mix and the time-locations 
+where clipping occurs<br>
+</blockquote>
+
+<h3>
+Understanding the SUBMIX GETLEVEL Function
+</h3>
+<blockquote>
+
+<p>
+The mix process sums amplitudes, and this can sometimes cause levels 
+to go above the maximum amplitude handled by the system.  If these go 
+over the maximum permissible level, they will be 'clipped', producing 
+audible clicks in the output soundfile.  SUBMIX GETLEVEL checks if this 
+will happen by performing a pre-run through the mix operation prescribed 
+in the <i>mixfile</i>, calculating what will happen with the amplitudes.
+</p>
+
+<p>
+Besides actually finding the maximum level of a mix, SUBMIX GETLEVEL also 
+recommends a gain factor which should eliminate the clipping.  It can 
+also report on the locations where the clipping occurred, enabling you 
+to tell at just what point(s) in the mixfile there was a problem.
+</p>
+
+<p>
+The <i>start</i> <i>end </i> parameters enable you to focus on particular 
+time sections of the mix.
+</p>
+
+<p>
+A useful trick to maintain high signal levels without clipping is to 
+try inverting the phase of one or other of your source files.  To do 
+this, use a <i>gain</i> of -1 in <a href="cgromody.htm#LOUDNESS"><b>MODIFY 
+LOUDNESS</b></a>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+This function is a utility which can save you some time.  It also helps 
+you to pinpoint where the problem(s) occur and advises you on what 
+attenuation is needed to remedy the problem.  Furthermore, it avoids 
+creating a possibly very large output soundfile unnecessarily.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX GETLEVEL<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+
+<h2 id="INBETWEEN">SUBMIX INBETWEEN &#150; Generate a set of sounds 
+inbetween the 2 input sounds, through weighted mixes of the input sounds<br> 
+(from mostly sound1 to mostly sound2)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix inbetween 1</b> <i>infile1 infile2 outname count</i><br>
+OR:<br>
+<b>submix inbetween 2</b> <i>infile1 infile2 outname ratios</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1</i> &#150; soundfile which predominates at the beginning<br>
+<i>infile2</i> &#150; soundfile which predominates at the end<br>
+<i>outname</i> &#150; <b>generic</b> name for the output soundfiles.  The 
+new soundfiles will be called <i>outname001 outname002</i> etc.<br>
+<i>count</i> &#150; the number of inbetween outfiles to produce;  amplitude 
+ratios for the new sounds are generated automatically<br>
+<i>ratios</i> &#150; a ratio or list of ratios in a textfile.  These 
+define the relative levels of the outfiles produced:  the level of 
+<i>file2</i> <b>relative</b> to <i>file1</i>, for each new outfile 
+(Range: 0 to 1).   (If a textfile is used, there will be as many output 
+soundfiles as there are ratios in the textfile.)
+</blockquote>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Automatic relative levels for <i>count</i> inbetween files<br>
+<b>2</b>&nbsp; User-defined relative levels, as a single ratio or as a 
+series of ratios in a textfile.<br>
+	<p>
+	<blockquote>
+	There must be an even number of values, and they must be 
+	arranged in ascending order (i.e., getting larger:  the ratio 
+	is a gain factor applied to <i>infile1</i>, copies of which 
+	are meant to become progressively softer).
+	</blockquote>
+	</p>
+</blockquote>
+
+<p>
+<blockquote>
+<b>N.B. Ensure that NONE of the files to be created already exists!</b>
+</blockquote>
+</p>
+
+<h3>
+Understanding the SUBMIX INBETWEEN Process
+</h3>
+<blockquote>
+
+<p>
+This is an amazing function which enables us automatically to weight  
+the relative amplitude of two soundfiles.  The output consists of 
+<i>count</i> actual soundfiles (or the numer of ratios provided) &#150; 
+not just a mixfile.
+</p>
+
+<p>
+In Mode <b>1</b> the first of these output soundfiles, <i>infile1</i> is 
+at its loudest point, and <i>infile2</i> at its softest, though the 
+difference in level is not necessarily extreme.  In the last of these 
+output soundfiles, the situation is reversed:   <i>infile1</i> is at its 
+softest and <i>infile2</i> is at its loudest.  The relative levels are 
+calculated automatically, so will be affected by the number of soundfiles 
+to process, as given by <i>count</i>.
+</p>
+
+<p>In Mode <b>2</b> the ratio values represent fractional proportions of 
+the two soundfiles.  The value you enter for <i>ratios</i> is the 
+amount of the 2<sup>nd</sup> file relative to the 1<su>st</sup>.  
+Thus 0.25 will be &#190; of <i>infile1</i> and &#188; of <i>infile2</i>, 
+0.75 will be &#188; of <i>infile1</i> and &#188; of <i>infile2</i>, and 
+0.9 will be 1&#47;10<sup>th</sup> of <i>infile1</i> and 
+9&#47;10<sup>th</sup> of <i>infile2</i>, etc.  Any proportion 
+can be used, but they must be placed in ascending order (i.e., getting 
+progressively closer to 1).  <b>NB</b> &#150; don't forget that there 
+must be an <b>even</b> number of ratios in the file.
+</p>
+
+<p>
+Example file of ratios:<br>
+<blockquote>
+<table>
+<tr>
+	<td>0.1</td>
+</tr>
+
+<tr>
+	<td>0.25</td>
+</tr>
+
+<tr>
+	<td>0.5</td>
+</tr>
+
+<tr>
+	<td>0.6</td>
+</tr>
+
+<tr>
+	<td>0.75</td>
+</tr>
+
+<tr>
+	<td>0.9</td>
+</tr>
+</table>
+
+</blockquote>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+It is legal to enter a <i>count</i> of 1, but redundant to do so.  One 
+output soundfile is produced, with an equal amplitude weighting.  The 
+result is therefore the same as <a href="#MERGE"><b>SUBMIX MERGE</b></a>.
+</p>
+
+<p>
+The several output soundfiles produced can be used individually.  The 
+SUBMIX INBETWEEN process is used as a quick way to produce several 
+soundfiles with different amplitude weightings of the two input soundfiles.
+</p>
+
+<p>
+The several output soundfiles produced can then be used in a further 
+mix.  For example, their start times could be staggered, see 
+<a href="#TIMEWARP"><b>SUBMIX TIMEWARP</b></a>, to achieve an extended 
+passage in which the sounds repeat and overlap, and gradually move in 
+volume from the first to the second.  This could be a rhythmic or a 
+smooth process depending on the attack transients of the input 
+soundfiles.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX INBETWEEN<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="INBETWEEN2">SUBMIX INBETWEEN2 &#150; Generate a set of 
+sounds in-between the 2 input sounds by interpolation pegged to 
+zero-crossings
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix inbetween2</b> <i>infile1 infile2 outname count cutoff</i>
+<br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1</i> &#150; first input soundfile<br />
+<i>infile2</i> &#150; second input soundfile<br />
+<i>outname</i> &#150; generic name for the various 'inbetween' output 
+soundfiles.  The new soundfiles will be called outname001, outname002 
+etc.  <b>Ensure that NONE of the files to be created already exists.</b><br />
+<i>count</i> &#150; the number of inbetween outfiles to produce<br />
+<i>cutoff</i> &#150; the frequency above which 'cycles' are ignored:  
+usually noise, they are incorporated into other cycles.<br />
+</blockquote>
+
+<h3>
+Understanding the SUBMIX INBETWEEN2 Process
+</h3>
+
+<blockquote>
+<p>
+SUBMIX INBETWEEN2 applies the <a href="#INBETWEEN">'<i>inbetweening</i>'</a> 
+process to two sounds while attempting to synchronise the zero-crossings 
+in the two input soundfiles.  It does this by stretching or contracting 
+the waveform to fit into the appropriate timeslot. 
+</p>
+
+<p>
+If you put in two sinetones at e.g., 440Hz and 330Hz and ask for a single 
+interpolation, you get a sinetone intermediate in frequency.  When dealing 
+with natural signals, you might want to avoid very short 'wavesets' which 
+do not reflect the underlying pitch or harmonics of the sounds.  To do this 
+you set a <i>cutoff</i> (upper frequency limit, i.e., a minumum length) for 
+the acceptance of 'true' wavesets to be used in the process.  These 
+wavesets that are declared to be 'too small' are incorporated into the 
+adjacent 'true' waveset.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is a fantastic heuristic tool.  Some extraordinarily unusual 
+sounds can be created by this process.  Don't try to hard to predict 
+what they will be!
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX INBETWEEN2<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="INTERLEAVE">SUBMIX INTERLEAVE &#150; Interleave mono files to make 
+a single multichannel outfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix interleave</b> <i>sndfile1 sndfile2 [sndfile3 sndfile4] outfile</i>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>sndfile1 ...</i> &#150; mono soundfiles to interleave<br>
+<i>outfile</i> &#150; resultant multichannel soundfile
+
+	<blockquote>
+	Maximum number of channels in output is now 1000 (was originally 4)
+	<p>
+	First soundfile goes to left channel of stereo, or channel 1 of 4, etc.
+	</p>
+	</blockquote>
+</blockquote>
+
+
+<h3>		
+Understanding the SUBMIX INTERLEAVE Process
+</h3>
+<blockquote>
+
+<p>
+INTERLEAVE produces multi-channel files by interleaving the specified 
+mono files.  It will not accept input files with more than one channel.  
+Note that all the input files should have the same sample rate.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3> 
+<blockquote>
+
+<p>
+The usual application is to create a stereo file from two mono files.
+See also <a href="cgrohous.htm#CHANS"><b>HOUSEKEEP CHANS</b></a> mode 4 (convert 
+stereo to mono).  <a href="cmodify.htm#SPACE"><b>MODIFY SPACE</b></a> mode 1 
+(pan) will also create a stereo output from mono inputs.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX INTERLEAVE<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="MERGE">SUBMIX MERGE &#150; Quick mix of 2 soundfiles (with 
+the same number of channels)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix merge</b> <i>sndfile1 sndfile2 outfile</i> 
+[<b>-s</b><i>stagger</i>] [<b>-j</b><i>skip</i>] [<b>-k</b><i>skew</i>] 
+[<b>-b</b><i>start</i>] [<b>-e</b><i>end</i>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>sndfile1</i>	first soundfile to be mixed<br>
+<i>sndfile2</i>	second soundfile to be mixed<br>
+<i>outfile</i>	resultant mix<br>
+<b>-s</b><i>stagger</i>	<i>sndfile2</i> enters <i>stagger</i> seconds 
+after <sndfile1</i> (Default: 0)<br>
+<b>-j</b><i>skip</i> move <i>skip</i> seconds into <i>sndfile2</i> before 
+starting to mix (Default: 0)<br>
+<b>-k</b><i>skew</i> <i>sndfile1</i> has <i>skew</i> times more gain than 
+<i>sndfile2</i> (Default 1: same level)<br>
+<b>-b</b><i>start</i> &#150; start the mix at the time specified<br>
+<b>-e</b><i>end</i> &#150; stop the mix at the time specified
+	<blockquote>
+	<i>Stagger</i> and <i>skip</i> are approximated to within about 
+	one hundredth of a second.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the SUBMIX MERGE Process
+</h3>
+<blockquote>
+
+<p>
+Simple mixing of two soundfiles with facilities to have the second soundfile 
+enter later (<i>stagger</i>), start some time after its beginning 
+(<i>skip</i>), or have less gain than the first soundfile (<i>skew</i>).
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+For very simple mixing jobs, where two input files need to be 
+mixed, MERGE offers an easier alternative to MIX.  The files may be 
+of any length, but are expected to have similar sampling rates and 
+numbers of channels. If the files have a different channel count, at least one of them will be converted to stereo before mixing.
+</p>
+
+<p>
+If the skip argument is given, the stagger argument must also be given, 
+although it can be zero.
+</p>
+
+<p>
+The files are by default mixed at equal levels with each file scaled to 
+half its original level.  For this reason overflows will not take place 
+when using MERGE with soundfiles of sample type SHORTS.
+</p>
+</blockquote>
+
+<p>
+ALSO SEE:&nbsp; <a href="#BALANCE"><b>SUBMIX BALANCE</b></a>.
+</p>
+
+<p>
+End of SUBMIX MERGE<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="MERGEMANY">SUBMIX MERGEMANY &#150; Quick mix of several 
+soundfiles (with the same number of channels)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix mergemany</b> <i>insndfile1 insndfile2 [insndfile3 ...] 
+outsndfile</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile1</i> &#150; first input soundfile<br />
+<i>insndfile2</i> &#150; second input soundfile (number of channels 
+must be consistent)<br />
+<i>[insndfile3 ...]</i> &#150; third and subsequent input soundfiles<br />
+<i>outsndfile</i> &#150; output soundfile produced by the program
+</blockquote>
+
+<h3>
+Understanding the SUBMIX MERGEMANY Process
+</h3>
+
+<blockquote>
+<p>
+Makes a quick mix of several sounds (all having the same 
+number of channels) with all sounds at a standard loudness 
+level.  <a href="#MERGE"><b>SUBMIX MERGE</b></a> already exists to mix two sounds in this 
+way.
+	<ul>
+	<li>SUBMIX MERGE avoids calculating the peak sample (in 
+	order to avoid clipping) by simply reducing each source 
+	sound to half-level before mixing.</li>
+ 	<li>SUBMIX MERGEMANY, however, calculates the maximum 
+	output sample, in a first pass, and then adjusts the 
+	standard level of each input file to avoid any clipping 
+	of the output.</li>
+	</ul>
+<b>It is best, therefore, to use SUBMIX MERGEMANY</b> for quick 
+mixes of several sounds, if you want to <i>use</i> the output 
+(rather than just hear it). 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This quick mix of several soundfiles with a normalising function 
+can be used to test combinations of sounds, or to mix when all 
+the sounds are at starttime 0.  A <i>mixfile</i> is not produced, 
+so no further adjustments are possible.
+</p>
+</blockquote>
+
+<p>
+ALSO SEE:&nbsp; <a href="#MERGE"><b>SUBMIX MERGE</b></a>.
+</p>
+
+<p>
+End of SUBMIX MERGEMANY<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions
+ at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="MIX">SUBMIX MIX &#150; Mix sounds as instructed in a mixfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix mix</b> <i>mixfile outsndfile</i> [<b>-s</b><i>start</i>] 
+[<b>-e</b><i>end</i>] [<b>-g</b><i>attenuation</i>] [<b>-a</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>mixfile</i> &#150; soundfiles to be mixed, with appropriate 
+information<br>
+
+	<blockquote>
+	<ul>
+	<li>Now that there may be various CDP extensions for files with 
+	the same root name, <b>it is necessary to include the soundfile 
+	extension in the <i>mixfile</i></b>.</li>
+	<li><b>NB</b> the names of the mixfile components (<i>infile</i> 
+	etc.) as shown in bold print in the example mixfile below are 
+	NOT included in the mixfile, just the data itself.  
+	<! -- There is no provision for comments in any CDP text or breakpoint file. --> <br></li>
+	</ul>
+	</blockquote>
+
+<i>outsndfile</i> &#150; resultant mix of soundfiles (Mono or Stereo 
+depending on Pan settings in the mixfile)<br>
+<b>-s</b><i>start</i> &#150; begin the mixing process at time <i>start</i> 
+(to start mixing later than time zero)<br>
+<b>-e</b><i>end</i> &#150; stop the mixing process at time <i>end</i> 
+(to stop the mix before its true end<br>
+
+	<blockquote>
+	<p>
+	Note that the <i>start</i> and <i>end</i> parameters are provided 
+	to make it possible to test what will happen with a certain 
+	portion of the mix.  They are intended for use in this way, 
+	in a test context, and, if you save the output of such a test, 
+	its beginning and end may be abrupt.  This can be corrected by 
+	running <a href="cgrohous.htm#EXTRACT"><b>HOUSEKEEP EXTRACT</b></a> 
+	Mode <b>3</b> or <a href="cgroenvl.htm#DOVETAIL"><b>ENVEL DOVETAIL</b></a> 
+	to 'top and tail' the output soundfile.
+	</p>
+	</blockquote>
+
+<b>-g</b><i>attenuation</i> &#150; reduce the level of the entire mix 
+(Range: &gt; 0 to 1)<br>
+<b>-a</b> &#150; alternative mix algorithm, slighly slower, but it 
+may avoid clipping in special circumstances<br>
+</blockquote>
+
+<p>
+<div align=center>
+<table bgcolor = "#f8f8f8">
+<caption><b>The format of a mixfile with example contents</b></caption>
+
+<tr>
+	<th>infile</th>
+	<th>start_time</th>
+	<th>no_of_channels</th>
+	<th>ch1_level</th>
+	<th>ch1_pan</th>
+	<th>[ch2_level</th>
+	<th>ch2_pan]</th>
+</tr>
+
+<tr>
+	<td>soundfile1.wav</td>
+	<td>0.23</td>
+	<td>2</td>
+	<td>-6dB</td>
+	<td>L</td>
+	<td>-6dB</td>
+	<td>R</td>
+</tr>
+
+<tr>
+	<td>soundfile2.wav</td>
+	<td>0.9</td>
+	<td>1</td>
+	<td>-20dB</td>
+	<td>C</td>
+	<td><br></td>
+	<td><br></td>
+<tr>
+	<td>soundfile3.wav</td>
+	<td>3.7</td>
+	<td>1</td>
+	<td>-4dB</td>
+	<td>-.5</td>
+	<td><br></td>
+	<td><br></td>
+</tr>
+</table>
+</div>
+</p>
+
+<p>
+Also see <a href="#FILEFORMAT"><b>FILEFORMAT</b></a> which provides detailed 
+information on the format requirements of the mix file. A concise but 
+detailed summary is also given in <a href="filestxt.htm#MIXFILES">
+<b>CDP Files &amp; Codes</b></a>.
+</p>
+
+<h3>
+Understanding the SUBMIX MIX Process
+</h3>
+<blockquote>
+
+<p>
+MIX is used to assemble musical passages by mixing several soundfiles 
+into one new soundfile, arranging the way they overlap by specifying 
+the start time of each soundfile.  The amplitude of overlapping soundfiles 
+is summed, so the provision for altering the amplitude in dB enables 
+the user to avoid exceeding the maximum (32767) which would cause distorton.
+</p>
+
+<p>
+The <i>mixfile</i> contains one line of text for each file in the mix.  
+</p>
+
+<p>
+Note that the <b>level</b> value is used as a simple multiplier by the 
+MIX program.  This means that files may also be amplified.
+</p>
+
+<p>
+It is important to be careful about dynamic levels when mixing soundfiles 
+with high amplitudes.  As a rule of thumb, always mix two files 
+as close to 0dB (maximum level) as you can, but run <a href="#GETLEVEL">
+<b>SUBMIX GETLEVEL</b></a> first to check for overload.  If overload is 
+reported, use <a href="#ATTENUATE"><b>SUBMIX ATTENUATE</b></a> to reduce 
+the overall level of the <i>mixfile</i>.
+</p>
+
+<p>
+On the other hand, it is also possible to reduce the volume of 
+soundfiles in an undesirable way, and experience indicates a fairly 
+high tolerance:  so do not reduce the volumes too much unless a previous 
+run has produced distortion.  <a href="cgroinfo.htm#MAXSAMP"><b>SNDINFO 
+MAXSAMP</b></a> will display the maximum amplitude in any given soundfile, 
+so it can be used to help determine precise values when this seems necessary.  
+Also remember that every 6dB reduction halves the amplitude.
+</p>
+
+<p>
+<b>Pan</b> parameters may take on values from -1.0 (left) to +1.0 (right) 
+to place the sound in the stereo space between the loudspeakers.  
+Alternatively, L C and R may be used for Left Centre and Right.  
+Values greater than 1 (or less than -1) will force the sound to full 
+Right (or Left), but unattenuated, to give an illusion of even greater 
+rightward (or leftware) distance.
+</p>
+
+<p>
+Note that by selecting values inbetween 0 and -1 or +1, soundfiles may 
+be placed at specific locations along the horizontal plane.  These Pan 
+parameters do not, therefore, create moving sounds as does the 
+<a href="cgromody.htm#SPACE"><b>MODIFY SPACE</b></a> function, Mode <b>1</b> 
+(Pan), but they do enable the composer to spread out the musical 
+material in the aural field.  This is common practice on mixing desks 
+where the manual pan control is used to maintain the aural clarity of 
+all the sounds being mixed.  It is also possible, of course, to locate 
+all the soundfiles of a mix in one area of the soundfield, in preparation 
+for placing the results of a different mix in another area.
+</p>
+
+<p>
+Entering Pan information as 'L' for all the sounds in the mixfile 
+(or as all 'R') will force the creation of a mono soundfile as output.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Because the results of previous mixes can be used (they are simply new 
+soundfiles), very complex layering of musical material can be achieved.  
+MIX can also be used to splice sounds together, as this is merely a 
+special case of mixing (see <a href="cgroedit.htm#JOIN"><b>SFEDIT JOIN</b></a>).
+</p>
+
+<p>
+The number of soundfiles which may be open at one time during a mix is 
+limited to 1000 (!), which shows how useful this program can be.  Not 
+only can many soundfiles be mixed at one time, but the previous rigmarole 
+of synchronising, starting and stopping several tape recorders becomes a 
+thing of the past.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX MIX<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="MODEL">SUBMIX MODEL &#150; Replace soundfiles in 
+an existing mixfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix model</b> <i>inmixfile sndfile1 [sndfile2 ...] 
+outmixfile</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inmixfile</i> &#150; input <i>mixfile</i> to alter<br />
+<i>sndfile1</i> &#150; first new soundfile to replace<br />
+<i>sndfile2</i> &#150; second new soundfile to replace<br />
+[<i>sndfile3 ...</i>] &#150; additional soundfiles to replace<br />
+<i>outmixfile</i> &#150; <i>mixfile</i> created by the program<br />
+</blockquote>
+
+<h3>
+Understanding the SUBMIX MODEL Function
+</h3>
+
+<blockquote>
+<p>
+This process allows you to use an existing <i>mixfile</i> 
+as a model for a new mix using different sounds.  You submit 
+to the process the original <i>mixfile</i> together with the 
+new soundfiles you now want to use &#150; <b>you need to have the 
+same number of soundfiles as in the original mix and in the 
+same order)</b>.  The original sounds are then replaced by the new 
+sounds and a new <i>mixfile</i> generated.  Note that the new 
+sounds must have the same number of channels (and sample-rate) 
+as those that they replace. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+As you continue to work, you may build up a repertoire of 
+<i>mixfiles</i> with specific level and pan patterns.  This 
+program enables you to reuse them with different soundfiles.  
+Alternatively, you may want to try the mix you're working on 
+with some or all new sounds.  (If some, you will need to 
+re-enter the sounds you want to retain so that the same 
+number of soundfiles are specified.)
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX MODEL<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="ONGRID">SUBMIX ONGRID &#150;Convert listed soundfiles to a 
+basic mixfile on timed grid (for editing)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix ongrid</b> <i>infile1 infile2 [infile3...] outmixfile 
+gridfile</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1</i> &#150; first input soundfile<br />
+<i>infile2</i> &#150; second input soundfile<br />
+<i>[infile3...]</i> &#150; third and subsequent input soundfiles<br />
+<i>outmixfile</i> &#150; output mixfile generated by the program<br />
+<i>gridfile</i> &#150;  a list of <i>times</i> (one for each input 
+sound) of the sounds in the mix,<br />
+OR<br />
+a list with some times preceded by 'x' (no space after 'x'), 
+where 'x' marks a time to be used &#150; other grid times 
+to be ignored.  (The number of input soundfiles must match the 
+number of marked items.)<br />
+<br />
+Numbers, or gridpoint names, may follow <i>times</i>, but they 
+have to be on the same line.
+</blockquote>
+
+<h3>
+Understanding the SUBMIX ONGRID Function
+</h3>
+
+<blockquote>
+<p>
+CREATE MIXFILE creates a basic mixfile in which the sounds 
+all start at time zero, or where each sound starts as the 
+previous sound has finished.  SUBMIX ONGRID makes this more 
+flexible by allowing you to specify the times at which your 
+set of soundfiles are to start in the output <i>mixfile</i>. 
+</p>
+
+<p>
+<b>NB:</b> If no sound is used at time zero, the mix will 
+skip to the first sound actually used.  To avoid this, use a 
+silent soundfile at time zero.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+SUBMIX ONGRID provides another quick way to create a 
+<i>mixfile</i>.  In this case, both the file names and the 
+start times are set.  That leaves only the level and pan 
+data to be edited.
+</p>
+
+
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX ONGRID<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="PAN">SUBMIX PAN &#150; Pan a mixfile 
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix pan</b> <i>inmixfile outmixfile pan</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inmixfile</i> &#150; input mixfile<br />
+<i>outmixfile</i> &#150; output mixfile generated by the program<br />
+<i>pan</i> &#150; locates the sounds in the mix at different 
+positions between the speakers.  (This is dependent on the time 
+at which they begin.  The sounds themselves are not 
+panned, i.e., internally, during their duration.)
+	<blockquote>
+	<i>Pan</i> may vary over time.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the SUBMIX PAN Function
+</h3>
+
+<blockquote>
+<p>
+This function allows the sounds in a mixfile to be repositioned 
+to a given location in the stereo field, or to different 
+locations at different times.  Note that it is the start pan 
+positions of the sounds which are (re)set by this process.  
+Once a sound has begun to play, it remains at its start 
+position.
+</p>
+
+<p>
+The <i>panfile</i> contains pairs of numbers: a <i>time</i> and 
+a <i>pan_position</i>:
+<pre>
+<font color="#FF0000">[time  pan-pos]</font>
+0.0    -1.0
+2.5     1.0
+6.1    -0.5
+8.2     0.5
+11.6    0.0
+</pre>
+In this case, we can assume that the original pan positions were 
+different and that we have decided to have the successive entries 
+of the sounds swing from left to right, gradually moving closer 
+to the centre of the stereo field.  In this first example, the 
+<b>same times</b> as the original <i>mixfile</i> are used.  The 
+output rewrites the mixfile with the new pan positions.
+</p>
+
+<p>
+We can also do it a little differently, taking advantage of the 
+fact that the program does <a href="glosstec.htm#INTERPOLATION">
+<b>interpolations</b></a> if the <b>times differ</b> from the 
+original.  What we have in mind is to have this motion converging 
+on the centre to happen very evenly over the time of the mix.  
+Therefore we rewrite the <i>panfile</i> with the times evenly 
+spaced.  The pan positions now placed in the output <i>mixfile</i> 
+is <i>where they would be along the movement path from the previous 
+position to the next at that particular time</i>.  Here is the 
+new <i>panfile</i> (in black) used as the input to <a href="#PAN"><b>SUBMIX PAN</b></a> 
+(the same <i>mixfile</i> with times as above is the other input).  
+The corresponding original times are shown in red on the left 
+and the new pan positions output by the program are shown 
+in red on the right.  (Note that the original times will 
+still be shown in the output <i>mixfile</i>).
+<pre>
+<font color="#FF0000">[orig-time new-time  pan-pos  output-pan-pos]</font>
+<font color="#FF0000"> 0.0</font>        0.0      -1.0     <font color="#FF0000">-1.0</font>
+<font color="#FF0000"> 2.5</font>        3.0       1.0     <font color="#FF0000"> 0.5</font>
+<font color="#FF0000"> 6.1</font>        6.0      -0.5     <font color="#FF0000">-0.4667</font>
+<font color="#FF0000"> 8.2</font>        9.0       0.5     <font color="#FF0000"> 0.2333</font>
+<font color="#FF0000">11.6</font>       12.0       0.0     <font color="#FF0000"> 0.0667</font>
+</pre>
+SUBMIX PAN therefore provides very sophisticated control 
+possibilities for your panning operations.
+</p>
+
+<p>
+Remember that to get the sounds themselves to move about, 
+they must (as usual) be panned prior to being placed in the 
+mix,  OR the output of the mix itself (provided it is mono) 
+may itself be panned.
+</p>
+
+<p>
+Also note that stereo sounds in the mix input will appear mono, 
+but specifically positioned in space, in the output.  With this 
+process you could, for example force successive sounds to enter 
+at positions which change gradually from stage left to stage 
+right. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+	<ul>
+	<li>ease of pan redesign</li>
+	<li>possibility of sophisticated positioning via interpolation</i></li>
+	<li>the same <i>panfile</i> could be used with <b>block processing</b> 
+	in <i>Sound Loom</i> to alter several <i>mixfiles</i> at once, as 
+	long as they had the same number of sounds &#47; start times.</li>
+	</ul>
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b>&nbsp; <a href="cgromody.htm#SPACE"><b>MODIFY SPACE</b></a> Mode 1 (PAN).
+</p>
+
+<p>
+End of SUBMIX PAN<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="SHUFFLE">SUBMIX SHUFFLE &#150; Shuffle the data in a mixfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix shuffle 1&#150;6</b> <i>inmixfile outmixfile</i> [<b>-s</b>
+<i>startline</i>] [<b>-e</b><i>endline</i>]<br>
+OR<br>
+<b>submix shuffle 7</b> <i>inmixfile outmixfile newname</i> [<b>-s</b>
+<i>startline</i>] [<b>-e</b><i>endline</i>] [<b>-x</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>inmixfile</i> &#150; input mix function file<br>
+<i>outmixfile</i> &#150; output (shuffled) mix function file<br>
+<b>-s</b><i>startline</i> &#150; line of <i>inmixfile</i> at which to start 
+shuffling  (default is 1<sup>st</sup> line)<br>
+<b>-e</b><i>endline</i> &#150; line of <i>inmixfile</i> at which to end 
+shuffling  (default is last line of file)<br>
+</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<p>
+<blockquote>
+<b>1</b>&nbsp; Duplicate each line<br>
+<b>2</b>&nbsp; Reverse order of filenames<br>
+<b>3</b>&nbsp; Scatter order of filenames<br>
+<b>4</b>&nbsp; Replace sounds in selected lines with sound in startline<br>
+<b>5</b>&nbsp; Omit lines (closing up timegaps appropriately)<br>
+<b>6</b>&nbsp; Omit alternate lines (closing up timegaps appropriately)<br>
+	<p>
+	<blockquote>
+	In Modes 5 &amp; 6, the mix must be in the correct time order. 
+	(Mixfiles can be time-ordered using <a href="#TIMEWARP"><b>SUBMIX TIMEWARP</b></a> Mode 1)<br>
+	</blockquote>
+	</p>
+<b>7</b>&nbsp; Duplicate and rename:  duplicate each line with a new sound, 
+new name<br>
+	<p>
+	<blockquote>
+	SUBMIX SHUFFLE checks that 'newname' is a compatible soundfile 
+	for the mix, but note that the <b>-x</b> flag turns off 
+	'newname' checking in Mode 7.  WARNING: SUBMIX SHUFFLE cannot handle 
+	a mixture of mono and stereo files.<br>
+	</blockquote>
+	</p>
+</blockquote>
+</p>
+
+<h3>
+Understanding the SUBMIX SHUFFLE Function
+</h3>
+<blockquote>
+
+<p>
+There are 3 sets of mix-shuffle functions, all dealing with mixfile data.  
+<a href="#SPACEWARP"><b>SUBMIX SPACEWARP</b></a> handles the spatial location of the sounds, and 
+<a href="#TIMEWARP"><b>SUBMIX TIMEWARP</b></a> handles their onset times.  
+<b>SUBMIX SHUFFLE</b> itself massages lines in the mixfile and filenames.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+The purpose of these functions is to enable the user to adjust a (usually 
+complex) mixfile in a quick and easy manner.  SUBMIX SHUFFLE can  
+duplicate filenames in a mix, or replace all the names with that of the 
+first sound.  Omitting lines thins out the mix, reversing the order of 
+the names reverses the sequence of a whole series of events, but each 
+event still goes forward (i.e., not just a soundfile played backwards).  
+Scattering the order of soundfiles loosens up the mix and can be quite 
+handy when making sonic collages or landscapes.
+</p>
+
+<p>
+Only one option can be entered at once, but this should not be a problem.  
+The operation of the program is very fast, as it is only writing a short 
+textfile.  A variety of changes can be carried out in sequence by using 
+two <i>outmixfile</i> names:  write the first change to <i>outmix1</i>, 
+then use <i>outmix1</i> as the input for the next run of SUBMIX SHUFFLE, 
+naming the <i>outmixfile outmix2</i>.  On the next run, <i>outmix2</i> 
+is the <i>inmixfile</i> and <i>outmix1</i> is the <i>outmixfile</i>, 
+the original version being overwritten by the program, etc.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX SHUFFLE<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="SPACEWARP">SUBMIX SPACEWARP &#150; Alter the spatial distribution 
+of a mixfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix spacewarp 1&#150;2</b> <i>inmixfile outmixfile</i> <i>Q</i>
+[<b>-s</b><i>startline</i>] [<b>-e</b><i>endline</i>]<br>
+OR: <b>submix spacewarp 3&#150;6</b> <i>inmixfile outmixfile</i> <i>Q1</i> 
+<i>Q2</i> [<b>-s</b><i>startline</i>] [<b>-e</b><i>endline</i>]<br>
+OR: <b>submix spacewarp 7</b> <i>inmixfile outmixfile</i><br>
+OR: <b>submix spacewarp 8</b> <i>inmixfile outmixfile</i> <i>Q</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>inmixfile</i> &#150; input mix function file<br>
+<i>outmixfile</i> &#150; output (shuffled) mix function file<br>
+<i>Q</i> &#150; position along horizontal spatial axis (Range: -1 to 1)<br>
+<b>-s</b><i>startline</i> &#150; line of <i>inmixfile</i> at which to start 
+shuffling  (default is 1<sup>st</sup> line)<br>
+<b>-e</b><i>endline</i> &#150; line of <i>inmixfile</i> at which to end 
+shuffling  (default is last line of file)<br>
+</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<p>
+<blockquote>
+<b>1</b>&nbsp; Sounds to same position &#150; <i>Q</i> is position (stereo files 
+become mono)<br>
+<b>2</b>&nbsp; Narrow spatial spread &#150; <i>Q</i> is a positive number &lt; 1<br>
+<b>3</b>&nbsp; Sequence positions leftwards &#150; over range <i>Q1</i> to 
+<i>Q2</i> (stereo files become mono)<br>
+<b>4</b>&nbsp; Sequence positions rightwards &#150; over range <i>Q1</i> to 
+<i>Q2</i> (stereo files become mono)<br>
+<b>5</b>&nbsp; Random-scatter positions &#150; within range <i>Q1</i> to 
+<i>Q2</i> (stereo files become mono)<br>
+<b>6</b>&nbsp; Random-scatter positions, but alternate to the left and right 
+of the centre of the spatial range specified &#150;  range <i>Q1</i> to 
+<i>Q2</i> (stereo files become mono)<br>
+<b>7</b>&nbsp; Invert stereo in alternate lines of mixfile &#150; use to avoid 
+clipping<br>
+<b>8</b>&nbsp; Invert stereo in specified line of mixfile &#150; <i>Q</i> is 
+line number<br>
+</blockquote>
+</p>
+
+<h3>
+Understanding the SUBMIX SPACEWARP Function
+</h3>
+<blockquote>
+
+<p>
+SUBMIX SPACEWARP massages the spatialisation information in existing mixfiles, presuming 
+that there are several sounds involved.  It provides a number of 
+'preset' operations to focus the sounds, move them gradually left or 
+right, scatter them about the aural field, or switch the stereo 
+channels (left to right, right to left).
+</p>
+
+<p>
+Modes <b>7</b> and <b>8</b>, to 'invert stereo' can be used to avoid 
+clipping which can occur because too many sounds are in one part of 
+the aural field (the amplitudes can accumulate).
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+The spatial placement of sounds in a mix is part of the art of 
+'orchestrating' in this type of medium.  If all the sounds are in the 
+same position, they will tend to fuse more than if they are spread out 
+in the aural space.  Creating different spatial locations for sounds 
+is therefore a way to clarify the aural image.  It can also be used 
+to move sounds along the horizontal trajectory or to have them appear 
+in varying (random) locations.  The latter might be especially suitable 
+for complex collages or for sound textures which emulate a 'natural' 
+environment.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX SPACEWARP<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="SYNC">SUBMIX SYNC &#150; Synchronise soundfiles in a mixfile, 
+or generate such a mixfile from a list of soundfiles
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix sync mode</b> <i>intextfile outmixfile</i>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>intextfile</i> &#150; either an existing mixfile or the name of 
+textfile containing only the names of soundfiles.  If CDP_SOUND_EXT 
+is set, the extension does not have to be specified.<br>
+<i>outmixfile</i> &#150; output mixfile generated by the program
+</blockquote>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Synchronise soundfile midtimes<br> 
+<b>2</b>&nbsp; synchronise soundfile endtimes
+</blockquote>
+
+
+<h3>
+Understanding the SUBMIX SYNC Function
+</h3>
+<blockquote>
+
+<p>
+This function aligns soundfiles either at the mid-point in the 
+duration of each sound, or at their endings (like a 'right justify' 
+in word processing).  This is a calculation based on duration only, 
+and does not take any account of audio data.  It just adjusts the 
+start-times of all the files in order to achieve the alignment 
+specified by the Mode and writes a mixfile with these timings.
+</p>
+
+<p>
+It actually looks at the header of each soundfile when preparing the 
+mixfile.  Thus it can include the number of channels in the output 
+mixfile when provided only with a list of soundfile names.  But note 
+that this mixfile may need some editing of its level and pan parameters, 
+which are given the default settings of '1.0' and 'C' respectively for all 
+soundfiles.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+SUBMIX SYNC helps block out a mixfile when the sounds are aligned at 
+their mid-points or their endings.  It is also a way to create a 
+rough mixfile quickly, and can therefore be used just to create a 
+template mixfile to edit.
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b>&nbsp; <a href="#SYNCATTACK"><b>SUBMIX SYNCATTACK</b></a> and 
+<a href="DUMMY"><b>SUBMIX DUMMY</b></a><br>
+</p>
+
+
+<p>
+End of SUBMIX SYNC<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="SYNCATTACK">SUBMIX SYNCATTACK &#150; Synchronise the attacks of 
+soundfiles in a mixfile, or generate such a mixfile from a list of 
+soundfiles
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix syncattack</b> <i>intextfile outmixfile</i> [<b>-w</b><i>focus</i>] 
+[<b>-p</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>intextfile</i> &#150; an existing mixfile or a list of soundfiles.  
+If CDP_SOUND_EXT is set, the soundfile extension does <b>not</b> have t
+o be specified.<br>
+
+	<p>
+	<blockquote>
+	When using a list of soundfiles (only), each soundfile name 
+	may be followed by 2 times (in seconds);  these times limit 
+	the search area for the sound's attack.  (See below!)
+	</blockquote>
+	</p>
+
+<i>outmixfile</i> &#150; output mixfile generated<br>
+<b>-w</b><i>focus</i> &#150; a fixed integer factor which can be used to 
+shorten the window which scans for the attack.  Range:<b>1</b> 
+(max window size, min <i>focus</i>) &#150; <b>5</b> (min window size, 
+max <i>focus</i>).
+<b>-p</b> &#150; find the peak power segment before locating its 
+maximum sample.  Default:  only look for the maximum sample.
+
+	<p>
+	<blockquote>
+	SUBMIX SYNCATTACK estimates the output levels required to 
+	prevent clipping.  However, this estimate may be 
+	over-cautiously low, so you may need to adjust the levels.  
+	<a href="#ATTENUATE"><b>SUBMIX ATTENUATE</b></a> can be used to 
+	adjust the overall level of a mixfile.
+	</blockquote>
+	</p>
+
+
+</blockquote>
+
+<h3>
+Understanding the SUBMIX SYNCATTACK Function
+</h3>
+<blockquote>
+
+<p>
+SYNCATTACK means 'synchronised attacks'.  This is synchronisation based 
+on audio content, 'connecting' soundfiles at their respective points of 
+high amplitude.  SUBMIX SYNCATTACK by default looks for the highest 
+amplitude in each file, and lines up the sounds accordingly.  This point 
+could be near the beginning, later on in the file, or within the times 
+specified.
+</p>
+
+<p>
+Very often, for example, sounds played on wind instruments 'swell':  
+the amplitude increases as the tone continues.  This means that the 
+peak point may occur considerably later on as the sound continues.  If 
+this is the case, you will find that SYNCATTACK will bring in another 
+sound when this peak occurs.  To get the sounds to synchronise at the 
+beginning, specify times in <i>intextfile</i> which will locate the 
+search range for the peak at&#47;near the beginning of the sound(s) which 
+get louder later: e.g., times 0 and 0.1.
+</p>
+
+<p>
+The 'peak power' option looks for the largest region of high amplitude 
+rather than just the highest amplitude (which could have a very short 
+duration).
+</p>
+
+<p>
+This process is well-suited for use with vocal sounds, the default 
+maximum amplitude sync point works best for consonants (short durations), 
+while the peak power option (<b>-p</b>) works best for vowels (longer 
+durations).
+</p>
+
+<p>
+It automatically creates a mixfile, which is used to mix the sounds 
+into a new, synchronised, soundfile.
+</p>
+
+<p>
+<i>Focus</i> enables the user to control the size of the window 
+in which the attack is to be found, i.e., to tighten the focus on the 
+precise attack moment.
+</p>
+
+<p>
+The datafile lists the soundfiles to be synchronised, with optional 
+start and end times for each file search.
+</p>
+
+<p>
+The mixfile is a text file in mixfile format generated by the program.  
+Run this with <a href="#MIX"><b>SUBMIX MIX</b></a> to create the final, 
+synchronised soundfile.  It is usually a good idea to look at the 
+<i>mixfile</i> before using it in order to check that the levels and 
+pan settings are as you would like them to be for those particular 
+soundfiles.  If you hear a click at the entry of one (or more) of the 
+sounds, you will have to reduce the level(s) in the mixfile produced 
+by <a href="SYNCATTACK"><b>SUBMIX SYNCATTACK</b></a> before running <a href="#MIX"><b>SUBMIX MIX</b></a> to carry out the mix.  <a href="#GETLEVEL"><b>SUBMIX GETLEVEL</b></a> will report any possible 
+overloads in the mix, while <a href="#ATTENUATE"><b>SUBMIX ATTENUATE</b></a> 
+can be used to reduce the overall level of the mixfile.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+The basic default operation of this function is a way to assemble 
+sounds in a very smooth and natural way by aligning them at their 
+respective loudest points.  This means that they all peak at the 
+same time &#150; and more often than not, their respective beginnings 
+will occur before this point.
+</p>
+
+<p>
+SUBMIX SYNCATTACK can also be used to create an aural 'mask':  with the 
+loud portion of one file 'covering' the entrance of the next sound.  If 
+this doesn't happen through the default operation of SUBMIX SYNCATTACK, 
+it can be achieved by using the times mechanism to locate the search 
+range at the beginning of the sound.
+</p>
+
+For example, two sounds may swell a bit, but you want one of them to 
+come in, to begin, at the high point of the other.  You therefore 
+enter times such as 0 0.1 in <i>intextfile</i> after the name of the 
+file you want to sync at its beginning.  The result is this:  you hear 
+the first sound begin and swell in volume.  At its peak, the second 
+sound enters, probably with a masking effect, because its beginning 
+is a bit quieter relative to what occurs later.  Thus its entry 
+will be 'covered' by the peak of the first sound.
+</p>
+
+<p>
+As mentioned above, synchronisation can be forced to the beginning of 
+the sounds by specifying times in <i>intextfile</i>.
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b>&nbsp; <a href="#SYNC"><b>SUBMIX SYNC</b></a>
+</p>
+
+<p>
+End of SUBMIX SYNCATTACK<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="TEST">SUBMIX TEST &#150; Test the syntax of a mixfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix test</b> <i>mixfile</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>mixfile</i> &#150; full name of mixfile to be tested
+</blockquote>
+
+<h3>
+Understanding the SUBMIX TEST Function
+</h3>
+<blockquote>
+
+<p>
+SUBMIX TEST checks both that all the soundfiles listed in it are valid 
+soundfiles and that the syntax of the <i>mixfile</i> is correct. 
+</p>
+
+<p>
+In checking the validity of the soundfiles, it actually looks for, needs 
+to find, and reads the header of the soundfiles:  so they must be present 
+in the same directory as the <i>mixfile</i>.  This is more than a check 
+for mis-spelling the name of the file.  There are many different types 
+of file which might be present, possibly with a .wav extension, which will 
+not be soundfiles:  such as analysis files, binary envelope files, 
+binary formant files, and binary pitch data files &#150; not to mention 
+breakpoint text files, which may or may not have an extension.  You might 
+forget which is which, so SUBMIX TEST actually looks into the header of the 
+file to double-check its type.
+</p>
+
+<p>
+<b>NB</b> &#150; To minimise this kind of ambiguity about files and to 
+make it easier to name them, CDP supports the use of different 
+file extensions according to the following conventions:<br>
+<p>
+<blockquote>
+
+<table border=1 cellpadding=4>
+<tr>
+	<th align=center><b>Filetype</b></th>
+	<th align=center><b>Extension</b></th>
+</tr>
+
+<tr>
+	<td align=center><b>sound</b></td>
+	<td align=center><b>.wav&#47;.aif</b></td>
+</tr>
+
+<tr>
+	<td align=center><b>analysis</b></td>
+	<td align=center><b>.ana&#47;any</b></td>
+</tr>
+
+<tr>
+	<td align=center><b>binary formant</b></td>
+	<td align=center><b>.for</b></td>
+</tr>
+
+<tr>
+	<td align=center><b>binary envelope</b></td>
+	<td align=center><b>.evl</b></td>
+</tr>
+
+<tr>
+	<td align=center><b>binary pitch</b></td>
+	<td align=center><b>.frq</b></td>
+</tr>
+
+<tr>
+	<td align=center><b>binary transposition</b></td>
+	<td align=center><b>.trn</b></td>
+</tr>
+
+<tr>
+	<td align=center><b>text breakpoint</b></td>
+	<td align=center><b>any&#47;none</b> (usually 
+	<b>.txt</b> and <b>.brk</b> respectively)</td>
+</tr>
+
+<tr>
+	<td align=center><b>text MIDI tuning</b></td>
+	<td align=center><b>.tun</b></td>
+</tr>
+
+<tr>
+	<td align=center><b>shortcut</b></td>
+	<td align=center><b>.lnk</b></td>
+</tr>
+
+
+</table>
+</blockquote>
+</p>
+
+We have also added a filetype field to the <a href="csysutil.htm#DIRSF"><b>DIRSF</b></a> report.  
+It is labelled 'fmt', which stands for 'format'. Under this heading, 
+DIRSF displays 'W' for .wav or 'A' for .aif, because any of the 
+above binary files could be .wav or .aif, which is not indicated 
+by the extension.
+</p>
+	
+<p>
+The syntax checks will pick up errors such as an invalid number of 
+channels, a channel count which doesn't match the soundfile, left and 
+right level or pan data for sounds which are only mono, or only one 
+set of data for a stereo sound, or a missing start time (reports an 
+invalid channel number because it's reading the level data in the 
+channel position).  It doesn't check the validity of amplitude levels.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote><p>
+
+<p>
+This is a useful tool when mixes are large and complex.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX TEST<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="TIMEWARP">SUBMIX TIMEWARP &#150; Timewarp the data in a mixfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>submix timewarp 1</b> <i>inmixfile outmixfile</i><br>
+OR: <b>submix timewarp 2&#150;5</b> <i>inmixfile outmixfile</i> [<b>-s</b><i>startline</i>] [<b>-e</b><i>endline</i>]<br>
+OR: <b>submix timewarp 6&#150;16</b> <i>inmixfile outmixfile</i> 
+<i>Q</i> [<b>-s</b><i>startline</i>] [<b>-e</b><i>endline</i>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>inmixfile</i> &#150; input mix function file<br>
+<i>outmixfile</i> &#150; output (shuffled) mix function file<br>
+<i>Q</i> &#150;  Mode 6: degree of scattering (0 to 1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Modes 7-12: time or timegap (secs)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Modes 13-16: multiplier affecting timegap (>0 to 32767)<br> 
+<b>-s</b><i>startline</i> &#150; line of <i>inmixfile</i> at which to start 
+shuffling  (default is 1<sup>st</sup> line)<br>
+<b>-e</b><i>endline</i> &#150; line of <i>inmixfile</i> at which to end 
+shuffling  (default is last line of file)<br>
+</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Sort into time order<br>
+<b>2</b>&nbsp; Reverse timing pattern &#150; e.g., a ritardando of 
+sound entries becomes an accelerando<br>
+<b>3</b>&nbsp; Reverse timing pattern &amp; order of filenames<br>
+<b>4</b>&nbsp; Freeze timegaps &#150; between sounds at <b>first</b> 
+timegap values<br>
+<b>5</b>&nbsp; Freeze timegaps &amp; names  &#150; same as Mode <b>4</b> 
+and all files take the name of the first soundfile<br>
+<b>6</b>&nbsp; Scatter entry times  &#150; around the original time 
+values.  <i>Q</i> is scattering (Range: 0 to 1)<br>
+<b>7</b>&nbsp; Shuffle up entry times  &#150; shuffle times in mixfile 
+forward by time <i>Q</i> seconds<br>
+<b>8</b>&nbsp; Add to timegaps  &#150; add fixed duration <i>Q</i> 
+seconds to all timegaps between sounds<br>
+<b>9</b>&nbsp; Create fixed timegaps 1 &#150; same gap between all 
+sounds, timegap = <i>Q</i> seconds<br> 
+<b>10</b> Create fixed timegaps 2 &#150; expanding: starttime + 
+<i>Q</i>, original time + 2<i>Q</i>, etc.<br>
+<b>11</b> Create fixed timegaps 3 &#150; expanding: starttime * 
+(1+<i>Q</i>), original time * (1+2<i>Q</i>), etc.<br>
+<b>12</b> Create fixed timegaps 4 &#150; expanding: starttime * 
+<i>Q</i>, original time *<i>Q</i>*<i>Q</i>, etc.<br>
+<b>13</b> Enlarge timegaps 1 &#150; multiply original times by <i>Q</i><br>
+<b>14</b> Enlarge timegaps 2 &#150; by adding <i>Q</i>, 2<i>Q</i>, etc.to 
+each successive time<br>
+<b>15</b> Enlarge timegaps 3 &#150; multiply original times by (1=<i>Q</i>), 
+(1+2<i>Q</i>), (1+3<i>Q</i>),etc.<br>  
+<b>16</b> Enlarge timegaps 4 &#150; multiply original times by <i>Q</i>, 
+<i>Q</i>*<i>Q</i>, <i>Q</i>*<i>Q</i>*<i>Q</i>, etc. (Care!)
+</blockquote>
+
+<h3>
+Understanding the SUBMIX TIMEWARP Function
+</h3>
+<blockquote>
+
+<p>
+The focus here is on the start times for each of the sounds in the 
+mix.  With SUBMIX TIMEWARP the several times in the mixfile can be 
+adjusted in a single operation, according to the 'presets' available. 
+The times can be sorted, all made the same, or all enlarged by the 
+same amount, scattered in time (not far, just some 'jitter'), 
+progressively expanded with reference to the start time, or each 
+time in the mixfile can be progressively expanded.
+</p>
+
+<p>
+Non-mathematicians:  take special note of the results of operations 
+carried out on values less than one.  For example, repeated (recursive) 
+multiplications of 2 numbers, both of which are less than one soon 
+produces very tiny values:  e.g., .2*.2 = .04, .04*.2 = .008 etc.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+The purpose of these functions is to enable the user to adjust a (usually 
+complex) mixfile in a quick and easy manner.  For example, you may have 
+found the mix too aurally dense and want to spread it out a little.  
+In this case you could for example enlarge the timegaps a little and 
+perform the mix again.  
+</p>
+
+<p>
+Mode <b>13</b> can be seen as a simple way to change 'tempo'.  We can 
+illustrate this with the following 3 steps:
+	<ol>
+	<li>Suppose we create a mixfile with 3 soundfiles by using 
+	<a href = "#DUMMY"><b>SUBMIX DUMMY</b></a> Mode 1, in which 
+	all soundfiles are set to start at time 0.  (Remember to include 
+	the soundfile extensions when you enter the name of each 
+	soundfile &#150; they have to be explicitly included).</li>
+
+	<li>We want to stagger their entries by a regular timegap.  Let's 
+	make this 1 second, in the sense that 1 second will equal a tempo 
+	of crotchet (quarter note) = 60.  We can do this with SUBMIX 
+	TIMEWARP Mode <b>8</b> which adds a constant value to each start 
+	time.  So we would enter by GUI or command line:  <code>submix 
+	timewarp 8 mix3dum.mix mix3dum2.mix 1</code>.  Now the first 
+	soundfile in the new mixfile starts at time 0.0, the second at time 
+	1.0 and the third at time 2.0 &#150; a regular tempo at crotchet = 
+	60.</li>
+
+	<li>We want to increase this to crotchet = 76.  The formula for the 
+	change is <code> original_tempo &#47; new_tempo</code>, in this 
+	case <code>60 &#47; 76 = 0.83</code>.</li>  
+	<li>Now we go to SUBMIX 
+	TIMEWARP Mode <b>13</b> (multiply by a constant value) and use 
+	0.83 as the multiplier: <code>submix timewarp 13 mix3dum2.mix 
+	mix3dum3.mix 0.83</code>.  Now the first soundfile will begin at 
+	time 0.0, the second at time 0.83 and the third at time 1.66, so 
+	they enter at a tempo of crotchet = 76.</li>
+	</ul><br />
+This illustration, hopefully, gives some clues as to how to make use of 
+the other modes of SUBMIX TIMEWARP.
+</p>
+
+<p>
+SUBMIX TIMEWARP is, in effect, applying a bit of algorithmic processing to 
+the times in a mixfile.  Although limited to what are in effect a set of 
+'presets', its functions nevertheless comprise a useful and time-saving set 
+of routines to focus, regularise, or varyingly expand the interval between 
+the start of each sound in the mix.  It points towards further possibilities 
+of score processing&#47;generation by user-defined algorithmic means. 
+The interesting questions are what processes are important musically, 
+and how does one make the output musically supple.
+</p>
+</blockquote>
+
+<p>
+End of SUBMIX TIMEWARP<br>
+<a href="#SUBMIXLIST"><b>Return</b></a> to List of SUBMIX functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 4 Apr 2023 for CDP8<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

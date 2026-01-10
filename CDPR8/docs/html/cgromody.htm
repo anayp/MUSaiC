@@ -1,0 +1,2745 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cgromody.htm  - MODIFY HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP MODIFY Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#MODYLIST"><b>MODIFY:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#BRASSAGE"><b>BRASSAGE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CONVOLVE"><b>CONVOLVE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FINDPAN"><b>FINDPAN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#LOUDNESS"><b>LOUDNESS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RADICAL"><b>RADICAL:</b></a>
+  <dt>&nbsp;&nbsp;&nbsp;&nbsp;<a href = "#REVERSE"><b>Reverse</b></a>
+  <dt>&nbsp;&nbsp;&nbsp;&nbsp;<a href = "#SCRUB"><b>Scrub</b></a>
+  <dt>&nbsp;&nbsp;&nbsp;&nbsp;<a href = "#RESOLUTION"><b>Resolution</b></a>
+  <dt>&nbsp;&nbsp;&nbsp;&nbsp;<a href = "#RINGMOD"><b>Ring Mod</b></a>
+  <dt>&nbsp;&nbsp;&nbsp;&nbsp;<a href = "#CROSSMOD"><b>Cross Mod</b></a>
+  <dt>&nbsp;&nbsp;&nbsp;&nbsp;<a href = "#QUANT"><b>Quantise</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#REVECHO"><b>REVECHO</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SAUSAGE"><b>SAUSAGE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SCALEDPAN"><b>SCALEDPAN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SHUDDER"><b>SHUDDER</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SPACE"><b>SPACE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SPACEFORM"><b>SPACEFORM</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SPEED"><b>SPEED</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#STACK"><b>STACK</b></a>
+  <br><br>
+<b>OTHERS:</b><br>
+  <dt>&nbsp;&nbsp;<a href = "#DSHIFT"><b>DSHIFT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#NEWDELAY"><b>NEWDELAY</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PHASE"><b>PHASE</b></a>
+  <dt>&nbsp;&nbsp;<a href="#VERGES"><b>VERGES</b></a>
+<br><br>
+<b>SEE ALSO:</b>
+<dt>&nbsp;&nbsp;<a href="cxreverb.htm#FASTCONV"><b>FASTCONV</b></a>
+<dt>&nbsp;&nbsp;<a href ="cgrogrns.htm#WRAPPAGE"><b>WRAPPAGE</b></a>
+<dt>&nbsp;&nbsp;<a href="cgrnmill.htm"><b>GRAINMILL</b></a>
+<dt>&nbsp;&nbsp;<a href="cgrogrns.htm"><b>GRAIN Group</b></a>
+
+<!--
+  <dt><a href = "#"><b></b></a>
+-->
+  <br /><br /> 
+
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <div align=center>
+   <br>
+   <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+   </div>
+
+   <h1 align=center>
+   CDP MODIFY Functions</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="MODYLIST">Functions to MODIFY soundfiles</h2>
+
+<dl>
+<dt><a href="#BRASSAGE">MODIFY <b>BRASSAGE</b></a> <dd>Granular reconstitution of
+soundfile</dd>
+<dt><a href="#CONVOLVE">MODIFY <b>CONVOLVE</b></a> <dd>Convolve the first soundfile with the second</dd>
+<dt><a href="#DSHIFT"><b>DSHIFT</b></a> <dd>Adds Doppler shift to panning</dd>
+<dt><a href="#FINDPAN">MODIFY <b>FINDPAN</b></a> <dd>Find stereo-pan position
+of a sound in a stereo file</dd>
+<dt><a href="#LOUDNESS">MODIFY <b>LOUDNESS</b></a> <dd>Alter loudness or balance of
+sound</dd>
+<dt><a href="#NEWDELAY"><b>NEWDELAY</b></a> <dd>Delay with pitch-defined output sound</dd>
+<dt><a href="#PHASE"><b>PHASE</b></a> <dd>Invert phase or enhance stereo 
+separation of a sound</dd>
+<dt><a href="#RADICAL">MODIFY <b>RADICAL</b></a> <dd>Radically modify: 
+	<ol>
+	<li>Reverse</li>
+	<li>Shred</li>
+	<li>Scrub</li>
+	<li>Resolution</li>
+	<li>Ring-Modulate</li>
+	<li>Cross-Modulate</li>
+	<li>Quantise (c.f. Resolution)</li>
+	</ol>
+</dd>
+
+<dt><a href="#REVECHO">MODIFY <b>REVECHO</b></a> <dd>Add reverberation or echo to the
+sound</dd>
+<dt><a href="#SAUSAGE">MODIFY <b>SAUSAGE</b></a> <dd>Brassage on several sources</dd>
+<dt><a href="#SCALEDPAN">MODIFY <b>SCALEDPAN</b></a> <dd>Distribute sound in
+stereo space, scaling pan data to soundfile duration</dd>
+<dt><a href="#SHUDDER">MODIFY <b>SHUDDER</b></a> <dd>Shudder a stereo soundfile</dd>
+<dt><a href="#SPACE">MODIFY <b>SPACE</b></a> <dd>Spatialise, or alter the spatialisation
+of, a soundfile</dd>
+<dt><a href="#SPACEFORM">MODIFY <b>SPACEFORM</b></a> <dd>Create a sinusoidal spatial
+distribution data file</dd>
+<dt><a href="#SPEED">MODIFY <b>SPEED</b></a> <dd>Change speed (&amp; pitch) of sound</dd>
+<dt><a href="#STACK">MODIFY <b>STACK</b></a> <dd>Create a mix that stacks
+transposed versions of source on top of one another</dd>
+<dt><a href="#VERGES"><b>VERGES</b></a> <dd>Play source, with specified brief moments glissing up or down </dd>
+
+<dt><br><b>SEE ALSO:</b>
+<dt><a href="cxreverb.htm#FASTCONV"><b>FASTCONV</b></a><dd>Multi-channel fast convolution</dd>
+<a href ="cgrogrns.htm#WRAPPAGE"><b>WRAPPAGE</b></a> <dd>Granular reconstitution of one or more soundfiles over multi-channel space</dd>
+<dt><a href="cgrnmill.htm"><b>GRAINMILL</b></a>
+<dd>Stand-alone graphic program for BRASSAGE and SAUSAGE</dd>
+<dt><a href="cgrogrns.htm"><b>GRAIN Group</b></a> <dd>Manipulate grains in a grainy sound</dd>
+</dl>
+
+<hr><!-- ========================================================================= -->
+<h2 id="BRASSAGE"> MODIFY BRASSAGE &#150; Granular reconstitution of
+soundfile
+</h2>
+
+<!-- 
+	<blockquote>
+	<a name = "BRASSAGE-R6"><b>Release 6</b></a> &#150; various options 
+	are now available in the multi-channel update.  See <a href = 
+	"#BRASSAGE-R6-1">	<i>space</i></a> and <a href = "#BRASSAGE-R6-2">
+	<i>channel</i></a>.
+	</blockquote>
+ -->
+
+<p>
+<div align=center>
+<table border="1" cellpadding="4" bgcolor="#B0E0E6">
+<tr>
+<td><a href="#MBRUs"><b>Usage</b></a></td>
+<td><br></td>
+<td><a href="#MBRMo"><b>Modes</b></a></td>
+<td><br></td>
+<td><a href="#MBRPa"><b>Parameters</b></a></td>
+<td><br></td>
+<td><a href="#MBRUn"><b>Understanding</b></a></td>
+<td><br></td>
+<td><a href="#MBRAp"><b>Musical Applications</b></a></td>
+</tr>
+</table>
+</div>
+</p>
+
+<h3 id="MBRUs">Usage</h3>
+<b>modify brassage 1</b> <i>infile outfile pitchshift</i><br>
+<b>modify brassage 2</b> <i>infile outfile velocity</i><br>
+<b>modify brassage 3</b> <i>infile outfile density pitch amp</i>
+[<b>-r</b><i>range</i>]<br>
+<b>modify brassage 4</b> <i>infile outfile grainsize</i>
+[<b>-r</b><i>range</i>]<br>
+<b>modify brassage 5</b> <i>infile outfile density</i><br>
+<br>
+<b>modify brassage 6</b> <i>infile outfile velocity density
+grainsize pitchshift amp space bsplice esplice</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<b>-r</b><i>range</i>] [<b>-j</b><i>jitter</i>] [<b>-l</b><i>outlength</i>]
+[<b>-c</b><i>channel</i>] [<b>-x</b>] [<b>-n</b>]<br>
+<br>
+<b>modify brassage 7</b> <i>infile outfile velocity density hvelocity hdensity</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        grainsize &nbsp;&nbsp;pitchshift &nbsp;&nbsp;amp &nbsp;space
+        &nbsp;&nbsp;bsplice &nbsp;&nbsp;esplice<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        hgrainsize hpitchshift hamp hspace hbsplice hesplice</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<b>-r</b><i>range</i>] [<b>-j</b><i>jitter</i>] [<b>-l</b><i>outlength</i>]
+[<b>-c</b><i>channel</i>] [<b>-x</b>] [<b>-n</b>]<br>
+
+<h3 id="MBRMo">Modes
+</h3>
+
+<blockquote>
+<b>1</b> PITCHSHIFT: shift the pitch of <i>infile</i> while retaining
+(more or less) the same duration<br>
+<b>2</b> TIMESTRETCH: stretch or compress the <i>infile</i> in time,
+while retaining the same pitch<br>
+<b>3</b> REVERB: use 3 parameters to create a kind of reverberant effect<br>
+	<blockquote>
+	<i>pitch</i> &#150; transposition factor (Range: -0.33 to 0.33)
+	</blockquote>
+<b>4</b> SCRAMBLE: random reordering of grains within a timeframe
+	<blockquote>
+	<b>NB:</b> To get a scramble effect, you <b>do</b> need to
+	provide a timeframe (in ms) with <b>-r</b><i>range</i> to
+	overcome the default setting of 0.
+	</blockquote>
+<b>5</b> GRANULATE: 'granulate' (put a grainy surface on) a source<br>
+	<blockquote>
+	A <i>density</i> of 1.0 will achieve this; &lt; 1 will introduce
+	gaps, and values &gt; 1.1 (out of a range which ends at 2.0)
+	begin to sound smooth again.
+	</blockquote>
+<b>6</b> BRASSAGE:  powerful segmentation&#47;fragmentation procedures
+using constants or time-varying breakpoint files<br>
+<b>7</b> FULL MONTY: finely tuned granular textures using parameter ranges
+with upper and lower limits, which can be set as constants or as time-varying
+breakpoint files, or mixtures of the two.  You are recommended to use
+the graphic program <i>GrainMill</i> for this, if it is available.
+</blockquote>
+
+<h3 id="MBRPa">Parameters
+</h3>
+
+<blockquote>
+	<blockquote>
+	In <i>Sound Loom</i>, the upper limit parameters for Mode 7, which here 
+	begin with an 'h', are called 'limit' instead.  A number of 
+	the parameters are also given different names.  These are noted 
+	below, prefixed with 'SL:'.
+	</blockquote>
+</blockquote>
+
+<blockquote>
+<i>infile</i> &#150; soundfile to be processed, normally, but not
+necessarily, mono (see <i>space</i>)<br>
+<i>outfile</i> &#150; output soundfile written after processing<br>
+<i>velocity</i> (SL: <i>timeshrink</i>) &#150; speed of advance in <i>infile</i>, relative to <i>outfile</i> (Range: &gt;= 0)
+	<blockquote>
+	This is the inverse of a <i>timestretch</i> (i.e., 1&#47;n: higher
+	values make the output shorter, lower values &#150; less than 1
+	&#150; make it longer).  This permits an infinite timestretch.
+	Remember this when using Mode <b>2</b>.
+	</blockquote>
+<i>density</i> &#150; amount of grain overlap (Range: &gt; 0)
+	<blockquote>
+	Values &lt; 1 leaves intergrain silence, i.e., gaps.  Extremely small
+	values will cease to perform predictably.
+	</blockquote>
+<i>grainsize</i> &#150; size of the grains in milliseconds (Range: must be
+&gt; 2 * the length of the splices; overall range: 2.0ms to 1997.12ms;
+Default: 50ms)<br>
+<i>pitchshift</i> &#150; transposition of grains in + or - (fractions of)
+semitones<br>
+<i>amp</i> (SL: <i>grain loudness range</i>) &#150; gain applied to the grains (Range: 0 to 1; Default: 1.0)
+	<blockquote>
+	Use only if you want amplitude to vary over a range &amp;&#47;or
+	in time.
+	</blockquote>
+<i>bsplice</i> (SL: <i>start splice</i>) &#150; length of start-splices on grains in ms (Default: 5)<br>
+<i>esplice</i> (SL: <i>end splice</i>) &#150; length of end-splices on grains in ms (Default: 5)<br>
+<i>space</i> (SL: <i>spatial position</i>) &#150; set stereo position in <i>outfile</i> 0 = L, 1 = R (Range: 0 to <i>N</i>)
+<!-- 	<blockquote>
+	<a name = "BRASSAGE-R6-1"><b>Release 6</b></a> &#150; various options 
+	are now available in the multi-channel update:
+	<ul>
+	<li>If the <i>space</i> flag is used on a <b>stereo</b> input, the
+	program mixes it to mono before acting.</li><br />
+	<br />
+	<li>In order to spread the output of the brassage process over the 
+	<b>multi-channel</b> stage, both the <i>space</i> and <i>hspace</i> 
+	parameters should be set (use Mode <b>7</b>), with <b>different</b> 
+	values.  These can now take values from zero to the maximum channel 
+	count specified for the output file.  The output of the BRASSAGE 
+	process will be spread out between the two output channels specified.  
+	(Values below 1 correspond to positions between channel 1 and the 
+	highest output channel).</li><br />
+	<br />
+	<li>For audibly equivalent results to a similar process with normal 
+	stereo output, a higher density value must be set.</li>
+	</ul>
+	</blockquote> -->
+<br>
+<b>-r</b><i>range</i> (SL: <i>search range</i>) &#150; of search for next 
+grain, before <i>infile</i> 'now' (Default: 0 ms)<br>
+<b>-j</b><i>jitter</i> (SL: <i>scatter</i>) &#150; randomisation of grain position; Range 0 to 1 (Default: 0.5)<br>
+<b>-l</b><i>outlength</i> &#150; maximum <i>outfile</i> length (if end of
+data is not reached)
+	<blockquote>
+	Set to zero (the Default) for this parameter to be ignored.
+	But if <i>velocity</i> is 0 <b>anywhere</b>, <i>outlength</i>
+	must be given.
+	</blockquote>
+<b>-c</b><i>channel</i> (SL: <i>channel to extract</i>) &#150; extract and work 
+on just one channel of a stereo <!-- multi-channel --> input (Range: 1 or 2) <!-- <i>N</i>) -->  <br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Set <i>channel</i> to <b>0</b> (the Default) for this parameter to be ignored.
+
+<!-- 	<blockquote>
+	<a name = "BRASSAGE-R6-2"><b>Release 6</b></a> &#150; various options 
+	are now available in the multi-channel version:
+	<ul>
+	<li>Set <i>channel</i> to <b>0</b> (the Default) for this parameter 
+	to be ignored, or for a <b>multi-channel</b> <i>infile</i> to be mixed 
+	to MONO before processing.</li>
+	<li>Set <i>channel</i> to a <b>positive</b> integer (<i>N</i>), e.g., 
+	3, the <i>N</i><sup><small>th</small></sup> channel of the 
+	multi-channel file is selected for processing.</li>
+	<li>Set <i>channel</i> to a <b>negative</b> integer value (<i>-N</i>), 
+	to produce a <b<multi-channel output</b> soundfile.  For example 
+	with the setting <b>-c<i>-8</i></b>, an 8-channel output soundfile 
+	will be produced.</li>
+	</ul>
+	Also see the <i>space</i> parameter above.
+	</blockquote> -->
+	<br />
+<b>-x</b> &#150; do exponential splices (Default: linear)<br>
+<b>-n</b> &#150; no interpolation for pitch values (quick but dirty)
+	<p>
+	<blockquote>
+	The presence of the upper limit parameters &#150;<br> 
+	&nbsp;&nbsp;<b><i>hvelocity</i></b> (SL: <i>timeshrink limit</i>), <br>
+	&nbsp;&nbsp;<b><i>hdensity</i></b> (SL: <i>density limit</i>), <br>
+	&nbsp;&nbsp;<b><i>hgrainsize</i></b> (SL: <i>grainsize limit</i>), <br>
+	&nbsp;&nbsp;<b><i>hpitchshift</i></b> (SL: <i>pitchshift limit</i>),<br> 
+	&nbsp;&nbsp;<b><i>hamp</i></b> (SL: <i>loudness range limit</i>),<br>
+	&nbsp;&nbsp;<b><i>hbsplice</i></b> (SL: <i>startsplice limit</i>),<br> 
+	&nbsp;&nbsp;<b><i>hesplice</i></b> (SL: <i>endsplice limit</i>), and<br> 
+	&nbsp;&nbsp;<b><i>hspace</i></b> (SL: <i>spatial position limit</i>)<br> 
+	&#150; make it possible to specify a range of values.  		
+	When set, the program chooses random values for that parameter 
+	<b>for each grain</b> between the lower and upper limits.  For example, 
+	if <i>pitchshift</i> is -3 and <i>hpitchshift</i> is 4, the pitch of 
+	each grain will be somewhere within the interval of a perfect 
+	5<sup>th</sup>.  <br>
+	<b>NB:</b> &nbsp; Furthermore, any of these parameters 
+	may vary in time (provide the name of a <i>time value</i> breakpoint 
+	file).
+	</blockquote>
+
+	<blockquote>
+	<b>All parameters &#150; except <i>outlength</i> and <i>channel</i>
+	may vary over time.</b>
+	</blockquote>
+	</p>
+</blockquote>
+
+
+<h3 id="MBRUn">Understanding the MODIFY BRASSAGE Process
+</h3>
+
+<blockquote>
+<p>
+MODIFY BRASSAGE is a re-working of the original CDP program called
+GRANULA.  Those with a PC system can (and are advised
+to) use the graphic version, <a href=cgrnmill.htm><b><i>GrainMill</i></b></a>, with built-in graphic breakpoint editing.  This command-line version offers greater flexibility
+with the shapes of the grains, handled with the <i>bsplice</i> and
+<i>esplice</i> parameters.  The fact that <i>velocity</i> is an inverse
+function makes stretching time less intuitive, but allows scope for (even
+more) extreme values than the graphic version.
+</p>
+
+<p>
+MODIFY BRASSAGE is mainly designed as a way of texturing pre-existing
+sample data.  It is therefore not the same as a 'granular synthesis'
+program which synthesises sound using granula techniques.  A search
+for 'granular synthesis' on the web will provide a great deal of
+informatiion on current work in this area.
+</p>
+
+<p>
+This command line is exceptionally complex, especially because the
+low and high values for a number of (optional) parameters are not
+adjacent.  (This was done in order to bring the command line into line
+with the requirements of a graphic interface.)  It is recommended that
+you create a template batchfile which lines up the parameters as shown
+above, that is, with a newline which enables you to put the high values
+directly under the low values.  But remember to delete the newline
+before saving (or it won't read the rest of the command line) and save to
+a new name so that you don't overwrite your template.
+</p>
+
+<p>
+The flexibility with which the parameters can be handled is enormous.
+You can have:
+	<ul>
+	<li>constant values</li>
+	<li>random values selected (by the program) from a range 	specified by low and high limits</li>
+	<li>time-varying values specified by breakpoint files</li>
+	<li>a mixture of constant values and breakpoint files, such as
+	a constant low limit and a time-varying high limit, or <i>v.vs</i>,
+	or even breakpoint files as both lower and upper limits. (<b>NB:</b>
+	the 'lines' created by joining up the points in the files for the
+	upper and lower limits must not cross:  at any given time location
+	in the two files, a lower-file value must not be higher than a
+	higher-file value, and <i>v.vs.</i>).</li>
+	</ul>
+</p>
+
+<p>
+The different modes of the program now make it easier to realise a
+specific musical objective, in the manner of presets.  Use Modes <b>6</b>
+and <b>7</b> for 'brassage' (serious fragmentation of soundfiles), for
+more control and for creating the more complex, granular types of texture.
+</p>
+
+<p>
+<b>The three key parameters are:</b><br>
+	<ul>
+	<li><i><b>grainsize</b></i> &#150; how coarse or fine the granulation
+	will be;  'granular synthesis' typically uses gransizes of less
+	than 50ms</li>
+	<li><i><b>velocity</b></i> &#150; how the <i>infile</i> is read;  it
+	actually relates to <i>grainsize</i>:
+		<ul>
+		<li>a value of <b>1</b> means that the read-steps are the
+		same as the <i>grainsize</i>, and the length of the
+		<i>outfile</i> will therefore be the same as that of
+		the <i>infile</i></li>
+
+		<li>a value <b>less than 1</b> means that the read-steps
+		are shorter than <i>grainsize</i>, material will overlap
+		and the length of the <i>outfile</i> will be longer than
+		that of the <i>infile</i>: <b>time-stretch</b></li>
+
+		<li>a value <b>greater than 1</b> means that the read-			steps
+		are longer than <i>grainsize</i>, material will be skipped,
+		and the length of the <i>outfile</i> will be shorter than
+		that of the <i>infile</i>: <b>time-compression</b></li>
+		</ul>
+		</li>
+	<li><i><b>density</b></i> &#150; how the <i>outfile</i> is constructed:
+		<ul>
+		<li>a value of <b>1</b> means that the <i>outfile</i>
+		lays out <i>grainsize</i> grains end to end;  the
+		<i>infile</i> and the <i>outfile</i> will be the same
+		length, but the <i>outfile</i> will have a 'granulated'
+		surface texture due to the action of the splices on
+		each grain.</li>
+
+		<li>a value <b>less than 1</b> means that the time 				between
+		grains in the <i>outfile</i> will be longer than the
+		grains themselves, introducing audible gaps ('pointillist'
+		effects).  E.g., a <i>grainsize</i> of 0.05 (50ms) divided by
+		0.5 (a value for <i>density</i> less than 1) = 0.1.  Thus
+		grains only 5&#47;100<sup>ths</sup> of a second long will
+		occur every tenth of a second in the <i>outfile</i>, leaving
+		significant gaps of 95&#47;100<sup>ths</sup> of a second.</li>
+
+		<li>a value <b>greater than 1</b> means that the time
+		between grains in the <i>outfile</i> will be shorter
+		than the grains themselves, causing the grains to
+		overlap in time:  the next grain will start before the
+		previous has finished.  Thus two (or more) grains will
+		be mixed in the <i>outfile</i>, making the texture more
+		dense.  If there is no pitch transposition (of the grains),
+		this will be heard as a more intense, thicker sound, with
+		internal 'edges' determined by the nature of the grains
+		and their splice slopes.  If there is pitch transposition
+		(of the grains), the grains will be scattered in a vertical
+		space defined by the pitch range.  E.g., a <i>grainsize</i>
+		of 0.05 (50ms) divided by 2.0 (a value for <i>density</i>
+		greater than 1) = 0.025.  Thus grains which are
+		5&#47;100<sup>ths</sup> of a second long will occur
+		every 2.5 100<sup>ths</sup> of a second, overlapping
+		therefore at each grain's half-way point.  This is how
+		the 'massive' textures characteristic of granular synthesis
+		are produced.</li>
+		</ul>
+		</li>
+	</ul>
+</p>
+
+<p>
+<b>The other parameters serve to create qualitative differences in the
+granular textures.</b>
+</p>
+
+<p>
+The most noticeable of these is <b><i>pitchshift</i></b>, which adds or
+subtracts semitones or fractions of semitones to&#47;from <i>each grain</i>.
+	<ul>
+	<li>Using constants, you can 'tune' the texture, perhaps creating
+	a number of differently tuned texture streams which will then be
+	mixed in some way to create textures with a harmonic flavour.</li>
+
+	<li>Using ranges, you can create thick, churning textures by
+	placing a high density output within a narrow pitch band, or
+	conversely, widely scatter grains (thickly or thinly depending
+	on <i>density</i>) over a wide range.</li>
+
+	<li>Using a constant and a breakpoint file makes it possible
+	to create, for example, triangular shaped ranges (i.e., pitch
+	fields), the base being the constant, and the triangular shape
+	affected by the breakpoint file.</li>
+
+	<li>Using double-breakpoint ranges make it possible to design
+	pitch fields which move through time in a variety of patterns.
+	But bear in mind that the pitch shape of the original material
+	forms the starting point for these transpositions.  Also remember
+	that the two breakpoint shapes (lower and upper) are not supposed
+	to cross (lower rising above the line of the upper, or upper
+	dipping down below the line of the lower).</li>
+	</ul>
+</p>
+
+<p>
+The <b><i>amplitude</i></b> parameter is also very important, for variation in
+amplitude add a natural suppleness to the texture, and can also be used
+to create aurally directional movement:  crescendi and decrescendi.  In
+case of overload, which the program does its best to avoid, this parameter
+can be used to scale down the output (use as a constant).  The maximum
+value for <i>amplitude</i> is 1.0, so it is not possible to scale the
+<i>infile</i> amplitude upwards.  There is usually some loss of signal
+level due to all the splices, so it is generally wise to ensure that the
+<i>infile</i> is at or close to a maximum level.
+</p>
+
+<p>
+The <b><i>space</i></b> parameter is another way to enrich the output by using
+left and right limits to scatter the grains in horizontal space or have
+the granular stream move in a directional manner.  Using constants enable
+you to locate the output at a specific point in the horizontal plane.
+</p>
+
+<p>
+<i><b>Range</i></b> and <b><i>jitter</i></b> are another way to loosen things up.
+The former provides a search range in the <i>infile</i> from within
+which grains are selected, and the latter adds a further degree of
+randomisation to the time placement of grains in the <i>outfile</i>.
+With short <i>grainsize</i> and high <i>density</i>, <i>jitter</i>
+will have a more a more subtle effect, noticeable in many cases as a
+modulation or softening of the comb filter effect arising from
+overlapping grains.  When <i>density</i> is 1 (in which grains are
+normally end-to-end), it will have the effect of overlapping some
+grains, while leaving (very small) spaces between others.
+</p>
+</blockquote>
+
+<h3 id="MBRAp">Musical Applications
+</h3>
+
+<blockquote>
+<p>
+One of the main pioneers in this area is Barry Truax.  I recommend
+you try to get to listen to his famous compositions <i>Riverrun</i>,
+<i>The Wings of Nike</i>, and <i>Pacific</i>.  Also see his articles:
+	<ul>
+	<li>"Composing with real-time granular sound" (<i>Perspectives
+	of New Music</i> 28(2) 120-134</li>
+	<li>"Discovering Inner Complexity: Time Shifting and
+	Transposition with Real-time Granulation Technique" (<i>CMJ</i>
+	18(2) 38-48</li>
+	</ul>
+</p>
+
+<p>
+Also see <i>The Computer Music Tutorial</i> by Curtis Roads (et al.),
+MIT Press, 1996), pp. 168-184 and pp. 440-444.
+</p>
+
+<p>
+It is also useful to study the role of texture in 20<sup>th</sup> century
+composition.  The relationship of melody and textural accompaniment in
+the work of Bohuslav Martinu indicate how the 'background' often becomes
+aural 'foreground'.  Pieces such as Stockhausen's <i>Momente</i> and
+<i>Gruppen</i> are classic examples of a full-blown collage&#47;texture
+technique, as are the amazing collages in Berio's <i>Laborintus II</i>.
+</p>
+
+<p>
+But 'brassage' and 'granular' textures really came into their own once
+the computer became a musical tool, when it became possible to create
+sound textures out of tiny fragments of sound, e.g., 0.035 sec long.
+MODIFY BRASSAGE provides an enormously powerful tool with which to
+explore the effects and side-effects of these processes.
+</p>
+
+<p>
+If you have the CDP <a href=cgrnmill.htm><b><i>GrainMill</i></b></a> program, you will be able to realise and study the HTML tutorial for it written by Philippos
+Theocharidis when he was at the University of Newcastle.  The sounds
+can be made very easily by loading the settings files he provides.
+</p>
+
+<p>
+For the moment, the best way into the program is first of all to
+run Modes <b>1-5</b> to explore the presets.  Don't be afraid to
+try extreme values, for they will more easily reveal what this wonderful
+program can do.  After that point, I recommend that you revise the section
+above about the 'three key parameters' and try out the different
+settings described for <i>grainsize</i>, <i>velocity</i> and
+<i>density</i>.  (But do use template batch files for Modes <b>6</b>
+and <b>7</b>.)
+</p>
+
+<p>
+As a basic point of reference, consider the following combinations:
+<p>
+<div align=center>
+<table border="1" cellpadding="3" bgcolor="#B0E0E6">
+<tr>
+<th><b><i>velocity</i></b></th>
+<th><b><i>density</i></b></th>
+<th><b>result in the <i>outfile</i></b></th>
+</tr>
+
+<tr>
+<td>&lt; 1</td>
+<td>&lt; 1</td>
+<td>time-stretched, with sonic material repeated, but with gaps in the
+<i>outfile</i></td>
+</tr>
+
+<tr>
+<td>&lt; 1</td>
+<td>&gt; 1</td>
+<td>time-stretched, with sonic material repeated and overlapping grains
+in the <i>outfile</i></td>
+</tr>
+
+<tr>
+<td>&gt; 1</td>
+<td>&lt; 1</td>
+<td>time-compression, with sonic material skipped, and gaps in the
+<i>outfile</i></td>
+</tr>
+
+<tr>
+<td>&gt; 1</td>
+<td>&gt; 1</td>
+<td>time-compression, with sonic material skipped, and overlapping
+grains in the <i>outfile</i></td>
+</tr>
+</table>
+</div>
+</p>
+
+<p>
+The addition of a pitch range to the above may make the effects more
+observable.  With time-varying parameters, you can move fluidly
+between these various basic configurations.
+</p>
+</blockquote>
+<p>
+<b>SEE ALSO:<br>
+&nbsp;</b> <a href="#SAUSAGE"><b>MODIFY SAUSAGE</b></a>, which is able to apply
+the same functionality to several source files.<br>
+&nbsp;</b> <a href="cgrogrns.htm#WRAPPAGE"><b>WRAPPAGE</b></a>, the multi-channel version of BRASSAGE.
+</p>
+
+
+<p>
+End of MODIFY BRASSAGE<br>
+<a href="#MODYLIST"><b>Return</b></a> to list of MODIFY functions at top
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ******************************************************* -->
+
+<h2 id="CONVOLVE">MODIFY CONVOLVE &#150; Convolve the first sound with the second
+</h2>
+<p> A faster process for convolution is available: <a href ="cxreverb.htm#FASTCONV"#FASTCONV"><b>FASTCONV</b></a>. 
+</p>
+
+<h3>
+Usage
+</h3>
+<b>modify convolve 1</b> <i>insndfile1 insndfile2 outsndfile</i><br />
+<b>modify convolve 2</b> <i>insndfile1 insndfile2 outsndfile transposfile</i><br />
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile1</i> &#150; first input soundfile to be convolve with<br />
+<i>insndfile2</i> &#150; the second input soundfile, which must not be longer the <i>insndfile1</i>;  both soundfiles must have the same channel count<br />
+<i>outsndfile</i> &#150; output soundfile<br />
+<i>transposfile</i> &#150; textfile of <i>time semitone-transposition</i> transposition pairs
+</blockquote>
+
+<h3>
+Understanding the MODIFY CONVOLVE Process
+</h3>
+
+<blockquote>
+<p>
+Convolution is based on complex mathematical operations between two source soundfiles.  There is a great deal of information about convolution available in Wikipedia, but your editor does not know just which ones Trevor Wishart uses in his program.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The result of convolution is unpredictable but fascinating.  The operation of this particular sub-module can take rather a long time, so you are recommended to use  <a href = "cxreverb.htm#FASTCONV"#FASTCONV"><b>FASTCONV</b></a>.
+</p>
+</blockquote>
+
+<p>
+End of MODIFY CONVOLVE<br>
+<a href="#MODYLIST">Return</a> to List of functions for interacting
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id= "DSHIFT">DSHIFT &#150; Add Doppler shift to panning
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>dshift</b> [<b>-d</b><i>N</i>] <i>inpanfile outtransposefile</i> [distance 
+between speakers]
+<br />
+
+<p>
+Example command line to create a Doppler effect:<br>
+	<blockquote>
+	<b><code>dshift -d15 pan.brk dshift.brk 12.5</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<b>-d</b><i>N</i> &#150; a flag to set the time it takes for a sound to 
+change direction.  <i>N</i> is the time in milliseconds.  Default: 10ms.  
+This flag is useful in order to avoid clicks.<br />
+<i>inpanfile</i> &#150; input PAN breakpoint file to use when adding 
+Doppler effect<br />
+<i>outtransposefile</i> &#150; output transposition file (in semitones) to 
+use with MODIFY SPEED Mode 2 (on the soundfile panned with the PAN 
+breakpoint file) to create the Doppler effect<br />
+<i>distance_between_speakers</i> &#150; optional parameter to specify the 
+space in meters between the speaker pair that will play back the sound<br />
+</blockquote>
+
+<h3>
+Understanding the DSHIFT Function
+</h3>
+
+<blockquote>
+<p>
+The Doppler effect is the phenomenon of pitch change that we hear 
+when something emitting a loud noise, such as a horn or siren, goes 
+quickly past us.  This program was written by Rajmil Fischman. It has 
+been implemented in <i>Soundshaper</i>, but not yet in <i>Sound Loom</i>, 
+either on the PC or on the MAC.  It can be run from the Command Line 
+on the PC, but has not yet been ported to the MAC. 
+</p>
+
+<p>
+<b>There are 3 main steps to creating this effect with DSHIFT:</b><br /> 
+	<ol>
+	<li>Start with a pan breakpoint file and use it with 
+	<a href=#SPACE"><b>PAN</b></a> (MODIFY SPACE 1) to 
+	create a sound that moves between the speakers in a stereo 
+	field.</li>
+	<li>Then use DSHIFT to use the pan breakpoint file again as 
+	a guide to creating the Doppler pitch change effect.  The output 
+	of DSHIFT is a pitch transposition file in semitones.</li>
+	<li>Run <a href=#SPEED><b>MODIFY SPEED</b></a> with the panned soundfile and the pitch transposition file as inputs, to create the final, Doppler-shifted, soundfile.</li>
+	</ol>
+</p>
+
+<p>
+<b>To operate DSHIFT in <i>Soundshaper</i>:</b>
+	<ol>
+	<li>Pan a mono sound as normal, using a breakpoint pan file.  
+	The resulting panned soundfile is the output of this process.</li>
+	<li>Select SPARE FILE and load the pan breakpoint file.</li>
+	<li>Run DSHIFT from the Data Menu: "Doppler-Shift Transposition".</li>
+	<li>Name the output breakpoint transposition file (in semitones); 
+	the default name is 'dshift.brk'.</li>
+	<li>Deselect SPARE FILE (the pan file) and run MODIFY SPEED Mode 2 (semitones), with the panned soundfile you made in Step 1 as the soundfile 
+	input and 'dshift.brk' (or your own name) as the time-varying transposition 
+	file.  The output of SPEED is a panned soundfile that also changes in pitch.</li>
+	</ol>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is a 'real life' acoustic effect that can be used to enhance 
+literal recreations of a natural environment.  The case that most 
+easily comes to mind is that of a vehicle passing by, especially 
+if it is blasting a horn or siren as it moves.  More abstract sounds 
+can be used, with a 'real life' effect adding verisimilitude to a 
+sound coming from a strange or unfamiliar source.
+</p>
+</blockquote>
+
+<p>
+End of DSHIFT<br />
+<a href="#MODYLIST"><b>Return</b></a> to list of MODIFY functions at top
+of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ******************************************************* -->
+
+
+<h2 id="FINDPAN">MODIFY FINDPAN &#150; Find stereo-pan
+position of a sound in a stereo file
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>modify findpan</b> <i>infile time</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input stereo soundfile, which has been
+panned over time in the stereo field<br />
+<i>time</i> &#150; the time-point in the sound at which
+you wish to query the pan position<br />
+</blockquote>
+
+<h3>
+Understanding the MODIFY FINDPAN Function
+</h3>
+
+<blockquote>
+<p>
+If you are carefully positioning sounds in stereo-space it
+might be useful to know exactly where on the stereo-stage a
+panning sound is at any particular time. This process assumes
+the input is an (originally mono) sound which you then panned
+so that it moves around the stereo space.
+</p>
+
+<p>
+The process uses the file loudness data on the two channels
+to calculate where in the stereo space the sound appears to be.
+It assumes that the <i>infile</i> contains a sound that has
+previously been panned to a position in the stereo field.  If
+this is not the case, the results will be misleading.  For
+example, it could be a stereo file which is not in fact moving
+across the spatial field.
+</p>
+
+<p>
+It is important that the input soundfile was originally mono.  
+	<ul>
+	<li>If it had always been a stereo file, you could not 
+	find out where anything is in the stereo stage by comparing 
+	the left and right channels &#150; they could, for example, 
+	carry completely different sounds.</li>
+
+	<li>If the file were originally mono and then panned, the 
+	left and right channels will have the same signal, but at 
+	different levels.</li>
+
+	<li>Thus, by comparing those levels, you can tell where the 
+	sound is on the stereo stage.</li>
+	</ul>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Suppose you have made a sound that moves about in space, such as
+across the horizontal field from left to right.  Now you want to
+place another sound such that it is in exactly the same spatial
+location as the moving sound at a specific time point.  The question
+is: where is that spatial location?
+</p>
+
+<p>
+MODIFY FINDPAN asks you to supply a stereo input soundfile and a <i>time</i>.
+It then returns the pan location of the input soundfile at this time-point.
+You then use this information to specify the placement of the sound you
+want to add to the mix.
+</p>
+</blockquote>
+
+<p>
+End of MODIFY FINDPAN<br>
+<a href="#MODYLIST">Return</a> to List of functions for interacting
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="LOUDNESS">MODIFY LOUDNESS &#150; Alter balance or loudness
+of sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>modify loudness 1</b> <i>infile outfile gain</i><br>
+<b>modify loudness 2</b> <i>infile outfile gain</i><br>
+<b>modify loudness 3</b> <i>infile outfile</i> <b>-l</b><i>level</i><br>
+<b>modify loudness 4</b> <i>infile outfile</i> <b>-l</b><i>level</i><br>
+<b>modify loudness 5</b> <i>infile infile2 outfile</i><br>
+<b>modify loudness 6</b> <i>infile outfile</i><br>
+<b>modify loudness 7</b> <i>infile infile2</i> [<i>infile3 ...</i>]<br>
+<b>modify loudness 8</b> <i>infile infile2</i> [<i>infile3 ...</i>]
+<i>outfile</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; GAIN: adjust level by factor <i>gain</i><br>
+<b>2</b>&nbsp; dBGAIN: adjust level by dB <i>gain</i><br>
+<b>3</b>&nbsp; NORMALISE: force level (if necessary) to the maximum possible,
+or to the <i>level</i> given (Range: 0 to 1)<br>
+<b>4</b>&nbsp; FORCE LEVEL: force level to maximum possible, or to the
+<i>level</i> given (Range: 0 to 1)<br>
+<b>5</b>&nbsp; BALANCE: force the maxmimum level of <i>infile</i> to the
+maximum level of <i>infile2</i><br>
+<b>6</b>&nbsp; INVERT PHASE: invert phase of the sound<br>
+<b>7</b>&nbsp; FIND LOUDEST: find loudest of 2 or more files<br>
+<b>8</b>&nbsp; EQUALISE: force all of 2 or more files to level of loudest file.
+The input files are rescaled in input order, with output names as
+<i>outfile, outfile1, outfile2, outfile3</i> etc.<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; soundfile to have its level altered<br>
+<i>infile2</i> &#150; soundfile to which <i>infile</i> is to be balanced<br>
+<i>outfile</i> &#150; resulting soundfile, with readjusted level.  When
+there are 2 or more input files, <i>outfile</i> is a generic name to
+which are added '1', '2' etc. to identify the matching output files.<br>
+<i>gain</i> &#150; in Mode <b>1</b>, floating point multiplier:
+<b>&lt; 1.0</b> reduces level, <b>&gt; 1</b> increases level;<br>
+&nbsp;&nbsp; OR, in Mode <b>2</b>, level expressed in dB (Range: -96dB
+to 96dB).  <b>NB:</b> every drop of -6dB halves the previous level.
+	<blockquote>
+	<b>NB:</b> a <i>gain</i> value of <b>-1</b> inverts the phase of
+	the sound.  This can sometimes be used to maintain high
+	signal levels without clipping.
+	See <a href="cgromixr.htm#GETLEVEL">SUBMIX GETLEVEL</a>.
+	</blockquote>
+<b>-l</b><i>level</i> &#150; amplitude level  (Range: 0 to 1)
+</blockquote>
+
+<h3>
+Understanding the MODIFY LOUDNESS Process
+</h3>
+
+<blockquote>
+<p>
+Information about the current level of a soundfile is given by
+<a href="cgroinfo.htm#MAXSAMP">SNDINFO MAXSAMP</a>.  Information about
+the units used to express loudness is summarised in the chart
+<a href="cgroinfo.htm#UNITSGAINS"><b>Getting a Handle on dB values</b></a>.
+This chart shows both <i>gain</i> multipliers and dB values.  (Click on
+'Back' on your Browser to return from these locations.)
+</p>
+
+<p>
+It is best to adjust level earlier rather than later in a set of
+processes.  Also, it is important to start with a source sound which
+has a reasonable signal level.  Artefacts will appear if a low signal
+is boosted too much.
+</p>
+
+<p>
+Level overflows reported by <i>Csound</i> are usually due to a fault
+in the orchestra file.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This will be one of the 'frequently used' functions, e.g., to:
+	<ul>
+	<li>readjust a level which has either dropped a little too much
+	or overflowed due to processing</li>
+	<li>to boost a source signal which is a little too low to enter
+	into a processing sequence</li>
+	<li>to reduce the level of a soundfile after PVOC (the Phase
+	Vocoder) has reported overflow.  You can use the <i>gain</i>
+	factor recommended by PVOC, or double-check levels with MAXSAMP
+	before applying <i>gain</i>.</li>
+	<li>When filters of time-varying Q are used, the output level
+	tends to drop as the Q increases.  This can be compensated for
+	by using MODIFY LOUDNESS in Mode <b>5</b> (Balance sources),
+	submitting the original file and the filtered file as the two
+	sources.  The resultant soundfile will have the sound of the
+	filtered file with the amplitude contour of the original sound.</li>
+	<li>And it can also be used to impose an envelope on a sound 
+	(just like ENVEL IMPOSE), if you use a time-varying <i>gain</i> 
+	value in Mode 1.</li>
+	</ul>
+</p>
+</blockquote>
+
+<p>
+End of MODIFY LOUDNESS<br>
+<a href="#MODYLIST"><b>Return</b></a> to list of MODIFY functions at top
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="NEWDELAY">NEWDELAY &#150; Delay with pitch-defined output sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>newdelay newdelay</b> <i>insndfile outsndfile midipitch mix feedback</i> 
+<br />
+
+<p>
+Example command line to create a pitch-specified delay :<br>
+	<blockquote>
+	<b><code>newdelay newdelay in.wav out.wav 67 0.75 0.1</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input soundfile<br />
+<i>outsndfile</i> &#150; output soundfile<br />
+<i>midipitch</i> &#150; pitch of the output, expressed as a MIDI Pitch Value.  MIDI Range: -76 to +136.  (See <a href = "notechrt.htm">Notechart</a>)<br />
+<i>mix</i> &#150; the amount of delayed signal in the final mix.  <b>0</b> gives a 'dry' result, <b>1</b> a 'wet' result<br />
+<i>feedback</i> &#150; produces resonance related to delay time (with short times)
+	<blockquote>
+	<i>midipitch</i> may vary over time.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the NEWDELAY Process
+</h3>
+
+<blockquote>
+CDP already has a time-variable delay in <a href = "#REVECHO"><b>MODIFY REVECHO</b></a>, Mode <b>2</b>.  This program specifies the delay time as a MIDI (or pseudo-MIDI) pitch value. In a delay line, with sufficient feedback, very short delays of typically less than 40ms (25Hz) create a pitched resonance.  <i>Midipitch</i> allows you to set this delay time according to the required pitch. However, discrete echoes can also be expressed as a pseudo-MIDI value (e.g., -12 produces delays of about 1/4 sec.), thereby making an important connection between pitch and rhythm.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+...
+</blockquote>
+
+<p>
+End of NEWDELAY NEWDELAY<br />
+<a href="#MODYLIST"><b>Return</b></a> to list of MODIFY functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="PHASE">PHASE &#150; Invert phase or enhance stereo 
+separation of a sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>phase phase 1</b> <i>insndfile outsndfile</i><br />
+<b>phase phase 2</b> <i>instereofile outstereofile</i> [<b>-t</b><i>transfer</i>]
+<br />
+
+<p>
+Example command line to create phased signal:<br>
+	<blockquote>
+	<b><code>phase phase 1 four.wav fourinv.wav</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Invert phase of a sound.<br />
+<b>2</b>&nbsp; Enhance stereo separation by phase shifting.  Input 
+file must be stereo.
+</blockquote
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile;  must be stereo for Mode <b>2</b><br />
+<i>outfile</i> &#150; output soundfile, stereo in Mode <b>2</b>.<br />
+<b>-t</b><i>transfer</i> &#150; amount of signal to be used in 
+phase-cancellation.  Range:  0 to 1.  1 = all.<br />
+</blockquote>
+
+<h3>
+Understanding the PHASE PHASE Process
+</h3>
+
+<blockquote>
+<p>
+In Mode <b>1</b> playback of the output inverted soundfile shows that 
+there is no audible difference from the input soundfile.  However, if 
+you mix the original sound with the phase-inverted sound, you will 
+generate a silent output:  positive and negative amplitude values 
+cancel out.  However, if you mix the input and output with an offset, 
+you get signal and hear an overlap of the two soundfiles (the cancelling 
+out does not fully happen).  You can try this with <a href = 
+cromixr.htm#MERGE"><b>SUBMIX MERGE</b></a>.
+</p>
+<p>
+Also see: <a href="#LOUDNESS"><b>MODIFY LOUDNESS</b></a> Mode 6, which likewise inverts the phase. 
+</p>
+
+<p>
+Mode <b>2</b> is supposed to be a means of creating an enhanced stereo 
+image by suppressing any aspects of the Left image which have bled to 
+the Right, by adding (part of) the phase inverted Left signal on the 
+Right, and <i>vice versa</i>.  T Wishart writes: I learned of this idea from a 
+mixing engineer I met in France, but I'm still not convinced that this 
+achieves anything except in very special circumstances (with particular 
+types of material).  The output may sound the same as the input, except 
+perhaps on the largest PA systems.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Inverting the phase of signals might be appropriate in some mixing or 
+texturing procedures.  See the technical literature.
+</p>
+
+<p>
+</p>
+</blockquote>
+
+<p>
+End of PHASE PHASE<br />
+<a href="#MODYLIST"><b>Return</b></a> to list of MODIFY functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="RADICAL">MODIFY RADICAL &#150; radical modifications: Reverse,
+Shred, Scrub, Lower Resolution, Ring Modulate, Cross Modulate, Quantise
+</h2>
+
+<p>
+<div align=center>
+<table border="1" cellpadding="4" bgcolor="#B0E0E6">
+<tr>
+<td><a href="#MRAUs"><b>Usage</b></a></td>
+<td><br></td>
+<td><a href="#MRAMo"><b>Modes</b></a></td>
+<td><br></td>
+<td><a href="#MRAPa"><b>Parameters</b></a></td>
+<td><br></td>
+<td><a href="#MRAUn"><b>Understanding</b></a></td>
+<td><br></td>
+<td><a href="#MRAAp"><b>Musical Applications</b></a></td>
+</tr>
+</table>
+</div>
+</p>
+
+<h3 id="MRAUs">Usage
+</h3>
+<b>modify radical 1</b> <i>infile outfile</i><br>
+<b>modify radical 2</b> <i>infile outfile repeats chunklen</i>
+[<b>-s</b><i>scatter</i>] [<b>-n</b>]<br>
+<b>modify radical 3</b> <i>infile  outfile dur </i> [<b>-l</b><i>down</i>]
+[<b>-h</b><i>up</i>]  [<b>-s</b><i>start</i>] [<b>-e</b><i>end</i>]<br>
+<b>modify radical 4</b> <i>infile outfile bit_resolution
+srate_division</i><br>
+<b>modify radical 5</b> <i>infile outfile modulating-frq</i><br>
+<b>modify radical 6</b> <i>infile1 infile2 outfile</i><br>
+<b>modify radical 7</b> <i>infile1 outfile bit_resolution</i><br>
+
+<h3 id="MRAMo">Modes
+</h3>
+
+<blockquote>
+<dl>
+<dt id="REVERSE"><b>1&nbsp; REVERSE:</b>  Sound plays backwards<br></dt>
+<dt id="SHRED"><b>2&nbsp;  SHRED:</b>  Sound is shredded, within its existing duration</dt>
+<dt id="SCRUB"><b>3&nbsp; SCRUB</b> BACK &amp; FORTH:  As if hand-winding tape spools over a tape head</dt>
+<dt id="RESOLUTION"><b>4&nbsp; LOSE RESOLUTION</b>:  Sound is converted to a lower sample rate or bit-resolution</dt>
+<dt id="RINGMOD"><b>5&nbsp; RING MODULATE</b>:  Against input modulating frequency, creating sidebands</dt>
+<dt id="CROSSMOD"><b>6&nbsp; CROSS MODULATE</b>: Two input soundfiles are multiplied, creating complex sidebands</dt>
+<dt id="QUANT"><b>7&nbsp; QUANTISE</b>: Sound is converted to specific bit-resolution (mid-rise).</dt>
+</blockquote>
+
+<h id="MRAPa">Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>infile2</i> &#150; 2<sup>nd</sup> input soundfile, for cross modulation
+<br />
+<i>outfile</i> &#150; output soundfile written after processing<br />
+<i>repeats</i> &#150; number of repeats of shredding process<br />
+<i>chunklen</i> &#150; average length of chunks to cut and permutate<br />
+<b>-s</b><i>scatter</i> &#150; randomisation of cuts (Range: 0 to K,
+where K = duration of <i>infile</i>&#47;<i>chunklen</i>  Default = 1)
+	<ul>
+	<li>If <i>scatter</i> = 0, reorders without shredding</li>
+	<li><b>NB1:</b> <i>chunklen</i> * <i>scatter</i> must be less
+	than the length of the program's sound buffer (Default is 1 Mb
+	or the setting for CDP_MEMORY_BBSIZE)</li>
+	<li><i>Scatter</i> results in chunks of variable length.</li>
+	<li><b>NB2:</b> If the input sound is greater than the internal
+	buffer length, each buffer of sound is shredded independently</li>
+	</ul>
+<b>-n</b> &#150; use this flag for a smoother output<br />
+<i>dur</i> &#150; minimum length of <i>outfile</i> required<br />
+<b>-l</b><i>down</i> &#150; lowest downward tranposition in semitones<br />
+<b>-h</b><i>up</i> &#150; highest upward transposition in semitones<br />
+<b>-s</b><i>start</i> &#150; scrubs start before time <i>start</i> seconds
+<br />
+<b>-e</b><i>end</i> &#150; scrubs end after time <i>end</i><br />
+<i>bit_resolution</i> &#150; Range: 1 - 16 Default 16-bit.<br>
+<i>srate_division</i> &#150; divide the sample-rate. Range: 1 to 256 Default 1 (normal)
+	<ul>
+	<li>The value entered will be rounded to a power of 2</li>
+	<li>Works <b>only on Mono files</b></li>
+	</ul>
+<i>modulating-frq</i> &#150; number of cycles per second</li>
+</blockquote>
+
+<h3 id="MRAUn">Understanding the MODIFY RADICAL Process
+</h3>
+
+<blockquote>
+<p>
+Let's take this Mode by Mode:
+	<ul>
+	<li><b>Mode 1 REVERSE:</b> The soundfile is re-written back to 	front: 	starting at the end and ending at the beginning.</li><br />
+
+	<li><b>Mode 2 SHRED:</b> The soundfile is (randomly) segmented, 	
+	and these segments reordered by means of a permutation process.  
+	As the number of <i>repeats</i> increases, it gets more and more
+	jumbled, literally 'reducing it to shreds'.  The <b>-n</b> adds 
+	splicing that results in a smoother output.</li><br />
+
+	<li><b>Mode 3 SCRUB:</b> This is an acceleration&#47;deceleration
+	process which models an editing procedure used in the 'classical'
+	tape studio:  the desired edit point was found by turning the
+	tape spools by hand so that the tape moved (very slowly!) across
+	the tape head.  You could hear locate exactly where silence
+	began or ended, where clicks came etc., although the sound was
+	very low because of the slow speed.
+	<br /><br>
+	The SCRUB function could also be used creatively, to create extreme 
+	speed modifications of the source sound on the tape, e.g. an abrupt 
+	acceleration-deceleration as the tape went from not-moving, 
+	to fast-moving, to stopped as the hands jerked the tape 
+	across the heads.</li><br />
+
+	<li><b>Mode 4 LOSE RESOLUTION:</b> Reducing the sample rate reduces the level of the Nyquist frequency (sample_rate&#47;2), thereby
+	lowering the frequency level which can be safely handling during
+	processing.  Lowering the bit-resolution reduces the precision of the
+	numerical expression of the data, making the digital 'quantisation'
+	of the sonic material coarser.  This means that time-varying
+	information is lost.</li><br />
+
+	<li><b>Mode 5 RING MODULATION:</b> multiplies two (bipolar)
+	signals.  In this case, one signal is a soundfile and the other
+	is a <i>modulating_frq</i>.  This creates two 'sidebands' which
+	are the sum and the difference of the two signals, while the
+	carrier signal disappears.  The result is a timbrally 'hollow'
+	sound.  (See Curtis Roads, <i>The Computer Music Tutorial</i>,
+	pp. 215-220).</li><br />
+
+	<li><b>Mode 6 CROSS MODULATION:</b> multiplies two different
+	soundfiles, producing a very strange mixture of the two. Each frequency of the second sound ring-modulates the first sound. </li>
+	<br>
+
+	<li><b>Mode 7 QUANTISE:</b> This lowers the bit-resolution, like the second parameter of LOSE RESOLUTION.</li>
+	</ul>
+</p>
+</blockquote>
+
+<h3 id="MRAAp">Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Again, Mode by Mode:
+	<ul>
+	<li><b>Mode 1 REVERSE:</b> Reversing a sound can be used simply
+	as a first stage in moving a familiar sound towards more abstract
+	sonic material.  Also, sounds can have a very characteristic
+	'signature' when played backwards (e.g., piano tones sound
+	like crescendoing chords), so reversal can be used to achieve
+	these effects.</li><br />
+
+	<li><b>Mode 2 SHRED:</b> Jumbling segments can be used for 	humorous effect, to texture a sound, or to create a series of randomly
+	placed impulses (if the sound has sharp attacks in it).</li><br />
+
+	<li><b>Mode 3 SCRUB:</b> Scrub can be used for crazily      	improvised changes of speed within a sound.</li><br />
+
+	<li><b>Mode 4 LOSE RESOLUTION:</b> These processes will produce a
+	deliberately coarse sound.  'Rough' sound material is sometimes
+	useful as a serendipitous input to other processes.</li><br />
+
+	<li><b>Mode 5 RING MODULATION:</b> achieves a timbral alteration
+	which makes it sound thin and hollow, depending on the
+	<i>modulating_frq</i>.</li><br />
+
+	<li><b>Mode 6 CROSS MODULATION:</b> another wierd and wonderful
+	effect which the CDP System allows you to explore!</li>
+	</ul>
+</p>
+</blockquote>
+
+<p>
+End of MODIFY RADICAL<br>
+<a href="#MODYLIST"><b>Return</b></a> to list of MODIFY functions at top
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+
+
+<h2 id="REVECHO">MODIFY REVECHO &#150; Create reverberation, echo
+or resonance around the sound
+</h2>
+
+<p>
+<div align=center>
+<table border="1" cellpadding="4" bgcolor="#B0E0E6">
+<tr>
+<td><a href="#MREVUs"><b>Usage</b></a></td>
+<td><br></td>
+<td><a href="#MREVMo"><b>Modes</b></a></td>
+<td><br></td>
+<td><a href="#MREVPa"><b>Parameters</b></a></td>
+<td><br></td>
+<td><a href="#MREVUn"><b>Understanding</b></a></td>
+<td><br></td>
+<td><a href="#MREVAp"><b>Musical Applications</b></a></td>
+</tr>
+</table>
+</div>
+</p>
+
+<h3 id="MREVUs">Usage</h3>
+
+<b>modify revecho 1</b> <i>infile outfile delay mix feedback tail</i>
+[<b>-p</b><i>prescale</i>] [<b>-i</b>]<br>
+<b>modify revecho 2</b> <i>infile outfile delay mix feedback
+lfomod lfofreq lfophase lfodelay tail</i>
+[<b>-p</b><i>prescale</i>] [<b>-s</b><i>seed</i>]<br>
+<b>modify revecho 3</b> <i>infile outfile</i> [<b>-g</b><i>gain</i>]
+[<b>-r</b><i>roll_off</i>] [<b>-s</b><i>size</i>] [<b>-e</b><i>count</i>]<br>
+
+<h3 id="MREVMo">Modes</h3>
+
+<blockquote>
+<b>1</b> STANDARD DELAY: with feedback &amp; mix (0 = dry) of original
+and delayed signal<br>
+<b>2</b> VARYING DELAY:  with low frequency oscillator varying the
+delay time<br>
+<b>3</b> STADIUM ECHO:  create stadium P.A. type echoes
+</blockquote>
+
+<h3 id="MREVPa">Parameters
+</h3>
+
+<blockquote>
+<i>infile </i> &#150; soundfile to process<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>delay</i> &#150; delay time, <b>in milliseconds</b><br>
+<i>mix</i> &#150; amount of delayed signal in final mix: 0 gives 'dry'
+result (Range: 0 to 1)<br>
+<i>feedback</i> &#150; produces resonances related to delay time (with
+short times) (Range: -1.0 to 1.0)<br>
+<i>tail</i> &#150; time to allow decayed signal to decay to zero
+(Range: -1.0 to 1.0)<br>
+<b>-p</b><i>prescale</i> &#150; prescales input level, to avoid overload<br>
+<b>-i</b> &#150; inverts the dry signal (for phasing effects)<br>
+<i>lfomod</i> &#150; depth of the delay-variation sweep (Range: 0 to 1)<br>
+<i>lfofreq</i> &#150; frequency of the delay-variation sweep (negative
+values give random oscillations)<br>
+<i>lfophase</i> &#150; start-phase of the delay-variation sweep (Range:
+0 to 1)<br>
+<i>lfodelay</i> &#150; time in seconds before the delay-variation sweep
+begins<br>
+<b>-s</b><i>seed</i> &#150; non-zero value gives reproducible output
+(with the same seed) where random oscillations are used (see
+<i>lfofreq</i>)<br>
+<b>-g</b><i>gain</i> &#150; to apply to input signal (Default: 0.645654)<br>
+<b>-r</b><i>roll-off</i> &#150; rate of loss of level across stadium
+(Default: 1)<br>
+<b>-s</b><i>size</i> &#150; multiplies average time between echoes (the
+Default time between echoes of 0.1 sec)<br>
+<b>-e</b><i>count</i> &#150; number of stadium echoes (Default and max: 23)<br>
+</blockquote>
+
+<h3 id="MREVUn">Understanding the MODIFY REVECHO Process
+</h3>
+
+<blockquote>
+<p>
+Mode <b>1</b> provides a fixed delay time.  If a smooth echoey effect is
+wanted, be careful to keep <i>mix</i> on the low side.  Remember that
+<i>delay</i> is given <b>in milliseconds</b>;  after 60ms or so, one
+begins to hear a strong reverberation; after 100 ms the reverberation
+begins to 'bounce', and by 200 ms one begins to hear distinct echoes.
+<i>Delay</i> times greater than 1000 will cause repetitions of (all or
+much of) the sound.  <b>Don't forget to lengthen the <i>tail</i> to
+match the <i>delay</i> time</b>.
+</p>
+
+<p>
+The <i>mix</i> parameter, in adding in the delayed signal, increases
+the reverberant effect.  With a short delay time, this can sound like
+the reverberation which occurs in an enclosed space.  <i>Feedback</i>
+has a similar effect, becoming very pronounced towards a value of 1.0
+&#150; rather like the 'feedback' which occurs when a microphone is
+placed facing a loudspeaker.
+</p>
+
+<p>
+<div align=center>
+<table border=1 cellpadding=3 bgcolor="#B0E0E6">
+<caption><b>REVECHO Mode 1 &#150; Mapping out the Parameter Space</b>
+</caption>
+
+<tr>
+<th align=center><b>Name &amp; Mode</b></th>
+<th align=center><b><i>infile &amp; outfile</i></b></th>
+<th align=center><b><i>delay</i></b></th>
+<th align=center><b><i>mix</i></b></th>
+<th align=center><b><i>feedback</i></b></th>
+<th align=center><b><i>tail</i></b></th>
+</tr>
+
+<tr>
+<td align=center><code>modify revecho 1</code></td>
+<td align=center><code>balsam be1</code></td>
+<td align=center><code><font color="FF0000">35</font></code></td>
+<td align=center><code>0.3</code></td>
+<td align=center><code>0.5</code></td>
+<td align=center><code>0.1</code></td>
+</tr>
+
+<tr>
+<td align=center><code>modify revecho 1</code></td>
+<td align=center><code>balsam be2</code></td>
+<td align=center><code>35</code></td>
+<td align=center><code><font color="FF0000">0.8</font></code></td>
+<td align=center><code>0.5</code></td>
+<td align=center><code>0.1</code></td>
+</tr>
+
+<tr>
+<td align=center><code>modify revecho 1</code></td>
+<td align=center><code>balsam be3</code></td>
+<td align=center><code>35</code></td>
+<td align=center><code>0.3</code></td>
+<td align=center><code><font color="FF0000">0.8</font></code></td>
+<td align=center><code>0.1</code></td>
+</tr>
+
+<tr>
+<td align=center><code>modify revecho 1</code></td>
+<td align=center><code>balsam be4</code></td>
+<td align=center><code><font color="FF0000">100</font></code></td>
+<td align=center><code>0.5</code></td>
+<td align=center><code>0.5</code></td>
+<td align=center><code>0.1</code></td>
+</tr>
+
+<tr>
+<td align=center><code>modify revecho 1</code></td>
+<td align=center><code>balsam be5</code></td>
+<td align=center><code><font color="FF0000">200</font></code></td>
+<td align=center><code>0.5</code></td>
+<td align=center><code>0.5</code></td>
+<td align=center><code><font color="FF0000">0.2</font></code></td>
+</tr>
+
+<tr>
+<td align=center><code>modify revecho 1</code></td>
+<td align=center><code>balsam be6</code></td>
+<td align=center><code><font color="FF0000">500</font></code></td>
+<td align=center><code>0.5</code></td>
+<td align=center><code>0.5</code></td>
+<td align=center><code><font color="FF0000">0.5</font></code></td>
+</tr>
+
+</table>
+</div>
+</p>
+</blockquote>
+
+<h3 id="MREVAp">Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The operation of a standard delay line in Mode <b>1</b> ranges from
+modest reverberation to echo effects.  The reverberations, however,
+tend easily towards rough edges, so for smoother reverbs, look to
+the programs listed below.
+</p>
+
+<p>
+In Mode <b>2</b>, lower values for <i>lfofreq</i> produce a more
+noticeable wave motion, while higher values add to the 'bounce' of
+reverberation.
+</p>
+
+<p>
+Mode <b>3</b> creates a stereo <i>outfile</i>, bouncing the signal
+between speakers with a very prominent delay factor.  The idea is that
+you hear the signal bouncing around the 'stadium'.  The defaults work
+quite nicely, but you can intensify the effect by multiplying the
+delay time with the <i>size</i> parameter.  Note that this is a
+multiple, so values less than 0 (multiplied with the default time of
+0.1 sec) will decrease the delay time.  Beyond <i>size</i> = 2, you
+are likely to run into insufficient buffer space, so if you really
+want longer delay times, you will have to increase the buffer size
+with 'set CDP_MEMORY_BBSIZE=...' (bear in mind the RAM capacity of
+your machine).  (The default buffer size is 1 Mbyte and the units
+are in 'k':  e.g., a BBSIZE of 3000 units is 3 Mbyte).
+</p>
+
+<p>
+<b>ALSO SEE:</b> <a href="cxreverb.htm#REVERB"><b>REVERB</b></a>, <a href="cxreverb.htm
+#RMREVERB"><b>RMREVERB</b></a>, <a href="cxreverb.htm#TAPDELAY"><b>TAPDELAY</b></a> and 
+<a href="#NEWDELAY"><b>NEWDELAY</b></a>.
+</p>
+</blockquote>
+
+<p>
+End of MODIFY REVECHO<br>
+<a href="#MODYLIST"><b>Return</b></a> to list of MODIFY functions at top
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+
+
+<h2 id="SAUSAGE">MODIFY SAUSAGE &#150; Brassage on several sources
+</h2>
+	<blockquote>In <b>Release 6,</b></a> various multi-channel options became available in this update.  See the <a href = "#SAUSAGE-R6-1"><i>space</i></a> and <a href = "#SAUSAGE-R6-2"><i>channel</i></a> parameters.<br />
+	In <b>Release 7</b>, also see <a href = "cgrogrns.htm#NEWTEX"><b>NEWTEX</b></a> in the GRAIN function group, which also has multi-channel output options.
+	</blockquote>
+
+<h3>
+Usage
+</h3>
+
+<b>modify sausage</b> <i>infile [infile2 ... ] outfile velocity density
+hvelocity hdensity<br>
+grainsize &nbsp;&nbsp;pitchshift &nbsp;&nbsp;amp &nbsp;space
+&nbsp;&nbsp;bsplice &nbsp;&nbsp;esplice<br>
+hgrainsize hpitchshift hamp hspace hbsplice hesplice</i><br>
+[<b>-r</b><i>range</i>] [<b>-j</b><i>jitter</i>] [<b>-l</b><i>outlength</i>]
+[<b>-c</b><i>channel</i>] <!--[<b>-d</b>]--> [<b>-x</b>] [<b>-n</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; soundfile to be processed, normally, but not
+necessarily, mono (see <i>space</i>)<br>
+<i>infile2 ...</i> &#150; additional input soundfiles to process<br>
+<i>outfile</i> &#150; output soundfile written after processing<br>
+<i>velocity</i> &#150; speed of advance in <i>infile</i>, relative to
+<i>outfile</i> (Range: &gt;= 0)
+	<blockquote>
+	This is the inverse of a <i>timestretch</i> (i.e., 1&#47;n: higher
+	values make the output shorter, lower values make it longer).  This
+	permits an infinite timestretch.
+	</blockquote>
+<i>density</i> &#150; amount of grain overlap (Range: &gt; 0)
+	<blockquote>
+	Values &lt; 1 leaves intergrain silence, i.e., gaps.  Extremely small
+	values will cease to perform predictably.
+	</blockquote>
+<i>grainsize</i> &#150; size of the grains in milliseconds (Range: must be
+&gt; 2 * the length of the splices; Default: 50ms)<br>
+<i>pitchshift</i> &#150; transposition of grains in + or - (fractions of)
+semitones<br>
+<i>amp</i> &#150; gain applied to the grains (Range: 0 to 1; Default: 1.0)
+	<blockquote>
+	Use only if you want amplitude to vary over a range &amp;&#47;or
+	in time.
+	</blockquote>
+<i>bsplice</i> &#150; length of start-splices on grains in ms (Default: 5)<br>
+<i>esplice</i> &#150; length of end-splices on grains in ms (Default: 5)<br>
+<i>space</i> &#150; set stereo position in <i>outfile</i> 0 = L,
+1 = R (Range: 0 to <i>N</i>)
+	<blockquote id = "SAUSAGE-R6-1">
+	Various multi-channel options are available:
+	<ul>
+	<li>If the <i>space</i> flag is used on a <b>stereo</b> input,  	the program mixes it to mono before acting.</li><br />
+
+	<li>In order to spread the output of the brassage process over 	the multi-channel stage, both the <i>space</i> and <i>hspace</i> 
+	parameters should be set (use Mode <b>7</b>), with <b>different</b> 
+	values.  These can now take values from zero to <i>N</i>, the maximum 
+	channel count specified for the output file.  The output of the BRASSAGE 
+	process will be spread out between the two output channels specified.  
+	(Values below 1 correspond to positions between channel 1 and the highest 
+	output channel).</li><br />
+
+	<li>For audibly equivalent results to a similar process with normal 
+	stereo output, a higher density value must be set.</li>
+	</ul>
+	</blockquote>
+<b>-r</b><i>range</i> &#150; of search for next grain, before <i>infile</i> 'now'
+(Default: 0 ms)<br>
+<b>-j</b><i>jitter</i> &#150; randomisation of grain position; Range 0 to 1
+(Default: 0.5)<br>
+<b>-j</b><i>outlength</i> &#150; maximum <i>outfile</i> length (if end of data
+is not reached)
+	<blockquote>
+	Set to zero (the Default) for this parameter to be ignored.
+	But if <i>velocity</i> is 0 <b>anywhere</b>, <i>outlength</i>
+	must be given.
+	</blockquote>
+<b>-c</b><i>channel</i> &#150; extract and work on just one channel of a multi-channel 
+input (Range: 1 to <i>N</i>)
+	<blockquote id= "SAUSAGE-R6-2">
+	Various multi-channel options are available:
+	<ul>
+	<li>Set <i>channel</i> to <b>0</b> (the Default) for this parameter to be 
+	ignored, or for a <b>multichannel</b> <i>infile</i> to be mixed to 
+	MONO before processing.</li><br>
+	<li>Set <i>channel</i> to a <b>positive</b> integer (<i>N</i>), e.g., 
+	3, the <i>N</i><sup><small>th</small></sup> channel of the multi-channel 
+	file is selected for processing.</li><br>
+	<li>Set <i>channel</i> to a <b>negative</b> integer value (<i>-N</i>), 
+	to produce a <b>multi-channel</b> output soundfile. <br> For example 
+	with the setting <b>-c<i>-8</i></b>, an 8-channel output soundfile 
+	will be produced.</li>
+	</ul>
+	Also see the <i>space</i> parameter above.
+    </blockquote>
+<!-- <i>-d</i> &#150; <br> --> 
+<b>-x</b> &#150; do exponential splices (Default: linear)<br>
+<b>-n</b> &#150; no interpolation for pitch values (quick but dirty)
+	<p>
+	<blockquote>
+	The presence of the upper limit parameters <i>hvelocity</i>,
+	<i>hdensity</i>, <i>hgrainsize</i>, <i>hpitchshift</i>, <i>hamp</i>,
+	<i>hbsplice</i>, <i>hesplice</i>, and <i>hspace</i> make it possible
+	to specify a range of values.  When set, the program chooses random
+	values for that parameter <b>for each grain</b> between the lower
+	and upper limits.  For example, if <i>pitchshift</i> is -3 and
+	<i>hpitchshift</i> is 4, the pitch of each grain will be somewhere
+	within the interval of a perfect 5<sup>th</sup>.  <b>NB:</b> &nbsp;
+	Furthermore, any of these parameters may vary in time (provide the
+	name of a <i>time value</i> breakpoint file).
+	</blockquote>
+	<blockquote>
+	<b>All parameters &#150; except <i>outlength</i> and <i>channel</i>
+	may vary over time.</b>
+	</blockquote>
+	</p>
+</blockquote>
+</blockquote>
+
+<h3>
+Understanding the MODIFY SAUSAGE Process
+</h3>
+
+<blockquote>
+<p>
+MODIFY SAUSAGE is in fact a slight variant on MODIFY BRASSAGE in which
+the latter is adapted to accept more than one <i>infile</i>.  This
+means that the 'brassage' operations will cycle around the input
+soundfiles, producing a more complex sonic texture.
+</p>
+
+<p>
+For Reference manual details, see <a href="#BRASSAGE">MODIFY BRASSAGE</a>
+above.
+</p>
+
+<p>
+<b>NB:</b> This program is not the same as the pre-Release 4 CDP program,
+SAUSAGE.  The older SAUSAGE has the useful option to have the grains from
+the different sources appear in regular rotation or in random order.  It
+can also cycle round a list of pitch (i.e., grain transposition) values.
+Because of these unique features, the older SAUSAGE program has been
+recompiled for Release 4 and included under 'CDP EXTRAS'.  It is invoked
+on the command line simply by 'sausage' and has its own HTML manual of
+the same name.
+</p>
+</blockquote>
+
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote> 
+<p>
+MODIFY SAUSAGE should be used when granular transformations need to
+work with several input soundfiles.
+</p>
+</blockquote>
+</blockquote>
+
+<p>
+End of MODIFY SAUSAGE<br>
+<a href="#MODYLIST"><b>Return</b></a> to list of MODIFY functions at top
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+
+
+<h2 id="SCALEDPAN">MODIFY SCALEDPAN &#150; Distribute sound in
+stereo space, scaling pan data to soundfile duration
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>modify scaledpan</b> <i>infile outfile pan</i> [<b>-p</b><i>prescale</i>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile, MONO only<br />
+<i>outfile</i> &#150; output soundfile<br />
+<i>pan</i> &#150; pan data breakpoint file: positions sound
+in a stereo field, from -1 (Left) to 1 (Right), or beyond<br />
+<b>-p</b><i>prescale</i> &#150; gain reduction factor applied to
+input level in order to avoid clipping  (Default: 0.7)<br />
+</blockquote>
+
+<h3>
+Understanding the MODIFY SCALEDPAN Process
+</h3>
+
+<blockquote>
+<p>
+Sometimes it is useful to apply a process to many sounds,
+slightly modifying that process to suit the different durations
+of the source files. This is especially useful when using
+BULK PROCESSING on the <i>Sound Loom</i>, so that new data files
+do not need to be written for every single input source.
+</p>
+
+<p>
+MODIFY SCALEDPAN enables you to take an existing pan file, for
+example with a panning pattern you use often, and apply it
+to a new sound.  With <b>bulk processing</b> you could
+apply it to hundreds of sounds of slightly different duration.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+In breakpoint files, it can be important that the final value come
+at or near the end of the input soundfile.  This can be particularly
+significant in PAN operations.  Besides enabling you to reuse a
+favourite pan file with new sounds easily, the scaling also ensures
+(automatically) that the panning is properly timed with the duration
+of the <i>infile</i>.
+</p>
+</blockquote>
+
+<p>
+End of MODIFY SCALEDPAN<br>
+<a href="#MODYLIST">Return</a> to List of functions for interacting
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+
+<h2 id="SHUDDER">MODIFY SHUDDER &#150; Shudder a stereo file
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>modify shudder</b> <i>infile1 outfilename starttime frq scatter
+stereo_spread mindepth maxdepth minwidth maxwidth</i>
+<br>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1</i> &#150; input stereo soundfile<br />
+<i>outfilename</i> &#150; note that a '0' will replace the last character 
+of your given outfile name<br />
+<i>starttime</i> &#150; time when the shuddering will begin<br />
+<i>frq</i> &#150; the average frequency of the shuddering<br />
+<i>scatter</i> &#150; randomises the shudder events in <b>time</b>.
+(Range: 0 to 1)<br />
+<i>stereo_spread</i> &#150; positions the shudder events in space.
+(Range: 0 to 1)<br />
+<i>mindepth maxdepth</i> &#150; amplitude of the shudders &#150; each 
+gets a random value between MIN and MAX<br />
+<i>minwidth maxwidth</i> &#150; the duration of the shudder events in
+milliseconds &#150; each gets a random value between MIN and MAX<br />
+	<p>
+	<blockquote>
+	Name of <i>outfile</i> must not end with a '1'
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the MODIFY SHUDDER Process
+</h3>
+
+<blockquote>
+<p>
+MODIFY SHUDDER imposes tremulations on a stereo file, 
+randomised both in time <b>and space</b>, so that it appears 
+to shudder. It is used in the shuddering noise band which 
+then 'speaks' in Trevor Wishart's <i>Imago</i>.
+</p>
+
+<p>
+Note the relationship between <i>frq</i> and <i>width</i>:
+the frequency per second of the shudders and the width of
+soundfile segment that is affected.  Thus there could be
+one shudder per second involving 500ms (0.5 sec) of
+sound, or one shudder per second involving 100ms (0.1 sec),
+etc.  <i>Depth</i> and <i>width</i> MIN and MAX can be the 
+same value.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Although not unlike tremolo and vibrato, these 'shudders' are
+designed to be more gestural, more dramatic in character.
+</p>
+
+<p>
+<b>Suggestion:</b>  experiment with larger values for <i>count</i> 
+(e.g., 10 or more), high values for (amplitude) <i>depth</i> (e.g., 
+0.9 - 1.0), and smaller values for <i>width</i> (e.g., 0.07 - 0.1).  
+Then try slower shudders, such as <i>count</i> = 2 and <i>width</i> 
+(both MIN and MAX) = 0.5.
+</p>
+</blockquote>
+
+<p>
+End of MODIFY SHUDDER<br>
+<a href="#MODYLIST">Return</a> to List of functions for interacting
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+
+<h2 id="SPACE">MODIFY SPACE &#150; Spatialise, or alter the
+spatialisation of, a soundfile
+</h2>
+
+<p>
+<div align=center>
+<table border="1" cellpadding="4" bgcolor="#B0E0E6">
+<tr>
+<td><a href="#MSPACEUs"><b>Usage</b></a></td>
+<td><br></td>
+<td><a href="#MSPACEMo"><b>Modes</b></a></td>
+<td><br></td>
+<td><a href="#MSPACEPa"><b>Parameters</b></a></td>
+<td><br></td>
+<td><a href="#MSPACEUn"><b>Understanding</b></a></td>
+<td><br></td>
+<td><a href="#MSPACEAp"><b>Musical Applications</b></a></td>
+</tr>
+</table>
+</div>
+</p>
+
+<h3 id="MSPACEUs">Usage
+</h3>
+<b>modify space 1</b> <i>infile outfile pan</i> <b>-p</b><i>prescale</i><br>
+<b>modify space 2</b> <i>infile outfile</i><br>
+<b>modify space 3</b> <i>inpantextfile outpantextfile</i><br>
+<b>modify space 4</b> <i>infile outfile narrowing</i><br>
+
+<h3 id="MSPACEMo">Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; PAN: Position or move mono sound in a stereo field<br>
+<b>2</b>&nbsp; MIRROR: Invert stereo positions in a stereo field (i.e.,
+the two channels swap sides, left going to right, and right to left)<br>
+<b>3</b>&nbsp; MIRRORPAN: Invert stereo positions in a pan data file<br>
+<b>4</b>&nbsp; NARROW: Narrow the stereo image of a sound
+</blockquote>
+
+<h3 id="MSPACEPa">Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile to modify; Mode<b>1</b> accepts a
+mono input and produces a stereo output.  The other modes accept only
+a stereo input.<br>
+<i>inpantextfile</i> &#150; a text file containing <i>time pan_position</i>
+data<br>
+<i>outfile</i> &#150; resultant spatialised soundfile<br>
+<i>outpantextfile</i> &#150; a text file containing <i>time pan_position</i>
+data produced by the program, with the pan positions reversed<br>
+<i>pan</i> &#150; floating point value to specify location between
+the pair of stereo speakers, or breakpoint file of <i>time pan</i>
+pairs.  Range: -1.0 to 1.0; 0.0 is centre.<br>
+<b>-p</b><i>prescale</i> &#150; gain factor multiplier with which
+to adjust the input level (Default: 0.7)<br>
+<i>narrowing</i> &#150; make the stereo image less wide:
+	<ul>
+	<li><b>1</b> leaves the stereo image where it is</li>
+	<li><b>.5</b> narrows the stereo image by half</li>
+	<li><b>0</b> converts the stereo image to mono</li>
+	<li>negative values work similarly, but also invert the
+	    stereo image</li>
+	</ul>
+</blockquote>
+
+<h3 id="MSPACEUn">Understanding the MODIFY SPACE Process
+</h3>
+
+<blockquote>
+<p>
+Each Mode performs different but related operations on a sound:
+	<ul>
+	<li>Mode<b> 1</b> PAN: Adjusts the amplitude levels of the
+	two channels so as to create spatial illusions.  A
+	<i>time pan</i> breakpoint file is used to create movement.</li>
+	<li>Mode<b> 2</b> MIRROR: the data in the two channels swaps
+	sides</li>
+	<li>Mode<b> 3</b> MIRRORPAN: this Mode acts on a breakpoint
+	file, reversing the pan data.  Thus, if the pan was from
+	Left to Right, (-1 to 1), it would become Right to Left (1 to -1).</li>
+	<li>Mode<b> 4</b> NARROW: a way to restrict the spatial location
+	of a sound in the horizontal plane</li>
+	</ul>
+</p>
+</blockquote>
+
+<h3 id="MSPACEAp">Musical Applications
+</h3>
+
+<blockquote>
+<p>
+These functions are part of the basic toolbox.
+	<ul>
+	<li>Mode<b> 1</b> PAN: control of sound in 3-D space has been
+	a basic procedure when composing with 'sound' material, especially
+	when these are drawn from nature&#47;the environment.  The
+	assumption here is that you are thinking about the placement and
+	movement of sound as an integral part of your compositional
+	process.  In this case, we are dealing with building these
+	procedures into the sound itself.  There is a further aspect
+	external to the sound itself, achieved by 'mixing' (superimposing
+	sounds and writing a new soundfile) and 'diffusion' (sound
+	placement during playback achieved by manipulating the pan
+	controls on a mixer).</li>
+
+	<li>Mode<b> 2</b> MIRROR: a utility for a quick Left&#47;Right swap</li>
+	<li>Mode<b> 3</b> MIRRORPAN: a utility to achieve Left&#47;Right
+	swaps within breakpoint files</li>
+	<li>Mode<b> 4</b> NARROW: this program allows you to narrow
+	the spread of a stereo field</li>
+	</ul>
+</p>
+
+<p>
+Eventually, multi-channel facilities will open up the possibilities of
+spatial movement enormously.  Until that point, everything has to be done
+in stereo and mixed to create more complicated, e.g., 4-channel effects.
+For example, if working with a 4-channels and 4 speakers positioned 1 -2
+in front and 3 - 4 behind, oblique movement from 2 to 4 can be achieved
+by a Left to Right pan within the sound, and then using the mixing desk
+to move that sound from speaker 2 to speaker 4.
+</p>
+</blockquote>
+
+<p>
+End of MODIFY SPACE<br>
+<a href="#MODYLIST"><b>Return</b></a> to list of MODIFY functions at top
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+
+
+<h2 id="SPACEFORM">MODIFY SPACEFORM &#150; Create a sinusoidal spatial
+distribution data file
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>modify spaceform</b> <i>outpanfile cyclelen width dur quantisation
+phase</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>outpanfile</i> &#150; output pan datafile produced by the program<br />
+<i>cyclelen</i> &#150; the duration of one complete sinusoidal pan cycle<br />
+<i>width</i> &#150; the width of the pan (from 0 to 1, full width)<br />
+<i>dur</i> &#150; the duration of the output file<br />
+<i>quantisation</i> &#150; the time step between successive space-position
+specifications<br />
+<i>phase</i> &#150; the angular position at which the pan starts.  0 is
+full left and 360 is full right.<br />
+	<p>
+	<blockquote>
+	<i>cyclelen</i> and <i>phase</i> may vary over time
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the MODIFY SPACEFORM Function
+</h3>
+
+<blockquote>
+<p>
+MODIFY SPACEFORM produces a pan breakpoint file (.brk would be the
+correct extension) that can be used with <a href="#SPACE"><b>PAN</b></a> or <a href="#SCALEDPAN"><b>MODIFY SCALEDPAN</b></a>.
+Note that the duration of the file, i.e., the last time in the file,
+can be specified.
+</p>
+
+<p>
+This function in effect swings the sound back and forth between the
+speakers in a stereo field.  The speed at which it does so is controlled
+by <i>cyclelen</i> and the location between the speakers is handled
+by <i>width</i>.  If <i>width</i> is:
+	<ul>
+	<li><b>1</b>, the full stereo field is used</li>
+	<li><b>0</b>, no panning takes place and the sound is heard
+	equally (without movement) from both Left and Right speakers.</li>
+	<li><b>0.5</b>, the swing is from halfway between the Left speaker
+	and Center to halfway between the Right speaker and Center, i.e.,
+	from -0.5 to + 0.5</li>
+	</ul>
+</p>
+
+<p>
+The <i>quantisation</i> parameter determines the number of intermediate
+pan positions there will be during each swing around the loop.  0.1
+appeared to produce a good result.  The <i>phase</i> sets where in
+the stereo field the sound will be heard at the beginning of each
+repeat cycle, from whence the movement will emerge.
+</p>
+
+<p>
+Note the sophistication that can be brought to the spatial movement
+when breakpoint files for <i>cyclelen</i> and <i>phase</i> are
+employed.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+A slowly cycling panning motion can be created, generating 
+a sense of an object rotating in space, e.g. a marble rolling 
+around the rim of a huger glass bowl in front of you.  This 
+spatial image can be enhanced by making the level increase 
+on the left-to-right motion, and decrease on the right-to-left 
+motion (or vice cersa), suggesting that the sound moves towards, 
+then away from you, as well as from right to left.  This 
+perception can be enhanced by adding treble-cut filtering 
+and&#47;or subtle reverb to the 'more distant' part of the motion.  
+More generally speaking, sound streams in a piece can be 
+differentiated and characterised by their spatial motion.
+</p>
+
+<p>
+Also see <a href="#SPACE"><b>MODIFY SPACE</b></a> (PAN is Mode <b>1</b>) and
+<a href="#SCALEDPAN"><b>MODIFY SCALEDPAN</b></a>.
+<p>
+
+</blockquote>
+
+<p>
+End of MODIFY SPACEFORM<br>
+<a href="#MODYLIST">Return</a> to List of functions for interacting
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="SPEED">MODIFY SPEED &#150; Change speed (&amp; pitch) of
+sound
+</h2>
+
+	<blockquote>
+	<b>Release 6:</b> The multi-channel equivalent of MODIFY 
+	SPEED is <a href = "cgromc.htm#STRANSMULTI"><b>STRANS MULTI</b></a>.
+	</blockquote>
+<p>
+<div align=center>
+<table border="1" cellpadding="4" bgcolor="#B0E0E6">
+<tr>
+<td><a href="#MSPEEDUs"><b>Usage</b></a></td>
+<td><br></td>
+<td><a href="#MSPEEDMo"><b>Modes</b></a></td>
+<td><br></td>
+<td><a href="#MSPEEDPa"><b>Parameters</b></a></td>
+<td><br></td>
+<td><a href="#MSPEEDUn"><b>Understanding</b></a></td>
+<td><br></td>
+<td><a href="#MSPEEDAp"><b>Musical Applications</b></a></td>
+</tr>
+</table>
+</div>
+</p>
+
+<h3 id="MSPEEDUs">Usage</h3>
+TRANSPOSITION:<br />
+<font color="#FF0000">(NB! - Transposition is always relative to 
+the <b>original</b> speed of the soundfile)</font><br>
+<b>modify speed 1</b> <i>infile outfile speed</i> [<b>-o</b>]<br>
+<b>modify speed 2</b> <i>infile outfile semitone-transpos</i> [<b>-o</b>]<br><br>
+INFORMATION:<br>
+<b>modify speed 3</b> <i>infile inbrkfile</i> [<b>-o</b>]<br>
+<b>modify speed 4</b> <i>infile inbrkfile</i> [<b>-o</b>]<br><br>
+ACCELERATION / DECELERATION:<br />
+<b>modify speed 5</b> <i>infile outfile accel goaltime</i>
+[<b>-s</b><i>starttime</i>]<br><br>
+VIBRATO:<br>
+<b>modify speed 6</b> <i>infile outfile vibrate vibdepth</i><br>
+
+
+<h3 id="MSPEEDMo">Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Vary speed &amp; pitch of a sound, constant or time-varying<br>
+<b>2</b>&nbsp; Vary speed &amp; pitch by a constant or time-varying (fractional)
+number of semitones<br>
+<b>3</b>&nbsp; Get information on varying speed in a time-changing manner<br>
+<b>4</b>&nbsp; Get information on time-variable speed change in semitones<br>
+<b>5</b>&nbsp; Accelerate or decelerate a sound<br>
+<b>6</b>&nbsp; Add vibrato to a sound
+</blockquote>
+
+<h3 id="MSPEEDPa">Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile to process<br>
+<i>outfile</i> &#150; resultant soundfile<br>
+<i>speed</i> &#150; transposition value (ratio) expressed as a
+floating point multiplier.  See <a href="cgroinfo.htm#UNITSRATIO">Chart
+of Ratios</a> covering up and down 2 octaves.  <b>NB:</b> use <b>1.0</b>
+for no transposition.<br>
+<i>semitone-transpos</i> &#150; transposition value in positive or negative
+number of semitones; e.g., 12 raises the sound by an octave, and -12 lowers
+it by an octave.  <b>NB:</b> use <b>0</b> (semitones) for no transposition.
+	<blockquote>
+	Both <i>speed</i> and <i>semitone-transpos</i> may vary over time.
+	</blockquote>
+<i>accel</i> &#150; multiplication of speed to be reached by <i>goaltime</i>
+&#150; i.e., a transposition ratio<br>
+<i>goaltime</i> &#150; time in <i>outfile</i> at which the accelerated
+speed is to be reached.
+	<ul>
+	<li>If the <i>infile</i> does not end there, it continues
+	to accelerate.</li>
+	<li>If the <i>infile</i> finishes before <i>goaltime</i> is
+	reached, the <i>outfile</i> won't reach the specified acceleration
+	value.</li>
+	</ul>
+<i>starttime</i> &#150; time in <i>infile &#47; outfile</i> at which the
+acceleration begins<br>
+<i>vibrate</i> &#150; the rate of vibrato shaking in cyles-per-second
+(Range: 0.0 to 120.0)<br>
+<i>vibdepth</i> &#150; vibrato depth (pitch shift from centre) in [possibly
+fractional] semitones (Range: 0.0 to 96.0)
+	<blockquote>
+	<i>Vibrate</i> and <i>vibdepth</i> can vary over time.
+	</blockquote>
+<b>-o</b> &#150; breakpoint times are read as times in the <i>outfile</i>.
+The Default is to read them as times in the <i>infile</i><br>
+</blockquote>
+
+<h3 id="MSPEEDUn">Understanding the MODIFY SPEED Process
+</h3>
+
+<blockquote>
+<p>
+Speed modification processes change the <b>duration and the
+pitch</b> of the sound together.  Thus a faster speed causes a
+higher pitch, a slower speed a lower pitch.
+</p>
+
+<p>
+MODIFY SPEED offers a range of functions which affect the speed of the
+soundfile.  Perhaps it will be most often used for transposition.  Modes
+<b>1</b> and <b>2</b> both accept either single values or the names
+of time-varying breakpoint files with <i>time transposition</i> pairs.
+</p>
+
+<p>
+The single values act as constants and transpose the whole soundfile
+up or down by the given amount.  In the breakpoint files, transposition
+can be <b>almost instantaneous</b> (almost same time, different
+transposition value), or <b>gradual</b>, creating glissandi (different
+time, different transposition value).  <b>No transposition</b> between
+times is a third possibility (different time, same transposition value).
+These three possibilities are illustrated in the table below:
+
+<div align=center>
+<table border="1" cellpadding="4" bgcolor="#B0E0E6">
+<caption><b>Time-varying transposition (using ratios)</b></caption>
+
+<tr>
+<th><i>time</i></th>
+<th><i>speed</i></th>
+<th><b>Comments</b></th>
+</tr>
+
+<tr>
+<td>0.0</td>
+<td>1.0</td>
+<td>No transposition: start at the original pitch</td>
+</tr>
+
+<tr>
+<td>1.0</td>
+<td>1.498</td>
+<td>Over 1 sec., gliss upwards through a Pefect 5<sup>th</sup></td>
+</tr>
+
+<tr>
+<td>3.0</td>
+<td>1.498</td>
+<td>Hold this new level for 2 sec.</td>
+</tr>
+
+<tr>
+<td>3.0001</td>
+<td>0.5</td>
+<td>At 3 sec., (almost) instantly drop one 8<sup>ve</sup> below
+the original pitch,<br>
+&nbsp;&nbsp;i.e., to 19 semitones below the previous position</td>
+</tr>
+
+<tr>
+<td>6.0</td>
+<td>1.0</td>
+<td>Spend the next 3 sec. glissing back to the original pitch</td>
+</tr>
+</table>
+</div>
+
+<p>
+The program will not accept exactly simultaneous values, giving a
+message to the effect that the times 'are not in increasing order'.
+To get around this, add a tiny bit to the second time &#150; as in
+the example &#150; so that the 2<sup>nd</sup> is nominally later than
+the 1<sup>st</sup>, but virtually simultaneous.
+</p>
+
+<blockquote>
+<p style="background-color: #E0E0E0"> 
+<font color="#FF0000">
+<b>IMPORTANT!</b> Note that transposition changes are always <b>relative
+to the original speed</b> of the soundfile, not its current output speed.
+Thus, in the example above, the soundfile glisses up a perfect
+5<sup>th</sup> (from <i>speed</i> 1.0 to <i>speed</i> 1.498).  With
+the next ratio, 0.5, the soundfile will drop to half of its
+<b>original</b> speed, and consequently to the octave below its
+<b>original</b> pitch.</font>
+</p>
+</blockquote>
+
+<p>
+Sometimes, you may need certain transpositions to occur at specific
+times in the <i>outfile</i>.  The <b>-o</b> flag makes this possible.
+Thus, changing the speed of a file will alter it's duration, and,
+especially when the speed change itself varies in time (using a
+breakpoint file), it will be difficult to determine at what time
+events in the output sound will appear.  For example, if you specify
+a <i>speed</i> of 0.5 at <i>time</i> 2.0 with the default mode, the
+speed of the file will reach 0.5 after 2 seconds of the INPUT file
+have passed &#150; but because the speed of the file has been changed,
+this will <b>not</b> be at 2.0 seconds in the OUTPUT file.
+<b>Therefore, if you want the <i>speed</i> to reach 0.5 at <i>time</i>
+2.0 in the OUTPUT file, you should use the -o flag</b>.
+</p>
+</blockquote>
+
+<h3 id="MSPEEDAp">Musical Applications</h3>
+
+<blockquote>
+<p>
+Transposition which also changes the speed, and therefore the pitch, of
+the soundfile greatly alters the character of the sound.  It is often
+very interesting to hear what a sound will be like 1, 2 or even 3
+octaves below its original pitch.  Deep, rich tones can be achieved
+in this way.  These tones can slowly rise or descend if created with
+a time-varying breakpoint file e.g., moving an octave up or down over
+the time of the whole sound (airplane takeoff sounds, etc.).
+</p>
+
+<p>
+The graphic program <i>Brkedit</i> (PC systems) can create exponential
+or logarithmic breakpoint data, so glissandi in MODIFY SPEED can increase
+or decrease in speed as well as move in a steady (linear) manner.
+Alternatively, this can be done with Mode <b>5</b>.
+</p>
+
+<p>
+Vocal material is very sensitive to pitch changes, so upwards
+transposition of this type will produce fast, squeaky voices, like
+the mice trio in <i>Babe</i>, and downwards transposition will
+produce slow, drawn-out ponderous voices.
+</p>
+
+<p>
+The vibrato created in Mode <b>6</b> is a frequency modulation.  Given
+the very wide ranges allowed, this function is immensely powerful.  A
+slow <i>vibrate</i> with a large <i>vibdepth</i> will swing the original
+sound wildly &#150; increase <i>vibrate</i> and it really 'flaps in the
+breeze' (like a flag in the wind).  A fast <i>vibrate</i> with a reasonably
+tight <i>vibdepth</i>, e.g., a minor 3<sup>rd</sup>, will produce a
+fluttering effect.
+</p>
+
+<p>
+Altogether, a great program to explore and use to push beyond accepted
+conventions.
+</p>
+
+<p>
+<b>NB</b> For transposition which alters the pitch without altering
+the duration of the sound, use <a href="crepitch.htm#TRANSPOSE"><b>REPITCH
+TRANSPOSE</b></a> (spectral envelope moves) or <a href="crepitch.htm#TRANSPOSEF">
+<b>REPITCH TRANSPOSEF</b></a> (original spectral envelope is retained).
+</p>
+</blockquote>
+
+<p>
+<b>Also see: <a href="cgromc.htm#STRANSMULTI">STRANS MULTI</b></a>, the multi-channel version of this function.
+</p>
+
+
+<p>
+End of MODIFY SPEED<br>
+<a href="#MODYLIST"><b>Return</b></a> to list of MODIFY functions at top
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+
+
+<h2 id="STACK">MODIFY STACK &#150; Create a mix that stacks
+transposed versions of source on top of one another
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>modify stack</b> <i>infile outfile transpos count lean
+attack-offset gain dur</i> [<b>-s</b>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; soundfile to stack<br />
+<i>outfile</i> &#150; resultant stacked soundfile<br />
+<i>transpos</i> &#150; when numeric, <i>transpos</i> is the transposition 
+in semitones between successive copies, OR, as a file, it is a
+set of transposition values, one for each stack component<br />
+<i>count</i> &#150; the number of copies in the stack<br />
+<i>lean</i> &#150; the loudness of the highest component, relative
+to the lowest (may be &gt; 1)<br />
+<i>attack-offset</i> &#150; adjusts the <b>time</b> at which the attack
+of each sound occurs;  called <i>attack-time</i> in <i>Sound Loom</i>.<br />
+<i>gain</i> &#150; an overall amplifying gain factor on the output
+sound;  some reduction (less than 1) may be needed.  (It may also 
+be &gt; 1.)  Range:  0.1 to 10<br />
+<i>dur</i> &#150; how much of the output to make (a proportion, 
+from 0 to 1)<br />
+<b>-s</b> &#150;  see the relative levels of the layers in the stack
+</blockquote>
+
+<h3>
+Understanding the MODIFY STACK Process
+</h3>
+
+<blockquote>
+<p>
+New sounds can be developed from existing sources by stacking transposed copes of the original on top of each other. This is particularly successful where the source
+sound has a clearly defined attack at or near the start of the sound and then dies away gradually. If the copies are <b>lined up in such a way that their <i>attacks</i> coincide exactly</b>, the new sound will psycho-acoustically merge into a single sound event with harmonic content (rather than a chord made up of several sounds).  The meaning of this is  very precise:  one is lining up the soundfiles at their <i>perceived</i> beginning, i.e., its <b>attack</b>, not the start of each soundfile.  This is achieved by adjusting the start times of the transposed soundfiles.
+</p>
+
+<p>
+Trevor Wishart has clarified what happens with this program as follows:
+	<blockquote>
+	<p>
+"For example, suppose you start with a source with its attack at 0.5 sec, and your stack transpositions are 0, 12, 24 semitones (i.e. zero, 1 octave up, and 2 octaves up). If you tell the process that the attack is at zero (which it isn't!!!) then the transposed sounds in the output will be lined up to synchronise at zero time, but you will actually hear the event attacks at .125 (24 semitones up), .25 (12 semitones up), and 0.5 seconds:  because the transposed-up sounds get shortened in time, the attacks of the higher transpositions occur earlier in the output sound.  <b>If, however, you declare, 
+correctly, that the attack is at 0.5 seconds in the source, then all the sounds will line up with their attacks at 0.5 seconds in the output.</b>
+	</p>
+
+	<p>
+"In this example, where all the transpositions are upwards, the attack in the output is still at 0.5 secs as described.
+	</p>
+
+	<p>
+"On the other hand, if we used a stack with 2 DOWNWARD transpositions by octaves(0, -12, -24), in order to REACH the attack of the most-slowed-down sound we have now to wait 0.5 x 4 = 2 seconds.  Telling the program that the attack (in the original sound) is at 0.5 seconds will STILL line up all the attacks correctly, but they won't happen until 2 seconds into the output sound, as you can't reach the attack of the slowest sound before 2 seconds have elapsed.
+	</p>
+
+	<p>
+"So this parameter is intended to tell the process where the attack in the original sound really is.  However, you can get interesting effects by giving a slightly incorrect value, sometimes producing rapid pitch-slide attacks in the output."
+	</p>
+	</blockquote>
+
+It is important, therefore, that you accurately identify the time-location of the 
+attack of the sound and work with this information, either completely fusing the 
+sounds by making their attacks coincide, or introducing slight timing differences 
+for various musical reasons, such as a sense of acceleration within a sound.  Thus 
+you can intentionally <i>misinform</i> the program about where the attack is 
+in order to get different kinds of output.  If you give an attack time that is 
+only slightly wrong, this can produce interesting new attack characteristics 
+in the original.  If the attack time given is completely incorrect, the outcome 
+could be anything.
+</p>
+
+<p>
+In the illustration below, the attack comes at 1 second after the start of the 
+sound.  A downwards transposition by 1 octave doubles the length of the sound, 
+causing the attack to come at 2.  Downwards transposition by 2 octaves quadruples 
+the length of the sound, causing the attack to come at 4.<br /><br />
+<div align="center">
+<IMG SRC="images/ModifyStack.jpg" CLEAR="right"></a>
+</div>
+	<ul>
+	<li>If we tell MODIFY STACK that the attack comes at the beginning of 
+	the sound (<i>attack</i> = 0), we get the upper diagram, with the time 
+	between attacks slowing down.</li><br />
+	<br />
+	<li>If we tell the program (correctly) that the attack is at 1 second, 
+	then all the attacks are aligned at the 4 second mark, as in the lower 
+	diagram.</li>
+	</ul>
+</p>
+
+<p>
+The <i>dur</i> (duration) parameter is the proportion of the 
+sound you want to keep.  1 keeps all of it, 0, none of it, 
+and 0.5, half of it.  This is to enable you to truncate the 
+output when very low transpositions would make the output 
+excessively long.
+</p>
+
+<p>
+Octave transpositions are particularly effective at
+'strengthening' a sound source, but any harmonic structure
+may be used. Alternatively, the attacks may be very slightly
+staggered to generate downward (or upward) sweeping glissandi,
+or very tiny transpositions may  be used introducing delay
+effects into the output.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+MODIFY STACK is a very important program.  It enables you to
+construct 'larger' versions of sounds by superimposing transposed
+versions on top of one another.  Furthermore, it does this in such a 
+way as to maximise the fusion of the layered sound by synchronising the 
+attacks.  This relates to a basic technique of orchestral scoring (where it 
+is called 'doubling').  It is a form of automatic mixing involving one soundfile.
+</p>
+
+<p>
+Because of the way the program functions, this is, however, quite a different 
+process from transposing and mixing sounds to produce chords.  (Doing this
+in the Spectral Domain, where transposition can be done without affecting
+duration, still has a place: see, for example, the duplication possibilites in <a href="ccombine.htm#SPECTWIN"><b>SPECTWIN</b></a>.)  
+Here, if the attack points are made
+to coincide, <b>the new sound-object is an integral whole</b>,
+rather than a 'chord' made up of the transposed stack components:
+that is, the components fuse and cannot be separated in perception, as they
+can with a chord played, for example, on a piano keyboard.
+</p>
+
+<p>
+Also note that, as a Time Domain process, the higher transpositions 
+end sooner than the lower ones.  Use Spectral Domain transpositon 
+along with SUBMIX MIX to assemble transposed versions of the same 
+sound when equal length is important.
+</p>
+
+<p>
+Very low transpositions could produce an extremely long output.
+The <i>dur</i> parameter enables you to specify a much shorter
+outfile length.  You can usually get an idea of the harmonic
+content of the output from the first few seconds.
+</p>
+</blockquote>
+
+<p>
+SEE ALSO: <a href="ccombine.htm#SPECTWIN"><b>SPECTWIN</b></a>
+</p>
+
+<p>
+End of MODIFY STACK<br>
+<a href="#MODYLIST">Return</a> to List of functions for interacting
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+<!--
+<p>
+02/01/2023  10:59           436,847 verges.exe	<br />
+SUGGESTED GROUP PLACEMENT (though will be a separate prg): MODIFY (c.f. modify speed)
+</p>
+-->
+
+<h2 id="VERGES">VERGES &#150; Play source, with specified brief moments glissing up or down</h2>
+
+<h3>
+Usage
+</h3>
+<b>verges verges</b> <i>infile outfile times</i> [<b>-t</b><i>transp</i>] [<b>-e</b><i>exp</i>] 
+[<b>-d</b><i>dur</i>] [<b>-n</b>] [<b>-b</b> |<b>-s</b>]
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+<i>infile</i> &#150;input soundfile.<br>
+<i>outfile</i> &#150; output soundfile.<br>
+<i>times</i> &#150; datafile of approx. times to introduce the glissando.<br>
+<b>-t</b><i>transp</i> &#150; semitone transposition at start of verge (Range: -24 to +24 semitones; default: 5)<br> 
+<b>-e</b><i>exp</i> &#150; slope of glissandi; higher values gliss faster. (Range: 1 [default] to 8) <br>
+<b>-d</b><i>dur</i> &#150; duration of glissandi. (Range: 20 to 1000 mS; default: 100 mS) <br>
+<b>-n</b> &#150; use times given. (Default: looks for peak closest to time in source.)<br>
+<b>-b</b> &#150; boost the level of the verges. <br>
+<b>-s</b> &#150; suppress all input except verges (boost verges).
+
+</blockquote>
+
+
+
+<h3>
+Understanding the VERGES Process
+</h3>
+
+<blockquote>
+<p>
+VERGES introduces a brief glissando up or down at the times specified. The normal operation would be to extract a set of times matching elements in the source. The duration </b><i>dur</i>, degree of transposition (<i>transp</i>) and speed of the glissando <i>exp</i> can all be set. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of VERGES<br>
+<a href="#MODYLIST">Return</a> to List of functions for interacting
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+
+
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 27 Apr 2023 for CDP8<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

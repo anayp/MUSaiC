@@ -23,8 +23,12 @@ Use arpeggios and pads, Iris for instruments, BreakTweaker preset 3 for beats."
 - JSON-driven sequencing for synth and sample tracks.
 - Beat or second time units.
 - Offline mixdown with ffmpeg.
+- Per-track mixer controls (gainDb, pan, mute). Pan uses parser-safe arithmetic.
+- **Synth Amp**: Folded into mixer gain (amp -> dB) to avoid binary crashes.
+- Sample looping for clip events; Auto-cleanup of temp files (`-KeepTemp` to override).
 - Basic effects via CDP (reverb, pitch/varispeed).
-- Sample analysis and transforms (in progress).
+- Sample analysis (BPM, pitch estimate, RMS/peak, duration, warnings).
+- Time/pitch transforms via robust tool selection (tries `stretch`/`strans` first, falls back to `modify`).
 
 ## Target Capabilities
 1) **Composition**
@@ -63,6 +67,7 @@ Offline analysis scripts produce:
 - Tempo, beat grid, onset density.
 - Pitch contour or dominant pitch class.
 - Loudness (RMS/LUFS), peak, crest factor.
+Current CLI output (`cdp-analyze.ps1`) includes BPM, pitch estimate (Hz), RMS/peak dB, duration, and warnings for missing estimates.
 
 ### 4) Plugin Hosting Strategy
 Two viable approaches:
@@ -115,6 +120,7 @@ Minimal session shape for future:
 - `cdp-analyze.ps1`: analyze audio (tempo, pitch, loudness).
 - `cdp-transform.ps1`: quick time/pitch changes or advanced transforms.
 - `music-session.ps1`: session-level build (sections, arrangement, export).
+- `cdp-wrapper.ps1`: menu-based score selection and render.
 
 ## Constraints
 - Offline rendering first; real-time playback is optional.

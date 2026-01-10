@@ -1,0 +1,55 @@
+{
+    "project": "MixerDemo",
+    "tempo": 120,
+    "timeUnits": "beats",
+    "tracks": [
+        {
+            "name": "LeftKick",
+            "type": "sample",
+            "source": "examples/kick.wav",
+            "pan": -1.0,
+            "gainDb": -3.0,
+            "events": [
+                {
+                    "time": 0.0,
+                    "dur": 1.0
+                },
+                {
+                    "time": 2.0,
+                    "dur": 1.0
+                }
+            ]
+        },
+        {
+            "name": "RightSynth",
+            "type": "synth",
+            "waveform": "saw",
+            "pan": 1.0,
+            "gainDb": -10.0,
+            "events": [
+                {
+                    "time": 1.0,
+                    "dur": 0.5,
+                    "pitch": 72
+                },
+                {
+                    "time": 3.0,
+                    "dur": 0.5,
+                    "pitch": 75
+                }
+            ]
+        },
+        {
+            "name": "MutedTrack",
+            "type": "synth",
+            "mute": true,
+            "events": [
+                {
+                    "time": 0.0,
+                    "dur": 4.0,
+                    "pitch": 60
+                }
+            ]
+        }
+    ]
+}

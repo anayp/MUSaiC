@@ -1,0 +1,804 @@
+<html>
+<title>Computer Sound Transformation</title>
+<link rel=stylesheet type="text/css" href="style.css">
+<link rel="icon"  href="../images/cdp_favicon.ico">
+</head>
+<body>
+
+<p>
+<a href="../../html/tutorials.htm" Target="_top"><b>Return</b></a> to the Tutorials list <br>
+<a href="../../html/ccdpndex.htm" Target="_top"><b>Return</b></a> to the Main Index 
+for the CDP System.
+</p>
+
+<div align=center>
+<h1 style="color: blueviolet">Computer Sound Transformation</h1>
+<h3 style="color: blueviolet">A personal perspective from the U.K.</h3>
+<p>
+<h2 style="color: blueviolet">Trevor Wishart</h2>
+</p>
+</div>
+
+<h3>
+<u>Introduction</u>
+</h3>
+
+<p>
+For the past thirty years I have been involved in developing and using sound 
+transformation procedures in the studio, initially working on analogue 
+tape, and then through various types of computer platforms as computer music 
+came of age. Over these years I've developed a very large number of 
+procedures for manipulating sounds.  Being a composer, I refer to these 
+processes as musical instruments and they are developed as part of my 
+musical work.  However, I have not been prominent in publishing this work 
+in academic journals as I'm primarily a working artist.  Nevertheless, the 
+processes (and source code) have all been available to others with the 
+facilities to use (or develop) them through a composers' cooperative 
+organisation based in the UK, the <i>Composers' Desktop Project</i>.  As 
+there has been a recent surge of interest in the Phase Vocoder 
+<a href="#F1" name="FF1"><sup><b>1</b></sup></a> as a musical resource, I've 
+been advised by friends in the academic community to put my contribution to 
+these developments on record.
+</p>
+
+<h3>
+<u>Origins</u>
+</h3>
+
+<p>
+The earliest successful transformations I developed can be heard in the piece 
+<i>Red Bird</i> (1973-77) <a href="#F2" name="FF2"><sup><b>2</b></sup></a>. 
+The musical structure of the piece was conceived in terms of such 
+transformations between sound types, but techniques for achieving this had 
+to be developed on an ad hoc basis - through discovering what was 
+practicable with the facilities available in the local analogue studio.  
+The transformations, all from the voice to other sounds, include 'lis' 
+(from the word 'listen') to birdsong, 'rea' (from the word 'reason') to 
+animal-sounds, 'reasonabl-' to water, and various machine-like events 
+constructed from vocal subunits.  They were achieved by combining the 
+elementary studio facilities available (tape editing, mixing, mixer eq) 
+with extended vocal techniques (developed while working as a free 
+improvising vocal performer <a href="#F3" name="FF3"><sup><b>3</b></sup>
+</a>). A discussion of the approaches used in <i>Red Bird</i>, and the 
+concept of Sound Landscape, can be found in <i>On Sonic Art</i> 
+<a href="#F4" name="FF4"><sup><b>4</b></sup></a>. A more detailed description
+of the composition of this piece can be found in <i>Red Bird, A Document</i> 
+<a href="publ.htm"> <a href="#F5" name="FF5"><sup><b>5</b></sup></a>.</p>
+</p>
+
+<p>
+Realising that these notions of spectral transformation could in principle be generalised
+in a computing environment, when major computer music facilities became available in Europe
+(at IRCAM in Paris) I submitted a proposal for a work based on vocal transformation and 
+was invited on the induction course in 1981. There I discovered a potential 
+transformation tool (Linear Predictive Coding 
+<a href="#F6" name="FF6"><sup><b>6</b></sup></a>), and was invited to 
+compose a work.  Unfortunately the mainframe system at IRCAM, and much of 
+the indigenous software, was changed immediately following this visit, and 
+the project could not proceed until 1986, when the research and composition 
+for <i>Vox 5</i> was finally commissioned.  It was suggested to me that the 
+CARL Phase Vocoder (Moore, Dolson) might be a better tool to use, but 
+no-one at IRCAM at that time had inside knowledge of the workings of 
+this program, so I took apart the data files it produced to work
+out for myself what was going on.
+</p>
+
+<p>
+I eventually developed a number of software instruments for the spectral 
+transformation of sounds which were then used to compose <i>Vox 5</i>.  
+These instruments massaged the data in the analysis files produced by the 
+Phase Vocoder.  The most significant of these were <b>stretching the 
+spectrum</b> (see below) and <b>spectral morphing</b> &#150; creating a 
+seamless transition between two different sounds <i>which are themselves in 
+spectral motion</i>.  These are described in a Computer Music Journal 
+article <a href="#F7" name="FF7"><sup><b>7</b></sup></a>. 
+</p>
+
+<h3>
+<u>Establishing a personal computer based development environment in 
+the U.K.</u>
+</h3>
+
+<p>
+Returning from IRCAM to the UK musicians were faced with an entirely 
+different development environment.  There was no independent national 
+research centre for music &#150; music research was confined to University 
+music departments.  Most of these were small and very poorly funded &#150; 
+they were seen as primarily sites of humanities research and hence could 
+not attract the money required for advanced computing equipment, which 
+at that time was very expensive.  A number of departments had PDP-11 
+computers accessible to a few research students and staff &#150; updating 
+this equipment was a constant financial worry.
+</p>
+
+<p>
+During 1986-7, a group of composers (initially Andrew Bentley, Archer 
+Endrich, Richard Orton, and myself) and developers (Martin Atkins and 
+David Malham) based in York, (and all ex-graduates or current staff of 
+the University of York), working in financially astringent circumstances 
+<a href="#F8" name="FF8"><sup><b>8</b></sup></a>, ported Richard Moore's 
+<i>Cmusic</i> <a href="#F9" name="FF9"><sup><b>9</b></sup></a> and the 
+Mark Dolson Phase Vocoder to a desktop platform.  I then implemented the 
+instruments developed at IRCAM.  The platform chosen at the time was the 
+Atari ST as this machine was <i>just</i> fast enough to be able to play 
+stereo soundfiles running at a sample rate of 48,000 &#150; at that time
+the Macintosh was not fast enough <a href="#F10" name="FF10"><sup><b>10</b>
+</sup></a>.  This was the start of a larger project to make computer music 
+tools available to composers and institutions without significant financial 
+resources.  This project was called the <i>Composers' Desktop Project</i> 
+(CDP).  In fact the idea of a user-group development-environment based 
+on personal computers originated out of necessity in this environment, 
+predating subsequent developments at IRCAM and elsewhere by
+several years.
+</p>
+
+<p>
+The instruments ran initially in a command-line environment (a graphic 
+environment was developed later by Rajmil Fischman and others working at 
+the University of Keele).  They were later ported from the Atari ST first 
+to the Atari TT then to the PC where they ran (and, in 2000, still can be 
+run) under MS-DOS.  Almost all later platforms were chosen partly for 
+their low cost &#150; many CDP users, including myself, did not have 
+departmental salaries or budgets to buy expensive personal computers or
+to constantly update them.  The software also ran on the Silicon Graphics 
+machines at the University of York and elsewhere.  More recently two 
+different graphic interfaces have been developed to drive the software, 
+my own contribution being the <i>Sound Loom</i>, written in TK/TCL so 
+that it is potentially portable from one computer platform to another.
+</p>
+
+<p>
+Immediately after the IRCAM  project in 1986, working in the CDP 
+environment, I developed a large number of other spectral transformation 
+tools using the Phase Vocoder data as a starting point.  Subsequently, I 
+also created a number of original time-domain instruments (e.g. <b>waveset 
+manipulation</b>, <b>grain manipulation</b>, <b>sound shredding</b>) and
+extensions of existing instruments (e.g. <b>brassage</b> 
+<a href="#F11" name="FF11"><sup><b>11</b></sup></a>).  In 1994, a complete 
+description of all the spectral, time-domain and textural transformation 
+possibilities available on the CDP system was published in the book 
+<i>Audible Design</i> <a href="#F12" name="FF12"><sup><b>12</b></sup></a>. 
+The book has been used subsequently as a source by other software developers
+(for example by Mike Norris who implemented many of my waveset manipulation 
+procedures on the Macintosh, now available from <i>Sound Magic</i>) some 
+of whom may well have had access to the CDP code.
+</p>
+
+<p>
+I would stress that the work of researchers and developers at IRCAM (notably
+Steve McAdams who introduced me to contemporary psycho-acoustic research on
+the 1981 induction course and, later, Miller Puckette), and at the G.R.M. 
+<a href="#F13" name="FF13"><sup><b>13</b></sup></a>  &#150; where I 
+attended the composition course in 1993 &#150; were an important source of 
+knowledge, ideas and inspiration for my work.  However, when the sound 
+morphing and spectral stretching instruments for <i>Vox 5</i> were
+originally developed as part of the public domain system shared by IRCAM, 
+Stanford and other major sites, IRCAM's research priorities were focused 
+elsewhere. The instruments did make their way to the USA via the University 
+of Santa Barbara and Dan Timis (the resident computer wizard at IRCAM when 
+I was working there).  Later IRCAM did decide to pursue Phase Vocoder 
+based transformation and the <i>Super Phase Vocoder</i> (SVP) group was 
+established (the basis of the later <i>AudioSculpt</i>).  During the 
+development phase of SVP, when the CDP spectral transformation suite was 
+already quite large, I was a visitor at IRCAM, and discussed possible 
+transformational approaches with some of the team working on the program.
+</p>
+
+<p>
+The pioneering development work of the CDP has remained largely unknown or 
+forgotten about as the vast majority of the Computer Music community 
+eventually opted for the Macintosh as the machine of choice.  Furthermore, 
+being developed primarily by a group without official financial support 
+from within the University infrastructure, the project was always short of 
+resources.  An initial grant from the Gulbenkian Foundation helped propel 
+us forward in the first 18 months, but this was exceptional.  Nevertheless 
+the CDP continued to make both its instruments and its code available
+to interested users and developers. I am indebted to the work of many others
+developers (including in particular Richard Orton and Richard Dobson) and to
+the C.D.P. Administrator, Archer Endrich, for continuing to promote, support 
+and develop the system, and make it more accessible to users, despite the 
+lack of financial rewards.  The system has tended to be adopted by 
+independent composers or small educational institutions with limited 
+budgets.  However, the source code has been available at a number of UK 
+(and other) University sites at different times, even after these moved 
+to a primarily Mac-based studio system.  And some institutions, notably 
+the Institute of Electronic Music in Vienna, developed sophisticated graphic
+interfaces of their own. 
+</p>
+
+<h3>
+<u>The Instruments  &#150; (1) Spectral Transformation using the Phase 
+Vocoder</u>
+</h3>
+
+<p>
+There is not enough space to describe all the C.D.P. procedures in this 
+article, so I will describe only the more interesting ones, or those not 
+available elsewhere. Full descriptions of all these processes can be found 
+in <i>Audible Design</i>.
+</p>
+
+<p>
+In the first phase of development (post 1986), many spectral transformations 
+were implemented in the Atari environment.  These included <b>spectral 
+morphing</b> (see above), and various types of <b>spectral shifting</b> 
+and <b>spectral stretching</b>, from a linear shift (adding a fixed value 
+to all frequency data, thus e.g. making a harmonic spectrum become
+inharmonic), through a multiplication (preserving harmonic relations 
+between data, but transposing the pitch &#150; but with the ability to 
+split the spectrum at a given frequency, and hence produce doubly-pitched 
+output sounds) to differential multiplication of the data (<b>spectral 
+stretching</b>, a more sophisticated way to convert harmonic into inharmonic 
+spectra, used in <i>Vox 5</i> to convert vocal sounds into bells). 
+<b>Time-variable time-stretching</b> procedures were also implemented, 
+more general than those existing in the CARL Phase Vocoder implementation 
+itself.  These are important if one wishes to preserve the attack 
+characteristics of a sound while time-stretching the sound (as a whole) 
+by a large factor.
+</p>
+
+<p>
+<b>Spectral cleaning</b> was developed using a comparative method &#150; 
+part of the spectrum deemed to be (mainly) noise (and, in some options, 
+part of the spectrum deemed to be clear signal) being compared with the 
+rest of the signal and appropriate subtractions of data or other 
+modifications made.
+</p>
+
+<p>
+From a musical point of view, the most innovative early new developments 
+were <b>spectral banding</b>, a rather complicated 'filter', which enabled 
+the spectrum to be divided into bands, and various simple amplitude-varying 
+(and in fact frequency-shifting) processes to be applied to the bands, 
+<b>spectral tracing</b> and <b>spectral blurring</b>.
+</p>
+
+<p>
+<b>Spectral tracing</b> simply retains the N channels with the loudest 
+(highest amplitude) data on a <i>window-by-window basis</i>. If N is set 
+to c. 1&#47;8<sup>th</sup> the number of channels used in the PVOC analysis, 
+this can sometimes function as an effective noise reduction procedure 
+(the value of N which works best depends on the signal). When N is much
+smaller than this, and a complex signal is processed, a different result 
+transpires.  The small number of PVOC channels selected by the process 
+will vary from window to window.  Individual partials will drop out, or 
+suddenly appear, in this elect set.  As a result, the output sound will 
+present complex weaving melodies produced by the preserved partials as 
+they enter (or leave) the elect set.  This procedure is used in <i>Tongues 
+of Fire</i> <a href="#F14" name="FF14"><sup><b>14</b></sup></a>.
+</p>
+
+<p>
+<b>Spectral blurring</b> is an analogous process in the time dimension.  
+The change in frequency information over time is averaged  &#150; in fact, 
+the frequency and amplitude data in the channels is sampled at each 
+N<sup>th</sup> window, and the frequency and amplitude data for intervening 
+channels <i>generated</i> by simple interpolation.  This leads to a blurring 
+or 'washing out' of the spectral clarity of the source.
+</p>
+
+<p>
+<b>Arpeggiation of the spectrum</b> (a procedure inspired by vocal synthesis 
+examples used by Steve McAdams at IRCAM to demonstrate aural streaming) was 
+produced by 'drawing' a low frequency simple waveform onto the spectrum.  
+This oscillator rises and falls between two limit values &#150; values of 
+frequency in the original spectrum &#150; specified by the user.  Where 
+this waveform crosses the spectral windows, the channel (or surrounding 
+group of channels, or all the channels above, or all those below) is 
+amplified.  <b>Spectral plucking</b> was introduced to add further amplitude 
+emphasis (and an element of time-decay of the emphasized data) to the 
+selected channels.
+</p>
+
+<p>
+A number of other processes (such as <b>spectral freezing</b> and sustaining 
+of the spectrum at particular moments, and <b>spectral interleaving</b>, 
+timewise, the spectra from different sources) were implemented in this 
+early phase.
+</p>
+
+<p>
+Tuning the spectrum was introduced a little later. <b>Tune spectrum</b> 
+works by selecting channel data lying close to the partials of a specified 
+set of pitches, and moving the frequency of that data to (or towards) the 
+desired partial frequency.  The spectrum can also be traced (see above) 
+before doing this.  <b>Choose partials</b> selects channels which should 
+contain frequencies close to those of a specified set of partial frequencies
+(harmonics of, odd harmonics of, octaves above, linear frequency steps away 
+from, or a linear frequency displacement from harmonics of a given 
+fundamental).  As analysis channels above the 21<sup>st</sup> are 
+sufficiently narrow to focus on a semitone band of frequency or less, the 
+channel number itself is sufficient to grab the desired partials.
+</p>
+
+<p>
+After discussing possible algorithms with the SVP developers, I implemented 
+some of their ideas for spectral filters (defining filters in a more 
+conventional way than the banding procedure described above), and 
+implemented various types of <b>low pass</b>, <b>high pass</b>, <b>band 
+pass</b>, <b>notch</b> and <b>graphic e.q.</b> <b>spectral filters</b>, 
+together with a <b>chorusing</b> procedure suggested by Steve McAdams' 
+work (introducing jitter into the partials data).
+</p>
+
+<p>
+After discussions with Miller Puckette about his work on tracking the 
+pitch produced by instrumentalists performing in real time, procedures 
+to <b>extract the pitch</b> of PVOC data were finally developed into a 
+useful form, and instruments to correct the data, to transform the pitch 
+data (<b>quantise, shift, vibrato, approximate, or randomise the
+pitch</b>, and <b>exaggerate, invert or smooth the pitch contour</b>), 
+and <b>apply the pitch to other sounds</b>, were developed.
+</p>
+
+<p>
+At the same time, the <b>extraction of formants</b> from the PVOC data 
+was implemented satisfactorily for the first time within the CDP 
+environment. This enabled the <b>inner glissando</b> procedure to be 
+developed.  Here, the process retains the time-varying spectral envelope 
+(the formant envelope) of the sound, but replaces the signal itself by an 
+endlessly glissandoing Shepard Tone signal <a href="#F15" name="FF15">
+<sup><b>15</b></sup></a>.
+</p>
+
+<p>
+<b>Shuffling</b> the sequence of windows, and <b>weaving</b> a specified path 
+(including possible repetitions and omissions) through the windows were 
+implemented at an earlier stage.  A <b>'drunken-walk'</b> through the 
+analysis windows was suggested by Miller Puckette's work in MAX.  Miller 
+also suggested the procedure of <b>octave pitch-shifting</b> through
+selective partial deletion, while Oyvind Hammer of NOTAM <a href="#F16" 
+name="FF16"><sup><b>16</b></sup></a> proposed <b>scattering</b> of the
+spectral data.
+</p>
+
+<h3>
+<u>The Instruments  &#150; (2) Original Time-domain procedures</u>
+</h3>
+
+<p>
+Alongside this spectral transformation work, a large number of time-domain 
+procedures have been developed for sonic composition.
+</p>
+
+<p>
+<b>Waveset distortion</b> was developed for the CDP while composing 
+<i>Tongues of Fire</i>.  I defined a waveset as the signal between any 
+pair of zero-crossings.  With a simple sine-wave the waveset corresponds 
+to the waveform.  But even with a harmonic tone with very strong partials, 
+the waveform may cross the zero more than twice in a complete cycle.  In 
+this case the wavesets are shorter than the waveform. With complex signals 
+(e.g. speech) containing noise elements, the definition of the waveset 
+produces many varieties of technically arbitrary, but potentially musically 
+interesting, artefacts.  A whole suite of procedures was developed to 
+manipulate wavesets.  I have used three at prominent moments in compositions.
+</p>
+
+<p>
+The first of these involves replacing each waveset with a standard-shape 
+waveform (e.g. a sinewave).  This produces a very pronounced spectral 
+transformation of the source, but one where the zero-crossings of the 
+result are exactly aligned with those of the source.  It is thus possible 
+to use a simple mixing procedure (another CDP process, <b>Inbetweening</b>, 
+does this) to produce a sequence of sounds intermediate between the source 
+and the new sound.  These two procedures were developed and used to produce 
+the 'Wood' to 'Drum' transformations in <i>Tongues of Fire</i>. 
+</p>
+
+<p>
+The second, <b>waveset averaging</b>, involves extracting the shape of 
+each waveset, and then averaging this shape over a group of N adjacent 
+wavesets.  Again, this produces an extreme modification of the source 
+(usually a relatively harsh sound and often a transformation so distant 
+from the source that little audible connection is apparent!) and is used 
+in the 'fireworks' transformation immediately after the rhythmic climax 
+of <i>Tongues of Fire</i>.  The article <i>Sonic Composition in 'Tongues 
+of Fire'</i> <a href="#F17" name="FF17"><sup><b>17</b></sup></a> discusses 
+this in more detail.
+</p>
+
+<p>
+Finally, <b>waveset repetition</b> generates unusual pitch artefacts in 
+complex signals.  In particular, any small fragment of a noise signal, 
+if repeated a number of times, generates a tiny pitch artefact.  The second 
+movement of <i>Two Women</i> <a href="#F18" name="FF18">(18)</a>, based 
+around the voice of Princess Diana, uses this instrument to ornament and
+fragment the vocal material, different repetition rates being used in the 
+left and right channels to produce an irregular panned echo/delay, with 
+<b>iteration</b> (see below) being used as a reverb-like process to sustain 
+various pitch elements which arise from the first procedure.
+</p>
+
+<p>
+Familiarity with the G.R.M.'s work on the classification of sounds 
+<a href="#F19"  name="FF19"><sup><b>19</b></sup></a> drew my attention to 
+the difficulty of time-stretching iterative sounds i.e. sounds like a 
+rolled 'r' or a low contrabassoon pitch, where the sound is perceived as a 
+series of individual attacks. In (realistic) time-stretching, we need to 
+avoid time-stretching the event attack itself as stretching this can 
+dramatically alter our recognition (or mental classification) of the 
+source.  Hence we would usually apply a time-stretching parameter which 
+itself varies through time, being 1.0 (no stretch) during the attack, and 
+increasing rapidly to the desired stretch ratio immediately after the 
+attack.  With iterative sounds, however, we are faced with a whole stream 
+of attacks, and this simple solution is not available.  To deal with 
+these a number of <b>Grain manipulation</b> instruments were developed.  
+These instruments extract the (loudness) envelope of the sound by gating 
+it.  Using this envelope the source can be fragmented into attacked 
+elements and these elements repositioned in time (or in pitch or both) in 
+the output sound. (The process can also track the <i>overall</i> amplitude 
+of the source and adjusts the gate level for the grains correspondingly).
+</p>
+
+<p>
+This approach also allows one to <b>reverse an iterative sound</b>.  Most 
+sounds have an asymmetric form with a (relatively) loud initiating event 
+at the beginning, and a tailing away to zero at the end (these features 
+themselves can have a vast number of forms).  Playing a sound backwards 
+therefore rarely results in a sound that we recognise as being a close 
+relative of the original.  Only sounds of (on average) steady amplitude 
+which have attack and decay as inverses of one another e.g. a slow fade in 
+matching a slow fade out, will appear similar when we reverse them. 
+Iterative sounds are particular difficult in this respect as every attack 
+within them gets reversed. If we extract the grains and then sequence them in 
+the reverse order, without reversing the grains themselves, we achieve a 
+convincing sense of retrograding the sound without change of source 
+recognition.
+</p>
+
+<p>
+Similar sound-structural considerations apply to extending sounds using 
+looping procedures.  Recording a rolled 'r', isolating a single tongue-flap 
+sound, then looping it to generate a 'rolled-r' at the same rate as the 
+original produces an entirely mechanical artefact sounding completely unlike 
+the original rolled-'r' source. Natural 'repetition' is usually 
+micro-inexact.  Thus the <b>Iteration</b> instrument allows a signal to be 
+looped, but imposes (user-controlled) random pitch, amplitude and timing 
+fluctuations on the repeated elements.  Using Iteration the sound generated 
+from the single flap can be extremely natural (but, of course, more distant 
+transformations are also possible).  Grain manipulation and Iteration were 
+both developed and used while composing <i>Tongues of Fire</i>.
+</p>
+
+<p>
+Various instruments allow scrambling of a sound through simple editing and 
+rejoining of the edited segments.  In particular, in <b>Sound Shredding</b>, 
+I cut up a sound (at random time-points) into a number of separate segments, 
+shuffles these segments, and reassembles them to the exact duration of the 
+original.  The <i>resulting</i> sound is then cut up again, differently, 
+and the reassembly repeated. This process can take place any 
+(user-specified) number of times.  Applying the process about 400 times to 
+rapid speech material produced a sound very similar to that of water running 
+around rocks in a small stream, and this transformation can be heard 
+spanning a 2 minute section of <i>Tongues of Fire</i>.
+</p>
+
+<h3>
+<u>The Instruments &#150; (3) New perspectives on existing procedures</u>
+</h3>
+
+<p>
+What are now referred to as <b>granular synthesis</b> procedures, but 
+applied to input sources, were developed at any early stage of the CDP. 
+(The CDP instruments are almost exclusively concerned with the transformation 
+of existing sources, rather than with synthesis).  These are described 
+as <b>texture generation</b> instruments. Initially these procedures 
+generated scripts for a simple <i>Csound</i> <a href="#F20" name="FF20">
+<sup><b>20</b></sup></a> instrument which read (any number of) input sounds 
+and then distributed them in the texture according to the instructions 
+given by the user. The dependence on <i>Csound</i> scripts was superseded 
+by direct use of the soundfiles themselves.
+</p>
+
+<p>
+Texture Generation was (and is) able to use an arbitrarily large number of 
+input sounds, to generate a stream of events where all the following 
+parameters can themselves vary through time:
+
+<ul>
+<li>the average time between event repetitions (the density of events) 
+<i>or</i> the specification of a sequence of event times
+<li>the scatter (or randomisation) of event timings (which means the 
+instrument can generate anything from dance-music-like regularity to 
+complete arhythmicity)
+<li>a quantisation grid for times (or none)
+<li>a specification of which range of input sounds are to be used
+<li>the range and range-limits of pitch-transposition of the events
+<li>the range and range-limits of event amplitudes
+<li>the range and range-limits of durations of the individual events in the 
+texture
+<li>the spatial centre of the texture on the stereo stage, and its motion
+<li>the spatial bandwidth of the texture on the stereo stage.
+</ul>
+
+A neutral texture is generated from independent events over a transposition 
+range without regard to tuning, tempering etc.  However, the texture can 
+also be generated...
+
+<ul>
+<li>over a harmonic field (not necessarily tempered) which can itself change 
+through time
+<li>clustered into groups of events of specified or random pitch-shape
+<li>formed from a line with arbitrary or specified decorating patterns 
+(which themselves have properties with independent parameters of their own). 
+</ul>
+
+The texture generation instrument are used extensively in all my sonic art 
+pieces since <i>Vox 5</i>.
+</p>
+
+<p>
+The <b>brassage</b> techniques extensively and powerfully developed by the 
+G.R.M. and implemented (in various guises) in <i>G.R.M. tools</i> I have 
+independently implemented in the CDP environment.  The G.R.M. have divided 
+brassage into a series of sub-categories based on musical outcomes (based 
+on many years of musical experience), providing the user with control of 
+parameters over a musically meaningful range for each resulting tool.  I 
+admire this approach and accept that it is much more accessible to the user 
+who is a computer <i>user</i> rather than a programmer.  However, 
+compositionally I often find it interesting to explore the areas where a 
+process pushes against its limits and falls over into another area of 
+perception.  E.g., if the size of grains used in a time-stretching brassage 
+routine (as used in the <i>harmonizer</i>) exceeds a certain threshold we 
+begin to hear the resulting sound as a rapid collage of elements rather than 
+as a simple timestretch.  Hence the CDP brassage routine offers 
+<b>timestretch, pitch-shift, granulation</b> and <b>source-scrambling</b> 
+as independent modes, but also allows access to <i>all</i> the parameters 
+of the brassage process at the same time..
+
+<ul>
+<li>timestretch or compression and its range
+<li>segment density and its range
+<li>segment size
+<li>segment transposition and its range
+<li>segment amplitude and its range
+<li>segment splice-length
+<li>segment spatial position
+<li>segment spatial scatter and its range
+<li>segment timing randomisation
+<li>segment search-range in the source
+</ul>
+
+where every parameter can also be varied in time.<br>The process
+can also be applied to more than one input sound.
+</p>
+
+<p>
+Modifying the loudness contour (envelope) of a sound is a fairly standard 
+procedure.  <b>Envelope extraction and superimposition</b> (written by 
+Richard Orton) and <b>envelope manipulation</b> (which I developed from 
+Richard's programs) were some of the earliest processes to be developed in 
+the CDP.  These allow the envelope to be extracted at different resolutions 
+(e.g. a tremolo sound which crescendos has a small-scale, rapidly-varying 
+loudness envelope defining the tremolo, and a large scale overall envelope 
+defining the crescendo.  These can be extracted separately using a different 
+window-size for the envelope extraction). The envelope can then be changed 
+(<b>envelope warping</b> &#150; normalise, limit, compress, exaggerate, 
+corrugate etc), and applied to the original, or a different sound.  Even 
+applying the envelope comes in two varieties.  Simple envelope 
+superimposition is found in most mixing packages (often implemented by 
+drawing the envelope), where an envelope contour is imposed on the existing 
+sound.  However, we can also <b>envelope replace</b>, where the new envelope 
+replaces (rather being superimposed over) the envelope of the processed 
+sound.  In this case we force the original sound to have a flat level 
+throughout (treating in a special way points in the sound where the envelope 
+approaches zero), then apply the new envelope to the flattened sound. 
+</p>
+
+<p>
+Enveloping can obviously be used to produce tremolo.  More radically, in a 
+reversal of the Karplus-Strong synthesis procedure <a href="#F21" 
+name="FF21"><sup><b>21</b></sup></a>, we can <b>produce a plucked attack</b> 
+on an existing  sound.  (The procedure involves finding the first 
+steady-pitch wavecycle in the source &#150; assuming there is one &#150; 
+then preceding it by copies which become increasingly loud and noisy).  
+This process was developed and used in <i>Tongues of Fire</i> but is not 
+'automatic' in its operation and is quite tricky to sculpt.
+</p>
+
+<p>
+<b>Mixing</b> is now usually carried out in a graphic environment 
+displaying pictorial representations of waveforms (and envelope and 
+panning contours) in tracks on the screen.  The CDP Submix instrument 
+(which I developed from existing CDP mixing facilities developed by Andrew 
+Bentley and others) is based on a much earlier paradigm, mixing from a (text) 
+list of soundfiles. Despite being much less friendly than screen based 
+mixing, this does allow for some powerful global procedures to be applied 
+to mixes.  The CDP submix should be thought of as a way to generate a new 
+event from several source sounds, rather than as a conventional track-mixing 
+environment (although I do <i>all</i> my mixing in this environment).
+</p>
+
+<p>
+First of all, there is no limit to the number of 'tracks' used (apart from 
+the memory space of the computer).  Any number of sounds can be 
+superimposed. Secondly, global operations on the mix are available, from 
+simple features like doubling (or multiplying by any number) the distance 
+between event onsets, or randomising them (very slightly or radically), to 
+randomly swapping around the sound sources in the mix, automatically 
+generating particular timing-sequences for event entry (from regular 
+pulses, to logarithmic sequences etc.), or redistributing the mix output 
+in the stereo space in a new, user-defined way.
+</p>
+
+<p>
+More specialised procedures involve <b>synchronising the mix events</b> 
+(e.g. at their mid-point, or end, as well as at their start), or 
+<b>synchronising the event-attacks</b> (where the search-window for the 
+attack peak can be delimited by the user).  These latter procedures are 
+particularly useful for building complex sonorities out of less rich 
+materials e.g. by superimposing transposed copies of the sound (over the 
+original duration, or in a different duration) onto the original. Similarly, 
+<b>Inbetweening</b> allows the generation of sets of closely related 
+sonorities (see above), while <b>Cross-fading using a balance function</b> 
+allows a sound to gravitate between its original form and a transformed 
+variant in a time-varying way.
+</p>
+
+<p>
+There are no original filter algorithms in the CDP, but some powerful 
+filter design frameworks are available.  In particular <b>filter 
+varibank</b> allows one to define a filter over a set of pitches which 
+itself varies in time, where each pitch element has an associated amplitude 
+(which can go to zero so that pitches, or moving-pitch-lines,  can be 'faded 
+out' or cut).  The number of harmonics of those pitches (and their relative 
+level) can be specified (these serve to define further individual filter 
+frequencies), and the filter Q can also vary through time. This 
+filter-building algorithm was developed and used during the composition 
+of <i>Fabulous Paris</i> <a href="#F22" name="FF22"><sup><b>22</b></sup></a>.
+</p>
+
+<p>
+Finally, at a time when synthetic bell-sounds seemed to dominate computer 
+music works, I decided a bit of grittiness would be welcome, and developed 
+instruments which <b>lower the resolution</b> of the sound (reducing the 
+effective bit-representation, or the sampling rate), <b>ring modulate</b> 
+and <b>inter-modulate</b> sources, and even attempt (rather unsuccessfully) 
+to simulate manually <b>scrubbing a tape over the heads</b> of an analogue 
+tape-recorder.
+</p>
+
+<h3>
+<u>Additional Aids to Composing</u>
+</h3>
+
+<p>
+Over the years I have also developed a large number of utilities which I 
+find indispensable as a composer, starting with an instrument which 
+<b>searches a tape of source recordings and extracts significant 
+segments</b> from surrounding silences or clicks, using gating, and 
+selection parameters specified by the user.  Next there are facilities 
+to <b>compare sounds</b>, or <b>compare the channels of a single sound</b>, 
+(are they the same, or almost the same to within specified limits?), to 
+<b>balance the level of sources</b>, or the channels of a source, to 
+<b>invert (or narrow) spatial orientation</b>, and to <b>invert phase</b> 
+(which, apart from anything else, can be used to gain more headroom in a 
+mix).
+</p>
+
+<p>
+In the various instruments described in this article, alomst all parameters 
+can vary through time.  Data for this is provided in simple textfiles 
+containing time+value pairs.  To aid in working with such data, hundreds 
+of automatic data-creation and data-modification processes have been 
+implemented, and are made available in the <b>Table Editor</b>, now also 
+driven from the graphic interface.  I have used it to design and modify 
+complex filter specifications, to generate 'random funk' accentuation 
+patterns as envelopes over an existing stream of events 
+(<i>Birthrite  A Fleeting Opera</i> <a href="#F23" name="FF23">
+<sup><b>23</b></sup></a>) &#150; and even to do my tax returns(!).   
+As an additional aid, a <b>Music Calculator</b> allows easy conversion 
+between a great variety of musical and technical units.
+<p>
+
+<h3>
+<u>The future</u>...
+</h3>
+
+<p>
+Currently (October, 2000) all this software works in non-real-time in a 
+PC environment, mainly with 16-bit soundfiles.  The next version (early 
+2001) will handle all currently available soundfile formats.  In addition 
+the sound-buffering is being modified so that those instruments 
+which could, in principle, run in real-time can be enabled to do so.  
+There is also no reason (apart from lack of time or resources) why this 
+entire environment should not run on the Macintosh, or any other platform, 
+as it is written in 'C' and TK/TCL.  These two latter tasks could be 
+accomplished without great difficulty by someone with the time and 
+enthusiasm to commit.
+</p>
+
+<p>
+<a href="ccdpndex.htm Target="_top"><b>Return</b></a> to the main index for the CDP System.
+</p>
+
+<h4>Footnotes</h4>
+<p>
+	<ol>
+	<li><a name="F1">A process</a> which divides the source 
+sound, timewise, into tiny (overlapping) 'windows', performs a fourier 
+analysis on each window to determine the spectrum of the sound in the 
+window, then deduces the frequency of the components in the window by 
+considering the change of phase from one window to the next. (<a href="#FF1">
+Return</a> to main text.)
+	<li><a name="F2">This can be found</a> on the CD 
+<a href="publ.htm"><b><i>Red Bird: Anticredos</i></b></a> (EMF CD022) 
+(<a href="#FF2">Return</a> to main text.)
+	<li><a name="F3">The vocal techniques</a> were documented in a 
+catalogue of extended vocal techniques, <i>The Book of Lost Voices</i> 
+(1979), later incorporated as a chapter in the book 
+<a href="publ.htm"><b><i>On Sonic Art</i></b></a>  (see footnote 4).  
+(<a href="#FF3">Return</a> to main text.)
+	<li><a name="F4">Originally published privately in 1984: republished 
+(edited by Simon Emmerson) by Harwood Academic Publishers, 1996. 
+(ISBN:371865847X)</a>  (<a href="#FF4">Return</a> to main text.)
+	<li><a name="F5">Originally published</a> privately by Trevor 
+Wishart, 1978.	See <a href="publ.htm">publications.<a>  (<a href="#FF5">
+Return</a> to main text.)
+	<li><a name="F6">A procedure</a> developed for the analysis and 
+resynthesis of speech.  It first differentiates noise and pitch based 
+elements in the source.  It then generates a sequence of filter 
+specifications for consecutive moments in the source which, when applied 
+to a buzz (rich in harmonics) tone or a noise source,  reproduces the 
+original sound.  (<a href="#FF6">Return</a> to main text.)
+	<li><a name="F7"><i>The Composition of <i>Vox 5</i> at IRCAM</i> :</a> 
+Computer Music Journal Vol. 12: no 4: Winter 1988.    (<a href="#FF7">
+Return</a> to main text.)
+	<li><a name="F8">Despite the involvement</a> of staff members, no 
+financial support was forthcoming from the University authorities at that 
+time.  I donated  100 to help pay for materials to build the first 
+'SoundSTreamer', the buffering device, designed and built by Martin Atkins 
+and David Malham,  which enabled us to get sound in and out of the ROM port 
+of the Atari ST.  (<a href="#FF8">Return</a> to main text.)
+	<li><a name="F9">General purpose</a> software sound-synthesis 
+environment.  (<a href="#FF9">Return</a> to main text.)
+	<li><a name="F10">To all those</a> chuckling into their anoraks 
+I would add that the Atari ST was 100&#37; reliable.  It simply never 
+crashed in all the years it was used.  (<a href="#FF10">Return</a> to 
+main text.)
+	<li><a name="F11">A process</a> that cuts the sound, timewise, 
+into segments (possibly overlapping, possibly separated in time), then 
+reconstructs the sound by splicing these back together in different 
+ways.  (<a href="#FF11">Return</a> to main text.)
+	<li><a name="F12">Published by <i>Orpheus the Pantomime</i>, UK.</a> 
+(ISBN : 0951031317) (see <a href="publ.htm">Publications</a>). 
+(<a href="#FF12">Return</a> to main text.)
+	<li><a name="F13">Groupe de Recherche Musicale, Paris.</a> 
+  (<a href="#FF13">Return</a> to main text.)
+	<li><a name="F14"><i>Tongues of Fire</i> is available,</a> by itself, 
+on CD, or on the album <a href="publ.htm"><b><i>Voiceprints</i></b>.</a> 
+(<a href="#FF14">Return</a> to main text.)
+	<li><a name="F15">A tone</a> which appears to rise (or fall) in 
+(chromatic) pitch forever while remaining in the same tessitura. 
+(<a href="#FF15">Return</a> to main text.)
+	<li><a name="F16">The Norwegian Centre for Computer Music.</a>  
+(<a href="#FF16">Return</a> to main text.)
+	<li><a name="F17">Computer Music Journal: Vol 24 No 2 
+Summer 2000</a>  (<a href="#FF17">Return</a> to main text.)
+	<li><a name="F18">On the CD <i>Voiceprints</i>.</a>. See 
+<a href="publ.htm">publications.</a>  (<a href="#FF18">Return</a> to main 
+text.)
+	<li><a name="F19"><i>Solfege de l'objet sonore</i> by
+Pierre Scaheffer and Guy Reibel.</a>  (<a href="#FF19">Return</a> to 
+main text.)
+	<li><a name="F20">General purpose software</a> sound-synthesis 
+environment, by Barry Vercoe.  (<a href="#FF20">Return</a> to main text.)
+	<li><a name="F21">A compact algorithm</a> to synthesize plucked-string
+ sounds of many types.  (<a href="#FF21">Return</a> to main text.)
+	<li><a name="F22">On the CD</a>  <i>Or Some Computer Music: 1</i> 
+from <i>Touch</i>.  (<a href="#FF22">Return</a> to main text.)
+	<li><a name="F23"><i>Birthrite A Fleeting Opera</i></a> with Max 
+Couper: River Thames, London, 2000. A score of <a href="publ.htm">
+<b><i>Birthrite</i></b></a> is also available, for dryland performance.  
+(<a href="#FF23">Return</a> to main text.)
+	</ol>
+</p>
+
+<p>
+<a href="ccdpndex.htm Target="_top"><b>Return</b></a> to the main index 
+for the CDP System.
+</p>
+
+</body>
+
+</html>

@@ -1,0 +1,3198 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cgropsow.htm  - PSOW HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP PSOW Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <dt><a href="#PSOWINTRO"><b>INTRODUCTION</b></a>
+  <br><br>
+  <dt><a href="#PSOWLIST"><b>PSOW:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CHOP"><b>CHOP</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CUTATGRAIN"><b>CUTATGRAIN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#DELETE"><b>DELETE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#DUPL"><b>DUPL</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FEATURES"><b>FEATURES</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#GRAB"><b>GRAB</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#IMPOSE"><b>IMPOSE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INTERLEAVE"><b>INTERLEAVE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INTERP"><b>INTERP</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#LOCATE"><b>LOCATE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#REINFORCE"><b>REINFORCE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#REPLACE"><b>REPLACE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SPACE"><b>SPACE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SPLIT"><b>SPLIT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#STRETCH"><b>STRETCH</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#STRTRANS"><b>STRTRANS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SUSTAIN"><b>SUSTAIN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SUSTAIN2"><b>SUSTAIN2</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SYNTH"><b>SYNTH</b></a>
+  <br><br>
+  <b>OTHERS:</b><br>
+  <dt>&nbsp;&nbsp;<a href="#FOFEXEXTRACT"><b>FOFEX EXTRACT</b></a>
+  <dt>&nbsp;&nbsp;<a href="#FOFEXCONSTRUCT"><b>FOFEX CONSTRUCT</b></a>
+  <dt>&nbsp;&nbsp;<a href="#PTOBRK"><b>PTOBRK</b></a>
+  <dt>&nbsp;&nbsp;<a href="#TWEET"><b>TWEET</b></a>
+
+  <br /><br /> 
+  <dt><a href = "#APPENDIX1"><b>Appendix 1</b></a>
+  <dt>&nbsp;&nbsp;(About FOF)
+  <dt><a href = "#APPENDIX2"><b>Appendix 2</b></a>
+  <dt>&nbsp;&nbsp;(Batch Files)
+  <dt><a href = "#APPENDIX3"><b>Appendix 3</b></a>
+  <dt>&nbsp;&nbsp;(Soundloom)
+  <dt><a href = "#FOFSONG"><b>Appendix 4</b></a>
+  <dt>&nbsp;&nbsp;('Song')
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <div align=center>
+   <br>
+   <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+   </div>
+
+   <h1 align=center>
+   CDP PSOW <br>Operations on Pitch-Synchronous Grains</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<blockquote>
+<p>
+The PSOW program group manipulates FOF-like sound grains 
+in the time domain.  This implies not only vocal sounds as source material, 
+but more particularly vowel sounds, spoken or sung.  <b>Input sounds must 
+be MONO</b>.<br />
+</p>
+
+<p>
+These programs make use of a pitch trace extracted in binary form 
+from an analysis file by <a href="crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</a> Mode 1</b> and then 
+converted to a <i>time frequency</i> text breakpoint file by 
+<a href="#PTOBRK"><b>PTOBRK</b></a>.  Note the three steps:
+<ol>
+<li>Analyse the input source file with PVOC</li>
+<li>Get its binary pitch trace with REPITCH GETPITCH Mode <b>1</b>
+<i>without 'retaining pitch zeros'</i> (no <b>-z</b> flag)</li>
+
+<li>Convert binary pitch trace file to a breakpoint file with 
+PTOBRK.  Either the <b>.brk</b> or the <b>.txt</b> extension may 
+be used. (Both are used in this manual.)</li>
+</ol>
+You need to provide a <i>pitch-brkpnt-data</i> file for each sound 
+used as an input to a PSOW process (when required by the Usage).  Note 
+that this also needs to happen for PSOW outputs which are then used 
+as inputs to other processes.
+</p>
+
+<p>
+See <a href="#PSOWINTRO"><b>'Introducing PSOW'</b></a> for a general 
+introduction to this program set, <br>
+<a href="#APPENDIX1">
+<b>APPENDIX 1</b></a> for an additional discussion of `FOF', <br>
+ 
+<a href="#APPENDIX2"><b>APPENDIX 2</b></a> for batch files to automate the 
+3-step procedure listed above, and <br>
+<a href="#APPENDIX3"><b>APPENDIX 3</b></a> for a summary of the 6-Step 
+procedure to follow when running the PSOW program set from within 
+<i>Sound Loom</i>.  Note that its PROCESS button for PSOW is 
+named 'FOFS'.<br />
+</p>
+
+<p>
+Please note that the sound examples provided serve to illustrate the 
+operation of the various functions within PSOW.  Much more exploration 
+of the program is needed to discover the full sound-shaping potential of 
+this software.
+</p>
+</blockquote>
+
+
+<hr> <!-- ************************************************************ -->
+<h2 align = "center" id="PSOWLIST">Functions to manipulate FOF-like grains</h2>
+
+<b><i>Names in brackets mean that these are separate programs.  The others are sub-modules of PSOW.</i></b>
+
+<dl>
+<dt><a href="#PSOWINTRO"><b>Introducing PSOW</b></a> <dd>Explaining the 
+nature and purpose of the PSOW program set.</dd><br>
+<dt><a href="#CHOP"><b>CHOP</b></a> <dd>Chop sound into sections 
+between specified grain (chunks) OR:  Chop away sections of 
+soundfile that you DON'T want to manipulate with PSOW functions.</dd>
+<dt><a href="#CUTATGRAIN"><b>CUTATGRAIN</b></a> <dd>Cut at exact 
+grain time<dd>
+<dt><a href="#DELETE"><b>DELETE</b></a> <dd>Time shrink sound by 
+deleting a proportion of the pitch-synchronised grains</dd>
+<dt><a href="#DUPL"><b>DUPL</b></a> <dd>Timestretch&#47;transpose 
+a sound by duplicating the pitch-synchronised grains</dd>
+<dt><a href="#FEATURES"><b>FEATURES</b></a> <dd>Impose new features 
+on vocal-type sound, preserving or modifying FOF-grains</dd>
+
+<dt><a href="#FOFEXEXTRACT"><b>[FOFEX EXTRACT]</b></a> <dd> Extract FOFs to a file or to separate soundfiles </dd>
+<dt><a href="#FOFEXCONSTRUCT"><b>[FOFEX CONSTRUCT]</b></a> <dd> Superimpose FOFs to make output FOF </dd>
+
+<dt><a href="#GRAB"><b>GRAB</b></a> <dd>Grab a pitch-synchronised 
+grain from a file, and use it to create a new sound</dd>
+<dt><a href="#IMPOSE"><b>IMPOSE</b></a> <dd>Impose vocal FOFs in 
+1<sup><small>st</small></sup> sound onto the 
+2<sup><small>nd</small></sup> sound</dd>
+<dt><a href="#INTERLEAVE"><b>INTERLEAVE</b></a> <dd>Interleave 
+FOFs from two different files</dd>
+<dt><a href="#INTERP"><b>INTERP</b></a> <dd>Interpolate between 2 
+pitch-synchronised grains, to produce a new sound</dd>
+<dt><a href="#LOCATE"><b>LOCATE</b></a> <dd>Locate exact start time 
+of nearest FOF-grain<dd>
+<dt><a href="#PTOBRK"><b>[PTOBRK]</b></a> <dd>Convert pitch trace from binary .frq to 
+text breakpoint file (.txt or .brk) for PSOW<dd>
+<dt><a href="#REINFORCE"><b>REINFORCE</b></a> <dd>Reinforce 
+harmonics in a vocal-type FOF-grain file<dd>
+<dt><a href="#REPLACE"><b>REPLACE</b></a> <dd>Combine FOFs of 
+1<sup><small>st</small></sup> sound with the pitch of the 
+2<sup><small>nd</small></sup> sound</dd>
+<dt><a href="#SPACE"><b>SPACE</b></a> <dd>Distribute the 
+alternate FOFs in the sound over a stereo space</dd>
+<dt><a href="#SPLIT"><b>SPLIT</b></a> <dd>Split vocal FOFs 
+into subharmonic and upwardly transposed pitch</dd>
+<dt><a href="#STRETCH"><b>STRETCH</b></a> <dd>Timestretch&#47;transpose 
+a sound by repositioning the pitch-synchronised grains.  The 
+grains themselves are not time-stretched</dd>
+<dt><a href="#STRTRANS"><b>STRTRANS</b></a> <dd>Timestretch&#47;transpose 
+a sound by repositioning the pitch-synchronised grains</dd>
+<dt><a href="#SUSTAIN"><b>SUSTAIN</b></a> <dd> Sustain a pitch-synchronised 
+FOF within a sound</dd>
+<dt><a href="#SUSTAIN2"><b>SUSTAIN2</b></a> <dd> Sustain an explicitly 
+specific FOF within a sound</dd>
+<dt><a href="#SYNTH"><b>SYNTH</b></a> <dd>Impose vocal FOFs on a 
+stream of synthesised sound</dd>
+<dt><a href="#TWEET"><b>[TWEET]</b></a> <dd> Replace FOFs in vocal sound by synthetic tweets or noise </dd>
+
+<br>
+<dt><a href="#APPENDIX1"><b>Appendix 1</b></a> - About 'FOF'
+	<dd>Background and further information about the term 'FOF'.</dd>
+<dt><a href="#APPENDIX2"><b>Appendix 2</b></a> - Batch files 
+<dd>Batch files to automate the 3-step preparation of the <i>pitch-brkpnt-data</i> file</dd>
+<dt><a href="'APPENDIX3"><b>Appendix 3</b></a> - PSOW&#47;FOF in <i>Sound Loom</i>
+<dd>Step-by-step procedure to run PSOW from within <i>Sound Loom</i>.</dd>
+<dt><a href="'APPENDIX4"><b>Appendix 4</b></a> - Producing "Song" in <i>Sound Loom</i>
+<dd>Using 'Sustain a specific FOF within a sound' to produce "Song"</dd>.
+</dl>
+
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="PSOWINTRO">Introducing the PSOW Program Set</h2>
+
+<blockquote>
+<p>
+Vocal sounds are amazingly complex.  The cavities of the mouth and head 
+form resonance chambers that impose fixed tonal qualities on the sound, 
+whatever the pitch.  These are called formants.  Depending on the speaker, 
+vocal sounds can have a wide pitch range and a musical quality.  They 
+are also made up of a series of impulses, known as FOFs.
+</p>
+
+<p>
+The PSOW set works with the pitch and impulse qualities of the sound.  
+Thus the first step is to extract the pitch trace of the sound, following 
+the procedure described below.  The impulses can be thought of as <b>small 
+packets of waves</b>.  The shape of the particular packet defines the colour 
+(e.g. the vowel) of the vocal sounds, while their rate of their occurrence 
+(how many per second) determines the pitch of the vocal sound.  FOFs are smaller 
+than syllables, and in fact smaller than audible 'grains' (for instance the 
+tongue-flaps making up a rolled-'rr'), but larger than the wavecycles (they 
+may contain several wave-cycles, defining particularly the vowel formants 
+at that moment).
+</p>
+
+<p>
+The general purpose of the PSOW programs is to attempt to find the FOFs 
+in a sound, and work with them in various ways. They assume sounds are 
+made up of FOFs; they may produce interesting but unpredictable results 
+on sounds that are not intrinsically voice-like. Also, they will work 
+best with spoken or sung vowels ... sibilants will usually produce some 
+artefacts. <b>They apply only to mono sources</b>.
+</p>
+
+<p>
+The basic procedure for preparing to use PSOW is this:
+	<ol>
+	<li>First use PVOC ANAL to analyse a MONO vocal soundfile.  This produces 
+	an analysis file (<b>.ana</b>).</li>
+	<br />
+
+	<li>Extract the pitch trace from the analysis file with REPITCH 
+	GETPITCH, saving this as a <b>binary pitch data file</b> 
+	(Mode <b>1</b>, ensuring that you do NOT retain 'pitch-zeros'.  
+	This is the program default.  For PSOW we need to retain 
+	<b>signal</b> zeros but not <b>pitch</b> zeros.  To retain 
+	pitch-zeros, you have to use the <b>-z</b> flag &#150; 'retain 
+	unpitched windows', so we avoid this.<br />
+	(Using pitch-extraction <i>directly</i> to a text file will not work 
+	for PSOW applications as it doesn't handle signal-zeros and pitch-zeros 
+	in quite the right way.)<br />
+	After extracting the pitch trace and saving to a binary pitch data 
+	file using the program default (i.e., optional <b>-z</b> flag is NOT 
+	used), we now have a binary pitch data file containing the pitch trace 
+	of the sound.  It contains, by default, 'zeros', meaning indications 
+	of where there is no significant <b>signal</b> in the source.  
+	It does NOT contain 'pitch-zeros', meaning indications of where 
+	there is no significant <b>pitch</b> in the source.</li><br />
+	
+	<li>Convert this binary pitch data file to <b>text data</b> using 
+	PTOBRK.  <b>Your new text file is then used as the first parameter 
+	to the PSOW programs</b>, referred to in the Usage as 
+	<i>pitch-brkpnt-data</i>.  Please note that the textfile (i.e., 
+	the input soundfile) must contain some significant pitch 
+	information for the PSOW program to work (sounds with multiple 
+	pitches, inharmonic or noisy sounds will probably not work very 
+	well with PSOW).</li>
+	</ol>
+</p>
+
+<p>
+NB:  <i>Soundshaper</i> runs this sequence automatically for the input 
+soundfile(s), so you don't have to worry about it. It also accepts stereo and multi-channel
+input, which is split into separate MONO channel files before PSOW is run and re-assembled after processing.  
+</p>
+
+<p>
+<b>Example processing sequence for the above:</b> (The extensions are 
+shown for clarity, but are not used in the GUIs.)<br />
+<code>
+pvoc anal 1 six.wav six.ana<br />
+repitch getpitch 1 six.ana sixdummy.ana six.frq<br />
+ptobrk withzeros six.frq six.txt 20
+</code>
+</p>
+
+<p>
+PSOW processes also often contain a parameter <i><b>segcnt</b></i>, indicating the 
+number of FOFs in each block that is manipulated by the program. If this 
+parameter is greater than 1 (say <i>N</i>), time-stretching, for example, 
+will work on grains which contain <i>N</i> FOFs (rather than single FOFs), 
+and you will hear a series of grains in the sound, similar to using 
+brassage with low density and large grainsize.
+</p>
+</blockquote>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="CHOP">PSOW CHOP &#150; Chop sound into sections 
+between specified FOF-grain (chunks) OR:  Chop away sections of 
+soundfile that you DON'T want to manipulate with PSOW functions
+</h2>
+
+
+<h3>
+Usage
+</h3>
+<b>psow chop</b> <i>infile outfile-rootname pitch-brkpnt-textfile 
+time-graincount-pairs</i>  
+<br />
+
+<p>
+Example command line to chop grains into groups:<br />
+	<blockquote>
+	<b><code>psow chop <a href="psowsnds\omahumc.wav">omahumc</a> 
+	omahumcchop omahumc.brk omtimes.txt</code></b>
+	</blockquote>
+
+	<blockquote>
+	<i>omtimes.brk</i>
+	<pre>
+	<font color="#FF0000">Time	Graincount</font>
+	1.0	5
+	3.5	5
+	7.0	5
+	</pre>
+	</p>
+
+	<p>
+	The result of this process is the following:<br />
+	<a href="psowsnds/omahumcchop.wav">omahumcchop.wav</a><br />
+	skips over FOF 5-seg chunk at 1.0 - get with GRAB<br />
+	<a href="psowsnds/omahumcchop_001.wav">omahumcchop_001.wav</a><br />
+	skips over FOF 5-seg chunk at 3.5 - get with GRAB<br />
+	<a href="psowsnds/omahumcchop_002.wav">omahumcchop_002.wav</a><br />
+	skips over FOF 5-seg chunk at 7.0 - get with GRAB<br />
+	<a href="psowsnds/omahumcchop_003.wav">omahumcchop_003.wav</a>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile-rootname</i> &#150; base name for a series of soundfile 
+outputs;  the first has no number attached, and subsequent outfiles 
+have '_001', '_002' etc. appended.<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.  See the <a href="#PSOWINTRO">Introduction</a> to revise 
+the steps needed to create this file.<br />
+<i>time-graincount-pairs</i> &#150; This is a text file of cut times 
+expressed as <i>time grain-count</i> value pairs.<br /> 
+	<blockquote> 
+	<i>Time</i> is the time of the grain where the file is cut.  
+	(The file is automatically cut at a start-of-grain boundary.  The 
+	next segment begins AFTER the specified grain-chunk.)<br />
+	<i>Graincount</i> is the number of grains in the chunk, 
+	at a specified time, before the next cut-section starts.  
+	Recommended values are very low, e.g., 1 or 2.  (Values greater 
+	than 1 will result in granulated outfiles, often the desired result.)
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the PSOW CHOP Process
+</h3>
+
+<blockquote>
+<p>
+This process extracts lengths of pitch-focused sound from the 
+input soundfile, saving each length as a separate soundfile.  It does 
+not remove anything from the original soundfile, which remains intact.  
+These extracted lengths will be the sections that you DO NOT want to 
+manipulate with one of the PSOW functions.  The point is to <b>cut 
+around</b> the material you want to FOF-process, process the material, 
+and then splice back the extracted lengths (using 0 length splices).
+</p>
+
+<p>
+This process cuts up and stores a sound as a sequence of segments, 
+extracting the material <b>around</b> the points where you want to 
+apply FOF processing. The output is therefore at least 2 sound segments.  
+You can then use PSOW GRAB (using the same edit points) to capture 
+specific FOFs in a sound, extend them, and then reinsert them into the 
+original sound at the edit points, by splicing the segments cut using 
+PSOW CHOP and the new sounds made with PSOW GRAB in the correct order.
+</p>
+
+<p>
+Alternatively, you can use PSOW GRAB first, possibly making use of its 
+processing features to develop the sound extracted right away.  You would 
+then use PSOW CHOP with the same <i>segcnt</i> (= <i>graincnt</i>) to 
+save the material around these grabbed-and-transformed segments so that 
+you could splice it all back together again.  When the sound transformations 
+are carried out while running PSOW GRAB, a special <i>pitch-brkpnt-data</i> 
+text file for the grabbed portion is not needed, as the one for the 
+sound from which the portion is grabbed is being used.  It would be 
+needed if you were going to use the grabbed portion with a different 
+function, except for PSOW INTERP, which does not require a 
+<i>pitch-brkpnt-data</i> file.  See <a href="#GRAB">PSOW GRAB</a> for 
+an example of a sound transformed while grabbed.
+</p>
+
+<p>
+The  <i>time grain</i> pairs (File of <i>cuttime : grains-in-chunk</i> 
+pairs) is a textfile containing pairs of values, where the first 
+value is a time for a cut, and the second value determines how many 
+FOFs are to be 'stepped over' after this cut point.  Note that a 
+'FOF' is very short &#150; only a few milliseconds.  The cut times 
+therefore indicate where the FOF material to use is located:  PSOW 
+CHOP cuts around them, and PSOW GRAB gets the FOF material at these 
+points for processing, and SFEDIT JOIN splices the resulting files 
+back into a single soundfile.
+</p>
+
+<p>
+<b>Additional Observations</b><br />
+The real point of PSOW CHOP is to cut away what you do not want to 
+FOF-manipulate (e.g., consonants) and save this unwanted material as 
+separate soundfiles.  This means studying your sound in a sound editor (or 
+by ear using FROM-TO playback) to determine where the good material you want 
+to use as FOF source is.  Note that the actual FOF material will be tiny:  
+we are thinking 'grains', so the unused portions will contain the rest of 
+the vowel material as well as consonants.  It is not just a matter of finding 
+start and end points for consonants and editing them out, a persistent misconception I have had about PSOW, and another way entirely of working 
+with vocal material.
+</p>
+
+<p>
+In the 'time-grain' value pairs text file, you specify the start times for 
+your FOF grains and their length as a number of 'grain-chunks'.  PSOW CHOP 
+then cuts out all of the material before and after these FOF sections (i.e., 
+the material 'around' them) saving it as a series of separate soundfiles.  
+After manipulating the FOF material with the other PSOW functions, you are 
+then able to put back the original material by splicing these separate 
+soundfiles (SFEDIT JOIN) with your FOF-manipulations, thus recreating aspects 
+of the original vocal material, but now with FOF-manipulated enhancements 
+inbetween.
+</p>
+
+<p>
+It is very important to remember that the CHOP process cuts 'around' the 
+desired FOF source material.  You do not have it yet!  You need to use 
+PSOW GRAB to extract the FOF grains that you will manipulate.  But note 
+that you can use the same times as used in PSOW CHOP:  instead of 
+cutting around them, you now cut out and keep the FOF grains.  (PSOW 
+CUTATGRAIN can also be used to cut out portions of <i>infile</i>.)
+</p>
+
+<p>
+<b>However</b>, you cannot use these newly acquired FOF grains until you 
+create a <i>pitch-brkpnt-data</i> file for them, except for PSOW INTERP 
+(for which the duration parameter must be 0.0).  <b>The lengths of the 
+FOF-source file and the <i>pitch-brkpnt-data</i> file must match</b>.  
+<b>This means repeating for each FOF grain soundfile the 3-step procedure 
+you had to do before using PSOW CHOP:</b>
+	<blockquote>
+	ANALYSE:  pvoc anal 1 ingrabfile.wav outgrabfile.ana<br />
+	GET PITCH TRACE:  repitch getpitch 1 outgrabfile.ana outdummyfile 
+	outgrabfile.frq<br />
+	CONVERT TO BREAKPOINT: ptobrk withzeros outgrabfile.frq 
+	outtgrabfile.txt 20
+	</blockquote>
+</p>
+
+<p>
+In the <a href="#APPENDIX2">Appendix 2</a>, I provide generic batch files 
+to do this with any input.
+</p>
+
+<p>
+<b>NB:</b> <i>Soundshaper</i> runs these processes behind the scenes for 
+the input file.</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+PSOW CHOP therefore enables you to carry out FOF processing with 
+pinpoint precision, keeping the rest of the soundfile (now saved as 
+a series of soundfiles) untouched.  You then put it altogether again 
+with SFEDIT JOIN.  Note that you can repeat the same soundfile in 
+the list to join, as well as reassemble the component soundfiles in 
+any order.
+</p>
+
+<p>
+This program is a prime candidate for putting together a batch processing 
+sequence, either with a command line interpreter, <i>Sound Loom's</i> 
+<b>Instruments</b> or <i>Soundshaper's</i> <b>Patch</b> system.
+</p>
+</blockquote>
+
+<p>
+End of PSOW CHOP<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="CUTATGRAIN">PSOW CUTATGRAIN &#150; Cut at exact grain time 
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow cutatgrain mode</b> <i>insndfile outsndfile pitch-brkpnt-data 
+time</i></b>  
+<br />
+
+<p>
+Example command line to perform the cut:<br>
+	<blockquote>
+	<b><code>psow cutatgrain 1 <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omcutatgrain.wav">omcutatgrain</a> om.txt 0.4</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Retain file BEFORE (exact) specified grain time.<br />
+<b>2</b>&nbsp; Retain file AT and AFTER (exact) specified grain.<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soudfile<br />
+<i>outsndfile</i> &#150; output cut soundfile<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>time</i> &#150; in seconds at which to cut the file<br />
+</blockquote>
+
+<h3>
+Understanding the PSOW CUTATGRAIN Process
+</h3>
+
+<blockquote>
+<p>
+This process allows you to cut a sound at a FOF boundary (the one nearest 
+to the time you specify).  This may be useful, as the files are cut at 
+zero-crossings in the signal, and can hence be joined together, without 
+splices, in various ways.
+</p>
+
+<p>
+In <i>Sound Loom</i>, the time you set in CUTATGRAIN is 
+automatically transferred to the edit-time box in GRAB (and 
+<i>vice-versa</i>.
+</p>
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+Here we are specifying a time at which presumably we intend to perform 
+a PSOW FOF-manipulation.  With PSOW CUTATGRAIN we can cut and retain the 
+portion of sound <i>before</i> this time (Mode <b>1</b>) or <i>at and 
+after</i> this time (Mode <b>2</b>).  The cut is automatically made at 
+a zero-crossing, creating ideal conditions for a trouble-free splice 
+later.
+</blockquote>
+
+<p>
+End of PSOW CUTATGRAIN<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="DELETE">PSOW DELETE &#150; Time-shrink sound by 
+deleting a proportion of the pitch-synchronised grains
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow delete insndfile outsndfile pitch-brkpnt-data propkeep segcnt</b>  
+<br />
+
+<p>
+Example command line to create a proportional data reduction (in this 
+case, 1 in 3 are retained):<br>
+	<blockquote>
+	<b><code>psow delete <a href="psowsnds/omahumc.wav">omahumc</a> 
+	<a href="psowsnds/omahumcdel.wav">omahumcdel</a> omahumc.brk 
+	3 5</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile</i> &#150; output soundfile(s)<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>propkeep</i> &#150; proportion of chunks to keep. '2' keeps 1 
+in 2; '7' keeps 1 in 7, etc.<br />
+<i>segcnt</i> &#150; number of grains in a chunk<br />
+</blockquote>
+
+<h3>
+Understanding the PSOW DELETE Process
+</h3>
+
+<blockquote>
+<p>
+This process will timeshrink a sound, without changing pitch or vowels. 
+FOFS-per-grain (<b>segcnt</b>) greater than 1 give more realistic results.
+</p>
+
+<p>
+This is a straightforward thinning process, like straining the 
+sound through different sizes of mesh.  Note that the 'mesh' is 
+specified in two ways:  the proportion to keep and the length of 
+the grain chunk.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+Let's consider several types of 'mesh':
+	<ul>
+	<li>keeping a high proportion of big chunks</li>
+	<li>keeping a high proportion of small chunks</li>
+	<li>keeping a low proportion of big chunks</li>
+	<li>keeping a low proportion of small chunks</li>
+	<li>keeping a midrange proportion of medium-sized chunks</li>
+	</ul>
+</blockquote>
+
+<p>
+End of PSOW DELETE<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="DUPL">PSOW DUPL &#150; Timestretch&#47;transpose 
+a sound by duplicating the pitch-synchronised grains
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow dupl</b> <i>insndfile outsndfile pitch-brkpnt-data repeat-cnt segcnt</i>  
+<br />
+
+<p>
+Example command line to duplicate pitch-synchronised grains:<br>
+	<blockquote>
+	<b><code>psow dupl <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omdupl.wav">omdupl</a> om.txt 8 5</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile</i> &#150; output soundfile with duplications<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>repeat-cnt</i> &#150; number of repetitions in each chunk.<br />
+<i>segcnt</i> &#150; number of grains in a chunk.<br />
+</blockquote>
+
+<h3>
+Understanding the PSOW DUPL Process
+</h3>
+
+<blockquote>
+<p>
+This process time-stretches the sound, but preserves the pitch (like 
+MODIFY SPEED) and preserves the vowel formants. FOFS-per-grain 
+(<b>segcnt</b>) is best set at 1 but other small values do not alter 
+the output a great deal. Also see <a href="#STRETCH"><b>PSOW STRETCH</b></a>.
+</p>
+
+<p>
+I have found that inputs made with PSOW GRAB can have very few grains 
+in them, and you can get an error message "too few grains".  For example, 
+if the GRAB file has 4 grains in it and you give a <i>segcnt</i> of 5, 
+it will fail for this reason.  Note that it will also fail if <i>segcnt</i> 
+is 4, because the count starts at 0:  0-1-2-3 is 4 grains.  Thus in this 
+case, <i>segcnt</i> = 3 will succeed.
+</p>
+
+<p>
+Also, please remember that you cannot use a GRAB file until you have 
+created the corresponding <i>pitch-brkpnt-data</i> file for it (the 
+3-step procedure).
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+This is another way of lengthening a sound.  The number of repetitions 
+affects how much longer it will be, while the number of grains in a chunk
+affects granulation.  If <i>segcnt</i> = 1, the result will be as smooth 
+as it is possible to be with this kind of input and process.  There may 
+be pitch steps related to the pitch trace of the file.  If <i>segcnt</i> 
+is considerably longer, e.g., 10 or 15, the result will be more granulated, 
+i.e., have a coarser grain.
+</blockquote>
+
+<p>
+End of PSOW DUPL<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="FEATURES">PSOW FEATURES &#150; Impose new features 
+on vocal-type sound, preserving or modifying FOF-grains
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow features mode</b> <i>insndfile outsndfile pitch-brkpnt-data segcnt 
+trans vibfrq vibdepth spectrans hoarseness attenuation subharmno 
+subharmamp FOF-stretching</i> [<b>-a</b>]
+<br />
+
+<p>
+Example command line to impose new features:<br>
+	<blockquote>
+	<code><b>psow features 1 <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omfeatures1.wav">omfeatures1</a> 5 3 3 3 7 
+	0.5 0.25 2 0.5 100</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Transposition accompanied by 'timewarp': pitch is higher and 
+the sound is shorter, i.e., standard Time Domain transposition.<br />
+<b>2</b>&nbsp; The transposed pitch is accompanied by an additional lower 
+pitch.<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile</i> &#150; output soundfile <br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>segcnt</i> &#150; number of grains in a chunk to be retained as-is.<br />
+<i>transposition</i> &#150; pitch transposition in semitones.  The two 
+Modes of the program relate to this parameter.<br />
+<i>vibfrq</i> &#150; frequency of any added vibrato.<br />
+<i>vibdepth</i> &#150; depth in semitones of any added vibrato.<br />
+<i>spectrans</i> &#150; amount of transposition of the spectrum in 
+semitones (will not change the fundamental pitch).<br />
+<i>hoarseness</i> &#150; degree of vocal hoarseness (roughness) to 
+introduce.  Range: 0 to 1.<br />
+<i>attenuation</i> &#150; attentuation.  Range 0 to 1.  May be necessary 
+when FOF-stretching, due to overlaps.<br />
+<i>subharmno</i> &#150; amount by which the fundamental pitch is divided.  
+Both 0 and 1 give NO subharmonics.<br />
+<i>subharmamp</i> &#150; amplitude level of any subharmonic introduced.  
+Range: 0 to 1.<br />
+<i>FOF-stretching</i> &#150; time extension of the FOF components.  This 
+does NOT stretch the overall soundfile length.  Range: 1 to 512.<br />
+<b>-a</b> &#150; option to use an alternative algorithm for the FOF stretch.
+</blockquote>
+
+<h3>
+Understanding the PSOW FEATURES Process
+</h3>
+
+<blockquote>
+	<ul>
+	<li>Mode 1</b> transposing involving timewarp does its pitch 
+	transposition like MODIFY SPEED, shortening the sound if the pitch 
+	goes up.</li><br />
+
+	<li>Mode 2</b> transposing involving double pitches does not change 
+	the timeframe of the sound but may introduce octavation or other 
+	double-pitch features when it transposes by large amounts.</li>
+	</ul>
+</p>
+
+<p>
+PSOW FEATURES combines various elements of some of the other PSOW processes, 
+and the parameters have the same functions, except that the transposition 
+parameters are here entered in semitones rather than ratios.
+</p>
+
+<p>
+Some additional information about the parameters may be useful:
+	<ul>
+	<li><i>attenuation</i> &#150; This parameter attenuates the output 
+(applies amplitude reduction), and may be necessary when using a 'FOF-stretching' 
+value of more than 1.</li><br />
+
+	<li><i>subharmno</i> ('Subharmonic number') &#150; This determines the 
+pitch of the subharmonic generated.  You can use 0 or 1 if you do not want a 
+subharmonic.  For example, 2 divides the fundamental pitch by 2,  producing a pitch 
+an octave lower, 3 divides it by 3, producing a pitch an octave and a 5th lower 
+and so on.</li><br />
+
+	<li><i>subharmamp</i> ('subharmonic level') &#150; This determines the 
+loudness of any subharmonic introduced.</li><br />
+
+	<li><i>FOF-stretching</i> sustains individual FOFs (it does NOT time-stretch 
+the sound) producing an effect akin to reverberation.</li>
+	</ul>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+This program is one of the most versatile in the set.  
+</blockquote>
+
+<p>
+End of PSOW FEATURES<br>
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br>
+</p>
+
+<hr><!-- ********************************************************** -->
+<h2 id="FOFEX">FOFEX &#150; Operations using pitch-synchronous grains (FOFs) to (re)construct soundfiles<br>
+A sub-Group of two:&nbsp;&nbsp; FOFEX EXTRACT &nbsp;&nbsp; FOFEX CONSTRUCT
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>fofex NAME (mode)</b> <i>infile outfile parameters</i>:<br />
+where NAME can be any one of<br />
+  <b>extract &nbsp;&nbsp; construct</b><br />
+<br />
+Type <b>fofex extract</b> for more info on fofex extract..etc.
+<br />
+
+<h2 id="FOFEXEXTRACT">FOFEX EXTRACT &#150; Extract FOFs to a file or to separate soundfiles</h2>
+
+<h3>
+Usage
+</h3>
+<b>fofex extract 1</b> <i>infile outfiles 0 pitch-brkpnt-data minlevel fofcnt</i> [<b>-w</b>]<br />
+OR<br>
+<b>fofex extract 1</b> <i>infile outfiles excludefile pitch-brkpnt-data minlevel fofcnt</i> [<b>-w</b>]
+<br><br>
+<b>fofex extract 2</b> <i>infile outfile pitch-brkpnt-data time</i><br>
+<b>fofex extract 3</b> <i>infile generic_outfile_name pitch-brkpnt-data minlevel fofcnt</i> [<b>-w</b>]
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> All FOF(group)s extracted to special FOF-file, to use with <b>FOFEX CONSTRUCT</b><br>
+<b>2</b> A single FOF(group) is extracted<br>
+<b>3</b> All FOF(group)s are extracted to separate soundfiles
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile(s)</i> &#150; output binary FOF file or to soundfiles<br>
+	<blockquote>
+   OUTPUT OF MODE 1 is:<br>
+   1) a fofbank soundfile containing extracted FOFs in ascending pitch order<br>
+   2) a fofinfo textfile of position of (semitone) pitchsteps in soundfile
+	</blockquote>
+<i>pitch-brkpnt-data</i> &#150; a breakpoint file of <i>time hertz</i> pairs, created by
+ <a href="#PTOBRK"><b>PTOBRK</b></a> .
+	<blockquote>
+	The file may contain zeros (indicating moments of no-signal) but NOT 
+pitch-zeros (indicating moments of no-pitch). It must contain SOME significant frequency information.
+	</blockquote>
+<i>excludefile</i> (Mode 1) &#150; text file of pairs of times as sample-counts, defining areas in the source from which FOFs will NOT be extracted (i.e. sample-count at start of passage and sample-count at end of passage).<br>
+<i>minlevel</i> &#150; level in dBs below the level of loudest FOF found, below which FOFs are rejected.  NB Zero means no FOFS are rejected.<br>
+<i>fofcnt</i> &#150; size of FOF group to extract<br>
+<i>time</i> (Mode 2) &#150; time in file at which to extract FOF(group)<br>
+<b>-w</b> &#150; FOFs are windowed (cosine smooth of edges)
+</blockquote>
+
+<h3>
+Understanding the FOFEX EXTRACT Process
+</h3>
+
+<blockquote>
+<p>
+Note that this process is paired with <b>FOFEX CONSTRUCT</b> (see below).
+Suitable applications have yet to be determined.
+</p><p>
+To determine time as sample-count (for Mode 1's <i>excludefile</i>), see the utility <a href="cgroinfo.htm#TIMESMP"><b>SNDINFO TIMESMP</b></a>
+</p>
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of FOFEX EXTRACT<br>
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br> 
+</p>
+
+
+<hr><!-- ********************************************************** -->
+<h2 id="FOFEXCONSTRUCT">FOFEX CONSTRUCT &#150; Superimpose FOFs to make output FOF</h2>
+
+<h3>
+Usage
+</h3>
+<b>fofex construct 1</b> <i>fofbank outfile fofinf pbrk env gain f1</i> <br />
+<b>fofex construct 2-5</b> <i>fofbank outfile fofinf pbrk env gain</i> [<b>-n</b>]<br />
+<b>fofex construct 6</b>  <i>fofbank outfile fofinf pbrk env gain f1 f2 minf maxf</i> [<b>-n</b>]<br />
+<b>fofex construct 7</b>  <i>fofbank outfile fofinf pbrk env gain f1 f2 f3 minf maxk minl maxl</i> [<b>-n</b>]
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>  Use 1 FOF only<br />
+<b>2</b>  All FOFs superimposed to make output FOF<br />
+<b>3</b>  Low FOFs superimposed to make output FOF<br />
+<b>4</b>  Midrange FOFs superimposed to make output FOF<br />
+<b>5</b>  High FOFs superimposed to make output FOF<br />
+<b>6</b>  Use 2 FOFs,varying weighting with pitch of output<br />
+<b>7</b>  Use 3 FOFs,vary weighting with pitch & level of output
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>fofbank</i> &#150; soundfile of extracted FOFS created by <b>FOFEX EXTRACT</b><br>
+<i>outfile</i> &#150; output soundfile [or FOF-file?]<br />
+<i>fofinf</i> &#150;  a textfile with position of pitchsteps in soundfile,
+also created by the <b>FOFEX EXTRACT</b><br>
+<i>pbrk</i> &#150; breakpoint file of <i>time hertz</i> information, created by 
+<a href="#PTOBRK"><b>PTOBRK</b></a>. <br>
+(May contain zeros (no-signal) but NOT pitch-zeros (no-pitch).  Must have SOME freq. info.)<br />
+<i>env</i> &#150; breakpoint-Envelope file, as text<br />
+<i>gain</i> &#150; output gain<br />
+<i>f1(f2 f3)</i> &#150; in mode 1, FOF to use, (lowest=1).n 
+	<blockquote>
+      In modes <b>6,7</b> use specifically numbered FOFs
+	</blockquote>
+<i>minf maxf</i> &#150; minimum and maximum <b>frequencies</b> for variation of the internal FOF balance<br />
+<i>minl maxl</i> &#150; minimum and maximum <b>levels</b> (0-1) for variation of the internal FOF balance<br />
+<b>-n</b> &#150; set all FOFs to same level before synthesis
+</blockquote>
+
+<h3>
+Understanding the FOFEX CONSTRUCT Process
+</h3>
+
+<blockquote>
+<p>
+This process is paired with <b>FOFEX EXTRACT</b> (see above).<br>
+Suitable applications have yet to be determined.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of FOFEX CONSTRUCT<br>
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br>
+</p>
+
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="GRAB">PSOW GRAB &#150; Grab a pitch-synchronised 
+grain from a file, and use it to create a new sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow grab</b> <i>insndfile outsndfile pitch-brkpnt-data time 
+outfile_duration segcnt spectrans density randomisation gain</i>
+<br />
+
+<p>
+Example command line to grab a pitch-synchronised grain.  In the section 
+for <a href=#CHOP>PSOW CHOP</a> above, 3 times were specified, around 
+which to CHOP.  Now we will GRAB two FOF-chunks at those times, specifying 
+0 for the outfile duration so that we can use them with PSOW INTERP.  Please 
+note, these FOF-chunks are very short, so may not be audible upon playback.  
+<!--
+I did hear something when playing back with <b>play24x.exe</b> on PC, and 
+with Windows Media Player.-->
+<br />
+	<blockquote>
+	<b><code>psow grab <a href="psowsnds/omahumc.wav">omahumc</a> 
+	<a href="psowsnds/omgrab1.wav">omgrab1</a> omahumc.brk 
+	1.0 0 5 0.001 1 0 1</code></b><br />
+	<b><code>psow grab <a href="omahumc.wav">omahumc</a> 
+	<a href="psowsnds/omgrab2.wav">omgrab2</a> omahumc.brk 
+	1.0 0 5 0.001 1 0 1</code></b>
+	</blockquote>
+Example command line for a sound that is transformed using PSOW GRAB 
+facilities while it being grabbed:<br />
+	<blockquote>
+	<b><code>psow grab <a href="psowsnds/omahumc.wav">omahumc</a> 
+	<a href="psowsnds/omahumcgrab.wav">omahumcgrab</a> omahumc.brk 
+	1.0 5 10 16 2 0.6 1</code></b>
+	</blockquote>
+</p>
+
+<p>
+Also, please remember that you cannot use a GRAB file until you have 
+created the corresponding <i>pitch-brkpnt-data</i> file for it (the 
+3-step procedure).
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile</i> &#150; output soundfile made from the grabbed grain-chunk<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>time</i> &#150; time in seconds at which to grab the grain(s).<br />
+<i>duration</i> &#150; Duration of the output soundfile.  If 
+<i>duration</i> is set to 0, a single grain (chunk) is grabbed.<br />
+<i>segcnt</i> &#150; The number of grains in a chunk.<br />
+<i>density</i> &#150; The rate at which the grain-chunks in the output 
+soundfile succeed one another.  <b>1</b>: the grains follow one after 
+the other; <b>2</b>: grain-chunks overlap by 2 grain-chunks;  <b>3</b>: 
+grain-chunks overlap by 3 grain-chunks, etc.  <b>0.5</b>: grains are 
+separated by an equivalent amount of silence, etc.  Range: 0.125 to 8.0<br />
+<i>spectrans</i> &#150; amount of transposition of the spectrum in 
+semitones (will not change the fundamental pitch).  Range: 0.001 to 8.0.  
+NB: 0 for no transposition is not accepted.<br />
+<i>randomisation</i> &#150; Randomisation of the position of the grain-chunks 
+in the output soundfile.  This randomisation introduces noisiness into the 
+output sound. Range 0 to 1.<br />
+<i>gain</i> &#150; Amplitude adjustment applied to the output.  1 = full 
+amplitude.
+</blockquote>
+
+<h3>
+Understanding the PSOW GRAB Process
+</h3>
+
+<blockquote>
+<p>
+This process grabs an individual (group of) FOF(s) and uses it to produce 
+a new sound. You must specify the time in the source sound where the 
+FOF-to-be-grabbed is located, and the duration of the output sound to 
+produce. Duration ZERO grabs a single (group of) FOF(s).  These outputs 
+are specifically for use with <a href="#INTERP"><b>PSOW INTERP</b></a>.  While 
+they may actually run in other functions, they will be too short to do 
+anything useful.  <b>Therefore, when using GRAB to create FOF-grains to 
+use with other functions, give a duration suitable for the purpose.</b>
+</p>
+
+<p>
+Note that if there is no pitch at the grab-time you choose, you will not 
+get any result.  The other parameters provided with PSOW GRAB enable you 
+do carry out a significant amount of processing at the same time.  
+	<ul>
+	<li><b>Density</b> (pitch transposition) specifies transposition of the 
+	fundamental as a frequency ratio. So 2.0 is an octave up, and 0.25 is 
+	2 octaves down)</li>
+	<li><b>Spectrans</b> (spectral transposition) specifies the 
+	transposition of the <b>spectrum</b> in the output sound.  This is a bit 
+	like changing the vowel without changing the pitch.</li>
+	<li><b>Rand</b> (randomisation) randomizes the position of the FOFs 
+	in the output, introducing a hoarse noisiness.</li>
+	<li><b>Gain</b> (amplitude adjustment downwards) may be needed if 
+	density is greater than one, because the overlaying of grains will 
+	sum amplitudes.</li>
+	</ul>
+</p>
+
+<p>
+In <i>Sound Loom</i>, when you grab a FOF, the time you set is 
+automatically transferred to the edit-time box in CUTATGRAIN (and 
+<i>vice-versa</i>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+The most direct use for outputs of PSOW GRAB is as inputs to PSOW INTERP 
+&#150; interpolating between two  pitch-synchronised grains. 
+GRAB files can be used for other functions, but bear in mind the advice 
+given above: first to create the matching <i>pitch-brkpnt-data</i> file, 
+and to grab a sufficient number of grains appropriate for the function 
+that you are then going to use.
+</blockquote>
+
+<p>
+End of PSOW GRAB<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="IMPOSE">PSOW IMPOSE &#150; Attempts to impose vocal FOFs 
+in 1<sup><small>st</small></sup> sound onto a 
+2<sup><small>nd</small></sup> sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow impose</b> <i>insndfile1 insndfile2 outsndfile pitch-brkpnt-data 
+depth wsize gate</i>  
+<br />
+
+<p>
+Example command line to impose FOFs:<br>
+	<blockquote>
+	<b><code>psow impose <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/sixi.wav">sixi</a> 
+	<a href="psowsnds/omimpsixi.wav">omimpsixi</a> om.txt 1 20 -40</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile1</i> &#150; input mono soundfile from which to take data<br />
+<i>insndfile2</i> &#150; second mono soundfile onto which to impose data<br />
+<i>outsndfile</i> &#150; output soundfile<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>depth</i> &#150; Depth of application of FOFs to the second sound. 
+Range: 0 to 1.<br />
+<i>wsize</i> &#150; Windowsize in milliseconds to track the envelope of 
+the second sound (for normalisation purposes).  Recommended value 20(?)<br />
+<i>gate</i> &#150; Level in decibels in the second sound at which it 
+is assumed to be zero (full amplitude). Sound above the gate level is 
+retained.  A recommended level would be -40 or less.  The letters 'dB' are 
+not used when specifying the <i>gate</i> level.<br />
+
+</blockquote>
+
+<h3>
+Understanding the PSOW IMPOSE Process
+</h3>
+
+<blockquote>
+<p>
+This is an experimental program that attempts to impose the FOF 
+characteristics of one sound onto another.
+</p>
+
+<p>
+Some of the parameters could use further explanation:
+	<ul>
+	<li><b>Depth</b> of application relates to the degree to which 
+	the 2<sup><small>nd</small></sup> soundfile is affected.  If 
+	<i>depth</i> = 0, the 2<sup><small>nd</small></sup> sound is 
+	not altered.  If <i>depth</i> = 1, the 2<sup><small>nd</small></sup> 
+	sound is completely altered by the 1<sup><small>st</small></sup>.  
+	Values inbetween give intermediate results: closer to 0 results 
+	in a limited degree of alteration, whereas values closer to 
+	one create more alteration.</li><br />
+
+	<li><b>Wsize</b> sets the length of the segments in the 
+	second soundfile to use to determine amplitude.  Longer 
+	lengths mean less resolution, i.e., less responsiveness 
+	to changes of amplitude.  The results affect how the 
+	second sound is normalised.  In a fairly steady-state 
+	resultant sound, longer windows may be fine, but if there 
+	are rapid changes of amplitude, it will be better to use 
+	a finer resolution:  a smaller <i>wsize</i>.</li><br />
+
+	<li><b>Gate</b> enables you to set the maximum level in the 
+	output soundfile.  Note that the parameter is in decibels.  
+	A gain reduction of 0.7 represents -3dB.  See our 
+	<a href="Gadbchrt.htm"><b>Chart</b></a> of Gain-Decibel 
+	relationships.</li>
+	</ul>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+The pitch synchronous grains of the first soundfile, which emphasise 
+vowel material, colour those of the second.  The <i>weight</i> parameter 
+in Mode <b>2</b> seems particularly useful.  Note that the focus is on 
+the psow-grains, and not formants (vowel resonances), so the aural 
+results will be different from the 'cross-synthesis' achieved with 
+<a href="cformants#VOCODE"><b>FORMANTS VOCODE</b></a>.
+</blockquote>
+
+<p>
+End of PSOW IMPOSE<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="INTERLEAVE">PSOW INTERLEAVE &#150; Interleave 
+FOFs from two different files
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow interleave</b> <i>insndfile1 insndfile2 outsndfile 
+	pitch-brkpnt-data1 pitch-brkpnt-data2 grouplenth bias 
+	balance weight</i>  
+<br />
+
+<p>
+Example command line to create an interleaved effect biased towards the 
+2<sup><small>nd</small></sup> soundfile:<br>
+	<blockquote>
+	<b><code>psow interleave <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/sixi.wav">sixi</a> 
+	<a href="psowsnds/ominterlsixi.wav">ominterlsixi</a> om.txt sixi.txt 
+	5 -1 0.8 0.8</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile1</i> &#150; input mono soundfile1<br />
+<i>insndfile2</i> &#150; second input mono soundfile<br />
+<i>outsndfile</i> &#150; output interleaved soundfile<br /> 
+<i>pitch-brkpnt-data1</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form for <i>insndfile1</i>.  It may 
+contain zeros (indicating moments of no-signal) but NOT pitch-zeros 
+(indicating moments of no-pitch).  It must contain SOME significant 
+frequency information.<br />
+<i>pitch-brkpnt-data2</i> &#150; similar file for <i>insndfile2</i>.<br />
+<i>grouplength</i> &#150; the number of FOFs in each manipulated 
+segment<br />
+<i>bias</i> &#150; Is the output pitch biased to one or the other of 
+the infiles?  <b>0</b>: no bias; <b>1</b>: biased to the first 
+soundfile; <b>-1</b>: biased to the second soundfile.<br />
+<i>balance</i> &#150; the level balance of the components of the 
+two input soundfiles to be placed in the output soundfile:  
+<b>1</b>: equally loud; <b>> 1</b>: the first soundfile is louder; 
+<b>< 1</b>: the second soundfile is louder.<br />
+<i>weight</i> &#150; relative number of components from the two input 
+soundfiles to place in the output soundfile:  <b>1.0</b>: equal amounts; 
+<b>> 1</b>: more of the first soundfile; <b>< 1</b>: more of the second 
+soundfile. 
+</blockquote>
+
+<h3>
+Understanding the PSOW INTERLEAVE Process
+</h3>
+
+<blockquote>
+<p>
+This process alternates (groups of) FOFs from two different sounds and 
+hence requires 2 pitch-data files, one corresponding to each of the input 
+sounds.
+</p>
+
+<p>
+You may notice in the example above that om.wav is 0.9 sec long, sixi.wav 
+is 3.0 sec long, and the output ominterlsixi.wav is 0.929 seconds long, 
+very close to the shortest soundfile.  Sometimes the output is actually 
+shorter than the shortest input.  This is thought to be caused by FOFs 
+not being found in some regions of the file (T. Wishart).
+
+<p>
+<b>Using the parameters:</b>
+	<ul>
+	<li><b><i>Bias</i></b> determines to what extent the output pitch 
+	is biased towards the pitch of one file or the other (values: 0, no 
+	bias, 1 biased to 1<sup><small>st</small></sup>, -1 biased to 
+	2<sup><small>nd</small></sup>) with intermediate values 
+	giving intermediate degrees of <i>bias</i>.</li>
+
+	<li><b><i>Balance</i></b> determines the relative loudness of the 
+	two components.  <b>1</b> gives an equal balance, while <b>values 
+	greater than 1</b> make the 1<sup><small>st</small></sup> 
+	louder<b> and values less than 1</b> make the 2<sup><small>nd</small>
+	</sup> louder.</li>
+
+	<li><b><i>Weight</i></b> (Mode <b>2</b>) determines the relative 
+	number of FOF components from the 2 sources in the input, and the 
+	parameter works like the <i>balance</i> parameter.</li>
+	</ul>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This function performs the same sort of operation as 
+<a href="ccombine.htm#INTERLEAVE"><b>COMBINE INTERLEAVE</b></a>, but with the 
+focus on FOF-grain type sonic material.  One hears a pulsed interleaving of 
+the two sounds. with <i>grplen</i> determining the resolution of the 
+interleave (fine with low values, coarse &#150; longer units &#150; 
+with higher values).
+</p>
+
+<p>
+The three parameters to balance the relative strengths of the two 
+inputs are very important and useful in determining the tonal quality 
+of the output.  Fractional values are allowed, and they can be 
+adjusted with great precision.
+</blockquote>
+
+<p>
+End of PSOW INTERLEAVE<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="INTERP">PSOW INTERP &#150; Interpolate between 2 
+pitch-synchronised grains, to produce a new sound.  <br>
+(Grains acquired by PSOW GRAB, with duration 0.0)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow interp</b> <i>insndfile1 insndfile2 startdur interpdur enddur 
+vibfrq vibdepth tremfrq tremdepth</i>  
+<br />
+
+<p>
+Example command line to create an interpolated effect:<br>
+	<blockquote>
+	<b><code>psow interp <a href="psowsnds/omgrab1.wav">omgrab1</a> 
+	<a href="psowsnds/omgrab2.wav">omgrab2</a> 
+	<a href="psowsnds/ominterp1-2.wav">
+	ominterp1-2</a> 0.25 5 0.25 1.7 0.6 1.5 2</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile1</i> &#150; first input mono soundfile made by PSOW GRAB from a 
+single grain-chunk, with <i>duration</i> set to 0.0<br />
+<i>insndfile2</i> &#150; second input mono soundfile made by PSOW GRAB from a 
+single grain-chunk (in the same or a different soundfile), with <i>duration</i> 
+set to 0.0<br />
+<i>outsndfile</i> &#150; output soundfile interpolating between the 
+grain-chunks<br /> 
+<i>startdur</i> &#150; length of time in seconds to sustain the initial 
+grain<br />
+<i>interpdur</i> &#150; duration of the interpolation, affecting the 
+length of the outfile.<br />
+<i>enddur</i> &#150; length of time in seconds to sustain the final grain<br />
+<i>vibfrq</i> &#150; frequency of any added vibrato (can be 0)<br />
+<i>vibdepth</i> &#150; depth in semitones of any added vibrato.  
+Range: 0 to 3.<br />
+<i>tremfrq</i> &#150; frequency of any added tremolo (can be 0)<br />
+<i>tremdepth</i> &#150; depth of any added tremolo<br />
+	<blockquote>
+	<b>N.B.:</b> This interpolation process assumes that your input 
+	soundfiles each contain a single pitchsync (FOF) grain obtained 
+	using PSOW GRAB with output duration 0.0.  However, you can 
+	GRAB with a longer <i>segcnt</i> (keeping the output duration 
+	0.0.  This produces a more granulated result from PSOW INTERP.  
+	Also note that the two <i>vib</i> and two <i>trem</i> parameters 
+	will accept fractional values.  The pitch trace files are not 
+	needed.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the PSOW INTERP Process
+</h3>
+
+<blockquote>
+<p>
+This process creates a new sound by interpolating between two SINGLE 
+(groups of) FOFs extracted with zero duration from the same source sound 
+(or different sources) by <a href="#GRAB"><b>PSOW GRAB</b></a>.  
+It therefore does not need the usual <i>pitch-brkpnt-data</i> textfile.  
+If you use input files not created with PSOW GRAB, 
+you will get the error message: "File 1 is not 
+a valid pitch-sync grain file."
+</p>
+
+<p>
+Note that the process was intended to work with single FOFs as input, but 
+will also work with groups of FOFs, and between groups of FOFs of 
+different sizes.  To get larger 'groups of FOFs', make <i>segcnt</i> 
+longer when using PSOW GRAB.  As noted above, a longer <i>segcnt</i> 
+in the sources increases the granulation in the output of PSOW INTERP.
+</p>
+
+<p>
+The output sound can be shaped using the various parameters.  <i>Startdur</i> 
+and <i>enddur</i> shape the beginning and the end by allowing you to sustain 
+the first and last grains.  The length of time <i>interpdur</i> over which to 
+realise the interpolation between the two grains, can also be set.  Note that 
+'vibrato' refers to the rate and amount of frequency change, and 'tremolo' does 
+the same with amplitude.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+A 'plain vanilla' output can be made by setting the two <i>vib</i> and two 
+<i>trem</i> parameters to 0.  But when applied, they can thicken and 
+otherwise shape the output sound in very precise ways.  The aural difference 
+between the two input sounds (vowels, usually) and the length of time 
+over which the interpolation takes place, shape the nature of the transition. 
+</p>
+
+<p>
+You might want to compare the nature of the output (somewhat granulated) 
+with transitions produced by MORPH BRIDE, MORPH GLIDE or COMBINE CROSS.
+</p>
+</blockquote>
+
+<p>
+End of PSOW INTERP<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="LOCATE">PSOW LOCATE &#150; Locate the exact start time 
+of the nearest FOF-grain
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow locate</b> <i>insndfile pitch-brkpnt-data time</i>  
+<br />
+
+<p>
+Example command line to find the exact location of a grain:<br>
+	<blockquote>
+	<b><code>psow locate om om.txt 0.4</code></b><br />
+	Resulting on-screen display:<br />
+	"INFO:  TIME 0.400000 IS NEAREST GRAIN START 0.404354"
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outfile</i> &#150; none - screen display only and therefore cannot 
+use in a batchfile<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>time</i> &#150; time at which to find the start of a grain<br />
+</blockquote>
+
+<h3>
+Understanding the PSOW LOCATE Function
+</h3>
+
+<blockquote>
+This process returns the <i>exact start time</i> of the FOF nearest to the 
+time in the source that you specify.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+This utility can help to determine times for CUTATGRAIN or GRAB with more 
+precision.   It may be useful to know where exactly the file is being cut, 
+e.g., when going on to some other process in which material has to 
+synchronise exactly to the sample.
+</blockquote>
+
+<p>
+End of PSOW LOCATE<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ********************************************************* -->
+
+<h2 id="PTOBRK">PTOBRK WITHZEROS &#150; convert pitch trace from binary .frq to 
+text breakpoint file (.txt or .brk) for PSOW
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>ptobrk withzeros</b> <i>binary-pitchfile outtextfile min-pitch-dur</i>
+<br />
+
+<p>
+Example command line to convert pitch trace from <b>.frq</b> to <b>.brk</b>:<br />
+	<blockquote>
+	<b><code>ptobrk withzeros om.frq om.brk 20</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>binary-pitchfile</i> &#150; binary pitch trace file created by <a href="crepitch.htm#GETPITCH"
+<b>REPITCH GETPITCH Mode 1</b></a> <i><b>without retaining pitch zeros</b></i></a>.<br>  
+On the command line, do NOT use REPITCH's <b>-z</b> flag (which retains pitch zeros).  The point is to eliminate the non-pitch data.  The extension for this file should be <b>.frq</b>.<br />
+<i>outtextfile</i> &#150; text breakpoint file format for the pitch 
+trace data.  This format is required by PSOW functions and FOFEX.<br />
+<i>min-pitch-dur</i> &#150; gives minimum time (in milliseconds) that any stretch data must persist to be regarded as valid data.  Range: 1 to 1000 ms.  Recommended value:  20ms.
+</blockquote>
+
+<h3>
+Understanding the PTOBRK WITHZEROS Function
+</h3>
+
+<blockquote>
+This function should be used instead of REPITCH GETPITCH Mode <b>2</b>, which creates a breakpoint textfile of pitch data.  REPITCH GETPITCH Mode <b>1</b> is used <i>without the <b>-z</b> flag</i> to create a <b>.frq</b> file with no-pitch and no-sound markers.  PTOBRK WITHZEROS then converts this kind of <b>.frq</b> file to a <i>time herz</i> breakpoint file.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is a simple utility for creating the correct format for the pitch 
+trace used in PSOW to make the FOF-grains pitch-synchronous.
+</p>
+
+<p>
+The creation of this 'pitch-brkpnt-data' file for PSOW is in fact a 
+3-step process involving PVOC analysis, REPITCH GETPITCH and PTOBRK.  
+This may sometimes be taken care of behind the scenes in a GUI, and may 
+sometimes need to be done by hand.  The PSOW Reference Manual 
+<a href="cgropsow.htm#APPENDIX2"><b>Appendix 2</b></a> provides batch files to 
+speed up this process.
+</p>
+</blockquote>
+
+<p>
+End of PTOBRK<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions at top
+of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="REINFORCE">PSOW REINFORCE &#150; Reinforce harmonics in a 
+vocal-type FOF-grain file
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow reinforce 1</b> <i>insndfile outsndfile reinforcement-data 
+pitch-brkpnt-data</i> [<b>-d</b><i>delay</i>]  [<b>-s</b>]<br />
+<b>psow reinforce 2</b> <i>insndfile outsndfile reinforcement-data 
+pitch-brkpnt-data</i> [<b>-w</b><i>weight</i>]
+<br />
+
+
+<p>
+Example command line to create a soundfile with reinforced harmonics:<br>
+	<blockquote>
+	<b><code>psow reinforce 1 <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omreinfm1.wav">omreinfm1</a> reindat1.txt 
+	om.txt -d10</code></b><br />
+	<b><code>psow reinforce 2 <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omreinfm2w10.wav">omreinfm2w10</a> reindat2.txt 
+	om.txt -w10</code></b>
+	<br><br>
+<i>reindat1.txt	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reindat2.txt</i>
+<pre>
+<font color="#FF0000">harm_no level	harm_no level</font>
+2	1	1.1	1
+3	2	3.5	2
+4	3	4.8	3
+</pre>
+</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Reinforce the <b>harmonic</b> content of the sound.<br />
+<b>2</b>&nbsp; Reinforce the sound with <b>inharmonic</b> partials.<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile</i> &#150; output soundfile<br />
+<i>reinforcement-data</i> &#150; text file with pairs of values:  
+for <i>harmonic_number level</i>.  The first value represents a 
+harmonic number from 2 to 256, and the second value is level 
+relative to the source, with a range from > 0.0 to 16.0.  In 
+Mode <b>2</b> the 'harmonics' may be fractional, with a range from 
+> 1 to 256.  (For example, in Mode <b>2</b>, 1.1 is acceptable.)<br />
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<b>-d</b><i>delay</i> &#150; optional time in milliseconds by which 
+to delay the onset of the added harmonics.<br />
+<b>-s</b> &#150; option to omit FOFs generated for higher harmonics 
+which coincide with FOFs of lower harmonics.<br />
+<b>-w</b><i>weight</i> &#150; sustain inharmonic components.  A 
+higher weight gives a longer sustain.  Please note that a very 
+high weight may cause buffers to overflow.  Default: 4.0.  Range: 
+1 to 256.<br />
+
+</blockquote>
+
+<h3>
+Understanding the PSOW REINFORCE Process
+</h3>
+
+<blockquote>
+This process attempts to reinforce harmonics in the sound by overlaying 
+FOFs in particular ways.  The special data file required contains paired 
+values for <i>harmonic_number</i> and <i>amplitude</i>.  In Mode <b>2</b>, 
+the harmonic numbers can be fractional and produces inharmonic spectra from 
+pitched sounds.  In addition, in Mode <b>2</b>, these constituents can be 
+sustained for longer, using the <i>weight</i> paramemter.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Mode <b>1</b> enables us to re-weight the harmonic content and therefore 
+tonal character of the pitched sound.  In Mode <b>2</b>, the inharmonic 
+character of the output is apparent in the example above.
+</p>
+
+<p>
+A review of the harmonic series can be useful for this program, and those 
+that involve subharmonics:  namely that the 2<sup><small>nd</small></sup> 
+harmonic is the octave, the 3<sup><small>rd</small></sup> a perfect 
+fifth above that, the 4<sup><small>th</small></sup> two octaves, and the 
+5<sup><small>th</small></sup> harmonic is two octaves plus a major third, 
+etc.  See <a href="#SPACE"><b>PSOW SPACE</b></a> and <a href="#SPLIT"><b>PSOW 
+SPLIT</b></a>, which employ subharmonics.
+</p>
+</blockquote>
+
+<p>
+End of PSOW REINFORCE<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="REPLACE">PSOW REPLACE &#150; Combine FOFs of 
+1<sup><small>st</small></sup> sound with the pitch of the 
+2<sup><small>nd</small> sound</sup>
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow replace insndfile1 insndfile2 outfile pitch-brkpnt-data1 
+pitch-brkpnt-data2 grpcnt</b>  
+<br />
+
+<p>
+Example command line to create a FOF-pitch combination:<br>
+	<blockquote>
+	<b><code>psow replace <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/sixi.wav">sixi</a> 
+	<a href="psowsnds/omreplacesixi.wav">omreplacesixi</a> om.txt 
+	sixi.txt 5</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile1</i> &#150; input mono soundfile1<br />
+<i>insndfile2</i> &#150; input mono soundfile2<br />
+<i>outsndfile</i> &#150; output soundfile with FOF-pitch combination<br /> 
+<i>pitch-brkpnt-data1</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form for <i>insndfile1</i>.  It may 
+contain zeros (indicating moments of no-signal) but NOT pitch-zeros 
+(indicating moments of no-pitch).  It must contain SOME significant 
+frequency information.<br />
+<i>pitch-brkpnt-data2</i> &#150; similar file for <i>insndfile2</i>.<br />
+<i>groupcount</i> &#150; number of FOFs in a grain-chunk<br />
+
+</blockquote>
+
+<h3>
+Understanding the PSOW REPLACE Process
+</h3>
+
+<blockquote>
+PSOW REPLACE combines the FOF structure of the first sound with the 
+pitch of 2<sup><small>nd</small></sup>. It requires two pitch data 
+files, one for each source sound.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+This function comes into its own when the pitch structure of the 
+2<sup><small>nd</small></sup> file has a distinctive character.
+</blockquote>
+
+<p>
+End of PSOW REPLACE<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="SPACE">PSOW SPACE &#150; Distribute the alternate FOFs 
+in the sound over a stereo space
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow space</b> <i>infile outfile pitch-brkpnt-data subharmno separation 
+balance hisuppress</i>
+<br />
+
+<p>
+Example command line to create spatial distribution:<br>
+	<blockquote>
+	<b><code>psow space <a href="psowsnds/omahumc.wav">omahumc</a> 
+	<a href="psowsnds/omahumcspace.wav">omahumcspace</a> 
+	omahumc.brk 5 -1 1 1</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile</i> &#150; output stereo soundfile<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>subharmno</i> &#150; subharmonic number, which divides the frequency 
+of the source.  Range: 2 to 5.<br />
+<i>separation</i> &#150; spatial separation of alternate FOFs.  Range: 
+-1 to 1.
+	<ul>
+	<li><b>&nbsp;0:</b> no separation, all output is stereo-centred.</li>
+
+	<li><b>&nbsp;1:</b> alternate FOFs go to the widest spread, starting 
+	with the far right position.</li>
+
+	<li><b>-1:</b> alternate FOFs go to the widest spread, starting 
+	with the far left position.</li>
+	</ul>
+<i>balance</i> &#150; of left and right components.  Range: 0 to 8.
+	<ul>
+	<li><b>1.0:</b> the leftward and rightward levels are equal</li>
+
+	<li><b>&gt; 1:</b> the leftward signal is divided by <i>balance</i>: 
+	bias to the right</li>
+
+	<li><b>&lt; 1:</b> the rightward signal is multiplied by <i>balance</i>: 
+	bias to the left.</li>
+	</ul>
+<i>hisuppress</i> &#150; suppress high-frequency components. Range: 0 to 1.<br />
+</blockquote>
+
+<h3>
+Understanding the PSOW SPACE Process
+</h3>
+
+<blockquote>
+<p>
+Distributes the alternate FOFs in the sound over the stereo space.  
+Note that placing alternate FOFs to the left and then to the right, 
+causes the sound to drop an octave in pitch, hence the subharmonic number 
+parameter begins with value 2 (producing the octave downwards shift).  
+Higher subharmonic values shift the heard pitch down further (via the 
+subharmonic series).
+</p>
+
+<p>
+The fact that the output soundfile sounds lower may be unexpected and 
+deserves further explanation.  Trevor Wishart writes:  "Because FOFs are 
+being alternated in space, it's like having 2 separate sound-streams, 
+each at &#189; the original pitch (the pitch drops by an octave).  
+<b><i>Subharmonic_number</i></b> allows you to drop the pitch further 
+(divide the frequency by 3, 4, 5 &#150; i.e., down an 
+8<sup><small>va</small></sup> + a 5<sup><small>th</small></sup>, two 
+8<sup><small>vas</small></sup>, and two 8<sup><small>vas</small></sup> 
++ a major 3<sup><small>rd</small></sup> respectively.)  It is like 
+the harmonic series upside-down."
+
+</p>
+
+<p>
+The <b><i>separation</i></b> parameter determines where the FOFs are placed 
+in the space.  With a value of 0, they all appear at the centre (and there 
+is no pitch-shift, whatever the subharmonic number parameter), while 1 places 
+the alternate FOFs at the extreme right and left (in that order), and -1 at 
+the extreme left and right (in that order).  Intermediate values give 
+intermediate values of spatial separation, which means that fractional 
+values are allowed.
+</p>
+
+<p>
+The <b><i>Balance</i></b>, with a range from 0 to 8, determines the relative loudness of the signals on left and right speakers.  While <b>1.0</b> sets 
+the balance equal in both speakers, note that when the value is greater than 
+1, the level on the left is lowered by <b>dividing</b> the signal by the 
+number entered for <i>balance</i>, and when the value is less than 1, the 
+level on the right is increased by <b>multiplying</b> by the number 
+entered for <i>balance</i>.  This use of multiplication and division means 
+that the values entered can create major changes in level.
+</p>
+
+<p>
+A muffling of the sound will result by making use of the 
+<b><i>hisuppress</i></b> parameter.  Together with the ability to lower 
+the pitch of the sound, low, throaty sounds can be produced.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is the only PSOW function that produces a stereo output.  Given the 
+alternation between speakers, there is some similarity to effects that 
+can be achieved with TEXTURE.
+</p>
+
+<p>
+Low, gravelly intonations akin to Tibetan chanting are easily produced 
+with PSOW SPACE.  Also note that, unlike other  
+<a href="glosstec.htm#TIMEDOMAIN"><b>time domain</b></a> downward transpositions, 
+the output sound is lower but not longer.
+</p>
+</blockquote>
+
+<p>
+End of PSOW SPACE<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="SPLIT">PSOW SPLIT &#150; Split vocal FOFs 
+into subharmonic and upwardly transposed pitch
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow split</b>  <i>infile outfile pitch_brkpnt-data subharmno 
+uptrans balance</i>
+<br />
+
+<p>
+Example command line to create a split effect:<br>
+	<blockquote>
+	<b><code>psow split <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omsplit.wav">omsplit</a> om.txt 3 12 4</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile</i> &#150; output soundfile<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>subharmno</i> &#150; subharmonic number, which divides the frequency 
+of the source.  Range: 3 to 8.<br />
+<i>uptrans</i> &#150; upward transposition in semitones.  Range: 0 to 48.<br />
+<i>balance</i> &#150; amplitude level of the up-transposed components 
+relative to the subharmonics.  Range: 0 to 8.<br />
+
+</blockquote>
+
+<h3>
+Understanding the PSOW SPLIT Process
+</h3>
+
+<blockquote>
+Allows you to transpose the pitch up (without changing the timeframe 
+or the vowels) and to add subharmonic frequencies, independently and 
+simultaneously.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+This process makes the sound thicker, a voice sound hoarse and 
+'gravelly'.  Note the wide range of acceptable transposition values and 
+the ability to bring  out the higher frequencies by using a higher value 
+for <i>balance</i>.
+</blockquote>
+
+<p>
+End of PSOW SPLIT<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="STRETCH">PSOW STRETCH &#150; Timestretch&#47;transpose 
+a sound by repositioning the pitch-synchronised grains.  The 
+grains themselves are not time-stretched
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow stretch</b> <i>insndfile outsndfile pitch-brkpnt-data 
+timestretch segcnt</i>
+<br />
+
+<p>
+Example command line to create a timestretch effect:<br>
+	<blockquote>
+	<b><code>psow stretch <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omstr8.wav">omstr8</a> om.txt  8 3</code></b><br />
+	<b><code>psow stretch <a href="psowsnds/omahumc.wav">omahumc</a> 
+	<a href="psowsnds/omahumcstr09.wav">omahumcstr09</a> omahumc.brk  
+	0.9 5</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile (NB: not meant for use with 
+files produced by PSOW GRAB)<br />
+<i>outsndfile</i> &#150; output soundfile<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>timestretch</i> &#150; proportion by which the sound is to be 
+stretched (&gt; 1) or compressed (&lt; 1).  (Larger values 
+create longer gaps.)  Range:  0.1 to 10.0.<br />
+<i>segcnt</i> &#150; number of grains in a chunk retained without 
+change, while gaps between segments are stretched.
+</blockquote>
+
+<h3>
+Understanding the PSOW STRETCH Process
+</h3>
+
+<blockquote>
+This process time-stretches the sound, and changes the pitch (like 
+MODIFY SPEED) but will preserve the vowel formants. FOFS-per-grain 
+(<b>segcnt</b>) is best set at 1 for realistic results.  The result 
+when <i>segcnt</i> was one was continuous, but granular in character:  
+a sequence of adjacent grains&#47;pulses.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Again, the nature of the FOF process as essentially granular in character
+affects the results.  As seen, even 'realistic results' are pulsed.  Note 
+how gaps can be produced with higher values for <i>timestretch</i> as in our 
+first example.  This distinguishes the process from PSOW DUPL, while its 
+granular character is essentially different from normal time-stretch.  
+Higher values for <i>segcnt</i> make the FOF-chunks longer, giving more 
+of the source and reducing the gaps (a little).
+</p>
+
+<p>
+On the other hand, <i>timestretch</i> values less than 1, as in our second 
+example, make the stretched sound more continuous.  However, there does 
+seem to be a tendency for amplitude overload with values less than 0.9, 
+probably because the grains start to overlap.  This tendency increases 
+when <i>segcnt</i> is increased.
+</p>
+
+<p>
+There is therefore an important interplay between the amount of 
+<i>timestretch</i> and the values for <i>segcnt</i>.
+</p> 
+</blockquote>
+
+<p>
+End of PSOW STRETCH<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="STRTRANS">PSOW STRTRANS &#150; Timestretch&#47;transpose 
+a sound by repositioning the pitch-synchronised grains, and 
+overlapping them
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow strtrans</b> <i>infile outfile pitch-brkpnt-data timestretch 
+segcnt trans</i>
+<br />
+
+<p>
+Example command line to create a timestretch with overlap effect:<br>
+	<blockquote>
+	<b><code>psow strtrans <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omstrt.wav">omstrt</a> om.txt  6 5 7</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile</i> &#150; output soundfile<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>timestretch</i> &#150; proportion by which the sound is to be 
+stretched (&gt; 1) or compressed (&lt; 1).  Range:  1 to 10.0.<br />
+<i>segcnt</i> &#150; number of grains in a chunk retained without 
+change, while gaps between segments are stretched.<br />
+<i>trans</i> &#150; transposition in semitones, corresponds to overlap 
+between successive segments.  <b>NB:</b> this parameter interacts with 
+<i>timestretch</i> in unpredictable ways.<br />
+
+</blockquote>
+
+<h3>
+Understanding the PSOW STRTRANS Process
+</h3>
+
+<blockquote>
+This process will timestretch a sound, without changing vowels. Each FOF 
+is individually repeated and hence, with many repeats, the process produces 
+artefacts similar to waveset duplication. The pitch can also be 
+(independently) shifted (without changing the vowels). These 2 parameters 
+tend to interact to produce subharmonic artefacts.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+With PSOW STRTRANS the output can be more continuous, whereas PSOW STRETCH 
+produces discrete pulsations, whether adjacent or with a gap.  Also, it 
+appears that higher values for <i>trans</i>, along with a larger 
+<i>timestretch</i> factor tends to create a stepped effect, similar to 
+Sample-Hold or FOCUS FREEZE and FOCUS HOLD.
+</blockquote>
+
+<p>
+End of PSOW STRTRANS<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="SUSTAIN">PSOW SUSTAIN &#150; Freeze and sustain a sound on a 
+specified pitch-synchronised grain
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow sustain</b> <i>insndfile outsndfile pitch-brkpnt-data time dur 
+segcnt vibfrq vibdepth transpose gain</i> [<b>-s</b>]
+<br />
+
+<p>
+Example command line to create a freeze and sustain effect:<br>
+	<blockquote>
+	<b><code>psow sustain <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omsust.wav">omsust</a> om.txt  0.4 4 5 3 3 -7 5 -s</code></b>
+	</blockquote>
+</p>
+
+<p>
+<blockquote>
+<b>NB:</b> There is a <a href="#FOFSONG"><b>special Appendix</b></a> with 
+a detailed discussion about using PSOW SUSTAIN to create 'Song'.</b>
+</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile</i> &#150; output soundfile<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>time</i> &#150; time at which to freeze the grain(s).<br />
+<i>duration</i> &#150; duration of output soundfile.  This must be 
+greater than the duration of the input soundfile.<br />
+<i>segcnt</i> &#150; number of grains in a chunk.<br />
+<i>vibfrq</i> &#150; frequency of any added vibrato.<br />
+<i>vibdepth</i> &#150; depth in semitones of any added vibrato.  
+Range: 0.0 to 3.0.<br />
+<i>transpose</i> &#150; transposition of grain in semitones  (Range: 
+-48 to +24 semitones).  This parameter may be time-varying, but 
+time = 0 will be the start of an expanded grain &#150; not (necessarily) 
+the start of the sound.<br />
+<i>gain</i> &#150; loudness contour of the entire output  (Range: 0 to 
+10)<br />
+<b>-s</b> &#150 option to smooth the grabbed fofs
+</blockquote>
+
+<h3>
+Understanding the PSOW SUSTAIN Process
+</h3>
+
+<blockquote>
+<p>
+This process plays the sound up until a specified time. It then sustains 
+the (group of) FOF(s) found at that time for <i>dur</i> length of time.  
+Having done so, it plays the remainder of the sound. You may add vibrato 
+to the sustained FOF.
+</p>
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+This is a way of lengthening a particular FOF sound and is particularly 
+useful to stretch out the central portion of a sound, leaving onset and 
+conclusion the same.  The sound is reasonably clean and smooth if the 
+<i>vib</i> parameters are set to 0, but becomes more pulsated as their 
+values increase, sometimes with unpredictable artefacts because of the 
+granular nature of the process.  The smoothest results are achieved by 
+using the <b>-s</b> flag.
+</blockquote>
+
+<p>
+End of PSOW SUSTAIN<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="SUSTAIN2">PSOW SUSTAIN2 &#150; Freeze and sustain a sound on 
+an explicitly specified grain
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow sustain2</b> <i>insndfile outsndfile start end dur vibfrq 
+vibdepth nudge</i>
+<br />
+
+<p>
+Example command line to create a freeze and sustain effect, with 
+a tight vibrato:<br>
+	<blockquote>
+	<b><code>psow sustain <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omsust2.wav">omsust2</a> om.txt 0.4 0.41 
+	4 1 1 0</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile</i> &#150; output soundfile<br /> 
+<i>start</i> &#150; time in seconds at which to cut the grain.<br />
+<i>end</i> &#150; time in seconds of the end of the grain.<br />
+<i>duration</i> &#150; duration of output soundfile.  This must be 
+greater than the input soundfile's duration.<br />
+<i>vibfrq</i> &#150; frequency of any added vibrato.<br />
+<i>vibdepth</i> &#150; depth in semitones of any added vibrato.  
+Range: 0.0 to 3.0.<br />
+<i>nudge</i> &#150; move selected grain position by <i>nudge</i> 
+zero crossings.<br />
+</blockquote>
+
+<h3>
+Understanding the PSOW SUSTAIN2 Process
+</h3>
+
+<blockquote>
+<p>
+Note that the usual <i>pitch-brkpnt-data</i> file is not required.
+</p>
+
+<p>  
+This process behaves very similarly to PSOW SUSTAIN, but asks you to 
+specify the precise start and end times at which the FOF is located.  
+Larger durations between the <i>start</i> and <i>end</i> times produce 
+a coarser result.
+</p>
+
+<p>
+The <i>nudge</i> parameter is particularly important because it allows 
+you to shift the position of the sustained FOF-grain just a little bit.  
+You can produce phasing effects by creating several outputs, each with 
+a slightly different <i>nudge</i> amount, and then mixing them together, 
+all starting in the mix at the same time.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+We can produce cleanly sustained sounds, sounds that wobble slowly, 
+sounds that are thicker and more unpredictable, and sounds with 
+phasing effects (after mixing several different outputs).
+</blockquote>
+
+<p>
+End of PSOW SUSTAIN2<br />
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="SYNTH">PSOW SYNTH &#150; Impose vocal FOFs on a stream 
+of synthesised sound (Experimental program)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>psow synth mode</b> <i>insndfile outsndfile</i> [<i>oscdatafile</i>] 
+<i>pitch-brkpnt-data depth</i>
+<br />
+
+<p>
+Example command lines to create a impose FOFs on a synthesised sound:<br>
+	<blockquote>
+	<b><code>psow synth 1 <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omsynthm1.wav">omsynthm1</a> oscdatm1.txt  
+	om.txt 1</code></b><br />
+	<b><code>psow synth 2 <a href="psowsnds\om.wav">om</a> 
+	<a href="psowsnds/omsynthm2.wav">omsynthm2</a> oscdatm2.txt  
+	om.txt 1</code></b><br />
+	<b><code>psow synth 3 <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omsynthm3.wav">omsynthm3</a> oscdatm3.txt  
+	om.txt 1</code></b><br />
+	<b><code>psow synth 4 <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omsynthm4.wav">omsynthm4</a> oscdatm4.txt  
+	om.txt 1</code></b><br />
+	<b><code>psow synth 5 <a href="psowsnds/om.wav">om</a> 
+	<a href="psowsnds/omsynthm5.wav">omsynthm5</a> om.txt 1</code></b><br />
+	</blockquote>
+<pre>
+<i>oscdatm1.txt		oscdatm2.txt</i>
+<font color="#FF0000">FRQ	Amplitude	MPV	Amplitude</font>
+200	0.4		48	1.0
+400	0.5		60	0.9
+800	0.6		67	0.8
+1000	0.7		76	0.7
+2000	0.8
+4000	0.9
+</pre>
+</p>
+<p>
+<pre>
+<i>oscdatm3.txt</i>
+<font color="#FF0000">TIME FRQ AMP ...</font>
+
+0.2 200 0.4  400 0.5  800 0.6  1000 0.7  2000 0.8  4000 0.9
+0.5 420 0.4  440 0.5  480 0.6   500 0.7  1000 0.8  2000 0.9
+
+<i>oscdatm4.txt</i>
+<font color="#FF0000">TIME MPV AMP ...</font>
+0.2 48.0 0.5  60.00 0.6  67 0.7  72.00 0.8  76.0 0.9
+0.5 66.5 0.9  66.75 0.8  67 0.7  67.25 0.6  67.5 0.5
+</pre>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>OSCDATAFILE:</b> note that all amplitudes are in the 0 to 1 range<br /><br>
+<b>1 &nbsp;  fixed frequency bands:</b> each line of <i>oscdatafile</i> 
+has a pair of values for a <i>frequency</i> and an <i>amplitude</i>.  
+Amplitude range is from 0 to 1.<br />
+<b>2 &nbsp; fixed MIDI bands:</b> each line of <i>oscdatafile</i> has 
+a pair of values for a <i>midipitch</i> and an <i>amplitude</i>. 
+Amplitude range is from 0 to 1.<br />
+<b>3 &nbsp; variable frequency bands:</b> each line of <i>oscdatafile</i> 
+<i>frequency</i> and <i>amplitude</i> values in the format used for 
+<a href="cgrofilt.htm#VARIBANK"><b>FILTER VARIBANK</b></a>.  <font color="#FF0000"> Time Frq Amp  Frq Amp ...</font>  Amplitude range is from 0 to 1.<br />
+<b>4 &nbsp; variable MIDI bands:</b> each line of <i>oscdatafile</i> has 
+<i>midipitch</i> and <i>amplitude</i> values in the format used for 
+FILTER VARIBANK:  <font color="#FF0000"> Time MPV Amp  MPV Amp ...</font>   Amplitude range is from 0 to 1.<br />
+<b>5 &nbsp; noise:</b> no <i>oscdatafile</i>; the synthetic source is 
+noise.
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input mono soundfile<br />
+<i>outsndfile</i> &#150; output soundfile<br /> 
+[<i>oscdatafile</i>] &#150; optional file for amplitude values 
+(Amplitude range is from 0 to 1.) Modes <b>1-4</b> provide various 
+data formats, while Mode <b>5</b> implements the option NOT to have 
+this file, in which case the synthetic source is noise.<br /> 
+<i>pitch-brkpnt-data</i> &#150; text file with a pitch trace in 
+<i>time frequency</i> breakpoint form.  It may contain zeros 
+(indicating moments of no-signal) but NOT pitch-zeros (indicating 
+moments of no-pitch).  It must contain SOME significant frequency 
+information.<br />
+<i>depth</i> &#150; depth of application of FOFs to the synthesised 
+sound.<br />
+</blockquote>
+
+<h3>
+Understanding the PSOW SYNTH Process
+</h3>
+
+<blockquote>
+The program runs, but the results, at least with this short sound, 
+seem not to show the frequency spread expected.  So far, attempts to 
+produce interesting results have not achieved anything.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+I think the best thing to do at this stage is to try it out with 
+various types of source files: shorter, longer, with distinct pitch 
+traces, with significant vowel changes etc.  One expects to find results 
+similar to, but distinguishable from time-varying filtering &#150; see 
+<a href="cgrofilt.htm#VARIBANK"><b>FILTER VARIBANK</b></a>.
+</blockquote>
+
+<p>
+End of PSOW SYNTH<br>
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+<h2 id="TWEET">TWEET &#150; Replace FOFs in vocal sound by synthetic tweets or noise</h2>
+
+<h3>
+Usage
+</h3>
+<b>tweet tweet 1</b> <i>infile outfile exclude pitchdata minlevel pkcnt chirp </i> [<b>-w</b>] <br>
+<b>tweet tweet 2</b> <i>infile outfile exclude pitchdata minlevel frq chirp </i> [<b>-w</b>] <br>
+<b>tweet tweet 3</b> <i>infile outfile exclude pitchdata minlevel </i> [<b>-w</b>] <br>
+
+<h3>
+Modes
+</h3>
+<blockquote>
+<b>1</b> &nbsp; Replace FOFs by synthetic tweets, based on number of peaks<br>
+<b>2</b> &nbsp; Replace FOFs by synthetic tweets, based on frequency of peaks<br>
+<b>3</b> &nbsp; Replace FOFs by noise
+</blockquote>
+
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+<i>infile</i> &#150;input soundfile.<br>
+<i>outfile</i> &#150; output soundfile.<br>
+<i>exclude</i>  &#150; '0' or text file containing pairs of times from which FOFs will <b>not</b> be extracted.<br>  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Enter '0' if not wanted.<br> 
+<i>pitchdata</i> &#150; breakpoint pitch data file of time and frequency, as created by <b><a href="crepitch.htm#GETPITCH">REPITCH GETPITCH Mode 2</a></b>.<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+The pitch data may contain zeros (indicating moments of no-signal), but it must contain <b><i>some</b></i> significant frequency information. <br>
+<i>minlevel</i> &#150; a level in dBs below the level of loudest FOF found; FOFs below this level are rejected. (Zero = <b>no</b> FOFS are rejected.)<br>
+<i>pkcnt</i>  &#150; Mode 1: number of peaks in the impulse: frequency changes with FOF size. (Range: 1 to 200)<br> 
+<i>frq</i> &#150; Mode 2: frequency of peaks in the impulse: frequency is fixed. (Range:1 to 200)<br>
+<i>chirp</i> &#150; glissing of impulse. NB Care: output may clip. (Range: 0 to 30)<br> 
+<b>-w</b> &#150; FOFs are windowed (cosine smoothing of edges).
+</blockquote>
+
+<h3>
+Understanding the TWEET Process
+</h3>
+
+<blockquote>
+<p>
+TWEET replaces FOFs found in the infile with synthetic sounds. It may be compared with PSOW SYNTH, which impose vocal FOFs on a stream of synthesized sound.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of TWEET<br>
+<a href="#PSOWLIST"><b>Return</b></a> to list of PSOW functions 
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<hr> <!-- ************************************************************ -->
+
+<h2 id="APPENDIX1">Appendix 1 &#150; ABOUT 'FOF'</h2>
+
+<p>
+`FOF' = <i>Fonction d'Onde Formantique</i>.  It is a spectral synthesis 
+method developed at IRCAM in 1984 by Xavier Rodet as part of the <b>Chant</b> 
+project.  The idea was to find an effective way to model the sound of the 
+human voice.  Trevor Wishart writes: "There is a difference between this 
+'FOF-Synthesis' and PSOW.  FOF-Synthesis synthesises small wave-packets that 
+are like the wave-packets generated by the human voice.  PSOW tries to 
+<b>find</b> these wave-packets in a real signal.  This is tricky, so don't 
+expect to get perfect results in all cases!" 
+</p>
+
+<p>
+In <i>Computer Sound Synthesis for the Electronic Musician</i> (Focal Press, 
+1998), Eduardo Reck Miranda adds that "this mechanism resembles the 
+granular synthesis technique, with the difference that the envelope 
+of the 'FOF grain' was especially designed to facilitate the production 
+of formants" (p.144).
+</p>
+
+<p>
+Richard Dobson describes the technique in this way:<br />
+"FOF (Formant Wave Function Synthesis) was developed as part of IRCAM's 'CHANT' project, which was devoted to the development of techniques for the realistic synthesis of the singing voice. It models the human voice as the sound from an impulse generator (the equivalent to the vocal chords) passing through a set of band-pass filters (representing the characteristics of the vocal tract), each filter corresponding to a vocal formant.  Since the output from the impulse generator can be considered as a sequence of 'grains', the technique can be 
+seen to be closely related to granular synthesis, the difference being that in FOF the grains are regular and synchronous, generating a coherent periodic waveform." (Richard Dobson. <i>A Dictionary of Electronic and Computer Music Technology</i>. Oxford University Press. 1992)
+</p>
+
+<p>
+Note the key words:  vocal, formant, band-pass filter, grains, regular and synchronous.  This program set by Trevor Wishart is called PSOW:  'Pitch Synchronous (Operations on Waveforms?)'.  It is not a spectral synthesis method, but manipulates grains of sound in the time domain.  His description of the grains as 'pitch 
+synchronous' is what connects it to the FOF technique:  the implication is sounds that are vocal and have a regular, i.e., pitched waveform: in effect, vowels.
+</p>
+
+<p>
+This means that the PSOW functions are designed to work with vowel sounds 
+produced by the human voice.  Trying to use them with consonants or other 
+unpitched or complex sounds is not likely to produce usable results.  
+Sounds with <b>no sibilants</b> and <b>no silences</b> are recommended 
+for best results.  Vowels can be extracted from speech (see SFEDIT CUT and 
+PSOW CHOP, CUTATGRAIN and GRAB) to be used as source material, and the 
+singing voice also produces ideal source material.
+</p>
+
+<p>
+The purpose of the PSOW functions therefore becomes clear:  to enhance the 
+vowel material within speech (possibly restoring the consonants afterwards), 
+or to produce pitched complexes with sung vowels.  It is another form of 
+CDP's approach to musique concr&egrave;te, this time focused on vocal 
+sound sources.
+</p>
+
+<hr> <!-- ************************************************************ -->
+<h2 id="APPENDIX2">APPENDIX 2 &#150; Batch files for the 3-step 
+preparation of the pitch-brkpnt-data (text) file.
+</h2>
+
+<h3>
+Appendix 2A - FRQTOTXT.BAT - PC Batch generic file
+</h3>
+
+<pre>
+rem frqtotxt.bat - PC batch file to carry out the 3 steps to make the 
+rem			make the breakpoint pitch file needed by PSOW to 
+rem               use with a FOF-source file (lengths must match)
+
+rem Edit this file to replace 'yourfile' with the actual name of your file 
+rem at both the beginning and the end of the sequence.
+
+echo on
+copysfx yourfile.wav infile.wav
+pvoc anal 1 infile.wav infile.ana
+repitch getpitch 1 infile.ana infilepchdummy.wav infile.frq
+ptobrk withzeros infile.frq infile.txt
+ren infile.txt yourfile.txt
+
+rem Delete (temporary) files no longer needed:
+del infile.wav
+del infile.ana
+del infilepchdummy.wav
+del infile.frq
+echo off
+</pre>
+
+<h3>
+Appendix 2B - FRQTOTXT.SH - MAC generic Bash shell script
+</h3>
+
+<pre>
+echo frqtotxt.sh - MAC Bash shell script to prepare pitch-brkpnt-data file for 
+echo                use with a FOF-source file (lengths must match)
+echo Edit this file to replace 'yourfile' with the actual name of your file 
+echo at both the beginning and the end of the sequence.
+
+echo 
+echo copysfx yourfile.aiff infile.aiff
+copysfx yourfile.aiff infile.aiff
+echo pvoc anal 1 infile.aiff infile.ana
+pvoc anal 1 infile.aiff infile.ana
+echo repitch getpitch 1 infile.ana infilepchdummy.aiff infile.frq
+repitch getpitch 1 infile.ana infilepchdummy.aiff infile.frq
+echo ptobrk withzeros infile.frq infile.txt
+ptobrk withzeros infile.frq infile.txt
+echo move infile.txt yourfile.txt
+move infile.txt yourfile.txt
+
+echo Delete (temporary) files no longer needed:
+echo rm infile.aiff
+rm infile.aiff
+echo rm infile.ana
+rm infile.ana
+echo rm infilepchdummy.aiff
+rm infilepchdummy.aiff
+echo rm infile.frq
+rm infile.frq
+echo 
+</pre>
+
+<h3>
+Appendix 2C - FRQTOTXT.TCL - TCL script to automate the name changes 
+(put <i>infile</i> and <i>outfile</i> on the command line) &#150; 
+invoke with <b>tclsh</b>
+</h3>
+
+<pre>
+#frqtotxt.tcl - Starting with an input soundfile, this routine 
+#		    carries out the 3-step process ending with 
+#		    PTOBRK.EXE to convert the REPITCH GETPITCH binary  
+#		    pitch data file to a text file for use with PSOW.
+#		    NB. Use REPITCH GETPITCH Mode 1, without -z flag
+#		    i.e., without retaining pitch zeros.
+# NB: apart from checking the command line arguments there is no 
+# error checking in this version of the program.
+
+#OUTPUT MESSAGES TO THE USER
+#Invoke with 'tclsh' or messages will not appear:
+#tclsh frqtotxt.tcl yourinfile.wav theoutfile.txt
+
+proc Usage {} {
+	Inf "Usage: frqtotxt.tcl yourinfile.wav theoutfile.txt\n"
+	Inf "NB: Infile must be mono\n"
+	return
+}
+
+proc Inf {errmessage} {
+	puts stdout $errmessage
+}
+
+#COMMAND LINE ARGUMENT CHECK
+
+if {$argc < 2} {
+	Usage
+	exit;
+}
+
+if {![file exists [lindex $argv 0]]} {
+	Inf "Input soundfile [lindex $argv 0] does not exist.\n"
+	exit;
+}
+
+if {[file exists [lindex $argv 1]]} {
+	Inf "Output soundfile [lindex $argv 1] already exists.\n"
+	exit;
+}
+
+#BODY OF THE 3-STEP FRQ-TO-TXT PROCESS
+
+exec copysfx [lindex $argv 0] infile.wav
+exec pvoc anal 1 infile.wav infile.ana
+exec repitch getpitch 1 infile.ana infilepchdummy.wav infile.frq
+exec ptobrk withzeros infile.frq infile.txt 20
+file rename infile.txt [lindex $argv 1]
+
+# DELETE (temporary) files no longer needed
+
+file delete infile.wav
+file delete infile.ana
+file delete infilepchdummy.wav
+file delete infile.frq
+</pre>
+
+<hr> <!-- ************************************************************ -->
+<h2 id= "APPENDIX3">APPENDIX 3 &#150; Step-by-step procedure 
+when running the PSOW&#47;FOF program set from within <i>Sound 
+Loom</i>.
+</h2>
+
+<ol>
+<li>Place your source sound file in CHOSEN FILES and analyse it with PVOC 
+ANAL.  SAVE.   Click on Recycle Output.  The analysis file now 
+becomes the new input.</li><br />
+<br />
+
+<li>Run the process REPITCH GETPITCH <i> extract pitch from analysis data: 
+to binary file</i>.  Do NOT tick parameter 8 (<i>keep pitch zeros</i>).  
+[TW: If we mark (keep) the pitch zeros (areas of no discernible pitch), this 
+tells PSOW that they are unusable for finding FOFS.  However, they could 
+be, for example, whispered speech, so we still want PSOW to make use 
+of these areas.  Thus we do NOT 'keep pitch zeros'.]  All the default 
+parameter settings that come up are therefore OK and you just need to 
+click on RUN to produce the binary pitch data file.
+	<blockquote>
+	The process produces 2 outputs, an analysis file ('cdptest0') and a 
+	pitch-data file ('cdptest1').  When you save <b>cdptest1</b> it will 
+	automatically get a <b>.frq</b> extension.  When you SAVE, you will be 
+	asked whether to Save As a Generic Name.  If you say YES, your analysis 
+	file and binary pitch data file will have the same name, but with 
+	<b>.ana</b> and <b>.frq</b> extensions respectively.  If you say NO, you 
+	will be able to enter different names.  (I usually use NO and put the 
+	word 'dummy' into the analysis file name so I know it's the one to 
+	delete.)
+	</blockquote>
+</li>
+
+<li>Re-set the CHOSEN FILES:  Select ONLY your new <b>.frq</b> file, so 
+that REPITCH GETPITCH can use it in the next step &#150; therefore you also 
+need to take away the <b>.ana</b> file used in Step 2 above so that only the 
+<b>.frq</b> file is in CHOSEN FILES.</li><br />
+<br />
+
+<li>Run the Process REPITCH GETPITCH, and under 'CONVERT PITCHDATA FORMAT' 
+click on the lower option: <i>ditto, BUT retain no-signal info</i> &#150; to 
+correlate with command line/Terminal use, this is when PTOBRK is run. 
+The <b>no-signal</b> information is different from the <b>no-pitch</b> 
+information, and is needed by the PSOW routines because where there is 
+no signal there can be no FOFs to discover.  NB:  do NOT select the upper 
+line, which reads <i>convert binary pitch data to text</i>, which is 
+a different process and does not produce the data needed by PSOW.<br />
+<br />
+Now SAVE.  The output file will have a <b>.txt</b> extension.
+	<blockquote>
+	When running the FOF functions, most of them will want to use the 
+	pitch data text file (<b>.txt</b>) you just made as the first 
+	parameter.  However, it doesn't go onto the CHOSEN FILES list.  
+	Rather, you leave it on the Workspace, where it is automatically 
+	placed when you SAVE it, and from which it is fetched with the 
+	'Get File' button on the Process Parameter Page for the function 
+	when you run it.
+	</blockquote>
+</li>
+
+<li>Now put ONLY the original <b>.aiff</b> soundfile back into CHOSEN 
+FILES (which means that you take the <b>.frq</b> file away from CHOSEN 
+FILES).  Now the FOF functions can use it.</li><br />
+<br />
+
+<li>Set the other parameters of the given FOF function as needed, and 
+RUN, etc.  Again, the <b>.txt</b> file you just made will usually be the 
+first parameter, and you 'get' it by using the 'Get File' button on 
+the Parameter Page.</li>
+</ol>
+
+<p>
+<b>Remember that you have alternatives for the 3-step preparatory 
+procedure to make the binary pitch text file</b>.  One of these is to run 
+the batch file provided via the Terminal (see <a href="#APPENDIX2">
+Appendix 2</a> of the Manual.  The files themselves have been placed in 
+the <b>html</b> directory, but you will probably want to copy them to your 
+working directory).
+</p>
+
+<p>
+Another way to facilitate the procedure would be to set up these 
+3 processes as a <i>Sound Loom</i> <b>Instrument</b>.  Remember to keep 
+the 2 parameters defining the pitch range as active parameters in the 
+Instrument, by ticking the little checkboxes when you build the 
+Instrument.
+</p>
+
+<p>
+<br />
+</p>
+<hr> <!-- ************************************************************ -->
+<h2 id= "FOFSONG">APPENDIX 4 &#150; Using 'Sustain a specific FOF within a sound' to produce "Song"
+</h2>
+<h3>by Trevor Wishart</h3>
+
+<p>
+<blockquote>
+	<blockquote>
+	<b>This process uses advanced facilities on the <i>Sound Loom</i> GUI.  
+	It is a good example of the detailed sound manipulation techniques 
+	that Trevor uses to create his remarkable compositions.  [Ed.]</b>
+	</blockquote>
+</blockquote>
+</p>
+
+<blockquote>
+<p>
+This process, on the <b>FOFS</b> menu of <i>Sound Loom</i>, can be used to extend pitched vowels in a source, and make them sing.  Success depends on the choice of material, and the parameters applied, and output may have to be modified by small edits and&#47;or (low pass, or band pass) filtering to produce a satisfactory result.
+	<ul>
+	<li>The pitch of the original sound must first be extracted and saved 
+	in textfile format.  To do this, place the analysis file version of 
+	the file you want to use in CHOSEN FILES and then use <b>extract 
+	pitch from analysis file: to textfile</b>.  (<i>A successful 
+	pitch-track is essential</i>).  The resulting textfile containing the 
+	pitch trace data forms the first parameter for the Song from sustained 	FOFs function.  You place the soundfile version of the sound you want 
+	to use and go to <b>FOFS: sustain a specific FOF within a sound</b>.  
+	The text pitch file you just made is used for the first parameter: 
+	PITCH BREAKPOINT FILE.  You load it in using <b>Get File</b>.  (The 
+	file will be on the <b>Workspace</b> and should be listed 
+	automatically.)  Click on it and then on <b>Use</b>.  It will now be 
+	shown as the (breakpoint) file to be used.</li><br />
+	<br />
+
+	<li>The second parameter, FREEZE, is the time at which the sound 
+	is to be frozen and extended.  You can use the <b>Sound View</b> 
+	window to see the sound, and mark an appropriate time.  Choose 
+	a moment within a clearly pitched vowel sound.  If the output you get 
+	is at an unexpected pitch, or has an unsatisfactory quality, try 
+	adjusting the freeze time by very small amounts.</li><br />
+	<br />
+
+	<li>The OUPUT DURATION OF WHOLE SOUND parameter will determine by how 
+	much the FOF is extended.  For example, if the original sound is 2 
+	seconds long, and the specified output duration is 8 seconds, the FOF 
+	will be extended by 6 seconds duration.  <b>NB:</b> If you do 
+	<b>not</b> set the output duration, it defaults to the duration of the 
+	source, and the process will refuse to run.  Similarly, if you set the 
+	output duration to a value <i>less than the source duration</i>, the 
+	process will refuse to run.</li><br />
+	<br />
+
+	<li>Normally you will want to grab <i>just one</i> grain.  Grabbing 
+	more than 1 grain usually tranposes the pitch downwards (2 grains 
+	down an octave, 3 grains down 1 octave and a 5th, and so on down the 
+	subharmonic series).  Large number of grains produce audible 
+	loop-repetition effects.</li><br />
+	<br />
+
+	<li>If you now run the process (with <i>Vibrato Depth</i> and 
+	<i>Transposition</i> both set to zero), you should produce an output 
+	with a static frozen FOF.  From this you can ascertain if the pitch 
+	is what you expected.</li><br />
+	<br />
+
+	<li>If the output has high frequency emphasis (sounds artificially 
+	'nasal'), try turning on SMOOTH FOFS and running again.  (Using 
+	this sometimes produces a discontinuity or 'bump' at the start of the 
+	frozen portion.  If this happens you can edit it out later).<br />
+	<blockquote>
+	To produce a more realistically 'sung' result:
+		<ul>
+		<li>Set the <i>Vibrato Frequency</i> to somewhere between 
+		<b>6</b> and <b>15</b> cycles.</li>
+		<li>Set the <i>Vibrato Depth</i> between <b>.25</b> and 
+		<b>.65</b></li>
+		</ul>
+	Test the output by running the process again.
+	</blockquote>
+
+	<blockquote>
+	To confine this vibrato to the extended FOF <i>only</i> (and to 
+	possibly add some randomised <i>Frequency</i> and <i>Depth</i> 
+	variation), use the <b>VibLocal</b> button.
+		<ul>
+		<li>The <i>Depth</i> and <i>Frequency</i> must be preset, in 
+		the parameter boxes, to <i>non-zero</i> values, before 
+		<b>VibLocal</b> is used.</li>
+		<li>The degree of randomisation of either parameter (if required) 
+		can be set in the small window that pops up.  Change the values 
+		using the <b>Arrow</b> keys.</li>
+		<li>Breakpoint files will be generated and placed in the 
+		<i>Vibrato Frequency</i> and <i>Depth</i> parameter boxes.</li>
+		</ul>
+	</blockquote>
+	You can now rerun the process and hear the output sound.
+	</li><br />
+	<br />
+
+	<li>You can cause the pitch of the FOF to change by supplying a 
+	semitone transposition breakpoint file for the GRAIN PITCH 
+	TRANSPOSITION parameter.
+	<blockquote>
+	If you have <b><i>Tabula Vigilans</b></i> there will be a small 
+	piano-keyboard type key to the right of this parameter.  You can use 
+	this to create such a breakpoint file.
+		<ul>
+		<li>First acknowledge that MIDI capture will proceed (click on 
+		the window which appears).</li>
+
+		<li>Next hit the <i>reference pitch</i> from which the 
+		transpositions will take place.  Normally this will be the 
+		pitch of the extended FOF itself.</li>
+
+		<li>Now play a pitch line.  It is best to use staccato 
+		articulation, as the events can be rejoined as required, 
+		afterwards.</li>
+
+		<li>Hit the bottom note on your MIDI keyboard, to stop the MIDI 
+		capture.</li>
+
+		<li>You will be asked if you wish to pre-sustain the entered 
+		pitches.  The captured data, if staccato, will consist of a 
+		series of silence-separated events with quite steep on&#47;off 
+		envelopes.  If you intend to smooth the onsets of these events, 
+		you need to pre-sustain them by the likely smoothing (see 
+		below).</li>
+
+		<li>You will next be asked if you wish to extend the last 
+		entered event to meet the end-portion of the sound.  If you 
+		selected to freeze the sound at a moment not at the very end of 
+		the source, there will still be a segment of unmodified source 
+		retained <b>after</b> the frozen extension.  If you opt to do 
+		the extend, your last MIDI event (provided it occurs 
+		<b>before </b> the end of the frozen segment) will be sustained 
+		to join onto this end-segment of the source.</li>
+
+		<li>You will also be asked if you wish to apply the loudness 
+		envelope from the MIDI entry.  Preserving the loudness not only 
+		retains the loudness envelope, but is also used to separate the 
+		extended FOF into distinct events separated by silence (only if 
+		you separated your MIDI input events by silence).  If you opt to 
+		do this, a breakpoint file will be automatically generated and 
+		placed in the LOUDNESS CONTOUR parameter box.</li>
+		</ul>
+	</blockquote>
+	If you now run the process again, you will hear a sound where the 
+	sustained FOF is transposed by your input data.  Typically, the steep 
+	envelopes will make it sound rather artificial.	
+	</li>
+	<br /><br />
+
+	<li>Finally, if you generated silence-separated events, you can articulate these, 	from the <b>Artic</b>  button.  (The 
+	<i>Artic</i> button will <b>not</b> function until you have generated 
+	such silence-separated events).  The <b>Artic</b> interface offers 
+	several options.
+		<ul>
+		<li>You may '<b>Stitch</b>' the end of the sustained 
+		FOF to the remnant of the end of the source.  Often there will 
+		be a loudness discontinuity here, manifesting itself as a bump 
+		or click in the sound.  The <b>Stitch</b> facility allows 
+		you to specify an envelope to apply to the output, at this 
+		point, to remove this discontinuity.</li>
+
+		<li>In the panel below, each silence separated event in your 
+		FOF-extension is assigend an event number and a set of options 
+		to apply to each event.</li>
+
+		<li>Before you can articualte any event you must turn the 
+		articulation <b>On</b> by ticking the relevant 
+		<b>Articulation On</b> box, or the <b>All Events: Artic On</b> 
+		box.</li>
+
+		<li>Once the articulation for an event is <b>On</b> you can 
+		enter values for <i>Decay to minimum of</i> and 
+		<i>Minimum at time fraction</i> in the boxes below the 
+		event number.  These set the minimum level to which the event 
+		will decay, and the time-proportion between events at which the 
+		minimum is reached.  (Also see the alternative, <i>Rise 
+		Time</i> and <i>Decay Time</i> below).</li>
+
+		<li>Events may also be <i>Sustain</i>-ed, i.e., they are 
+		extended to meet the next event, but not slurred into them.</li> 
+
+		<li>Events may also be <i>Slur</i>-red, i.e. they are 
+		extended to merge into the next event, with no articulation 
+		between them.</li>
+
+		<li>The <i>Gain</i> of each event can be adjusted.</li>
+		<li>You can enter explicit values for the <i>Rise 
+		Time</i> and <i>Decay Time</i> of that event.</li>
+
+		<li>You can also set global rise and decay times in the boxes 
+		above (GLOBALS) using the <b>Arrow</b> keys.  You can 
+		apply these to all the <b>On</b> events by clicking on <i>Set 
+		Rise</i> or <i>Set Decay</i>.  You can also remember, 
+		and recall these global values (from one session to another) 
+		using the <b>Save</b> and <b>Recall</b> buttons.
+		<blockquote>
+		Note that if you set a rise-time of (say) <b>0.3</b> seconds, 
+		but, when you created the source from MIDI input, you set the 
+		pre-sustain to <i>less than 0.3</i> seconds, the previous pitch 
+		will extend into the rise-attack and the previous pitch will be 
+		heard to glissando towards the new pitch.
+		</blockquote>
+		</li>
+		</ul>
+
+	When you run the Articulation, it writes a new LOUDNESS 
+	CONTOUR envelope to the parameter box.<br />
+	<br />
+	You must <i>Run the Process again</i> to hear the result.</li>
+
+	</ul>
+<br>
+</p>
+</blockquote>
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 30 Oct 2021 -- HTML5 version<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2021 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

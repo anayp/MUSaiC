@@ -1,0 +1,8 @@
+{
+    "mode": "pitch",
+    "method": "pvoc",
+    "amount": 2,
+    "params": {
+        // "note": "Advanced params ignored in current version"
+    }
+}

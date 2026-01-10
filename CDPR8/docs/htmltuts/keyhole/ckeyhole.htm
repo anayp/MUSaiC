@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ckeyhole.htm - HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>KEYHOLE TUTORIAL</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="../images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "../images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="../../html/ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="../../html/tutorials.htm" Target="_top"><b>Tutorials Index</b></a> 
+  <dt><a href="../../html/cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="../../html/cspecndx.htm" Target="_top"><b>Spectral Index</b></a> 
+  <dt><a href="../../html/filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href = "#"KEYCONTENTS"><b>CONTENTS</b></a>
+  <dt><a href="#INTRO"><b>Introduction</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#KEY1"><b>1. Utilities</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#KEY2"><b>2. Editing</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#KEY3"><b>3. Frequently used</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#KEY4"><b>4. Interesting</b></a>
+<!--
+  <dt>&nbsp;&nbsp;<a href = "#DISTORT"><b>DISTORT group</b></a>
+-->
+  <dt>&nbsp;&nbsp;<a href = "#KEY5"><b>5. Far-reaching</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#"><b></b></a>
+  <dt>&nbsp;&nbsp;<a href = "#"><b></b></a>
+  <br /><br />
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="../images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+     <div align=center>
+     <br>
+     <img src="../images/cdplogo2.jpg" ALT="CDP Logo">
+     </div>
+
+<h1 align=center>A Keyhole View of the CDP System</h1>
+<h2 align=center><font color="#3366ff">by Archer Endrich</font></h2>
+
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<i>This tutorial highlights a number of key CDP functions. Although CDP has developed a great deal since 2005, when it was written, these functions are just as relevant today. [R.F.]</i>
+
+<h2 align = "center" id="KEYCONTENTS">CONTENTS</h2>
+
+
+<ul>
+<li><h3><a href="#INTRO">Introduction</a></h3>
+<li><h3><a href="#KEY1">Keyhole View 1</a> &#150; Key utility functions</h3></li>
+<li><h3><a href="#KEY2">Keyhole View 2</a> &#150; Key editing functions</h3></li>
+<li><h3><a href="#KEY3">Keyhole View 3</a> &#150; Functions which are used frequently</h3></li>
+<li><h3><a href="#KEY4">Keyhole View 4</a> &#150; A number of basic but interesting processes</h3></li>
+<li><h3><a href="#KEY5">Keyhole View 5</a> &#150; Several more far-reaching transformations</h3></li>
+</h3>
+</ul>
+<hr>
+
+<!-- ========================================================================= -->
+<h2 id="INTRO">Introduction</h2>
+
+<p>
+The CDP System can be thought of as if it were one single program.  
+Since Release 4, the functions available have been grouped into a number of 
+'families' of processes, most of which are run within one executable program.
+</p>
+
+<p>
+This document uses the 'keyhole' idea in an effort to make an initial 
+contact with the CDP System a little more comprehensible.  It focuses on 
+a selection of the many functions available, with emphasis on the most 
+basic and most used functions, but also goes on to outline the significance 
+of some of the more advanced processes.
+</p>
+
+<p>
+<a href="#KEYCONTENTS"><b>Return</b></a> to Keyhole contents
+</p>
+
+<p>
+<br />
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="KEY1">Keyhole View 1 &#150; key utility functions</h2>
+
+<dl>
+<dt><a href="../../html/csysutil.htm#DIRSF"><b>DIRSF</b></a> 
+<dd>to list all the sound and analysis files in the current 
+directory, with header information
+<br /><br />
+
+<dt><a href="../../html/cgrohous.htm#COPY"><b>HOUSEKEEP COPY </b></a>
+<dd>to make a copy of a soundfile, sometimes converting 
+it to a different format in the process.
+<br /><br />
+
+<dt><a href="../../html/cgroinfo.htm#LEN"><b>SNDINFO LEN</b></a> 
+<dd>to quickly find out the duration (length) of a 
+soundfile, to several decimal points accuracy
+<br /><br />
+
+<dt><a href="../../html/cgrohous.htm#CHANS"><b>HOUSEKEEP CHANS</b></a> 
+<dd>to convert from stereo to mono, or v.vs.  Quite a 
+few programs will only operate on mono soundfiles, so this is likely to be 
+used frequently.  On the whole, don't move to stereo unless it is really 
+essential to do so.
+<br /><br />
+
+<dt><a href="../../html/cgrohous.htm#CHANS"><b>HOUSEKEEP CHANS</b></a> &#47; 
+<a href="../../html/cgromixr.htm#INTERLEAVE"><b>SUBMIX INTERLEAVE</b></a> &#47; 
+<a href="../../html/cgromody.htm#SPACE"><b>MODIFY SPACE</b></a> 
+<dd>HOUSEKEEP CHANS is often used to separate out a stereo soundfile into its two component 
+channels.  Each of these becomes a different mono soundfile.  Thus they can 
+be processed individually, and then combined again to create a stereo 
+soundfile with SUBMIX INTERLEAVE.  HOUSEKEEP CHANS can also zero the data 
+in one channel while leaving it as a stereo soundfile.  SUBMIX SPACE can 
+reverse the position of the two channels: Left and Right are swapped.
+<br /><br />
+
+<dt><a href="../../html/cgroinfo.htm#MAXSAMP"><b>SNDINFO MAXSAMP</b></a> &#47; 
+<a href="../../html/cgromody.htm#LOUDNESS"><b>MODIFY LOUDNESS</b></a> 
+<dd>SNDINFO MAXSAMP is used to gather information about the amplitude levels of a soundfile and 
+recommend a <i>gain</i> factor which would 'normalise' it (bring it to 
+full amplitude).  MODIFY LOUDNESS is then used to apply that <i>gain</i> 
+factor to a soundfile.  MODIFY LOUDNESS can be used to increase or decrease 
+the amplitude of a soundfile.  The gain factor is a multiplier.
+<br /><br />
+
+<dt><a href="../../html/cgrohous.htm#RESPEC"><b>HOUSEKEEP RESPEC</b></a> &#47; 
+<a href="../../html/cgroinfo.htm#PROPS"><b>SNDINFO PROPS</b></a> 
+<dd>HOUSEKEEP RESPEC can be 
+used to change the sample rate of a soundfile, one of the 3 main items of 
+information in a soundfile header.  The other is the number of channels and 
+the sample type (shorts or floats).  This information about a particular 
+soundfile can be seen with SNDINFO PROPS.  CDP soundfiles are 
+usually shorts, and analysis files are floats, but support for floating point 
+soundfiles is now coming in.  Sometimes, when sound is recorded from an 
+external source, either as raw data or in a different format, it loses its 
+previous header information.  HOUSEKEEP RESPEC can be used to reconstitute it.
+<br /><br />
+
+<dt><a href="../../html/cgroinfo.htm#UNITS"><b>SNDINFO UNITS</b></a>  
+<dd>a very straightforward program which can be 
+used to carry out a number of useful musical calculations, such as 
+showing which frequency in Hz a certain MIDI note is.
+<br /><br />
+
+<dt><a href="../../html/cgrosynt.htm#WAVE"><b>SYNTH WAVE</b></a> 
+<dd>some basic kinds of waveform, noise and silence can be 
+synthesized with these programs.<br>
+</dl>
+
+<p><a href="#KEYCONTENTS"><b>Return</b></a> to Keyhole contents</p>
+
+<p>
+<br />
+<br />
+</p>
+<!-- ========================================================================= -->
+<h2 id="KEY2">Keyhole View 2 &#150;  key editing functions</h2>
+
+<p>
+Very often, these facilities will be available as part of a graphic 
+sound editor supplied with a sound card, especially the more professional 
+models.  The graphic facilities are very useful when you want to isolate 
+sections of a sound to cut out and paste elsewhere, especially because you 
+can block out the section and audition it in order to hear if you have got 
+it right or not.  These are most useful when the display is 'accurate to 
+the sample', but this facility is frequently not available.  CDP's 
+VIEWSF for PC Windows 95 systems is accurate to the sample.
+</p>
+
+<p>
+On the other hand, it can also be usedful to be able to cut a sound 
+directly from the command line, such as when it doesn't matter very much 
+where the cut is made:  you just want a bit of it for something.
+</p>
+
+<p>
+<dl>
+<dt><a href="../../html/cgroedit.htm#CUT"><b>SFEDIT CUT</b></a> 
+<dd>does this, saving the cut portion as a separate soundfile.  The 
+<i>-splice</i> flag sets the slope of the splice (in milliseconds);  values 
+above 30 will very much soften the onset of the sound.  The CDP programs 
+HOUSEKEEP EXTRACT, SFEDIT ZCUT, and SPEC CUT extend the 'cut' functionality:
+<dt>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../html/cgrohous.htm#EXTRACT"><b>HOUSEKEEP EXTRACT</b></a> 
+<dd>will cut according to <i>gate</i> and <i>threshold</i> 
+specifications (this enables you to e.g. separate a number of recording 
+'takes' all at once);
+<dt>&nbsp;&nbsp;&nbsp;&nbsp;  
+<a href="../../html/cgroedit.htm#ZCUT"><b>SFEDIT ZCUT</b></a> 
+<dd>divides up a soundfile according to its zero crossings;
+<dt>&nbsp;&nbsp;&nbsp;&nbsp;  
+<a href="../../html/cspecedi.htm#CUT"><b>SPEC CUT</b></a>
+<dd> enables you to cut out portions of an analysis 
+file, useful, for example, when progressively stretching sound material:  
+stretch several times, cut out a bit of the stretched analysis file, 
+stretch that some more, etc.  This produces really stretched out material 
+in situations when it isn't necessary to retain the whole of the original 
+sound (which would get longer and longer!).
+<br /><br />
+
+<dt><a href="../../html/cgroedit.htm#JOIN"><b>SFEDIT JOIN</b></a> 
+<dd>is used to link together a string of soundfiles.  Note that in 
+this case the <i>outfile</i> name comes first.  It also has a <b>-w</b> 
+flag with which the slope of the splice can be controlled.  SFEDIT JOIN run 
+from a batchfile can be a powerful way to create a series soundfile 'tracks' 
+&#150; note that you can splice in silence by making a silent soundfile 
+with SYNTH SILENCE, or silence can be inserted into a soundfile with 
+SFEDIT INSIL or in several places at once with SFEDIT MASKS.
+<br /><br />
+
+<dt><a href="../../html/cgromody.htm#SPACE"><b>MODIFY SPACE</b></a> 
+<dd>uses a breakpoint textfile to define spatial position 
+over time.  Note that when mixing soundfiles with SUBMIX MIX, any pan 
+operations have to be done first.
+<br /><br />
+
+<dt><a href="../../html/cgromixr.htm#MIX"><b>SUBMIX MIX</b></a> 
+<dd>will mix many soundfiles at once &#150; the Manual  
+states a limit of 1000.  Sometimes you may want to mix 
+more sounds than are available on  
+graphic mix programs &#150; but watch out for amplitude overload; 
+run <a href="../../html/cgromixr.htm#GETLEVEL"><b>SUBMIX GETLEVEL</b></a> 
+first to check for overload. If overload is reported, use 
+<a href="../../html/cgromixr.htm#ATTENUATE"><b>SUBMIX ATTENUATE</b></a>
+to reduce the overall level of the mixfile.    
+Alternatively, check the output level with 
+<a href="../../html/cgroinfo.htm#MAXSAMP"><b>MAXSAMP</b></a> 
+before playing the mixed sound.
+</dl>
+</p>
+
+<p>
+CDP's more advanced facilities associated with mixing include 
+<a href="../../html/cgroinfo.htm#LENS"><b>SNDINFO LENS</b></a>,  
+<a href="../../html/cgromixr.htm#SHUFFLE"><b>SUBMIX SHUFFLE</b></a>, 
+<a href="../../html/cgromixr.htm#SPACEWARP"><b>SUBMIX SPACEWARP</b></a>, and 
+<a href="../../html/cgromixr.htm#TIMEWARP"><b>SUBMIX TIMEWARP</b></a>.  
+
+With <a href="../../html/cgroinfo.htm#LENS"><b>SNDINFO LENS</b></a> you can get the sum of the lengths of a list of soundfiles.  
+With the SUBMIX functions, you can shuffle the data in a mixfile 
+(<a href="../../html/cgromixr.htm#SHUFFLE"><b>SUBMIX SHUFFLE</b></a>), 
+perform a number of panning operations over the various files in a mixfile 
+(<a href="../../html/cgromixr.htm#SPACEWARP"><b>SUBMIX SPACEWARP</b></a>), 
+or play with the timegaps between the sounds in a mixfile 
+(<a href="../../html/cgromixr.htm#TIMEWARP"><b>SUBMIX TIMEWARP</b></a>).  
+</p>
+
+<p>
+It is useful to sketch out a 'mix' on paper, showing when each 
+soundfile starts along a time-grid, and how long they last 
+(<a href="../../html/cgroinfo.htm#LEN"><b>SNDINFO LEN</b></a> 
+is useful for that);  then you can see if and how much they overlap.
+</p>
+
+<p>
+<dl>
+In the Spectral Domain, you can effect a seamless mix with COMBINE MAX.  
+<dt><a href="../../html/ccombine.htm#MAX"><b>COMBINE MAX</b></a> 
+<dd>accepts two <i>or more</i> analysis files and it retains 
+the one channel of all of them which is the loudest;  sometimes the 
+result is a nice mix sounding very much like a
+ 
+<a href="../../html/cgromixr.htm#MIX"><b>SUBMIX MIX</b></a> result, while at 
+other times you get an amalgam of the inputs which can be very surprising:  
+because of the omitted material.
+<br /><br />
+
+<dt><a href="../../html/ccombine.htm#INTERLEAVE"><b>COMBINE INTERLEAVE</b></a> 
+<dd>doesn't really perform a mix, 
+but it interleaves analysis files in user-definable groups of windows 
+(e.g., 10 of one, then 10 of the other, etc.).
+</dl>
+</p>
+
+<p>
+<a href="#KEYCONTENTS"><b>Return</b></a> to Keyhole contents
+</p>
+
+<p>
+<br />
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="KEY3">Keyhole View 3 &#150; functions which are used frequently</h2>
+
+<p>
+I find myself using the next group of programs over and over, usually 
+in order to distance the sound material from its recognisable origins.  
+This makes it more 'plastic' and usable in a sonic context in which the 
+associations of the original sound would get in the way.
+
+<dl>
+<dt><a href="../../html/cpvocman.htm#USAGEANAL"><b>PVOC ANAL</b></a> 
+<dd>is used to turn a soundfile into an analysis file, and 
+
+<dt>
+<a href="../../html/cpvocman.htm#USAGESYNTH"><b>PVOC SYNTH</b></a> 
+<dd>resynthesizes an analysis file back into a soundfile.
+<br /><br />
+
+<dt><a href="../../html/cgromody.htm#RADICAL"><b>MODIFY RADICAL 1 </b></a>(REVERSE) 
+<dd>turns a sound around backwards, a useful first step 
+in distancing it from its origins
+<br /><br />
+
+<dt><a href="../../html/cgromody.htm#SPEED"><b>MODIFY SPEED</b></a> 
+<dd>basic transposition higher or lower can make a sound 
+surprisingly different
+<br /><br />
+
+<dt><a href="../../html/cblur.htm#BLUR"><b>BLUR BLUR</b></a> 
+<dd>smooths over analysis windows in groups of user-definable 
+sizes.  With a breakpoint file, one can play with recognisability by 
+increasing/decreasing the size of the groups.
+<br /><br />
+
+<dt><a href="../../html/chilite.htm#TRACE"><b>HILITE TRACE</b></a> 
+<dd>by retaining only the specified number of loudest 
+channels, a sound can be reduced to a mere 'trace' of the original.  Try 
+a value of 5 spectral components and see what happens.
+<br />
+(Note also
+<a href="../../html/chilite.htm#BLTR"><b>HILITE BLTR</b></a> 
+which combines BLUR and TRACE within one function.)
+<br /><br />
+
+<dt><a href="../../html/cgromody.htm#RADICAL"><b>MODIFY RADICAL 5</b></a> 
+<dd>this actually implements a form of ring-modulation
+<br /><br />
+</dl>
+
+<h3>ENVELOPE FUNCTIONS</h3>
+<dl>
+<dt><a href="../../html/cgroenvl.htm#CREATE"><b>ENVEL CREATE</b></a> 
+<dd>basic program for shaping an envelope &#150; uses a 
+breakpoint file to specify <i>time / amplitude</i>.
+<br>
+</dl>
+</p>
+
+<p>
+However, CDP programs go much further than this when it comes to handling 
+envelopes, and this is one of the more powerful areas of the system.  
+The following are key functions to get to know (and why):
+
+<dl>
+
+<dt><a href="../../html/"><b>ENVEL REPLACE</b></a> 
+<dd>a straightforward but effective tool for replacing the existing envelope of soundfile with 
+that of another sound.
+<br /><br />
+
+<dt><a href="../../html/cgroenvl.htm#EXTRACT"><b>ENVEL EXTRACT</b></a> &#47;  
+<a href="../../html/cgroenvl.htm#IMPOSE"><b>ENVEL IMPOSE</b></a> 
+<dd>extract an amplitude envelope 
+from one soundfile and apply it to another soundfile, thereby producing 
+a third, new, soundfile with the 'substance' of the second file and the 
+'shape' of the first.
+</p>
+
+<p>
+Once this operation is familiar, one can move on to some of the 
+possible <i>actions</i> with which the envelope shape can be modified 
+before creating the output.  The next three programs can alter an 
+envelope shape in 15 different ways:
+
+<dt><a href="../../html/cgroenvl.htm#WARP"><b>ENVEL WARP</b></a> &#47 ;  
+<a href="../../html/cgroenvl.htm#REPLOT"><b>ENVEL REPLOT</b></a> &#47 ; 
+<a href="../../html/cgroenvl.htm#RESHAPE"><b>ENVEL RESHAPE</b></a> 
+<dd>these 'warp' the envelope of a soundfile, a text breakpoint file, and a 
+binary envelope file respectively.
+<br /><br />
+
+<dt><a href="../../html/cformant.htm#VOCODE"><b>FORMANTS VOCODE</b></a> 
+<dd>this time we're dealing with a 
+<a href="../../html/glosstec.htm#SPECTRALENVELOPE"><b>spectral envelope</b></a>, 
+meaning the time-varying amplitude of the (ever-changing) frequencies of 
+the sound.  The timbral data of the sound onto which the new envelope is 
+being placed is retained, while the formant groups of the new envelope are 
+imposed onto it. This process is known as 'cross-synthesis. 
+Compare this result with FORMANTS GET and FORMANTS PUT:
+
+<dt><a href="../../html/cformant.htm#GET"><b>FORMANTS GET</b></a> &#47;  
+<a href="../../html/cformant.htm#PUT"><b>FORMANTS PUT </b></a>
+<dd>extract and impose a spectral envelope;  
+here the timbral and formant character of the first sound 
+modifies the second.
+</dl>
+</p>
+
+<p>
+<a href="#KEYCONTENTS"><b>Return</b></a> to Keyhole contents
+</p>
+
+<p>
+<br />
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="KEY4">Keyhole View 4 &#150; a number of basic but interesting processes</h2>
+
+<p>
+You might want to try out the folllowing relatively straightforward 
+processes:
+
+<dl>
+<dt><a href="../../html/cfocus.htm#EXAG"><b>FOCUS EXAG</b></a> 
+<dd>the peaks and troughs of the spectral envelope are 
+exaggerated, which increases the audibility of the higher timbres and of 
+contrast throughout the sound
+<br /><br />
+
+<dt><a href="../../html/cfocus.htm#FOLD"><b>FOCUS FOLD</b></a> 
+<dd>higher frequencies are 'folded' over (transposed) 
+into a specified frequency range, thus concentrating the data in that area
+<br /><br />
+
+<dt><a href="../../html/cstretch.htm#TIME"><b>STRETCH TIME</b></a> 
+<dd>stretching the spectrum with a <i>time stretch_factor</i> 
+breakpoint file;  this is like the former PVOC's <b>pvoc -T</b> but with 
+temporal control;  this is a very important way to bring out the inner 
+potential of a sound
+<br /><br />
+
+<dt><a href="../../html/crepitch.htm#TRANSPOSE"><b>REPITCH TRANSPOSE</b></a> 
+<dd>transpose a sound without changing its length (the 
+same effect as PVOC's former <b>-P</b> flag)
+<br /><br />
+
+<dt><a href="../../html/cblur.htm#NOISE"><b>BLUR NOISE</b></a> 
+<dd>by introducing a degree of noise, the original sound is 
+enriched with frequency data;  when used in a time-varying way, this 
+can be a way in which a sound can 'emerge' out of a haze of noise
+</dl>
+</p>
+
+<p>
+<dt>There are a few more options to deal with in the following programs:
+
+<dl>
+<dt><a href="../../html/chilite.htm#BAND"><b>HILITE BAND</b></a> 
+<dd>this enables you to deal with specific frequency bands 
+within the sound, altering either amplitude or frequency data
+<br /><br />
+
+<dt><a href="../../html/cblur.htm#SPREAD"><b>BLUR SPREAD</b></a> 
+<dd>the peaks of the spectral envelope are 'spread', which 
+alters the sound to a surprising degree
+<br /><br />
+
+<dt><a href="../../html/cpitch.htm#TUNE"><b>PITCH TUNE</b></a> 
+<dd>this can be very useful when working towards some form of 
+harmonic sonority, either for its own sake or to tie in with other harmonic 
+material in the piece;  the chart in Pierce's <i>The Science of Musical 
+Sound</i> is useful here to find out which (well-tempered) frequency 
+matches a specific note on the keyboard.
+  
+<a href="../../html/cgroinfo.htm#UNITS"><b>SNDINFO UNITS</b></a> can also be 
+used to convert directly from MIDI note to frequency value.
+<br /><br />
+
+<dt><a href="../../html/cgromody.htm#RADICAL"><b>MODIFY RADICAL 2</b></a> (SHRED) 
+<dd>this function can go a long way towards 
+turning a source sound into a completely different form of modulating 
+sound material by shredding it to varying degrees
+<br /><br />
+
+<dt><a href="../../html/cgromody.htm#BRASSAGE"><b>MODIFY BRASSAGE</b></a> 
+<dd>can be used simply to 'granulate' 
+a sound, i.e., turn it into a series of separate 'grains' or 'pulses'.  This 
+is done with a density value of 1.  Having done this, the resultant sound 
+can be used as an input to the other GRAIN functions, which are fairly 
+simple in their operation.  (You can still use the Release 3 programs 
+BRASSAGE, SAUSAGE & WEDGE, which approach granulation in different ways.)
+</dl>
+</p>
+
+<h3 id="DISTORT">DISTORT FUNCTIONS</h3>
+
+
+<p>
+The <a href="../../html/cdistort.htm"><b>DISTORT</b></a> 
+suite of programs offers a wide variety of sound 
+transformations.  They are simple to use and repay careful study &#150; 
+certainly an area for detailed and step-by-step exploration.  They are 
+all based on the concept of a pseudo-wavecycle, i.e., the various 
+(usually differing) portions of waveform that lie between zero-crossing 
+(where the amplitude envelope passes through zero on its way from positive 
+to negative, and v.v.s).  Because these portions of waveform differ in 
+length, a (more) non-periodic (non-regular) waveform results, and this is 
+what introduces the distortion.  Each program handles these pseudo-wavecycles 
+in a different way.  Aesthetically, bear in mind the importance of textured 
+surfaces in painting and sculpture.  The same importance can apply to the 
+audio image, and this suite offers many ways to create different types of 
+audio 'surface'.  Also see Richard Dobson's discussion of these programs 
+( <a href="../../html/cdistort.htm#RWDDIST"><b>here</b></a>).
+</p>
+
+<p>
+<dl>
+<dt><a href="../../html/cdistort.htm#REFORM"><b>DISTORT REFORM</b></a> 
+<dd>watch for pulsation effects because the same shape 
+is being repeated
+<br /><br />
+
+<dt><a href="../../html/cdistort.htm#AVERAGE"><b>DISTORT AVERAGE</b></a> 
+<dd>play with 'pixellating' an audio image
+<br /><br />
+
+<dt><a href="../../html/cdistort.htm#ENVELOPE"><b>DISTORT ENVEL</b></a> 
+<dd>impose various envelope shapes on the (differing 
+lengths of) pseudo-wavecycles.  Try separating out the channels of a 
+stereo file (HOUSEKEEP CHANS), processing them with DISTORT ENVEL (using 
+the troughed envelope and <i>differing time-varying cycle counts</i>), and 
+then combining the two mono files back into a stereo file (SUBMIX 
+INTERLEAVE).  Some marvelously fluid phasing effects can be achieved.
+<br /><br />
+
+<dt><a href="../../html/cdistort.htm#DIVIDE"><b>DISTORT DIVIDE</b></a> 
+<dd>a strange form of pitch-shifting by dividing the 
+frequency of the pseudo-wavecycles  
+<br /><br />
+
+<dt><a href="../../html/cdistort.htm#HARMONIC"><b>DISTORT HARMONIC</b></a> 
+<dd>'harmonics' as in integer multiples of, only 
+this time pseudo-wavecycles 'harmonics' are being super-imposed
+<br /><br />
+
+<dt><a href="../../html/cdistort.htm#INTERACT"><b>DISTORT INTERACT</b></a> 
+<dd>here the pseudo-wavecycles of two different 
+soundfiles are interacting
+<br /><br />
+
+<dt><a href="../../html/cdistort.htm#REVERSE"><b>DISTORT REVERSE</b></a> 
+<dd>note the suggestion to combine the operation of 
+this program with that of MODIFY RADICAL, Mode 1 (REVERSE)
+<br /><br />
+
+<dt><a href="../../html/cdistort.htm#SHUFFLE"><b>DISTORT SHUFFLE</b></a> 
+<dd>this provides a way to control the degree of 
+change, though the result is still somewhat unpredictable
+<br /><br />
+
+<dt><a href="../../html/cdistort.htm#REPEAT"><b>DISTORT REPEAT &#47;</b></a> 
+<a href="../../html/cdistort.htm#DELETE"><b>DISTORT DELETE</b></a> 
+<dd>another way to stretch out or compress a soundfile.
+</dl>
+</p>
+
+<p>
+<b>Filters</b> are a key part of any sound transformation package, 
+analogue or digital.  In digital, their operation requires setting several 
+parameters.  Probably most important to understand is 
+   <a href="../../html/glosstec.htm#FILTER"><b>'Q'</b></a>, 
+which is simply 
+the degree of 'focus' on the specified frequency:  a low number yields 
+least focus, and a high number yields most focus.
+</p>
+
+<p>
+<a href="#KEYCONTENTS"><b>Return</b></a> to Keyhole contents
+</p>
+
+<p>
+<br />
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="KEY5">Keyhole View 5 &#150; several more far-reaching transformations </h2>
+
+<p>
+We now come to a selection of CDP programs which are more advanced in 
+their operation and produce on the whole more 'textured' types of results.
+
+<dl>
+<dt><a href="../../html/cgroextd.htm#LOOP"><b>EXTEND LOOP</b></a> 
+<dd>this is not 'loop' in the same sense as it's used in 
+samplers (joining beginning and end to make a continuous sound), though 
+this can be done as well by making <i>step</i> = 0.  It is more 
+frequently used to segment a soundfile:  the output consists of lengths 
+of input taken at <i>step</i> intervals, which can be greater than 
+or less than the loop <i>length</i>. A small step value can also time-stretch the sound.  
+
+<br /><br />
+
+<dt><a href="../../html/cgroextd.htm#DRUNK"><b>EXTEND DRUNK</b></a> &#47;  
+<a href="../../html/cblur.htm#DRUNK"><b>BLUR DRUNK</b></a> 
+<dd>these are very powerful programs 
+by which you can produce an output which differs from the input by the 
+degree to which you 'wander about' in the source soundfile
+<br /><br />
+
+<dt><a href="../../html/cgromody.htm#REVECHO"><b>MODIFY REVECHO</b></a>  
+<dd>
+a classic delay line creating a series of echoes, which may be in very close succession to create  resonance; 
+the time-varying delay option can create "phasing" effects when mixed with the original.
+The more recent <a href="../../html/cgromody.htm#NEWDELAY"><b>NEWDELAY</b></a> also has a time-variable delay. 
+<!--
+a little easier to handle than 
+loops of tape going round the studio, but also more difficult to 
+understand;  the time-varying facility in MODIFY REVECHO also adds a lot 
+of scope.
+-->
+<br /><br />
+
+<dt><a href="../../html/cgromody.htm#BRASSAGE"><b>MODIFY BRASSAGE</b></a> 
+<dd>one of the most powerful of CDP's programs, this 
+becomes 'granular synthesis' when the <i>grainsize</i> gets into the 
+hundredths of a second (e.g., 0.05).  The point about the time-varying file 
+options is that <i>each grain</i> is chosen randomly within the limits set.  
+By changing pitch transpositions, spatial positions, and splice lengths, 
+for example, the texturing of the output can be made very complex (i.e., 
+interesting to listen to).  On PC Windows systems, this function 
+is also available as the graphic program, 
+<a href="../../html/cgrnmill.htm"><i><b>GrainMill</i></b></a>.
+<br /><br />
+
+<dt><a href="../../html//cgromody.htm#SAUSAGE"><b>MODIFY SAUSAGE</b></a> 
+<dd>like MODIFY BRASSAGE, but working with two or more sources.  I've 
+had a lot of fun with the pitch transposition options.  
+<!-- See <i>A Sausage Tutorial</i>. --> 
+(Cycling around a set of pitches was previously possible with the Release 3 SAUSAGE (now withdrawn),  but has been removed from this version.) 
+<br /><br />
+
+<dt><a href="../../html/cgromody.htm#SPEED"><b>MODIFY SPEED</b></a> 
+<dd>this makes time-varying transposition (= glissando 
+effects) possible, but with the added capacity to specify times as applying 
+either to the <i>infile</i> or to the <i>outfile</i>.  It can also be 
+used to accelerate a soundfile to reach a specified multiple of its 
+original speed at a defined (goal)time.
+<br /><br />
+
+<dt><a href="../../html/cpitch.htm#TRANSP"><b>PITCH TRANSP</b></a> and 
+<a href="../../html/cstrange.htm#SHIFT"><b>STRANGE SHIFT</b></a> 
+<dd>will shift part of the spectrum 
+up or down, harmonically with PITCH TRANSP (relative distances between 
+partials preserved), or inharmonically with STRANGE SHIFT: the partials 
+will tend to bunch if shifted up, or stretch if shifted down.
+</dl>
+</p>
+
+<p>
+<a href="#KEYCONTENTS"><b>Return</b></a> to Keyhole contents
+</p>
+
+<p>
+The next group are variously based on 
+<a href="../../html/crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a>.  
+The function 
+dependencies here are somewhat involved, as the pitch and transposition 
+data can interact in the most wonderfully flexible way.  The following 
+diagram charts out the basic relationships:  The key program is 
+REPITCH GETPITCH (for extracting pitch contours in a sound), because all the 
+other programs variously depend on its output.
+</p>
+
+<div align=center>
+<table border="2" cellpadding="4" bgcolor="#B0E0E6">
+<caption align=center><b>Movement of Pitch & Transposition Data</b></caption>
+
+<tr>
+<td align=center>Mix pitch and transposition data:</td>
+</tr>
+<tr>
+<td align=center><b>REPITCH GETPITCH --&gt; 
+<a href="../../html/crepitch.htm#COMBINE"><b>REPITCH COMBINE</b></a>&#47;B</b></td>
+</tr>
+
+<tr>
+<td align=center>Transpose a sound with pitch data:</td>
+</tr>
+<tr>
+<td align=center><b>REPITCH GETPITCH --&gt; 
+<a href="../../html/crepitch.htm#TRANSPOSE"><b>REPITCH TRANSPOSE</b></a>&#47;F &lt;-- 
+<a href="../../html/crepitch.htm#COMBINE"><b>REPITCH COMBINE</b></a>&#47;B</b></td>
+</tr>
+
+<tr>
+<td align=center>Isolate harmonics, then select odd or even ones:</td>
+</tr>
+<tr>
+<td align=center><b>REPITCH GETPITCH --&gt; 
+<a href="../../html/cspecedi.htm#BARE"><b>SPEC BARE</b></a> --&gt; 
+<a href="../../html/cpitch.htm#ALTHARMS"><b>PITCH ALTHARMS</b></a></td>
+</tr>
+</table>
+</div>
+
+<p>
+Also note that 
+<a href="../../html/cptchinf.htm#CONVERT"><b>PITCHINFO CONVERT</b></a> can change a binary pitch or transposition file into a breakpoint file, and 
+<a href="../../html/cptchinf.htm#HEAR"><b>PITCHINFO HEAR</b></a> can convert to a file 
+ready for synthesis by <a href="../../html/cpvocman.htm#USAGESYNTH"><b>PVOC SYNTH</b></a>
+ so you can hear it.
+
+<dl>
+<dt>
+<a href="../../html/crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a> (
+<a href="../../html/crepitch.htm#TRANSPOSE"><b>REPITCH TRANSPOSE</b></a> &#47; 
+<a href="../../html/crepitch.htm#TRANSPOSEF"><b>TRANSPOSEF</b></a> and 
+<a href="../../html/crepitch.htm#COMBINE"><b>REPITCH COMBINE</a></b> &#47;
+<a href="../../html/crepitch.htm#COMBINEB"><b>COMBINEB</a></b>)
+
+ 
+<dd>REPITCH GETPITCH can follow (as best it can) the pitch movement of a 
+sound over time.  This pitch shape can then be combined with another using 
+<a href="../../html/crepitch.htm#COMBINE"><b>REPITCH COMBINE</b></a> (binary data) or 
+<a href="../../html/crepitch.htm#COMBINEB"><b>REPITCH COMBINEB</b></a> (breakpoint data) to move 
+from one to the other, and the output of REPITCH COMBINE&#47;B can used as 
+the transposition file for another sound (REPITCH TRANSPOSE and REPITCH TRANSPOSEF).  
+REPITCH TRANSPOSEF seeks to retain the original spectral envelope.
+<br /><br />
+
+<dt><a href="../../html/cspecedit.htm#BARE"><b>SPEC BARE</b></a> &#47; 
+<a href="../../html/cpitch.htm#ALTHARMS"><b>PITCH ALTHARMS</b></a> 
+<dd>sometimes it is important to work with 
+the (harmonic) pitch material of a sound as accurately as possible.  
+SPEC BARE aids in this process by zeroing the non-harmonic partials.  
+Various procedures such as those done by PITCH ALTHARMS , 
+<a href="../../html/cstrange.htm#INVERT"><b>STRANGE INVERT</b></a> and 
+<a href="../../html/cpitch.htm#OCTMOVE"><b>PITCH OCTMOVE</b></a> may be improved when using a more 'harmonic' input.  The same is possibly true of cross-synthesis with 
+<a href="../../html/cformant.htm#VOCODE">FORMANTS VOCODE.
+</dl>
+</p>
+
+<p>
+<a href="#KEYCONTENTS"><b>Return</b></a> to Keyhole contents<br />
+<a href="../../html/tutorials.htm"><b>Return</b></a> to List of Tutorials<br />
+<a href="../../html/ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index
+</p>
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last updated: 30 Oct 2021 &#150; HTML5 version<br />
+    Documentation: Archer Endrich; last updated: 17 January 2005<br />
+    HTML revisions and minor edits: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2021 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

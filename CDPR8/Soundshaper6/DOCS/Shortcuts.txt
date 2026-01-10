@@ -1,0 +1,633 @@
+SOUNDSHAPER: KEYBOARD SHORTCUTS  Updated: 30 Mar 2023
+=============================== 
+v. 6.1 
+
+SUMMARY OF MAIN PAGE SHORTCUTS:
+-------------------------------
+Function keys
+-------------
+F keys and Shift/Ctrl/Alt combinations are mostly 
+associated with a particular function type:
+
+1 - Help, 2 - View, 3 - Markers, 4 - Patch, 5 - Settings, 6 - Graph-Edit
+7 - Pool, 8 - Process selection, 9 - Presets, 10-12 Player
+
+Alt F6-F12 are associated with External applications:
+6 - MIDI-Seq.	7 - Pitch Calc   9 -Calc  10-12 External Progs 
+  
+Loads are CTRL+ALT; Saves are SHIFT+ALT
+
+Shift+F	- Soundshaper Options
+
+Letters
+-------
+CTRL+		File operations and top-level controls
+ALT+		Main MENUS + some top-level controls
+Shift+Ctrl+	SUBMENUS- Soundfile
+Ctrl+Alt+	SUBMENUS - Spectral
+Shift+Alt+	Files/Processes etc Panels
+
+Numbers
+-------
+CTRL+		Select column of active Patch row
+Shift+Ctrl+	Select Patch row
+ALT+		Process-selection tables; Generate Data
+Ctrl+Alt+	Info
+Shift+Alt+	 -- to be assigned --
+
+-------------------------------------------------------------
+		       MAIN PAGE SHORTCUTS  
+-------------------------------------------------------------
+CTRL+A		Save File As...
+CTRL+B  	OPEN - Breakpoint Data File (into SPARE FILE slot)
+CTRL+C		Copy (text) to Windows Clipboard 
+CTRL+D  	Select User Folder  (directory) - for .brk / .txt files
+CTRL+E  	OPEN - Select Envelope File (.evl)
+CTRL+F		OPEN - Select Frequency Analysis (spectral) File (.ana)
+CTRL+G		Focus on Patch GRID
+CTRL+H		Save HISTORY File (.hst)
+CTRL+I		File Info (.wav/.aif, .ana, .frq, .trn, .for, .evl)
+CTRL+J  	Get Pitch (.ana to .frq)
+CTRL+K		CUT+KEEP segment 
+CTRL+L  	Load Patch                ** NEW 5.0 **
+CTRL+M		Loop Start to Markers                                        
+CTRL+N		Get Envelope as binary file (.wav -->.evl)
+CTRL+O		OPEN - Select Soundfile (.wav / .aif)
+CTRL+P		OPEN - Select Pitch File (.frq)
+CTRL+Q  	OPEN - Select Formant File (.for)
+CTRL+R  	RESET Main Page
+CTRL+S		SAVE FILE: to preselected Savefile name (if available)
+CTRL+T		Save Markers to Times-file
+CTRL+U    	Extract Stereo Chans (Channelx)
+CTRL+V  	Paste from Windows clipboard (e.g. text into Edit Box, Report Window)
+CTRL+W		Show Report Window
+CTRL+X  	Cut (text) to Windows clipboard	
+CTRL+Y		MixTwo   ** swapped with Shift+Ctrl+Y 5.10 ** 
+CTRL+Z		UNDO last process  (see also DELETE key)
+Ctrl+[  	MONO-STEREO
+Ctrl+]  	STEREO-MONO
+Ctrl+ENTER 	RE-EDIT current cell: equivalent of double-click
+CTRL+#		Add NULL cell (e.g. for external process) 	
+CTRL+;    	Join Soundfiles
+CTRL+=  	Mix (using Mixfile)
+CTRL+\    	Toggle Include Source checkbox (see Patch Controls)
+CTRL+/          
+Ctrl+DEL 	Delete File
+-----------------------------------------------------------------
+DELETE		Delete Cell (last  of current row)
+BACKSPACE	Selects highlighted cell as Infile 2,3,... (only if ADD INPUT Panel visible)
+-----------------------------------------------------------------
+Ctrl+`  	Highlight Patchgrid Col. 0: Source (Key to left of "1") 
+Ctrl+1		Highlight Patchgrid Col. 1
+Ctrl+2  	Highlight Patchgrid Col. 2
+Ctrl+3  	Highlight Patchgrid Col. 3
+Ctrl+4  	Highlight Patchgrid Col. 4 
+Ctrl+5  	Highlight Patchgrid Col. 5
+Ctrl+6  	Highlight Patchgrid Col. 6
+Ctrl+7  	Highlight Patchgrid Col. 7
+Ctrl+8  	Highlight Patchgrid Col. 8
+Ctrl+9  	Highlight Patchgrid Col. 9
+Ctrl+0  	Highlight Patchgrid Col. 10	
+==================================================================
+Shift+CTRL+A  	 
+Shift+CTRL+B  	
+Shift+CTRL+C  	CHANNELS MENU   	
+Shift+CTRL+D  	REVB/DELAY MENU 	
+Shift+CTRL+E  	EDIT Menu 	
+Shift+CTRL+F  	FILTER MENU	 
+Shift+CTRL+G  	GRAIN MENU	 	
+Shift+CTRL+H  	PCH-SYNC/FOF MENU			
+Shift+CTRL+I  	INFO Popup Menu	
+Shift+CTRL+J  	? Extract Pitch Breakpoint File (.wav --> .brk or .pch)	
+Shift+CTRL+K  	MAKE Spectrum (from Pitch and Formants) 
+Shift+CTRL+L  	LEVEL MENU	
+Shift+CTRL+M  	MIX Menu                                          
+Shift+CTRL+N  	ENVELOPE MENU             
+Shift+CTRL+O  	RE-ORDER MENU         
+Shift+CTRL+P  	PITCH MENU (S'files)       
+Shift+CTRL+Q  	Get Formants (.ana -->.for) 
+Shift+CTRL+R  	RHYTHM MENU        					
+Shift+CTRL+S  	SPATIAL MENU		
+Shift+CTRL+T  	TEXTURE MENU      ** Altered 5.0 **
+Shift+CTRL+U  	UTILS MENU (Soundfiles)		
+Shift+CTRL+V  	Insert soundfile		      ** Altered 5.0 **	
+Shift+CTRL+W  	WAVESETS MENU
+Shift+CTRL+X  	EXTEND/SEGMENT MENU 	
+Shift+CTRL+Y  	MixMany (CDP: mergemany) ** swapped with MixTwo 5.10 ** 				
+Shift+CTRL+Z  	Show last-used sub-menu (pop-up) 	    		
+Shift+CTRL+#  	Transpose (spectral) 
+Shift+Ctrl+=  	(Shift+Ctrl+ +) Mix Multi-chan (using mixfile)		
+Shift+Ctrl+-  	Cancel Cut/Paste operation    ** Altered 5.0 **			  
+Shift+Ctrl+[  	SPLIT CHANS 		  
+Shift+Ctrl+]  	INTERLEAVE (merge) CHANS	 
+Shift+Ctrl+;  				
+Shift+Ctrl+'  				
+Shift+Ctrl+\  	Currently Highlighted Cell (speak: Accessibility function) *ALTERED 5.0*
+Shift+Ctrl+,  				
+Shift+Ctrl+.  	Last Cell in Patch row (speak: Accessibility function)
+Shift+Ctrl+/	(Show last-used sub-menu  - NOT WORKING?) also see Shift+Ctrl+Z		 				
+Shift+CTRL+BkSpace REVERSE  
+Shift+CTRL+DEL  Delete right Marker (and close any gap)	
+-------------------------------------------------------------
+Shift+Ctrl+`  	
+Shift+Ctrl+1  	Highlight Patchgrid Row 1  *NEW 5.0*		
+Shift+Ctrl+2  	Highlight Patchgrid Row 2  *NEW 5.0*  		
+Shift+Ctrl+3  	Highlight Patchgrid Row 3  *NEW 5.0*  		
+Shift+Ctrl+4  	Highlight Patchgrid Row 4  *NEW 5.0*  
+Shift+Ctrl+5  	Highlight Patchgrid Row 5  *NEW 5.0*	
+Shift+Ctrl+6  	Highlight Patchgrid Row 6  *NEW 5.0*	
+Shift+Ctrl+7  	Highlight Patchgrid Row 7  *NEW 5.0*	
+Shift+Ctrl+8  	Highlight Patchgrid Row 8  *NEW 5.0*	
+Shift+Ctrl+9  	Highlight Patchgrid Row 9  *NEW 5.0*	
+Shift+Ctrl+0  	Highlight Patchgrid Row 10 *NEW 5.0* 
+  c.f. Ctrl+ number for Columns 
+================================================================
+ALT+A  		MENU: PATCH	
+Alt+B  		Run user-written BATCH script (.bat)  *NEW 5.0*		
+ALT+C  		START Cell Copy	
+ALT+D  		MENU: DATA (Columns Page) 
+ALT+E  		MENU: EDIT/MIX Processes
+ALT+F  		MENU: FILE
+ALT+G  		MENU: GRAPH-EDIT 
+ALT+H  		MENU: HELP 
+ALT+I  		MENU: INFO Functions
+ALT+J  		Set GetPitch Defaults		
+ALT+K  		Make Spectrum (Combine Pitch & Formant)		
+ALT+L  		INFO: File Length (or segment length if Loops or Markers checked)  *NEW 5.09*                        	
+ALT+M  		MENU: MARKERS  
+ALT+N  		MENU: SOUNDFILE Processes 
+ALT+O  		MENU: OPTIONS 
+ALT+P  		MENU: PITCH Processes
+ALT+Q		Set GetFormant Defaults (not in use yet)
+ALT+R		REPLACE PROCESS button
+ALT+S  		MENU: SPECTRAL Processes
+ALT+T  		MENU: TOOLS
+ALT+U  		MENU: UNDO 			
+ALT+V  		Paste: REPLACE (part of) File 1 with File 2 *NEW 5.09*                  
+ALT+W  		Show Speech Window (accessibility)	                   
+ALT+X  		MENU: XTRA		
+ALT+Y  		MENU: SYNTH 
+ALT+Z  		Clear whole patch
+		
+---------------------------------------------	
+ALT+\  		Show Cell Data (also Right-Click [on cell] +C)
+ALT+/					
+ALT+.  		"Single Row" checkbox (toggle) - Patch control
+ALT+;		"Whole Patch" checkbox (toggle) - Patch control
+ALT+# 		"Save Processed Files" checkbox (toggle) - Patch control
+ALT+'		"Patch Preview" checkbox (toggle) - Patch control
+ALT+-           "Copy Row" checkbox (toggle) - Patch control
+ALT+=		"Virtual Copy" checkbox (toggle)- Patch control
+- - - - - - - - - - - - - - - - - - - - - - -
+Alt+1  		Process Table 1 Edit/Mix  
+Alt+2  		Process Table 2 S'files	    
+Alt+3  		Process Table 3 Spectral	    
+Alt+4  		Process Table 4 Pitch	    
+Alt+5  		Process Table 5 Info / Synth / Data	   
+Alt+6		?Generate Filterbank Freqs   
+Alt+7		?Generate Varibank data     
+Alt+8		?Generate Room Response Data	
+Alt+9		?Generate Sine Data   		
+Alt+0		?Generate Doppler Shift Transposition File  
+=================================================================
+N.B. Windows Ctrl+Alt assignments have precedence
+Ctrl+Alt+A  				
+Ctrl+Alt+B  	                               	
+Ctrl+Alt+C  	COMBINE MENU   			
+Ctrl+Alt+D  	Data Editor Page		
+Ctrl+Alt+E  	QUICK-EDIT MENU    					
+Ctrl+Alt+F  	Spec FILTER MENU 
+Ctrl+Alt+G  	   	 
+Ctrl+Alt+H  	   	
+Ctrl+Alt+I  	                                                
+Ctrl+Alt+J  	GET PITCH: BRKPT    ** ALTERED 5.1 **		
+Ctrl+Alt+K  	CUT AT ZEROS        ** ALTERED 5.1 **          		
+Ctrl+Alt+L  	LEVEL page		
+Ctrl+Alt+M  	Spec MORPH MENU 		
+Ctrl+Alt+N      Extract breakpoint envelope (--> .env) 	
+Ctrl+Alt+O  				
+Ctrl+Alt+P  	Spec PCH/FREQ MENU  
+Ctrl+Alt+Q  	Spec FORMANTS MENU    	
+Ctrl+Alt+R  	Spec RESHAPE MENU    
+Ctrl+Alt+S  	SYNTH MENU		    ** ALTERED 5.1 **     			
+Ctrl+Alt+T  	Spec TIME MENU   			
+Ctrl+Alt+U  	Spec UTILS MENU                              
+Ctrl+Alt+V  	PASTE (processed segment)               
+Ctrl+Alt+W  			
+Ctrl+Alt+X  	EXCISE (Discard)                          
+Ctrl+Alt+Y      Merge2
+Ctrl+Alt+Z  	Redo last process (same as F8)		
+(Ctrl+Alt+DEL	WINDOWS functions, incl. Task Manager)
+- - - - - - - - - - - - - - - - - - - - - - -
+Ctrl+Alt+1  	Info: File Properties		
+Ctrl+Alt+2  	Info: Max.level	(whole file)	
+Ctrl+Alt+3  	Info: Max.level betw. markers/loops (as selected)	
+Ctrl+Alt+4  	Info: RMS/Average Level			
+Ctrl+Alt+5  	Info: Count Waveset Cycles	
+Ctrl+Alt+6  	Info: Count Grains	
+Ctrl+Alt+7  	Pitch Info		
+Ctrl+Alt+8  	Channel (of frequency)					
+Ctrl+Alt+9  	Info: Count Analysis Windows		
+Ctrl+Alt+0  	Insert Silence	
+Ctrl+Alt+-  			
+Ctrl+Alt+=  			
+Ctrl+Alt+[  			
+Ctrl+Alt+]  			
+Ctrl+Alt+;  			
+Ctrl+Alt+'
+Ctrl+Alt+#  	Speed (Transpose)
+Ctrl+Alt+\  		CrossMod
+Ctrl+Alt+,  
+Ctrl+Alt+.  				
+Ctrl+Alt+/  		RingMod 
+==========================================================================
+
+Shift+Alt+A 	PATCHES PANEL 			
+Shift+Alt+B 			
+Shift+Alt+C 				
+Shift+Alt+D 			
+Shift+Alt+E 		
+Shift+Alt+F 	FILES PANEL			
+Shift+Alt+G 						
+Shift+Alt+H 						
+Shift+Alt+I 	INPUT2,3,.. PANEL	
+Shift+Alt+J 	PCH DATA MENU    		
+Shift+Alt+K 			
+Shift+Alt+L 					
+Shift+Alt+M 	End Time to Markers					
+Shift+Alt+N 	ENV IMPOSE
+Shift+Alt+O 	SPARE-FILE PANEL			
+Shift+Alt+P 	Pan	    
+Shift+Alt+Q 			
+Shift+Alt+R 	PROCESSES PANEL 			
+Shift+Alt+S 	SAVE-FILE PANEL   		
+Shift+Alt+T 	Trim	      		
+Shift+Alt+U     Tune partials	 		
+Shift+Alt+V 	 		
+Shift+Alt+W 					
+Shift+Alt+X 							
+Shift+Alt+Y 	Mix Balance		
+Shift+Alt+Z 					
+----------------------------------------------------------------		
+Shift+Alt+1 				
+Shift+Alt+2 				
+Shift+Alt+3 				
+Shift+Alt+4 					
+Shift+Alt+5 				
+Shift+Alt+6 				
+Shift+Alt+7 			
+Shift+Alt+8 			
+Shift+Alt+9 		
+Shift+Alt+0		
+Shift+Alt+#	Shift Pitch (transpose preserving fmts)
+Shift+Alt+\ 		
+Shift+Alt+, 			
+Shift+Alt+. 			
+Shift+Alt+/ 			
+
+======================================================
+		    FUNCTION KEYS
+======================================================
+[F / Ctrl+F and Alt+F listed first; others below]
+
+F1		Toggle QUICK HELP for Soundshaper 
+Ctrl+F1         [available]
+Shift+Ctrl+F1	SOUNDSHAPER HELP (HTML file)		
+Alt+F1		CDP-HELP (CDP Help Index: HTML file) - online if avail.	                     
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+F2  		Open nominated Sound-editor (with current soundfile)
+Alt+F2		ViewSF (CDP Program) - view sfile/analysis file
+Ctrl+F2		Toggle Spare File checkbox (if Spare File Panel visible)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+F3              Play-Cursor point to Markers 
+Shift+Ctrl+F3   Loop Points to Markers (= Get Loops button)
+Alt+F3          Markers to Loop Points (= Set Loops button)                   
+Ctrl+F3		
+			
+     
+                End-time to Markers                   
+Ctrl+Alt+F3  	Load Markers File
+Shift+Alt+F3 	Save Markers File
+(Alt+M	Markers Menu)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+F4		Operate drop-down combo box (Windows accessibility control) 
+Alt+F4  	Quit Soundshaper
+- - - - - - - - - - - - - - - -
+Ctrl+F4 	Run (or re-run) Patch
+Shift+Ctrl+F4   Patch To Cell (Load/Run patch in cell)  ** NEW 5.0 ** 	 
+Ctrl+Alt+F4  	Import Single Row			** NEW 5.0 **
+(Ctrl+L         Load Patch)                             ** NEW 5.0 ** 
+Shift+Alt+F4 	Save Patch 
+(Alt+A		Patch Menu)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+F5		Settings page
+Ctrl+F5 	PVOC Settings (spectral analysis/synthesis: .ana)
+Shift+Ctrl+F5   Select Project Folder
+- - - - - - - - - - - - -
+Alt+F5	    	MIDI to SEQ (via mf2t.exe)
+Ctrl+Alt+F5     Use Project Folder for Load/Save files (toggle)              		
+Shift+Alt+F5 	  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+F6	 	Graph-Edit: (+Y), if no Source file selected.
+	   	OR Edit selected .brk file.
+	   	OR Edit .brk with length of selected Source file. 
+Ctrl+F6  	Graph-Edit (+Y), if no Source file selected. 
+	   	OR Edit .brk with length of selected source sndfile.
+
+Shift+Ctrl+F6 	Graph-Edit (+/Y), if no Source file selected. 
+	   	OR Edit .brk with length of selected source sndfile.
+- - - - - - - - - - - - - -
+Ctrl+Alt+F6	Load and edit breakpoint file (.brk)
+Shift+Alt+F6
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+F7		File List item to Source (or Inf2,3,... when Add Input panel visible)    
+Ctrl+F7		Source /saved file to File List
+Shift+Ctrl+F7	Remove item from File List
+- - - - - - - - - - - - - -
+Ctrl+Alt+F7	Load (Sound)File List
+Shift+Alt+F7	Save (Sound)File List
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+F8	 	Reselect last Process
+Ctrl+F8	 	Add last process to Process List
+Shift+Ctrl+F8	Remove item from Process List
+Ctrl+Alt+F8  	Load Process List  
+Shift+Alt+F8	Save Process List  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+F9	 	PVOC SYNTH
+CTRL+F9  	PVOC ANALYSE		
+- - - - - - - - - - -
+Ctrl+Alt+F9   	Load Global PresetFile
+Shift+Alt+F9  	List Global Presetfile
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+F10      	Open  Player (normally done automatically)
+Ctrl+F10 	Close Player (normally done automatically)
+- - - - - - - - - - - -
+Ctrl+Alt+F10	Select Favorite (external program/ batchfile): 
+		to add to list or replace top Favorite
+Shift+Alt+F10
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -  
+F11	 	Record Soundfile
+Ctrl+F11
+- - - - - - - - - - - -
+Ctrl+Alt+F11	Load Favourites List
+Shift+Alt+F11	Save Favourites List 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+F12	 	Play soundfile in console window, via CDP program (PAPlay). 
+Ctrl+F12 	Play freq. analysis file (with full params), using PVPlay. 
+- - - - - - - - - - - -
+Ctrl+Alt+F12	Load and show Report Window (to come)
+Shift+Alt+F12   Save Report Window 	
+---------------------------------------------------------
+		EXTERNAL APPLICATIONS
+Alt+F1   CDP Help	
+Alt+F2   VIEWSF	 (c.f. F2 - Launch selected soundfile viewer)	
+Alt+F3 	 Markers to Loops  			 			
+Alt+F4 	 Quit Soundshaper
+Alt+F5   Midi to SEQ (via MF2T.exe)			
+Alt+F6 	 Break Edit (external CDP program)
+Alt+F7   Pitch Calculator (external program)
+Alt+F8   Calculator (external program)			
+Alt+F9   Run Favourite 1  (external program)		
+Alt+F10  Run Favourite 2  (external program) 
+Alt+F11  Run Favourite 3  (external program)
+Alt+F12  Run Favourite 4  (external program) 
+-------------------------------------------------
+Shift+Ctrl+F1   SOUNDSHAPER HELP (HTML file)   	                                 
+Shift+Ctrl+F2 	
+Shift+Ctrl+F3   Loops to Markers							    	
+Shift+Ctrl+F4 	Run Patch in Cell
+Shift+Ctrl+F5 	Select Project Folder                  		    			   
+Shift+Ctrl+F6   Create/Edit (env.) breakpoint file (+/- Y)
+Shift+Ctrl+F7	Delete Pool Item  		 
+Shift+Ctrl+F8	Delete Process List Item                
+Shift+Ctrl+F9	Run Favourite 5  (external program) 					
+Shift+Ctrl+F10  Run Favourite 6  (external program)  				
+Shift+Ctrl+F11  Run Favourite 7  (external program)    
+Shift+Ctrl+F12  Run Favourite 8  (external program)    
+-------------------------------------------------
+Ctrl+Alt+F1				
+Ctrl+Alt+F2	
+Ctrl+Alt+F3	Load Markers File
+Ctrl+Alt+F4	Load Patch (.ssp)				 	
+Ctrl+Alt+F5	Load Parameter File (.prm: single preset) 			
+Ctrl+Alt+F6	Load and Edit Breakpoint File (.brk)
+Ctrl+Alt+F7 	Load Pool List				
+Ctrl+Alt+F8	Load Process List 			
+Ctrl+Alt+F9	Load Global PresetFile 
+Ctrl+Alt+F10	Select Favorite (external program/ batchfile): add to list or replace top Favorite
+Ctrl+Alt+F11	Load Favourites File		
+Ctrl+Alt+F12	Load Textfile to Report Window
+---------------------------------------
+Shift+Alt+F1    Hear Pitch (.frq -> SF)           					
+Shift+Alt+F2    View Formants (.fmt -> pseudo-SF] 					
+Shift+Alt+F3    Save Markers File		
+Shift+Alt+F4	Save PATCH 			
+Shift+Alt+F5	
+Shift+Alt+F6    				
+Shift+Alt+F7	Save Pool			
+Shift+Alt+F8	Save Process List			
+Shift+Alt+F9					
+Shift+Alt+F10					
+Shift+Alt+F11   Save Favorites File
+Shift+Alt+F12	Save Report Window text to file
+-------------------------------------------------
+Soundshaper Options:
+--------------------
+Shift+F1  Play Sound/Analysis files on opening			
+Shift+F2  Preview processed segment within original file, before pasting 
+Shift+F3  Send Loops/Markers to Param. page                
+Shift+F4  Show Menu Hints (normally set)			
+Shift+F5  Auto-FFT (.ana -->.wav) (normally set)
+Shift+F6  Use Project Folder for Load/Save operations          
+Shift+F7  Enable Csound Scripts (if Csound installed)           
+Shift+F8  Auto-scale time-varying datafiles (normally set)	
+Shift+F9  Use Global Presets (on Parameter pages)
+Shift+F10 Show CDP Warning messages (normally unset)
+Shift+F11 Hide Optional Parameters (normally unset)		
+Shift+F12 Use online CDP Documentation                         
+
+- - - - - - - - - - - - - - - - - - - - - - - -
+Legacy Options...
+[none]    Play Via Console NOT AVAILABLE 5.0 (PVPLAY and PAPLAY are avail. in Tools) 
+[none]    Run Via Console - show external command window while processing (normally unset) NOT AVAILABLE 5.0
+[none]	  Auto-scale Form (for screen resolutions >800x600 as required)  - not with Form-scale
+[none] 	  Form-scale      (for screen resolutions >800x600 as required)  - not with Auto-scale
+- - - - - - - - - - - - - - - - - - - - - - - -
+Most Options can be saved to .evt file and are automatically set on opening program.
+
+
+
+============================================================================
+		SHORTCUTS ON PARAMETER PAGE
+============================================================================
+GENERAL
+ENTER		RUN PROCESS  (except when editing datafile, which is normal RETURN)
+ESC		CANCEL	Exit without running process				
+<-- and -->     Param slider: lower / raise value by 0.2% of range
+Up Arrow	Param slider: raise value by 1% of range
+Down Arrow	Param slider: lower value by 1% of range
+Page Up		Param slider: raise value by 10% of range
+Page Down	Param slider: lower value by 10% of range
+INSERT		Param slider: place in "middle-value" position
+DELETE		Param slider: restore default position and value
+================================
+HELP MENU [Alt+H] & MAIN FUNCTION KEYS
+F1		Quick Help     ** ALTERED 4.2 **
+Shift+Ctrl+F1	Soundshaper Help (including Soundshaper reference for process where avail.)  
+ALT+F1		CDP Help (links to CDP's reference for process) - online if avail.
+Alt+\		Show Analysis Data (non-soundfile)			    
+- - - - - - - - -
+F3              Play Point to Markers
+Shift+Ctrl+F3   Loops to Markers
+Alt+F3          Markers to Loops
+- - - - - - - - -		
+F4		RUN PROCESS   
+F5		Show Default Data Folder
+F6		Graph Editor	  [Edit Menu]
+F7		Default Data File [Edit Menu]
+F8		Scale Data Times  [Edit Menu]		
+F9		Show Current Presetfile
+F10		Infile Length (speak: Accessibility function)
+F11		Function Name (speak: Accessibility function)
+F12		MORE/FIRST Parameters button (Param. Menu on Texture page)
+Alt+W		Speech Window Focus (Accessibility Function)
+
+DESCRIPTIONS (Accessibility functions)...
+Shift+Alt+F1	Mode Description
+Shift+Alt+F2	Parameter Name
+Shift+Alt+F3	Parameter Description
+Shift+Alt+F4	Parameter Range
+CTRL+\    	Prameter value
+Shift+Alt+F5	Option Check 1 Description	
+Shift+Alt+F6	Option Check 2 Description
+Shift+Alt+F7	Option Check 3 Description
+Shift+Alt+F8	Option Check 4 Description
+Shift+Alt+F9	Option Check 5 Description
+Shift+Alt+F10	Option Check 6 Description
+Shift+Alt+F11	Option Check 7 Description (not in use)
+Shift+Alt+F12	Option Check 8 Description (not in use)
+================================
+FILE MENU [Alt+F] plus others
+[CTRL+O		OPEN Infile 1 (no longer in use)]
+[CTRL+I		OPEN InFile 2,3, etc. (no longer in use)]
+------
+CTRL+A		SAVE current DATA File As
+CTRL+B		OPEN (Breakpoint) Data File - opens into Memo
+CTRL+D		Select Datafile (prefix) Folder
+CTRL+J		Select current Project Folder
+CTRL+L          Load Snapshot (single parameter set: *.prm)
+CTRL+M          Loop start to Markers, and optionally to Data Edit Memo 
+------
+CTRL+N		New Preset file
+CTRL+P		Load Preset file
+CTRL+R		Reset Page
+CTRL+S		SAVE/overwrite current Data File
+CTRL+T		Save Settings to Text File
+CTRL+K          Save Snapshot as (single parameter set: *.prm)
+CTRL+W		Save datafile to temp. file (ready to run)
+CTRL+Z          Delete last-numbered Preview 
+------
+CTRL+\    	Speak parameter value (Accessibility function)
+------
+Shift+Ctrl+F    Select Output Folder - used where outfile required
+Shift+Ctrl+A	Outfile Name  (*Access*)
+Shift+Ctrl+X	Delete current Preset
+------
+ESC		CANCEL and EXIT
+=============================
+SOUNDSHAPER OPTIONS MENU [ALT+O]
+Shift+F3        Return Markers to Main Page  
+Shift+F6	Bypass Param. Checks
+Shift+F7	Reset on Exit
+Shift+F8	Auto-scale time-varying (breakpoint) data files
+Shift+F9	Use Global Presets
+Shift+F10	Auto-Store Preset Datafiles
+Shift+F11	Hide Optional Params
+Shift+F12       Use Online CDP Help
+=============================
+MODES MENU [Alt+M]
+CTRL+F1		Mode 1		(Choose Mode 1)
+CTRL+F2		Mode 2
+etc. up to
+CTRL+F12	Mode 12
+=============================
+PARAMETERS MENU [Alt+P]
+CTRL+1		Parameter 1 	(Make current parameter)
+CTRL+2		Parameter 2
+etc. up to
+CTRL+9		Parameter 9
+CTRL+0		Parameter 10
+----------------------------
+Shift+Ctrl+1	Parameter 11
+Shift+Ctrl+2	Parameter 12
+etc. up to
+Shift+Ctrl+9	Parameter 19
+Shift+Ctrl+0	Parameter 20
+- - - - - - - - - - - - - - -
+Ctrl+Alt+1 	Parameter 21
+Ctrl+Alt+2	Parameter 22
+etc. up to
+Ctrl+Alt+8 	Parameter 28
+----------------------------
+Shift+Ctrl+S	Parameter Slider - of current parameter (*Access*)
+Shift+Ctrl+E	Exit Data Edit memo (*Access*)
+Shift+Ctrl+Y	Toggle Y/N checkbox
+Shift+Ctrl+T    Toggle T-V checkbox
+
+============================
+CHECKBOXES MENU [ALT+C: CDP Option Checkboxes]
+Ctrl+Alt+F1	Option Check 1
+Ctrl+Alt+F2	Option Check 2
+etc. up to
+Ctrl+Alt+F6	Option Check 6
+=============================
+EDIT MENU [ALT+E] see also File Menu and Function Key List above
+0. CTRL+Del  	Clear Data Memo
+1. CTRL+E	Edit-Data Memo (*Access*)
+2. F6		Graph Edit
+3. Ctrl+B	Open Data File
+4. F7		Scale Data Times
+5. F8		Reload default Data file
+6. Ctrl+S	Save Data File (overwrite)
+7. Ctrl+A	Save Data File As
+8. Ctrl+D	Select Data Folder
+=============================
+MARKERS MENU
+F3              Play Point to Markers
+Crtl+M          Loop Start to Markers (= LoopPt Button), + optionally Edit Memo
+Shift+Ctrl+M    Loop Start to Left Marker + optionally Edit Memo
+Shift+Alt+M 	End Time to Markers
+F3              Play Point to Markers
+Shift+Ctrl+F3   Loops to Markers
+Alt+F3          Markers to Loops
+Ctrl+Alt+D	Markers to Data Menu
+Alt+D		Data Menu to Markers
+Shift+CTRL+DEL  Delete right Marker (and close any gap)
+=============================
+PRESETS /SNAPSHOTS MENU [ALT+S]
+ALT+1		Save/Recall Snapshot 1
+ALT+2		Save/Recall Snapshot 2
+etc. up to
+ALT+0		Save/Recall Snapshot 10
+ALT+-		Save/Recall Snapshot 11
+ALT+=		Save/Recall Snapshot 12
+ALT+Del		Clear Selected Snapshot
+- - - - -- - - - - - - - - - 
+PRESET CONTROLS...
+Shift+Ctrl+P	Preset Combo (*Access*)	 - then F4 to drop down)
+Shift+Ctrl+N	New Preset
+Shift+Ctrl+D	Description Edit box (*Access*)	
+Shift+Ctrl+O	Overwrite Preset
+Shift+Ctrl+Del	Delete Preset
+
+
+
+
+
+
+
+
+
+
+
+	

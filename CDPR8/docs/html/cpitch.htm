@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cpitch.htm - HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP Spectral PITCH Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cspecndx.htm" Target="_top"><b>Spectral Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#PITCHLIST"><b>PITCH:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ALTHARMS"><b>ALTHARMS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CHORD"><b>CHORD</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CHORDF"><b>CHORDF</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#OCTMOVE"><b>OCTMOVE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PICK"><b>PICK</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TRANSP"><b>TRANSP</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TUNE"><b>TUNE</b></a>
+  <br><br>
+  <b>OTHERS:</b><br>
+  <dt>&nbsp;&nbsp;<a href="#SPECTUNE"><b>SPECTUNE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TUNEVARY"><b>TUNEVARY</b></a>
+  <!-- 
+  <br /><br /> 
+  <dt><a href="#PITCHTECHNICAL"><b>Technical</b></a>
+  <br /><br />
+   -->
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <div align=center>
+   <br>
+   <img src="images/cdplogo.jpg" ALT="CDP Logo">
+   </div>
+
+   <h1 align=center>CDP Spectral PITCH (&amp; Harmony&#47;Freq) Functions</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="PITCHLIST">Functions to Create PITCH (&amp; Harmony&#47;Freq) 
+Relationships Between Partials</h2>
+
+
+<dl>
+<dt><a href="#ALTHARMS">PITCH <b>ALTHARMS</b></a><dd>Delete alternate harmonics </dd>
+<dt><a href="#CHORD">PITCH <b>CHORD</b></a><dd>Transposed versions of the sound are superimposed onto the original </dd>
+<dt><a href="#CHORDF">PITCH <b>CHORDF</b></a><dd>Transposed versions of the spectrum are superimposed within the existing spectral envelope </dd>
+<dt><a href="#OCTMOVE">PITCH <b>OCTMOVE</b></a><dd>Octave transpose without formant shift </dd>
+<dt><a href="#PICK">PITCH <b>PICK</b></a><dd>Only retain channels which might hold the partials specified </dd>
+<dt><a href="#SPECTUNE"><b>SPECTUNE</b></a> <dd> Find most prominent pitch and transpose file to it </dd>
+
+<dt><a href="#TRANSP">PITCH <b>TRANSP</b></a><dd>Shift pitch of (part of) the spectrum </dd>
+<dt><a href="#TUNE">PITCH <b>TUNE</b></a><dd>Replace spectral frequencies by harmonics of specified pitch(es) </dd>
+<dt><a href="#TUNEVARY"><b>TUNEVARY</b></a> <dd>Replace spectral frequencies with the harmonics of specified pitch(es)</dd>
+<!-- 
+<dt><a href="#PITCHTECHNICAL"><b>Technical Discussion</b></a> <dd>Harmonic and 
+Inharmonic Relationships Among Partials 
+ -->
+<br><br>
+<b>SEE ALSO:</b><br>
+<dt><a href="crepitch.htm#TRANSPOSE"><b>TRANSPOSE</b></a> <dd>Transpose spectrum (spectral envelope also moves)</dd>
+<dt><a href="crepitch.htm#TRANSPOSEF"><b>TRANSPOSEF</b></a> <dd>Transpose spectrum, retaining original spectral envelope</dd>
+</dl>
+
+<p>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+ 
+<h2 id="ALTHARMS">PITCH ALTHARMS &#150; Delete alternate harmonics </h2>
+
+<h3>
+Usage
+</h3>
+<b>pitch altharms mode</b> <i>infile pitchfile outfile</i> <b>-x</b>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; delete <b>odd</b> harmonics<br>
+	<p>
+	<blockquote>
+	This usually produces a transposition an octave higher, with 
+	no formant change.<br>
+	</blockquote>
+	</p>
+<b>2</b>&nbsp; delete <b>even</b> harmonics<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>pitchfile</i> &#150; binary file data file<br>
+	<p>
+	<blockquote>
+	The <i>pitchfile</i> must be derived from the <i>infile</i> 
+	by running <a href="crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a><br>
+	</blockquote>
+	</p>
+<b>-x</b> alternative spectral reconstruction<br>
+</blockquote>
+
+<h3>
+Understanding the PITCH ALTHARMS Process
+</h3>
+
+<blockquote>
+<p>
+To run this function, you must first extract the pitch information from 
+the <i>infile</i> by running <a href="crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a>.  
+When you run PITCH ALTHARMS, 
+it first automatically removes all the non-harmonic partials from the 
+<i>infile</i> (the SPEC BARE process is built into it).  Using the 
+combination of this harmonic data and the pitch information in 
+<i>pitchfile</i>, it can then remove the odd or even partials, depending 
+on which mode you choose.
+</p>
+
+<p>
+Using Mode 1 to remove the <b>odd</b> partials makes the transposition 
+without changing the spectral contour:  the formants are preserved.
+</p>
+
+<p>
+Removing the <b>even</b> partials will timbrally colour the original 
+sound, also without changing the spectral contour.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+A reference point for this program could be the difference between the 
+timbre of a clarinet and that of an oboe.  The sharper tone of the 
+oboe is a result of the predominance of odd harmonics.  So PITCH ALTHARMS 
+is all about altering the tone of a sound.  It does this without 
+altering the formants, i.e., the frequency regions with the highest 
+amplitude, so the recognisability of the sound remains, but the tone 
+changes.
+</p>
+
+<p>
+It is likely that this function will produce more interesting results 
+the more the source sound is rich in harmonics.<br>
+</p>
+</blockquote>
+
+<p>
+End of PITCH ALTHARMS<br>
+<a href="#PITCHLIST">Return</a> to List of PITCH functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="CHORD">PITCH CHORD &#150; Transposed versions of the spectrum are 
+superimposed onto the original</h2>
+
+<h3>
+Usage
+</h3>
+<b>pitch chord</b> <i>infile outfile transpose_file</i> 
+[<b>-b</b><i>bot</i>] [<b>-t</b><i>top</i>] [<b>-x</b>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>transpose_file</i> &#150; a file of (possibly fractional) semitone transposition 
+values<br>
+<b>-b</b><i>bot</i> &#150; bottom frequency, below which data is filtered out<br>
+<b>-t</b><i>top</i> &#150; top frequency, above which data is filtered out<br>
+	<p>
+	<blockquote>
+	<i>bot</i> and <i>top</i> may vary over time<br>
+	</blockquote>
+	</p>
+<b>-x</b> for a fuller spectrum<br>
+</blockquote>
+
+<h3>
+Understanding the PITCH CHORD Process
+</h3>
+
+<blockquote>
+<p>
+The <i>transpose_file</i>, <i>bot</i> and <i>top</i> parameters are 
+handled as in <a href="#CHORDF"><b>PITCH CHORDF</b></a> below.
+</p>
+
+<p>
+The difference here is that the formants are not extracted.  This 
+results in an increase in the inharmonic relationships among partials.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The process enriches the sound timbrally, though also with a 
+certain degree of resonance resulting from the presence of the 
+'chord'.
+</p>
+</blockquote>
+
+<p>
+End of PITCH CHORD<br>
+<a href="#PITCHLIST">Return</a> to List of PITCH functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="CHORDF">PITCH CHORDF &#150; Transposed versions of the spectrum 
+are superimposed within the existing spectral envelope</h2>
+
+<h3>
+Usage
+</h3>
+<b>pitch chordf</b> <i>infile outfile</i> <b>-f</b><i>N</i> &#124; 
+<b>-p</b><i>N</i> [<b>-i</b>] <i>transpose_file</i> 
+[<b>-b</b><i>bot</i>] [<b>-t</b><i>top</i>] [<b>-x</b>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<b>-f</b> &#150; extract formant envelope linear frequency-wise, using 
+1 point for every <i>N</i> equally-spaced frequency-channels<br>
+<b>-p</b> &#150; extract formant envelope linear pitchwise, using <i>N</i> 
+equally-spaced pitch-bands per octave<br>
+<b>-i</b> &#150; quicksearch for formants (less accurate)<br>
+<i>trans_file</i> &#150; a file of (possibly fractional) semitone transposition 
+values<br>
+<b>-b</b><i>bot</i> &#150; bottom frequency, below which data is filtered out<br>
+<b>-t</b><i>top</i> &#150; top frequency, above which data is filtered out<br>
+	<p>
+	<blockquote>
+	<i>bot</i> and <i>top</i> may vary over time<br>
+	</blockquote>
+	</p>
+<b>-x</b> for a fuller spectrum<br>
+</blockquote>
+
+<h3>
+Understanding the PITCH CHORDF Process
+</h3>
+
+<blockquote>
+<p>
+A brief discussion of the <a href="cformant.htm#EXTRACTFORMANTS"><b>extraction 
+options</b></a> can be found in the documentation for FORMANTS GET.
+</p>
+
+<p>
+The <i>bot</i> and <i>top</i> parameters allow the user to optimise the 
+operation of PITCH CHORDF by focusing on the main part of the sound.
+The output of <a href="cptchinf.htm#INFO"><b>PITCHINFO INFO</b></a> might be 
+useful for this, as it provides data on the pitch range of the sound.  
+(Remember that you need a binary pitch file as produced by 
+<a href="crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a> as an input 
+for <a href="cptchinf.htm#INFO"><b>PITCHINFO INFO</b></a>.)
+</p>
+
+The <i>transpose_file</i> is written as a series of semitone transposition 
+values.  0 is used for no transposition and the 'chord' is built up from 
+the bottom.  The values can be written on separate lines or in a row, 
+separated by spaces.  Here's an example:<br>	
+<p>
+<blockquote>
+<pre>
+ 0
+ 3
+ 4.5
+ 6
+ 7
+10
+12
+</pre>
+
+OR:
+<pre>
+0 3 4.5 6 7 10 12
+</pre>
+</blockquote>
+If the chord began on C, for example, this chord would be C-Eb-E&#188;&#35;-
+F&#35;-G-Bb-C<sup>1</sup>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This function provides a way to tune a sound to a chordal harmony.  It is 
+a spectral equivalent of a harmoniser:  i.e., a multi-pitch shift which 
+preserves formant information.  This makes it especially suitable for the 
+processing of vocal sounds.  The net result is that the original sound 
+becomes a chord of arbitrary dimensions.
+</p>
+
+<p>
+Once a sound is tuned to a chord, it can be developed in various ways.  
+To explore this, you might try tuning a sound with the <i>transpose_file</i> 
+above, then stretching the resulting file x3 with 
+<a href="cstretch.htm#TIME">STRETCH TIME</a>, and then sustaining the 
+data of the stretched sound with <a href="cfocus.htm#ACCU">FOCUS ACCU</a>, 
+giving a value of 0.1 for <i>decay</i>.
+</p>
+</blockquote>
+ 
+<p>
+End of PITCH CHORDF<br>
+<a href="#PITCHLIST">Return</a> to List of PITCH functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+ 
+<h2 id="OCTMOVE">PITCH OCTMOVE &#150; Octave transpose without 
+formant shift</h2>
+
+<h3>
+Usage
+</h3>
+<b>pitch octmove 1&#150;2</b> <i>infile pitchfile outfile</i> <b>-i</b> 
+<i>transposition</i><br>
+<b>pitch oct 3</b> <i>infile pitchfile outfile</i> <b>-i</b> 
+<i>transposition bassboost</i><br>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; transpose up<br>
+<b>2</b>&nbsp; transpose down<br>
+<b>3</b>&nbsp; transpose down, with bass reinforcement<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> and <i>outfile</i> are analysis files<br>
+<i>pitchfile</i> binary pitch data file (.frq) containing the pitch trace of 
+a sound
+	<p>
+	<blockquote>
+	The <i>pitchfile</i> must be derived from the <i>infile</i> 
+	by running <a href="crepitch.htm#GETPITCH">REPITCH GETPITCH</a>, 
+	the input for which is an analysis file.<br>
+	</blockquote>
+	</p>
+<i>transposition</i> an integer transposition ratio  (2 is an octave, 
+3 is a 12<sup>th</sup>, etc.)<br>
+<i>bassboost</i> bass reinforcement (Range: &gt;= 0.0)<br>
+<b>-i</b> quicksearch for formants (less accurate)<br>
+</blockquote>
+
+<h3>
+Understanding the PITCH OCTMOVE Process
+</h3>
+
+<blockquote>
+<p>
+OCTMOVE provides a straightforward way to effect an octave shift of 
+the spectrum.  Note that it does this while preserving the formant 
+characteristics of the original.
+</p>
+
+<p>
+Step One is to run <a href="crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a> 
+</p>
+
+<p>
+Step two is to run PITCH OCTMOVE, using the GETPITCH <i>pitchfile</i>.
+</p>
+
+<p>
+<b>Caution:</b>  PITCH OCTMOVE can only work if pitch is satisfactorily 
+extracted by REPITCH GETPITCH.  Any source with more than one pitch 
+in it as a time (e.g., a chord, an orchestral passage etc.) does not have 
+'a pitch' as far as GETPITCH is concerned.  Transposition of harmonically 
+complex sound material is best done with REPITCH TRANSPOSEF.  However, 
+there is nothing to stop you exploring what might happen by running 
+PITCH OCTMOVE with this kind of input.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote> 
+<p>
+The transformation here results from the preserved formants appearing 
+in different (octave) frequency locations.  (The process works by 
+deleting alternate harmonics.)  You might want to compare this result 
+with that of <a href="#TRANSP"><b>PITCH TRANSP</b></a> which does not preserve 
+formants.
+</p>
+
+<p>
+If you wanted to emphasise harmonic material, you could try running 
+<a href="cspecedi.htm#BARE"><b>SPEC BARE</b></a> on the <i>infile</i> first, 
+and using the harmonics-only result as the revised <i>infile</i> for 
+PITCH OCTMOVE.
+</p>
+
+<p>
+From an idea of Miller Puckette.
+</p>
+</blockquote>
+
+<p>
+End of PITCH OCTMOVE<br>
+<a href="#PITCHLIST">Return</a> to List of PITCH functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+ 
+<h2 id="PICK">PITCH PICK &#150; Only retain channels which might hold 
+the partials specified</h2>
+
+<h3>
+Usage
+</h3>
+<b>pitch pick 1&#150;3</b> <i>infile outfile fundamental</i> 
+<b>-c</b><i>clarity</i><br>
+<b>pitch pick 4&#150;5</b> <i>infile outfile fundamental frqstep</i> 
+<b>-c</b><i>clarity</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Harmonic series<br>
+<b>2</b>&nbsp; Octaves<br>
+<b>3</b>&nbsp; Odd partials of harmonic series only<br>
+<b>4</b>&nbsp; Partials are successive linear steps (each of <i>frqstep</i> 
+from the <i>fundamental</i><br>
+<b>5</b>&nbsp; Add linear displacement (<i>frqstep</i>) to harmonic partials 
+over the <i>fundamental</i><br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>fundamental</i> &#150; actual fundamental frequency in Hz of the harmonic 
+series, or arbitrary fundamental frequency in Hz used for the calculation<br>
+<i>frqstep</i> &#150; frequency step in Hz to be added to another frequency.  If 
+you are thinking in semitones or intervals, use INFO UNITS to convert to 
+Hz.<br>
+<i>clarity</i> &#150; extent to which data in other channels is suppressed.  
+Range: 0&#150;1.  Default 1.
+	<p>
+	<blockquote>
+	<i>clarity</i> may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the PITCH PICK Process
+</h3>
+
+<blockquote>
+<p>
+This function locates the analysis channels which would contain the 
+specified sets of partials, and adjusts the frequency data in those 
+channels onto the specified frequencies.  The data in the other 
+channels may or may not be (partially) suppressed with the <i>clarity</i> 
+parameter.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+PITCH PICK will tune a spectrum onto the partial sets specified by the 
+Mode.  This tuning can be made to emerge or disappear gradually by 
+increasing or decreasing the <i>clarity</i> factor through time.
+</p>
+
+<p>
+Various degrees of data reduction are likely to appear in the various 
+modes.  Modes 1 and 5 appear to maintain a fairly rich version of the 
+original, while Modes 2 and 3 significantly thin the sound, the latter 
+sounding a bit 'hollow'.
+</p>
+</blockquote>
+
+<p>
+End of PITCH PICK<br>
+<a href="#PITCHLIST">Return</a> to List of PITCH functions top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ========================================================================= -->
+<!--
+<p>
+02/01/2023  10:59           450,774 spectune.exe		<br />
+SUGGESTED GROUP PLACEMENT (though will be a separate prg): PITCH
+</p>
+-->
+
+<h2 id="SPECTUNE">SPECTUNE &#150; Find most prominent pitch and transpose file to it</h2>
+
+<h3>
+Usage
+</h3>
+<b>spectune tune 1</b> <i>inanalfile outanalfile</i></b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;  
+[<b>-m</b><i>match</i>]  [<b>-l</b><i>lop</i>] [<b>-h</b><i>hip</i>] [<b>-s</b><i>tim</i>] [<b>-e</b><i>tim</i>] [<b>-i</b><i>intune</i>] [<b>-w</b><i>wins</i>] [<b>-n</b><i>nois</i>] 
+[<b>-r</b>] [<b>-b</b>] [<b>-f</b>]<br>
+
+<b>spectune tune 2-3</b> <i>inanalfile outanalfile tuning</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp; 
+[<b>-m</b><i>match</i>]  [<b>-l</b><i>lop</i>] [<b>-h</b><i>hip</i>] [<b>-s</b><i>tim</i>] [<b>-e</b><i>tim</i>] [<b>-i</b><i>intune</i>] [<b>-w</b><i>wins</i>] [<b>-n</b><i>nois</i>] 
+[<b>-r</b>] [<b>-b</b>] [<b>-f</b>]<br>
+
+<b>spectune tune 4</b> <i>inanalfile outanalfile</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;  
+[<b>-m</b><i>match</i>]  [<b>-l</b><i>lop</i>] [<b>-h</b><i>hip</i>] [<b>-s</b><i>tim</i>] [<b>-e</b><i>tim</i>] [<b>-i</b><i>intune</i>] [<b>-w</b><i>wins</i>] [<b>-n</b><i>nois</i>] 
+[<b>-r</b>] [<b>-b</b>] <br>
+
+<b>spectune tune 5</b> <i>inanalfile outanalfile tuning peakcnt</i><br>
+
+<b>spectune tune 6</b> <i>inanalfile outanalfile segmentation</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;  
+[<b>-m</b><i>match</i>]  [<b>-l</b><i>lop</i>] [<b>-h</b><i>hip</i>] [<b>-i</b><i>intune</i>] [<b>-w</b><i>wins</i>] [<b>-n</b><i>nois</i>] 
+[<b>-r</b>] [<b>-b</b>] <br>
+
+
+
+<h3>
+Modes
+</h3>
+<blockquote>
+Find most prominent pitch in input file, then transpose file to:<br>
+<b>1</b>&nbsp; Nearest tempered pitch<br>
+<b>2</b>&nbsp; Nearest of pitches listed in <i>tuning</i> file<br>
+<b>3</b>&nbsp; Nearest pitch, or its octave equivalents, listed in <i>tuning</i> file<br>
+<b>4</b>&nbsp; Report the pitch found (no sound output)<br>
+<b>5</b>&nbsp; Tune sound to a given (possibly time-varying) pedal pitch and its harmonics<br>
+<b>6</b>&nbsp; Report median pitch in all segments indicated
+</blockquote>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150; input analysis file.<br>
+<i>outanalfile</i> &#150; output analysis file.<br>
+<i>tuning</i> &#150; textfile list of (possibly fractional) MIDI pitches. (Range: 0 to 127) <br> 
+<i>peakcnt</i> &#150;  how many spectral peaks to tune. (Range: 1 to 128 max.)<br>
+<i>segmentation</i> &#150; datafile of times of segment starts and ends in the input analysis file.<br>
+<b>-m</b><i>match</i> &#150; number of partials lying on harmonic series, to affirm pitch. (Range: 1 to 8, default: 5)<br>
+<b>-l</b><i>lop</i> &#150;  minimum (MIDI) pitch to accept. (Range: 4 to 127, default: 4 = c. 10Hz)<br>
+<b>-h</b><i>hip</i> &#150; maximum (MIDI) pitch to accept. (Range: 4 to 127, default: 127)<br>
+<b>-s</b><i>tim</i> &#150; time in file where pitch search begins. (Default: 0.0)<br>
+<b>-e</b><i>tim</i> &#150; time in file where pitch search ends. (Default: end-of-file)<br>
+<b>-i</b><i>intune</i> &#150; how closely tuned must harmonics be (Range: 0 to 6 semitones, default: 1).<br>
+<b>-w</b><i>wins</i> &#150; minimum no consective pitched analysis windows, to confirm pitch found. (1 to no. of windows, default: 2)<br>
+<b>-n</b><i>nois</i> &#150; signal-to-noise ratio (dB). (Default: 80 dB)  <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Windows more than <i>nois</i> dB below loudest window are ignored.<br>
+<b>-r</b> &#150; ignore relative loudness of pitched windows when assessing most prominent pitch.<br>
+<b>-b</b> &#150; smooth pitch data & eliminate blips, before searching for most prominent pitch.<br>
+<b>-f</b> &#150; ignore the formant envelope, when transposing.
+</blockquote>
+
+
+
+<h3>
+Understanding the SPECTUNE Process
+</h3>
+
+<blockquote>
+<p>
+SPECTUNE does <b>not</b> tune the partials, as the name may suggest &#150; that is done by <a href="#TUNE"><b>PITCH TUNE</b></a> and <a href="#TUNEVARY"><b>TUNEVARY</b></a>.<br> 
+Instead it finds the most prominent pitch in the spectral file and transposes the whole input to the nearest tempered pitch (Mode 1), or the nearest listed pitch (Modes 2 and 3), or to a given pedal pitch and its harmonics (Mode 5). You can also optionally set limits for low and high MIDI pitch, plus start and end times for the effect. Other optional parameters are probably best left at their default values.  
+</p><p>
+The other modes produce text reports on the pitch(es) found, which may be useful in understanding what the effect is doing.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of SPECTUNE<br>
+<a href="#PITCHLIST">Return</a> to List of PITCH functions top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+
+
+
+<hr><!-- ****************************************************** -->
+ 
+<h2 id="TRANSP">PITCH TRANSP &#150; Shift pitch of (part of) the 
+spectrum, keeping harmonic relationships</h2>
+
+<!--
+<p>
+<div align=center>
+<table border="1" cellpadding="4" bgcolor="#B0E0E6">
+<tr>
+<td><a href="#PSBBUs"><b>Usage</b></a></td>
+<td><br></td>
+<td><a href="#PSBBMo"><b>Modes</b></a></td>
+<td><br></td>
+<td><a href="#PSBBPa"><b>Parameters</b></a></td>
+<td><br></td>
+<td><a href="#PSBBUn"><b>Understanding</b></a></td>
+<td><br></td>
+<td><a href="#PSBBAp"><b>Musical Applications</b></a></td>
+</tr>
+</table>
+</div>
+</p>
+-->
+
+<h3 id="PSBBUs">Usage</h3>
+<b>pitch transp 1&#150;3</b> <i>infile outfile frq_split</i> 
+[<b>-d</b><i>depth</i>]<br>
+<b>pitch transp 4</b> <i>infile outfile frq_split transpos</i> 
+[<b>-d</b><i>depth</i>]<br>
+<b>pitch transp 5</b> <i>infile outfile frq_split -transpos</i> 
+[<b>-d</b><i>depth</i>]<br>
+<b>pitch transp 6</b> <i>infile outfile frq_split transpos1 transpos2</i> 
+[<b>-d</b><i>depth</i>]<br>
+
+<p>
+Example command line:<br>
+	<blockquote>
+	<b><code>pitch transp 6 inf outf 880.0 7 -4 -d0.6</code></b>
+	</blockquote>
+</p>
+
+<h3 id="PSBBMo">Modes</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Octave shift up, above <i>frq_split</i><br>
+<b>2</b>&nbsp; Octave shift down, below <i>frq_split</i><br>
+<b>3</b>&nbsp; Octave shift up and down from <i>frq_split</i><br>
+<b>4</b>&nbsp; Pitch shift up, above <i>frq_split</i><br>
+<b>5</b>&nbsp; Pitch shift down, below <i>frq_split</i><br>
+<b>6</b>&nbsp; Pitch shift up and down from <i>frq_split</i><br>
+</blockquote>
+
+<h3 id="PSBBPa">Parameters</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>frq_split</i> &#150; frequency in Hz above or below which the shift takes place<br>
+<i>transpos</i> &#150; transposition above or below <i>frq_split</i> 
+(semitones)<br>
+<i>transpos1</i> &#150; transposition above <i>frq_split</i> (semitones)<br>
+<i>transpos2</i>  &#150; transposition below <i>frq_split</i>(semitones)<br>
+<b>-d</b><i>depth</i> &#150; transposition effect on source:  from 0 (no effect) 
+to 1 (full effect)
+	<blockquote>
+	The semitone transposition values may be fractional.
+	</blockquote>
+</blockquote>
+
+<h3 id="PSBBUn">Understanding the PITCH TRANSP Process</h3>
+
+<blockquote>
+<p>
+PITCH TRANSP transposes (part of) the spectrum up or down a specified number of semitones (including fractional parts of semitones).  
+All the partials are moved, preserving the relationships among the partials: because the semitone transposition value becomes a multiplier within the 
+program. Note that for a downwards transposition (Mode 5), a negative value for <i>transpos</i> is required.
+</p>
+</blockquote>
+
+<h3 id="PSBBAp">Musical Applications</h3>
+<blockquote>
+<p>
+What this means musically, is that some of the timbral character of the original remains with the PITCH TRANSP process (relationships among partials 
+maintained), and some of the timbral character is lost (formants not preserved).  
+</p>
+
+<p>
+The output of <a href="cptchinf.htm#INFO"><b>PITCHINFO INFO</b></a> can be useful because it returns the maximum, minimum and mean pitch of a soundfile.  
+Remember that it works on a binary pitch data file as produced by <a href="crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a>.
+</p>
+
+<p>
+It would be useful to compare, experimentally, the results of PITCH TRANSP with <a href="#OCTMOVE"><b>PITCH OCTMOVE</b></a> and with 
+<a href="cstretch.htm#SPECTRUM"><b>STRETCH SPECTRUM</b></a>.  PITCH OCTMOVE preserves formants, whereas PITCH TRANSP does not.  And with PITCH TRANSP, 
+the relationships between the partials are maintained, whereas with STRETCH SPECTRUM, the stretch factor is applied to the uppermost (or 
+lowest) channel only, and all the partials inbetween are rescaled by intermediate amounts, depending on their relative position.  Try 
+listening to these subtle differences:  1) formants preserved  (OCTMOVE), 2) formants not preserved, but harmonic relationships 
+maintained (TRANSP), and 3) rescaling the partial relationships (STRETCH SPECTRUM).
+</p>
+</blockquote>
+
+<p>
+End of PITCH TRANSP<br>
+<a href="#PITCHLIST"><b>Return</b></a> to List of PITCH functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+ 
+<h2 id="TUNE">PITCH TUNE &#150; Replace spectral frequencies by 
+harmonics of the specified pitch(es)</h2>
+
+<!--
+<p>
+<div align=center>
+<table border="1" cellpadding="4" bgcolor="#B0E0E6">
+<tr>
+<td><a href="#PTBBUs"><b>Usage</b></a></td>
+<td><br></td>
+<td><a href="#PTBBMo"><b>Modes</b></a></td>
+<td><br></td>
+<td><a href="#PTBBPa"><b>Parameters</b></a></td>
+<td><br></td>
+<td><a href="#PTBBUn"><b>Understanding</b></a></td>
+<td><br></td>
+<td><a href="#PTBBAp"><b>Musical Applications</b></a></td>
+</tr>
+</table>
+</div>
+</p>
+-->
+
+<h3 id="PTBBUs">Usage</h3>
+<b>pitch tune mode </b> <i>infile outfile pitch_template</i> 
+[<b>-f</b><i>focus</i>] [<b>-c</b><i>clarity</i>] [<b>-t</b><i>trace</i>] 
+[<b>-b</b><i>bcut</i>]
+<br>
+
+<p>
+Example command line:<br>
+	<blockquote>
+	<b><code>pitch tune 2 inf outf tunemidi.txt -c0.8 -ttunetrce.txt</code></b>
+	</blockquote>
+</p>
+
+<h3 id="PTBBMo">Modes</h3>
+
+<blockquote>
+<b>1</b>&nbsp; enter <i>pitch_template</i> data as frequency (in Hz)<br>
+<b>2</b>&nbsp; enter <i>pitch_template</i> data as (possibly fractional) MIDI values<br>
+</blockquote>
+
+<h3 id="PTBBPa">Parameters</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<b>-f</b><i>focus</i> &#150; determines the degree of focusing of the partial 
+pitches onto the template  (Range: 0 to 1.  Default is 1)<br>
+<b>-c</b><i>clarity</i> &#150; determines the degree to which non-template 
+partials are suppressed  (Range 0 to 1.  Default is 0)<br>
+<b>-t</b><i>trace</i> &#150; specifies the number of (window-by-window) most 
+prominent channels to be replaced by the template frequencies<br>
+<b>-b</b><i>bcut</i> &#150; ignore frequencies below <i>bcut</i>, the Bass 
+cutoff frequency<br>
+	<p>
+	<blockquote>
+	All parameters may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3 id="PTBBUn">Understanding the PITCH TUNE Process</h3>
+
+<blockquote>
+<p>
+This program provides the most elegant way to tune a spectrum to a 
+specified pitch set, or 'harmony'.  Every component of the analysis is 
+tuned to either one of the specified pitches, or to one of their 
+harmonics.  The final sound is a very 'natural' sounding resonance 
+based on the specified chord. carrying the spectral articulation of the 
+original sound.  The process works best on unpitched, pitch-unspecific, 
+or noisy materials, but can be applied to any sound.
+</p>
+
+<p>
+The specified pitch set is best situated within the main pitch range 
+of the sound:  in the region of the fundamental(s).  The simplest way 
+to do this is with a tuning fork.  <a href="cspecinf.htm#REPORT">
+<b>SPECINFO REPORT</b></a> Mode 3 will also list the frequencies of the peaks 
+in the evolving spectrum.  And if there is sufficient pitch material 
+to get a 'reading', <a href="cptchinf.htm#INFO"><b>PITCHINFO INFO</b></a> can 
+give a useful overview of the maximum, minimum and mean frequencies.  
+<b>NB:</b> the PITCHINFO functions will not work with binary pitch 
+data files (produced by REPITCH GETPITCH) if the <b>-z</b> flag was 
+used.)
+</p>
+
+<p>
+The data is entered on the same line separated by spaces, or as a vertical 
+list.  The <a href="notechrt.htm"><b>Equivalent Pitch Notations</b></a> chart, 
+arranged in octaves (e.g., C-x : 60), can be handy when entering pitch data in MIDI values.
+The 'x' indicates which octave, starting from the bottom of the MIDI range.
+</p>
+</blockquote>
+
+<h3 id="PTBBAp">Musical Applications</h3>
+
+<blockquote>
+<p>
+This tuning process can be used simply to colour or sound, to build 
+harmonic structure into the composition, or to make direct links with 
+other pitch material, such as from live acoustic instruments.  Note 
+that the 'specified pitch set' can be arbitrarily constructed.
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b> <a href="#TUNEVARY"><b>TUNEVARY</b></a>, <a href="#PICK"><b>PITCH PICK</b></a> 
+</p>
+
+<p>
+End of PITCH TUNE<br>
+<a href="#PITCHLIST"><b>Return</b></a> to List of PITCH functions to top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr> <!-- *************************************************************** -->
+
+<h2 id="TUNEVARY">TUNEVARY &#150; Replace spectral frequencies with the harmonics of specified pitch(es)</h2>
+
+<h3>
+Usage
+</h3>
+<b>tunevary tunevary</b> <i>inanalfile outanalfile pitch_template</i> [<b>-f</b><i>focus</i>] <i></i> [<b>-c</b><i>clarity</i>] [<b>-t</b><i>trace</i>] [<b>-b</b><i>bcut</i>] 
+<br />
+
+<p>
+Example command line to create spectral tuning effects:<br>
+	<blockquote>
+	<b><code>tunevary tunevary in.ana out.ana ptemplate.txt ...</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150; input analysis file<br />
+<i>outanalfile</i> &#150; output analysis file<br />
+<i>pitch_template</i> &#150; textfile containing pitch data as a list of lines, each line containing a time followed by a (possibly fractional) MIDI pitch value(s).<br />
+	&nbsp;&nbsp;&bull;&nbsp;&nbsp;Times must start at zero and increase from line to line.<br />
+	&nbsp;&nbsp;&bull;&nbsp;&nbsp;Lines must have equal numbers of entries, but entries can be duplicated.<br />
+	&nbsp;&nbsp;&bull;&nbsp;&nbsp;Pitches are interpolated over time.<br />
+Example of pitch template file:
+  <pre>
+  <font color="#FF0000">[time  MPVs]</font>
+  0.000  60  65  70  75  80
+  1.000  68  75  80  87  92
+  2.999  68  75  80  87  92
+  3.000  64  70  72  78  81 
+  </pre>  
+<b>-f</b><i>focus</i> &#150; determines the degree to which partial pitches are focused onto the template.  Range:  0 to 1.  This parameter can be a single value or a <i>time focus</i> breakpoint file.  The Default value is 1.<br />
+<b>-c</b><i>clarity</i> &#150; determines the degree to which non-template partials are suppressed.  Range:  0 to 1.  This parameter can be a single value or a <i>time clarity</i> breakpoint file.  The Default value is 0.<br />
+<b>-t</b><i>trace</i> &#150; specifies window-by-window the number of most prominent spectral channels to be replaced by the template pitches.  (Range: 1 to number of channels)<br />
+<b>-b</b><i>bcut</i> &#150; ignore any pitches below <i>bcut</i>, the Bass cutoff frequency given in Hz.
+	<blockquote>
+	All parameters may vary over time.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the TUNEVARY Process
+</h3>
+
+<blockquote>
+This complementary spectral program builds on and combines aspects of <a href = "cpitch.htm#TUNE"><b>PITCH TUNE</b></a> and <a href = "cgrofilt.htm#VARIBANK"><b>FILTER VARIBANK</b></a>.  Thus it can tune a spectrum to the specified pitches (given that those pitches are in the analysis file, otherwise, it skips or approximates them), AND it can do so in a time-varying way.  Thus the pitch template file also contains times.  TUNEVARY can therefore be seen as an extension of <a href="#TUNE"><b>PITCH TUNE</b></a>.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+Same as <a href="#TUNE"><b>PITCH TUNE</b></a>.  The output can also be mixed with that of <a href="cgrofilt.htm#VARIBANK"><b>FILTER VARIBANK</b></a>, especially where the latter has used similar or identical pitch-data.
+</blockquote>
+
+<p>
+End of TUNEVARY<br />
+<a href="#PITCHLIST"><b>Return</b></a> to list of PITCH functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<!-- <hr> --> <!-- ****************************************************** -->
+<!-- 
+<p>
+<h2 id="PITCHTECHNICAL">Technical Discussion of Pitch Relationships 
+Among Partials</h2>
+...
+</p>
+
+<p>
+End of Technical Discussion<br>
+<a href="#PITCHLIST">Return</a> to List of PITCH functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+ -->
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 3 Apr 2023 for CDP8<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->

@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cgrnmill.htm  - GrainMill HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP GRAINMILL</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <dt><a href="#GRNCONTENTS"><b>CONTENTS</b></a>
+  <br /><br>
+  <b><i>GrainMill</i> Reference:</b>
+  <dt>&nbsp;<a href="#ORIENTATION"><b>About <i>GrainMill</i></b></a>
+  <dt>&nbsp;<a href="#UNDERSTAND"><b>Basics</b></a>
+  <dt>&nbsp;<a href="#RUN"><b>Run <i>GrainMill</i></b></a>
+  <dt>&nbsp;&nbsp;&nbsp;<a href="#SYSTEMSETTINGS"><b>Settings</b></a>
+  <dt>&nbsp;<a href="#RANGE"><b>Range</b></a>
+  <dt>&nbsp;<a href="#SPLICESLOPES"><b>Shaping grains</b></a>
+  <dt>&nbsp;<a href="#TIMESTRETCH"><b>Timestretch</b></a>
+  <dt>&nbsp;<a href="#DENSITY"><b>Density</b></a>
+  <dt>&nbsp;<a href="#GRAINSIZE"><b>Grain size</b></a>
+  <dt>&nbsp;<a href="#WANDER"><b>Wander</b></a>
+  <dt>&nbsp;<a href="#PITCH"><b>Pitch</b></a>
+  <dt>&nbsp;<a href="#LOUDNESS"><b>Loudness</b></a>
+  <dt>&nbsp;<a href="#SCATTER"><b>Output timing</b></a>
+  <dt>&nbsp;<a href="#SPACE"><b>Grain location</b></a>
+  <br /><br />
+  <b><i>BRKEDIT:</i></b>
+  <dt><a href="cbrkedit.htm"><b>Reference</b></a>
+<dt><a href="#TIMEVARY"><b>Use in GrainMill</b></a>
+  <hr>
+  <b>Glossary Items:</b>
+  <dt>&nbsp;&nbsp;<a href="#INFILE"><b>Infile</b></a>
+  <dt>&nbsp;&nbsp;<a href="#OUTFILE"><b>Outfile</b></a>
+  <dt>&nbsp;&nbsp;<a href="#GRAIN"><b>Grains</b></a>
+  <dt>&nbsp;&nbsp;<a href="#DECIBELS"><b>Decibels</b></a>
+  <dt>&nbsp;&nbsp;<a href="#MILLISECONDS"><b>Milliseconds</b></a>
+  <dt>&nbsp;&nbsp;<a href="#TIMBRE"><b>Sound-colour</b></a>
+  <dt>&nbsp;&nbsp;<a href="#BUTT"><b>Splices</b></a>
+  <dt>&nbsp;&nbsp;<a href="#LOCATION"><b>Panning</b></a>
+  <dt>&nbsp;&nbsp;<a href="#MONO"><b>Mono</b></a>
+  <dt>&nbsp;&nbsp;<a href="#DEFAULTS"><b>Defaults</b></a>
+  <dt>&nbsp;&nbsp;<a href="#ATTACK"><b>Envelopes</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+     <div align=center>
+     <br>
+     <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+     </div>
+<h1 align=center>CDP <i>GrainMill</i> HELP</h1>
+
+
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h3 id="GRNCONTENTS">TOPICS:&nbsp;
+&bull;&nbsp<a href="#GRAINMAN"><i>GrainMill</i> Reference</a>&nbsp;&nbsp;
+&bull;&nbsp<a href="#BRKEDMAN"><i>BRKEDIT</i> Reference</a>&nbsp;&nbsp;
+&bull;&nbsp<a href="#GLOSSLIST">Glossary Items</a>
+</h3>
+
+<h2 id="GRAINMAN"><i>GrainMill</i> Reference</h2>
+<ul>
+<li><b><a href="#ORIENTATION">What is <i>GrainMill</i>?</a></b></li>
+<li><b>Getting a <a href="#UNDERSTAND">basic understanding</a> of 
+<i>GrainMill</i></b></li>
+<li><b>How to <a href="#RUN">RUN <i>GrainMill</i></a></b></li>
+<li><b>Using <a href="#RANGE">RANGE</a> to set a group of changing values</b></li>
+<li><b><a href="#SPLICESLOPES">SHAPING grains</a> to avoid clicks</b></li>
+<li><b><a href="#TIMESTRETCH">TIMESTRETCH</a> to extend the duration</b></li>
+<li><b>Altering the <a href="#DENSITY">DENSITY</a> of the sound texture</b></li>
+<li><b>Adjusting the <a href="#GRAINSIZE">SIZE</a> of the grains</b></li>
+<li><b>Location of grains in source file <a href="#WANDER">WANDERs</a> about</b></li>
+<li><b>Moving the grains up and down in <a href="#PITCH">PITCH</a></b></li>
+<li><b>Controlling <a href="#LOUDNESS">LOUDNESS</a></b></li>
+<li><b>Randomising output grain timing with <a href="#SCATTER">SCATTER</a></b></li>
+<li><b>Aerial acrobatics: <a href="#SPACE">SPATIAL</a> location</b></li>
+</ul>
+
+<h2 id="BRKEDMAN"><b><i>BRKEDIT</i> Reference</b></h2>
+<menu>
+<h3>
+<li><a href="cbrkedit.htm#FILE"><b>Startup, Save &amp; Compare</b></a>
+<li><a href="cbrkedit.htm#OPERATE"><b>Operation</b></a>
+<li><a href="cbrkedit.htm#ZOOM"><b>Zoom&#47;Scroll</b></a>
+<li><a href="cbrkedit.htm#PLAYIT"><b>Play</b></a>
+<li><a href="cbrkedit.htm#EDIT"><b>Edit</b></a>
+<li><a href="cbrkedit.htm#OPTIONS"><b>Settings</b></a>
+<li><a href="cbrkedit.htm#HELP"><b>Help</b></a>
+</h3>
+</menu>
+
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+
+<h2 id="GLOSSLIST"><b>Glossary Items</b></h2>
+<menu>
+<h3>
+<li><a href="#INFILE"><b>The input soundfile:</b></a> the sound with which  
+you begin
+<li><a href="#OUTFILE"><b>The output soundfile:</b></a> the sound 
+you create
+<li><a href="#GRAIN"><b>What is a 'grain'</b></a> of sound?
+<li><a href="#DECIBELS"><b>Decibels:</b></a> a measure of loudness
+<li><a href="#MILLISECONDS"><b>Milliseconds:</b></a> a measure of time
+<li><a href="#TIMBRE"><b>Sound-colour:</b></a> a description of tone quality
+<li><a href="#BUTT"><b>Splices:</b></a> butt and sloping joins
+<li><a href="#LOCATION"><b>Panning</b></a> a sound
+<li><a href="#MONO"><b>Mono soundfiles</b></a>
+<li><a href="#DEFAULTS"><b>Default settings</b></a>
+<li><a href="#ATTACK"><b>Attack - Sustain - Decay:</b></a> envelope shapes
+</h3>
+</menu>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+<hr><!-- ********************************************************** -->
+
+<h1 id="ORIENTATION"><i>GrainMill</i> Reference</h1>
+<h2>What is <i>GrainMill</i>?</h2>
+
+<p>
+<i>GrainMill</i> has been prepared as the first of CDP's powerful 
+programs to have a graphic interface.  It is derived from GRANULA, 
+written by Trevor Wishart and available in the CDP System in various 
+versions since 1990.  The intention is to make these comprehensive 
+facilities for granular synthesis and sound transformation accessible 
+to a wider range of users, faster and easier to use.  We are pleased to 
+acknowledge the support of the Sonic Arts Network, which kick-started 
+this project, the Arts Council of England, which supported the 
+preparatory phase with a generous grant, and the Esm&eacute;e 
+Fairbairn Charitable Trust, which provided a large grant, enabling us 
+to complete the work.
+</p>
+
+<p>
+<IMG SRC="images/gmgrain.gif" align="center" ALT="[Image of a sonic grain, with 
+enveloped ends]"><br>
+<i>GrainMill</i> transforms a sound by cutting it into small pieces, 
+called <a href="#GRAIN"><b>grains</b></a>, then 
+reassembling the grains to reconstruct a new sound.  If we simply cut a 
+sound into chunks, then rejoin them end-to-end in the same order, we will 
+end up with the sound you started with!  To transform the sound, we need 
+to reassemble the grains in a new way.
+</p>
+
+<p>
+<i>GrainMill</i> provides us with several 'new ways' to explore:  
+we can stretch out the original sound in time (<a href="#TIMESTRETCH"><b>TIMESTRETCH)</b></a>, 
+we can alter the density of the grains (<a href="#DENSITY"><b>DENSITY</b></a>), we 
+can define a 'searchfield' area in the <a href="#INFILE"><b><i>infile</i></b></a> from which to select each grain 
+(<a href="#WANDER"><b>WANDER</b></a>), we can change the size (duration) of the grains (<a href="#GRAINSIZE"><b>GRAINSIZE</b></a>), 
+we can change the pitch or loudness of each grain (<a href="#PITCH"><b>PITCH</b></a> and 
+<a href="#LOUDNESS"><b>LOUDNESS</b></a>), 
+and we can move them about in space (<a href="#SPACE"><b>SPACE</b></a>).  Each of these ways to change the sound can be used separately or in combination.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+
+<h2 id="UNDERSTAND">Getting a basic understanding of <i>GrainMill</i></h2>
+
+<p>
+It is useful to appreciate that <i>GrainMill</i> is able to reproduce 
+the original sound nearly exactly.  It will do this if the DENSITY is 
+at least 2 and no other random factors are called upon.
+</p>
+
+<p>
+For example one can use <i>GrainMill</i> to perform a simple transposition 
+without changing the duration or other sonic characteristics of the 
+outfileThe_outfile outfile.  To do this, DENSITY is set to at least 2, 
+TIMESTRETCH is set to 1, a fixed PITCH Pitch change is selected and no 
+random factors are invoked (e.g., by using RANGE(S)).  The 
+original sound will be smoothly reconstructed at a different pitch.  
+A somewhat more sophisticated and effective result would be produced 
+if DENSITY were set to about 8 (or preferably a Range between 4 and 12), 
+and a Range of <a href="#GRAINSIZE">GRAINSIZES</a> was also used.
+</p>
+
+<p>
+You can create a simple granulation effect by setting DENSITY 
+to 1.  Now the grains are end-to-end and one can hear the way the 
+<a href="#SPLICESLOPES">SHAPING</a> of the grains causes fluctuations 
+in the loudness of each grain.
+</p>
+
+<p>
+True granular effects begin to occur when DENSITY is much 
+higher (e.g, 50 to 200), whereby there will be many grains in 
+the <i>outfile</i> where there was just one in the infile.  However, 
+to achieve an audible granulation effect, the timing (WANDER) and/or 
+pitch level (PITCH) and/or stereo spread (SPACE) needs to be varied 
+randomly, in the case of the latter two by using them with the RANGE 
+option.  Without these random changes, grains are simply copied onto 
+themselves and, however high the DENSITY, the outfile will still sound 
+identical to the <i>infile</i>.  When each of these many grains 
+is different in e.g. pitch or loudness or source location (WANDER), 
+and the sound is also being stretched out considerably, a complex sonic 
+stream is produced.
+</p>
+
+<p>
+<i>GrainMill</i> provides a vast scope of possibilities to explore 
+between smooth reconstruction and massively dense, complex textures 
+in which the granulation effects are dramatically audible.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+
+<h2 id="RUN">How to RUN <i>GrainMill</i></h2>
+
+<p>
+RUN topics:
+<menu>
+<li><a href="#EXPLORE"><b>A sense of exploration</b></a>
+<li><a href="#SYSTEMSETTINGS"><b>Settings</b></a> for your working environment
+<li><a href="#TOOLBAR"><b>The Toolbar</a> facilities</b>
+<li><a href="#STARTUP"><b>Starting up <i>GrainMill</i></b></a>
+<li><a href="#PROCESS"><b>Processing</b></a> with fixed values
+<li><a href="#ACTIVATE"><b>Activating a range of values</b></a>
+<li><a href="#TIMEVARY"><b>Time-varying</b></a> values &amp; BRKEDIT
+<li><a href="#MAKE"><b>Make</b></a> and Play the new sound
+<li><a href="#MAKE"><b>Continuing</b></a> with the existing settings
+<li><a href="#MAKE"><b>Restarting</b></a> with new or saved settings
+</menu>
+</p>
+
+<h3 id="EXPLORE">Explore with an adventurous spirit</h3>
+
+<p>
+Using the program is straightforward, but requires both careful thought 
+and an adventurous spirit, because it offers many and varied 
+possibilities.  It is a good idea to explore it freely, trying out 
+various settings and combinations of settings 'just to see what 
+happens' - and observing just what does happen.  After a time, you 
+will observe how certain settings produce certan results, and you will 
+then gain more understanding of and control over the results.
+</p>
+
+<p>
+<a href="#RUN"><b>Return</b></a> to RUN topics<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+
+<h3 id="SYSTEMSETTINGS">System Settings</h3>
+
+<p>
+There are two main options in the SETTINGS dialog box accessible via 
+the Toolbar.  These define the overall system environment in which you 
+would prefer to work.
+</p>
+
+<p>
+The first of the main options concerns <b>how you save the soundfiles 
+you make</b>.  This can be done:
+	<ul>
+	<li>NOT TICKED = 'write directly to named outfile' &#150; You 
+	save your soundfiles within the dialog box where you set your 
+	parameters.  You can accept the default name written in the 
+	output filename box ('OUT' is added to the name of your 
+	<i>infile</i>).  Or, you can edit this name to alter it in some 
+	way.
+
+	<li>TICKED = 'use the conventional SAVE AS command' (in the FILE 
+	drop-down menu) &#150;  Note that this is not enabled until after 
+	you have made your sound.  How can the sound be made if it doesn't 
+	have a name yet?  A temporary soundfile is made in the system directory allocated for this.
+    The advantage of this second Save option is that you 
+	can make sounds, alter the parameter settings and remake them 
+	over and over until you're happy with the result <b>and then 
+	use SAVE AS</b>.  The temporary file is automatically deleted 
+	when you exit.
+	</ul>
+</p>
+
+<p>
+The second main option asks you <b>whether or not you want to 'keep the 
+dialog visible'</b>.
+	<ul>
+	<li>NOT TICKED = 'do NOT keep the dialog open when writing and 
+	playing sounds' &#150; When you finish adjusting the parameter 
+	settings and click on the 'MAKE IT' button, the parameter 
+	dialog box disappears.  You can then listen to your sound and 
+	Save it (if not already saved &#150; if 'write directly to 
+	named outfile' is ticked, you have to save the file before 
+	leaving the dialogue box).  To resume work on that sound, 
+	go to FILE and OPEN the same input soundfile as before.  Your 
+	dialog box, with its previous settings, will reappear.
+
+	<li>TICKED = 'keep the dialog open when writing and playing 
+	sounds' &#150; Now when you finish adjusting the parameter 
+	settings and click on the 'MAKE IT' button, the parameter 
+	dialog box does <b>not</b> disappear.  You can play back the 
+	sound using the 'Play Outfile' button on the Toolbar <b> and 
+	still be able to see what your parameter settings are.</b>  You 
+	can even start to make new changes to the parameter settings 
+	while you're still listening to the playback.  In this way 
+	you can very quickly fine-tune your sound, moving easily 
+	between playback and parameter adjustments.  If you've selected 
+	using the conventional SAVE AS command, you don't have to provide 
+	a filename until you're completely happy with your sound &#150; 
+	and the system takes care of deleting all the temporary soundfiles 
+	you've made along the way.
+	</ul>
+</p>
+
+<p>
+<a href="#RUN"><b>Return</b></a> to RUN topics<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<h3 id="TOOLBAR">Toolbar</h3>
+
+<p>
+<IMG SRC="images/gmtoolbar.gif" ALT="[Image of the GrainMill toolbar]">
+</p>
+
+<p>
+The <b>Toolbar</b> at the top of the window which appears when you 
+double-click on <i>GrainMill</i> has 10 facilities:
+	<ul>
+	<li><b>Open grnfile</b> &#150; The 'grnfile' contains all the 
+	parameter settings for a particular sound.  You yourself (or 
+	someone else) will have made this file with 'Save Settings'.  
+	See <a href="#STARTUP">Startup</a>.  This is the same as LOAD 
+	SETTINGS in the FILE drop-down menu.
+
+	<li><b>Save Settings</b> &#150; You can save the whole configuration 
+	of settings used to create a particular sound, including the 
+	names of any breakpoint files used, as well as the name of the 
+	source soundfile.  This saves in a binary file format, and this 
+	file can only be opened within <i>GrainMill</i>.
+
+	<blockquote>
+	<p>
+	<b>Save Settings</b> saves to the currently named .GRN file.<br>
+	<b>Save Settings As</b> prompts you for a new filename.
+	</p>
+
+	<p>
+	<b>NB &#150;</b> When you 'Save Settings' you are asked if you 
+	want to associate with the .GRN the soundfile you have been using.  
+	Normally, one does <b>not</b> do this.  When you associate 
+	the soundfile, the path to this sound on your hard disk is 
+	written into the .GRN file.  So it is very specific, and you 
+	will not be able to use the same .GRN file with a different 
+	sound.
+	</p>
+
+	<p>
+	Therefore, it is more flexible to save the settings <i>without</i> 
+	associating the soundfile.  Then you can use your settings 
+	(which includes the names of all the breakpoint files used) 
+	with <b>any soundfile</b>.  Remember to Open a Soundfile 
+	<b>before</b> Loading a .GRN file which does not have a 
+	soundfile associated with it.
+	</p>
+	</blockquote>
+
+	<li><b>Save As Text</b> &#150; To save your settings as a 
+	<b>text file</b> which you can view and edit, use 'Save As Text' 
+	in the FILE drop-down menu.
+
+	<li><b>Open sfile</b> &#150; You select your <i>infile</i> and call 
+	up the parameter dialog box.
+
+	<li><b>Save Sfile</b> &#150; This save option is only active if 
+	you have selected the SAVE AS option in SETTINGS (box unticked).  
+	You are prompted to provide a filename for your sound.
+
+	<li><b>Stop processing</b> &#150; You can terminate the production 
+	of your <i>outfile</i> if, for example, it's going to take a long 
+	time and you can already tell that it is not yet what you want.
+	<li><b>Play outfile</b> &#150; Audition the newly made soundfile.
+	<li><b>Stop Playback</b> &#150;  Terminate playback if, for example, 
+	it's going to take a long time and you can already tell that it 
+	is not yet what you want.
+
+	<li><b>Show Dialog</b> &#150; Restores the parameter dialog box 
+	to the screen.
+
+	<li><b>Settings</b> &#150; Define the main options of your overall 
+	working environment.  See <a href="#SYSTEMSETTINGS">System 
+	Settings</a>.
+
+	<li><b>Working directory</b> &#150; Select your working (i.e., 
+	'current') directory.  <b>NB:</b> If you have saved .grn files 
+	and breakpoint files which you intend to use, these need to be 
+	present in your working directory.  It is recommended to maintain 
+	separate directories for different projects, to avoid confusion.
+	</ul>
+</p>
+
+<p>
+<a href="#RUN"><b>Return</b></a> to RUN topics<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<h3 id="STARTUP">Startup</h3>
+
+<p>
+The program is run by double-clicking on the <i>GrainMill</i> icon.  
+You then see a title screen with a menu bar on the top.  One begins by 
+moving the cursor to FILE and pressing down the left mouse button.  A list 
+of options appears.  Then move downwards to the option you want and click 
+again.  An option is active when darkened.  Select OPEN in this way, 
+to open a soundfile with which to work.
+	<p>
+	<blockquote>
+	(You may need to change directories to get to the directory and 
+	sound with which you want to work.  See the select 'Working 
+	directory' facility in the <a href="#TOOLBAR">Toolbar</a>.)  
+	</blockquote>
+	</p>
+The existing soundfile which you open in this way and which you will then 
+process with <i>GrainMill</i> to make a new sound, is called the 
+<a href="#INFILE" TARGET="glosswind">'infile'</a>.  The resulting new 
+sound is called the <a href="#OUTFILE" TARGET="glosswind">'outfile'</a>.
+	<p>
+	<blockquote>
+	You may also want to LOAD settings saved during a previous 
+	working session.  You could have done this in two different 
+	ways:  as a text file or as a (binary) session file.
+	<ul>
+	<li>If you used SAVE AS TEXT, you need to have a printout or view 
+	the file on the screen (in another window) and then use that 
+	information to 	re-enter the settings with the graphic sliders 
+	etc.
+
+	<li>If you used SAVE SETTINGS, you use <b>Open grnfile</b> on 
+	the Toolbar or LOAD SETTINGS in the FILE drop-down menu to load 
+	the binary data file for the project.  Select the .grn file you 
+	want to use &#150; or select it from the 'most recently used 
+	files' portion of the FILE menu.
+	</ul>
+	<p>
+	<b>NB</b> &#150; you could have saved the settings with or 
+	without its associated (source) soundfile: 'Associate asoundfile.wav 
+	with these settings? Yes&#47;No.'  If <b>with</b>, when 
+	you load the .grn file, the soundfile is also loaded.  If 
+	<b>without</b>, you must open a soundfile before you will be 
+	allowed to load the .grn file.
+	</p>
+	<p>
+	You may have had some single or range parameters in place when 
+	you decided to use breakpoint files.  These single or range 
+	settings are also saved and reloaded, but are greyed out when 
+	the breakpoint files are selected.
+	</p>
+	</blockquote>
+	</p>
+</p>
+
+<p>
+<a href="#RUN"><b>Return</b></a> to RUN topics<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<h3 id="PROCESS">Processing a sound with fixed values</h3>
+
+<p>
+<IMG SRC="images/gmslider.gif" ALT="[Image of slider bar with Low, Medium 
+and High range settings]">
+</p>
+
+<p>
+Attention focusses on the slider bars.  These are used to select the 
+various possible values.  After you open the infile, a large dialogue 
+box will appear, filling the screen.  The main menu is still available, 
+awaiting, for example, a different <i>infile</i> to be selected without 
+quitting the dialog box.
+</p>
+
+<p>
+The processing options are named on the left, starting with TIMESTRETCH 
+at the top of the screen and ending with SPACE at the bottom of the 
+screen.  To the right of these process option names are three buttons, 
+marked <b>L M H</b> for Low, Medium, and High value spans.  You can 
+click on these buttons to set one of three default spans between the 
+lowest and highest values which can be used for that processing option.  
+</p>
+
+<p>
+The <b>High</b> span will display the highest possible value that can be 
+given.  The <b>Medium</b> span enables you to use the slider bar to 
+select among a span of midrange values.  And the <b>Low</b> span enables 
+you to move the slider bar through a span of small values.
+</p>
+
+<p>
+The value selected in this way is a FIXED value which stays the same as 
+the sound is created.
+</p>
+
+<p>
+<a href="#RUN"><b>Return</b></a> to RUN topics<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<h3 id="ACTIVATE">Activating RANGE to use a range of values</h3>
+
+<p>
+However, it is possible to make sounds in which these values vary 
+randomly within a user-defined RANGE of values.
+</p>
+
+<p>
+When you click on the box to the right of the word RANGE, a check mark 
+appears to show that it is now active &#150; and a second slider bar also 
+appears above the original one.  It also has the <b>L M H</b> span 
+options.  Now the lower (original) slider bar is used to set the 
+<b>lower</b> of the two values in this range, and the upper (new) slider 
+bar is used to set the <b>upper</b> of the two values in this range.  
+</p>
+
+<p>
+You will notice that the program will not let you set a High value 
+(upper slider) which is lower than the Low value (lower slider), nor a 
+Low value (lower slider) higher than the High value (upper slider).  
+The slider just clicks back to the value in the other slider when you 
+try to move it to these illogical positions.  You may, however, see 
+the sliders positioned 'the other way round' if you  have selected H 
+(a high range setting) for the upper slider, and M or L (a Medium or 
+Low range setting) for the lower slider.
+</p>
+
+<p>
+<a href="#RUN"><b>Return</b></a> to RUN topics<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<h3 id="TIMEVARY">Time-varying values &amp; BRKEDIT</h3>
+
+<p>
+It is also possible to vary most of the the parameter values over time.  
+This involves creating a 'breakpoint file' which specifies a time and 
+the value for a parameter which is to come into force at that time.
+</p>
+
+<p>
+This can be done by writing a breakpoint text file with a text editor.  
+It normally takes the form of separate lines, each with a <i>time value</i>
+pair separated by a space or a tab.  It is unusual for any additional 
+text to be allowed, but BRKEDIT does provide an 'extended format' which 
+can handle some additional textual information regarding the type of 
+line span (logarithmic or exponential).
+</p>
+
+<p>
+The time-varying section of the <i>GrainMill</i> dialog box is on the 
+right hand side of the page.  
+<IMG SRC="images/gmbrkctrls.gif" align=right ALT="[Image of the Breakpoint editor controls]">
+It initially contains default breakpoint 
+files for each parameter.  You can enter or browse for the name of a 
+breakpoint text file you have created with a text editor, as above, or 
+you can click on the 'E' (Editor) button to invoke BRKEDIT to create 
+a time-varying breakpoint file graphically.
+</p>
+
+<p>
+In <i>GrainMill</i> you activate the breakpoint section by ticking the 
+box to the left of the (blank) breakpoint filename box.  You can leave 
+the filename box blank or enter a name, using <b>.brk</b> as the extension.  
+Now click on the '<b>E</b>' (for 'Edit') and the BRKEDIT display screen 
+comes up, with a default breakpoint file in place as a starting point.  If 
+you entered a filename, it is recognised and you can simply SAVE the file 
+you make.  Otherwise, use SAVE AS, entering the name you want to use.
+</p>
+
+<p>
+In <i>GrainMill</i> when you return from editing the breakpoint file, 
+having saved it, the filename box will be blank (even if you entered a 
+filename before editing).  Click on the down arrow to see the list of 
+breakpoint files associated with that parameter and select the one you 
+want to use.
+</p>
+
+
+<p>
+The <a href="cbrkedit.htm"><b>BRKEDIT Reference Manual</b></a> 
+is linked to the <i>GrainMill</i> 
+documentation, so you can easily access it via the Contents at the 
+head of this file, or via the menu on the left side of the page.
+</p>
+
+<p>
+<a href="#RUN"><b>Return</b></a> to RUN topics<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<h3 id="MAKE">Make &#150; Play &#150; Continue &#150; Restart</h3>
+
+<p>
+<b>MAKE</b><br>
+After the various settings have been made, the sound is created by 
+clicking on the MAKE IT button.  You see the main screen fill up with 
+the grains you have made, one mark for each grain, colour-coded for 
+loudness.  Sometimes you may unintentionally have settings which will 
+make many thousands of grains and take a long time to process.  The 
+<b>OPTION</b> to <b>STOP PROCESSING</b> is your way out.
+</p>
+
+<p>
+<b>PLAY</b><br>
+You can now PLAY the sound you've made.  Select PLAY OUTFILE from 
+the OPTIONS menu.  If you see that it's going to be very long and 
+you've heard enough, you can <b>STOP PLAYBACK</b>.
+</p>
+
+<p>
+<b>CONTINUE</b><br>
+If you double click on the infile you have just used (the 'current 
+infile') before exiting from the program, <i>GrainMill</i> will restore 
+the dialogue box with all your settings and you can carry on making 
+alterations.  This only works for the current infile, and only if you 
+have not yet exited from <i>GrainMill</i>.
+</p>
+
+<p>
+<b>RESTART</b><br>
+You can select a new infile from the menu while the dialog box is 
+active;  this will reset the dialog box to its various Default settings.
+</p>
+
+<p>
+<b>SAVE SETTINGS</b><br>
+This will create a binary file with the extension .GRN which contains 
+the data for the sound, parameter settings and breakpoint files used to 
+create your sound.  It can be reloaded with <b>LOAD SETTINGS</b>.
+</p>
+
+<p>
+<b>LOAD SETTINGS</b><br>
+Load the complete project data used in the creation of a sound.  These 
+are saved as binary files with the <b>.grn</b> extension.
+</p>
+
+<p>
+<b>SAVE AS TEXT</b><br>
+This saves the settings in the dialogue box as a text file as a way 
+of documenting your work.  It cannot be re-loaded.  The binary .GRN 
+file is intended for re-loading.
+</p>
+
+<p>
+<a href="#RUN"><b>Return</b></a> to RUN topics<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="RANGE">Using Range to set a group of changing values</h2>
+
+<p>
+The Range option is absolutely essential if good results are to be 
+achieved with <i>GrainMill</i>.  When you activate this option by clicking 
+on the little box next to the word 'Range', a second slider bar appears 
+for that particular processing function.  The lower slider bar is used 
+to set a low limit and the upper slider bar is used to set a high limit 
+for a range of numbers.  <i>GrainMill</i> then, for each grain, selects 
+a value at random from somewhere between these limits.  This grain-by-grain 
+randomisation of values adds the essential qualities of variety and 
+plasticity to the final result - qualities that make all the difference.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="SPLICESLOPES">Shaping grains to avoid clicks</h2>
+
+<p>
+Creating sounds with sound-grains raises the question as to how the grains 
+are joined together.  You can run <i>GrainMill</i> in such a way that it 
+creates audible gaps between grains &shy; a staccatto or hiccuping effect.  
+However, if the new sound you make is to have no silent gaps between the 
+grains, it seems obvious that the grains must either overlap one another, 
+or 'just touch' one another.  In practice, however, the grains must always 
+overlap just a little bit, to produce a continuous output sound.  Why is this?
+</p>
+
+<p>
+It is not possible simply to chop up sound as if with a knife.  If you do 
+this, you will produce a click where the cut sound ends, because the 
+volume is likely to fall off a cliff, as it were:  from high to nothing 
+within an instant.  Among other things, the physical mechanism 
+reproducing the sound for our ears cannot cope with such an abrupt change.
+To avoid this, we use a tapered cut, called a 'splice slope'.  A splice 
+crescendos from silence at the start of the sound (its 
+<a href="#ATTACK"><b>'attack'</b></a>), or 
+decrescendos into silence at the end of the sound (it's 'decay') &shy; 
+though <a href="#BUTT"><b>butt joins</b></a> 
+are also possible (no sloping envelope at all).  In this case, the 'sound' 
+is a single grain.  However, we usually don't want to hear these little 
+crescendos and decresendos in our new sound because of the tremolo effect 
+produced by the (very) rapid fall-rise-fall-rise etc. in volume.  It is 
+for this reason that the program overlaps the grains a little, so that 
+the crescendo on the following grain comes in as the previous grain 
+decresendos, thus maintaining a certain consistency of volume.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="TIMESTRETCH">Stretching time with <i>GrainMill</i></h2>
+
+<p>
+TIMESTRETCH alters the length (duration) of the outfile.
+</p>
+
+<p>
+When the TIMESTRETCH slider bar is set to a value greater than 1, 
+grains which overlap are cut from the <i>infile</i> and then reassembled 
+in the <i>outfile</i> in such a way that they do not overlap as much, 
+thus stretching out the sound.
+</p>
+
+<p>
+When the TIMESTRETCH value is 1, there is no change.
+</p>
+
+<p>
+When the TIMESTRETCH value is less than 1, grains which do not 
+overlap are cut from infile (there may even be gaps between these 
+grains:  bits of soundfile missed out) and then reassembled in such 
+a way that they do overlap, thus shrinking the sound.
+</p>
+
+<p>
+The upper limit of TIMESTRETCH can be very high and should be 
+used with caution.
+</p>
+
+<p>
+The 'outfile duration' box at the bottom of the dialog box shows 
+the effect of changing both TIMESTRETCH and GRAINSIZE.  The duration 
+is a maximum estimate, and can be edited if necessary.
+</p>
+
+<p>
+In fact, the outfile duration box is active &shy; not just reporting 
+what the program is doing.
+</p>
+
+<h4>A special case</h4>
+
+<p>
+For example, it is necessary to provide (i.e., type into the outfile 
+duration box) a duration in the special case when TIMESTRETCH is set 
+to 0.  With this setting, the initial grainsized segment of infile 
+is used over and over, possibly forever - hence the need to specify 
+a length for the outfile.  In this special case, the infile is being 
+used simply as the source of a waveform of some kind:  the source 
+from which the grain is to be extracted.  In the simplest case, this 
+infile need be scarcely any  longer than the required grainsize.
+</p>
+
+<p>
+The simplest grain waveform is a sinewave of arbitrary pitch.  
+However, any input sound can be used, including Frequency 
+Modulated (FM) waves, and chirp waves (a sine wave of rapidly 
+increasing pitch), as well as acoustically sampled waveforms.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+
+<h2 id="DENSITY">Altering the density of the sound texture</h2>
+
+<p>
+When DENSITY is 1, the grains are placed end to end 
+(a <a href="#BUTT"><b>butt edit</b></a>) 
+and the original sound pulsates slightly at a speed related to the grainsize.
+</p>
+
+<p>
+As DENSITY becomes increasingly greater than 1 (more dense), the 
+grains overlap more and more, producing a continuous to smooth/dense 
+sound.  For example, when DENSITY is set to 5, there will be 5 
+grains in the <i>outfile</i> where there was 1 grain in the <i>infile</i>, 
+i.e., 5 grains overlapped where previously there was only 1 grain.  When 
+one or more of the RANGE options are activated, each of these 5 grains 
+will be separately processed.  This is how the <i>outfile</i> becomes more 
+and more complex.  Densities of 50, 100, or even 200 simply make the 
+outfile texture more and more complex &shy; depending on the other 
+settings.  The upper limit in this program is 256.
+</p>
+
+<p>
+As DENSITY becomes increasingly less than 1 (less dense), we begin 
+to hear silences between the grains.  If the grains are very short, 
+and the density is only just below 1, this will appear as a kind 
+of grittiness in the new sound.  But if the density is nearer 
+to 0, the new sound will appear as a stream of tiny, separate 
+<a href="#ATTACK"><b>attacks</b></a> or grains.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to main <i>GrainMill</i> contents<br>
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="GRAINSIZE">Adjusting the size of the grains</h2>
+
+<p>
+The size (i.e., duration) of each grain has a major effect on the 
+result.  In the first place, the fact that each <a href="#GRAIN"><b>grain</b></a> of sound has splice slopes sets some limits 
+which cannot be over-stepped.  The fact that we need two of these splices 
+for every grain (one ascending from silence and one descending to silence) 
+limits the size of the grains we can use:  the smallest grain cannot 
+be shorter than the two splices &shy; don't worry, the program makes 
+this impossible.  The smallest grain allowed by the program is currently 
+12.5 <a href="#MILLISECONDS"><b>milliseconds</b></a> 
+(0.0125 sec), and this provides the space needed for the splice slopes at 
+the beginning and end of each grain.
+</p>
+
+<p>
+Furthermore, if the grains are very, very, very short, they will 
+contain so little information from the original sound that its 
+qualities will be destroyed.  So there is a lower limit on the size 
+of the grains.  If your grains are about 50 milliseconds in length 
+(0.05 of a second), they will happily capture the qualities of your sound.
+</p>
+
+<p>
+Once the grains become much longer than this, we create a different 
+effect.  Almost every natural sound changes through time:  it changes 
+pitch, loudness, and its sound-colourSound_colour.  If you are 
+using grains to timestretch a sound to double its length, the 
+grains you cut from the original sound will use overlapped portions 
+of the original sound.  In fact, each grain will contain a copy of 
+half the previous grain.
+</p>
+
+<p>
+If the original sound is itself changing, and your grain is 
+sufficiently long, the sound inside the grain will itself be changing.  
+When you now place the next grain after the first, you will hear 
+that change in the sound being repeated .. the output sound will 
+seem to backtrack to a place earlier in the change-process.  There 
+will be a kind of very fast echo inside the sound.
+</p>
+
+<p>
+These 'internal echoes' may be a very interesting effect if this is 
+what you want to hear.  However, if you just want to make your 
+original sound longer, you need to avoid this internal echoing.  It 
+turns out that a grainsize of around 50 milliseconds (0.05 sec) 
+captures enough of your sound to retain its special sound quality, 
+but not so much of it that you are able to hear any change in the 
+sound within the grain.  Using grains of about 50 ms allows the 
+sound to be stretched without any sense of internal echoes.
+</p>
+
+<p>
+Grainsizes longer than 50 ms allow more of the original sound to 
+come through.  A sandy beach reveals very little of the shape and 
+quality of the original stones from which the sand was ground, but 
+shingle is much closer to the original shape and texture of the 
+rock from which it was formed.  Note that there is a relationship 
+between the type of input sound and the effect a given grainsize 
+will have.  The sharper (faster) the attack transient in the infile, 
+the more it will be present in the grain, even with a fairly short 
+grainsize, and certainly with a grainsize as long as or longer than 
+this attack transient.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<h3>
+Using a range of grainsizes
+</h3>
+
+<p>
+The <a href="#RANGE">RANGE</a> option enables you to set a range 
+of grainsizes.  When activated by clicking on the box next to the 
+word RANGE, a second slider appears.  The lower slider is used to 
+set the low limit of the range, and the upper slider is used to set 
+the high limit of the range.  Now the program will pick out grainsizes 
+at random between these two ranges, a different grainsize for each grain.  
+Introducing this random suppleness into the texture improves the 
+result considerably: &nbsp; it is more lively and feels more natural.
+</p>
+
+<p>
+A very good range to choose is between 50 ms and 80 ms.  Ranges 
+greater than 100 ms (0.01 sec) will begin to produce collage-type 
+textures, i.e., sounds in which portions of the infile are distinctly 
+recognisable.
+</p>
+
+<h3>
+On internal echoes
+</h3>
+
+<p>
+Echoes inside the new sound can be useful.  Room reverberation is 
+produced when the sound waves from some event in a room bounce back 
+off walls, floors, ceilings and other surfaces, producing a multitude 
+of slightly different copies of the original sound - each arriving 
+at our ears at a slightly different time.  There are so many of 
+these different echoes that we hear them not as true echoes, but 
+as reverberation, which enlivens and enriches the original sound.
+</p>
+
+<p>
+If you:
+<ul>
+<li>choose grains not quite in exact sequence (by using WANDER), and 
+<li>place them in slightly randomised positions in the output sound 
+(by using SPACE), and even 
+<li>use a slight microtonal variation of pitch (by using PITCH), and 
+<li>make small variations in loudness (by using LOUDNESSS), and then 
+<li>create a higher density (by using DENSITY) 
+</ul>
+... then you will produce an effect like the reverberation of a room.
+</p>
+
+<p>
+Once your grains start to become any larger than 50 ms (0.05 sec), 
+you will generate obvious echoes inside your reconstructed sound.  
+If your grains are 'very' long (e.g., 1 second) and if you use the 
+WANDER process over a very large span, you will produce a kind of 
+random collage of pieces of your original sound.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="WANDER">Wandering grain locations</h2>
+
+<p>
+WANDER defines a length of soundfile within which the next 
+grain is to be selected at random.  The longer the length, the more 
+likely it is that the new grain will come from a location ever more 
+further away from the previous grain.  This length is sometimes called 
+a 'searchfield', i.e., the span of sound to search when selecting a grain.  
+A small searchfield to 'wander' about in will result in a somewhat 
+blurred image, whereas a large searchfield will result in scrambling 
+the original sound.
+</p>
+
+<p>
+With WANDER set to 0, grains are selected from <i>infile</i> in the 
+strict order in which they were cut in the first place.With WANDER set 
+to (say) 0.1 sec (100 ms), a grain is chosen from <i>infile</i> within 
+a range of 0.1 seconds before the 'true' position.  In other words, there 
+is a certain vagueness about the order of the grains chosen for use in 
+your new sound.  The larger the WANDER, the more vagueness there is!
+</p>
+
+<p>
+And if you set WANDER to cover the entire length of the original 
+sound, then the vagueness will be complete:  your original sound will 
+become completely scrambled.  It is useful to know that the 
+searchfield gradually expands when it is set to the length of the 
+entire soundfile.  <i>GrainMill</i> reads through the infile, and as 
+it does so its 'here' position is moving through the file.  The 
+searchfield is from the beginning of the file to 'here' and thus gradually 
+gets larger and larger.  This means that the scrambling effect will be 
+somewhat minimal at the start and then increase steadily.  This 
+transitional process from smooth to chaotic can be useful musically.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="PITCH">Moving the pitch of grains up or down</h2>
+
+<p>
+Each individual grain can be altered in pitch.  When you set PITCH to 
+a (fixed) position along the pitch span slider bar, all the grains are 
+transposed by this amount.
+</p>
+
+<p>
+The span of pitch change values is roughly based on 12, so that each 
+integer change represents a transposition of more or less 1 semitone.
+</p>
+
+<p>
+Values less than zero (i.e., negative values, such as -0.5) 
+transpose the grains downwards in pitch.  Remember to precede the 
+number with a minus sign!
+</p>
+
+<p>
+Note that altering the pitch also alters the length of the grains 
+(higher pitch shortens grains, lower pitch lengthens grains.  
+However, if you set TIMESTRETCH to 1, the duration of the <i>outfile</i> 
+will remain the same as the <i>infile</i>, because of the way the grains are 
+reassembled.
+</p>
+
+<p>
+When you activate the RANGE button, a second slider appears and you can 
+set lower and upper limits to a range of transposition values.  The 
+program will then, for each grain, select a transposition value at 
+random from somewhere within this range.  The sonic results of these 
+random jumps of pitch can vary remarkably as the size of the range is 
+increased.
+</p>
+
+<p>
+Normally, an especially fast method is used to transpose a grain.  
+If a large value is used, especially for downwards transposition, 
+this can lead to unwanted grittiness or distortion.  This can be 
+prevented by clicking on the 'HiFi Transpose' button, which tells 
+<i>GrainMill</i> to use a slower but much more accurate method..
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="LOUDNESS">Controlling the loudness of the grains</h2>
+
+<p>
+Each individual grain can be altered in loudness (also known as 
+'amplitude').  When you set LOUDNESS to a (fixed) position along the 
+loudness span slider, all the grains become correspondingly louder or 
+softer.  The LOUDNESS span represents <a href="#DECIBELS"><b>decibels</b></a> (dB) and extends from silence (-60dB) 
+to full (original) volume (0 dB).  The action of the tapering grains 
+and <a href="#SPLICESLOPES">splice slopes</a> of each grain will have 
+a volume-reducing effect, but the program does its best to minimise this 
+and prevent the sound from becoming too soft.
+</p>
+
+<p>
+<i>GrainMill</i> uses a default splice slope of 5 milliseconds.  This 
+gives a fairly sharp attack (and decay) for each grain.  If you want to 
+soften this attack, you can select one of the other splice slope options 
+provided.  Long grains with long (gradual) slopes makes sense, but 
+putting a long slope on a very short grain will either not be allowed or 
+may reduce the output volume by an unacceptable amount.
+</p>
+
+<p>
+When you activate the RANGE button, a second slider appears and you can 
+set lower and upper limits to a range of loudness values.  The program 
+will then, for each grain, select a decibel level at random from somewhere 
+within this range.  Having a range of random loudness values in the 
+texture adds a great deal to the character of a granular sound.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="SCATTER">Timing scatter of output grains</h2>
+
+<p>
+TIMING SCATTER is adjusted by moving the slider control.  TIMING SCATTER 
+creates small random fluctuations in the timing of the grains in the 
+soundfile created by <i>GrainMill</i>.  This may produce a more supple, 
+natural feel in the flow of the grains.  If it is set to zero, pitch 
+artefacts may result from the regular timing of the grains.  Trying it 
+both with and without SCATTER may be necessary to determine what best 
+suits the sound and the context.  The control comes up with a default 
+setting which may be retained until a reason do otherwise becomes 
+apparent.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="SPACE">Aerial acrobatics: spatial location</h2>
+
+<p>
+Here we are processing the movement of sound through space:  to be 
+more precise, the Left &lt;&shy;&nbsp;&nbsp;&shy;&gt; Right movement of 
+a stereo image across a horizontal plane, known as 
+<a href="#LOCATION"><b>'panning'</b></a>.  
+The SPACE process re-positions each grain in the horizontal stereo field.  
+</p>
+
+<p>
+If the input is <a href="#MONO"><b>mono</b></a> 
+(one channel), the program will automatically produce (the necessary) 
+stereo output when SPACE is used.  The setting on the SPACE slider bar 
+selects a fixed position in the Left-Right stereo field.
+</p>
+
+<p>
+When RANGE is activated, a second slider bar appears and a specific 
+range can be selected, usually using the lower bar for the Left limit, 
+and the upper bar for the Right limit.
+</p>
+
+<p>
+Full Left on the lower slider bar + full Right on the upper slider 
+bar sets the full stereo field as the range within which each 
+grain is randomly positioned.  This can be tightened by moving the 
+sliders more to the middle.
+</p>
+
+<p>
+Sounds panned between full Left on the lower slider bar and 
+Centre on the upper slider bar means that only the left side of 
+the field will be used.
+</p>
+
+<p>
+Sounds panned between Centre on the lower slider bar and full 
+Right on the upper slider bar means that only the Right side of 
+the field will be used.
+</p>
+
+<p>
+If both sliders are set to Centre (the <a href="#DEFAULTS"><b>defaults</b></a>), the program will produce a mono <i>outfile</i> (making it pointless to use the RANGE option).  Note that any non-zero SPACE value will cause the program to produce a 
+stereo <i>outfile</i>.  However, the sound can be located on only 
+one channel of this stereo soundfile if either:
+<blockquote>
+a single (fixed) value to the Left or Right of Centre is used,<br>
+OR
+<br>
+both sliders are close to the Left or Right.<br>
+</blockquote>
+</p>
+
+<p>
+It is the distance between the sliders that sets the stereo spread 
+of the sound.
+</p>
+
+<p>
+<a href="#GRNCONTENTS"><b>Return</b></a> to <i>GrainMill</i> contents<br>
+</p>
+
+
+<hr> <!-- ********************************************************* -->
+
+<h1 align=center id="GLOSSLIST">Glossary Items</h1>
+
+<h3 id="INFILE">The infile</h3>
+
+<p>
+The infile is the currently selected soundfile to be processed.  It must be 
+a mono soundfile(one channel).  As with any sound processing, the 
+qualities of the infile greatly influence the range of possible results.
+</p>
+
+<p>
+<a href="#GLOSSLIST"><b>Back</b></a> to list of glossary definitions<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h3 id="OUTFILE">The outfile</h3>
+
+<p>
+The outfile is produced by <i>GrainMill</i>.  It will be <a href="#MONO"> 
+mono</a> or stereo depending on the options selected.  The program 
+automatically provides a name for the outfile by adding 'OUT' to the name 
+of the infile.  To edit this name, move the cursor to the outfile box and 
+click to place an active vertical line cursor in the box.  Move left and 
+right with the arrow keys, deleting to the left with the Backspace key, and 
+to the right with the Delete key.  For example, if your infile was called 
+'gromont.wav', the default outfile name would be 'gromontOUT.wav'.  You 
+could name a second version, 'gromontOUT1.wav', etc.  (Filenames over 
+eight letters in length are possible with the Windows 95 operating system 
+for which this program has been written.)
+</p>
+
+<p>
+<a href="#GLOSSLIST"><b>Back</b></a> to list of glossary definitions<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+
+<h3 id="GRAIN">What is a 'grain' of sound?</h3>
+
+<p>
+A 'grain' is a tiny bit of something - in this case sound rather than 
+e.g., sand or corn.  A sound made up of lots of small 'grains' usually has 
+a somewhat rough texture.  It can sound just a bit rough-textured or bumpy, 
+or may sound fiercely repetitive.  It all depends.  Similar to the paintings 
+of Seurat who used tiny dots of paint rather than the usual brush stroke, 
+the sound is made up of lots and lots of tiny pieces.  A sound made up of 
+grains is described as 'granular', and creating sounds like this is called 
+'granular synthesis'.'
+</p>
+
+<p>
+<a href="#GLOSSLIST"><b>Back</b></a> to list of glossary definitions<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+
+<h3 id="DECIBELS">Decibels: a measure of loudness</h3>
+
+<p>
+The scale of loudness calculated in decibels (abbreviated as dB) is a 
+logarithmic scale.  The logarithmic scale is used for decibels because this 
+is how the ear works.  What this means is simply that equal divisions of 
+the scale will sound to us as equally louder or softer, whereas 
+mathematically the values are actually doubling.  Logarithms are a way of 
+linking linear and geometric values (such as 1, 2, 3,4 and 2 4 8, 16):  
+a single (i.e., equally spaced) step in the linear scale involves a 
+doubling of the previous value in the geometric scale.  If the loudness 
+scale were to be represented on the screen as a linear scale (and the 
+same is true of pitch), most of the changes that we can perceive with 
+our ears would be bunched together at one end of the scale.  Textbooks 
+on acoustics provide a full mathematical explanation of these matters, 
+and often include a chart illustrating where familiar sounds normally 
+come on the scale of decibels.
+</p>
+
+<p>
+<a href="#GLOSSLIST"><b>Back</b></a> to list of glossary definitions<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+
+<h3 id="MILLISECONDS">Milliseconds: a measure of time</h3>
+
+<p>
+A millisecond (abbreviated as ms) is one-thousandth part of a second.  
+The thousandth decimal place is the third to the right of the decimal 
+point (tens-hundreds-thousands).  So 1 millisecond can also be written 
+as 0.001 sec, 50 ms can be written as 0.050 sec, and 100 ms is the same 
+as 0.1 sec.  To convert from milliseconds to seconds, move the decimal 
+point three places to the left (adding zeroes if necessary), and to 
+convert from seconds to milliseconds, move the decimal point three places 
+to the right.
+</p>
+
+<p>
+<a href="#GLOSSLIST"><b>Back</b></a> to list of glossary definitions<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h3 id="TIMBRE">Sound-colour: a description of tone quality</h3>
+
+<p> 
+The 'colour' of a sound is more technically known as its 'timbre'.  This 
+means how many and which frequencies are present as the sound flows through 
+time.  This frequency content is constantly changing, in some sounds more 
+than in others.  For example, a flute has a clear luminous tone, while 
+an oboe has a considerably more complex sound, and a train engine 
+has a very rich sound indeed!  We have adopted the word 'colour' from 
+painters to describe these differences;  they all come down to the 
+ever-changing frequency content of a sound.
+</p>
+
+<p>
+<a href="#GLOSSLIST"><b>Back</b></a> to list of glossary definitions<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h3 id="BUTT">Splices: Butt and sloping joins</h3>
+
+<p>
+In the 'classical tape studio', analog tape was spliced by cutting off 
+selected pieces with a razor blade and then joining up the pieces with 
+a special white splicing tape.  These cuts were usually made with the 
+help of a splicing block, and there was a groove at 45&#37; for a 'smooth' 
+join (the two pieces of tape would overlap) and a vertical groove for 
+what was called a butt edit (no overlap at all).  Similarly, in 
+<i>GrainMill</i>, the grains are 'abutted' when there is no overlap.  
+However, note that there is in this case still the tapering of the sound 
+from and to zero volume, with which each grain is shaped in order to avoid 
+clicks.
+</p>
+
+<p>
+<a href="#GLOSSLIST"><b>Back</b></a> to list of glossary definitions<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h3 id="LOCATION">Panning a sound</h3>
+
+<p>
+The terminology 'to pan a sound', 'panning a sound', or just 'panning', 
+refers to the psycho-acoustic effect whereby sound appears to move 
+through space.  To illustrate:  a (stereo) sound can 'move' from left 
+to right.  In this case, the stereo image is actually coming out of both 
+speakers, but the right hand speaker starts with zero volume and the 
+left hand speaker with full volume.  Then the right hand speaker gets 
+progressively louder as the left hand speaker gets progressively quieter.  
+To the ear of the listener (positioned centrally in front of both speakers), 
+the sound appears to move from left to right.
+</p>
+
+<p>
+<a href="#GLOSSLIST"><b>Back</b></a> to list of glossary definitions<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+
+<h3 id="MONO">Mono Soundfile</h3>
+
+<p>
+A mono soundfile has only 1 channel.  If there are two loudspeakers, 
+the(same)  sound signal is output by both of them.
+</p>
+
+<p>
+<a href="#GLOSSLIST"><b>Back</b></a> to list of glossary definitions<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+
+<h3 id="DEFAULTS">Defaults</h3>
+
+<p>
+Programs frequently use 'defaults'.  A Default is a pre-set value, 
+particularly for frequently used settings.  It can usually be changed 
+by the user, but it can be convenient to have it there automatically to 
+start with.  It saves having to set every single value that is needed. 
+</p>
+
+<p>
+<a href="#GLOSSLIST"><b>Back</b></a> to list of glossary definitions<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+
+<h3 id="ATTACK">Attack - Sustain - Decay</h3>
+
+<p>
+These terms refer to the loudness shape (amplitude 'envelope') of the 
+sound. They describe some of the most noticeable and important features 
+of a sound.  The attack transient is how the sound begins, in particular 
+how quickly the loudness increases;  the Sustain portion refers to the 
+loudness characteristics of the main part of the sound  the Decay portion 
+is how it ends, for example whether it stops abruptly or gradually trails 
+off into silence.
+</p>
+
+<p>
+<a href="#GLOSSLIST"><b>Back</b></a> to list of glossary definitions<br>
+<a href="#GRNCONTENTS"><b>Return</b></a> to top
+</p>
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 29 Mar 2023<br />
+    Documentation: Archer Endrich (2006)<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

@@ -1,0 +1,2 @@
+;list chans in new order
+4 1 2 3

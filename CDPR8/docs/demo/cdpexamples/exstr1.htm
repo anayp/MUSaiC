@@ -1,0 +1,131 @@
+<html>
+<!-- tourform.htm - form for top level tour pages -->
+<!-- Individual pages name format: extex1.htm and extex1mo(re).htm -->
+<!-- COLOURS: FFD700=GOLD  FFFFF0=IVORY  EEE8AA=PALEGOLDENROD -->
+<!-- COLOURS: FFF8DC=CORNSILK 0000CD=MEDIUMBLUE B0E0E6=POWDERBLUE -->
+<!-- COLOURS: FFFACD=LEMONCHIFFON FFFFFF=WHITE -->
+
+<head>
+<meta name="GENERATOR" content="Prepared with EMACS text editor">
+<LINK REL="stylesheet" TITLE="CDP Style Sheet" HREF="cdpcsssm.css">
+<link rel="icon"  href="../images/cdp_favicon.ico">
+<title>Sound Example: Time-stretching</title>
+</head>
+
+<body bgcolor="#FFFFFF" background="cdpwatermark.gif" bgproperties="fixed">
+
+
+<div>
+<p>
+<IMG SRC="bannersw.gif" alt="[CDP Logo & Software Banner]"></a>
+</p>
+</div
+
+<p>
+<div>
+<table border="0" cellpadding="3">
+<tr>
+<td align="left"><a href="cdptour.htm"><b>Return</b></a> to list of sound 
+examples.</td>
+<td align="right"><a href="exmph1.htm"><b>Continue</b></a> to next sound 
+example on the tour.</td>
+</tr>
+</table>
+</div>
+</p>
+
+<p>
+<div align="center">
+<table cellspacing="3" bgcolor="#0000CD" cellpadding="3">
+<caption><h1>CDP Sound Examples &#150; STRETCHING</h1></caption>
+
+<tr>
+<td colspan="2" bgcolor="#FFFACD"><h2 align=center>Time and Spectrum 
+Stretching</h2></td>
+</tr>
+
+<tr>
+<td bgcolor="#FFFFF0"><h3 align="center">SOURCE SOUND<br><p></p>
+<a href="marimba.mp3">Single marimba stroke</a><br>
+(converted to an analysis file)</h3></td>
+<td bgcolor="#EEE8AA"><h3 align="center">TRANSFORMATION<br><p></p>
+<a href="exstr1.mp3">Time-stretched</a><br>
+<a href="exstr2.mp3">Spectrum-stretched</a></h3></td>
+</tr>
+
+<tr>
+<td colspan="2" bgcolor="#FFFFFF"><h3 align="center">DESCRIPTION<br>
+&#126; CDP Functions: TIME STRETCH &#47; SPECTRUM STRETCH &#126;</h3><p></p>
+	<ul>
+	<li>Having 'analysed' this to create a <i>frequency amplitude</i> 
+	    analysis data file, we then STRETCH it in TIME, using 
+	    <i>exstr1vs.brk</i>, a time-varying breakpoint file.  This is 
+	    designed to stretch the beginning of the sound quite a bit 
+	    (8 times) &#150; normally one would do this in several stages 
+	    in order to improve the quality of the result.</li>
+	<li>What sounds like a solid single stroke in the original 
+	    starts to break up when stretched to this degree, showing 
+	    that there are in fact multiple impacts.</li>
+	<li>We now <b>take this result</b> and STRETCH the 
+	    SPECTRUM by a factor of 5, starting at a very low 
+	    frequency and working upwards in order to affect the 
+	    whole of the sound.</li>
+	<li>We easily hear the change in timbre caused by the stretch.  
+	    Note that the spectrum stretch does not affect the length of 
+	    the sound.</li>
+	<li>A completely different aural result would occur if the 
+	    spectrum were to be <i>compressed</i> (value &lt; 1) below 
+	    a high frequency split point.</li>
+	</ul>
+<p align="right"><a href="exstr1mo.htm"><b>Additional Information</b></a>
+</p></td>
+</tr>
+
+<tr>
+<td bgcolor="#FFFFF0"><h3 align="center">PARAMETER SETTINGS: Time (L) 
+Spectrum (R)<br>
+(Click on image to view fullsize)</h3>
+<div>
+<a href="exstr1dbx.gif"><img src="exstr1dbxthumb.gif" ALT="[time stretch 
+parameters dialogue box]" align="center"></a> 
+<a href="exstr2dbx.gif"><img src="exstr2dbxthumb.gif" ALT="[spectrum stretch 
+parameters dialogue box]" align="center"></a>
+</div></td>
+<td bgcolor="#EEE8AA"><h3 align="center">KEY POINTS</h3>
+<p align="center"><b>spectrum stretch parameters</b></p>
+	<ul>
+	<li>Mode 1: stretch <i>above</i> frequency split</li>
+	<li>frequency split = 20 (starts low: 20 Hz)</li>
+	<li>maximum stretch = 5 (transposition ratio)</li>
+	<li>exponent = 1 (linear stretch 'curve')</li>
+	<li>depth = 1 (full stretch effect)</li>
+	</ul>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" bgcolor="#FFF8DC"><h3>SUPPLEMENTARY FILES USED</h3>
+<b>Time-stretch factor contour</b>
+<pre>
+[exstr1vs.brk]
+Time Stretch-factor
+0.00 8   
+0.20 8   
+0.21 4  
+0.50 5 
+1.00 2
+</pre>
+</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+<p>
+Last updated: 4 December 2003
+</p>
+
+</body>
+
+</html>

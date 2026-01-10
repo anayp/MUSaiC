@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- chilite.htm  - HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP HILITE Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cspecndx.htm" Target="_top"><b>Spectral Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br>
+  <dt><a href="#HILITELIST"><b>HILITE:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ARPEG"><b>ARPEG</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#BAND"><b>BAND</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#BLTR"><b>BLTR</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FILTER"><b>FILTER</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#GREQ"><b>GREQ</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PLUCK"><b>PLUCK</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TRACE"><b>TRACE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#VOWELS"><b>VOWELS</b></a>
+  <br><br>
+  <b>OTHERS:</b><br>
+  <dt>&nbsp;&nbsp;<a href = "#GLISTEN"><b>GLISTEN</b></a><br>
+  <br><br />
+  <dt><a href=#HILITETECHNICAL"><b>TECHNICAL</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <div align=center>
+   <br>
+   <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+   </div>
+
+   <h1 align=center>CDP Functions to HILITE Spectral Data</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="HILITELIST">Functions which HIGHLIGHT Spectral Amplitude</h2>
+
+<dl>
+<dt><a href="#ARPEG">HILITE <b>ARPEG</b></a> <dd>Arpeggiate the spectrum
+<dt><a href="#BAND">HILITE <b>BAND</b></a> <dd>Split spectrum into bands and process these individually
+<dt><a href="#BLTR">HILITE <b>BLTR</b></a> <dd>Time-average and TRACE the spectrum
+<dt><a href="#FILTER">HILITE <b>FILTER</b></a> <dd>Filter the spectrum
+<dt><a href="#GLISTEN"><b>GLISTEN</b></a> <dd>Randomly partition the spectrum into bins and play back in order</dd>
+<dt><a href="#GREQ">HILITE <b>GREQ</b></a> <dd>Graphic EQ type filter on the spectrum
+<dt><a href="#PLUCK">HILITE <b>PLUCK</b></a> <dd>Emphasise spectral changes (use e.g., 
+with HILITE ARPEG)
+<dt><a href="#TRACE">HILITE <b>TRACE</b></a> <dd>Highlight <i>n</i> loudest partials, 
+at each moment (window) in time
+<dt><a href="#VOWELS">HILITE <b>VOWELS</b></a> <dd>Impose vowels on a sound<br>
+
+
+<br><br>
+<dt><a href="#HILITETECHNICAL"><b>TECHNICAL DISCUSSION</b></a> <dd>Partials and frequencies
+</dl>
+
+<p>
+<b>SEE ALSO:</b><br>
+<a href="cblur.htm#SCATTER"><b>BLUR SCATTER</b></a><br>
+<a href="cblur.htm#SUPPRESS"><b>BLUR SUPPRESS</b></a><br>
+<a href="cblur.htm#SUPPRESSBND"><b>SUPPRESS (band)</b></a><br>
+<a href="cspecedi.htm#CLEAN"><b>SPEC CLEAN</b></a>
+</p>
+
+<p>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ******************************************************* -->
+
+<h2 id="ARPEG">HILITE ARPEG &#150; Arpeggiate the spectrum</h2>
+
+<h3>		
+Usage 
+</h3>
+<b>hilite arpeg 1-4</b> <i>infile outfile wave rate</i>
+[<b>-p</b><i>U</i>] [<b>-l</b><i>X</i>] [<b>-h</b><i>Y</i>] 
+[<b>-b</b><i>Z</i>] [<b>-a</b><i>A</i>] 
+[<b>-N</b><i>k</i>] [<b>-s</b><i>S</i>] [<b>-T</b>]  [<b>-K</b>]<br>
+<b>hilite arpeg 5-8</b> <i>infile outfile wave rate</i>
+[<b>-p</b><i>U</i>] [<b>-l</b><i>X</i>] [<b>-h</b><i>Y</i>] 
+[<b>-b</b><i>Z</i>] [<b>-a</b><i>A</i>]<br>
+
+<h3>
+Modes</h3>
+
+<blockquote>
+<b>1</b>&nbsp; ON...................Play components inside arpeggiated band ONLY<br>
+<b>2</b>&nbsp;  BOOST...........Amplify snds in band. Others play unamplified<br>
+<b>3</b>&nbsp;  BELOW_BOOST.....INITIALLY play components in &amp; below band ONLY<br>
+	<blockquote>
+     	           THEN amplify sounds in band. Others play unamplified<br>
+       	           (<b>NOT with downramp</b> &#150; illogical)<br>
+	</blockquote>
+<b>4</b>&nbsp;  ABOVE_BOOST.....INITIALLY play components in &amp; above band ONLY<br>
+	<blockquote>
+       	           THEN amplify sounds in band. Others play unamplified<br>
+       	           (<b>NOT with upramp</b> &#150; illogical: with sin&#47;saw 
+			startphase &gt; 0.5)<br>
+	</blockquote>
+<b>5</b>&nbsp;  BELOW...........Play components in &amp; below arpeggiated band 
+ONLY<br>
+<b>6</b>&nbsp;  ABOVE...........Play components in &amp; above arpeggiated band 
+ONLY<br>
+<b>7</b>&nbsp;  ONCE_BELOW......INITIALLY Play components in and below band ONLY<br>
+	<blockquote>
+       	           THEN play whole sound as normal. (<b>NOT with 
+			downramp &#150; illogical</b>)<br>
+	</blockquote>
+<b>8</b>&nbsp;  ONCE_ABOVE......INITIALLY Play components in and above arpeggiated 
+band ONLY<br>
+	<blockquote>
+       	           THEN play whole sound as normal<br>
+       	           (<b>NOT with upramp</b> &#150; illogical: with sin/saw 
+			startphase &gt; 0.5)<br>
+	</blockquote>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>wave</i> &#150; <b>1</b> = downramp : <b>2</b> = sin : 
+<b>3</b> = saw : <b>4</b> = upramp<br>
+<i>rate</i> &#150; number of sweeps per second (can be &lt; 1)<br>
+<b>-p</b><i>U</i> &#150; start_phase: range 0-1 (limited range for some cases);  
+may not affect the sound very much<br>
+<b>-l</b><i>X</i> &#150; lowest frequency arpeg sweeps down to; Default = 0<br>
+<b>-h</b><i>Y</i> &#150; highest frequency arpeg sweeps up to; Default nyquist<br>
+<b>-b</b><i>Z</i> &#150; bandwidth of sweep band (in Hz); Default = 
+nyquist/channel_cnt (i.e., sample rate&#47;2&#47;channel count)<br>
+<b>-a</b><i>A</i> &#150; amplification of arpegtones; Default = 10.0<br>
+<b>-N</b><i>k</i> &#150; nonlinear decay arpegtones; &gt; 1 faster, &lt; 1 slower; 
+must be &gt; 0  (range: 0.02 to 50 &#150; take care with values higher than 
+about 5, as can reduce output to silence)<br>
+<b>-s</b><i>S</i> &#150; number of windows over which arpegtones sustained: 
+Default = 3 (high values, esp. with a long decay time, can cause 
+amplitude overflow)<br>
+<b>-T</b> &#150; In sustains, TRACK changing frquency of source (Default = 
+retain start frquency)<br>
+<b>-K</b> &#150; Let sustains run to zero before new arpegtone attack is 
+accepted<br>
+(Default: re-attack once sustains fall below current input level)<br>
+<br>
+All parameters may vary over time, except for <i>wavetype</i> and 
+<i>startphase</i><br>
+</blockquote>
+</p>
+
+<h3>
+Understanding the HILITE ARPEG Process
+</h3>
+
+
+<blockquote>
+<p>
+HILITE ARPEG means 'spectrum arpeggio' and causes a waveform at a specified 
+frequency to sweep through the spectrum of a sound, selecting or emphasizing 
+the partials it passes through (or which lie below it or above it), thus 
+creating an 'arpeggiation' of the spectrum within the sound.
+</p>
+
+<p>
+Note the interaction of the <b>-N</b> and <b>-s</b> parameters.  The one 
+is controlling the envelope of the decay, and the other is sustaining across 
+windows.  When a slow decay envelope (e.g., 0.2) is combined with a large 
+number of windows across which to sustain data (e.g., &gt; 100), amplitude 
+overflow can occur, sometimes massive amplitude overflow if the source is 
+loud.  If PVOC comments on amplitude, take care to to read what it says 
+before playing the sound.  Values for <b>-a</b> also affect amplitude 
+output, so when near the limit with other factors, a lower value 
+for <b>-a</b> can be helpful.
+</p>
+
+<p>
+High values for <b>-N</b> can muffle the sound, and very high values can 
+reduce it to silence.  You are recommended not to exceed a value of 7.
+</p>
+
+<p>
+<b>Rule of Thumb:</b> increase the decay rate (higher value for <b>-N</b>) 
+as you increase the sustain windows (<b>-s</b>).
+</p>
+
+<p>
+The <b>-T</b> parameter causes arpeggios to follow (the moving) pitch 
+content of the sound.  The <b>-K</b> parameter places the attacks in relief by 
+making sure that the sustains run to zero before a new attack begins.
+</p>
+
+<p>
+The appropriate <i>rate</i> parameter value can be imagined by likening 
+the effect to a vibrato, i.e., a low frequency oscillator.  Something about 10 
+to 20 cycles per second is what is expected, but slower than this can be 
+used to create glissandos within the spectrum.  A single sweep through the 
+sound can be useful, such as to create a sense of upwards transposition.  CDP 
+user Peter Karkut came up with this idea as a way of preparing a sound for 
+a morph.
+</p>
+
+<p>
+The <i>rate</i> parameter, we are told, must be less than the analysis 
+rate.  Note that this is NOT the value given for <b>-N</b> (now <b>-c</b>
+<i>points</i> when analyzing sound, but rather the analysis frame rate.  
+As explained in the <i>Phase Vocoder</i> Manual, this is 
+(SR&#47;2)&#47;(N&#47;2), where SR is the sample rate and N is the value 
+given for <b>-N</b>.  The result of this calculation is then multiplied by 
+8, the number of window overlaps automatically made by the Phase Vocoder 
+in order to improve the quality of the output.  A typical frame rate is 
+344:  (44100&#47;2)&#47;(1024&#47;2) = 43.06;43.06 * 8 = 344.  So in this 
+case, <i>rate</i> must be &lt; 344.  In practice, a value of 100 is about 
+the limit, but the software does not prevent exploring what happens beyond 
+this point.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+HILITE ARPEG can be used to create an unusual attack for a sound object.  
+Because the wave sweeps through all the analysis channels, it serves to 
+bring out internal features inside the sound.  Sometimes a pitch focus or 
+harmonic colouration within the sound will result, particularly if the 
+frequencies are being tracked (<b>-T</b>).
+</p>
+
+<p>
+This process seems to work most clearly with sounds possessing strong 
+and slowly moving partials, such as bell sounds and sounds perceived 
+mostly as pitch (harmonic partials predominate over inharmonic partials).
+</p>
+
+<p>
+Perception of the effect is also affected by the speed of the movement;  
+it is more noticeable at slower speeds.  This can be timed to give a single 
+sweep over the duration of the sound because the <i>rate</i> can be a 
+floating point value (&gt; 0 but &lt; the analysis rate).  It might be 
+interesting to try it on the result of a <a href="cspecedi.htm#BARE">
+<b>SPEC BARE</b></a> process, because then the sweeping arpeggio will be 
+emphasising the natural harmonic overtone series.
+</p>
+
+<p>
+High sharp sweeps can be achieved with Mode 6, e.g., by a high value for 
+<b>-h</b> and none for <b>-l</b>:  makes the sweeps occur above the 
+<b>-h</b> frequency.  Try pushing this higher still, and playing with 
+rates &lt; 1.
+</p>
+
+<p>
+There are many factors to play off against one another in HILITE ARPEG, 
+so creating a series of batch files with which to explore the function 
+would be time well spent.  There are many serendipitous sounds hidden 
+among the more obvious possibilities.  It is more of the most powerful 
+functions in the spectral set. (Ed.)
+</p>
+</blockquote>
+
+<p>
+End of HILITE ARPEG<br>
+<a href="#HILITELIST">Return</a> to List of functions to HIGHLIGHT
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ******************************************************* -->
+ 
+<h2 id="BAND">HILITE BAND &#150; Split spectrum into bands and process 
+these individually</h2>
+
+<h3>
+Usage
+</h3>
+<b>hilite band</b> <i>infile outfile datafile</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>datafile</i> contains the instructions on how to split the bands, 
+written as (a number of) lines in the following format:<br>
+	<p>
+	<blockquote>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>lofrq hifrq bitflag</i> 
+	[<i>amp1 amp2</i> [+]<i>transpose</i>]</b><br>
+	</p>
+
+	<p>
+	<i>lofrq</i> and </i>hifrq</i> are entered in Hz and define the bottom 
+	and top frequencies of a band within the spectrum of the sound<br>
+	</p>
+
+	<p>
+	<i>bitflag</i> has 4 bits (e.g., '0101' or '1000'):
+	</p>
+
+	<p>
+	<b>bit 1 set:</b> amplitude <b>change</b> to band: put amplitude 
+	multiplier <i>amp1</i> in the line<br>
+	<b>bit 2 set:</b> amplitude <b>ramp</b>: put 2<sup>nd</sup> amplitude 
+	multiplier <i>amp2</i> in the line.  The spectral band will change 
+	in amplitude from <i>amp1</i> to <i>amp2</i>.  This is a spectral 
+	filter slope (envelope) between the stated frequency boundaries, 
+	applied to the whole length of the sound.  Note that bit 1 also has 
+	to be set:  e.g., 1100 for this function to work.<br>
+	<b>bit 3 set:</b> partials <b>transpose</b>: the function expects the 
+	frequency multiplier <i>transpose</i> to be in the line.  OR, if 
+	the value is preceded by a '+', the value is ADDED to the 
+	frequency in the band.<br>
+	<b>bit 4 set:</b> transposed <b>partials are ADDED</b> to the original 
+	spectrum.  Default: Replace.<br>
+	</p>
+
+	<p>
+	<i>amp1</i>, <i>amp2</i> &amp;&#47;or <i>transpose</i> MUST be 
+	present when they are required by the <i>bitflag</i> options<br>
+	</p>
+
+	<p>
+	<i>amp1</i> and <i>amp2</i> are amplitude multipliers, used as 
+	described above<br>
+	</p>
+
+	<p>
+	<i>transpose</i> is a frequency multiplier<br>
+	</p>
+	</blockquote>
+	</p>
+
+</blockquote>
+
+<h3>
+Understanding the HILITE BAND Process
+</h3>
+
+<blockquote>
+<p>
+HILITE BAND used to be called SPECSPLIT, which means 'spectrum split':   
+divide the spectrum into a number of (user-defined) frequency bands.  
+It then carries out amplitude and&#47;or pitch changes to the partials found 
+in the bands.  Each band may be treated differently.  Typical use of HILITE 
+BAND involves defining several data lines in order to create an arbitrary 
+spectral filter envelope.  Each data line is a single line contributing to 
+a sort of frequency response breakpoint shape.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+When you set a frequency band to zero, it is filtered out (bit 1 set 
+to 0).  By retaining/emphasizing some frequency bands and zeroing 
+others, you can focus on and enhance the bands you want to keep.  This 
+is also a way to tune or harmonize sound material.  The data file for 
+HILITE BAND can contain several lines, so several bands can be, and 
+usually are, defined at one time.
+</p>
+
+<p>
+Filter slope can be applied within frequency bands (bit 2 
+set and values given for <i>amp1</i> and <i>amp2</i>).  In 
+the line <code>3500 6000 1100 0.001 1.0</code>, the slope 
+moves from 3500 Hz <b>upwards</b> towards 6000 Hz, and in the line 
+<code>2000 3000 1100 1.0 0.001</code>, the slope moves <b>downwards</b> 
+from 2000 Hz to 3000 Hz.  The two lines as a pair give this shape:<br />
+<br />
+<code>2000 3000 1100 1.0 &nbsp;&nbsp;0.001</code><br />
+<code>3500 6000 1100 0.001 1.0</code><br />
+<IMG SRC="images/hilitebandpair.gif"></a>
+</p>
+
+<p>
+Note the potential of the transposition functions (bit 3 and bit 4). 
+Transposition by multiplication means that the harmonic relationships 
+are maintained (logarithmic).  Transposition by addition creates 
+inharmonic relationships (linear).  The superimposition of frequency 
+bands made possible by bit 4 will have the effect of thickening the 
+resultant sound in some way &#150; which probably won't be very predictable.
+</p>
+</blockquote>
+
+<p>
+End of HILITE BAND<br>
+<a href="#HILITELIST">Return</a> to List of functions to highlight 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ******************************************************* -->
+ 
+<h2 id="BLTR">HILITE BLTR &#150; Time-average and TRACE the spectrum</h2>
+
+<h3>
+Usage
+</h3>
+<b>hilite bltr</b> <i>infile outfile blurring tracing</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>blurring</i> &#150;  the number of windows over which to average the spectrum<br>
+<i>tracing</i> &#150;  the number of (loudest) channels to retain, in each window<br>
+	<p>
+	<blockquote>
+	<i>blurring</i> AND <i>tracing</i> may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the HILITE BLTR Process
+</h3>
+
+<blockquote>
+<p>
+In each window, all but the loudest (tracing) channels are discarded 
+(see <a href="#TRACE"><b>HILITE TRACE</b></a>.  Then a proportion of the 
+windows are discarded and replaced by values interpolated between the 
+remaining windows (see <a href="gblur.htm#BLUR"><b>BLUR BLUR</b></a>.  The 
+degree of the change will depend on the amplitude differential between 
+the loudest and not so loud channels:  the louder the latter are, the 
+more their absence will be noticed.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The dual functionality of HILITE BLTR enables the sound designer to 
+reduce the data by removing all but the <i>tracing</i> loudest 
+channels, and simultaneously to smooth&#47;blur the remaining data 
+by averaging the frequency and amplitude values contained in each 
+set of <i>blurring</i> windows.  This is a good way to get softly 
+modulating sounds.  However, we have seen with HILITE TRACE that a 
+remarkable number of windows can go before the recognisability of the 
+sound is seriously affected, so there is plenty of scope to soften 
+the edges of a sound before recognisability is lost.
+</p>
+
+<p>
+A high <i>blur</i> factor combined with a low <i>trace</i> factor 
+greatly reduces and smooths the sound:  reduces it to a gentle murmur.  
+You might also consider using FOCUS ACCU to alter&#47;intensify the 
+blurring effect.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="cblur.htm#BLUR"><b>BLUR BLUR</b></a>, <a href="#TRACE">
+<b>HILITE TRACE</b></a> and <a href="cfocus.htm#ACCU"><b>FOCUS ACCU</b></a>
+</p>
+
+<p>
+End of HILITE BLTR<br>
+<a href="#HILITELIST">Return</a> to List of functions to highlight 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ******************************************************* -->
+ 
+<h2 id="FILTER">HILITE FILTER &#150; Filter the spectrum</h2>
+
+<h3>
+Usage
+</h3>
+<b>hilite filter &nbsp;1&#150;4</b>&nbsp;&nbsp;&nbsp; <i>infile outfile frq1 Q</i><br>
+<b>hilite filter &nbsp;5&#150;6</b>&nbsp;&nbsp;&nbsp;  <i>infile outfile frq1 Q gain</i><br>
+<b>hilite filter &nbsp;7&#150;10</b>&nbsp; <i>infile outfile frq1 frq2 Q</i><br>
+<b>hilite filter 11&#150;12</b> <i>infile outfile frq1 frq2 Q gain</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+&nbsp;<b>1</b>&nbsp;&nbsp; high pass filter<br>
+&nbsp;<b>2</b>&nbsp;&nbsp; high pass filter (normalised output)<br>
+&nbsp;<b>3</b>&nbsp;&nbsp; low pass filter<br>
+&nbsp;<b>4</b>&nbsp;&nbsp; low filter (normalised output)<br>
+&nbsp;<b>5</b>&nbsp;&nbsp; high pass filter with gain<br>
+&nbsp;<b>6</b>&nbsp;&nbsp; low pass filter with gain<br>
+&nbsp;<b>7</b>&nbsp;&nbsp; band pass filter<br>
+&nbsp;<b>8</b>&nbsp;&nbsp; band pass filter (normalised output)<br>
+&nbsp;<b>9</b>&nbsp;&nbsp; notch filter<br>
+<b>10</b>&nbsp; notch filter (normalised output)<br>
+<b>11</b>&nbsp; band pass filter with gain<br>
+<b>12</b>&nbsp; notch filter with gain<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>frq1</i> &#150; filter cutoff frequency<br>
+<i>frq1</i> with <i>frq2</i> &#150; limits of filter band<br>
+<i>Q</i> &#150; width of filter skirts, in Hz (Range: &gt; 0)<br>
+	<p>
+	<blockquote>
+	Here one is entering filter bandwidth directly.  The smaller the 
+	Hz value for <i>Q</i> (i.e., the filter's bandwidth), the narrower 
+	the pitch focus of the filter.<br>
+	</blockquote>
+	</p>
+<i>gain</i> &#150; amplification of the resulting sound<br>
+	<p>
+	<blockquote>
+	<i>frq1</i>, <i>frq2</i> and <i>Q</i> may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the HILITE FILTER Process
+</h3>
+
+<blockquote>
+<p>
+These are standard filtering options, which can be applied directly 
+in the spectral domain.  Note that <i>Q</i> is entered as a frequency  
+bandwidth, which hopefully will be a more intuitive way to use this 
+parameter.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The key facilities here are the time-varying frequency settings and Q.  
+One can move the frequency placement about as the sound progresses, as 
+well as change the sharpness (pitch focus) of the filter.  Suppose, for 
+example, you extracted a pitch trace and saved the data as a breakpoint 
+file.  This file could be used as a time-varying <i>frq1</i> with a 
+time-varying <i>Q</i>, so that the salient pitch content of the file 
+can be made to fade in and out.  Similarly, upward and downward sweeps 
+which begin with a broad and end with a sharp pitch focus or <i>v.vs.</i> 
+(<i>Q</i>), affecting changes over time, emerging or disappearing 
+pitches etc.
+</p>
+
+<p>
+The following programs provide data which could be useful when deciding 
+how to set the filter frequencies (use BACK in your Browser to return 
+here to HILITE FILTER):<br>
+<blockquote>
+<a href="cspecinf.htm#PEAK"><b>SPECINFO PEAK</b></a> and 
+<a href="cspecinf.htm#REPORT"><b>SPECINFO REPORT</b></a> provide information 
+on (time-varying) peaks in the spectral envelope.  
+<a href="crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a> can extract a pitch 
+trace, saving it as either a binary pitch data file or a breakpoint file, and 
+<a href="cptchinf.htm#SEE"><b>PITCHINFO WRITE</b></a> can convert a binary 
+pitch data file into a breakpoint file.  
+<a href="cptchinf.htm#INFO"><b>PITCHINFO INFO</b></a> gives an overview of 
+the (main) pitch content of a binary pitch data file.<br>
+</blockquote>
+</p>
+</blockquote>
+
+<p>
+End of HILITE FILTER<br>
+<a href="#HILITELIST">Return</a> to List of functions to highlight 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ******************************************************* -->
+
+<h2 id="GLISTEN">GLISTEN &#150; Randomly partition the spectrum into bins and play back in order</h2>
+
+<h3>
+Usage
+</h3>
+<b>glisten glisten</b> <i>inanalfile outanalfile grpdiv setdur</i> [<b>-p</b><i>pitchshift</i>] [<b>-d</b><i>durrand</i>] [<b>-v</b><i>divrand</i>] 
+<br />
+
+<p>
+Example command line to enliven an otherwise fairly static spectrum:<br>
+	<blockquote>
+	<b><code>glisten glisten in.ana out.ana 4 250 -p3 -d0.7 -v0.25</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150; input analysis file<br />
+<i>outanalfile</i> &#150; output analysis file<br />
+<i>grpdiv</i> &#150; the number of sets into which to divide the analysis-channels.  For example, when <i>grpdiv</i> = 4, the program will process the partitions and channels randomly among 4 sets with the total number of channels &divide; 4 per set.  <b>Note that <i>grpdiv</i> must be an exact divisor of the channel count.</b> (Range: 2 to channel-count)<br />
+<i>setdur</i> &#150; the number of windows for which a set-of-channels persists before we switch to the next set-of-chans.  (Range: 1 to 1024)<br />
+<b>-p</b><i>pitchshift</i> &#150; The maximum range in (possibly fractional) semitones of random plus or minus pitch shifting (i.e., upwards or downwards) of each channel set.  (Range: 0.0 to 12.0.  Default: 0.0)<br />
+<b>-d</b><i>durrand</i> &#150; the randomisation of <i>setdur</i> between 1 and <i>setdur</i>. (Range:  0 to 1)<br />
+<b>-v</b><i>divrand</i> &#150; randomise the number of channels in each set in a group.  (Range: 0 to 1.)<br>  In the normal case, each set-of-channels has an equal number of channels.  When <i>divrand</i> is &gt; 0, a group will have sets of different sizes.
+</blockquote>
+
+<h3>
+Understanding the GLISTEN Process
+</h3>
+
+<blockquote>
+<p>
+All the channels of the analysis are partitioned into <i>N</i> mutually exclusive sets, with channels assigned at random to each set.  These sets form a complete group.  Then channels in the first set are played, for <i>setdur</i> windows, at which point the channels in the 2<sup><small>nd</small></sup> set are played for <i>setdur</i> windows and so on.
+</p>
+
+<p>
+As this happens, we are progressing through the original file at its original rate, the process determining merely which channels are used &#150; the others being zeroed.  Once all <i>N</i> sets are exhausted, a new group is made by random partition, and so on.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This process is meant to 'animate' a fixed or relatively static spectrum.  The channels of the spectrum are selected (in groups) at random and played back in sequence.
+</p>
+</blockquote>
+
+<p>
+End of GLISTEN<br />
+<a href="#SPECLIST"><b>Return</b></a> to list of SPEC functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<hr><!-- ******************************************************* -->
+ 
+<h2 id="GREQ">HILITE GREQ &#150; Graphic EQ type filter on the spectrum</h2>
+
+<h3>
+Usage
+</h3>
+<b>hilite greq mode</b> <i>infile outfile filtfile</i> <b>-r</b>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> <b>single bandwidth</b> for all filter bands<br>
+	<p>
+	<blockquote>
+	<i>filtfile</i> has ONE bandwidth.  This is expressed in octaves 
+	or proportions of octaves (e.g., 1 or 0.5), and this value is followed 
+	by the centre frequencies in Hz of all the filter bands of the graphic 
+	equaliser.  The file is a list of numbers, so it doesn't matter 
+	whether you use newlines, spaces etc., as long as the numbers are 
+	distinct.<br>
+	<table bgcolor="#FFFFFF" cellpadding=8>
+	<caption><b>Single bandwidth <i>filtfile</i> example</b></caption>
+	<tr>
+	<td>0.75</td>
+	<td>40</td>
+	<td>80</td>
+	<td>160</td>
+	<td>320</td>
+	<td>640</td>
+	</tr>
+	</table>
+	</blockquote>
+	</p>
+<b>2</b> <b>separate bandwidths</b> for each filter band<br>
+	<p>
+	<blockquote>
+	<i>filtfile</i> has a pair of values defining each filter band.  
+	These are the bandwidth in octaves (expressed as in Mode 1) and 
+	the centre frequency of the band.<br>
+	<table bgcolor="#FFFFFF" cellpadding=8>
+	<caption><b>Separate bandwidths <i>filtfile</i> example</b></caption>
+	<tr>
+	<td>1.0</td>
+	<td>40</td>
+	</tr>
+	<tr>
+	<td>0.5</td>
+	<td>80</td>
+	</tr>
+	<tr>
+	<td>2.6</td>
+	<td>240</td>
+	</tr>
+	</table>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>filtfile</i> &#150; text file defining the graphic equaliser (as illustrated 
+above)<br>
+<b>-r</b> &nbsp; &#150; Band reject (notch) filter.  Default is a bandpass filter.<br>
+</blockquote>
+
+<h3>
+Understanding the HILITE GREQ Process
+</h3>
+
+<blockquote>
+<p>
+This is in concept a standard graphic equaliser, with a choice between 
+bands of equal size or bands of varyingly specified sizes.  A sonogram 
+display may help to show how strong signal areas may be reduced (or enhanced 
+by removing bands of frequencies which lie between them).  Also see the 
+spectral information gathering functions listed below.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The graphic equaliser is typically used to boost certain selected parts 
+of a sound, and reduce others, such as high level hiss or low booming.  
+This 'EQ type' filter does not have a gain parameter as such and focuses on 
+highlighting (or removing) the selected bands.
+</p>
+
+
+<p>
+The following programs provide data which could be useful when deciding 
+how to set the filter frequencies (use BACK in your Browser to return 
+here to HILITE FILTER):<br>
+<blockquote>
+<a href="cspecinf.htm#PEAK"><b>SPECINFO PEAK</b></a> and 
+<a href="cspecinf.htm#REPORT"><b>SPECINFO REPORT</b></a> provide information 
+on (time-varying) peaks in the spectral envelope.  
+<a href="crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a> can extract a pitch 
+trace, saving it as either a binary pitch data file or a breakpoint file, and 
+<a href="cptchinf.htm#CONVERT"><b>PITCHINFO CONVERT</b></a> can convert a binary 
+pitch data file into a breakpoint file.  
+<a href="cptchinf.htm#INFO"><b>PITCHINFO INFO</b></a> gives an overview of 
+the (main) pitch content of a binary pitch data file.<br>
+</blockquote>
+</p>
+</blockquote>
+
+<p>
+End of HILITE GREQ<br>
+<a href="#HILITELIST">Return</a> to List of functions to highlight 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ******************************************************* -->
+
+<h2 id="PLUCK">HILITE PLUCK &#150; Emphasise spectral changes (use e.g., 
+with HILITE ARPEG)</h2>
+
+
+<h3>
+Usage
+</h3>
+<b>hilite pluck</b> <i>infile outfile gain</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>gain</i> &#150; amplitude gain applied to newly prominent spectral components 
+(Range: 1 to 1000)
+	<p>
+	<blockquote>
+	<i>gain</i> may vary over time
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the HILITE PLUCK Process
+</h3>
+
+<blockquote>
+<p>
+In analysis files generated from complex soundfiles by functions such as 
+HILITE TRACE and HILITE ARPEG, new partials will enter (and leave) the 
+spectrum, window by window, creating a kind of 'resultant melody'.  
+HILITE PLUCK emphasises the entry of these new partials by boosting their 
+amplitude at the point of entry.  If the amplitude boost is large, such as 
+increased by a <i>gain</i> of 10 or more, the entries may suggest a 
+'plucking' of the entering partials.
+</p>
+
+<p>
+Note that the 'pluck' effect is added to the onset of partials.  This 
+is quite different from emphasising the attack transient of a sound in 
+the amplitude envelope.  See <a href="cgroenvl.htm#PLUCK"><b>ENVEL PLUCK</b></a> 
+for this, where a noise component is introduced into the attack transient 
+of a sound.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This procedure will introduce into the sound a somewhat random rhythm 
+of short pulses.  These pulses will attract the ear to the entering 
+partials and whatever harmonic relationship they may have &shy; such as 
+the harmonic partials retained after running SPEC BARE.  SPEC BARE + 
+HILITE TRACE + HILITE PLUCK form an interesting combination of functions 
+to play with, and HILITE PLUCK can also be used to bring out the partials 
+which HILITE ARPEG makes more audible.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="#ARPEG"><b>HILITE ARPEG</b></a>, <a href="#TRACE">
+<b>HILITE TRACE</b></a> and <a href="cspecedi.htm#BARE"><b>SPEC BARE</b></a> <br>
+</p>
+
+<p>
+End of HILITE PLUCK<br>
+<a href="#HILITELIST">Return</a> to List of functions to highlight 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ******************************************************* -->
+
+<h2 id="TRACE">HILITE TRACE &#150; Highlight <i>n</i> loudest partials, 
+at each moment (window) in time</h2>
+
+<h3>
+Usage
+</h3>
+<b>hilite trace 1</b> <i>infile outfile N</i><br>
+
+<b>hilite trace 2</b> <i>infile outfile N lofrq</i> 
+[<b>-r</b>]<br>
+
+<b>hilite trace 3</b> <i>infile outfile N hifrq</i> 
+[<b>-r</b>]<br>
+
+<b>hilite trace 4</b> <i>infile outfile N lofrq hifrq</i> 
+[<b>-r</b>]<br>
+
+<p>
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp;  Select loudest spectral components<br>
+<b>2</b>&nbsp;  Select loudest from above <i>lofrq</i>: 
+	reject all spectral data below <i>lofrq</i><br>
+<b>3</b>&nbsp;  Select loudest from below <i>hifrq</i>: 
+	reject all spectral data above <i>hifrq</i><br>
+<b>4</b>&nbsp;  Select loudest from between <i>lofrq</i> and <i>hifrq</i>: 
+	reject data outside
+</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>N</i> &#150; the trace index:  the number of spectral components to retain<br>
+<i>lofreq</i> &#150; frequency below which spectral data is rejected<br>
+<i>hifreq</i> &#150; frequency above which spectral data is rejected<br> 
+
+<b>-r</b> &#150; If trace index <i>N</i> is greater than the number of channels 
+in the filterband (defined by <i>lofrq &amp; hifrq</i>):<br>
+	<blockquote>
+	RETAIN the loudest channels OUTSIDE the filterband<br>
+	(Default: always omit channels outside the filterband)
+	<br>
+	<p>
+	<i>N</i>, <i>lofrq</i> and <i>hifrq</i> may vary over time
+	</p>
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the HILITE TRACE Process
+</h3>
+
+<blockquote>
+<p>
+HILITE TRACE looks for and retains only the <i>N</i> loudest partials 
+in the analysis data on a window-by-window basis.  
+This reduces the data in the spectral dimension and produces an 
+aural 'trace'  of the original sound.
+</p>
+<p>
+With  non-'noisy' sources it is necessary to reduce the number of channels 
+quite considerably to make any appreciable aural change to the source 
+sound.  Even the 10 loudest channels will retain a surprising amount 
+of the original sound.  The flip-side of this is that HILITE TRACE can be 
+used to 'clean' a sound, if a certain amount of data loss is not a 
+problem (see below).
+</p>
+
+<p>
+This procedure deals with analysis channels, not directly with partials.  
+It will retain whichever partial is contained 
+in a given analysis channel window at any given moment in time, and this 
+is likely to change.  To find specific partials requires 'peak tracking', 
+and this is not something which the CDP software is able to do.  Thus a 
+sonogram of 1 channel retained by HILITE TRACE will probably show a number 
+of different frequencies. The frequency width of an analysis channel is obtained by dividing the sample rate by the number of channels:  e.g., 
+<code>44100 / 1024 = 43</code>.  This enables you to calculate the 
+width of the frequency band that a given number of channels will cover.  Remember that partials are more spread out in higher sounds (frequency is logarithmic), so low sounds are likely to contain more partials within 
+a smaller band, while the same width might find relatively few in a high 
+sound. For an alternative approach, see <a href = 
+"http://mpex.prosoniq.com">http://mpex.prosoniq.com</a>.[AE]
+</p>
+
+<p>
+The HILITE TRACE filtering effect can be further controlled by using 
+the <i>lofrq</i> and <i>hifrq</i> parameters.  The default is to <b>omit</b> 
+the data outside the selected area, but if the <b>-r</b> flag is used, this 
+data is <b>retained</b>.
+</p>
+
+<p>
+For example, the frequency band can be focused into a narrower band by 
+creating a breakpoint file for <i>hifrq</i> which starts high and moves 
+lower, and creating a breakpoint file for <i>lofrq</i> which starts low 
+and moves higher (but stays below the final frequency value in <i>hifrq</i>).
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Initially, this process can be used to clean up some of the ambient noise 
+which is part of a sound source, if for example, only 50 or 100 channels 
+are retained.  However, some spectral information may be lost as well, 
+when cleanup is done in this way.
+</p>
+
+<p>
+However, as one moves down to 50, 40, 30, 20, 10, 5 ..., less and less 
+of the original remains, though it is surprising how low one has to go 
+to get a really 'ghostly' result.  At this stage, the original is being 
+used simply as a source for another sound.  Strongly and rapidly changing 
+sounds can produce a burbling effect.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b>
+<a href="#BLTR"><b>HILITE BLTR</b></a> (blur and trace),&nbsp;
+<a href="cblur.htm#SCATTER"><b>BLUR SCATTER</b></a>,&nbsp;
+<a href="cblur.htm#SUPPRESS"><b>BLUR SUPPRESS</b></a>,&nbsp;
+<a href="cblur.htm#SUPPRESSBND"><b>SUPPRESS (band)</b></a>,&nbsp;
+ and
+<a href="cspecedi.htm#CLEAN"><b>SPEC CLEAN</b></a>
+</p>
+
+<p>
+End of HILITE TRACE<br>
+<a href="#HILITELIST">Return</a> to List of functions to HIGHLIGHT 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ******************************************************* -->
+
+
+<h2 id="VOWELS">HILITE VOWELS &#150; Impose vowels on a sound</h2>
+
+<h3>
+Usage
+</h3>
+<b>hilite vowels</b> <i>infile outfile vowelfile halfwidth 
+steepness range threshold</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file onto which to impose the vowels<br />
+<i>outfile</i> &#150; resultant analysis file<br />
+<i>vowelfile</i> &#150; a text file containing paired <i>times</i> (must 
+start at 0 and increase) and <i>vowels</i>, where vowels can be:<br />
+	<blockquote>
+	<table border="1" cellpadding="6" bgcolor="#B0E0E6">
+	<tr>
+	<th>VOWEL</th>
+	<th>AS IN</th>
+	<th>VOWEL</th>
+	<th>AS IN</th>
+	<th>VOWEL</th>
+	<th>AS IN</th>
+	<th>VOWEL</th>
+	<th>AS IN</th>
+	</tr>
+
+	<tr>
+	<td align="center"><b>ee</b></td>
+	<td align="left"><i>heat</i></td>
+	<td align="center"><b>i</b></td>
+	<td align="left"><i>hit</i></td>
+	<td align="center"><b>e</b></td>
+	<td align="left"><i>pet</i></td>
+	<td align="center"><b>ai</b></td>
+	<td align="left"><i>hate</i></td>
+	</td>
+
+	<tr>
+	<td align="center"><b>a</b></td>
+	<td align="left"><i>pat</i></td>
+	<td align="center"><b>ar</b></td>
+	<td align="left"><i>heart</i></td>
+	<td align="center"><b>o</b></td>
+	<td align="left"><i>hot</i></td>
+	<td align="center"><b>or</b></td>
+	<td align="left"><i>taught</i></td>
+	</td>
+
+	<tr>
+	<td align="center"><b>oa</b></td>
+	<td align="left"><i>boat</i></td>
+	<td align="center"><b>u</b></td>
+	<td align="left"><i>hood</i></td>
+	<td align="center"><b>oo</b></td>
+	<td align="left"><i>mood</i></td>
+	<td align="center"><br /></td>
+	<td align="left"><br /></td>
+	</td>
+
+	<tr>
+	<td align="center"><b>xx</b></td>
+	<td align="left" colspan="3">Southern English <i>hub</i></td>
+	<td align="center"><b>x</b></td>
+	<td align="left" colspan="3">neutral vowel in <i>herb</i> or 
+	<i>the</i></td>
+	</td>
+	</table>
+	</blockquote>
+
+
+
+<i>halfwidth</i> &#150; half-width of formant peaks in Hz as a 
+fraction of the formant centre frequency.  Default: 0.25<br />
+<i>steepness</i> &#150; steepness of formant peaks, similar to 
+'Q'in filtering: steeper means more resonant.  Range: 0.1 to 10.  
+Default: 3<br />
+<i>range</i> &#150; the formant peaks stand above the signal floor.  
+The <i>range</i> of the formant peaks is therefore a part of the total 
+range of the signal.  <i>Range</i> is a ratio of (maximum) peak height 
+to (maximum) total range.  Default: 0.95<br />
+<i>threshold</i> &#150; the spectral window's level is compared with the 
+vowel envelope level.  If it exceeds a certain proportion of that 
+level, it is forced to the vowel envelope level.  Otherwise, it 
+remains where it is lest it amplify background noise artificially.  
+<i>Threshold</i> defines this proportion.  Default: 0.5<br />
+</blockquote>
+
+<h3>
+Understanding the HILITE VOWELS Process
+</h3>
+
+<blockquote>
+<p>
+The <i>vowelfile</i> is a straightforward breakpoint file, with 
+the <i>times</i> in the left column and the <i>vowels</i> as 
+defined above in the right column:
+<pre>
+<font color="#FF0000">[times  vowels]</font>
+ 0.0    ai
+ 3.0    ee
+ 6.0    oa
+ 9.0    ar
+12.0    i
+</pre>
+This process allows a sequence of vowels to be imposed over a 
+spectrum derived from an input sound.  The spectrum itself must 
+have enough energy over all frequency ranges for the vowel 
+formants to 'bite'  e.g., a very pure pitch sound (a sine tone) 
+only has energy at one place in the spectrum. The vowel formant 
+has nothing much to shape, and the vowel sound will not be formed. 
+Noisy sounds are best. If you want to impose vowel formants on 
+strongly pitched sounds if may be  best to extract the pitch and 
+then use REPITCH VOWELS OVER PITCHFILE. 
+</p>
+
+<p>
+The process glides between vowels specified at different times 
+in a breakpont file. e.g. if you set the vowel 'a' at time 0 and 
+also at time '1', the output will generate an 'a' sound. But if 
+the vowel at time 1 is set to 'i', the output will do a vowel-glide 
+(diphthong) from 'a' to 'i'.  Speech characteristics can thus be 
+imposed on pitch contours derived from pitched source. 
+</p>
+
+<p>
+The sound onto which the vowels are imposed needs to a rich, noisy 
+sound with fairly evenly spread energy.  Otherwise, the vowel contours 
+may find that they have nothing in the original sound to with which 
+to work.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This process can be used to create time-varying spectra or even the 
+illusion of speech.
+</p>
+</blockquote>
+
+<p>
+End of HILITE VOWELS<br>
+<a href="#HILITELIST">Return</a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="HILITETECHNICAL">Technical Discussion about spectral amplitude</h2>
+
+<p>
+See <a href="glosstec.htm#SPECTRALENVELOPE"><b>spectral envelope</b></a> and 
+<a href="glosstec.htm#FORMANTS"><b>formants</b></a> in the Technical Glossary.
+</p>
+
+
+<p>
+End of Technical Discussion<br>
+<a href="#HILITELIST">Return</a> to List of functions to HIGHLIGHT 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 3 Apr 2023 for CDP8<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

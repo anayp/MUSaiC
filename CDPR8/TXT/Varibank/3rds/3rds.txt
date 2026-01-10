@@ -1,0 +1,2 @@
+; Chord of 3rds - MIDI pitches
+0.00  47 -3dB	51 -3dB	  54 -3dB   58 -3dB   61 -3dB  65 -3dB	69 -3dB	 72 -3dB 

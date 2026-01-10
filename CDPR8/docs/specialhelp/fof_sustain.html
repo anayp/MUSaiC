@@ -1,0 +1,123 @@
+<div align=center>
+<a style="color: darkmagenta"><h2>USING "Sustain a specific FOF within a sound" to produce Song.</a></h2>
+</div>
+This process, on the <b>FOF</b> menu, can be used to extend pitched vowels in a source, and make them sing.<br>
+<br>
+Success depends on the choice of material, and the parameters applied,<br>
+and output may have to be modified by small edits and/or (low pass, or band pass) filtering to produce a satisfactory result.
+<br><br>
+<ul>
+<li>The pitch of the original sound must first be extracted using <i><b>extract pitch from analysis file: to textfile</i></b>.<br>
+(<i>A successful pitch-track is essential</i>).<br>
+The resulting file is the first parameter <i>PITCH BREAKPOINT FILE</i>.<br>
+<br>
+<li>The second parameter <i>FREEZE</i> is the time at which the sound is to be frozen and extended.<br>
+You can user the <b><i>Sound View</b></i> window to see  the sound, and mark an appropriate time.<br>
+Choose a moment within a clearly pitched vowel sound.<br>
+If the output you get is at an unexpected pitch, or has an unsatisfactory quality,<br>
+try adjusting the freeze time by very small ammounts.<br>
+<br>
+<li> The <i>OUPUT DURATION OF WHOLE SOUND</i> will determine by how much the FOF is extended.<br>
+e.g. if the original sound is 2 seconds long, and the specified output duration is 8 seconds,
+the FOF will be extended to 6 seconds duration.<br>
+NB: IF you do <b>not</b> set the output duration it defaults to the duration of the source,<br>
+and the process will refuse to run.<br>
+Similarly, if you set the output duration to a value <b>less</b> than the source duration,<br>
+the process will refuse to run.<br>
+<br>
+<li>Normally you will want to grab <i>just one</i> grain.<br>
+Grabbing more than 1 grain usually tranposes the pitch downwards<br>
+(2 grains down an octave, 3 grains down 1 octave and a 5th, and so on down the subharmonic series).<br>
+Large number of grains produce audible loop-repetition effects.<br>
+<br>
+<li>If you now run the process (with vibrato depth  and transposition zero)<br>
+you should produce an output with a static frozen FOF.<br>
+From this you can ascertain if the pitch is what you expected.<br>
+<br>
+<li>If the output has high frequency emphasis (sounds artificially "nasal"),<br>
+try setting <i>SMOOTH FOFS</i> and running again.<br>
+(Using this sometimes produces a discontinuity or 'bump' at the start of the frozen portion.<br>
+If this happens you can edit it out later).<br>
+<br>
+To produce a more realistically \"sung\" result
+<ul>
+<li>Set the vibrato frequency to somewhere between <b>6</b> and <b>15</b> cycles.
+<li>Set the vibrato depth between <b>.25</b> and <b>.65</b>
+</ul>
+Test the output by running the process again.<br>
+<br>
+To confine this vibrato to the extended FOF <i>only</i> (and to possibly add some randomised frequency and depth variation)<br>
+use the <b><i>VibLocal</b></i> button.<br>
+<ul>
+<li>The depth and freequency must be preset, in the parameter boxes, to <b>non-zero</b> values, before <i>VibLocal</i> is used.<br>
+<li>The degree of randomisation of either parameter (if required) can be set in the small window that pops up.<br>
+Change the values using the <b>Arrow</b> keys.
+<li>Breakpoint files will be generated and placed in the Vibrato Frequency and Depth parameter boxes.
+</ul>
+<br>
+You can now rerun the process and hear the output sound.
+<br><br>
+<li>You can cause the pitch of the FOF to change by supplying a semitone transposition breakpoint file<br>
+for the <b><i>GRAIN PITCH TRANSPOSITION</b></i> parameter.<br>
+<br>
+If you have <b><i>Tabula Vigilans</b></i> there will be a small piano-keyboard type key to the right of this parameter,<br>
+You can use this to create such a breakpoint file.<br>
+<ul>
+<li>First acknowledge that MIDI capture will proceed (click on the window which appears).
+<li>Next hit the <i>reference pitch</i> from which the transpositions will take place.<br>
+Normally this will be the pitch of the extended FOF itself.
+<li>Now play a pitch line.<br>
+It is best to use staccato articulation, as the events can be rejoined as required, afterwards.
+<li>Hit the bottom note on your MIDI keyboard, to stop the MIDI capture.
+<li>You will be asked if you wish to pre-sustain  the entered pitches.<br>
+The captured data, if staccato, will consist of a series of silence-separated events with quite steep on/off envelopes.<br>
+If you intend to smooth the onsets of these events, you need to pre-sustain them by the likely smoothing (see below).<br>
+<li>You will next be asked if you wish to extend the last entered event to meet the end-portion of the sound.<br>
+If you selected to freeze the sound at a moment not at the very end of the source,<br>
+there will still be a segment of unmodified source retained <b>after</b> the frozen extension.<br>
+If you opt to do the extend, your last MIDI event (provided it occurs <b>before</b> the end of the frozen segment)<br>
+will be sustained to join onto this end-segment of the source.
+<li>You will also be asked if you wish to apply the loudness envelope from the MIDI entry.<br>
+Preserving the loudness not only retains the loudness envelope,<br>
+but is also used to separate the extended FOF into distinct events separated by silence<br>
+(only if you separated your MIDI input events by silence).<br>
+If you opt to do this, a breakpoint file will be automatically generated and placed in the <i>LOUDNESS CONTOUR</i> parameter box.<br>
+</ul>
+<br>
+If you now run the process again, you will hear a sound where the sustained FOF is transposed by your input data.<br>
+Typically, the steep envelopes will make it sound rather artificial.<br>
+<br>
+<li>Finally, if you generated silence-separated events, you can articulate these, form the <b><i>Artic</b></i>  button.<br>
+(The <i>Artic</i> button will <b>not</b> function until you have generated such silence-separated events).<br>
+<br>
+The <i>Artic</i> interface offers several options.
+<ul>
+<li>You may "<b><i>Stitch</b></i>" the end of the sustained FOF to the remnant of the end of the source.<br>
+Often there will be a loudness discontinuity here, manifesting itself as a bump or click in the sound.<br>
+The <b><i>Stitch</b></i> facility allows you to specify  an envelope to apply to the output, at this point,<br>
+to remove this discontinuity.<br>
+<li>In the panel below, each silence separated event in your FOF-extension is assigend an event number<br>
+and a set of options to apply to each event.<br>
+<li>Before you can articualte any event you must turn the articulation <b>On</b><br>
+by ticking the relevant <i><b>Articulation On</b></i> box, or the <b><i>All Events: Artic On</b></i> box.
+<li>Once the articulation for an event is <i>On</i> you can enter values for <b><i>Decay to minimum of</b></i><br>
+and <b><i>Minimum at time fraction</b></i> in the boxes below the event number.<br>
+These set the minimum level to which the event will decay, and the time-proportion between events at which the minimum is reached.<br>
+(Also see the alternative, <b><i>Rise Time</b></i> and <b><i>Decay Time</b></i> below).
+<li>Events may also be <b><i>Sustain</b></i>-ed, i.e. they are extended to meet the next event, but not slurred into them.<br>
+<li>Events may also be <b><i>Slur</b></i>-red, i.e. they are extended to merge into the next event, with no articulation between them.<br>
+<li>The <b>Gain</b> of each event can be adjusted.
+<li>You can enter explicit values for the <b><i>Rise Time</b></i> and <b><i>Decay Time</b></i> of that event.
+<li>You can also set global rise and decay times in the boxes above (<i>GLOBALS</i>) using the <b>Arrow</b> keys.<br>
+You can apply these to all the <b>On</b> events by clicking on <b><i>set rise</i></b> or <b><i>set decay</b></i>.<br>
+You can also remember, and recall these global values (from one session to another) using the <b><i>Save</b></i> and <b><i>Recall</b></i> buttons.
+<br><br>
+Note that if you set a rise-time of (say) <b>0.3</b> seconds, but, when you created the source from MIDI input,<br>
+you set the pre-sustain to <i>less than 0.3</i> seconds, the previous pitch will extend into the rise-attack<br>
+and the previous pitch will be heard to gliss towards the new pitch.<br>
+</ul>
+<br>
+When you run the Articulation, it writes a new <i>LOUDNESS CONTOUR</i> envelope to the parameter box.<br>
+<br>
+You must <i>Run the Process again</i> to hear the result.
+

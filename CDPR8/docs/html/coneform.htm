@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- coneform.htm - Operations on Single Formants - HTML5 version -->
+<html>
+
+<head>
+<title>CDP ONE FORMANT Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cspecndx.htm" Target="_top"><b>Spectral Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br>
+  <dt><a href="#ONEFORMLIST"><b>ONEFORM:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#GET"><b>GET</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PUT"><b>PUT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#COMBINE"><b>COMBINE</b></a>
+  <br><br>
+  <dt><a href="#ONEFORMTECHNICAL"><b>Technical</b></a>
+  <br><br>
+  <dt><a href="cformant.htm#FORMANTLIST"><b>FORMANTS Group</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+    <div align=center>
+    <br>
+    <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+    </div>
+
+   <h1 align=center>CDP ONEFORM (single-formant) Functions</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2> 
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="ONEFORMLIST">Operations with Single Formants</h2>
+
+	<blockquote>
+	<b>Work with a single formant-envelope selected at a specific 
+	time from an existing CDP formant file (.for).</b>
+	The success of these processes is highly dependent on the source.
+	</blockquote>
+
+<dl>
+<dt><a href="#GET"><b>GET</b></a> <dd>Extract formant-envelope at a specific 
+time in an existing formant file</dd>
+<dt><a href="#PUT"><b>PUT</b></a> <dd>Impose the formant-envelope in a 
+single-moment-formants datafile onto the sound in an analysis file</dd>
+<dt><a href="#COMBINE"><b>COMBINE</b></a> <dd>Generate a new sound from 
+pitch information and a single-moment formant</dd><br>
+<dt><a href="#ONEFORMTECHNICAL"><b>Technical Discussion</b></a> <dd>Some 
+terms it may be useful to revise</dd>
+<dt><a href="cformant.htm#FORMANTTECHNICAL"><b>About Formants</b></a>
+<br><br>
+<dt>ALSO SEE:
+<dt><a href="cformant.htm"><b>FORMANTS Group</b></a><dd>Operations with formant data 
+</dl>
+
+
+<p>
+<a href="ccdpndex.htm" TarOneform get="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br />
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+
+<h2 id="GET">ONEFORM GET</a> &#150; Extract formant-envelope at a specific 
+time in an existing formant file</h2>
+
+
+<h3>
+Usage
+</h3>
+<b>oneform get</b> <i>informantfile.for 1-formantoutfile.for time</i>
+<br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>informantfile</i> &#150; input formant data file made by 
+<a href="cformant.htm#GET"><b>FORMANTS GET</b></a>.  Its extension will be 
+<b>.for</b>.<br />
+<i>1f-outfile</i> &#150; a single-moment-formants datafile.  Its extension 
+will also be <b>.for</b>.<br />
+<i>time</i> &#150; the time in seconds in the <i>informantfile</i> 
+where the single-moment-formants are to be extracted.<br />
+	<p>
+	<blockquote>
+	(NB: We use <b>.for</b> rather than the more common <b>.fmt</b> 
+	because it is reserved by other non-CDP software.)
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the ONEFORM GET Function
+</h3>
+
+<blockquote>
+<p>
+<b>Note that the starting point for these procedures is an existing 
+CDP formant file</b>, as created with the CDP program, 
+<a href = "cformant.htm#GET"><b>FORMANTS GET</b></a>.  There are various 
+important options to understand when extracting formants.  These options 
+are explained within the <a href = "cformant.htm#EXTRACTFORMANTS"><b>GET FORMANTS</b>
+</a> section of the FORMANTS reference manual.
+</p>
+
+<p>
+Here is a summary of the steps involved:
+	<blockquote>
+	1. Analyse the soundfile (PVOC ANAL Mode 1, using the default 
+	parameters 1024 (FFTsize) : 3 (FFToverlap) &#150; see the 
+	<a href = "glosstec.htm#FFTOVERLAP"><b>Technical Glossary</b></a>)<br>
+	
+	2. Extract the formants, using an appropriate value for <b>-p</b> 
+	or <b>-f</b> (see above)<br>
+
+	3. Determine the time at which there is a formant that you want to 
+	extract (see below)<br>
+
+	4. Run ONEFORM GET, using this time<br>
+
+	5. Run ONEFORM PUT, using the one-formant file and the analysis 
+	file, either in Mode <b>1</b> or Mode <b>2</b>.<br>
+
+	6. Audition the resulting analysis file to check the result<br>
+	
+	7. Convert to a soundfile with PVOC SYNTH
+	</blockquote>
+</p>
+
+<p>
+The spectrum of a sound has an overall contour. In speech, the contour 
+of the spectrum determines the vowel that you hear, but all sounds will 
+have a spectral contour of some kind.  Often (as in speech) this spectral 
+contour will change from moment to moment. This is what allows us to 
+communicate with speech on a monotone where the pitch remains static but 
+the spectral contour changes as we articulate the different vowels in our 
+spoken communication.  The spectral colouration (i.e., 'timbre') changes 
+(with the different vowels) although the pitch of the sound remains the 
+same.
+</p>
+
+<p>
+The ONEFORM GET function allows the spectral colouration occuring 
+<i>at a specified time</i> within a sound, to be extracted.  This spectral 
+colouration is referred to as the 'formant envelope'.   What is 
+extracted is the spectral complex making up the formant at this 
+particular time-point &#150; thus the expression 'single-moment-formant.'
+</p>
+
+<p>
+<b>Note that there needs to be a clear formant structure in the sound at the 
+time at which the formant is extracted.</b>  One way to find the right time at which a formant occurs is to use <a href = cformant.htm"><b>FORMANTS SEE</b></a> to convert a (CDP) formants file into a pseudo soundfile for viewing.  Then you can zoom in on the peaks to get an accurate time.  In VIEWSF you can zoom 
+in &#150; about 32 seems useful to see where the formants are.  A time in the soundfile where there is NOT a clear formant is likely to result in a poor result in ONEFORM, such as a buzzy sound.
+</p>
+
+<p>
+<a name = "IDENTIFYFORMANTS"></a>
+Here are some more suggestions about how to identify exactly where the 
+formants are located.
+        <blockquote>
+	<ul>
+	<li>
+	Listen to the the sound and chose a time clearly within a vocal 
+	vowel sound, or within a clearly pitched area of an instrumental 
+	sound &#150; but note that there may be no clearly defined 
+	formants in instrumental sounds.</li><br>
+	
+	<li>
+	In <i>Sound Loom</i>, go to CHOSEN FILES mode and get the 
+	analysis file.  Then <b>PROCESS &gt; FORMANTS &gt; get &amp; view</b>.  
+	Run this and save the resulting (pseudo-wav) file.  On the 
+	Parameters Page for ONEFORM use the <b>Sound View</b> button 
+	to view and listen to the sound, or any part of it.  When you 
+	think you have located a part of the sound with clear formants 
+	(e.g., a vocal vowel sound), you can mark the time on the 
+	graphic display with the mouse and output this (OUTPUT DATA) 
+	directly to the Parameters Page, where it will appear in the 
+	parameter box.  (If the <b>Sound View</b> button is not there, 
+	it is because you have an earlier version of <i>Sound Loom</i>.  
+	In this case use the <b>Sound View</b> button on a different 
+	Parameter Page (e.g., PITCH:SPEED) to view the pseudo-wav 
+	file.)</li><br>
+		
+	In general, on the <i>Sound Loom</i>, many processes have 
+	a <b>Sound View</b> option, which calls up a graphic display of 
+	the sound from which it can be played, and on which times &#150; 
+	or blocks of time, depending on which program you're running and 
+	what kind of data it needs &#150; can be marked.  When the data is 
+	output from the graphics, the corresponding parameter values are set 
+	automatically.<br>
+	<br>
+	Where a process needs a file (e.g. a breakpoint file, a set of 
+	times as in ZIGZAG, or a list of time-pairs (as in SFEDIT CUTMANY)
+ 	then the <b>Sound View</b> button is found on the file-creation 
+	page you reach from <b>Make File</b>.  Each <b>Sound View</b> is 
+	designed to output the appropriate data for the process you are 
+	running.<br>
+	<br>
+
+	<li>
+	In <i>Soundshaper</i>, the most direct way of viewing the formants
+        is to go to:<br> 
+        <b>Info &gt; Spectral &gt; Get+See Formants</b>.
+        The resulting pseudo-soundfile (ending in "vu.wav") is automatically displayed in VIEWSF.</li><br>  
+
+	<br>
+	<li>
+	It is probably important to note that many vowels in standard 
+	English are diphthongs, gliding between one vowel formation and 
+	another. For example in "about", the sound for "a" is reasonably 
+	constant, but the "ou" is really a glide from "a" to "oo".  So, 
+	depending on where you sample inside the vowel, you will get a 
+	different result:  an "a", an "oo" or something in between.</li><br>
+        </ul>
+	</blockquote>
+</p>
+
+<p>
+Vocal sounds have wide formant bands which are usually (not guaranteed to be always) detected by the formant extraction process.  Synthetic tones have no formants, so the output of the formant extraction process will be junk.  Instrumental tones <i>may</i> have extractable formants, but one may have to fiddle with the parameters to get a workable result.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This function allows a formant-shape (the spectral content of a spoken 
+vowel, or of any other sound) occuring <i>at a specified time</i> within 
+a sound, to be extracted and used to shape the spectrum of another sound 
+(using <a href = "#PUT"><b>ONEFORM PUT</b></a>).
+</p>
+
+<p>
+Thus, for example, the vowel sound of 'ey' in the recorded text "here 
+they are", could be extracted, and then used to shape another sound, 
+imposing the vowel-colour of 'ey' on that other sound.  The 'imposing' 
+is done with <a href = "#PUT"><b>ONEFORM PUT</b></a>.
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b> <a href="cformant.htm#GET"><b>FORMANTS GET</b></a>; 
+ and <a href = "chilite.htm#VOWELS">
+<b>HILITE VOWELS</b></a>, for another approach to colouration.
+</p>
+
+
+
+<p>
+End of ONEFORM GET<br />
+<a href="#ONEFORMLIST">Return</a> to List of functions to work with 
+single formants<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target="_top">Return</a> to Spectral 
+Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+
+<h2>
+<a name = "PUT">ONEFORM PUT</a> &#150; Impose the formant-envelope in 
+a single-moment-formants datafile onto the sound in an analysis file 
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>oneform put 1-2</b> <i>inanalfile 1f-infile outanalfile</i> 
+[<b>-l</b><i>lolim</i>]  [<b>-h</b><i>highlim</i>]  [<b>-g</b><i>gain</i>]
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; The single-moment-formant is <b>imposed</b> on the analysis 
+file &#150; i.e., <b>added to</b> the existing formants<br />
+<b>2</b>&nbsp; Attempts to <b>replace</b> the existing formants in the 
+analysis file with the single-moment-formants.<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150; input analysis file made with PVOC, on which 
+the formants are to be imposed<br />
+<i>1f-infile</i> &#150; input single-moment-formant datafile made with 
+<a href = "#GET">ONEFORM GET</a>, which we will apply to the input 
+analysis file<br />
+<i>outanalfile</i> &#150; output analysis file generated<br />
+<b>-l</b><i>lolim</i> &#150; low frequency limit:  the spectrum is 
+set to zero below this limit<br />
+<b>-h</b><i>highlim</i> &#150; high frequency limit:  the spectrum is 
+set to zero above this limit<br />
+<b>-g</b><i>gain</i> &#150; overall gain on the output
+	<blockquote>
+	<i>lolim</i>, <i>hilim</i> and <i>gain</i> can be set 
+	independently
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the ONEFORM PUT Process
+</h3>
+
+<blockquote>
+<p>
+A fixed contour can be imposed on the spectrum of a sound, emphasising 
+some frequency areas, and de-emphasizing (or even removing) others.  
+This fixed spectral contour can be derived from a particular moment in 
+another sound, using <a href = "#GET"><b>ONEFORM GET</b></a>.
+</p>
+
+<p>
+<b>ONEFORM PUT</b> applies this contour to the whole sound, acting like 
+a static graphic-equaliser on the whole sound.  As with all filtering 
+processes, it will only be effective if the target sound has something to 
+be filtered. e.g., if you use the imposed formant-shape on a very narrow 
+bandwidth signal, you may hear no effect (except a change in level). Broadband signals (noisy sounds, for example) will tend to give 
+the best results.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This function allows a formant-shape (the spectral shape of a spoken 
+vowel, or of any other sound) extracted from some other sound (using 
+<a href = "#GET"><b>ONEFORM GET</b></a>) to be used to change the spectrum of another sound.
+</p>
+
+<p>
+Thus, for example, the vowel sound of 'ey' in the recorded text "here 
+they are", could be extracted, and then used to shape a target sound, 
+imposing the vowel-colour of 'ey' on that other sound.
+</p>
+
+<p>
+The difference between the two modes is important.  Because Mode 
+<b>1</b> <i>adds</i> the single-moment to existing formants, the 
+formant content becomes more complex, perhaps resulting in a buzzy 
+sound.  On the other hand, Mode <b>2</b> <i>replaces</i> existing 
+formants with the single-moment formant, thus re-colouring the whole 
+sound with that of the single-moment formant.
+</p>
+</blockquote>
+
+<b>ALSO SEE:</b> <a href="cformant.htm#PUT"><b>FORMANTS PUT</b></a> 
+
+<p>
+End of ONEFORM PUT<br />
+<a href="#ONEFORMLIST">Return</a> to List of functions to work with 
+single formants<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target="_top">Return</a> to Spectral 
+Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="COMBINE">ONEFORM COMBINE &#150; Generate a new sound from 
+pitch information and single-moment-formants data</h2>
+
+<h3>
+Usage
+</h3>
+<b>oneform combine</b> <i>pitchfile 1f-infile outanalfile</i> 
+<br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> &#150; input (binary) pitchfile, containing 
+(time-changing) pitch information:  data file made with <a href = 
+"crepitch.htm#GETPITCH">REPITCH GETPITCH</a> (it will have the extension 
+<b>.frq</b>)<br />
+<i>1f-infile</i> &#150; input single-moment-formant file made by 
+<a href = "#GET">ONEFORM GET</a> (it will have the extension 
+<b>.for</b>)<br />
+<i>outanalfile</i> &#150; output analysis file applying the 
+single-moment-formant to the pitch contour in the pitch data file<br />
+</blockquote>
+
+<h3>
+Understanding the ONEFORM COMBINE Function
+</h3>
+
+<blockquote>
+<p>
+This function takes information about the spectral contour (or 
+formant-shape) of a sound <i>at a specific time</i>, extracted using 
+<a href = "#GET"><b>ONEFORM GET</b></a>, and combines it with pitch-trajectory 
+information (a plot of changing pitch extracted using <a href = 
+"crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a>) possibly derived 
+from a different sound.  The result will be a sound having the same 
+pitch-trajectory, and using the 'colour' of the formant-shape.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This process may be used to create pitched, or pitch-changing events, 
+using formant-shapes (e.g. vowel sounds from speech) extracted from a 
+particular source.  It is complementary to the processes which grab and 
+extend FOFs, but works with (and outputs) analysis files, and operates 
+in a different way.
+</p>
+</blockquote>
+
+<b>ALSO SEE:</b> <a href="ccombine.htm#MAKE"><b>COMBINE MAKE</b></a> 
+
+<p>
+End of ONEFORM COMBINE<br />
+<a href="#ONEFORMLIST">Return</a> to List of functions to work with 
+single formants<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cspecndx.htm" Target="_top">Return</a> to Spectral 
+Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2>
+<a name = "ONEFORMTECHNICAL">Technical Discussion</a>  
+on the use of single-moment formants
+</h2>
+
+<p>
+The point of working with only a single-moment-formant is that a 
+specific sound, a specific spectral structure, can be imposed on 
+or combined with another sound.  As formants are resonance structures 
+with specific timbral 'colour', the ONEFORM set can be described as 
+a tonal colouration or synthesis tool.
+</p>
+
+<p>
+Terms in the Technical Glossary that you may want to revise:
+<blockquote>
+<font size="-1">• </font>
+  <a href = "glosstec.htm#FORMANTS"><b>FORMANTS</b></a><br />
+<font size="-1">• </font>
+  <a href = "glosstec.htm#PARTIALS"><b>PARTIALS</b></a><br />
+<font size="-1">• </font>
+  <a href = "glosstec.htm#SPECTRALDOMAIN"><b>SPECTRAL DOMAIN</b></a><br />
+<font size="-1">• </font>
+  <a href = "glosstec.htm#SPECTRALENVELOPE"><b>SPECTRAL ENVELOPE</b></a><br />
+<font size="-1">• </font>
+  <a href = "glosstec.htm#SPECTRUM"><b>SPECTRUM</b></a><br />
+<font size="-1">• </font>
+  <a href = "glosstec.htm#TIMBRE"><b>TIMBRE</b></a><br />
+<font size="-1">• </font>
+  <a href = "glosstec.htm#WINDOW"><b>ANALYSIS WINDOW</b></a><br />
+</blockquote>
+</p>
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 30 Oct 2021 -- HTML5 version<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2021 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0047)http://www.trevorwishart.co.uk/GraphicData.html -->
+<HTML><HEAD><TITLE>GraphicData</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY>
+<DIV align=center>
+<H1 style="COLOR: darkmagenta"><A name=GRAFTOP><B>Graphical Data 
+Entry</B></A></H1>
+<H3 style="COLOR: darkmagenta">Playing the sound and Entering Control 
+Data<BR>from a graphic display of the waveform or spectrum of the source.</H3>
+<P>
+<H2 style="COLOR: darkmagenta">Trevor Wishart (July 2007)</H2>
+<P></P></DIV>
+<DIV align=center>
+<TABLE cellPadding=3 border=2>
+  <TBODY>
+  <TR>
+    <TD align=middle><A 
+      href="http://www.trevorwishart.co.uk/slfull.html"><B>Return</B></A> 
+  </TR></TBODY></TABLE></DIV>
+<H3><U>Introduction</U></H3>
+<P>In <B><I>Sound Loom</I> version 10</B> the 'Snack' extension to the TK/Tcl 
+language has been used to allow you to<BR><BR>
+<UL>
+  <LI><B>View the Waveform and Spectrum</B> of a sound on the workspace. 
+  <LI><B>Play the Sound</B> from the graphic.<BR><BR></LI></UL>In addition, Sound 
+Loom facilities have been added to the basic display options to allow you 
+to<BR><BR>
+<UL>
+  <LI><B>Zoom, timewise, in or out</B> of the display, <B>down to the sample 
+  level</B>. 
+  <LI><B>Select a portion to view</B> by creating a viewing box over the graphic 
+  with the mouse, and <B>zoom in to the selected portion</B>. 
+  <LI><B>Play a selected portion of the sound</B> (indicated by drawing a box 
+  with the mouse). 
+  <LI><B>Zoom the spectrum, frequencywise</B> to see more details in the lower 
+  portion of the spectrum. 
+  <LI><B><A style="COLOR: darkmagenta">Enter control data by</A> drawing it over 
+  the graphic display</B> of the waveform or spectrum. 
+  <LI><B>Superimpose a value scale</B> on the waveform, or spectrum, to assist 
+  in drawing an accurate breakpoint line over them. 
+  <LI><B>Superimpose a frequency scales</B> on the spectrum, to assist in 
+  drawing an accurate frequency box over it. </LI></UL><A style="COLOR: red">If 
+you currently use <B>Graphic Entry</B> for entering breakpoint data</A> on your 
+Sound Loom, you should select, instead, <B>Text Entry</B>.<BR>You can do this on 
+the <B><I>System State</I></B> menu on the Workspace, from <B><I>System 
+Settings</I></B> --&gt; <B><I>Set Breakpoint Edit Style</I></B>.<BR><BR>
+<H3><U>Graphic Data Entry</U></H3>The latest version of the Sound Loom</B></I> 
+allows you to <B>enter various types of control data</B> by <B>drawing them with 
+the mouse</B> over a graphic display of the waveform or spectrum of the source 
+sound.<BR>You can also <B>play the source, or any part of the source</B>, from 
+the same display, while you are creating the data.<BR><BR>Marks, boxes or 
+breakpoints are created by clicking or dragging the mouse, sometimes with the 
+Control, Shift or Alt Key depressed.<BR>The particular mouse actions required 
+are described on the graphic display page itself.<BR><BR>The graphics you draw 
+on the display are <B>scaled appropriately</B> as you zoom in or out of the 
+display.<BR>This means that you can enter data at any level of detail, down to 
+the sample level, simply by drawing on the display.<BR><BR><B>NB: To transfer 
+the graphical data</B> you have created or edited <B>to a CDP control 
+file</B><BR>you must <B>press the <I>Output Data</I> button</B> on the bottom 
+right of the Graphic display page.<BR><BR>
+<H3><U>What Types of Data Can I Enter ?</U></H3>For data entry, there are 
+several alternative possibilities. The Sound Loom knows which of these 
+possibilities is appropriate to the particular situation, and activates the 
+particular style of graphic data entry appropriate to that situation.<BR><BR>The 
+data entry possibilities are..<BR><BR>
+<UL>
+  <LI>Creating or editing <B>breakpoint files</B> for particular parameters (you 
+  can choose a value range, or select the default).<BR><BR>
+  <UL>
+    <LI>by creating a breakpoint line over the waveform or spectral display. 
+    </LI></UL><BR>
+  <LI>Creating <B>pairs of time values</B> (e.g. the start and end times of an 
+  edit).<BR><BR>
+  <UL>
+    <LI>by drawing a time-box over the waveform or spectral display (you can 
+    also play what is inside the box). </LI></UL><BR>
+  <LI>Creating <B>a list of pairs of time values</B> (e.g. start and end times 
+  of multiple edits, or cleaning areas in the <A 
+  style="COLOR: darkmagenta">Cleaning Kit</A>).<BR><BR>
+  <UL>
+    <LI>by drawing successive boxes over the waveform or spectral display (you 
+    can also play what is inside each box). </LI></UL><BR>
+  <LI>Creating or editing <B>lists of (increasing) times</B> (e.g. edit times to 
+  cut syllables, switching times for <I>Twixt</I> process).<BR><BR>
+  <UL>
+    <LI>by creating time marks on the waveform or spectral display. </LI></UL><BR>
+  <LI>Creating <B>lists of time markers</B> (e.g. the time-reversal points in a 
+  <I>Zig Zag</I> control file)<BR><BR>
+  <UL>
+    <LI>by creating time marks on the waveform or spectral display. </LI></UL><BR>
+  <LI>Creating <B>a single time-marker</B> (e.g. <I>Grab</I> or <I>Magnify</I> a 
+  spectral window).<BR><BR>
+  <UL>
+    <LI>by creating a time mark on the waveform or spectral display. 
+</LI></UL><BR>
+  <LI>Creating or editing <B>time data for special kinds of control data</B> 
+  (e.g. vowel or varibank filters).<BR><BR>
+  <UL>
+    <LI>by creating time marks on the waveform or spectral display.<BR>These are 
+    then transferred to the textfile listing where you can add the other data 
+    required.<BR>e.g. if you have activated <A style="COLOR: darkmagenta">Midi 
+    Keyboard Entry</A> the varibank filter frequencies can then be entered from 
+    a MIDI keyboard. </LI></UL><BR>
+  <LI>Creating <B>a pair of frequency values</B> (e.g. various spectral 
+  processes with low and high frequency limits).<BR><BR>
+  <UL>
+    <LI>by drawing a frequency box over the waveform or spectral display (this 
+    is independent of any time-box, from which you can play a portion of the 
+    sound). </LI></UL><BR>
+  <LI>Creating <B>a single frequency value</B> (e.g. spectral fiter).<BR><BR>
+  <UL>
+    <LI>by creating a frequency mark on the waveform or spectral display. 
+  </LI></UL></LI></UL>
+<H3><U>Where are the Graphic Data Entry Buttons ?</U></H3>Graphic display and 
+data entry buttons are labelled <B><I><A style="COLOR: green">Sound 
+View</A></B></I> and are (currently) coloured <A 
+style="COLOR: green"><B>green</A></B> and will be found<BR><BR>
+<UL>
+  <LI>Among the buttons at the <B>top left of some Parameter Pages</B><BR><BR>
+  <UL>
+    <LI>In most cases these buttons will allow you merely to see and play the 
+    sounds, or graphically selected parts of the sound.<BR>However, <B>where 
+    appropriate</B> the display can be used for entering<BR><BR>
+    <UL>
+      <LI><B>pairs of parameters</B> such as the start and end times of an edit, 
+      or the upper and lower frequency bounds for a spectral process. 
+      <LI><B>A single parameter</B> (where there is only one parameter) such as 
+      the window-time to <I>Grab</I> or <I>Magnify</I> a spectral window. 
+    </LI></UL></LI></UL><BR>
+  <LI>In the <B>text window</B> accessed from the <B>Make File</B> buttons in 
+  some parameter bars <B>on the Parameters page</B><BR><BR>
+  <UL>
+    <LI>These buttons call up a display of the source sound over which you can 
+    graphically create the <B>appropriate data</B> (see above) for the control 
+    file.<BR><BR></LI></UL>
+  <LI>In the <B>text window</B> accessed from the <B>Get File</B> buttons in 
+  some parameter bars <B>on the Parameters page</B>,<BR>followed by selecting 
+  the <B>Edit</B> option, to edit an existing data file.<BR><BR>
+  <UL>
+    <LI>These buttons call up a display of the source sound <B>with the original 
+    data displayed graphically on top of the waveform</B> or spectral 
+    display.<BR>The existing data can be <B>graphically manipulated</B> and then 
+    saved to the textfile window as edited data for a new control 
+    file.<BR><BR></LI></UL>
+  <LI>On most of the individual <B>Tool windows</B> of the <A 
+  style="COLOR: darkmagenta">Cleaning Kit</A>.<BR><BR>
+  <UL>
+    <LI>Here they can be used to view the original or cleaned files, and select 
+    (further) areas for cleaning, gating etc. </LI></UL></LI></UL>
+<P></P>
+<DIV align=center>
+<TABLE cellPadding=3 border=2>
+  <TBODY>
+  <TR>
+    <TD align=middle><A 
+      href="http://www.trevorwishart.co.uk/GraphicData.html#GRAFTOP"><B>To 
+      Top</B></A> </TR></TBODY></TABLE></DIV></BODY></HTML>

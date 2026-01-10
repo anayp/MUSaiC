@@ -1,0 +1,12 @@
+CDP Release 7.1 2016
+
+PITCH OPERATIONS ON A SPECTRAL FILE
+
+USAGE: pitch NAME (mode) infile outfile parameters: 
+
+where NAME can be any one of
+
+altharms    octmove    transp    tune    pick    chordf    chord
+
+Type 'pitch altharms' for more info on pitch altharms..ETC.
+

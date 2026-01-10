@@ -1,0 +1,121 @@
+SOUNDSHAPER WHAT'S NEW VERSION 6.4.1 (June '25)
+====================================
+
+New in 6.4.1:
+-------------
+This version fixes some bugs found in 6.4 (now withdrawn).
+• Updated the handling of options for loading patches - see DOCS\Patch_Save+Load.pdf
+  Summary: check "Include Sources" to auto-run the patch as saved; uncheck it to run it with different source(s); 
+           check PatchPreview to see the patch before running it or choosing different source(s).  
+• Preview: Balance option was not working - corrected
+• From 6.3.1: some changes to how files are copied and erased, to accommodate WINE.
+• BUGFIXES:
+  In Graph-Editor, the sound player was not always closing, and the soundfile concerned couldn't be closed withut quitting Soundshaper
+  Process Grid for Data menu was not displaying. 
+
+
+New in 6.3:
+-----------
+• Process part of a sound without having to do this 'manually' by cutting and pasting.
+• Overwrite part of a file with silence
+• Balance Option: balance output level to match level of input sound
+  For details see separate file: DOCS\NEW_FEATURES_6.3.pdf
+
+New in 6.2:
+-----------
+• CDP Release 8: full software release. The program exes are installed into the _cdprogs sub-folder.
+• Release 8 functions are fully integrated into Soundshaper Menus. A few new programs are undocumented or currently unsupported.
+• Texture Simple has been upgraded to the Rel8 version. The tutorial presets have also been upgraded.
+  (For now, the bat/bash scripts in the CDP documentation have NOT been updated, but only require one further parameter (with value 0).
+  Details are given in the documentation.)
+• Process Grids (an alternative way of selecting a process) have been upgraded for Rel.8. 
+• Various minor bugfixes and improvements. 
+
+New in 6.1:
+-----------
+• CDP8 pre-release Beta software. The new programs are included in the _cdprogs folder.
+  This is a huge upgrade and all new .exes are subject to possible revision. 
+
+• Soundshaper support for most of CDP8. The new programs are listed in the menu Rel8, as well as being integrated into the main program menus (Soundfile, Spectral etc.)
+  The separate Rel8 menu allows you to identify and explore the new software. Feedback would be very welcome!
+
+• The revised QuickHelp on the Parameter Page (F1) includes descriptions and param. ranges for each CDP8 program. 
+  The QuickHelp on the Main Page (also F1) has brief descriptions.
+  The official documentation for CDP8 is in progress and will be posted online soon. 
+
+• New datafiles for CDP8 processes (and some revisions of older ones).
+
+• Various bugfixes and tidy-ups (probably not worth listing). 
+
+New in 6.03:
+------------
+• INSTALLATION NOW INCLUDES CDP Software.
+  New compilation of CDP also available for upgraders.
+
+• Processes using fixed parameter values can now be re-edited. 
+  Affects: Speccut, Grab, Cut, ZCut, Excise, Insert, Replace and all fixed Level processes (such as Gain +3dB).
+  (Previously, a message stated that there was no parameter file to re-run the process. Now there is.)
+
+• Multichan to Stereo (new in Channels menu): Extracts all channels from a multichannel file and uses Mix Page to remix these to stereo. This is especially designed for creating chords: 
+  1) Use MtoN to create a multi-channel version of the source for the desired number of notes in the chord (max. 12)
+  2) On Param. page for spectral TRANSPOSE (preserving time) 
+     - choose Process Transpose
+     - check Multi-Params (top right): this enables different values for each channel
+     - for each channel (i.e. pitch) select a different value for transpose and click Snapshot 1, 2, ...etc. 
+     - click Render when finished
+  3) On Main page, select Edit/Mix | Channels | Multichan to Stereo --> Mix Page.
+  4) On Mix Page, for each channelised sound (e.g. ~A_2_c1.wav) set level and pan; optionally also a delayed start time. (Note that level will normally have to be reduced.) Click MIX to mix to stereo.     
+
+• Param. Page: Time-buttons restored, for processes with START and END parameters. These processes have built-in time-ranges, so do not need Soundshaper's Process At Loops/Markers (or do not support these).
+  - Main Page: set Markers, e.g. by clicking GET LOOPS button to catch Loop points.
+  - Param. Page: Markers should normally be transferred to the page. (Loop points are not). 
+    For START (or equivalent) clicking the T button copies the Left marker time to the param. value.
+    For END (if relevant) clicking the T button copies the Right marker time to the param. value.
+Note that when markers are transferred to the Param. Page, the first marker shown is always 0; your Start time is probably the next marker - click the right arrow button to select your transferred pair. 
+       
+
+New in 6.02 (Nov. '22:
+------------
+• ENVELOPE CREATE and CREATEB (breakpoint)
+  Fixed bugs and revised both
+• ENVEDIT (edit breakpoint envelope file) - revised. 
+  Edits existing envelope in Graph-Edit, but without soundfile display
+• ENVDRAW (new): auto-extracts breakpoint envelope from soundfile; edit in Graph-Edit with soundfile display
+  (NB: follow the messages carefully, as the edits have to be made in Graph-Edit. Do NOT click SAVE CHANGES!)
+• Restyled ENVELOPE Menu
+
+• New revised QuickHelp on Main Page (F1):
+  If F1 selected, scrolling through menus displays brief description and IN/OUT requirements
+  Select process as normal.
+
+• SAVE PANEL: spectral output can now save to .wav
+  If already auto-converted, .wav extension is displayed - save to .wav
+  If not converted (Option 5 Auto-FFT - OFF), selecting .wav extension autoconverts and saves to .wav.
+
+• Bugfixes: 
+  - PSINTERLEAVE and PSREPLACE fixed for stereo Infile 1, but Infile 2 must still be MONO for now.
+  - RMSINFO was missing an option (-n flag)
+  - SpecBare was crashing with CDP Error
+  - two unsuitable Preview options removed 
+
+NEW IN 6.01 (Sep.'22)
+---------------------
+• Bugfix: dragging edit point in GRAPH EDIT could give Windows "NO MCI DEVICE OPEN" error.
+• Param Page: added Delete Last Preview option (CTRL+Z) - erases the last preview in the series
+• Delete preset shortcut altered to Shift+Ctrl+X
+
+NEW IN 6.0 (Sep.'22) - main changes
+--------------------
+• PREVIEW facility on PARAM. PAGE  - up to 99 previews
+• Soundfile viewer/player added to re-designed PARAM PAGE.
+• Soundfile display and player added to re-designed GRAPH-EDIT page,
+• Markers shared beteeen Main and Param page.
+• Markers and loop ponts transferrable to time-varying data on Param Page
+• Peak info added to Main page. 
+• DIRSF - CDP bug (?) fixed
+• Revised COPY-cell procedure with new editable copy option
+• New default dark theme (skin) though old still available.
+• Forthcoming CDP 8: many proceses built into menus, ready for software release
+
+Ensemble Software Oct. '24
+ 

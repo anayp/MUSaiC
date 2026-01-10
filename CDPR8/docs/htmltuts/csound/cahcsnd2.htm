@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cahcsnd2.htm  - HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CSOUND TUTORIAL 2</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "CDPCSSDF.CSS" />
+<link rel="icon"  href="../images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "../images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="../../html/ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="../../html/tutorials.htm" Target="_top"><b>Tutorials Index</b></a> 
+  <hr>
+  <br />
+
+  <dt><a href="#SIMPLE"><b>PART 2<br>
+  <dt>Simple Guide to Csound:</b></a> 
+  <br><br>
+  <dt><a href="#STRUCTURE" ><b>STRUCTURE</b></a>
+
+  <dt>&nbsp;&nbsp;<a href="#ORC" ><b>Orchestra</b></a>
+  <dt>&nbsp;&nbsp;<a href="#SCO" ><b>Score</b></a>
+  <dt>&nbsp;&nbsp;<a href="#EXORCSCO" ><b>Example</b></a>
+
+  <br><br>
+  <dt><a href="#OSCILEXS"><b>OSCIL Examples</b></a>
+  <dt>&nbsp;&nbsp;<a href="#SCORE2"><b>Melody</b></a>
+  <dt>&nbsp;&nbsp;<a href="#SCORE3"><b>Synthesis</b></a>
+  <dt>&nbsp;&nbsp;<a href="#SCORE4"><b>Decrescendo</b></a>
+  <dt>&nbsp;&nbsp;<a href="#SCORE5"><b>Synchronisation</b></a>
+  <dt>&nbsp;&nbsp;<a href="#SCORE6"><b>Beats</b></a>
+  <dt>&nbsp;&nbsp;<a href="#SCORE7"><b>Overlapping Beats</b></a>
+  <dt>&nbsp;&nbsp;<a href="#SCORE8"><b>Stagger</b></a>
+
+  <br><br>
+<a href="#APPENDIX"><b>Appendix: Running Csound</b></a>
+
+  <br><br>
+  <dt><a href="cahcsnd1.htm"><b>PART 1<br>
+  <dt>Origins of Csound</b></a>
+  <br><br>
+  <dt><a href="cahcsnd3.htm"><b>PART 3<br>
+  <dt>Signal Processing</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+     	<div align=center>
+     	<br>
+     	<img src="../images/cdplogo2.jpg" ALT="CDP Logo">
+     	</div>
+
+   <h1 align=center>&#126; GETTING STARTED WITH <i>CSOUND</i> &#126; <br>
+   by Andy Hunt</h1>
+
+
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<blockquote>
+<p id="SIMPLE">
+<font size=5><b>PART 2 &#150; Simple Guide to <i>Csound</i> Operation</b></font>
+</p>
+
+<p>
+<ul>
+<li><a href="#STRUCTURE" ><b>STRUCTURE</b></a></li>
+	<ul>
+	<li><a href="#ORC" ><b>The 'Orchestra'</b></a></li>
+	<li><a href="#SCO" ><b>The 'Score'</b></a></li>
+	<li><a href="#EXORCSCO" ><b>Example Orc &amp; Score</b></a></li>
+	</ul>
+<br>
+<li><a href="#OSCILEXS"><b>OSCIL Examples</b></a></li>
+	<ul>
+	<li><a href="#SCORE2"><b>Ex. 2: A 3-note melody</b></a></li>
+	<li><a href="#SCORE3"><b>Ex. 3: Additive synthesis</b></a></li>
+	<li><a href="#SCORE4"><b>Ex. 4: Amplitudes diminish</b></a></li>
+	<li><a href="#SCORE5"><b>Ex. 5: Simultaneous starts</b></a></li>
+	<li><a href="#SCORE6"><b>Ex. 6: Creating beat frequencies</b></a></li>
+	<li><a href="#SCORE7"><b>Ex. 7: Overlapping beat frequencies</b></a></li>
+	<li><a href="#SCORE8"><b>Ex. 8: Staggered entries / altered frequencies</b></a></li>
+	</ul>	
+<br>
+<li><a href="#APPENDIX"><b>Appendix: Running <i>Csound</i></b></a></li>
+
+</ul>
+
+
+
+</p>
+</blockquote>
+
+
+<p><b>The aims of this Part are to:</b>
+	<ul>
+	<li>introduce the concepts of 'score' and 'orchestra'
+	<li>show how to proceed logically through the tutorials, and
+	<li>how to access Csound on the computer.
+	</ul>
+</p>
+<hr>
+<!-- ========================================================================= -->
+<h2 id="STRUCTURE"><b>Csound, the structure of the language</b></h2>
+
+
+<p>
+The key concepts are those of the <b>'orchestra'</b> and the 
+<b>'score'</b>.  They are separate entities but are used in a way 
+which provides great power and flexibility.
+</p>
+
+<h3 id="ORC">Orchestra</h3>
+
+<blockquote>
+<p>
+The orchestra has two sections: <b>headers</b> and <b>instrument 
+definitions.</b>
+</p>
+
+<p>
+The <b>header</b> deals with global issues:  the sample rate, the number 
+of channels etc.  Here's an example.  By the way, anything after a 
+semicolon ';' is called a 'comment' and is disregarded when the program 
+runs.  For other Falcon sample rates, see p.14 of the <i>Csound</i> manual.
+<pre><code>
+sr   = 22050	;the sample rate is set at 22050 samples per second  &#150; Falcon:  24585
+kr     = 1470	;there will be 1470 control points per second  &#150; Falcon:  1639
+ksamps = 15	;i.e., there will be a control point every 15 samples: sr\kr
+nchnls   =  1	;there will be one channel, ie mono
+</code></pre>
+</p>
+
+<p>
+The second part of the orchestra defines an instrument.  The following 
+shows how a simple oscillator is defined.
+<pre><code>
+instr 1			   ;we are now going to define instrument 1
+<b>a1</b> oscil  10000, 440, 1	   ;make an audio rate oscillator with an amplitude of 10000, at a
+			   ;frequency of 440 Hz, using wavetable number 1  (defined later)
+	  out <b>a1</b>	   ;send audio output to the real world
+endin			   ;end instrument definition
+</code></pre>
+</p>
+
+<p>
+<p>
+Seen as a flow chart, this instrument shows amplitude, frequency and 
+wavetable inputs being joined together and producing sound samples 
+as <b>a1</b>.
+</p>
+</blockquote>
+
+<p align=center>
+<img src="images/cah2figoscil.jpg" ALT="[Flow diagram of the OSCIL function]" 
+align=bottom border=0 width=173 height=133>
+</p>
+
+<h3 id="SCO">Score</h3>
+
+<blockquote>
+<p>
+In the score part of the language, we say what this instrument is going to 
+do.  This comprises:
+	<ol>
+	<li>defining the wavetable used for the sound
+	<li>timed instrument triggers, ie sound / note events
+	</ol>
+</p>
+
+<p>
+The wavetable definition is called a function table (hence the use of 
+an 'f').  Here's how we write the definition of 'wavetable no. 1, to 
+exist from time 0, with 4096 elements, using GENerator function no. 10, 
+with a particular setting for the relative strength of the harmonics' 
+(in this case, just a single fundamental):
+<pre><code>
+;name start size  GEN  rel. strength
+f1    0     4096  10   1
+</code></pre>
+</p>
+
+<p>
+Now in the second part of the score we'll define a note event for 
+instrument 1, starting at time 0, and lasting for 4 seconds:
+<pre><code>
+;instr start duration
+i1     0     4	;NB - For this example the amplitude and pitch are stated in the .orc file above;
+		;We shall see that this is perhaps not the best way of doing things.
+e		;end of score
+</code></pre>
+</p>
+
+<p>
+Listen to this after compiling it. Pretty simple isn't it?  Yes it is, 
+you exclaim, and isn't it a rather fiddly way to achieve very little?  
+Well, hang on in there, please.  Much, much more effective results are 
+around the corner as we learn to speak the Csound language.
+</p>
+
+<p>
+A first glimpse of the power of this 'synthesis engine' can be seen in 
+the following orchestra &amp; score.
+</blockquote>
+
+<h3 id="EXORCSCO">Example Orchestra &amp; Score</h3>
+
+<blockquote>
+<p>
+<b><i>Csound</i> orchestra:  (NB - we'll be using this same orchestra 
+with all the scores in Part 2)</b>
+</p>
+
+<p>
+<pre><code>
+<b>;osc1.orc</b> - making our musical instrument
+sr  = 22050  		;22050 samples per second  &#150; Falcon:  24585
+kr    = 1470		;1470 control points per second  &#150; Falcon:  1639
+ksmps = 15		;yielding  15 samples per control period
+nchnls =  1		;mono
+
+instr 1
+a1 oscil <b> p4</b>, <b>p5</b>, <b>1</b>
+<b></b>     out    a1
+endin
+</code></pre>
+</p>
+
+<p>
+<b><i>Csound </i>score:</b>
+</p>
+
+<p>
+<pre><code>
+<b>;osc1.sc</b> - making our score or event list
+
+</b>f<b>1</b>  0    512  10   1		;this is the wavetable definition
+
+;p1    p2    p3  <b>p4</b>    <b>p5</b>	;this comment shows which pfields are being used
+;instr start dur ampl  freq	;this comment names what the pfields are
+i1     0     3   3000  440	;this line is the actual note event definition in which <b>i1</b> connects with <b>instr 1</b> 		;of the orchestra  &#150; an orchestra can have more than one instrument!
+e				;the <b>e</b> marks the end of the score
+</code></pre>
+</p>
+
+<p>
+	
+  Note here that the line defining the note event has 5 columns, 
+  known as '<b>p</b>fields' (<b>p</b> for 'parameter'):
+	<ul>
+	<li>instrument (<b>p1</b>)
+	<li>start time &nbsp;(<b>p2</b>)
+	<li>duration &nbsp;&nbsp;&nbsp;(<b>p3</b>)
+	<li>amplitude &nbsp;(<b>p4</b>)
+	<li>frequency &nbsp;(<b>p5</b>)
+	</ul>
+   
+</p>
+</blockquote>
+
+<p>
+The definition of the oscillator in this orchestra does not give 
+fixed numbers for the amplitude and frequency as before, but asks the 
+score for this information, ie in pfields 4 and 5 (put in bold print 
+here in order to emphasize this interaction of score and orchestra).  
+In this way, the instrument definition can comprise not just one note 
+always the same, but all the changing values listed in the score.
+</p>
+
+
+<p>
+The way you will compile and run your orchestra and score will vary from 
+system to system.  A review of how to run <i>Csound</i> on the CDP System 
+is given in Appendix I.
+</p>
+<br>
+
+<!-- ========================================================================= -->
+<h2 id="OSCILEXS">Scores using OSCIL</h2>
+
+<p>
+Now let's get to work.  Our approach will be to explore a simple 
+orchestra very thoroughly.  We will hopefully learn to use it so 
+well that, although in itself very simple, we can get beyond the 
+mechanics to some reasonable musical results.  Mastery of 
+<i>Csound</i>'s simplest commands in this way provides the 
+best way to get really serious results in the future.  This 
+approach is a long way from handing you the <i>Csound</i> manual 
+and saying, 'Good luck!', or even from looking at each available 
+<i>Csound</i> command methodically, but without really exploring 
+what it can do.  We'll have a lot more confidence if we can really 
+ring the changes with each command.  Then we will really know that 
+we're beginning to master its use.
+</p>
+
+<p>
+Our starting point is the OSCIL we've defined above.  We won't change 
+the orchestra definition, but we'll ring the changes with a variety of 
+scores.
+</p>
+
+<!-- ========================================================================= -->
+<h3 id="SCORE2">Example 2</h3>
+<p><pre><code>
+<b>;osc2.sc</b> &#150; a three note melody
+
+f1  0  512  10  1
+
+<b>;p1    p2    p3       p4   p5</b>
+;instr start duration ampl freq
+i1     0     3        3000 440
+i1     3     1        3000 493   ;why do you think 'start' is 3?
+i1     4     4        3000 440
+e
+</code></pre></p>
+
+<blockquote>
+<p>
+Now 'compile' with <i>Csound</i> and listen to the results.  It is very 
+important to do this with each example.  Note that we're using the 
+same <i>osc1.orc</i> with each new score.  We compile with <i>Csound</i> 
+with the following command line:
+</p>
+
+<p>
+<code><b>csound</b>  <b>-o</b>osc2  osc1.orc  osc2.sc</code> 
+</p>
+
+<p>
+Now we have succeeded in creating more than one note event.  Next we try 
+to add some timbral richness to the sound.
+</p>
+</blockquote>
+
+<!-- ========================================================================= -->
+<h3 id="SCORE3">Example 3</h3>
+
+<p><pre><code>
+<b>;osc3.sc</b> - additive synthesis
+
+f1   0    512  10   1
+<b>
+;p1    p2    p3       p4   p5</b>
+;instr start duration ampl freq
+i1     0     12       3000  220
+i1     2     12       3000  440
+i1     4     12       3000  660
+i1     6     12       3000  880
+i1     8     12       3000 1100
+i1    10     12       3000 1320
+e
+</code></pre></p>
+
+
+<blockquote>
+<p>
+To compile with <i>Csound</i>: &nbsp;<code><b>csound</b>  <b>-o</b>osc3  
+osc1.orc  osc3.sc</code>
+</p>
+
+<p>
+You can hear how these note events overlap because the last one comes in 
+while the first one is still sounding.  All the harmonics (integer 
+multiples of the fundamental frequency:  220 x 2, x 3, x 4, etc.) are, 
+however, at the same amplitude, something which doesn't happen in 
+acoustic instruments.  The overlap and the amplitudes are illustrated 
+in the diagrams below.
+</p>
+</blockquote>
+
+<p align=center>
+<img src="images/cah2figsc3.jpg" ALT="[Diagram for Score 3]" align=bottom border=0 
+width=580 height=156>
+</p>
+
+<!-- ========================================================================= -->
+<h3 id="SCORE4">Example 4</h3>
+<p>
+Let's try to make the sound more natural in the 
+next score by reducing the amplitude of the higher harmonics (but 
+keeping everything else the same):
+</p>
+
+<p><pre><code>
+<b>;osc4.sc</b> - amplitudes diminish
+
+f1  0  512  10  1
+<b>
+;p1    p2    p3       p4   p5</b>
+;instr start duration ampl freq
+i1     0     12       3000 220
+i1     2     12       1500 440
+i1     4     12        700 660
+i1     6     12        350 880
+i1     8     12        175 1100
+i1    10     12         85 1320
+e
+</code></pre></p>
+
+<blockquote>
+<p>
+To compile with <i>Csound</i>:  &nbsp;<code><b>csound</b>  
+<b>-o</b>osc4  osc1.orc  osc4.sc</code> 
+</p>
+
+<p>
+Now the effect is rather like that of an arpeggiated chord.  Again, 
+this is illustrated graphically in the diagrams below.
+</p>
+</blockquote>
+
+<p align=center>
+<img src="images/cah2figsc4.jpg" ALT="[Diagram for Score 4]" align=bottom 
+border=0 width=577 height=156>
+</p>
+
+<!-- ========================================================================= -->
+<h3 id="SCORE5">Example 5</h3>
+<p>
+Let's listen</a> to what happens if we make all the 
+harmonics come in at once.  All we have to do is make all the start 
+times the same.  Then all these note events will sound simultaneously:
+</p>
+
+<p><pre><code>
+<b>;osc5.sc</b> - simultaneous starts
+
+f1  0  512  101  1
+<b>
+;p1    p2    p3       p4    p5</b>
+;instr start duration ampl  freq
+i1     0     12       3000  220
+i1     0     12       1500  440
+i1     0     12       700   660
+i1     0     12       350   880
+i1     0     12       175   1100
+i1     0     12       85    1320
+e
+</code></pre></p>
+
+
+<blockquote>
+<p>
+To compile with <i>Csound</i>:  &nbsp;<code><b>csound</b>  
+<b>-o</b>osc5  osc1.orc  osc5.sc <i></i></code>
+</p>
+
+<p>
+When you listen to this, you may observe that the partials now begin to 
+fuse into one sound.
+</p>
+
+<p>
+<i>Still the same 2-line orchestra,</i> but now the tone is richer.  
+The diagrams show the simultaneous frequencies and the diminishing 
+amplitudes.
+</p>
+</blockquote>
+
+<p align=center>
+<img src="images/cah2figsc5.jpg" ALT="[Diagram for Score 5]" align=bottom 
+border=0 width=580 height=156>
+</p>
+
+<!-- ========================================================================= -->
+<h3 id="SCORE6">Example 6</h3>
+<p>
+Our next OSCIL score</a> explores the creation of beat 
+frequencies.  When two frequencies which differ by a single cycle per 
+second sound together, you can hear this 1 cycle difference as an 
+additional 'beat' pulsing through the sound.  In the score which follows 
+there are 9 sets of beating note pairs, each of which is 5 seconds long.  
+Notice how, as the beats get faster, this pulsation begins to fuse with 
+the sound, creating a new, timbral dimension, which we normally refer to 
+as a 'chord'.
+</p>
+
+<p><pre><code>
+<b>;osc6.sc</b> - creating beat frequencies
+
+f1  0  512 10  1<b></b>
+<b>
+;p1    p2    p3   p4    p5</b>
+;instr start dur  ampl  freq
+i1     0     5    3000  220
+i1     0     5    3000  221
+
+i1     6     5    3000  220
+i1     6     5    3000  221
+
+i1     12    5    3000  220
+i1     12    5    2800  222
+
+i1     18    5    3000  220
+i1     18    5    1500  224
+
+i1     24    5    3000  220
+i1     24    5    2800  228
+
+i1     30    5    3000  220
+i1     30    5    3000  236
+
+i1     36    5    3000  220
+i1     36    5    2800  256
+
+i1     42    5    3000  220
+i1     42    5    3000  273
+
+i1     48    5    3000  220
+i1     48    5    3000  330
+e
+</code></pre></p>
+
+<blockquote>
+<p>
+To compile:  &nbsp;<code><b>csound</b>  <b>-o</b>osc6  osc1.orc  
+osc6.sc</code> 
+</p>
+</blockquote>
+
+<!-- ========================================================================= -->
+<h3 id="SCORE7">Example 7</h3>
+<p>
+Now let's try to develop</a> this 'complex tone' 
+feature.  In the following score we're going to increase the beating 
+factor by creating groups of three frequences, one less and one more than 
+the original.  They will all start together, but the higher ones will end 
+sooner, just as often happens in real sounds.  See if this doesn't begin 
+to sound to you like a single complex sound;  in each of the four 
+harmonically related partials, we hear the sound move (change) over time 
+due to the different beat frequencies:
+</p>
+
+<p><pre><code>
+<b>;osc7.sc</b> - complex, overlapping beat frequencies
+
+f1  0  512  10  1
+<b>
+;p1    p2    p3   p4    p5</b>
+;instr start dur  ampl  freq
+i1     0     11   3000  219
+i1     0     11   3000  220
+i1     0     11   3000  221
+                                      
+i1     0     9    3000  436
+i1     0     9    3000  440
+i1     0     9    3000  444
+                                     
+i1     0     7    3000  650
+i1     0     7    3000  660
+i1     0     7    3000  670
+
+i1     0     5    3000  860
+i1     0     5    3000  880
+i1     0     5    3000  900
+e
+</code></pre></p>
+
+<blockquote>
+<p>
+To compile:  &nbsp;<code><b>csound</b>  <b>-o</b>osc7  osc1.orc  
+osc7.sc</code>
+</p>
+</blockquote>
+ 
+<!-- ========================================================================= -->
+<h3 id="SCORE8">Example 8</h3>
+<p>
+In the next version, it becomes more complex yet by 
+staggering the entries and adjusting the frequencies:
+</p>
+
+<p><pre><code>
+<b>;osc8.sc</b> - adding staggered entries and altered frequencies
+
+f1  0  512  10  1
+<b>
+;p1    p2    p3   p4    p5</b>
+;instr start dur  ampl  freq
+i1     0     11   3000  219
+i1     0     11   3000  220
+i1     0     11   3000  221
+
+i1     0      9   3000  436
+i1     0      9   3000  440
+i1     0      9   3000  444
+
+i1     3      7   3000  630
+i1     3      7   3000  640
+i1     3      7   3000  650
+
+i1     6      5   3000  820
+i1     6      5   3000  840
+i1     6      5   3000  860
+e
+</code></pre></p>
+
+<blockquote>
+<p>
+To compile:  &nbsp;<code><b>csound</b>  <b>-o</b>osc8  osc1.orc osc8.sc</code>
+</p>
+</blockquote>
+
+<p>
+I now suggest that you try your own variations of all the examples we've 
+looked at so far.  Explore the ideas until you feel really ready to move on.
+</p>
+
+<p>
+<p>In the 3<sup>rd</sup> Part of this tutorial, we'll move on to some 
+basic signal processing operations.
+<p>
+
+<hr>
+<!-- ========================================================================= -->
+
+<h2 id="APPENDIX">
+Appendix: &nbsp;On Running <i>Csound</i> on the CDP 
+System</a> &#150; a quick synopsis
+</h2>
+
+
+<p>
+	<blockquote>
+	If using <i>Winsound</i> on the PC, which has a minimal 
+	graphic interface, you enter the orchestra, score and 
+	output soundfile names in the boxes provided and tick 'play 
+	at end'.  The orchestra and score should be in the same 
+	folder as 'winsound.exe', and this is also where the output 
+	soundfile will be placed.  If you run again with an altered 
+	orchestra or score, it will overwrite the named soundfile 
+	unless you change the name.  [The following procedures are 
+	probably redundant or optional with current versions 
+	of Csound.  Check out<a href = "http://www.csounds.com" target="blank"> the 
+	Csound website</a>.]
+	</blockquote>
+</p>
+
+<p>
+Now we need to make this sound and listen to it.  This means accessing our 
+computer successfully, running <i>Csound</i>, and playing the result.  A 
+big step.  Please revise <a href="../cmas1cdp.htm"><i>Mastering the CDP 
+System I</i></a> if you have any doubts about how to proceed.  Once the 
+environment is set up, the basic steps for working with <i>Csound</i> are: 
+</p>
+
+<p>
+<b>1. Use your text editor</b> to edit your <i>Csound</i> orchestras and 
+scores
+</p>
+
+<p>
+<b>2. Compile the orchestra and score:</b> Type in the command line (or 
+create a 'perf' batchfile to run <i>Csound</i>.  The <i>perf.bat</i> 
+file is fully explained in <i>Mastering the CDP System I</i>.  The 
+batchfile to play different scores with the same orchestra will be 
+especially useful with this tutorial.  To save you looking it up, 
+it is:
+</p>
+
+<blockquote>
+<p>
+Name:  <i>perf2.bat </i>(or whatever), containing:
+</p>
+
+<p>
+<code><b>csound  -o%1.out %2.orc %3.sco</b></code>
+</p>
+
+<p>
+<b></b>and to run it you enter:
+</p>
+
+<p>
+<code><b>perf2 </b><i>outname orcname scorename</i></code>  (without 
+any extensions)
+</p>
+
+<p>
+The normal <i>perf.bat</i> (when both orchestra and score have the same 
+name) is:
+</p>
+
+<p>
+<code><b>csound  -o%1.out %1.orc %1.sco</b></code>
+</p>
+
+<p>
+<b></b>and to run it you enter:
+</p>
+
+<p>
+<code><b>perf</b> <i>generic_name</i></code>  (without any extensions)
+</p>
+
+<p>
+(The '.out' in the <i>outname</i> is optional.  It is sometimes used 
+to identify soundfiles made with <i>Csound</i>.)
+</p>
+</blockquote>
+
+<p>
+<b>3. PLAY the sounds.</b>
+</p>
+
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+
+
+
+
+
+   <p>
+    &#169; 1993 Andy Hunt, York, N. Yorks., England<br>
+    Appendix slightly edited, 2 November 2010
+    <address>
+    Last Updated Jan. 2016 -- HTML5 version<br />
+    Revisions: Robert Fraser<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

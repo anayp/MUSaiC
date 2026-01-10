@@ -1,0 +1,59 @@
+SBfiles.txt - list of key files for Sound-Builder Templates 1-6
+
+Sound-Builder 1: RE-ENTRY
+
+Main HTML frame file	reentfrm.htm
+Main HTML index file	reentndx.htm
+Main HTML text file	reentryS-B1.htm
+Batch Run file		reentry.bat
+Batch Deletes file	reentdel.bat
+Mix files		aftv1-2a.mix (edit path if not d:\sdbats\)
+			aftv1-2b.mix (edit path if not d:\sdbats\)
+
+
+Sound-Builder 2: CHURBLES
+
+Main HTML frame file	churbfrm.htm
+Main HTML index file	churbndx.htm
+Main HTML text file	churblesS-B2.htm
+Batch Run file		churbles.bat
+Batch Deletes file	churbdel.bat
+
+
+Sound-Builder 3: GRAINFLOW
+
+Main HTML frame file	grnflfrm.htm
+Main HTML index file	grnflndx.htm
+Main HTML text file	grnflowS-B3.htm
+Batch Run file		grnflow.bat
+Batch Deletes file	grnfldel.bat
+GrainMill Presets	grnflowgm1.grn & .txt
+			grnflowgm2.grn & .txt
+
+
+Sound-Builder 4: GLISS-SWEEP
+
+Main HTML frame file	glissfrm.htm
+Main HTML index file	glissndx.htm
+Main HTML text file	glissswpS-B4.htm
+Batch Run file		glissswp.bat
+Batch Deletes file	glisssdel.bat
+
+
+Sound-Builder 5: RING-MOD-REPEAT
+
+Main HTML frame file	rmrepfrm.htm
+Main HTML index file	rmrepndx.htm
+Main HTML text file	rmrepeatS-B5.htm
+Batch Run file		rmrepeat.bat
+Batch Deletes file	rmrepdel.bat
+
+
+Sound-Builder 6: WIDEN
+
+Main HTML frame file	widenfrm.htm
+Main HTML index file	widenndx.htm
+Main HTML text file	widentrnS-B6.htm
+Batch Run file		widen.bat
+Batch Deletes file	widendel.bat
+Mix file		widentrn.mix  (edit path if not d:\sdbats\)

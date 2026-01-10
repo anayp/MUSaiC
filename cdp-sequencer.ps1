@@ -2,7 +2,8 @@ param(
     [string]$ScorePath = ".\\examples\\effects_demo.json",
     [string]$OutWav, # Optional override
     [string]$OutMp3, # Optional mp3 output
-    [switch]$Play
+    [switch]$Play,
+    [switch]$KeepTemp # Sprint 7: Default cleans up notes
 )
 
 Set-StrictMode -Version Latest
@@ -41,7 +42,11 @@ try {
     # --- Helper: Safe Property Access ---
     function Get-Prop {
         param($Obj, $Name, $Default)
-        if ($Obj.PSObject.Properties[$Name]) { return $Obj.$Name }
+        if ($null -eq $Obj) { return $Default }
+        # Iteration is safe in strict mode
+        foreach ($p in $Obj.PSObject.Properties) {
+            if ($p.Name -eq $Name) { return $p.Value }
+        }
         return $Default
     }
 
@@ -90,6 +95,7 @@ try {
                 # Valid loop fields: loop(bool), loopCount(int), loopDur(num)
                 # Not strictly ensuring existence here but types if present?
             }
+            # Optional Mixer fields: gainDb(float), pan(float -1..1), mute(bool)
         }
     }
     Validate-Score -S $score
@@ -104,7 +110,9 @@ try {
 
         $args = @(
             "wave", $mode, $Output, $SampleRate, 1, # Mono
-            $Duration, $Freq, "-a$Amp" # Pass -a with no space
+            $Duration, $Freq
+            # Sprint 7: REMOVED -a$Amp. Synth.exe fails on decimals.
+            # Volume control moved to Mixer stage.
         )
         $p = Start-Process -FilePath $synthExe -ArgumentList $args -NoNewWindow -PassThru -Wait
         if ($p.ExitCode -ne 0) { throw "Synth failed" }
@@ -164,6 +172,55 @@ try {
         }
     }
 
+
+    function Get-Channels {
+        param($File)
+        # Naive check using ffmpeg stderr output
+        $probeFile = Join-Path $workDir "probe.txt"
+        $p = Start-Process "ffmpeg" -ArgumentList "-i", $File -NoNewWindow -Wait -PassThru -RedirectStandardError $probeFile
+        if (Test-Path $probeFile) {
+            $info = Get-Content $probeFile -Raw
+            if ($info -match "mono") { return 1 }
+            if ($info -match "stereo") { return 2 }
+            if ($info -match "1 channels") { return 1 }
+        }
+        return 2 # Default to stereo
+    }
+
+    function Apply-Mixer {
+        param($InputFile, $TrackName, $GainDb, $Pan, $WorkDir)
+        
+        $mixOut = Join-Path $WorkDir "track_${TrackName}_mix.wav"
+        
+        # Invariant formatting
+        $pVal = ($Pan + 1.0) / 2.0
+        $pStr = $pVal.ToString("0.00", [System.Globalization.CultureInfo]::InvariantCulture)
+        $gStr = $GainDb.ToString("0.00", [System.Globalization.CultureInfo]::InvariantCulture)
+        
+        $ch = Get-Channels $InputFile
+        
+        if ($ch -eq 1) {
+            # Mono source: distribute to L/R based on pan
+            # Parser-safe arithmetic: c0=(1-P)*c0
+            $panFilter = "pan=stereo|c0=(1-$pStr)*c0|c1=$pStr*c0"
+        }
+        else {
+            # Stereo source: Balance (attenuate opposite channel)
+            $panFilter = "pan=stereo|c0=(1-$pStr)*c0|c1=$pStr*c1" 
+        }
+        
+        $argsMix = @("-y", "-i", $InputFile, "-filter_complex", "volume=${gStr}dB,$panFilter", $mixOut)
+        
+        $pMix = Start-Process -FilePath "ffmpeg" -ArgumentList $argsMix -NoNewWindow -PassThru -Wait
+        if ($pMix.ExitCode -ne 0) {
+            Write-Warning "Mixer failed for track $TrackName"
+            return $InputFile
+        }
+        else {
+            return $mixOut
+        }
+    }
+
     # --- Sequencer Logic ---
     $trackFiles = @()
 
@@ -200,6 +257,8 @@ try {
                 $i++
             }
 
+
+
             # Mix notes into one track stem using ffmpeg adelay
             # Filter: [0]adelay=1000|1000[a];[1]adelay=2000|2000[b];[a][b]amix=2
             # Note: synth.exe output is mono. adelay args: delay_ch1|delay_ch2... 
@@ -228,6 +287,12 @@ try {
                     Write-Warning "Failed to render track $($track.name)"
                 }
                 else {
+                    # Sprint 7: Cleanup Temp
+                    if (-not $KeepTemp) {
+                        foreach ($ef in $eventFiles) { Remove-Item $ef.File -ErrorAction SilentlyContinue }
+                    }
+
+                    # Apply Effects for Synth Track
                     if ($track.PSObject.Properties['effects'] -and $track.effects) {
                         foreach ($fx in $track.effects) {
                             # Safe prop access
@@ -238,7 +303,27 @@ try {
                             Move-Item -Force $fxOut $trackStem
                         }
                     }
-                    $trackFiles += $trackStem
+
+                    # --- Mixer Processing (Same as Sample) ---
+                    $gainDb = Get-Prop $track "gainDb" 0.0
+                    $pan = Get-Prop $track "pan" 0.0
+                    $mute = Get-Prop $track "mute" $false
+                    
+                    # Sprint 7: Fold Amp into GainDb
+                    # Synth amp was 0.8 default. 
+                    $amp = Get-Prop $track "amp" 0.8
+                    if ($amp -gt 0) {
+                        $ampDb = 20 * [Math]::Log10($amp)
+                        $gainDb += $ampDb
+                    }
+                    
+                    if ($mute) {
+                        Write-Host "Track $($track.name) Muted."
+                    }
+                    else {
+                        $mixed = Apply-Mixer -InputFile $trackStem -TrackName $track.name -GainDb $gainDb -Pan $pan -WorkDir $workDir
+                        $trackFiles += $mixed
+                    }
                 }
             }
         }
@@ -283,13 +368,10 @@ try {
                 # Looping Logic
                 # Strict mode is FULLY ON. Variables initialized above.
                 
-                # DEBUG INIT STATE
-                # Write-Host "DEBUG: isLoop=$isLoop offset=$offset dur=$dur"
-                
                 if ($isLoop) {
                     # If lopping, we first extract the snippet, then loop it.
                     # 1. Extract Snippet
-                    $tempSnippet = Join-Path $workDir "t$($track.name)_s$i_temp.wav"
+                    $tempSnippet = Join-Path $workDir "t$($track.name)_s$($i)_temp.wav"
                     $ffArgs = @("-y", "-i", $src)
                     if ($null -ne $offset) { $ffArgs += "-ss", $offset }
                     if ($null -ne $dur) { $ffArgs += "-t", $dur }
@@ -373,8 +455,19 @@ try {
                 $filterComplex += "${inputs}amix=inputs=$($eventFiles.Count):duration=longest[out]"
                 $ffmpegArgs += "-filter_complex", $filterComplex, "-map", "[out]", $trackStem
             
+                # Write-Host "FFmpeg args: $ffmpegArgs"
                 $p = Start-Process -FilePath "ffmpeg" -ArgumentList $ffmpegArgs -NoNewWindow -PassThru -Wait
                 if ($p.ExitCode -eq 0) {
+                    # Sprint 7: Cleanup Temp for Samples
+                    if (-not $KeepTemp) {
+                        foreach ($ef in $eventFiles) { Remove-Item $ef.File -ErrorAction SilentlyContinue }
+                        # Also clean sub-temp snippets if loop logic created them? 
+                        # Looping creates "_temp.wav" inside main loop. not tracked in eventFiles.
+                        # We used specific names: t<Track>_s<I>_temp.wav
+                        # We can wildcard clean them.
+                        Remove-Item (Join-Path $workDir "t$($track.name)_s*_temp.wav") -ErrorAction SilentlyContinue
+                    }
+
                     # Apply Effects for Sample Track
                     if ($track.PSObject.Properties['effects'] -and $track.effects) {
                         foreach ($fx in $track.effects) {
@@ -386,7 +479,20 @@ try {
                             Move-Item -Force $fxOut $trackStem
                         }
                     }
-                    $trackFiles += $trackStem
+                    
+                    # --- Mixer Processing (Gain/Pan/Stereo) ---
+                    # Always normalize to stereo for master mix consistency
+                    $gainDb = Get-Prop $track "gainDb" 0.0
+                    $pan = Get-Prop $track "pan" 0.0 # -1.0 (L) to 1.0 (R)
+                    $mute = Get-Prop $track "mute" $false
+                    
+                    if ($mute) {
+                        Write-Host "Track $($track.name) Muted."
+                    }
+                    else {
+                        $mixed = Apply-Mixer -InputFile $trackStem -TrackName $track.name -GainDb $gainDb -Pan $pan -WorkDir $workDir
+                        $trackFiles += $mixed
+                    }
                 }
             }
         }

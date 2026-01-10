@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- drunktut.htm  - Tutorial notes for EXTEND DRUNK - HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>DRUNK TUTORIAL</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="../images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> 
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "../images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="../../html/ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="../../html/tutorials.htm" Target="_top"><b>Tutorials Index</b></a> 
+  <dt><a href="../../html/cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="../../html/filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#SETUP" ><b>USER SETUP</b></a>
+  <br /><br />
+  <dt><a href="#ABOUTDRUNK" ><b>Introduction</b></a>
+  <br /><br />
+  <b>EXAMPLES:</b>
+  <dt>&nbsp;&nbsp;<a href="#EXAMPLE1"><b>1.&nbsp;&nbsp;MOVE</b></a>
+  <dt>&nbsp;&nbsp;<a href="#EXAMPLE2"><b>2.&nbsp;&nbsp;WIDEN</b></a>
+  <dt>&nbsp;&nbsp;<a href="#EXAMPLE3"><b>3.&nbsp;&nbsp;SCATTER</b></a>
+  <dt>&nbsp;&nbsp;<a href="#EXAMPLE4"><b>4.&nbsp;&nbsp;HOVER</b></a>
+  <dt>&nbsp;&nbsp;<a href="#EXAMPLE5"><b>5.&nbsp;&nbsp;EXPAND</b></a>
+  <dt>&nbsp;&nbsp;<a href="#EXAMPLE6"><b>6.&nbsp;&nbsp;CONTRACT</b></a>
+  <dt>&nbsp;&nbsp;<a href="#EXAMPLE7"><b>7.&nbsp;&nbsp;SWING</b></a>
+  <br /><br />
+  <dt><a href="#ACKNOWLEDGEMENTS"><b>Acknowledgements</b></a>
+  <br><br>
+  <hr><br>
+  <dt><a href="../../html/cgroextd.htm#DRUNK" ><b>CDP Reference</b></a>
+  </dl>
+  </p>
+
+</div>  <!------------- End of left index panel -------------------------->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+
+   <p><IMG SRC="../images/cdpcircs.jpg" align=left  ALT="CDP circles logo"></p>
+   <!-- 
+     <div align=center>
+     <br>
+     <img src="../images/cdplogo2.jpg" ALT="CDP Logo">
+     </div>
+   -->
+
+   <h1 align=center>EXTEND DRUNK TUTORIAL</h1>
+   <h2 align=center>7 Examples - by Archer Endrich</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="SETUP">User setup</h2>
+
+<blockquote>
+
+<p>
+This Tutorial on EXTEND DRUNK is in <b>\htmltuts\drunk</b> with 
+all soundfiles made (<font color="#FF0000">forward slashes in HTML links 
+and a U<small>NIX</small> shell</font>). All examples use Mode 1, called 
+'drunken walk' in <i>Soundshaper</i> and 'completely drunk' in <i>Sound Loom</i>.  
+The HTML text with index will come up when you double-click on 
+<b>drunktut.htm</b>.
+</p>
+
+<p>
+The <i>infile</i> used here is <a href = "count.wav"><b>count.wav</b></a> 
+(8.066 sec, mono, SR=44100).  In this file a female voice counts from 1 to 10.  
+This will help us to identify where the segments are coming from.  If you 
+use another file, ensure that it is 8 seconds long or you will have 
+to adjust all the breakpoint files.
+</p>
+
+Both <i>Sound Loom</i> and <i>Soundshaper</i> have <b>presets</b> with 
+which to realise these examples for yourself.  In <i>Soundshaper</i>, 
+Load <b>drunk.dat</b>, located in the <b>\drunk</b> tutorial folder, 
+(<b>c:\cdpr5\htmltuts\drunk</b></b>) if you have kept to the 
+original installation setup.  In <i>Sound Loom</i>, the presets are 
+called 'Patches' and are placed in the <b>_cdpatch</b> folder 
+with the same names.  These are loaded from inside the program 
+dialogue box.
+</p>
+
+<p>
+For <b><i>Soundshaper</i></b>, Release 5 includes a config file called 
+<b>drunk.cfg</b>.  You can use this, or make your own (save as 'Personal'), 
+to set up using the Tutorial and making your own sounds with EXTEND DRUNK. 
+All the sounds and the other files used by the Tutorial are in 
+<b>c:\cdpr5\htmltuts\drunk</b>.  Then <b>Load</b> the global Presets file 
+<b>drunk.dat</b> which should be in that folder and run <b>Soundfiles &gt; 
+Extend &gt; Drunk</b>.  When you click on the <b>Presets</b> button, you will 
+find the 8 presets prepared for this tutorial.  When you open a Preset, such as 
+<b>drunk1</b>, double-check that the path to the .brk files matches your setup.  
+You have to have placed everything in the locations described above if the Presets 
+are to work as is.  The last preset, to pan Example 7 is <b>drunk7pan</b>.  
+You will find it when you go to the Pan program:  <b>Edit&#47;Mix &gt; 
+Space &gt; Pan</b>.  If you make the same sounds as in the Tutorial, 
+remember to save them to a slightly different name.
+</p>
+
+<p>
+To run these examples in <b><i>Sound Loom</i></b>, you can open the 
+Drunk Tutorial directory and <b>copy</b> ('Grab') <b>count.wav</b> 
+(or a similar sound of the same length) onto the Workspace.  You should 
+also <b>copy</b> ('Grab') the supporting breakpoint files:
+ 	<blockquote>
+	locus1.brk, locus2.brk, locus3.brk<br>
+	ambitus1.brk, ambitus2.brk, ambitus3.brk, ambitus4.brk, ambitus5.brk<br />
+	step1.brk, step2.brk, step3.brk, step4.brk, step5.brk<br />
+	clock1.brk, clock2.brk, clock3.brk, clock4.brk, clock5.brk<br />
+	panex7.brk
+	</blockquote>
+onto the Workspace.  Then put <i>count.wav</i> on the Chosen Files list, 
+press <b>Process</b> and select the <b>EXTEND &gt; drunkwalk &gt; 
+completely drunk</b> process.  The Patches are loaded from within the 
+DRUNK dialogue box.
+</p>
+
+<p>
+For <b>Command Line</b> operation, change directory ('cd') to 
+<b>c:\cdpr5\htmltuts\drunk</b> or put all files into some other directory 
+and go there.  Then run the batch file <b>drunk.bat</b> by typing 
+<b>drunk</b> on the command line.  To run them one at a time, put 'REM' 
+at the beginning of the command lines you don't want to run.
+</p>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="ABOUTDRUNK">Introduction to DRUNK
+</h2>
+
+<blockquote>
+<p>
+DRUNK is a segmentation program that enables you to set:
+	<ul>
+	<li><b>where</b> to focus the segmentation action in the original 
+	sound:  = <b><i>locus</i></b>.  This is called 'starttime' in 
+	<i>Soundshaper</i>.</li>
+	<li>the <b>range</b> in which the segmentation action can take place:  
+	= <b><i>ambitus</i></b>, which is the length in seconds on 
+	<b>either side</b> of the <i>locus</i>.  This is called 'half-width' in 
+	<i>Soundshaper</i>.</li>
+	<li>the <b>distance</b> between segments, which relates to the amount 
+	of the <i>ambitus</i> range used (i.e., scatter) = <b><i>step</i></b>.  
+	To use the full amount, the <i>step</i> value will be 2 x 
+	<i>ambitus</i>.  Thus the locations from which the segments are taken 
+	in the original file are 'scattered' within this range.</li>
+	<li>the <b>time</b> between segments (and therefore segment size itself) 
+	= <b><i>clock</i></b>, i.e., the speed of movement from one event to 
+	the next.  This is called 'segsize' in <i>Soundshaper</i>.</li>
+	</ul>
+All of these parameters can vary over time.
+</p>
+
+<p>
+<div align="center">
+<IMG SRC="images/drunkparams.gif" ALT="[relationship of DRUNK parameters]"></a>
+</div>
+</p>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="EXAMPLE1">Example 1: MOVE<br />
+</h2>
+
+<blockquote>
+
+<p>
+<i>Sound Loom&#47;Soundshaper</i>:  Load the Patch&#47;Preset <i>drunk1</i>
+</p>
+
+<p>
+<b>EXAMPLE 1</b> &#150; MOVE:  Our first example illustrates the above 
+behaviour by setting a fairly narrow <i>ambitus</i> range (0.25) and using 
+all of it (<i>step</i> = <i>ambitus</i> x 2 = 0.5) with a fairly rapid rate 
+of segmentation: <i>clock</i> = 0.2.  This is applied with a changing 
+<i>locus</i> position, moving forward through the original file:  
+1.5 to 3.5 to 5.5 to 7.5.
+</p>
+
+<p>
+A note about the changing <i>locus</i> position may be useful.  It is set forth 
+in a breakpoint file, and like any CDP breakpoint file, to hold a value constant 
+over a given time period, you need different times (start and end of the time 
+period) with the same value.  If there are different values at different time, 
+the program will interpolate (move gradually) between the values over the given 
+time period.  In this case, we want to hold the <i>locus</i> position steady over 
+the time period, to help make the movement of the <i>locus</i> from one position 
+to another easy to hear.  Thus our breakpoint file <i>locus1.brk</i> looks like 
+this:
+<pre><font color="#FF0000">locus1.brk</font>
+ 0.0	1.50
+ 6.9	1.50
+ 7.0	3.50
+13.9	3.50
+14.0	5.50
+20.9	5.50
+21.0	7.50
+</pre>
+The column on the left comprises times in the <i>outfile</i>:  where the segments go.  
+The column on the right comprises <i>locus</i> positions in the <i>infile</i>:  where 
+the segments come from.
+</p>
+
+<p>
+The command line for Example 1 therefore looks like this:
+<pre>
+<font color="#FF0000">
+               INF    OUTF OUTLEN  LOCUS   AMBITUS   STEP CLOCK</font>
+<code>extend drunk 1 count  cd1   25  locus1.brk   0.25    0.5  0.2</code>
+</pre>
+</p>
+
+<p>
+And this is how it sounds:  <a href="cd1.mp3"><b>PLAY cd1.mp3</b></a>
+</p>
+
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="EXAMPLE2">Example 2: WIDEN &amp; SPEED UP
+</h2>
+
+<blockquote>
+<p>
+<b>EXAMPLE 2</b> &#150; WIDEN &amp; SPEED UP:  move gradually through the 
+<i>infile</i>, with <i>ambitus</i> increasing and <i>step</i> similarly widening 
+so as to make use of the larger range (therefore more scattered), while <i>clock</i> 
+(timing &amp; therefore segment size) decreases:  the events are more 
+scattered in origin but closer together in event-time, and shorter.
+</p>
+
+<p>
+<i>Sound Loom&#47;SoundShaper</i>:  Load the Patch&#47;Preset 
+<i>drunk2</i>.
+</p>
+
+<p>
+<b>It is very important to remember that in the <i>locus</i> parameter, 
+the left column is time in the <i>outfile</i> and the right column is 
+time in the <i>infile</i>.</b>
+</p>
+
+<pre>
+<font color="#FF0000">
+locus1.brk  ambitus1.brk  step1.brk	   clock1.brk</font>
+ 0.0  1.5    0.0  0.22     0.0  0.44    0.0  0.3
+ 6.9  1.5    6.9  0.22     6.9  0.44    6.9  0.3
+ 7.0  3.5    7.0  0.44     7.0  0.88    7.0  0.2
+13.9  3.5   13.9  0.44    13.9  0.88   13.9  0.2
+14.0  5.5   14.0  0.66    14.0  1.32   14.0  0.1
+20.9  5.5   20.9  0.66    20.9  1.32   20.9  0.1
+21.0  7.5   21.0  0.88    21.0  1.76   21.0  0.05
+</pre><code>
+extend drunk 1 count cd2 25 locus1.brk ambitus1.brk step1.brk clock1.brk
+</code>
+</p>
+
+<p>
+Listen to Example 2 WIDEN &amp; SPEED UP:  <a href="cd2.mp3">
+<b>PLAY cd2.mp3</b></a>
+</p>
+
+</blockquote>
+<p>
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="EXAMPLE3">Example 3: INCREASED SCATTER
+</h2>
+<blockquote>
+
+<p>
+<b>EXAMPLE 3</b> &#150;  In this example, short segments (fast <i>clock</i>) 
+are INCREASINGLY SCATTERED within the constant full width (2 * <i>ambitus</i>) 
+available around each locus:  <i>step</i> gets larger within a constant 
+<i>ambitus</i>.  <i>Ambitus</i> is set to 1.32, so the full width is 2.64 
+sec. of the original soundfile.
+</p>
+
+<p>
+<i>Sound Loom&#47;Soundshaper</i>:  Load the Patch&#47;Preset 
+<i>drunk3</i>.
+</p>
+
+<pre>
+<font color="#FF0000">
+locus1.brk  step2.brk	   clock2.brk</font>
+ 0.0  1.5    0.0  0.22   0.0  0.05
+ 6.9  1.5    6.9  0.22   6.9  0.05
+ 7.0  3.5    7.0  0.66   7.0  0.1
+13.9  3.5   13.9  0.66  13.9  0.1
+14.0  5.5   14.0  1.32  14.0  0.15
+20.9  5.5   20.9  1.32  20.9  0.15
+21.0  7.5   21.0  1.76  21.0  0.1
+</pre><code>
+extend drunk 1 count cd3 25 locus1.brk 1.32 step2.brk clock2.brk
+</code>
+</p>
+
+<p>
+The segments undergo INCREASED SCATTER in Example 3:  <a href="cd3.mp3">
+<b>PLAY cd3.mp3</b></a>
+</p>
+
+
+</blockquote>
+<p>
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="EXAMPLE4">Example 4: HOVER
+</h2>
+
+<blockquote>
+<p>
+<b>EXAMPLE 4</b> &#150; HOVERING:  tiny segments (fast <i>clock</i>) 
+are located very close to each other in the original sound because of 
+the small <i>steps</i> taken within the mid-sized <i>ambitus</i> range 
+around each <i>locus</i>.  Very little of the available <i>ambitus</i> 
+range available here is actually used. Values alternate, giving a hovering 
+effect.
+</p>
+
+<p>
+<i>Sound Loom&#47;Soundshaper</i>:  Load the Patch&#47;Preset 
+<i>drunk4</i>.
+</p>
+
+<pre>
+<font color="#FF0000">
+locus2.brk  ambitus3.brk  step3.brk	   clock3.brk</font>
+ 0.0  5.0    0.0  1.33     0.0  0.22   0.0  0.1
+ 6.9  5.0    6.9  1.33     6.9  0.22   6.9  0.1
+ 7.0  2.5    7.0  0.88     7.0  0.35   7.0  0.2
+13.9  2.5   13.9  0.88    13.9  0.35  13.9  0.2
+14.0  5.0   14.0  1.33    14.0  0.44  14.0  0.1
+20.9  5.0   20.9  1.33    20.9  0.44  20.9  0.1
+21.0  2.5   21.0  0.88    21.0  0.35  21.0  0.05
+</pre><code>
+extend drunk 1 count cd4 25 locus2.brk ambitus3.brk step3.brk clock3.brk
+</code>
+</p>
+
+<p>
+Hovering Example 4:  <a href="cd4.mp3"><b>PLAY cd4.mp3</b></a>
+</p>
+
+</p>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="EXAMPLE5">Example 5: EXPAND
+</h2>
+
+<blockquote>
+<p>
+<b>EXAMPLE 5</b> &#150; EXPANSION outward from the centre:  central 
+<i>locus</i> (set at 4 sec. in the original sound), and the other 
+parameters move from smaller to larger.  
+</p>
+
+<p>
+<i>Sound Loom&#47;Soundshaper</i>:  Load the Patch&#47;Preset 
+<i>drunk5</i>.
+</p>
+
+<pre>
+<font color="#FF0000">
+ambitus4.brk  step4.brk  clock4.brk</font>
+ 0.0  1       0.0  2     0.0  0.05
+ 6.9  1       6.9  2     6.9  0.05
+ 7.0  2       7.0  4     7.0  0.1
+13.9  2      13.9  4    13.9  0.1
+14.0  3      14.0  6    14.0  0.2
+20.9  3      20.9  6    20.9  0.2
+21.0  4      21.0  8    21.0  0.3
+</pre><code>
+extend drunk 1 count cd5 25 4 ambitus4.brk step4.brk clock4.brk
+</code>
+</p>
+
+<p>
+EXPANDING Example 5:  <a href="cd5.mp3"><b>PLAY cd5.mp3</b></a>
+</p>
+
+</p>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="EXAMPLE6">Example 6: CONTRACT
+</h2>
+
+<blockquote>
+<p>
+<b>EXAMPLE 6</b> &#150; CONTRACTING inwards towards the centre: central 
+<i>locus</i>, also set at 4 sec., and the other parameters move from 
+larger to smaller.  
+</p>
+
+<p>
+<i>Sound Loom&#47;Soundshaper</i>:  Load the Patch&#47;Preset <i>drunk6</i>.
+</p>
+
+<pre>
+<font color="#FF0000">
+ambitus5.brk  step5.brk  clock5.brk</font>
+ 0.0  4       0.0  8     0.0  0.3
+ 6.9  4       6.9  8     6.9  0.3
+ 7.0  3       7.0  6     7.0  0.2
+13.9  3      13.9  6    13.9  0.2
+14.0  2      14.0  4    14.0  0.1
+20.9  2      20.9  4    20.9  0.1
+21.0  1      21.0  2    21.0  0.05
+</pre><code>
+extend drunk 1 count cd6 25 4 ambitus5.brk step5.brk clock5.brk
+</code>
+</p>
+</p>
+
+<p>
+CONTRACTION in Example 6:  <a href="cd6.mp3"><b>PLAY cd6.mp3</b></a>
+</p>
+
+</blockquote>
+<p>
+<br />
+</p>
+
+<!-- ========================================================================= -->
+<h2 id="EXAMPLE7">Example 7: SWING
+</h2>
+
+<blockquote>
+<p>
+<b>EXAMPLE 7</b> &#150; SWING forwards and backwards through the 
+file.  A new <i>locus</i> breakpoint file is created to achieve this.  
+It is notably different from the previous two.  In the first place, 
+it interpolates:  different values at different times.  Secondly, 
+it moves backwards through the file as well as forwards &#150; yes, 
+this is allowed!  Tight, constant values for <i>ambitus</i> (0.25), 
+<i>step</i> (0.1) and <i>clock</i> (0.08) focus like a moving searchlight 
+on the part of the file being used at any given time.  The rate of 
+swing expands and contracts a bit due to the timing in <i>locus3.brk</i>.
+</p>
+
+<p>
+Also notice that the extreme ends of the original soundfile are used 
+as <i>loci</i> positions.  Positions within the <i>ambitus</i> that 
+go beyond these extremes are forced back inside the soundfile.  This 
+was done to ensure that we heard the 'one' and the 'ten' as much as 
+possible.
+</p>
+
+<p>
+I know of no other way that this effect could be achieved with the 
+CDP software.  To clarify what is happening, we finish off by panning 
+the file between Left and Right, using the same times as in 
+<i>locus3.brk</i>.  The panning is, of course, done in a separate step.
+</p>
+
+<p>
+<i>Sound Loom&#47;Soundshaper</i>:  Load the Patch&#47;Preset <i>drunk7</i>.
+</p>
+
+<p>
+<pre>
+<font color="#FF0000">
+locus3.brk  panex7.brk</font>
+ 0  0        0  -1
+ 3  8        3   1
+ 6  0        6  -1
+10  8       10   1
+14  0       14  -1
+17  8       17   1
+20  0       20  -1
+25  8       25   1
+</pre>
+<code>
+extend drunk 1 count cd7 25 locus3.brk 0.25 0.1 0.08<br />
+modify space 1 cd7 cd7pan panex7.brk
+</code>
+</p>
+
+<p>
+SWING in Example 7:  <a href="cd7.mp3"><b>PLAY cd7.mp3</b></a><br />
+Panned SWING in Example 7:  <a href="cd7pan.mp3"><b>PLAY cd7pan.mp3</b></a>
+</p>
+
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<p id="ACKNOWLEDGEMENTS"><b>ACKNOWLEDGEMENTS</b><br />
+My thanks to Eitan Teomi whose queries helped me to understand DRUNK better 
+and to improve the documentation, and to Trevor Wishart for converting the 
+command lines to <i>Sound Loom</i> Patches. [AE]
+</p>
+
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 30 Oct 2021 -- HTML5 version<br />
+    Documentation: Archer Endrich<br />
+	Significantly revised on 8-9, 19-20 May 2005 &amp; 
+	5 October 2005<br />
+	<b>mp3</b> format changes: 19 February 2010 (sources or near sources 
+	are kept as <b>wav</b>)<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1999-2021 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

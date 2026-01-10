@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!-- HTML and CSS adapted for CDP DOCS (Vn 2) --> 
+<!-- graphic.htm  - Graphic Programs Link Page (HTML5) -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CDP GRAPHIC</title>
+  <link rel="stylesheet" type="text/css" href="cdpscroll.css">
+  <link rel="stylesheet" href="menu.css">
+  <link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>  
+</head>
+
+<body>
+  <div id="left" class="column">
+	<div class="top-left"> <!--Left Hdr -->
+		<!--
+	    <div align="center"> <img src="images/cdpcircs2.gif"     alt="CDP Logo"> </div>
+	    -->
+	    <br>
+	    <h2 align="center"><font color="#8B0000">CDP DOCS<br>GRAPHIC</font></h2>	    
+
+   
+	</div> <!-- end of left hdr -->
+			
+	<div class="bottom-left"> <!-- SIDEBAR -->
+	
+  <a href="ccdpndex.htm" Target="_top"><b>MAIN INDEX</b></a>
+  <br><hr>
+  <a href="https://www.composersdesktop.com/index.html"  target="_blank"><b>CDP WEBSITE</b></a> 
+  <hr>	
+  <h3><b><i>CDP GRAPHIC</i></b></h3>
+  <p><dl>
+  <b>GUIs:</b><br>
+  <dt><a href="../twSoundLoomGuide.pdf"><b>SoundLoom</b></a>
+  <dt><a href="soundshaper.htm"><b>Soundshaper</b></a>
+  <dt><a href="http://www.renoise.com/tools/cdp-interface" Target="_blank"><b>CDP for <i>Renoise</i></b></a>
+<br><br>
+  <b>OTHER GRAPHIC:</b><br>
+  <dt><a href="cgrnmill.htm"><b>GrainMill</b></a>
+  <dt><a href="cbrkedit.htm"><b>Breakedit</b></a>
+  <dt><a href="processpackdescription.htm"><b>Process Pack</b></a> 
+  <dt><a href="https://www.keele.ac.uk/humanities/study/musicandmusictechnology/ourpeople/rajmilfischman/#free-software-"  Target="_blank"><b>AL/Erwin</b></a>
+  <dt><a href="ctv.htm"><b>Tabula Vigilans</b></a> 
+  </dl>
+  </p>
+
+	</div> <!-- end of Sidebar -->
+</div> <!-- end of Left Column -->
+		
+<!--- START OF RIGHT COLUMN -->
+<div id="right" class="column"> <!-- NB shared class -->
+
+	<div class="top-right"> <!--Right Hdr -->
+	    <div align="center"> <img src="images/cdplogo2.jpg"     alt="CDP Logo"> 
+	    </div>
+	    
+
+
+<!-- ----------------- MENU BAR ------------------- -->
+
+   <div id='cssmenu'>  
+   <ul>
+   <li class='has-sub'><a href="ccdpndex.htm"><span><b>INDEX</b></span></a>
+     <ul>
+     <li><a href="cdphome.htm"><span><b>HOME PAGE</b></span></a>
+     <li><a href="ccdpndex.htm"><span><b>MAIN INDEX</b></span></a>
+     <li><a href="cbutnndx.htm"><span><b>Table Index</b></span></a></li>
+     <li><a href="alphindex.htm"><span><b>A-Z Function Index</b></span></a></li>
+     <li class='last'><a href="calphndx.htm"><span><b>Operations Index</b></span></a></li>
+     </ul>	
+   </li>
+   <li><a href="cgroundx.htm"><span><b>TIME-DOMAIN</b></span></a></li>
+   <li><a href="cspecndx.htm"><span><b>SPECTRAL</b></span></a></li>
+   <li class='active'><a href="graphic.htm"><span><b>GRAPHIC</b></span></a></li>
+   <li class='has-sub'><a href="#"><span><b>EXPLAIN</b></span></a>
+   	  <ul>
+   	    <li><a href="charts.htm"><span><b>CHARTS</b></span></a></li>
+   	    <li><a href="tutorials.htm"><span><b>TUTORIALS</b></span></a></li>
+   	  </ul>
+   </li>   
+   <li class='class='last'><a href="updates.htm"><span><b>DOWNLOADS</b></span></a></li>
+   </ul>
+   </div> <!-- end of menu -->
+
+
+	</div> <!-- End of Right Hdr --> 
+			 
+  <div class="bottom"> <!-- MAIN CONTENT -->
+  
+      <div id="head">
+        <h1 id="startpos" align="center"> CDP GRAPHIC PROGRAMS</h1>
+      </div>
+      <!-- End of 'head' -->
+
+<h2>Graphical User Interfaces</h2>
+Various front-ends give access to the CDP system:
+<h3><i>Sound Loom</i></h3>
+Supports the full set of CDP processes, plus some extras. Available for PC and Mac.
+<ul>
+<li><a href ="../twSoundLoomGuide.pdf"><b>User's Guide to the Sound Loom &amp; CDP</b></a> (in pdf format)</li>
+<li><a href ="sndloom.htm"><b>Sound Loom Reference Manual</b></a></li>
+</ul>
+Author: Trevor Wishart
+<ul>
+<li><a href ="../SLguide-basic.pdf"><b>Sound Loom Basic Guide</b></a> (in pdf format)
+</ul>
+Author: Archer Endrich
+
+
+<h3><i>Soundshaper</i></h3>
+Supports the full set of CDP processes. Currently available for PC only.<br>
+Built around a multi-process patch grid and supports mono/stereo/multi-channel input.
+<ul>
+<li><a href="soundshaper.htm"><b>About Soundshaper</b></a> (<a href="../charts-pdf/AboutSoundshaper.pdf"><b>pdf version</b></a>)</li>
+<li><a href="soundshaper_basic.pdf"><b>Soundshaper Basic Operation</b></a> (pdf format)</li>
+</ul>
+Author: Robert Fraser
+
+<h3><i>SoundThread</i></h3>
+A new cross-platform interface, currently in Beta. Supports around 100 CDP processes.<br>
+Node-based, with processes patched together in series or parallel and then run as a 'Thread'.
+<ul>
+<li>Description on <a href="https://github.com/j-p-higgins/SoundThread?tab=readme-ov-file#readme" target="_blank"><b>Github</b></a>, with further details.
+<li>First of three introductory videos on <a href="https://youtu.be/6dOh-Geq6f8?feature=shared" target="_blank"><b>YouTube</b></a>.
+</ul>
+Author: Jonathon Higgins
+
+<h3><i>Renoise CDP Interface</i></h3>
+A new interface integrated into the RENOISE DAW, supporting most CDP processes. <br>
+The interface is multi-platform and is currently the only working CDP interface for LINUX.
+<ul>
+<li><a href="http://www.renoise.com/tools/cdp-interface" Target="_blank"><b>CDP Interface description</b></a></li>
+<li><a href="http://www.renoise.com/blog/linux-cdp-tool-guide" Target="_blank"><b>Linux CDP Tool Guide</b></a> (Dave Phillips)</li>
+</ul>
+Authors: Aftab Hussain (Lua programming) and Richard Jonas (CDP definition files)
+
+<!--
+<h3><i>CDP Plugin for Reaper</i></h3>
+A beta plugin for the REAPER DAW, currently supporting a limited number of CDP processes.<br>
+Can process selected clips within a track and includes a preview facility.
+<ul>
+<li><a href="https://www.youtube.com/watch?v=i7FjwnSddSI" Target="_blank"><b>Video on YouTube (original design)</b></a></li>
+<li><a href="../charts-pdf/REAPER_ListOfCDPFunctions_R7.pdf" Target="_blank"><b>List of CDP Functions for REAPER</b></a> (compiled by Walter Cesarini)</li>
+<li><a href="https://xenakios.wordpress.com/2015/02/13/joys-of-graph-processing/" Target="_blank"><b>Author's blog (revised GUI design: 2015)</b></a></li>
+</ul>
+Author: 'Xenakios'
+-->
+
+<h2>Other CDP Supplied Programs</h2>
+
+<h3><i>GrainMill</i></h3>
+Graphic Editor for granular reconstruction of soundfiles (c.f. <a href="cgromody.htm#BRASSAGE"><b>MODIFY BRASSAGE</b></a>).
+<ul>
+<li><a href="http://www.composersdesktop.com/pdf/gminfopgnew.pdf" Target="_blank"><b>About CDP <i>GrainMill</i></b></a>
+<dd>CDP Information sheet about <i>GrainMill</i> (.pdf)</dd></li>
+<li><a href="cgrnmill.htm"><b>GrainMill Reference</b></a></li>
+<li><a href="tutorials.htm#TDTUTS"><b>GrainMill Tutorials</b></a></li>
+</ul> 
+Author: Richard Dobson
+
+<h3><i>BRKEDIT</i></h3>
+Breakpoint graph editor which can display more than one file at a time. 
+You can create exponential and logarithmic curves as well as linear shapes.
+<ul>
+<li><a href="cbrkedit.htm"><b>Brkedit Manual</b></a></li>
+</ul>
+Author: Richard Dobson
+
+<h3><i>ViewSF</i></h3>
+A soundfile viewer with the ability to zoom in to sample level. VIEWSF can also display sonograms of frequency analysis files. (Currently undocumented.) <br><br> 
+Author: Richard Dobson
+
+
+<h3><i>Tabula Vigilans</i></h3>
+Tabula Vigilans ('T-V') is an advanced (non-graphic) scripting language, aimed at algorithmic composition. As a score processor, it can define and replay anything from completely conventional melodic and harmonic music to envelope-shaped multi-event textures with random features. T.V. can operate as a real-time MIDI instrument to play pre-programmed or instantly generated music under mouse or keyboard control. It can also call and run any of the CDP programs, in command-line form. TV (version 1.5) is included in the CDP download, but for a full install, download T.V. zip: 
+</p>
+
+<ul>
+<li><a href="http://www.composersdesktop.com/downloads/TV.zip" Target="_blank"><b>T.V. zip file: tutorials / manual / supporting files etc.</b></a></li>
+<li><a href="http://www.composersdesktop.com/pdf/tvinfopgnew.pdf" Target="_blank"><b>T.V. Information Sheet</b></a></li>
+<li><a href="ctv.htm"><b>Tabula Vigilans Manual</b></a></li>
+</ul>
+
+Author: Richard Orton
+
+<h2>Also available:</h2>
+
+<h3><i>ProcessPack</i></h3>
+A graphic program suite complementary to CDP, with an emphasis on algorithmic procedures in micro-time.
+<ul>
+<li><a href="processpackdescription.htm"><b>Process Pack Description</b></a></li>
+</ul>
+Authors: Richard Orton &amp; Archer Endrich (available separately)
+
+
+<h3><i>AL/Erwin</i></h3>
+AL is an algorithmic compositional environment for the creation and manipulation of sonic events and their organization into a structured musical 
+work. ERWIN is a plug-in for AL applying the solutions of Schroedinger's equation to the creation of granular clouds. 
+<ul>
+<li><a href="https://www.keele.ac.uk/humanities/study/musicandmusictechnology/ourpeople/rajmilfischman/#free-software-" Target="_blank"><b>AL/Erwin: details and download</b></a></li>
+<li><a href="https://www.composersdesktop.com/docs/PDF/al_erwin.pdf" Target="_blank"><b>AL/Erwin Information Sheet</b></a></li>
+</ul>
+Author: Rajmil Fischman<br>
+
+<h3><i>Clouds</i></h3>
+Clouds implements real-time asynchronous granular synthesis, with four audio buffers, comprehensive controls and up to 8-channel output. 
+<ul>
+<li><a href="https://www.keele.ac.uk/humanities/study/musicandmusictechnology/ourpeople/rajmilfischman/#free-software-" Target="_blank"><b>Clouds: details and download</a></b></li>
+</ul>
+Author: Rajmil Fischman<br>
+
+
+
+
+<br>
+
+<!-- ********************************************************** -->
+      <div id="footer">
+        <p> </p>
+        <address> Last Updated 5 July 2025 for CDP8 <br>
+          Revisions: Robert Fraser<br>
+          All observations &amp; ideas for improvement appreciated<br>
+          Composers Desktop Project<br>
+          Email: composersdesktop@gmail.com<br>
+          © Copyright 2018-24 CDP<br>
+        </address>
+        <p></p>
+      </div>
+
+
+
+
+  </div> <!-- END of MAIN CONTENT (bottom right) --> 
+</div> <!-- END OF RIGHT COLUMN -->
+
+</body>
+</html>

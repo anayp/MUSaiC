@@ -1,0 +1,12 @@
+Soundloom 17.0.4E
+
+Updates from 17.0.4
+
+1. Support for the PVOCEX analysis file format as usewd in Csound
+	Files use the extension .pvx. Unset by Default.
+	See new radio buttons centre top of Workspace, to choose the output file format.
+	
+2.	Text data files can contain comment lines starting with a semicolon: ';'
+	This mirros the same facility enabled in CDP programs in Release 8.
+	
+	

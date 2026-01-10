@@ -1,0 +1,164 @@
+<html>
+<!-- exgrn1.htm - granulation tour page -->
+<!-- Individual pages name format: extex1.htm and extex1mo(re).htm -->
+<!-- COLOURS: FFD700=GOLD  FFFFF0=IVORY  EEE8AA=PALEGOLDENROD -->
+<!-- COLOURS: FFF8DC=CORNSILK 0000CD=MEDIUMBLUE B0E0E6=POWDERBLUE -->
+<!-- COLOURS: FFFACD=LEMONCHIFFON FFFFFF=WHITE -->
+
+<head>
+<meta name="GENERATOR" content="Prepared with EMACS text editor">
+<LINK REL="stylesheet" TITLE="CDP Style Sheet" HREF="cdpcsssm.css">
+<link rel="icon"  href="../images/cdp_favicon.ico">
+<title>Sound Example: Granulation</title>
+</head>
+
+<body bgcolor="#FFFFFF" background="cdpwatermark.gif" bgproperties="fixed">
+
+<div>
+<p>
+<IMG SRC="bannersw.gif" alt="[CDP Logo & Software Banner]"></a>
+</p>
+</div
+
+<p>
+<div>
+<table border="0" cellpadding="3">
+<tr>
+<td align="left"><a href="cdptour.htm"><b>Return</b></a> to list of sound 
+examples.</td>
+<td align="right"><a href="extun1.htm"><b>Continue</b></a> to next sound 
+example on the tour.</td>
+</tr>
+</table>
+</div>
+</p>
+
+<p>
+<div align="center">
+<table cellspacing="3" bgcolor="#0000CD" cellpadding="3">
+<caption><h1>CDP Sound Examples &#150; GRANULATION</h1></caption>
+
+<tr>
+<td colspan="2" bgcolor="#FFFACD"><h2 align=center>Rhythmic 
+granulations</h2></td>
+</tr>
+
+<tr>
+<td bgcolor="#FFFFF0"><h3 align="center">SOURCE SOUND<br><p></p>
+<a href="balsamgrn.mp3">Granulated vocal phrase</a><br>(from 
+<i>balsam.wav</i>)</h3></td>
+<td bgcolor="#EEE8AA"><h3 align="center">TRANSFORMATIONS<br><p></p>
+<a href="exgrn1rr.mp3">cycling intergrain expansion</a><br>
+<a href="exgrn2rr.mp3">cycling expansion on each grain</a><br>
+<a href="exgrn1rrtrans.mp3">cycling pitch transpositions</a></h3>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" bgcolor="#FFFFFF"><h3 align="center">DESCRIPTION<br>
+&#126; CDP Function: GRAIN RERHYTHM &amp; REPITCH &#126;</h3><p></p>
+	<ul>
+	<li>To provide a suitable source for this operation, a 
+	vocal phrase was granulated with GRAIN GRANULATE using 
+	the time-varying file <i>exgrnden.brk</i> in which the 
+	grains let longer in the middle.  This produced <i>balsamgrn.wav</i>, 
+	used as the source for the GRAIN RERHYTHM process.</li>
+	<li>Using GRAIN COUNT, it was determined that a <i>gate</i> of 
+	0.05 resulted in about 10 grains, which pretty much matched 
+	what was heard in <i>balsamgrn.wav</i>.  This value was 
+	therefore used in the subsequent operations.</li>
+	<li>The GRAIN RERHYTHM process uses a time-varying text file of 
+	multipliers (<i>exgrn1.txt</i>) which decrease or increase 
+	the time between grain onsets.  The sequence of times here 
+	increase in duration, which results in a gradual slowing down 
+	of the grains.</li>
+	<li>In Mode 1 of GRAIN RERHYTHM, we move through the grains, 
+	applying the time multipliers, cycling round to the first 
+	time multiplier until we run out of grains.  This produces 
+	<i>exgrn1rr.wav</i>.  It all happens very quickly, and the 
+	slowing down is subtle.</li>
+	<li>In Mode 2 of GRAIN RERHYTHM, we repeat the sequence of time 
+	multipliers on each grain, thus producing a series of 
+	slowings down which are much more perceptible  This creates 
+	<i>exgrn2rr.wav</i>.</li>
+	<li>Finally, we play with it some more by applying a sequence 
+	of transposition multipliers to the grains with GRAIN REPITCH.  
+	We go back to <i>exgrn1rr.wav</i> as our source so that we start 
+	with an already rhythmically massaged file.  We use Mode 2 to 
+	produce more grains.  Now the grains also jump up and down 
+	in the output soundfile <i>exgrn1rrtrans.wav</i>, moving 
+	tighter and then opening out again.</li>
+	</ul>
+<p align="right"><a href="exgrn1mo.htm"><b>Additional Information</b></a>
+</p></td>
+</tr>
+
+<tr>
+<td bgcolor="#FFFFF0"><h3 align="center">PARAMETER SETTINGS<br>
+(Click on image to view fullsize)</h3>
+<div>
+<a href="exgrn1dbx.gif"><img src="exgrn1dbxthumb.gif" ALT="[texture 
+parameters dialogue box]" align="center"></a>
+</div></td>
+<td bgcolor="#EEE8AA"><h3 align="center">KEY POINTS</h3><p></p>
+	<ul>
+	<li>These sounds illustrate a number of the GRAIN functions, 
+	by which we can create a range of specific effects on a 
+	grainy input.  These complement the main granulation processing 
+	of BRASSAGE and GRAINMILL.</li>
+	<li>GRAIN GRANULATE is used to create a grainy starting 
+	point for the other operations.</li>
+	<li>The <i>gate</i> parameter is set such that the count of 
+	grains is more or less the same as the number of grains 
+	perceived when listening to the sound.  If too few are 
+	identified, the new function fails to alter many of the 
+	grains.</li>
+	<li>This example uses three of the GRAIN functions, chaining 
+	the output of the previous as the input to the next.</li><br>
+	<li>Omitting the last grain often avoids having a click at 
+	the end.</li>
+	</ul>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" bgcolor="#FFF8DC"><h3>SUPPLEMENTARY FILES USED</h3><br>
+<p>
+<b>BREAKPOINT FILE, <i>time grain_length</i></b> (time varying granulation)
+<pre>
+[exgrnden.brk]
+0.0	0.1
+1.0	0.5 (grains are longer towards the middle of the file)
+1.9	0.2
+</pre>
+</p>
+
+<p>
+<b>TEXT FILE OF TIME MULTIPLIERS</b> (time-gaps between grains are altered)
+<pre>
+[exgrn1.txt]
+0.2 0.8 1.8 3.4  (the gaps get longer, the sound more 'halting')
+</pre>
+</p>
+
+<p>
+<b>TEXT FILE OF TRANSPOSITIONS</b> (sequence of semitone transpositions)
+<pre>
+[exgrn1tr.txt]
+-3 3 -2 2 -1 1 0 1 -1 2 -2 (wider -> narrower -> wider)
+</pre>
+</p>
+</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+<p>
+Last updated: 4 December 2003
+</p>
+
+</body>
+
+</html>

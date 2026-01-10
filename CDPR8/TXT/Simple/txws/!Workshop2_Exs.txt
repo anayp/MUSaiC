@@ -1,0 +1,10 @@
+Workshop 2 Examples for SIMPLE
+===============================
+Ex   Mode   Input 
+1    5      marimba.wav
+5    5         "
+9    3         "
+13   4         "
+21   3      bdtg5wavrstrx2-3ssvib.wav
+
+

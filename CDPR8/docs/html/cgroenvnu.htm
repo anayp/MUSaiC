@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cgroenvnu.htm  - HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP ENVNU Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#ENVNULIST"><b>ENVNU:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#EXPDECAY"><b>EXPDECAY</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PEAKCHOP"><b>PEAKCHOP</b></a>
+  <br><br>
+  <dt><a href="cgroenvl.htm"><b>ENVEL Group</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <div align=center>
+   <br>
+   <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+   </div>
+
+   <h1 align=center>CDP ENVNU Functions</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="ENVULIST">Specialised Enveloping Operations</h2>
+<p>
+</br></p>
+
+<dl>
+<dt><a href="#EXPDECAY"><b>EXPDECAY</b></a> <dd>Produce a true exponential 
+decay to zero on a sound</dd>
+<dt><a href="#PEAKCHOP"><b>PEAKCHOP</b></a> <dd>Isolate peaks in a source and 
+either play back at a specified tempo (Mode <b>1</b>) or output a 
+peak-isolating envelope (Mode <b>2</b>)</dd>
+<br><br>
+<b>SEE ALSO:</b><br>
+<dt><a href="cgroenvl.htm"><b>ENVEL Group</b></a> <dd>Main group of envelope functions</dd>
+
+</dl>
+
+<hr><!-- ****************************************************** -->
+<h2 id="EXPDECAY">ENVNU EXPDECAY &#150; Produce a true exponential decay to zero on a sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>envnu expdecay</b> <i>infile outfile starttime endtime</i>
+
+<p>
+Example command line to create an exponential decay:<br>
+	<blockquote>
+	<b><code>envnu expdecay horn hornxdec 4.6 5.386</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile </i> &#150; output soundfile<br />
+<i>starttime</i> &#150; time at which the decay begins<br />
+<i>endtime</i> &#150; time at which the decay reaches zero
+</blockquote>
+
+<h3>
+Understanding the ENVNU EXPDECAY Process
+</h3>
+
+<blockquote>
+<p>
+The existing CDP 'exponential' and 'double exponential' envelopes 
+are actually linear approximations to a true exponential curve.  
+The approximations were written at a time when processor speed was 
+much lower, but for all musical purposes they are fine &#150; you 
+can't hear the difference.  However, a true exponential decay might 
+be needed for certain technical applications, and this is provided 
+by ENVNU EXPDECAY.
+</p>
+
+<p>
+An exponential curve involves a steady increase in the exponent 
+of a number, its 'power': 2<sup><small>1</small></sup> = 2, 
+2<sup><small>2</small></sup> = 4, 2<sup><small>3</small></sup> 
+= 8 &#150; i.e., a progressive doubling, as opposed to a linear 
+curve, which adds a constant value each time:  2 - 4 - 6 - 9 - 10 
+etc.  In the case of an amplitude envelope, 1 is divided by these 
+progressively increasing numbers:  1 &divide; 2 = 0.5, 1 &divide; 
+4 = 0.25, 1 &divide; 8 = 0.125 etc.  This means that the rate of decay 
+will be large to start with and then get progressively less (halving each 
+time).  The effect is that the decay slope starts very steeply and 
+gradually becomes less steep as it proceeds to zero.  It reaches 
+zero (-100 dB) very gradually so that the tail-off is very smooth 
+&#150; and much of the last part of the soundfile is likely to be 
+less than -50dB.</p>
+
+<p>
+Note that an <i>endtime</i> needs to be specified.  On the Command 
+Line, you can actually set an <i>endtime</i> beyond the end of the 
+soundfile (so you don't have to look it up) and the program will 
+then use the correct end of the soundfile.  <i>Sound Loom</i> 
+automatically sets the end-of-file as the default (you can see this 
+by sliding the parameter bar to the far right), but if you enter 
+an <i>endtime</i> after the end of the file, it will create a decay 
+right up to the end of the file.
+
+<blockquote>
+As an aside, finding the duration of a soundfile is often needed, 
+for example when you are setting times in a breakpoint file.  This 
+information is available in various ways in the CDP system:
+	<ul>
+	<li>In <i>Sound Loom</i> there is a button named 'Src Props' 
+	on the Parameter Page when you go to PROCESS a sound.  When 
+	you click on this, you see all the properties of the sound, 
+	including its duration.</li>
+
+	<li>In <i>Soundshaper</i>, after you open a soundfile, its 
+	length is displayed in the central "play" panel.</li>
+
+	<li>Running SNDINFO LEN will display the duration of a soundfile.  
+	This function can be accessed in either GUI or via the Command 
+	Line.</li>
+
+	<li>Running DIRSF on the command line will list all soundfiles 
+	(or enter <code>DIRSF soundfilename.wav&#47;.aif</code> for  
+	just the one soundfile) and display its duration.</li>
+	</ul>
+However, be aware that some displays could be rounded, e.g., to 
+three decimal places.  This means that the final number could in 
+fact be lower than the one displayed, generating an 'out of range' 
+error message regarding <i>endtime</i>:  e.g., .3867 is rounded 
+to .387.  Reducing the value of the last displayed digit by 1 will 
+cure the problem.
+</blockquote>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of ENVNU EXPDECAY<br />
+<a href="#ENVNULIST"><b>Return</b></a> to list of ENVNU functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="PEAKCHOP">ENVNU PEAKCHOP &#150; Isolate peaks in a source and 
+either play back at a specified tempo (Mode <b>1</b>) or output a 
+peak-isolating envelope
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>envnu peakchop 1</b> <i>insndfile outsndfile wsize pkwidth 
+risetime tempo gain</i> [ <b>-g</b><i>gate</i> <b>-q</b><i>skew</i> 
+<b>-s</b><i>scatter</i> <b>-norm</b> <b>-r</b><i>repeat</i> 
+<b>-m</b><i>miss</i>]<br />
+<b>envnu peakchop 2</b> <i>insndfile outsndfile wsize pkwidth 
+risetime</i> [ <b>-g</b><i>gate</i> <b>-q</b><i>skew</i>]
+<br />
+
+<p>
+Example command line to double the tempo of peaks (other 
+parameters are the defaults):<br>
+	<blockquote>
+	<b><code>envnu peakchop 1 count countchop 50 20 10 120 1
+	</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> &#150; Isolate peaks and play back at a specified tempo<br />
+<b>2</b> &#150; Output a peak-isolating envelope
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote
+<i>insndfile</i> &#150; input soundfile<br />
+<i>outsndfile</i> &#150; output soundfile<br />
+<i>wsize</i> &#150; windowsize (in milliseconds) for extracting 
+the envelope  (Range: 1 to 64, Default: 50)<br />
+<i>pkwidth</i> &#150; width in milliseconds of retained peaks 
+(Range: 0 to 1000, Default: 20ms)<br />
+<i>risetime</i> &#150; risetime in milliseconds from zero to peak 
+(Default: 10ms)<br />
+<i>tempo</i> &#150; tempo of resulting output  (Metronome Mark = 
+events per minute:  as is customary, 60 means 1 per second, 120 
+means 2 per second etc.) (Range: 20 to 3000)<br />
+<i>gain</i> &#150; lower this if rapid tempo causes peaks to 
+overlap  (The program should produce a warning message should 
+clipping result from the settings.) (Range: 0 to 1, Default 1)<br />
+<b>Optional Parameters:</b><br />
+<b>-g</b><i>gate</i> &#150; level (relative to max) below which 
+peaks are ignored  (Range: 0 to 1, Default: 0)<br />
+<b>-q</b><i>skew</i> &#150; envelope centring on peak (Range: 0 to 1, 
+Default: 0.25)
+	<ul>
+	<li>0.5 = centred</li>
+	<li>0 = peak at envelope start</li>
+	<li>1 =  peak at envelope end</li>
+	</ul>
+<b>-s</b><i>scatter</i> &#150; randomisation of output times 
+(Range: 0 to 1, Default: 0)<br />
+<b>-norm</b> &#150; force peakevent levels towards that of the 
+loudest peak (Range: 0 to 1, Default: 0)<br />
+<b>-r</b><i>repeat</i> &#150; number of times peakevents are 
+repeated (Range: 0 to 256, Default: 0)<br />
+<b>-m</b><i>miss</i> &#150; use peakevent, then skip the 
+next <i>miss</i> peakevents (Range: 0 to 64, Default: 0)
+	<blockquote>
+	All parameters may vary in time, except <i>wsize</i>, 
+	<i>gate</i> and <i>skew</i>.<br />
+	<b>NB:</b> Times in breakpoint files for this program 
+	are <b>times in the output</b>.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the ENVNU PEAKCHOP Process
+</h3>
+
+<blockquote>
+<p>
+This a delightful program.  Let us first get an overview of Mode 
+<b>1</b>.  The example isolates the peaks in the spoken count from 1 
+to 10 and then halves the distance between each peak.  Because the 
+<i>wsize</i> and <i>pkwidth</i> are relatively small, one hears only 
+a brief 'dot' of sound for each peak.  Increasing these parameters, 
+especially <i>pkwidth</i> means that more of the original sound 
+around each peak is used.  The maximum value for <i>pkwidth</i> 
+(1000) is 1 second, so with higher values for <i>tempo</i>, 
+portions of soundfile will overlap and some repetitions will be 
+heard.   Note that the upper limit for <i>tempo</i> is 3000!  
+As with most CDP programs, there is much opportunity to explore 
+and play here.
+</p>
+
+<h3>
+More about the <i>pkwidth</i> parameter in ENVNU PEAKCHOP
+</h3>
+
+	<blockquote>
+	The <i>pkwidth</i> parameter of PEAKCHOP functions slightly 
+	differently in Modes <b>1</b> &amp; <b>2</b>.
+	</blockquote>
+
+<h4>
+<i>Pkwidth</i> in Mode 1
+</h4>
+
+<p>
+	<ul>
+	<li>ENVNU PEAKCHOP first finds the peaks in the source.</li>
+	<li>It then defines an area surrounding&#47;following the peak, 
+	whose duration is determined by <i>pkwidth</i>.</li>
+	<li>It then cuts chunks from the source at these places, cutting 
+	each chunk <i>independently</i>.  This means that the first chunk 
+	can extend beyond the beginning of the next chunk(s) to be cut.</li>
+	<li>These chunks are then played back in turn, at the specified 
+	<i>tempo</i>.</li>
+	</ul>
+</p>
+
+<p>
+Imagine a source sound with regular peaks every 0.1 seconds.  If you define 
+the (output) <i>pkwidth</i> to be 0.05 secs (i.e., shorter than the peaks 
+in the source)...
+	<ul>
+	<li>Each source peaks would be trimmed shorter in the output.</li>
+	<li>The <i>tempo</i> determines where these peak-areas will be placed, 
+	in sequence, in the output sound.</li>
+	</ul>
+At a fast tempo the output peak-areas might overlap one another, and at a
+slow tempo they might be separated by silence.
+</p>
+
+<p>
+However, if you defined the output peakwidth as 0.3 secs (larger than the actual peaks in the source), the chunks you cut out will span an area <b><i>larger</b></i> than the original peaks.  In our example the peak-area will 
+in fact span 3 of the peaks in the source (0.3 = 3 x 0.1), so the output 
+sequence of events would be:
+	<ul>
+	<li>The peak-area around A, in fact spanning peaks ABC</li>
+	<li>The peak-area around B, spanning peaks BCD</li>
+	<li>The peak-area around C, spanning peaks CDE</li>
+	<li>etc</li>
+	</ul>
+Thus the output sequence of events would be ABC...BCD...CDE...
+</p>
+
+<p>
+In a typical source sound, of course, not all the peaks are of the same length, but the same reasoning applies.  If the <i>pkwidth</i> parameter 
+<b><i>exceeds</i></b> the width of any source peak (A), then a little bit 
+(or a lot) of the succeeding peak(s) may be grabbed into the peak-area associated with peak A.
+</p>
+
+<p>
+In our example, if the peaks in the source are at <br>
+0.1 : 0.2 : 0.3 : 0.4 : 0.5 : 0.6 : 0.7 : 0.8 : 0.9 : and 1.0 seconds<br>
+and the <i>pkwidth</i> is defined as 0.3 secs, the source, will be cut 
+into <i>overlapping</i> chunks at, say,
+	<ul>
+	<li>0 &#150; 0.3 secs</li>
+	<li>0.1 &#150; 0.4 secs</li>
+	<li>0.2 &#150; 0.5 secs</li>
+	<li>etc.</li>
+	</ul>
+which are then reassembled into the output at the specified tempo.
+</p>
+
+<h4>
+<i>Pkwidth</i> in Mode 2
+</h4>
+
+<p>In Mode <b>2</b> we are creating an envelope over the source <i>without 
+changing its tempo</i>.  In this case it is not possible to have a 
+<i>pkwidth</i> which is larger than the peakwidths in the source 
+because, to achieve that, the envelope would have to back-track on 
+itself.
+</p>
+
+<p>
+The envelope is a sequence of time-level pairs, with times <b><i>in 
+ascending order</i></b>, which is to be applied to the original source 
+sound.  Each segment of the envelope (corresponding to a single peak) 
+has 4 values: <b>0 1 1 0</b> going from silent, to full level, where it 
+remains for the peakwidth, then descends to silence.
+</p>
+
+<p>
+To simplify the discussion, let's suppose that the envelope rise and decay 
+durations are zero, so we can think of just the <i>two</i> times 
+corresponding to where the enveloping peak starts and ends.  If the 
+<i>peakwidth</i> were specified as <b><i>longer</i></b> than the peaks 
+in the input, the envelope times (for our example sound) would have to 
+be at:
+	<ul>
+	<li>0.0 and	0.3	(for the start and end of peak 1)</li>
+	<li>0.1 and	0.4	(for the start and end of peak 2)</li>
+	<li>0.2 and	0.5	(for the start and end of peak 3)</li>
+	<li>etc.</li>
+	</ul>
+so the time sequence in the envelope would have to be:<br>
+<b>0 : 0.3 : 0.1 : 0.4 : 0.2 : 0.5</b>.  But these times are 
+<b><i>not</b></i> in ascending order, so the envelope data is not valid.
+</p>
+
+<p>
+It is clear from this that the <i>pkwidth</i> in Mode <b>2</b> has to be 
+less than (or equal to) the width of the input peaks in the source 
+material, or the enveloping will fail.
+	<ul>
+	<li>Where <i>pkwidth</i> has a fixed value, it must therefore be 
+	less than (or equal to) the <b><i>minimum</b></i> peak width in 
+	the input.</li>
+	<li>Where the <i>pkwidth</i> parameter varies over time, at the 
+	time of each input peak it must less than (or equal to) the peak 
+	width in the input at that time.</li>
+	</ul>
+The input peakwidth can be judged by looking at the sound waveform, or 
+guessed and the <i>pkwidth</i> parameter subsequently adjusted until it 
+is accepted as a valid value by Mode <b>2</b>.
+</p>
+
+<p>
+Mode <b>2</b> finds the peaks and produces generates an envelope which is written to the outfile as a text file of <i>time value</i> pairs.  This envelope can be applied to the original soundfile to isolate those 
+peaks <i>while preserving their original tempo</i>.  This can be done 
+with <a href = "cgroenvl.htm#IMPOSE">ENVEL IMPOSE</a>, Mode <b>3</b> 
+(takes a breakpoint file as input).
+</p>
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Mode <b>1</b> can be used to restructure a sound into (regularly 
+spaced) staccato bursts at varying tempi, and given the maximum 
+value for <i>tempo</i> can be sped up considerably.  They can also 
+be slowed down (spread out) to well less than 1 per second.  These 
+will normally produce a regularly spaced series of pulses at the 
+specified tempo.
+</p>
+
+<p>
+However, a very wide <i>pkwidth</i> (100+) together with a fast 
+<i>tempo</i> (300+) will produce overlapping which may result in 
+rhythms that may appear to be irregular.  On the other hand, a narrow 
+<i>pkwidth</i> (e.g., 30) and a fast <i>tempo</i> (e.g., 700) seems 
+to produce sub-pulses between the main peaks &#150; hard to describe.  
+The peaks are spread out nicely when the <i>tempo</i> is very slow 
+(e.g., 30).
+</p>
+
+<p>
+Bear in mind that <i>tempo</i> is a time-varying parameter!  
+</p>
+
+<p>
+The amount of original signal coming through can be increased 
+by using higher values for <i>pkwidth</i>.  The combination of 
+a high <i>tempo</i> and a wide <i>pkwidth</i> will result in 
+overlaps and repetitions &#150; indeed, some rearrangement is 
+likely to take place, with peaks later in the source appearing 
+earlier in the output.
+</p>
+
+<p>
+Mode <b>2</b> is useful for rhythmicising musical materials which 
+have definable peaks by aurally isolating those peaks.  Speech 
+or melodies on instruments with attack-decay type events, such as 
+guitar, provide good source material for this process.
+</p>
+</blockquote>
+
+<p>
+End of ENVNU PEAKCHOP<br />
+<a href="#ENVNULIST"><b>Return</b></a> to List of ENVNU functions at top 
+of this file<br />
+<a href="ccdpndex.htm" Target = "_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 4 Apr 2023 for CDP8<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

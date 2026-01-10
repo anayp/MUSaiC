@@ -1,0 +1,155 @@
+<html>
+<!-- extun1.htm - tuning of spectra tour page -->
+<!-- Individual pages name format: extex1.htm and extex1mo(re).htm -->
+<!-- COLOURS: FFD700=GOLD  FFFFF0=IVORY  EEE8AA=PALEGOLDENROD -->
+<!-- COLOURS: FFF8DC=CORNSILK 0000CD=MEDIUMBLUE B0E0E6=POWDERBLUE -->
+<!-- COLOURS: FFFACD=LEMONCHIFFON FFFFFF=WHITE -->
+
+<head>
+<meta name="GENERATOR" content="Prepared with EMACS text editor">
+<LINK REL="stylesheet" TITLE="CDP Style Sheet" HREF="cdpcssdf.css">
+<link rel="icon"  href="../images/cdp_favicon.ico">
+<title>Sound Example: Tuning</title>
+</head>
+
+<body bgcolor="#FFFFFF" background="cdpwatermark.gif" bgproperties="fixed">
+
+<div>
+<p>
+<IMG SRC="bannersw.gif" alt="[CDP Logo & Software Banner]"></a>
+</p>
+</div
+
+<p>
+<div>
+<table border="0" cellpadding="3">
+<tr>
+<td align="left"><a href="cdptour.htm"><b>Return</b></a> to list of sound 
+examples.</td>
+<td align="right"><a href="extex1.htm"><b>Continue</b></a> to next sound 
+example on the tour.</td>
+</tr>
+</table>
+</div>
+</p>
+
+<p>
+<div align="center">
+<table cellspacing="3" bgcolor="#0000CD" cellpadding="3">
+<caption><h1>CDP Sound Examples &#150; SPECTRAL TUNING</h1></caption>
+
+<tr>
+<td colspan="2" bgcolor="#FFFACD"><h2 align=center>Tuning a sound's 
+spectrum to a user-defined chord</h2></td>
+</tr>
+
+<tr>
+<td bgcolor="#FFFFF0"><h3 align="center">SOURCE SOUND<br><p></p>
+<a href="horn.mp3">horn.mp3</a> (French Horn, ca. C&#35; above Middle C)</h3></td>
+<td bgcolor="#EEE8AA"><h3 align="center">TRANSFORMATION<br><p></p>
+<a href="extun1.mp3">extun1.mp3</a></h3></td>
+</tr>
+
+<tr>
+<td colspan="2" bgcolor="#FFFFFF"><h3 align="center">DESCRIPTION<br>
+&#126; CDP Function: PITCH TUNE &#126;</h3><p></p>
+	<ul>
+	<li>This tuning function operates in the Spectral Domain.  Its 
+	input is therefore an analysis file.</li><br>
+	<br>
+	<li>You can define the chord either in frequencies (Hz) or as 
+	MIDI Pitch Values.  Note that the CDP documentation includes 
+	a chart of 'Equivalent Pitch Notations' to help do this.</li><br>
+	<br>
+	<li>The tuning happens <i>within the spectrum</i> of the sound.  
+	The sound is not duplicated at different pitches (a mixing 
+	operation), but the frequencies, the partials within the 
+	spectrum, are moved where possible and highlighted to match 
+	the pitches defined by the user.  Non-template partials are 
+	then discarded.</li><br>
+	<br>
+	<li>I think it is true to say that this tuning is enhanced if 
+	the tuning pitches are within that part of the spectrum which 
+	has the most energy (loudest partials).  The spectral information 
+	function PEAK locates the time-varying energy centre of the 
+	spectrum.</li><br>
+	<br>
+	<li>Experience has shown that Richard Dobson was right to advise 
+	that fairly widely spaced pitches, as in 'open chord' formations 
+	produce a better result.  When the tuning pitches are close 
+	together, a good part of the original sound is 'let through' and 
+	the clarity of the tuning is less effective.</li><br>
+	<br>
+	</ul>
+<p align="right"><a href="extun1mo.htm"><b>Additional Information</b></a>
+</p></td>
+</tr>
+
+<tr>
+<td bgcolor="#FFFFF0"><h3 align="center">PARAMETER SETTINGS<br>
+(Click on image to view fullsize)</h3>
+<div>
+<a href="extun1dbx.gif"><img src="extun1dbxthumb.gif" ALT="[pitch tune 
+parameters dialogue box]" align="center"></a>
+</div></td>
+<td bgcolor="#EEE8AA"><h3 align="center">KEY POINTS</h3><p></p>
+	<ul>
+	<li>As with many CDP functions, you have options which affect 
+	the degree to which the original sound is retained.  In this 
+	case, the 0 values allow the maximum amount of</li><br>
+	<br>
+	<li>In this case, the 0 values allow the maximum amount of 
+	original sound to remain, and the 1 values emphasise the tuning 
+	rather than the original sound.  Inbetween values allow you 
+	to find the right balance point for your musical context, and 
+	the parameters can be time-varying (automated changes).</li><br>
+	<br>
+	<li>Thus <i>focus</i> is like Q: the degree to which the 
+	function narrows to the defined pitches.</li><br>
+	<br>
+	<li><i>Clarity</i> relates to how much the non-template partials 
+	are suppressed.</li><br>
+	<br>
+	<li>And <i>trace</i>, like the function HILITE TRACE, controls 
+	the number of spectral components to retain in each analysis 
+	window.</li><br>
+	<br>
+	<li>Finally, <i>basscut</i> enables you to specify at which 
+	frequency to begin tuning: above is tuned, below is left as it 
+	is.</li><br>
+	<br>
+	</ul>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" bgcolor="#FFF8DC"><h3>SUPPLEMENTARY FILES USED</h3><br>
+<p>
+<b>User-Defined Tuning Pitches</b> (Given as MIDI Pitch Values)
+<pre>
+[miditata.tun]
+48 55 58 62 69 76
+</pre>
+</p>
+
+<p>
+These pitches are, in ascending order, Low C (48), Low G (55), Bb 
+below Middle C (58), D above Middle C (62), A above Middle C (69), 
+and E above High C (76):<br>
+<br>
+<IMG SRC="extun1mpvs.gif"></a>
+</p>
+</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+<p>
+Last updated: 7 December 2003
+</p>
+
+</body>
+
+</html>

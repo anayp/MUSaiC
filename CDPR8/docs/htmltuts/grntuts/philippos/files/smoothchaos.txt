@@ -1,0 +1,16 @@
+		CDP GRAINMILL DATA FILE
+
+Input file = C:\Cdpr5\Htmltuts\Grntuts\philippos\horn.wav
+Infile Duration = 5.3862 secs
+Outfile = 
+Working Directory = C:\Cdpr5\Htmltuts\Grntuts\philippos
+
+TIMESTRETCH:	1.8360
+DENSITY:	10.1480		50.4315
+GRAINSIZE:	100.3900
+PITCH:		-6.0000		6.0000
+LOUDNESS:		0.0000 dB
+SPACE:		0.0000		1.0000
+SCATTER		0.9500
+WANDER:		0.0000
+DURATION:	9.7048 secs

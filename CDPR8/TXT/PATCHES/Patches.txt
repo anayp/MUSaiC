@@ -1,0 +1,10 @@
+TUTORIAL\Blur-PchExagg.ssp
+TUTORIAL\VBankStack.ssp
+TUTORIAL\BellChord.ssp
+TUTORIAL\MorphToVBank.ssp
+TUTORIAL\BlurTune.ssp
+TUTORIAL\SplitAccu.ssp
+TUTORIAL\Exciting.ssp
+TUTORIAL\3octaveBlur.ssp
+TUTORIAL\Variverb.ssp
+TUTORIAL\megapatch.ssp

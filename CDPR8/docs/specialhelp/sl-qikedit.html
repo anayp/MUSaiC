@@ -1,0 +1,790 @@
+<html>
+<!-- SL-QIKEDIT.html -->
+
+<meta>
+<title>Sound Loom QIKEDIT</title>
+</meta>
+
+<body>
+
+<div align=center>
+<h1 style="color: darkmagenta"><a name="GRAFTOP"><b><i>Using the </i>Qikedit<i> Mixfile Editor to Create a Piece.</i></b></a></h1>
+</div>
+
+<blockquote>
+
+The Sound Loom's <i><b>QikEdit</b></i> page offers a powerful way to compose an extended section of music, calling on all the CDP's processes as you do so.<br>
+<br>
+<li>The sounds to be assembled into a final piece (or section of a piece) can be gradually assembled on the <i>QikEdit</i> page (using "ADD NEW FILE AT" and so on), and their position, sequence and level in the mix
+modified, as you proceed.<br>
+<li>The mix can be rapidly recalled from the workspace by hitting "<b>Control-m</b>" <b>3</b> times.<br>
+This recalls the last mix you were working on, and places you on the Qikedit page.<br>
+<li>Hitting "<b>Control-m</b>" just twice (starting from the Workspace page) takes you to the mix parameter page from which you can (re)run the mix. (You might want to do this after (changing and) overwriting a sound in the mixfile.<br>
+<li>If you are working on more than one mix, you may specify one of these as the <b>Main mix</b> (see the <b>Mixfiles</b> options on the "SELECTED FILES OF TYPE" menu on the Workspace), which is then <i> specifically</i> recalled using "<b>Control M</b>" (upper case "<b>M</b>").<br>
+You can change which mixfile is specified as the <i>Main Mix</i> at any time.<br>
+<br>
+In addition, one mixfile can be added to another (using "ADD MIXFILE (AT)"), or a subset of a mixfile can be abstracted 
+as a separate "submix" ("SOUNDS TO SUBMIX"), allowing detailed moments or sections of a piece to be constructed separately
+and then reassembled into a larger whole.<br>
+<br>
+<i>QikEdit</i> has special functions, accessed from buttons on the right of the display, to allow the timing structure, or sound pattern of the mix to be modified, for lining up events within specified sounds, and so on.
+In particular <i>QikEdit</i> offers rapid options to jump between CDP processing, and mixfile construction, and shortcuts for modifying the output routing of multichannel files.
+
+<h2 style="color: darkmagenta"><a name=BOX>The <i>QikEdit</i> Value box</h2></a>
+
+Parameters for the many <i>QikEdit</i> functions are entered in the <b>Value</b> box to the top right of the display.<br>
+<br>
+Apart from directly typing in values, there are many ways to grab values from the mixfile itself.<br>
+
+<ul>
+<li>Specific times within the mixfile can be found, or specified, and sent to the <b>Value</b> box.
+<ul>
+<li>the PARAM(S) IN LINE menu
+<ul>
+<li>The <b>start time</b> of a selected sound
+<li>The <b>end time</b> of a selected sound
+<li>The <b>duration</b> of a selected sound
+</ul>
+can be sent to the <b>Value</b> box.
+<li>The VIEW SELECTED SOUND button gives a graphic display of a selected sound, and allows
+<ul>
+<li>a time marked within the sound or
+<li>a duration marked within the sound
+</ul>
+to be sent to the <b>Value</b> box.
+</ul>
+<li> The TAP TIME button allows a specific duration to be specified (by tapping the button twice).
+<li> The MM menu allows metronome marks to be set, and times at specific metronome beats to be sent to the <b>Value</b> box.
+</ul>
+In addition, values in the <b>Value</b> box can be sent<br>
+<ul>
+<li> To the <b>Calculator</b>, where mathematical operations can be performed, and the resulting value returned here.
+<li> Directly to the mixfile's parameter page.
+</ul>
+<h2 style="color: darkmagenta">Replacing sounds in, or adding sounds to, the mix</h2>
+<h3 style="color: darkmagenta">Replacing sounds in the mix</h3>
+<ul>
+
+<li><b>CHANGE FILE TO</b>: If you hilight a sound, then click on this option<br>
+you will be presented with a list of the files currently on the workspace (with <i>search</i> options etc.)<br>
+from which you can select a file to replace the one you have  highlighted in the mix.
+<br><br>
+<li><b>TO LAST MADE</b>: This works exactly as CHANGE FILE TO except that it automatically grabs the first soundfile
+on the workspace.<br>
+This is useful if you wish to modify a sound, and then replace the sound with its modified version.<br>
+</ul>
+See <a href=#TOCDP><b>Modifying the sounds in the MIX, using any CDP process</b></a> above.
+<br><br>
+<li><b>CHANGE EVERY</b>: This also works like CHANGE FILE TO but will change <i>every</i> occurence in the mix of the highlighted file
+to the new file you select.
+<br><br>
+<li><b>CHANGE MANY</b>:: This also works like CHANGE FILE TO but will change <i>all</i> the files you highlight in the mix
+to the new file you select.
+<br><br>
+</ul>
+<h3 style="color: darkmagenta">Adding New sounds to the mix</h3>
+<ul>
+<li><b>ADD NEW FILE (AT)</b>: With this option you will be presented with a list of the files currently on the workspace (with <i>search</i> options etc.)<br>
+from which you can select a new file to add to the mix.<br>
+There are threee possible places to add the mnew file..
+<ul>
+<li> At the time specified in the <b>Value</b> box.
+<li> At the time of a sound highlighted in the mixfile display.
+<li> At time 0.0
+</ul>
+If this is ambiguous (e.g. there is a time in the Mb>Value</b> box and also a highlighted line), you will be asked to specify which choice you want.
+<br><br>
+<li><b>LAST MADE (AT)</b>: This works exactly as ADD NEW FILE (AT) except that it automatically grabs the first soundfile
+on the workspace.<br>
+This is useful if have temporarily left the mixfile in order to make new sounds.
+<br><br>
+<li><b>ADD MIXFILE (AT)</b>: Allows the contents of an entire mixfile to be added to the current mix.<br>
+The times of the sounds from the added mixfile will be offset by the time you specify in the <b>Value</b> box.
+So, for example, if the addede mixfile has sounds at 0, 1, 3 and 7<br>
+and <b>Value</b> is set at 10<br>
+these sounds will be added to the current mix at 10, 11, 13 and 17 respectively.
+<br><br>
+These functions may also be useful..
+<br><br>
+<li><b>Show SND DUPLS</b> looks in the mix for any other copies of the (single) highlighted sound, and highlights all of them.
+<br><br>
+<li><b>Show ~ALL~ DUPLS</b> looks for any sounds which are used more than once in the mix, and highlights all of these.
+</ul>
+
+<h2 style="color: darkmagenta"><a name="TOCDP">Modifying the sounds in the MIX, using any CDP process.</h2></a>
+
+While developing a mixfile in the <b?><i>Qikedit</b></i> window, you may decide you want
+to modify a sound, using any of the CDP process.<br>
+You can do this in 5 simple steps.<br>
+<ul>
+<li>(1) Select the line in the mixfile display.
+<li>(2) Hit the "SOUND TO WKSPACE" button. <br>
+<ul>
+<li>This returns you to the Workspace with the file selected on the <i>Chosen Files</i> list.
+</ul>
+<li>(3) Run the CDP process(es) of your choice.
+<li>(4) From the workspace, hit "<b>Control m</b>" three times.<br>
+<ul>
+<li>This returns you to the Qikedit page for the mixfile you were working on.
+<li>The line you originally selected is still highlighted.
+<li><i>(NB: If one of the CDP processes you just ran was itself a <b>Mix</b>,<br>
+you will, instead, have to explicitly select your original mixfile from the Workspace listing)</i>
+</ul>
+<li>(5) Hit the (Change File) "... TO LAST MADE" button.<br>
+The selected file will now be replaced by the file you have just made.
+</ul>
+In a similar way you may want to add a file at the same time as some file in the mix.<br>
+(e.g. a reverberated version of the file). To do this, proceed as above but finally....<br>
+<ul>
+<li>(5) Hit the (Add) "... LAST MADE (AT)" button.<br>
+The new file will be added at the same time as the selected file.
+</ul>
+
+<h2 style="color: darkmagenta">Backing up the new sounds created while constructing a mix.</h2>
+
+While modifying a mixfile, you may create one or more new files which (like all new files) are in the CDP base directory.<br>
+After completing your revisions you will probably  want to backup these new files to an appropriate directory.<br>
+To do this....<br>
+<ul>
+<li>Return to the Workspace, where the mixfile will appear on the <i>Chosen Files</i> list.
+<li>Hit "<b>Control b</b>"
+<ul>
+<li> This will display all the non-backed files in your mixfile, on the <i>Chosen Files</i> listing.
+<li> <i>(Ensure that the "<b>Caps Lock</b>" key is not depressed, as "<b>Control B</b>" displays <b>all</b> the soundfiles in the mix).</i>
+</ul>
+<li> Hit the "<b>Tab</b>" key.
+<ul>
+<li> This will hilight these same files on the Workspace.
+</ul>
+<li> Select (or type in) the Directory you want to use for backup, in the box above the Directory listing in the right hand panel.
+<li> Hit "BACKUP SELECTED NEW FILES", above the Workspace display.
+<ul>
+<li> The mixfile itself will be automatically updated to refer to the backed-up files.
+</ul>
+</ul>
+<h2 style="color: darkmagenta">Changing the entry times of sounds in the mix.</h2>
+
+Any line , or any set of lines, can be selected in the mixfile display panel, and then moved to a new time.<br>
+This will require a time parameter of some kind (e.g. how many seconds forward to move the line(s)).<br>
+The parameter can be written in the <b>Value</b> box at the top right of the display.<br>
+The value must be numeric and can, of course, be fractional.
+<ul>
+<li><b>MOVE TIME --> BY</b> will move the selected sounds forward (later) <b>by</b> the number of seconds in the <i>Value</i> box.<br>
+<br>
+<li><b>MOVE TIME <-- BY</b> will move the selected sounds backwards (earlier) <b>by</b> the number of seconds in the <i>Value</i> box.<br>
+<br>
+<li><b>MOVE TIME(S) TO</b></b> will move the selected sounds <b>to</b> the Time given in the <i>Value</i> box.<br>
+<br>
+<li><b>START OF TIMES TO</b> will move the selected sounds so that the <b>first selected sound</b> moves <b>to</b> the Time in the <i>Value</i> box.<br>
+The other lines will all be moved by the same amount as the first line, so the <i>relative timing of the set of lines is preserved</i>.<br>
+<br>
+<li><b>MIX START TO ZERO</b>: In some curcumstances there is no file in the mix starting at zero time.<br>
+This might happen if, for example, you initially have just one sound in the mix starting at time zero but, for some reason, 
+you decide to delete that sound.<br>
+When the sound is mixed, however, it simply starts from the first sound that it finds i.e. no initial silence is created.<br>
+You can therefore force the mix times to begin at time zero by using this option.<br>
+All timings in the mix are moved so that the first file(s) to sound are placed at zero time.<br>
+This operation has <i>no effect on the mixfile output</i>, as the relative timing  of the mix sounds is preserved.<br>
+<br>
+<li><b>TIME ORDER SOUNDS</b>: If particular sounds in the mix are adjusted forward or backwards in time, the mix lines may no longer be
+in increasing time-order. This option rearranges the selected lines to be in increasing time order.<br>
+(See also <i>OrderAll Lines</i>).
+</ul>
+
+<h2 style="color: darkmagenta">Changing the timing pattern of lines in the mix.</h2>
+
+You may want to change the relationship between the starting times of the lines in the mix in more general ways.<br>
+The <b>Retime</b> options offer various possibilities.<br>
+<ul>
+<li><b>OVERLAP TIMES BY</b> causes the time-values to contract, successively, by the amount specified in the <b>Value</b> box.<br>
+For example, if you select 4 lines lines which start at <b>10</b>, <b>14</b>, <b>30</b> and <b>33</b>, and you enter the value <b>1.1</b> in the <i>Value</i> box<br>
+<ul>
+<li>The first line (at <b>10</b>) will remain where it is.
+<li>The 2nd lines will move back (overlap) by <b>1.1</b>, moving from <b>14</b> to <b>12.9</b>.
+<li>The 3rd line will move back (overlap) by <b>2.2</b>, moving from <b>30</b> to <b>27.8</b>.
+<li>The 4th line will move back (overlap) by <b>3.3</b>, moving from <b>33</b> to <b>29.7</b>.
+</ul>
+<i>NB: it is the start-times of the lines which are "overlapped" in this way, not the sounds themselves.</i><br>
+For operations relating to the sounds themselves, see the <b>Sound Sync</b> options below.<br>
+<br>
+<li><b>STAGGER BY</b> causes the time-values to expand, successively, by the amount specified in the <b>Value</b> box.<br>
+It is therefore the opposite of <i>OVERLAP TIMES BY</i><br>
+For example, if you select 4 lines lines which start at <b>10</b>, <b>14</b>, <b>30</b> and <b>33</b>, and you enter the value <b>1.1</b> in the <i>Value</i> box<br>
+<ul>
+<li>The first line (at <b>10</b>) will remain where it is.
+<li>The 2nd lines will be moved forward (overlap) by <b>1.1</b>, moving from <b>14</b> to <b>15.1</b>.
+<li>The 3rd line will be moved forward (overlap) by <b>2.2</b>, moving from <b>30</b> to <b>32.2</b>.
+<li>The 4th line will be moved forward (overlap) by <b>3.3</b>, moving from <b>33</b> to <b>36.3</b>.
+</ul>
+<br>
+<li><b>STRETCH TIMES BY</b>	moves all the times of the selected lines by the factor in <b>Value</b>.<br>
+Note that this affects only the entry times of sounds. It does <i>not</i> time-stretch the sounds themselves.<br>
+For example, if you select 3 lines lines which start at <b>10</b>, <b>12</b>, <b>15</b> and you enter the value <b>1.5</b> in the <i>Value</i> box<br>
+the lines will be moved to <b>15</b>, <b>18</b> and <b>22.5</b>, as follows.
+<ul>
+<li>The first line (at <b>10</b>) will be moved to <b>15</b> (10 * 1.5 = 15).
+<li>The second line (at <b>12</b>) will be moved to <b>18</b> (12 * 1.5 = 18).
+<li>The third line (at <b>15</b>) will be moved to <b>22.5</b> (15 * 1.5 = 22.5).
+</ul>
+If applied to the whole mix, this can be thought of as changing the <b>tempo</b> of the events in the mix.<br>
+If applied to a selected set of lines <i>which do not start at time zero</i>, not only will their tempo be changed 
+but they will be moved to a later (or earlier) time within the mix.<br>
+To avoid this you can use...<br>
+<br>
+<li><b>STRETCH STEPS BY</b>: This will expand the time-steps between the selected sounds.<br>
+This can be thought of as changing the <b>tempo</b> of the selected events in the mix.<br>
+but does <i>not</i> move the start-time of the group of selected lines.<br>
+(<i>The fixed start-time of the group is assumed to be the time of the <b>first</b> line in the selection.</i>).<br>
+For example, if you select 3 lines lines which start at <b>10</b>, <b>12</b> and <b>15</b> and you enter the value <b>1.5</b> in the <b>Value</b> box<br>
+the lines will be moved to <b>10</b>, <b>13</b> and <b>17.5</b>, as follows.
+<ul>
+<li>The first line (at <b>10</b>) will remain where it is.
+<li>The gap between lines 1 and 2 (12 - 10 = <b>2</b>) will be stretched by <b>1.5</b>, becoming <b>3</b> (2 * 1.5 = 3)
+and moving line 2 to <b>13</b> (10 + 3 = 13).
+<li>The gap between lines 2 and 3 (15 - 12 = <b>3</b>) will be stretched by <b>1.5</b>, becoming <b>4.5</b> (3 * 1.5 = 4.5)
+and moving line 3 to <b>17.5</b> (13 + 4.5 = 17.5).
+</ul>
+<br>
+<li><b>SET STEPS TO</b>:
+This can be thought of as re-specifying the <b>rhythm</b> of the selected events in the mix.<br>
+For example, if you select 3 lines lines which start at <b>10</b>, <b>12</b>, <b>15</b> and <b>20</b> and you enter the value <b>1.5</b> in the <i>Value</i> box<br>
+the lines will be moved to the regularly-stepped positions <b>10</b>, <b>11.5</b>, <b>13</b> and <b>14.5</b>, as follows.
+<ul>
+<li>The first line (at <b>10</b>) will remain where it is.
+<li>The second line (at <b>12</b>) will be moved to <b>11.5</b> (10 + 1.5 = 11.5).
+<li>The third line (at <b>15</b>) will be moved to <b>13</b>  (11.5 + 1.5 = 13).
+<li>The fourth line (at <b>20</b>) will be moved to <b>14.5</b> (13 + 1.5 = 14.5).
+</ul>
+<br>
+<li><b>QUANTISE TIMES TO</b> forces the times of the selected lines to lie on values which are multiples of the <i>quantisation time</i> in <b>Value</b>.<br>
+If you set the quantisation time to <b>0.1</b> seconds, the selected lines will be forced to (the closest) times which are multiples of <b>0.1</b>.<br>
+For example, if you select 3 lines lines which start at <b>10.32</b>, <b>12.82</b>, and <b>12.86</b> and you enter the value <b>0.1</b> in the <i>Value</i> box<br>
+<ul>
+<li>The first line (at <b>10.32</b>) will be moved to <b>10.3</b>
+<li>The second line (at <b>12.82</b>) will be moved to <b>12.8</b>.
+<li>The third line (at <b>12.86</b>) will be moved to <b>12.9</b>.
+</ul>
+<br>
+<li><b>ROUND ALL TIMES</b> and <b>ROUND SELECTED</b> can be used to force time values to 4 significant figures.<br>
+This should have no audible effect on the mix output (except in very special circumstances), but may make the mixfile more legible.
+</ul>
+<br>
+<h3 style="color: darkmagenta">The time-pattern of the mix can be made more <i>fluid</i> (or erratic) with the following options</h3>
+<ul>
+<li><b>SHAKE TIMES BY</b> will <b>randomise</b> the timings of the selected lines.
+<ul>
+</b><li>If <b>value</b> is set at <b>0</b> no randomisation occurs.<br>
+</b><li>The <b>value</b> <b>1</b> produces the maximum possible randomisation,<br>which means that the line can be moved 
+anywhere in the range from<br>halfway to the time of the previous line to<br> halfway to the time of the next line.<br>
+</b><li>Intermediate values produce randomisation of timing in between these two extremes.<br>
+</ul>
+<br>
+<li><b>SHAKE TIMES WITHIN</b> will also <b>randomise</b> the timings of the selected lines <i>but within a specified time-variation limit</i>.<br>
+So if the <b>Value</b> is set at <b>0.1</b> the selected lines can be randomly moved by <i>no more than</i> <b>0.1</b> seconds backwards or forwards<br>
+(<i>but no more than halfway towards the previous or the next line</i>).<br>
+This process can be useful to "naturalise" over-regular rhythmic material.
+</ul>
+<h3 style="color: darkmagenta">The time-pattern of the mix can be altered more radically by using the following options</h3>
+
+<li><b>RETRO TIME PATTERN</b> Reverses the timing <i>pattern</i> of the selected lines.<br>
+<i>It does <b>not</b> change the <b>order</b> of the selected sounds.</i>
+For example, with 4 sounds at times <b>10</b>, <b>11</b>, <b>15</b> and <b>26</b><br>
+the lines will be moved to <b>10</b>, <b>21</b>, <b>25</b> and <b>26</b>, as follows....
+<ul>
+<li> The pattern of time-steps is <b>1</b> (10 to 11). <b>4</b> (11 to 15) and <b>11</b> (15 to 26).
+<li> This pattern is reversed, to give steps of <b>11 4</b> and <b>1</b>.
+<li> The retimed lines are then at <b>10</b>, <b>21</b> (10 + 11), <b>25</b> (21 + 4), and <b>26</b> (25+ 1).
+</ul>
+In this example a ritardando of sound entries has been inverted to produce an accelerando.<br>
+<br>
+<li><b>CREATE TIME GRID</b> and <b>GET GRID VALUE</b> can be used to generate a set of time values lying on a specific quantisation grid (see above).<br>
+Once this is done, a (single) selected line can be placed at a specific time selected from this grid.
+</ul>
+
+<h2 style="color: darkmagenta">Changing timing patterns related to events within or between the sounds</h2>
+
+Sometimes events within, or between, sounds need to be aligned in specific ways. The following options are available...
+<br><br>
+<li><b>STRETCH SILENCE BY</b>: Allows any silence intervening between the end of one sound and the start of another<br>
+to be stretched by the factor in the <b>Value</b> box.<br>
+Note that this process assumes a sound in a soundfile ends at the end of the soundfile.<br>
+It cannot take into account any silence <i>within</i> the soundfile itself.<br>
+<br>
+<li><b>FILES END-TO-END</b>: This will line up selected soundfiles so that the next (selected) file starts where the previous (selected) file ends.<br>
+Again, this process assumes a sound in a soundfile ends at the end of the soundfile.<br>
+It cannot take into account any silence <i>within</i> the soundfile itself.<br>
+<br>
+<li><b>LINE UP AT MARK</b>: This process will line up an event <i>within</i> a selected soundfile, with a time specified in <b>Value</b>.<br>
+The Value must be set first.<br>
+<li>Note that specific times within the mixfile can be found, or specified, and sent to the <b>Value</b> box.
+<ul>
+<li>the PARAM(S) IN LINE menu
+<ul>
+<li>The <b>start time</b> of a selected sound
+<li>The <b>end time</b> of a selected sound
+<li>The <b>duration</b> of a selected sound
+</ul>
+can be sent to the <b>Value</b> box.
+<li>The VIEW SELECTED SOUND button gives a graphic display of a selected sound, and allows
+<ul>
+<li>a time marked within the sound or
+<li>a duration marked within the sound
+</ul>
+to be sent to the <b>Value</b> box.
+<li> The TAP TIME button allows a specific duration to be specified (by tapping the button twice).
+<li> The MM menu allows metronome marks to be set, and times at specific metronome beats to be sent to the <b>Value</b> box.
+</ul>
+<li>Once the value is set, and this option is selected, the selected sound is displayed graphically,<br>
+from where it can be played and a synchronisation point marked.<br>
+The starttime of the sound is then moved so that the synchronsation point occurs at the time in <b>Value</b>.<br>
+More than one sound can be selected and synchronised in this way.<br>
+<br>
+<li><b>SYNC AT MARKS</b> allows specific events with <i>two</i> selected sounds to be synchronised.<br>
+Once this option is selected, the selected sounds are displayed graphically,<br>
+from where they can be played and the synchronisation point in each file marked.<br>
+The starttime of the <i>second</i> sound is then moved so that the synchronsation points in the two files coincide.<br>
+If you want the <i>first</i> file to move, you must use <b>REVERSE ORDER</b> to reverse the order of the lines, before proceeding.<br>
+<br>
+<li><b>OFFSET MARKS</b> allows specific events with <i>two</i> selected sounds to be offset by the time specified in the <b>Value</b> box.<br>
+Once this option is selected, the selected sounds are displayed graphically,<br>
+from where they can be played and the synchronisation point in each file marked.<br>
+The starttime of the <i>second</i> sound is then moved so that the synchronsation points in the two files are offset by the specified amount.<br>
+If you want the <i>first</i> file to move, you must use <b>REVERSE ORDER</b> to reverse the order of the lines, before proceeding.<br>
+
+<h2 style="color: darkmagenta">Altering the Pattern of sounds in the mix</h2>
+
+You may wish to alter the pattern of sounds (rather than their timings) in the mix.<br>
+This can be done with the following options.<br>
+<ul>
+<li><b>SWAP FILES</b>: Will reverse the order of the two sounds selected.
+<br><br>
+<li><b>RETRO FILE ORDER</b>: Will reverse the order of all the sounds selected.<br>
+For example, with
+<ul>
+<li>Sound A at 0
+<li>Sound B at 2 seconds
+<li>sound C at 10 and 
+<li>sound D at 11
+</ul>
+this process will move the sounds, so that
+<ul>
+<li>Sound D is at 0
+<li>Sound C at 2
+<li>sound B at 10 and
+<li>sound A at 11.
+</ul>
+All the (level and routing) data associated with each sound is moved with it. So if<br>
+<ul>
+<li>sound A starts with level <b>0.3</b> and 
+<li>sound D with level <b>1.0</b> 
+</ul>
+each will end up with its <i>original</i> level.
+<br><br>
+<li><b>RANDOMISE ORDER</b>: Will randomise the order of the sounds selected.<br>
+All the (level and routing) data associated with each sound is moved with it.<br>
+For example, with 
+<ul>
+<li>Sound A at 0 with level 0.3
+<li>Sound B at 2 with level 0.5
+<li>sound C at 10 with level 0.7 and 
+<li>sound D at 11 with level 0.9
+</ul>
+If the randomisation produces the sequence BDAC, the result will be
+<ul>
+<li>Sound B at 0 with level 0.5
+<li>Sound D at 2 with level 0.9
+<li>sound A at 10 with level 0.3 and 
+<li>sound C at 11 with level 0.7
+</ul>
+<br>
+<li><b>RANDOMISE NAMES</b>: Will randomise the order of the souds <i>but not the level and routing data</i>.<br>
+For example, with 
+<ul>
+<li>Sound A at 0 with level 0.3
+<li>Sound B at 2 with level 0.5
+<li>sound C at 10 with level 0.7 and 
+<li>sound D at 11 with level 0.9
+</ul>
+If the randomisation produces the sequence BDAC, the result will be
+<ul>
+<li>Sound B at 0 with level 0.3
+<li>Sound D at 2 with level 0.5
+<li>sound A at 10 with level 0.7 and 
+<li>sound C at 11 with level 0.9
+</ul>
+This means that this process can only be applied to sounds with the <i>same number of channels</i>.<br>
+(Otherwise the routing data of 2 swapped files may be incompatible).<br>
+<br>
+</ul>
+<h3 style="color: darkmagenta">Sounds within a mix can be duplicated within the mix....</h3>
+<ul>
+<li><b>COPY FILE(S) TO</b>: will move all the selected sounds to the Time specified in the <B>Value</b> box.<br>
+For example, with Value <b>5</b> and with
+<ul>
+<li>Sound A at 0
+<li>Sound B at 2 seconds
+<li>sound C at 10 and 
+<li>sound D at 11
+</ul>
+this process will move the sounds, so that
+<ul>
+<li>Sound A at 5
+<li>Sound B at 5
+<li>sound C at 5
+<li>sound D at 5
+</ul>
+Note that specific times within the mixfile can be found, or specified, and sent to the <b>Value</b> box.<br>
+See <a href=#BOX><b>The QikEdit Value Box</b></a> above.
+
+<br><br>
+<li><b>COPY FILE SEQ</b>: will move all the selected ,<i>sounds, preserving their relative timings</i>,<br>
+so that the first of the selected lines ends up at the Time specified in the <B>Value</b> box.<br>
+For example, with Value <b>5</b> and with
+<ul>
+<li>Sound A at 0
+<li>Sound B at 2 seconds
+<li>sound C at 10 and 
+<li>sound D at 11
+</ul>
+this process will move the sounds, so that
+<ul>
+<li>Sound A at 5
+<li>Sound B at 7
+<li>sound C at 15
+<li>sound D at 16
+</ul>
+Note that specific times within the mixfile can be found, or specified, and sent to the <b>Value</b> box.<br>
+See <a href=#BOX><b>The QikEdit Value Box</b></a> above.
+
+<br><br>
+<li><b>REPLACE NEXT</b>: If you select a sound, click on this option, and then select a 2nd file<br>
+the <i>second</i> file will be replaced in the mix by the first.
+<br><br>
+</ul>
+<h2 style="color: darkmagenta">Modifying levels in the mix</h2>
+
+The loudness of specific sounds, or sets of sounds, can be altered, using ...
+<br>
+<ul>
+<li><b>AMPLIFY BY</b> which mutiplies the loudness of sounds in the selected lines by the value on the <b>Value</b> box.
+<li><b>SET LEVEL TO</b> which sets the loudness of sounds in the selected lines to the value on the <b>Value</b> box.
+<li><b>STEP LEVELS BY</b> grades the levels of the selected lines by the value on the <b>Value</b> box.<br>
+For example, of we have 3 selected lines with the levels
+<ul>
+<li>0.7
+<li>1.0
+<li>0.3
+<li>1.0
+</ul>
+and we set <b>Value</b> to <b>0.5</b>, the output levels will be
+<ul>
+<li>0.7	   (No change)
+<li>0.35   (<b>0.7</b> * <b>0.5</b>)
+<li>0.175  (<b>0.7</b> * <b>0.5</b> * <b>0.5</b>)
+<li>0.0875 (<b>0.7</b> * <b>0.5</b> * <b>0.5</b> * <b>0.5</b>)
+</ul>
+This may be useful in creating diminuendos or crescendos in sequences of events.
+</ul>
+With <b>Multichannel Mixes</b>, you may  examine, and modify the level of individual channels of a sound in the mix.<br>
+The <b>Channel Levels</b> options are above and to the right of the main mixfile display ....
+<br><br>
+<ul>
+<li><b>SEE</b> will examine the levels in each channel of the selected sound and display these.
+<li><b>ATTENUATE</b> offers the option to attenuate the level in <i>individual</i> channels, when these injected into the mix output.<br>
+(The channel output level information in the mixfile is modified).
+</ul>
+
+
+<h2 style="color: darkmagenta">Modifying the spatialisation of the mix data.</h2>
+
+<h3 style="color: darkmagenta">Standard (mono and stereo) mixfiles</h3>
+
+<li><b>SET POSITION</b> Sets the position of the selected sound to the value in the <b>Value</b> box.<br>
+Note that, if applied to a <i>stereo</i> file, <i>both</i> channels will be directed to the specified position.<br>
+Positions can be 
+<ul>
+<li> Numeric (<b>-1</b> represents Left, <b>0</b> Centre and <b>1</b> Right<br>
+with intermediate values indicating intermediate positions)
+<li> <b>C</b> for centred.
+<li> <b>L</b> for hard left.
+<li> <b>R</b> for hard right.
+</ul>
+<li><b>OPPOSITE</b> will convert any (valid) position value in the <b>Value</b> box, into its stereo mirror position. So...
+<ul>
+<li> <b>L</b> will go to <b>R</b>, and vice versa.
+<li> <b>0.5</b> will go to <b>-0.5</b>, and vice versa.
+</ul>
+<li><b>SPREAD POSITION</b> can only be applied to sounds <i>not</i> positioned at stereo centre.<br>
+The spread value, in the <b>Value</b> box, must lie between <b>1</b> and <b>-1</b>.<br>
+Positive values force the position closer to the edges of the stereo space.<br>
+Negative values force the position closer to the centre of the stereo space.<br>
+For example, with a spread value of <b>0.5</b>. and selected lines positioned at<br>
+<ul>
+<li>-0.7
+<li>0.0
+<li>0.7
+</ul>
+the lines will be repositioned halfway (0.5) closer to the edges of the stereo space (-1.0 and 1.0), thus<br>
+<ul>
+<li>-0.85 (original distance from <b>-0.7</b> to the edge at <b>-1.0</b> = <b>0.3</b>: this is halved to <b>0.15</b>)
+<li>0.0
+<li>0.85 (original distance from <b>0.7</b> to the edge at <b>1.0</b> = <b>0.3</b>: this is halved to <b>0.15</b>)
+</ul>
+With a spread value of <b>-0.5</b><br>
+the lines will be repositioned halfway (0.5) closer to the centre of the stereo space (0.0), thus<br>
+<ul>
+<li>-0.35 (original distance from <b>-0.7</b> to centre at <b>0.0</b> = <b>0.7</b>: this is halved to <b>0.35</b>)
+<li>0.0
+<li>0.35 (original distance from <b>0.7</b> to centre at <b>0.0</b> = <b>0.7</b>: this is halved to <b>0.35</b>)
+</ul>
+<br>
+<li><b>STEP BETWEEN</b> causes the selected lines to be positioned at equal spatial intervals between<br>
+the position of the first selected line, and the position of the last selected line (whose positions must be different).
+<br><br>
+<li><b>SCATTER POSITION</b> randomly scatters the position of the selected lines by some factor (<b>Value</b>) of their current position.
+<br><br>
+<li><b>MIRROR SOUND</b> moves any selected sound to its mirror position in the stereo space.
+
+<h3 style="color: darkmagenta">Multichannel mixfiles</h3>
+
+The following specifically multichannel options are also available.<br><br>
+<ul>
+<li><b>MORE CHANNELS</b> allows extra channels to be added to the (entire) multichannel mixfile.
+<br><br>
+<li><b>RING -> BILATRL</b> and <b>BILATRL -> RING</b> change the <i> meaning</i> of the output channel numbers used.<br>
+The default (<b>Ring</b>) CDP convention is that channel outputs are numbered from 1 upwards,<br>
+starting at the front centre and moving to the right around the space.</b><br>
+The <b>Bilateral</b> convention numbers 
+<ul>
+<li>the front centre channel number 1<br>
+<li>the pair of channels to the left and right of the centre as 2 and 3<br>
+<li>the pair of channels to the left and right of those as 4 and 5<br>
+<li>etc.
+</ul>
+<br>
+<li><b>MIRROR FRAME</b> mirrors the entire output frame of the mix about either
+<ul>
+<li>A specified channel.<br>
+So, for an 8-channel input file originally routed to output channels 1 2 <b>|3|</b> 4 5 6 7 8<br>
+1:1 2:2 3:3 4:4 5:5 6:6 7:7 8:8<br>
+a mirror about channel 3 would reroute the inputs to   5 4 <b>|3|</b> 2 1 8 7 6 thus<br>
+1:5 2:4 3:3 4:2 5:1 6:8 7:7 8:6<br>
+<li>A specified midpoint between channels (specified by an integer+half value e.g. <b>3.5</b>).<br>
+So, for the same 8-channel input file originally routed to output channels 1 2 3 || 4 5 6 7 8,<br>
+a mirror about midpoint <b>3.5</b> would reroute the inputs to   6 5 4 || 3 2 1 8 7 thus<br>
+1:6 2:5 3:4 4:3 5:2 6:1 7:8 8:7<br>
+</ul>
+<br>
+<li><b>SWAP POSITIONS</b> swaps the output routing of <i>two</i> selected files, and
+<br>
+<li><b>PERMUTE PSITIONS</b> permutes the output routing of <i>several</i> selected files,
+<br>
+ so long as they have <i>the same number of input channels</i>.
+<br><br>
+<li><b>ROTATE PSITIONS</b> rotates the specified output positions (assuming the <b>Ring</b> numbering convention).<br>
+For example, a rotation of <b>2</b> rotates the set of 8 output channels<br>
+1 2 3 4 5 6 7 8<br>
+to<br>
+3 4 5 6 7 8 1 2<br>
+whereas a rotation of <b>-2</b> rotates the same set of 8 output channels<br>
+to<br>
+7 8 1 2 3 4 5 6<br>
+<br>
+<li><b>REROUTE</b> A complete, new, output routing (with levels) can be entered in the <b>Value</b> box and assigned to a selected line.<br>
+However, there are simpler shortcuts for reassigning the routing of multichannel outputs.
+</ul>
+<h2 style="color: darkmagenta">Modifying the (spatial) routing information for multichannel files, using <i>Reroute</i>.</h2>
+
+CDP multichannel mixfiles allow the channels of an input file to be routed in any conceivable way to the mix output channels.<br>
+<ul>
+<li>A single input channel can be routed to several output channels.
+<li>Several input channels can be routed to the same output channel.
+<li>Not all input, or output channels need be used.
+<li>Every routing has its own level assignment.
+<ul>
+<li>For example you can send input channel 1 to output channel 2 with level 1.0<br>
+and input channel 2 also to output channel 2,  but with level 0.3
+</ul>
+</ul>
+This flexiblity, however, means that the routing information for multichannel input files can be quite long.<br>
+<br>
+When a mixfile is created, or when a new file is added to a mix (using e.g. the "ADD NEW FILE (AT)" button) it is assigned 
+the most basic routing.<br>
+e.g. a stereo file to an 8-channel outptut mix will be assigned as<br>
+Input Channel 1 to Output Channel 1<br>
+Input Channel 2 to Output Channel 2<br>
+all at Unity gain (level 1.0).<br>
+An 8 channel input file to an 8-channel outptut mix will be assigned as<br>
+Input Channel 1 to Output Channel 1<br>
+Input Channel 2 to Output Channel 2<br>
+...etc. to<br>
+Input Channel 8 to Output Channel 8<br>
+all at Unity gain (level 1.0).<br>
+and so on.<br>
+<br>
+These can then be modified using the "REROUTE" button.<br><br>
+To simplify the assignment, or reassignment of channel routing in multichannel mixfiles, the "REROUTE" button offers a number of shortcuts.<br>
+These are typed into the "Value" box at the top right of the display.<br>
+<br>
+When the routing information is thus "rerouted" the existing levels are retained.<br>
+However, in some cases the level information can be ambigous
+<br>e.g. if input channel 1 has been sent to one output channel with level A, and to another with level B<br>
+and the rerouting now sends channel 1 to only ONE  output channel, the desired output level is ambiguous.<br>
+<br>
+In these cases you can opt to set the ambigous level to 1.0 (and then modify it with the Level setting buttons).<br>
+<br>
+
+<h3>(1) A Mono input can be routed...</h3>
+<ul>
+<li>to a (different) single output channel by entering then channel number (e.g. "<b>4</b>").
+<li>to a range of different output channels, indicated using a hyphen (e.g. "<b>1-4</b>" or "<b>6-3</b>").<br>
+(<i>In the latter case, output is routed to channels 6, 7, 8, 1, 2, 3</i>).
+<li>to specific output channels entered in a list separated by commas (e.g. "<b>1,3,5</b>").
+</ul>
+<h3>(2) A Stereo input can be routed...</h3>
+<ul>
+<li>to a range (e.g. "<b>3-8</b>") of different output channels<br>
+<ul>
+<li>With an <b>even</b> number (E) of outchans, (e.g. "<b>3-8</b>" offers 6 outchans), you will be offered the choice of<br>
+ <ul>
+<li>(1) E/2 sets of stereo output (e.g. "<b>3-8</b>" gives 3 sets of stereo:  <b>3-4</b>, <b>5-6</b> and <b>7-8</b>).<br>
+<li>(2) E identical mono outputs, mixing the stereo input to mono.<br>
+</ul>
+<li>An <b>odd</b> number (E) of outchans implies the <i>mixing to mono</i> option.<br>
+</ul>
+<br>
+<li>"<b>front stereo</b>" assumes a front-centre-channel (channel <b>1</b>) output layout, and will route....
+<ul>
+<li>input channel 1 to the output on the left of the front-centre channel.
+<li>input channel 2 to the output on the right of the front-centre channel.
+</ul>
+<br>
+<li>"<b>wide stereo</b>" assumes a front-centre-channel (channel <b>1</b>) output layout, and will route....
+<ul>
+<li>input channel 1 to the 2 output channels to the left of the front-centre channel.
+<li>input channel 2 to the 2 output channels to the right of the front-centre channel.
+</ul>
+<br>
+<li>"<b>antiphonal</b>","<b>antiphony</b>" or "<b>antiphon</b>" will route...
+<ul>
+<li> input stereo left channel to all output channels on the left of the output frame, and<br>
+<li> input stereo right channel to all output channels on the right of the output frame.<br>
+<br>
+<li>N.B.<i>If there are an EVEN number of output channels</i>
+<ul>
+<li>If the output layout has channel <b>1</b> at the <b>front centre</b>,<br>
+"<b>antiphon</b>" (etc)  for e.g. 8-channel output<br>
+antiphonates between channels <b>2-3-4</b> and channels <b>6-7-8</b><br>
+omitting the centre-line channels (<b>1</b> & <b>5</b>)<br>
+<li>If not,<br>
+ "<b>Antiphon</b>" (with an upper case "<b>A</b>"), for e.g. an 8 channel output,<br>
+antiphonates between channels <b>1-2-3-4</b> and channels <b>5-6-7-8</b>.<br>
+</ul>
+</ul>
+</ul>
+<h3>(3) An N-channel input, can be routed ...</h3>
+<ul>
+<li>to a range (e.g. "<b>1-3</b>" or "<b>7-2</b>") of <b>N</b> different output channels.<br>
+<li>to a list (e.g. "<b>1,3,5</b>") of <b>N</b> different output channels.<br>
+</ul>
+<h3>(4) An existing line with K output targets can be rerouted to <b>K</b> different output targets.</h3>
+
+e.g. a file with 4 existing output targets, e.g. <br>
+1:1  2:2  3:3  4:4 (with 4 targets which are different) or<br>
+1:1  2:1  3:2  4:2 (with 4 targets some of which are the same) or<br>
+1:1  1:3  2:5  2:7 (with 4 targets, but only 2 inputs used)<br>
+can be rerouted to 4 different targets which may be
+<ul>
+<li>4 different output channels, e.g. using "<b>5,6,7,8</b>" sends our examples, in turn to<br>
+1:5  2:6  3:7  4:8<br>
+1:5  2:6  3:7  4:8<br>
+1:5  1:6  2:7  2:8<br>
+<li>4 target output channels, some of which are shared e.g. using "<b>5,5,6,5</b>" sends our examples, in turn to<br>
+1:5  2:5  3:6  4:5<br>
+1:5  2:5  3:6  4:5<br>
+1:5  1:5  2:6  2:5<br>
+</ul>
+<b>N.B. <i>For lines where options (3) and (4) are ambiguous you are offered a choice.</i></b>
+
+<h3>(5) You can Rotate+Mirror the output frame.</h3>
+
+This is done by entering an output channel number and an "<b>m</b>" (or "<b>M</b>") e.g. "<b>3M</b>"<br>
+<br>
+Using "3M" for example ....<br>
+<ul>
+<li>The frame of the output is first <b>rotated</b> so that anything originally routed to channel 1 now goes to channel 3,<br>
+with all the other channels appropriately rotated.<br>
+<li>The whole output routing is then <b>mirrored</b> around channel <b>3</b>.
+</ul>
+For example, a 4-channel file initially routed to channels <b>1-2-3-4</b> of an 8-channel output frame (i.e. 1:1  2:2  3:3  4:4)<br>
+would first be rotated to channels <b>3-4-5-6</b><br>
+and then mirrored about channel 3 to channels <b>3-2-1-8</b> (<i>taken in that order</i>, so the final routing is 1:3  2:2 3:1  4:8).<br>
+<br>
+<h3>(6) You can Copy the routing of an existing line to another line.</h3>
+
+For <b><i>two</i></b> selected lines with the <b><i>same number of input channels</i></b>.<br>
+<ul>
+<li>"<b>></b>" transfers the routing (and levels) from the 1st line to the 2nd.
+<li>"<b><</b>" transfers the routing (and levels) from the 2nd line to the 1st.
+</ul>
+<br>
+<h3>(7) In all other cases, the full routing information (<i>with levels</i>) must be entered in the "Value" box.</h3>
+
+
+<h2 style="color: darkmagenta">Muting Sounds and Removing Sounds from a mix</h2>
+
+Sounds in the mix can be muted. For example....
+<ul>
+<li>You may wish to mute certain lines in order to listen to details in the remainder of the mix.
+<li>You may wish to mute certain lines to test whether they are required or not in the mix.
+<li>You may have two alternative sounds in a mix, and wish to mute each, in turn, to compare the two different mix outputs.
+</ul>
+The following options are available ...
+<br><br>
+<li><b>MUTE LINES</b> mutes any sounds you have selected.
+<br><br>
+<li><b>UNMUTE LINES</b> removes the muting from any muted lines you have selected.
+<br><br>
+<li><b>UNMUTE ~ALL~</b> removes the muting from <i>all</i> muted lines in the mix.
+<br><br>
+<li><b>SWAP MUTING PAIR</b>: If you select two lines, one of which is muted, and the other not,<br>
+this option will unmute the muted line, and mute the unmuted line.<br>
+This can be used for comparing the effect of two alternative sounds in a mix.
+<br><br>
+<li><b>Show ~ALL~ MUTED</b> highlights all the muted lines in a mix.<br>
+This might be useful when you are trying to clear out unwanted (and muted) events from a larger mixfile.
+<br><br>
+<li><b>REMOVE SELECTED</b> will remove any selected, and <b>muted</b> lines from the mix.<br>
+You must mute lines before removing them from the mix (this is a safeguard to ensure required active lines cannot easily by mistakenly removed).<br>
+Note that, if you do accidentally remove sounds that you did not intend to remove,<br>
+the GET PREVIOUS STATE BUTTON will restore them, so long as you press this <i>immediately</i> after making the unwanted deletion.
+<br><br>
+<li><b>REMOVE ~ALL~</b> will remove <i>all</i> muted lines in the mix. Use of this button is always queried before the removal is done.
+</ul>
+
+<h2 style="color: darkmagenta">Rearranging the mixfile layout</h2>
+
+Shifting sounds backwards and forwards in time, and muting and unmuting lines, canm shuffle the mixfile into awkward formats.<br>
+In particular, comment lines associated with specific sounds (as opposed to muted lines) can be shifted to the wrong position.<br>
+THese options allow ther mixfile ;layout to be rearranged.
+<br><br>
+<li><b>ORDER ALL LINES</b> will sort all active <i>and muted</i> lines into time-ascending order,<br>
+and leave comments lines next to the mix lines with which they were originally associated.
+<br><br>
+<li><b>MOVE TO TOP</b> will move the selected lines to the top of the mix display.
+<li><b>MOVE TO FOOT</b> will move the selected lines to the end of the mix display.
+<li><b>REVERSE ORDER</b> will reverse the order of the selected lines in the mix display.
+
+
+<h2 style="color: darkmagenta">Using clicktracks</h2>
+
+The following options allow you to create and use clicktracks in the mixfile.
+<br><br>
+<li><b>MAKE CLICK</b> will generate a click-track at a specified Metronome mark.
+<li><b>MARK AS CLICK</b> allows you to mark a line in the mixfile as the clicktrack sound.
+<li><b>CLICK ON/OFF</b> allows you turn the (marked) clicktrack on and off in the mix (without having to first highlight it).
+
+</blockquote>
+
+</body>
+</html>

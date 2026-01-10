@@ -1,0 +1,138 @@
+rem DECOREXS.BAT - examples for TEXTURE DECORATED
+rem note data files:  ndfdec1.txt, ndfdec2a/2b/2c.txt, ndfdec3.txt 
+rem breakpoint files: dm5gprhi.brk, dx3gprhi.brk
+rem			0.0	1    0	8
+rem			2.0	8    5	10
+rem			4.0	1    10 15	
+rem			6.0	6    15 12
+rem			8.0	1    20 11
+rem			10.0	10
+rem			12.0	1
+rem			14.0	7
+rem			16.0	1
+rem			18.0	9
+rem			20.0	1
+
+rem  A Endrich - last updated: 24 July 2000
+
+echo on
+
+set CDP_SOUND_EXT=wav
+
+rem	 ... minoutdur (20) skiptime (2.0) 
+rem	sndf (1) sndl (1) ming (36) maxg (64) mind (1.0) maxd (1.0) 
+rem	phgrid (0) gpspace (1) gpsprange (1) amprise (0) contour (0) 
+rem	gpsizelo (5) gpsizehi (5) gppaklo (60) gppakhi (60) 
+rem	gpranglo (1) gpranghi (1) centring (0)
+
+rem Example 1a - 4-node substructure with repeating notes decoration
+rem ndfdec1.txt
+rem 60
+rem #4			('line' nodal substructure)
+rem 0.0 1 60 0 0
+rem 2.0 1 67 0 0
+rem 4.0 1 63 0 0
+rem 6.0 1 62 0 0
+
+texture decorated 5 marimba decorex1a ndfdec1.txt 20 2.0 1 1 36 64 
+1.0 1.0 0 1 1 0 0 5 5 60 60 1 1 0
+
+rem Example 1b - decorations alternate between 1 and several notes and 
+rem   are timed to occur on the nodes (POSTDECOR).
+
+texture postdecor 5 marimba decorex1b ndfdec1.txt 20 2.0 1 1 36 64 
+1.0 1.0 0 1 1 0 0 5 5 60 60 1 dm5gprhi.brk 0
+
+
+rem Example 2a - Mode 3 harmonic set:  all nodes decorated with the same chord
+rem ndfdec2a.txt
+rem 60
+rem #4				('line' nodal substructure)
+rem 0.0 1 60 0 0
+rem 2.0 1 67 0 0
+rem 4.0 1 63 0 0
+rem 6.0 1 60 0 0
+rem #3				(Harmonic Field/Set)
+rem 0.0 1 60 0 0
+rem 0.0 1 64 0 0
+rem 0.0 1 67 0 0
+ 
+texture postdecor 3 marimba decorex2a ndfdec2a.txt 20 2.0 1 1 36 64 
+1.0 1.0 0 1 1 0 0 5 9 60 60 3 3 1
+
+rem Example 2b - triads transposed, built on (above) each node
+rem ndfdec2b.txt
+rem 60
+rem #8			('line' nodal substructure)
+rem 0.0 1 60 0 0
+rem 2.0 1 63 0 0
+rem 4.0 1 67 0 0
+rem 6.0 1 70 0 0
+rem 8.0 1 74 0 0
+rem 10.0 1 70 0 0
+rem 12.0 1 67 0 0
+rem 14.0 1 63 0 0
+rem #7			(Harmonic Field/Set)
+rem 0.0 1 60 0 0
+rem 0.0 1 63 0 0
+rem 0.0 1 67 0 0
+rem 0.0 1 70 0 0
+rem 0.0 1 74 0 0
+rem 0.0 1 77 0 0
+rem 0.0 1 81 0 0
+
+texture postdecor 3 marimba decorex2b ndfdec2b.txt 28 2.0 1 1 36 64 
+1.0 1.0 0 1 1 0 0 5 9 60 60 3 3 1
+
+rem Example 2c - dyads selected from a decoration field all of whose notes 
+rem   start at time 0
+rem ndfdec2c.txt
+rem 60
+rem #4				('line' nodal substructure)
+rem 0.0 1 55 0 0
+rem 2.0 1 58 0 0
+rem 4.0 1 62 0 0
+rem 6.0 1 65 0 0
+rem #8				(Harmonic Field/Set)
+rem 0.0 1 55 0 0
+rem 0.0 1 58 0 0
+rem 0.0 1 62 0 0
+rem 0.0 1 65 0 0
+rem 0.0 1 67 0 0
+rem 0.0 1 70 0 0
+rem 0.0 1 74 0 0
+rem 0.0 1 77 0 0
+
+texture postdecor 3 marimba decorex2c ndfdec2c.txt 20 2.0 1 1 36 64 
+1.0 1.0 0 1 1 0 0 5 5 60 60 2 2 1
+
+rem Example 3 - varied bursts of notes separated by silence
+rem ndfdec3.txt
+rem 60
+rem #5				('line' nodal substructure)
+rem 0.0  1 60 0 0
+rem 5.0  1 67 0 0
+rem 10.0 1 66 0 0
+rem 15.0 1 62 0 0
+rem 20.0 1 64 0 0
+rem #15				(Harmonic Field/Set)
+rem 0.0 1 49 0 0
+rem 0.0 1 52 0 0
+rem 0.0 1 54 0 0
+rem 0.0 1 55 0 0
+rem 0.0 1 58 0 0
+rem 0.0 1 60 0 0
+rem 0.0 1 61 0 0
+rem 0.0 1 64 0 0
+rem 0.0 1 66 0 0
+rem 0.0 1 67 0 0
+rem 0.0 1 70 0 0
+rem 0.0 1 72 0 0
+rem 0.0 1 73 0 0
+rem 0.0 1 76 0 0
+rem 0.0 1 78 0 0
+
+texture postdecor 3 marimba decorex3 ndfdec3.txt 20 1 1 1 36 64 
+1.0 1.0 0 1 1 0 0 10 25 40 125 2 dx3gprhi.brk 0
+
+echo off

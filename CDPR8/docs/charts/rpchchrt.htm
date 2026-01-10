@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<!-- rpchchrt.htm - Chart of REPITCH inputs & outputs HTML5 version -->
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>REPITCH INPUTS &amp; OUTPUTS CHART</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<p>
+<!--
+<p>
+<IMG SRC="images/cdpcircs.jpg" align=left>
+</p>
+-->
+<h1 align="center">Transposition &amp; Shifting Inputs and Outputs</h1>
+
+<div align=center>
+<table border=1 cellpadding=3>
+
+<tr>
+<th>CDP FUNCTION</th>
+<th>Mode</th>
+<th>Input 1</th>
+<th>Input 2 OR Output</th>
+<th>Output
+<th>Key Parameters&#47;[Comments]</th>
+</tr>
+
+<tr>
+<td>REPITCH ANALENV<br>(create binary envelope file)</td>
+<td>None</td>
+<td><code>in.ana</code></td>
+<td><br /></td>
+<td><code>out.evl</code></td>
+<td>[binary envelope file]<br />
+Use with ENVEL IMPOSE</td></td>
+</tr>
+
+<tr>
+<td>REPITCH GENERATE<br>(make own pitch data)</td>
+<td>None</td>
+<td><code>inmidipitch-data.txt</code></td>
+<td><br /></td>
+<td><code>out.frq</code></td>
+<td>[binary pitch data file]<br />
+Use with REPITCH COMBINE or COMBINEB</td></td>
+</tr>
+
+<tr>
+<td rowspan=2>REPITCH GETPITCH<br>(get pitch trace)</td>
+<td>1</td>
+<td><code>in.ana</code></td>
+<td><code>outlisten.ana</code></td>
+<td><code>out.frq</code></td>
+<td>[binary pitch data file]</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><code>in.ana</code></td>
+<td><code>outlisten.ana</code></td>
+<td><code>out.brk</code></td>
+<td>[breakpoint (text) file]</td>
+</tr>
+
+<tr>
+<td rowspan=2>REPITCH TRANSPOSE<br>(M4: route for .trn to .ana)</td>
+<td>1&#150;3</td>
+<td><code>in.ana</code></td>
+<td><code><br></code></td>
+<td><code>out.ana</code></td>
+<td><i>transpose</i> (ratio, 8<sup>ves</sup>, semitones)</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td><code>in.ana</code></td>
+<td><code>in.trn</code></td>
+<td><code>out.ana</code></td>
+<td>[ready to synthesise]</td>
+</tr>
+
+<tr>
+<td rowspan=2>REPITCH TRANSPOSEF<br>(M4: route for .trn to .ana)</td>
+<td>1&#150;3</td>
+<td><code>in.ana</code></td>
+<td><code><br></code></td>
+<td><code>out.ana</code></td>
+<td><code>-p</code> or <code>-f</code> (formant extraction)<br>
+<i>transpose</i> (ratio, 8<sup>ves</sup>, semitones)</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td><code>in.ana</code></td>
+<td><code>in.trn</code></td>
+<td><code>out.ana</code></td>
+<td><code>-p</code> or <code>-f</code> (formant extraction)<br>
+[ready to synthesise]</td>
+</tr>
+
+<tr>
+<td rowspan=3>REPITCH COMBINE<br>NB: creates .trn outputs</td>
+<td>1</td>
+<td><code>in1.frq</code></td>
+<td><code>in2.frq</code></td>
+<td><code>out.trn</code></td>
+<td>[can be input to REPITCH TRANSPOSE&#47;F]</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><code>in.frq</code></td>
+<td><code>in.trn</code></td>
+<td><code>out.frq</code></td>
+<td>[can be given to another .frq processor]</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td><code>in1.trn</code></td>
+<td><code>in2.trn</code></td>
+<td><code>out.trn</code></td>
+<td>[can be input to REPITCH TRANSPOSE&#47;F]</td>
+</tr>
+
+<tr>
+<td rowspan=3>PITCH TRANSP</td>
+<td>1-3</td>
+<td><code>in.ana</code></td>
+<td><code><br></code></td>
+<td><code>out.ana</code></td>
+<td><i>frq_split</i> [frequency split point]</td>
+</tr>
+
+<tr>
+<td>4-5</td>
+<td><code>in.ana</code></td>
+<td><code><br></code></td>
+<td><code>out.ana</code></td>
+<td><i>frq_split</i> [frequency split point]<br>
+<i>transpose</i> [semitones]</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td><code>in.ana</code></td>
+<td><code><br></code></td>
+<td><code>out.ana</code></td>
+<td><i>frq_split</i> [frequency split point]<br>
+<i>transpose1 transpose2</i> [semitones]</td>
+</tr>
+
+<tr>
+<td rowspan=2>PITCH OCTMOVE</td>
+<td>1-2</td>
+<td><code>in.ana</code></td>
+<td><code>in.frq</code></td>
+<td><code>out.ana</code></td>
+<td><i>transposition</i> (integer &gt;0:<br>
+follows harmonic series)<br>
+[in.frq is derived from in.ana]</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td><code>in.ana</code></td>
+<td><code>in.frq</code></td>
+<td><code>out.ana</code></td>
+<td><i>transposition bassboost</i></td>
+</tr>
+
+<tr>
+<td rowspan=3>STRANGE SHIFT</td>
+<td>1</td>
+<td><code>in.ana</code></td>
+<td><code><br></code></td>
+<td><code>out.ana</code></td>
+<td><i>frqshift</i> (in Hz)</td>
+</tr>
+
+<tr>
+<td>2-3</td>
+<td><code>in.ana</code></td>
+<td><code><br></code></td>
+<td><code>out.ana</code></td>
+<td><i>frqshift frq_divide</i> (in Hz)</td>
+</tr>
+
+<tr>
+<td>4-5</td>
+<td><code>in.ana</code></td>
+<td><code><br></code></td>
+<td><code>out.ana</code></td>
+<td><i>frqshift frqlo frqhi</i> (in Hz)</td>
+</tr>
+
+<tr>
+<td rowspan=2>REPITCH APPROX</td>
+<td>1</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>prange trange srange</i></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.trn</code></td>
+<td><i>prange trange srange</i></td>
+</tr>
+
+<tr>
+<td rowspan=6>REPITCH EXAG</td>
+<td>1</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>meanpch range</i></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.trn</code></td>
+<td><i>meanpch range</i></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>meanpch contour</i></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.trn</code></td>
+<td><i>meanpch contour</i></td>
+</tr>
+
+<tr>
+<td>5</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>meanpch range contour</i></td>
+</tr>
+
+<tr>
+<td>6</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.trn</code></td>
+<td><i>meanpch range contour</i></td>
+</tr>
+
+<tr>
+<td rowspan=2>REPITCH INVERT</td>
+<td>1</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>map</i> (file) ... </td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.trn</code></td>
+<td><i>map</i> (file) ...</td>
+</tr>
+
+<tr>
+<td rowspan=3>REPITCH CUT</td>
+<td>1</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>starttime</i></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>endtime</i></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>starttime endtime</i></td>
+</tr>
+
+<tr>
+<td>REPITCH FIX</td>
+<td>0</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td>[several options]</td>
+</tr>
+
+<tr>
+<td>REPITCH PCHSHIFT</td>
+<td>0</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>transposition</i> (semitone constant)</td>
+</tr>
+
+<tr>
+<td rowspan=2>REPITCH QUANTISE</td>
+<td>1</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>q_set</i> (file of MIDI pitchvals)</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.trn</code></td>
+<td><i>q_set</i> (file of MIDI pitchvals)</td>
+</tr>
+
+<tr>
+<td rowspan=2>REPITCH RANDOMISE</td>
+<td>1</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>maxinterval timestep</i></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.trn</code></td>
+<td><i>maxinterval timestep</i></td>
+</tr>
+
+<tr>
+<td rowspan=2>REPITCH SMOOTH</td>
+<td>1</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>timeframe</i> ...</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.trn</code></td>
+<td><i>timeframe</i> ...</td>
+</tr>
+
+<tr>
+<td>REPITCH SYNTH<br>(spectrum + pitch contour)</td>
+<td>None</td>
+<td><code>in.frq</code></td>
+<td><i>harmonics-data</i></td>
+<td><code>out.ana</code></td>
+<td>[analysis file]<br />
+Ready to Play or Resynthesise</td>
+</tr>
+
+<tr>
+<td rowspan=2>REPITCH VIBRATO</td>
+<td>1</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.frq</code></td>
+<td><i>vibfrq vibrange</i></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><code>in.frq</code></td>
+<td><code><br></code></td>
+<td><code>out.trn</code></td>
+<td><i>vibfreq vibrange</i></td>
+</tr>
+
+<tr>
+<td>REPITCH VOWELS<br>(colour with vowel sounds)</td>
+<td>None</td>
+<td><code>in.frq</code></td>
+<td><i>vowel-data</i></td>
+<td><code>out.ana</code></td>
+<td>[analysisfile]<br />
+Ready to Play or Resynthesise</td>
+</tr>
+
+<tr>
+<td>REPITCH INSERTSIL<br>(insert silence)</td>
+<td>None</td>
+<td><code>in.frq</code></td>
+<td><i>silence_file</i></td>
+<td><code>out.frq</code></td>
+<td>[binary pitch data file]<br />
+Use with other REPITCH functions</td>
+</tr>
+
+<tr>
+<td>REPITCH INSERTZEROS<br>(insert unpitched areas)</td>
+<td>None</td>
+<td><code>in.frq</code></td>
+<td><i>zeros-data</i></td>
+<td><code>out.frq</code></td>
+<td>[binary pitch data file]<br />
+Use with other REPITCH functions</td>
+</tr>
+
+<tr>
+<td>REPITCH INTERP<br>(replace noise with interpolated pitch)</td>
+<td>None</td>
+<td><code>in.frq</code></td>
+<td><br /></td>
+<td><code>out.frq</code></td>
+<td>[binary pitch data file]<br />
+Use with other REPITCH functions</td>
+</tr>
+
+<tr>
+<td>REPITCH INSERTZEROS<br>(insert unpitched areas)</td>
+<td>None</td>
+<td><code>in.frq</code></td>
+<td><i>zeros-data</i></td>
+<td><code>out.frq</code></td>
+<td>[binary pitch data file]<br />
+Use with other REPITCH functions</td>
+</tr>
+
+<tr>
+<td>REPITCH NOISETOSIL<br>(replace unpitched with silence)</td>
+<td>None</td>
+<td><code>in.frq</code></td>
+<td><br /></td>
+<td><code>out.frq</code></td>
+<td>[binary pitch data file]<br />
+Use with other REPITCH functions</td>
+</tr>
+
+<tr>
+<td>REPITCH PCHTOTXT<br>(convert .frq to .txt)</td>
+<td>None</td>
+<td><code>in.frq</code></td>
+<td><br /></td>
+<td><code>out.txt</code></td>
+<td>[Ascii text file]<br />
+Use with other COLUMN edit functions</td>
+</tr>
+
+<tr>
+<td>REPITCH PITCHTOSIL<br>(replace pitched with silence)</td>
+<td>None</td>
+<td><code>in.frq</code></td>
+<td><br /></td>
+<td><code>out.frq</code></td>
+<td>[binary pitch data file]<br />
+Use with other REPITCH functions</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+<p>
+<br>
+<a href="../html/charts.htm" Target="_top"><b>Return</b></a> 
+to Charts Index<br>
+<a href="../html/ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System<br>
+<a href="../html/cspecndx.htm#startpos" Target="_top"><b>Return</b></a> 
+to Spectral Index<br><br>
+</p>
+<p>
+<IMG SRC="images/cdpcircs72.jpg" align="left" ALT="CDP circles logo"></a>
+&nbsp;&nbsp;Archer Endrich<br>
+&nbsp;&nbsp;Last Updated: 18 December 2006<br>
+&nbsp;&nbsp;Layout revised: 30 July 2015; links revised 13 Nov. '21
+</p>
+
+
+</body>
+</html>

@@ -1,0 +1,2225 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cgroinfo.htm  - HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP SNDINFO Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+  <link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#SNDINFOLIST"><b>SNDINFO:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CHANDIFF"><b>CHANDIFF</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#DIFF"><b>DIFF</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FINDHOLE"><b>FINDHOLE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#LEN"><b>LEN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#LENS"><b>LENS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#LOUDCHAN"><b>LOUDCHAN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#MAXI"><b>MAXI</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#MAXSAMP"><b>MAXSAMP</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#MAXSAMP2"><b>MAXSAMP2</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PRNTSND"><b>PRNTSND</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PROPS"><b>PROPS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SMPTIME"><b>SMPTIME</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SUMLEN"><b>SUMLEN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TIMEDIFF"><b>TIMEDIFF</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TIMESMP"><b>TIMESMP</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#UNITS"><b>UNITS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ZCROSS"><b>ZCROSS</b></a>
+  <br><br>
+  <b>OTHERS:</b>
+  <dt>&nbsp;&nbsp;<a href="#ONSET"><b>ONSET</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PEAKFIND"><b>PEAKFIND</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SIGSTART"><b>SIGSTART</b></a>
+<br><br>
+<b>SEE ALSO: </b><br>
+<dt>&nbsp;&nbsp;<a href="cgroedit.htm#RETIME"><b>RETIME</b> Mode 12</a>
+<dt>&nbsp;&nbsp;<a href = "cmcrefmn.htm#RMSINFO"><b>RMSINFO</b></a>
+<dt>&nbsp;&nbsp;<a href="cmcrefmn.htm#SFPROPS"><b>SFPROPS</b></a>
+
+  <!-- 
+  <br /><br /> 
+  <dt><a href = "#FOCUSTECHNICAL"><b>Technical</b></a>
+  <br /><br />
+   -->
+  <br /><br />
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+     <div align=center>
+     <br>
+     <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+     </div>
+
+   <h1 align=center>CDP SNDINFO Functions</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="SNDINFOLIST">Functions to get Information about soundfiles</h2>
+<h3> &#126; NB: Beware of conflict with <i>Csound</i> function with the same name.  &#126;</h3>
+
+<p>
+<b><i> Names in brackets mean that these are separate programs.  The others are sub-modules of SNDINFO.</i></b>
+</p>
+
+<dl>
+<dt><a href="#CHANDIFF"><b>CHANDIFF</b></a> <dd>Compare channels in a stereo soundfile</dd>
+<dt><a href="#DIFF"><b>DIFF</b></a> <dd>Compare two sound, analysis, pitch, transposition, envelope or formant files</dd>
+<dt><a href="#FINDHOLE"><b>FINDHOLE</b></a> <dd>Find largest low level hole in a soundfile</dd>
+<dt><a href="#LEN"><b>LEN</b></a> <dd>Display duration of a soundfiling-system file</dd>
+<dt><a href="#LENS"><b>LENS</b></a> <dd>List durations of several soundfiling-system files</dd>
+<dt><a href="#LOUDCHAN"><b>LOUDCHAN</b></a> <dd>Find loudest channel in a stereo soundfile</dd>
+<dt><a href="#MAXI"><b>MAXI</b></a> <dd>List levels of several soundfiles</dd>
+<dt><a href="#MAXSAMP"><b>MAXSAMP</b></a> <dd>Find maximum sample in a soundfile or binary data file</dd>
+<dt><a href="#MAXSAMP2"><b>MAXSAMP2</b></a> <dd>Find maximum sample within a specified timerange in a soundfile or binary data file</dd>
+<dt><a href="#ONSET"><b>[ONSET]</b></a> <dd> Return the succession of sound-onsets in each channel of a multichannel file  </dd>
+<dt><a href="#PEAKFIND"><b>[PEAKFIND]</b></a> <dd>Find times of loudness peaks in a sound and output as a datafile</dd>
+<dt><a href="#PRNTSND"><b>PRNTSND</b></a> <dd>Print sound sample data to a textfile</dd>
+<dt><a href="#PROPS"><b>PROPS</b></a> <dd>Display properties of soundfiling-system file</dd>
+<dt><a href="#SIGSTART">SEARCH <b>SIGSTART</b></a> <dd>Find earliest time at which there is signal in two or more soundfiles.</dd>
+<dt><a href="#SMPTIME"><b>SMPTIME</b></a> <dd>Convert sample count to time in soundfile</dd>
+<dt><a href="#SUMLEN"><b>SUMLEN</b></a> <dd>Sum durations of several soundfiling-system files</dd>
+<dt><a href="#TIMEDIFF"><b>TIMEDIFF</b></a> <dd>Find difference in duration of two soundfiles</dd>
+<dt><a href="#TIMESMP"><b>TIMESMP</b></a> <dd>Convert time to sample count in soundfile</dd>
+<dt><a href="#UNITS"><b>UNITS</b></a> <dd>Convert between different units</dd>
+<dt><a href="#ZCROSS"><b>ZCROSS</b></a> <dd>Display fraction of zero-crossings in a soundfile</dd>
+<br>
+<dt><b>SEE ALSO:</b></dt>
+<dt><a href="cgroedit.htm#RETIME"><b>RETIME</b> Mode 12</a> <dd>Find the start of the sound in the file (the 1st non-zero sample)</dd>
+<dt><a href = "cmcrefmn.htm#RMSINFO"><b>RMSINFO</b></a>  <dd>Scan file and report RMS and average power level statistics</dd>
+<dt><a href="cmcrefmn.htm#SFPROPS"><b>SFPROPS</b></a> <dd>Display soundfile details, with WAVE-EX speaker positions</dd>
+</dl>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="CHANDIFF">SNDINFO CHANDIFF &#150; Compare channels in a 
+stereo soundfile 
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo chandiff</b> <i>infile</i> [<b>-t</b><i>threshold</i>] 
+[<b>-n</b><i>count</i>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input stereo soundfile<br>
+<b>-t</b><i>threshold</i> &#150; maximum permissible difference in 
+data values (Range: 0.0 to 1.0)<br>
+<b>-n</b><i>count</i> &#150; maximum number of differences to accept 
+(Default: 1)<br>
+</blockquote>
+
+<h3>
+Understanding the SNDINFO CHANDIFF Function
+</h3>
+<blockquote>
+
+<p>
+This function is a simple utility to compare the two channels of a 
+stereo soundfile sample by sample.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+The presence of differences between the channels will indicate that it 
+is a true stereo file:  i.e., some differences in data.  If the two 
+channels are identical &#150; report no differences &#150; it will really 
+be a mono source which has been 'spread' across two channels.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO CHANDIFF<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="DIFF">SNDINFO DIFF &#150; Compare two sound, analysis, pitch, 
+transposition, envelope or formant files
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo diff</b> <i>infile1 infile2</i> [<b>-t</b><i>threshold</i>] 
+[<b>-n</b><i>count</i>] [<b>-l</b>] [<b>-c</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1</i> &#150; name of first file to check (binary non-text 
+files only)<br>
+<i>infile2</i> &#150; name of file to compare with the first<br>
+<b>-t</b><i>threshold</i> &#150; maximum permissible difference in 
+data values (Range: 0.0 to 1.0)<br>
+<b>-n</b><i>count</i> &#150; maximum number of differences to accept 
+(Default: 1)<br>
+<b>-l</b> &#150; continue, even if the files are not the same length<br>
+<b>-c</b> &#150; continue, even if the (sound)files do not have the 
+same number of channels<br>
+</blockquote>
+
+<h3>
+Understanding the SNDINFO DIFF Function
+</h3>
+<blockquote>
+
+<p>
+SNDINFO DIFF compares the data in the two input files and reports any 
+differences.  The value given for <i>threshold</i> will be determined by 
+the type of files being compared: e.g., amplitude in a 0 to 1 range.  
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Sometimes we make copies of soundfiles and give the copy a new name.  
+Later, we forget whether or not the two files are really the same.  
+SNDINFO DIFF provides the answer.
+</p>
+
+<p>
+Note that SNDINFO DIFF can compare a variety of files in a binary, 
+non-text format:  soundfiles, analysis files, pitch data files (from 
+<a href="crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a>) etc.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO DIFF<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="FINDHOLE">SNDINFO FINDHOLE &#150; Find largest low level hole 
+in a soundfile 
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo findhole</b> <i>infile </i> <b>-t</b><i>threshold</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile to search<br>
+<b>-t</b><i>threshold</i> &#150; amplitude value: consider there to be 
+a hole only if the level falls and stays below <i>threshold</i> 
+(Range: floating point value: 0.0 &lt; <i>threshold</i> &lt;= 1.0) 
+(Default: 0.0)<br>
+</blockquote>
+
+<h3>
+Understanding the SNDINFO FINDHOLE Function
+</h3>
+<blockquote>
+
+<p>
+Reports the length of the hole and the time at which it begins.  If 
+it displays the message 'Maximum holesize 0.0 at time 0.0', try raising 
+the threshold.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+This utility enables us to cut out areas of low signal in a soundfile 
+without having to access a soundfile viewer.  It helps to make the 
+command line environment more practical.  The presence of the basic 
+editing facilities (cut, paste (insert), splice and mix in command line 
+form also supports our partially-sighted users.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO FINDHOLE<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="LEN">SNDINFO LEN &#150; Display duration of a 
+soundfiling-system file 
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo len</b> <i>infile </i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; sound, analysis or binary file input
+	<p>
+	<blockquote>
+	<b>NB:</b> You need to enter the file extension because of 
+	the various extensions which are 'legal'.  The main part 
+	of the name may be the same, but the extension differ, such 
+	as 'afile.wav' and 'afile.ana' and 'afile.frq'.  SNDRPT LEN 
+	needs to know which one you want information about.  However, 
+	PVPLAY will happily find and play the soundfile among these 
+	three, even without specifying the extension as long as CDP_SOUND_EXT 
+	is set.
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the SNDINFO LEN Function
+</h3>
+<blockquote>
+
+<p>
+Displays the type of file, the duration in seconds, the number samples 
+and bytes for a soundfile, the number of windows, floats and bytes for 
+an analysis or analysis-derived file.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+SNDINFO LEN provides a quick check on length for a specific soundfile.  
+I have used this most often when preparing breakpoint files or mixing 
+(Ed.).
+</p>
+
+<p>
+<a href="csysutil.htm#DIRSF"><b>DIRSF</b></a> will provide the same information and is useful when a 
+little unsure about the name:  you can get close with wildcards (e.g., 
+'cr*.wav' to see all .wav files beginning with 'cr') and then spot the 
+one you want in the list displayed.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO LEN<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="LENS">SNDINFO LENS &#150; List durations of several 
+soundfiling-system files 
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo lens</b> <i>infile </i> [<i>infile2 ...</i>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile </i>, <i>infile2 ...</i> &#150; soundfiles to display length of<br>
+	<p>
+	<blockquote>
+	Unlike SNDINFO LEN, SNDINFO LENS only seems to handle soundfiles.
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the SNDINFO LENS Function
+</h3>
+<blockquote>
+
+<p>
+Here you see a display of the soundfile name and its duration (only).
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+You are able to check on several (sound)files at once.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO LENS<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="LOUDCHAN">SNDINFO LOUDCHAN &#150; Find loudest channel in 
+a stereo soundfile 
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo loudchan</b> <i>infile </i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; stereo soundfile to check<br>
+</blockquote>
+
+<h3>
+Understanding the SNDINFO LOUDCHAN Function
+</h3>
+<blockquote>
+
+<p>
+Displays which channel is loudest.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Knowing which channel is loudest can help in setting levels in the 
+mixfile.  If stereo files are present and there is some slight overload, 
+it may be useful to check which specific channel might be causing the 
+problem.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO LOUDCHAN<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="MAXI">SNDINFO MAXI &#150; List levels of several soundfiles 
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo maxi</b> <i>infile infile2</i> [<i>infile3 ...</i>] 
+<i>outtextfile</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile infile2</i>, [<i>infile3 ...</i>] &#150; find the amplitude levels 
+of two soundfiles (minimum) or more<br>
+<i>outtextfile</i> &#150; write the soundfile names and their levels 
+to a text file (not optional)
+</blockquote>
+
+<h3>
+Understanding the SNDINFO MAXI Function
+</h3>
+<blockquote>
+
+<p>
+SNDINFO MAXI lists levels within the normalised range of 0 to 1, e.g., 
+0.421491 and 0.717514, i.e., in reference to 1 as full volume (0 dB).  
+It displays both the soundfile names and their levels on the screen and 
+writes this information to a (mandatory) text file.
+</p>
+
+<p>
+You can convert these values to dB using Mode 24 of 
+<a href="#UNITS"><b>SNDINFO UNITS</b></a>.  E.g., 0.421491 is -7.504dB and 
+0.717514 is -2.896dB.  Note that .7 is closer to 1 than 0.4 and therefore 
+a higher level.  Also see the <a href="gadbchrt.htm"><b>Gain-to-dB Chart</b></a>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+You are able to check on several soundfiles at once.  This can be 
+useful for example to compare a soundfile to which gain has been applied 
+and the original.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO MAXI<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="MAXSAMP">SNDINFO MAXSAMP &#150; Find maximum sample in 
+a soundfile or binary data file
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo maxsamp</b> <i>infile </i> [<b>-f</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile </i> &#150; input soundfile file or binary data file to check<br>
+<b>-f</b> &#150; force file to be scanned (ignoring any information 
+in the header about max sample which may already be present)<br>
+
+</blockquote>
+
+<h3>
+Understanding the SNDINFO MAXSAMP Function
+</h3>
+<blockquote>
+
+<p>
+SNDINFO MAXSAMP provides a good deal of useful information.  Here is 
+a typical output and what it all means:<br>
+<p>
+<div align=center>
+<table border="1" cellpadding="3" bgcolor="#B0E0E6">
+<caption><b>SNDINFO MAXSAMP Display, with Commentary</b></caption>
+
+<tr>
+<th align=center><b>Info labels</b></th>
+<th align=center><b>Info values</b></th>
+<th align=center><b>Commentary</b></th>
+</tr>
+
+<tr>
+<td>maximum abs value:</td>
+<td>32380</td>
+<td>Value belongs to the 0-32767 amplitude range</td>
+</tr>
+
+<tr>
+<td>maximum level:</td>
+<td>-0.1032dB</td>
+<td>0 dB is full volume, so this will be just under</td>
+</tr>
+
+<tr>
+<td>at:</td>
+<td>1758 samples</td>
+<td>Sample location of the sample with the highest level</td>
+</tr>
+
+<tr>
+<td>time:</td>
+<td>0.0399 sec</td>
+<td>Corresponding time location of the sample with the highest level</td>
+</tr>
+
+<tr>
+<td>repeated:</td>
+<td>1 times</td>
+<td>Number of times this highest value occurs in the file</td>
+</tr>
+
+<tr>
+<td>max possible gain:</td>
+<td>1.0120</td>
+<td>Gain factor which could be used to 'normalise' the sound,<br>
+i.e., to bring it to full volume &#150; values less than 1 reduce volume</td>
+</tr>
+
+<tr>
+<td>max dB gain:</td>
+<td>0.1032</td>
+<td>You might want to use a dB value in a mixfile</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+<p>
+This information is also written to the header of a CDP soundfile, for 
+possible future use by the system.  When using SNDINFO MAXSAMP again on 
+the same file, it will just read the header unless you force another 
+look at the sound data in the file by using <b>-f</b>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Sometimes you just want the sound to be a bit louder (or softer).  
+Or the Phase Vocoder may report a bit of overload that needs to be 
+reduced.  Or some process has introduced overload and you need to start 
+with a slightly softer input.  Use <a href="cgromody.htm#LOUDNESS">
+<b>MODIFY LOUDNESS</b></a> to make the changes.
+</p>
+
+<p>
+It is wise to apply gain to a (digital) soundfile with discretion and 
+only as needed.  Being too heavy-handed, such as applying a large amount 
+of gain to a rather soft sound, can introduce distortion artefacts.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO MAXSAMP<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="MAXSAMP2">SNDINFO MAXSAMP2 &#150; Find maximum sample within 
+a specified timerange in a soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo maxsamp2</b> <i>infile start end</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile </i> &#150; input soundfile file to check<br>
+<i>start</i> &#150; start time of search in file<br>
+<i>end</i> &#150; end time of search in file
+</blockquote>
+
+<h3>
+Understanding the SNDINFO MAXSAMP2 Function
+</h3>
+<blockquote>
+
+<p>
+This function returns information about maximum amplitude and 
+recommended gain factor as does <a href="#MAXSAMP"><b>SNDINFO MAXSAMP</b></a> 
+above, but enables you to specify a time period in the soundfile 
+that you would like to check.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO MAXSAMP2<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ***************************************************** -->
+<h2 id="ONSET">ONSET &#150; Return the succession of sound-onsets in each channel of a multichannel file</h2>
+
+<h3>
+Usage
+</h3>
+<b>onset onset</b> <i>infile outtextfile</i>
+<br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (MULTICHANNEL)<br />
+<i>outtextfile</i> &#150; textfile giving order of sound-onsets across all channels<br />
+<i>onsetlevel</i> &#150; level at which sound onset is recognised
+</blockquote>
+
+<h3>
+Understanding the ONSET Process
+</h3>
+
+<blockquote>
+<p>
+ONSET is a simple utility reporting the order in which channels in a multichannel file reach the given onset level. The output is a list of channel numbers only. No information is given about the onset times.
+</p>
+</blockquote>
+
+<!--
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+-->
+
+<p>
+End of ONSET<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+
+<hr> <!-- ********************************************************* -->
+
+<h2 id="PEAKFIND">PEAKFIND &#150; Find times of 
+loudness peaks in a sound and output as a datafile</h2>
+
+<h3>
+Usage
+</h3>
+<b>peakfind peakfind</b> <i>infile outtextfile windowsize</i> 
+[<b>-t</b><i>threshold</i>] 
+<br />
+
+<p>
+Example command line to create a peaks datafile :<br>
+	<blockquote>
+	<b><code>peakfind peakfind count countpeaks.txt 200</code></b>
+	</blockquote>
+</p>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile</i> &#150; output text data file<br />
+<i>windowsize</i> &#150; size, in milliseconds, of the window used for 
+locating succesive peaks  (Range: 1 to 500)<br />
+<b>-t</b><i>threshold</i> &#150; the level below which peaks are ignored 
+in any window (Range 0-1).
+</blockquote>
+
+<h3>
+Understanding the PEAKFIND Function
+</h3>
+
+<blockquote>
+<p>
+This function was originally developed to track the syllables in speech.
+</p>
+
+<p>
+It outputs a textfile, with a list of the times of the peaks found.  Only 
+the times of the peaks are shown.
+</p>
+
+<p>
+A very large <i>windowsize</i> will miss detail in the sound.  A very 
+small <i>windowsize</i> will confuse the waveform's amplitude variation 
+with the loudness envelope and produce an excessive number of 'peak' times.  
+In the example command line above, the input soundfile, <i>count.wav</i> 
+is 8.065986 seconds long and consists of a spoken count from 1 to 10.  
+A fairly large <i>windowsize</i> in order to focus on the the main peaks 
+in each counted number.  This was the output:<br />
+<pre>
+0.165465
+1.066667
+2.001655
+2.672562
+3.530340
+4.650567
+4.816236
+5.458549
+5.666145
+6.135329
+6.549093
+7.035646
+7.765986
+</pre>
+</p>
+
+<p>
+The default of the <i>threshold</i> parameter is to ignore peaks whose 
+level is less than one-fifth of the <b>local</b> maximum level.  The 
+local maximum is measured over 10 windows.  Trevor Wishart explains:
+	<blockquote>
+	"In a complex signal there can be lots of 'peaks' i.e., localised 
+	moments where the signal is slightly louder than the preceding and 
+	following windows, but we're really interested in events which 
+	stand out in loudness, and are therefore heard as rhythmic 'accents' 
+	or 'downbeats' in the event.  The algorithm therefore picks out the 
+	local maximum peak, then ignores local fluctuations in level 
+	(producing localised maxima) which are close by and much lower in 
+	level than this peak.<br />
+	<br />
+	If the threshold is &gt; 0.0, the algorithm works in the same way, 
+	but if any of the the local peaks it finds lie below some absolute 
+	level (i.e., the <i>threshold</i> which you have set), they are 
+	ignored."
+	</blockquote>
+</p>
+
+I may have focused even more on the peaks in the numbers with 
+<i>windowsize</i> = 100 and <i>threshold</i> = 0.4.  This is the 
+output:<br />
+<pre>
+0.165465
+1.066667
+2.001655
+2.672562
+3.530340
+4.650567
+5.458549
+6.135329
+7.035646
+7.765986
+</pre>
+</p>
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+PEAKFIND is useful for obtaining rhythmic information about musical 
+materials, especially for use with the <a href="cgroedit.htm#RETIME"><b>RETIME</b></a> functions.  
+The data produced can also be analysed, for example to find 
+tempo, in the <b>TABLE EDITOR</b> in <i>Sound Loom</i>.
+</p>
+</blockquote>
+
+<p>
+End of PEAKFIND<br />
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+
+<hr> <!-- ********************************************************* -->
+
+<h2 id="PRNTSND">SNDINFO PRNTSND &#150; Print sound sample data to 
+a textfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo prntsnd</b> <i>infile outtextfile starttime endtime</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br>
+<i>outtextfile</i> &#150; textfile generated &#150; <b>CARE!!! large 
+amounts of data</b><br>
+<i>starttime</i> &#150; time in <i>infile</i> at which to begin 
+printing data<br>
+<i>endtime</i> &#150; time in <i>infile</i> at which to end 
+printing data<br>
+</blockquote>
+
+<h3>
+Understanding the SNDINFO PRNTSND Function
+</h3>
+<blockquote>
+
+<p>
+The textfile generated by the function contains data for every sample 
+within the time specified in the form <i>[sample_count] amplitude 
+level</i>.  Each value is displayed on a separate line.
+</p>
+
+<p>
+You will therefore have sample_rate number of samples for every second 
+of sound.  At a sample rate of 44100, even 1&#47;100<sup>th</sup> of 
+a second will contain 441 values per channel.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+I think more than anything else, this little utility shows what can 
+be done.  Anyone wanting to develop this towards a more particular 
+application or type of display is free to have the source code!
+</p>
+
+</blockquote>
+
+<p>
+End of SNDINFO PRNTSND<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="PROPS">SNDINFO PROPS &#150; Display properties of a 
+CDP system file 
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo props</b> <i>infile</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile, or other CDP system file.
+</blockquote>
+
+<h3>
+Understanding the SNDINFO PROPS Function
+</h3>
+<blockquote>
+
+<p>
+SNDINFO PROPS displays 'header' information for several CDP file types:
+<ul>
+<li>Soundfiles (<b>.wav</b>, <b>.aif</b>)</li>
+<li>Analysis files (<b>.ana</b>)</li>
+<li>Binary pitch files (<b>.frq</b>)</li>
+<li>Binary transposition files (<b>.trn</b>)</li>
+<li>Binary formant files (<b>.for</b>)</li>
+<li>Binary envelope files (<b>.evl</b>)</li>
+</ul>
+</p>
+
+<p>
+The 'properties' are the key defining features of a soundfile.  They 
+usually include:<br>
+	<ul>
+	<li>its size in bytes and samples,</li>
+	<li>the type of number used to store the sample data 
+	(SHORT or FLOAT),</li>
+	<li>the sample rate (number of samples per second),</li>
+	<li>and the number of channels.</li>
+	</ul>
+</p>
+
+<p>
+A soundfile sample is typically stored as a 16-bit integer or 
+as a 32-bit floating-point number.  A byte is 8-bits.  
+This is why there are twice as many bytes as there are samples 
+in a 16-bit soundfile.  An analysis file stores its data floating-point 
+numbers, with 4 bytes per sample.
+</p>
+
+<p>
+This information is written in the 'header' of the file, a text portion 
+that precedes the data.  This information can be altered with 
+<a href="cgrohous.htm#RESPEC"><b>HOUSEKEEP RESPEC</b></a>.  A CDP header may 
+also have some other information, as we have seen with <a href=#MAXSAMP><b>SNDINFO MAXSAMP</b></a>, 
+but the structure and use of the header conforms to the .wav standard.
+</p>
+
+<p>
+Many CDP functions 'interrogate' the header and make use of the 
+information it contains.  This for example, is how <a href="cgromixr.htm#DUMMY"><b>SUBMIX DUMMY</b></a> 
+puts the correct number of channels in the file it creates.
+</p>
+
+<p>
+The following is a typical display, with commentary, for an analysis 
+file (the display for a soundfile is like the list of key features 
+above).<br>
+<p>
+<div align=center>
+<table border="1" cellpadding="3" bgcolor="#B0E0E6">
+<caption><b>SNDINFO PROPS Analysis File Display, with Commentary</b></caption>
+
+<tr>
+<th align=center><b>Info labels</b></th>
+<th align=center><b>Info values</b></th>
+<th align=center><b>Commentary</b></th>
+</tr>
+
+<tr>
+<td>bytes:</td>
+<td>2860488</td>
+<td>Number of bytes at 4 bytes per sample</td>
+</tr>
+
+<tr>
+<td>samples:</td>
+<td>715122</td>
+<td>Sample rate * number of seconds</td>
+</tr>
+
+<tr>
+<td>sample rate:</td>
+<td>344</td>
+<td>Really the frame rate &#150; see the PVOC Reference Manual</td>
+</tr>
+
+<tr>
+<td>channels:</td>
+<td>1026</td>
+<td>The default value for <b>-N</b> (<i>points</i>) + 2 extra floats 
+for the zero Hz channel in each window</td>
+</tr>
+
+<tr>
+<td>original sample type:</td>
+<td>16bit SHORTS</td>
+<td>The sample type of the source soundfile</td>
+</tr>
+
+<tr>
+<td>original sample rate:</td>
+<td>44100</td>
+<td>Sample rate of the source soundfile</td>
+</tr>
+
+<tr>
+<td>analysis rate:</td>
+<td>344.531250</td>
+<td>The precise frame rate (see above)</td>
+</tr>
+
+<tr>
+<td>analysis window len:</td>
+<td>1024</td>
+<td>Number of soundfile samples analysed, per window</td>
+</tr>
+
+<tr>
+<td>decimation factor:</td>
+<td>128</td>
+<td>Number of samples to step from start of one analysis window 
+to start of next (Default: 1&#47;8 window-length)</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+</blockquote>
+
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+SNDINFO PROPS provides a quick confirmation of the header information 
+in a soundfile. A typical use for SNDINFO PROPS would be before and after HOUSEKEEP RESPEC.
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE</b> the complementary function <a href="cmcrefmn.htm#SFPROPS"><b>SFPROPS</b></a>.
+</p>
+
+<p>
+End of SNDINFO PROPS<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- *****************SIGSTART ***************************************** -->
+
+<h2 id="SIGSTART">SEARCH  SIGSTART&#150; Find earliest time at which there is signal in two or more soundfiles.
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>search sigstart</b> <i>infile1</i> <i>infile2</i> <i>[infile3...]</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1, infile2 [infile3...]</i> &#150; input soundfiles to search<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Files must have same channel-count.
+</blockquote>
+
+<h3>
+Understanding the SEARCH SIGSTART Function
+</h3>
+<blockquote>
+
+<p>
+SIGSTART compares the infiles and reports (to the console) the earliest start-time in the set, when there is some signal. The report does not say which of the sounds starts first.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+When mixing files or creating a mixfile, it may be helpful to know when some signal first appears, in order to discard any initial silence before or after mixing, or adjust the starting point of some or all of the files, for example, by prefixing further silence.
+Note that <a href="cgroedit.htm#RETIME"><b>RETIME Mode 12</b></a> finds the start of the sound in a single soundfile, or it can be run a number of times with different soundfiles to add this information to the same report file. 
+</p>
+</blockquote>
+
+<p>
+End of SEARCH SIGSTART<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="SMPTIME">SNDINFO SMPTIME &#150; Convert sample count to 
+time in soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo smptime</b> <i>infile sampcount</i> [<b>-g</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br>
+<i>sampcount</i> &#150; number of samples (an integer)<br>
+<b>-g</b> &#150; the sample count is taken as a count of 
+<b>multi-channel</b> samples.  For example, in a stereo file, 
+sample-<b>pairs</b> are counted.<br>
+</blockquote>
+
+<h3>
+Understanding the SNDINFO SMPTIME Function
+</h3>
+<blockquote>
+
+<p>
+There may be occasions when you would like to know how much time 
+a given number of samples comprises.  This function provides the 
+answer in seconds, to 6 decimal places of precision.
+</p>
+
+<p>
+You need to specify an <i>infile</i> because the number of samples 
+used for a given length of time differs according to sample rate 
+and number of channels.  The function looks at the header of 
+<i>infile</i> to get the information it needs to make the 
+calculation &#150; saving you a bit of time.
+</p>
+
+<p>
+If your value for <i>sampcount</i> is greater than the number of 
+samples in the file, an 'out of range' error message is issued, showing 
+as the maximum value the number of samples in the file.
+</p>
+
+<p>
+The reverse operation, from time to samples, is handled by 
+<a href="#TIMESMP">SNDINFO TIMESMP</a>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Most software which displays soundfiles will show time both in seconds 
+and as a sample count.  But if you come across one which just uses 
+sample count, this will convert to the equivalent time in seconds.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO SMPTIME<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="SUMLEN">SNDINFO SUMLEN &#150; Sum durations of several 
+soundfiling-system files
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo sumlen</b> <i>infile infile2</i> [<i>infile3 ... </i>] 
+<b>-s</b><i>splicelen</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile infile2</i> &#150; at least two soundfiles.  <b>They must have 
+the same sample rate and the same number of channels</b>.<br>
+<i>infile3 ... </i> &#150; possible additional soundfiles<br>
+<b>-s</b><i>splicelen</i> &#150; length of splice in milliseconds.  
+(Default: 15ms).<br>
+</blockquote>
+
+<h3>
+Understanding the SNDINFO SUMLEN Function
+</h3>
+
+<blockquote>
+<p>
+Unless using butt edits exclusively, splicing soundfiles together 
+involves overlapping the files by the length of the splices.  Thus 
+the total duration of the spliced files is not the same as the total 
+duration of all the files taken individually.
+</p>
+
+<p>
+SNDINFO SUMLEN will tell you what the total duration of the spliced 
+files is, taking into account the splice overlaps.  If a <i>splice</i> 
+length is not specified, it will use the Default 15ms.  You can 
+enter a value of 0 for <i>splice</i> and get a total duration with 
+no overlaps:  i.e., for all the files taken individually
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+When splicing and mixing, you sometimes want to have an idea how long 
+a certain combinations of soundfiles will become.  This function will 
+tell you that without your having to look up each file individually.
+</p>
+
+<p>
+One restriction is that files with different numbers of channels can 
+be mixed, but their durations cannot be summed by SNDINFO SUMLEN.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO SUMLEN<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="TIMEDIFF">SNDINFO TIMEDIFF &#150; Find difference in duration of 
+two soundfiles
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo timediff</b> <i>infile1 infile2</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1 infile2</i> &#150; the two input soundfiles<br>
+</blockquote>
+
+<h3>
+Understanding the SNDINFO TIMEDIFF Function
+</h3>
+<blockquote>
+
+<p>
+The inputs must be soundfiles.  The function displays the amount of 
+time difference there is between their respective durations.  It does 
+this calculation based on information it finds in the headers of the 
+soundfiles.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Suppose you wanted to offset a file in a mix, so that it ended at the 
+same time as another file.  SNDINFO TIMEDIFF would tell you the size 
+of the offset.  It might also be relevant when using the <i>stagger</i> 
+option of <a href="cmorph.htm#MORPH"><b>MORPH MORPH</b></a>.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO TIMEDIFF<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="TIMESMP">SNDINFO TIMESMP &#150; Convert time to sample count 
+in a soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo timesmp</b> <i>infile time</i> [<b>-g</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile t<br>
+<i>time</i> &#150; (floating point) time value in seconds<br>
+<b>-g</b> &#150; the sample count displayed is taken as a count of 
+<b>multi-channel</b> samples.  For example, in a stereo file, 
+sample-<b>pairs</b> are counted.<br>
+
+</blockquote>
+
+<h3>
+Understanding the SNDINFO TIMESMP Function
+</h3>
+<blockquote>
+
+<p>
+There may be occasions when you would like to know how many samples 
+are contained in a given length of time in a soundfile.  This function 
+provides the answer.
+</p>
+
+<p>
+You need to specify an <i>infile</i> because the number of samples 
+used for a given length of time differs according to sample rate 
+and number of channels.  The function looks at the header of 
+<i>infile</i> to get the information it needs to make the 
+calculation &#150; saving you a bit of time.
+</p>
+
+<p>
+A stereo soundfile has twice as many samples per unit time as does a 
+mono soundfile.  For example 1.52 seconds in a mono soundfile at 
+a sample rate of 44100 comprises 67032 samples, but 1.52 seconds in 
+a stereo soundfile at the same sample rate comprises 134064 samples.  
+With the <b>-g</b> flag, the two channels are 'grouped' (treated as 
+a single pair), so SNDINFO TIMESMP will display 67032.
+</p>
+
+<p>
+The reverse operation, from samples to time, is handled by 
+<a href="#SMPTIME"><b>SNDINFO SMPTIME</b></a>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Most software which displays soundfiles will show time both in seconds 
+and as a sample count.  But if you come across one which just uses 
+time, and for some reason you need to know the sample count equivalent 
+to this duration, SNDINFO TIMESMP will display the number of samples.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO TIMESMP<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="UNITS">SNDINFO UNITS &#150; Convert between different units 
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo units mode</b> <i>value</i><br>
+
+<p align=center>
+<a href="#UNITSMODES"><b>Modes</b></a> &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#UNITSVALUS"><b>Value Representations</b></a> &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#UNITSRATIO"><b>Transposition Ratios Chart</b></a> &nbsp;&nbsp;
+&nbsp;&nbsp;
+<a href="#UNITSGAINS"><b>Gain &amp; dB Chart</b></a>
+</p>
+
+<h3 id="UNITSMODES">Modes</h3>
+
+<div align=center>
+<table border="1" cellpadding="3" bgcolor="#B0E0E6">
+<caption><b>The 25 Modes of SNDINFO UNITS Grouped into Categories</b></caption>
+
+<tr>
+<th align=center><b>PITCH</b></th>
+<th align=center><b>INTERVAL</b></th>
+<th align=center><b>SPEED</b></th>
+<th align=center><b>LOUDNESS</b></th>
+</tr>
+
+<tr>
+<td><b>&nbsp;1 </b>MIDI to FRQ</td>
+<td><b>&nbsp;7 </b>FRQ RATIO to SEMITONES</td>
+<td><b>16 </b>FRQ RATIO to TIME RATIO</td>
+<td><b>24 </b>GAIN FACTOR to DBGAIN</td>
+</tr>
+
+<tr>
+<td><b>&nbsp;2 </b>FRQ to MIDI</td>
+<td><b>&nbsp;8 </b>FRQ RATIO to INTERVAL</td>
+<td><b>17 </b>SEMITONES to TIME RATIO</td>
+<td><b>25 </b>DBGAIN to GAIN FACTOR</td>
+</tr>
+
+<tr>
+<td><b>&nbsp;3 </b>NOTE to FRQ</td>
+<td><b>&nbsp;9 </b>INTERVAL to FRQ RATIO</td>
+<td><b>18 </b>OCTAVES to TIME RATIO</td>
+<td><br></td>
+</tr>
+
+<tr>
+<td><b>&nbsp;4 </b>NOTE to MIDI</td>
+<td><b>10</b>SEMITONES to FRQ RATIO</td>
+<td><b>19</b>INTERVAL to TIME RATIO</td>
+<td><br></td>
+</tr>
+
+<tr>
+<td><b>&nbsp;5 </b>FRQ to NOTE</td>
+<td><b>11</b>OCTAVES to FRQ RATIO</td>
+<td><b>20</b>TIME RATIO to FRQ RATIO</td>
+<td><br></td>
+</tr>
+
+<tr>
+<td><b>&nbsp;6 </b>MIDI to NOTE</td>
+<td><b>12 </b>OCTAVES to SEMITONES</td>
+<td><b>21 </b>TIME RATIO to SEMITONES</td>
+<td><br></td>
+</tr>
+
+<tr>
+<td><br></td>
+<td><b>13 </b>FRQ RATIO to OCTAVES</td>
+<td><b>22 </b>TIME RATIO to OCTAVES</td>
+<td><br></td>
+</tr>
+
+<tr>
+<td><br></td>
+<td><b>14 </b>SEMITONES to OCTAVES</td>
+<td><b>23 </b>TIME RATIO to INTERVAL</td>
+<td><br></td>
+</tr>
+
+<tr>
+<td><br></td>
+<td><b>15 </b>SEMITONES to INTERVAL</td>
+<td><br></td>
+<td><br></td>
+</tr>
+
+</table>
+</div>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>value</i> &#150; expression representing the unit to be converted.  
+The conventions for representing <i>value</i> are shown in the table below.
+</blockquote>
+
+<p id="UNITSVALUS">
+<div align=center>
+<table border="1" cellpadding="3" bgcolor="#B0E0E6">
+<caption><b>Valid ways to represent the <i>values</i> given to SNDINFO 
+UNITS</b></caption>
+
+<tr>
+<th align=center><b>Type of Value</b></th>
+<th align=center><b>Representation Conventions</b></th>
+</tr>
+
+<tr>
+<td><b>NOTE</b></td>
+<td>A0 = A, in Octave 0 (octave of Middle-C);<br>
+    A1 = A, in Octave 1 (octave of High-C);<br>
+    A-1 = A, in Octave -1 (octave of Low-C);<br>
+    Ebu4 = E-flat + Up a &#188;-tone, in Octave 4<br>
+    F#d-2 = F-sharp - Down a &#188;-tone, in Octave -2</td>
+</tr>
+
+<tr>
+<td><b>INTERVAL</b></td>
+<td>3 = a (major) third <b>up</b><br>
+    -m3 = a minor third <b>down</b><br>
+    m3u = a minor third plus Up a &#188;-tone<br>
+    #4d = a tritone minus Down a &#188;-tone<br>
+    15 = a 15<sup>th</sup> (largest interval permitted)</td>
+</tr>
+
+<tr>
+<td><b>MIDI</b></td>
+<td>Integer representing a MIDI note-value</td>
+</tr>
+
+<tr>
+<td><b>FRQ</b></td>
+<td>A frequency in Hz</td>
+</tr>
+
+<tr>
+<td><b>FRQ RATIO</b></td>
+<td>A fractional multiplier used to transpose a frequency (see chart below)</td>
+</tr>
+
+<tr>
+<td><b>SEMITONES</b></td>
+<td>Number of semitones and fractions of semitones</td>
+</tr>
+
+<tr>
+<td><b>OCTAVES</b></td>
+<td>Number of octaves and fractions of octaves</td>
+</tr>
+
+<tr>
+<td><b>TIME RATIO</b></td>
+<td>Timestretch&#47;compression = reciprocal of the frequency ratio:  
+period = 1&#47;frq_ratio<br>
+E.g., twice the frequency will be &#189; the duration: 1&#47;2 = 0.5</td>
+</tr>
+
+<tr>
+<td><b>GAIN FACTOR</b></td>
+<td>Amplitude multiplier: each integer above zero represents an 
+increase of ca. 3dB<br>
+Fractions reduce amplitude: 0.7 is down ca. 3dB, 0.5 is down ca. 6dB etc.</td>
+</tr>
+
+<tr>
+<td><b>DB GAIN</b></td>
+<td>Amplitude expressed in dB, the logarithmic scale in which every 6dB 
+represents<br>
+a doubling or halving of the amplitude &#150; the range of hearing is 
+enormous!</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+<h3>
+Understanding the SNDINFO UNITS Function
+</h3>
+
+<blockquote>
+<p>
+References to octaves can be confusing.  Note that here 'Octave 0' is 
+the middle octave on the keyboard (Middle-C) and that Octave -1 means 
+the octave below this.  When entering 'Notes' in the form A-1, for 
+example, this would be the A below Middle-C.  The Middle-C octave is 
+represented by 8.xx in <i>Csound</i>, and one also comes across 
+Middle-C referred to as C3, probably because it's the 3<sup>rd</sup> 
+octave on most piano keyboards.  I've made up a handwritten chart 
+for myself which gathers together these octave differences, together 
+with the note name and MIDI note number into boxes for each note over 
+the several octaves I use most of the time. (Ed.)
+</p>
+
+<p>
+The precision of the units may sometimes seem extreme, but are usually 
+more significant than they at first appear.  Frequencies and amplitudes 
+cover a very wide numerical range, and rounding errors usually do need 
+to be minimised.  You will notice that even with 6 decimal places, 
+corresponding conversions don't come out exactly the same. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Exploring some of the conversions, such as Gain Factor & dB Gain, can be 
+very instructive.  There are a couple of charts below for quick reference 
+in areas I tend to use frequently.  You can use the program to work out 
+your own charts for values you find you often require.  We really ought 
+to have a book of charts of various kinds at our fingertips, just as 
+mathematicians used to have log tables before the advent of the 
+calculator, e.g.,:<br>
+	<ul>
+	<li>the notes chart described above</li>
+	<li>a table of frequencies corresponding to equal-(or 
+	    other)-tempered scales</li>
+	<li>a chart showing how (the logarithmic scale of) dB levels 
+	    relates to sounds in the environment</li>
+	<li>a chart of transposition ratios (start of one is shown below)</li>
+	<li>a chart showing how gain factors relate to dB (start of 
+	    one is shown below)</li>
+	</ul>
+We can save a lot of time by preparing some tools for working in the 
+electroacoustic medium.  SNDINFO UNITS gives us answers for many of 
+the specific questions which will inevitably come up.
+</p>
+
+<p id="UNITSRATIO">
+<div align=center>
+<table border="1" cellpadding="3" bgcolor="#B0E0E6">
+<caption><b>Transposition Ratios Down&#47;Up for 24 Semitones</b></caption>
+
+<tr>
+<th align=center><b>Semitones Down</b></th>
+<th align=center><b>Transposition Ratio</b></th>
+<th align=center><b>Semitones Up</b></th>
+<th align=center><b>Transposition Ratio</b></th>
+<th align=center><b>Name of Interval</b></th>
+</tr>
+
+<tr>
+<td><b>-1</b></td>
+<td>0.94387431</td>
+<td><b>1</b></td>
+<td>1.05946309</td>
+<td>Semitone [<b> (-)m2 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-2</b></td>
+<td>0.89089872</td>
+<td><b>2</b></td>
+<td>1.12246205</td>
+<td>Whole Tone [<b> (-)2 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-3</b></td>
+<td>0.84089642</td>
+<td><b>3</b></td>
+<td>1.18920712</td>
+<td>Minor Third [<b> (-)m3 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-4</b></td>
+<td>0.79380053</td>
+<td><b>4</b></td>
+<td>1.25992105</td>
+<td>Major Third [<b> (-)3 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-5</b></td>
+<td>0.74915354</td>
+<td><b>5</b></td>
+<td>1.33483985</td>
+<td>Perfect Fourth [<b> (-)4 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-6</b></td>
+<td>0.70710678</td>
+<td><b>6</b></td>
+<td>1.41421356</td>
+<td>Tritone [<b> (-)#4 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-7</b></td>
+<td>0.66741993</td>
+<td><b>7</b></td>
+<td>1.49830708</td>
+<td>Perfect Fifth [<b>5</b>]</td>
+</tr>
+
+<tr>
+<td><b>-8</b></td>
+<td>0.629996052</td>
+<td><b>8</b></td>
+<td>1.58740105</td>
+<td>Minor Sixth [<b> (-)m6 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-9</b></td>
+<td>0.59460356</td>
+<td><b>9</b></td>
+<td>1.68179283</td>
+<td>Major Sixth [<b> (-)6 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-10</b></td>
+<td>0.56123102</td>
+<td><b>10</b></td>
+<td>1.78179744</td>
+<td>Minor Seventh [<b> (-)m7 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-11</b></td>
+<td>0.52973155</td>
+<td><b>11</b></td>
+<td>1.88774863</td>
+<td>Major Seventh [<b> (-)7 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-12</b></td>
+<td>0.50000000</td>
+<td><b>12</b></td>
+<td>2.0</td>
+<td>Octave [<b> (-)8 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-13</b></td>
+<td>0.47193716</td>
+<td><b>13</b></td>
+<td>2.11892619</td>
+<td>Minor Ninth [<b> (-)m9 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-14</b></td>
+<td>0.44544936</td>
+<td><b>14</b></td>
+<td>2.24492410</td>
+<td>Ninth [<b> (-)9 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-15</b></td>
+<td>0.42044821</td>
+<td><b>15</b></td>
+<td>2.37841423</td>
+<td>Minor Tenth  [<b> (-)m10 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-16</b></td>
+<td>0.39685026</td>
+<td><b>16</b></td>
+<td>2.51984210</td>
+<td>Tenth  [<b> (-)10 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-17</b></td>
+<td>0.37457677</td>
+<td><b>17</b></td>
+<td>2.66968971</td>
+<td>Eleventh  [<b> (-)11 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-18</b></td>
+<td>0.35355339</td>
+<td><b>18</b></td>
+<td>2.82842712</td>
+<td>Octave + Tritone  [<b> (-)#11 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-19</b></td>
+<td>0.33370996</td>
+<td><b>19</b></td>
+<td>2.99661415 (3.0)</td>
+<td>Twelfth  [<b> (-)12 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-20</b></td>
+<td>0.31498026</td>
+<td><b>20</b></td>
+<td>3.17480210</td>
+<td>Minor Thirteenth  [<b> (-)m13 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-21</b></td>
+<td>0.29730178</td>
+<td><b>21</b></td>
+<td>3.36358566</td>
+<td>Thirteenth  [<b> (-)13 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-22</b></td>
+<td>0.28061551</td>
+<td><b>22</b></td>
+<td>3.56359487</td>
+<td>Minor Fourteenth  [<b> (-)m14 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-23</b></td>
+<td>0.26486577</td>
+<td><b>23</b></td>
+<td>3.77549725</td>
+<td>Fourteenth  [<b> (-)14 </b>]</td>
+</tr>
+
+<tr>
+<td><b>-24</b></td>
+<td>0.25</td>
+<td><b>24</b></td>
+<td>4.0</td>
+<td>Fifteenth (2 Octaves)  [<b> (-)15 </b>]</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+<p>
+And here is a table relating gain factors, dB and the 0 to 32767 
+amplitude scale.
+</p>
+
+<p id="UNITSGAINS">
+<div align=center>
+<table border="1" cellpadding="3" bgcolor="#B0E0E6">
+<caption><b>Getting a Handle on dB values</b></caption>
+
+<tr>
+<th align=center><b>Gain Increase Factor</b></th>
+<th align=center><b>dB Alteration</b></th>
+<th align=center><b>Gain Reduction Factor</b></th>
+<th align=center><b>dB Alteration</b></th>
+<th align=center><b>Reduction on 32767 scale</b></th>
+</tr>
+
+<tr>
+<td><b>1.0</b></td>
+<td><b>0.0</b>dB</td>
+<td><b>1.0</b></td>
+<td><b>0.0</b>dB</td>
+<td>32767</td>
+</tr>
+
+<tr>
+<td><b>1.5</b></td>
+<td><b>3.5</b>dB</td>
+<td><b>0.7</b></td>
+<td><b>-3.1</b>dB</td>
+<td>22936</td>
+</tr>
+
+<tr>
+<td><b>2.0</b></td>
+<td><b>6.0</b>dB</td>
+<td><b>0.5</b></td>
+<td><b>-6.0</b>dB</td>
+<td>16383</td>
+</tr>
+
+<tr>
+<td><b>2.5</b></td>
+<td><b>8.0</b>dB</td>
+<td><b>0.4</b></td>
+<td><b>-8.0</b>dB</td>
+<td>13106</td>
+</tr>
+
+<tr>
+<td><b>3.0</b></td>
+<td><b>9.5</b>dB</td>
+<td><b>0.35</b></td>
+<td><b>-9.1</b>dB</td>
+<td>11468</td>
+</tr>
+
+<tr>
+<td><b>3.5</b></td>
+<td><b>10.9</b>dB</td>
+<td><b>0.3</b></td>
+<td><b>-10.5</b>dB</td>
+<td>&nbsp;&nbsp;9830</td>
+</tr>
+
+<tr>
+<td><b>4.0</b></td>
+<td><b>12.0</b>dB</td>
+<td><b>0.25</b></td>
+<td><b>-12.0</b>dB</td>
+<td>&nbsp;&nbsp;8191</td>
+</tr>
+
+<tr>
+<td><b>8.0</b></td>
+<td><b>18.1</b>dB</td>
+<td><b>0.125</b></td>
+<td><b>-18.1</b>dB</td>
+<td>&nbsp;&nbsp;4096</td>
+</tr>
+
+<tr>
+<td><b>16</b></td>
+<td><b>24.1</b>dB</td>
+<td><b>0.0625</b></td>
+<td><b>-24.1</b>dB</td>
+<td>&nbsp;&nbsp;2047</td>
+</tr>
+
+<tr>
+<td><b>32</b></td>
+<td><b>30.1</b>dB</td>
+<td><b>0.03125</b></td>
+<td><b>-30.1</b>dB</td>
+<td>&nbsp;&nbsp;1024</td>
+</tr>
+
+<tr>
+<td><b>64</b></td>
+<td><b>36.1</b>dB</td>
+<td><b>0.015626</b></td>
+<td><b>-36.1</b>dB</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;512</td>
+</tr>
+
+<tr>
+<td><b>128</b></td>
+<td><b>42.1</b>dB</td>
+<td><b>0.0078125</b></td>
+<td><b>-42.1</b>dB</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;256</td>
+</tr>
+
+<tr>
+<td><b>0.0</b></td>
+<td colspan=3><b>-96</b>dB (i.e., zero level)</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+<p>
+The gain factor is a ratio, an increase or decrease relative to 1 (full 
+volume).  The 0 to 32767 scale also covers the range between zero level 
+and full volume. (Most or all CDP levels are now expressed on a scale of 0-1). 
+One can't go higher than this without causing 
+distortion.  The above chart tells us that a gain factor of 0.5 is 
+equivalent to -6dB, which halves the volume.  Applied to the 32767 
+scale, this is 16363.5, so this gives some idea what the numbers along 
+the 0 to 32767 scale really mean.  The 5<sup>th</sup> column in the 
+table above lists the amplitude <i>reductions</i> along this scale.
+</p>
+
+<p>
+As a rule of thumb, given_level&#47;32767 = the gain factor being 
+applied.  SNDINFO UNITS can convert this into dB for you.  For example, 
+if you set a 0 to 32767 level at 20000, the gain factor is 20000&#47;
+32767 = 0.61037, which is a reduction of -4.288dB below full volume.
+<b>However, remember that all this is relative:</b>  the gain factor 
+can be applied to any 0 to 32767 level.  Thus a gain factor of 1.5 
+(3dB) applied to 20000 = 30000.  A gain factor of 0.5 (-6dB) 
+applied to 20000 = 10000, etc.
+</p>
+
+</blockquote>
+
+<p>
+End of SNDINFO UNITS<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="ZCROSS">SNDINFO ZCROSS &#150; Display fraction of 
+zero-crossings in a soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sndinfo zcross</b> <i>infile starttime endtime</i><br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input stereo soundfile<br />
+<i>starttime</i> &#150; time in <i>infile</i> at which to begin the 
+count<br />
+<i>endtime</i> &#150; time in <i>infile</i> at which to end the 
+count<br />
+</blockquote>
+
+<h3>
+Understanding the SNDINFO ZCROSS Function
+</h3>
+<blockquote>
+
+<p>
+SNDINFO ZCROSS counts the number of zero-crossings in your file. 
+<a href="glosstec.htm#ZEROCROSSING"><b>Zero-crossings</b></a> 
+occur when the waveform crosses the zero amplitude centre-line, 
+which represents the rest position of the speaker cone between 
+positive and negative motions.  But what do we mean here by 
+'fraction of' and what use can we make of this information?
+</p>
+
+<p>
+For a pure sinewave you will have 2 zero-crossings for every 
+wavecycle.  For a 441Hz wave, at a sample rate of 44100 samples 
+per second, you would expect to find 100 wavecycles per second, 
+and therefore 200 zero-crossings per second.  The zero-crossing 
+ratio is therefore defined here as 1:200 (= 0.005).
+</p>
+
+<p>
+With more complex sounds, the wave may cross the zero amplitude line 
+more than twice in each wavecycle, and with noise, the signal crosses 
+the zero line very frequently.  <b>Thus, more complex or noisy signals have 
+a higher zero-crossing ratio, e.g. 1:3 (= 0.333). So the ratio gives  
+some indication of how complex or noisy your sound is:  the higher the 
+ratio, the noisier the sound.</b>
+</p>
+
+<blockquote>
+<p>
+<b>4 Examples, specifying 1 second segments within the sound:</b>
+	<ol>
+	<li>A fairly complex chord (with several adjacent semitones) made with  
+	SYNTH CHORD &#150; the fraction of zero-crossings is 0.024442, or 
+	approximatgely 1:32.</li>
+	<li>Text delivered by a male voice, speaking normally &#150; the 
+	fraction of zero-crossings is 0.044444, or approximately 3:64.</li>
+	<li>A riff played on a drum-kit &#150; the fraction of zero-crossings 
+	is 0.176098, or approximately 11:64.</li>
+	<li>Noise generated by SYNTH NOISE &#150; the fraction of zero-crossings 
+	is 0.502540, or approximately 1:2.</li>
+	</ol>
+</p>
+</blockquote>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+SNDINFO ZCROSS is therefore a diagnostic tool for use with programs which 
+use zero-crossing detection to modify a sound (e.g. the <a href="cdistort.htm"><b>DISTORT</b></a> programs).  
+It gives you a numerical indication of the relative complexity of the 
+sound and therefore the degree of distortion that may result from 
+manipulating the 'pseudo-wavecycles' between zero-crossings.
+</p>
+</blockquote>
+
+<p>
+End of SNDINFO ZCROSS<br>
+<a href="#SNDINFOLIST"><b>Return</b></a> to List of SNDINFO functions at 
+top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' TIme-Domain Index
+</p>
+
+
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 27 Apr 2023 for CDP8 <br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+<html>
+<!-- exmph1.htm - tour page for MORPH -->
+<!-- Individual pages name format: extex1.htm and extex1mo(re).htm -->
+<!-- COLOURS: FFD700=GOLD  FFFFF0=IVORY  EEE8AA=PALEGOLDENROD -->
+<!-- COLOURS: FFF8DC=CORNSILK 0000CD=MEDIUMBLUE B0E0E6=POWDERBLUE -->
+<!-- COLOURS: FFFACD=LEMONCHIFFON FFFFFF=WHITE -->
+
+<head>
+<meta name="GENERATOR" content="Prepared with EMACS text editor">
+<LINK REL="stylesheet" TITLE="CDP Style Sheet" HREF="cdpcsssm.css">
+<link rel="icon"  href="../images/cdp_favicon.ico">
+<title>Sound Example: Morphing</title>
+</head>
+
+<body bgcolor="#FFFFFF" background="cdpwatermark.gif" bgproperties="fixed">
+
+<div>
+<p>
+<IMG SRC="bannersw.gif" alt="[CDP Logo & Software Banner]"></a>
+</p>
+</div
+
+<p>
+<div>
+<table border="0" cellpadding="3">
+<tr>
+<td align="left"><a href="cdptour.htm"><b>Return</b></a> to list of sound 
+examples.</td>
+<td align="right"><a href="exseg1.htm"><b>Continue</b></a> to next sound 
+example on the tour.</td>
+</tr>
+</table>
+</div>
+</p>
+
+<p>
+<div align="center">
+<table cellspacing="3" bgcolor="#0000CD" cellpadding="3">
+<caption><h1>CDP Sound Example &#150; MORPHING</h1></caption>
+
+<tr>
+<td colspan="2" bgcolor="#FFFACD"><h2 align=center>Morphing between 
+similar sounds</h2></td>
+</tr>
+
+<tr>
+<td bgcolor="#FFFFF0"><h3 align="center">SOURCE SOUNDS<br><p></p>
+<a href="st6g.mp3">stream</a><br>
+<a href="ck6.mp3">crackling</a></h3></td>
+<td bgcolor="#EEE8AA"><h3 align="center">TRANSFORMATION<br><p></p>
+<a href="exmph1.mp3">morph stream to crackling</a></h3></td>
+</tr>
+
+<tr>
+<td colspan="2" bgcolor="#FFFFFF"><h3 align="center">DESCRIPTION<br>
+&#126; CDP Function: MORPH MORPH &#126;</h3><p></p>
+	<ul>
+	<li>This MORPH function gradually replaces the spectrum of one 
+	sound with that of another.</li>
+	<li>This process takes account of the fact that the spectrum is 
+	constantly evolving over time.</li>
+	<li>The timing (start &amp; end) and level of entry (linear or 
+	exponential) of the amplitudes and frequencies can be set 
+	independently.</li>
+	<li>In this example, a double morph is used.  In the first morph, 
+	the times are set to 3.5 - 6 in a 6.3 sec file, and 
+	<i>stagger</i> is set such that the second input comes in at 3 
+	seconds (just before the morph begins).  The times for the second 
+	morph are 6.5 - 9 because the use of <i>stagger</i> made the output 
+	of the first morph 3 seconds longer.</li>
+	<li>The amplitude level of the second input enters slowly and then 
+	more rapidly increases (<i>exponent</i> = 2).  The frequencies of 
+	the second input come in steadily in a linear fashion 
+	(<i>exponent</i> = 1).</li>
+	<li>Simple pre-processing helped improve the perception that a 
+	morph was taking place.  Firstly, the loudness of the stream was 
+	doubled (<i>gain = 2</i>) so that it matched the crackling better.  
+	Then the amplitude envelope of the crackling sound replaced that of 
+	the stream, producing an <a href="st6genvofck6.mp3"><b>interim 
+	state</b></a> in which the stream sounds as if it is being disturbed 
+	in some way.</li>
+	<li>Finally, the double morph was done:  from the stream into 
+	this disturbed stream, and then from the result of this morph into 
+	the sound of the crackling itself.</li>
+	</ul>
+<p align="right"><a href="exmph1mo.htm"><b>Additional Information</b></a>
+</p></td>
+</tr>
+
+<tr>
+<td bgcolor="#FFFFF0"><h3 align="center">PARAMETER SETTINGS<br>
+(Click on image to view fullsize)</h3>
+<div>
+<a href="exmph1dbx.gif"><img src="exmph1dbxthumb.gif" ALT="[morph 
+parameters dialogue box]" align="center"></a>
+</div></td>
+<td bgcolor="#EEE8AA"><h3 align="center">KEY POINTS</h3><p></p>
+	<ul>
+	<li>Morphing creates a smooth but perceptible transition from 
+	one sound to another (usually similar) sound.</li>
+	<li>The key to morphing lies in what happens in the transition 
+	part of the resulting sound.  One is meant to perceive that 
+	transition, to <i>feel it warping</i> into something 
+	different.</li>
+	<li>Thus, it is not necessarily meant to sound like a MIX or CROSS 
+	of two sounds, where the first flows smoothly into the second.  It 
+	is the sense of warping out of shape and being reconstituted 
+	differently which is the psychoacoustic objective, as clearly 
+	seen in the visual dimension.</li>
+	<li>The aural process usually needs more time for the transition 
+	than the visual one.</li>
+	<li>It is not a trivial matter to find an effective way of doing 
+	this.  Here, the very lively amplitude envelope of the crackling 
+	is extracted and replaces the amplitude envelope of the stream 
+	(ENVELOPE REPLACE). </li>
+	<li>Then <i>stream</i> is morphed with <i>reshaped amplitude 
+	envelope stream</i>, with a 3 second <i>stagger</i> to give 
+	time for us to hear the stream in its original form before it 
+	starts to change.  When <i>reshaped amplitude stream</i> comes 
+	in, it sounds as if the stream is being disturbed by something.</li>
+	<li>The last step is to then morph the result of the first morph 
+	(stream to disrupted stream) with the crackling sound, also with 
+	a <i>stagger</i>, this time 6 seconds, because the first 
+	<i>stagger</i> added 3 seconds to the overall length.</li>
+	<li>The final result then is <i>stream</i> to <i>stream disrupted 
+	by the crackling envelope</i> to the <i>crackling</i>.</li>
+	<li>The morph sounds more than a mere transition or crossfade 
+	because we have introduced the perception that the first sound 
+	(still perceived as being the first sound) has been disrupted in 
+	some way.  When the second sound finally emerges, we realise what 
+	has caused the disruption.  The perception (it seems to me) is of 
+	a stream which has been strongly affected by something, goes 
+	brittle and then fragments: an audio morph.</li>
+	</ul>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" bgcolor="#FFF8DC"><h3>SUPPLEMENTARY FILES USED</h3><br>
+<p>
+<b>A behind the scenes amplitude envelope transfer</b> (ENVELOPE REPLACE 
+extracts and superimposes in one operation, creating <i>st6gaeofck6.wav</i>, 
+i.e, 'st6g' with amplitude envelope of 'ck6'.)
+</p>
+
+<p>
+DIAGRAM OF THE MORPH
+<pre>
+FIRST MORPH                                morph...
+[input 1: st6g.ana]                 0____3_3.5____6_6.3
+[input 2: st6gaeofck6.ana]          (s=3)0_______________6.3
+[morph1->2: st6gmphst6gaeofck6.ana] 0____________________9.3
+
+SECOND MORPH                                        morph...
+[input 1: st6gmphst6gaeofck6.ana]   0_____________6_6.5____9_9.3
+[input 2: ck6.ana]                  (s=6)         0_______________6.3
+[morph 1->2: exmph1.ana]            0_____________________________12.3
+</pre>
+</p>
+
+</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+<p>
+Last updated: 4 December 2003
+</p>
+
+</body>
+
+</html>

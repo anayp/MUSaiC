@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0044)http://www.trevorwishart.co.uk/MidiData.html -->
+<HTML><HEAD><TITLE>Midi Entry</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY>
+<DIV align=center>
+<H1 style="COLOR: darkmagenta"><A name=MIDITOP><B>MIDI Data Entry</B></A></H1>
+<H3 style="COLOR: darkmagenta">Entering Pitch or Frequency (or Timing) 
+Data<BR>from a MIDI keyboard.</H3>
+<P>
+<H2 style="COLOR: darkmagenta">Trevor Wishart (July 2007)</H2>
+<P></P></DIV>
+<DIV align=center>
+<TABLE cellPadding=3 border=2>
+  <TBODY>
+  <TR>
+    <TD align=middle><A 
+      href="http://www.trevorwishart.co.uk/slfull.html"><B>Return</B></A> 
+  </TR></TBODY></TABLE></DIV>
+<H3><U>Introduction</U></H3>
+<P><B><I>Sound Loom</I> version 10</B> allows you to enter MIDI data directly 
+from a MIDI keyboard if 
+<UL>
+  <LI>You have a MIDI device connected to the input of your computer. 
+  <LI>You have Richard Orton's <B><I>Tabula Vigilans</B></I> program in your 
+  <I>_cdprograms</I> directory. </LI></UL>If this is the case, on launching the 
+<I>Sound Loom</I>, it will interrogate your system to discover what MIDI input 
+devices are available. It will then ask you for information.<BR><BR>
+<UL>
+  <LI>If you have more than one MIDI input device connected, which MIDI device 
+  you wish to use for input to the <I>Sound Loom</I> ? 
+  <LI>What is the maximum number of MIDI events you want to enter on any one 
+  transmission ?</B>. 
+  <LI>Which MIDI note will you use to signal the <B>end of your MIDI 
+  transmission</B> ?. </LI></UL>This information will then be used to set up the 
+MIDI entry link, and you will not be interrogated again.<BR><BR>You can change 
+this information at any time from the <B><I>System State</B></I> menu 
+(<B><I>Midi Input Device: Set or Change</B></I>) on the Workspace.<BR>
+<P></P>
+<H3><U>Where would it be useful to enter MIDI data from a MIDI keyboard 
+?</U></H3>
+<UL>
+  <LI>For <B>Pitch or Frequency parameters</B>, as single values, or timed 
+  breakpoint files. 
+  <LI>For <B>Sequencers</B>, as lists of pitches, times, levels (and durations). 
+
+  <LI>For <B>Harmonic Fields</B>, as lists of pitches. 
+  <LI>For <B>Special Data Formats</B> requiring pitch or frequency information 
+  (varibank filters, texture programs, etc). </LI></UL>
+<H3><U>How do I enter MIDI data from a MIDI keyboard ?</U></H3>
+<P>MIDI data entry is accessed from the black and white <B>Piano-style 
+Buttons</B> displayed at appropriate places in the <I>Sound 
+Loom</I>.<BR><BR><B>NB: If you do NOT have <I>Tabula Vigilans</I> in the 
+<I>_cdprogs</I> directory, these buttons will NOT appear.</B><BR><BR>MIDI data 
+is entered by 
+<UL>
+  <LI>Pressing the piano-style button. 
+  <LI>Playing the required notes on the MIDI keyboard. 
+  <LI>Hitting a specific key (which you have designated, see above) to signal 
+  the end of the data. </LI></UL>The entered MIDI data will then appear as text in 
+whatever context is has been asked for.<BR><BR><B>NB</B>: Once you have hit the 
+piano-style key, the <I>Sound Loom</I> waits until you press the designated MIDI 
+keyboard key to <B>signal the end of your MIDI data transmission</B>.<BR><B><A 
+style="COLOR: red">If you do not press this key, the <I>Sound Loom</I> will 
+remain locked.</B></A><BR><BR>
+<P></P>
+<H3><U>Where will I find the MIDI data entry keys ?</U></H3>
+<P>Black and white <B>Piano-style buttons</B> for MIDI data entry can be found 
+<UL>
+  <LI>On the <B>Calculator</B> <BR>for entering MIDI pitch values, for value 
+  conversions.<BR><BR>
+  <LI>On the <B>Table Editor</B><BR>where data entered from a MIDI keyboard can 
+  be used to extract<BR>
+  <UL>
+    <LI>Pitches or Frequencies 
+    <LI>Note Onset Times 
+    <LI>Amplitudes (as dB or gain) 
+    <LI>Durations<BR><B>or any combination of these</B>, to create a 
+    table.<BR><BR></LI></UL>
+  <LI>On the <B>Parameters Page</B> for <B>frequency or pitch parameters (or mS 
+  Delay)</B> on the <B>far right of the parameter bars</B><BR>to enter single 
+  MIDI or frequency (or associated mS Delay) values to the associated parameter 
+  value box.<BR><BR>
+  <LI>On the <B>Parameters Page</B> for <B>frequency or pitch parameters</B>, by 
+  pressing the <B>Make File</B> button you will go to the<BR><B>Text Creation 
+  Window</B> where you will find the <B>Piano-style button</B> at the 
+  top.<BR>Pressing this button allows MIDI data to be entered to create 
+  <UL>
+    <LI><B>timed</B> pitch (or frequency) breakpoint data (the usual case) 
+    <LI>a list of MIDI frq values (e.g. for spectral tuning) 
+</LI></UL><BR></LI></UL>MIDI data keys are also associated with the <B>Text 
+Creation Window</B> for <B>Special Data formats</B> (see below)<BR>
+<H3><U>How do I enter MIDI data for special data format files ?</U></H3>On the 
+<B>Parameters Page</B>, find the parameter bar associated with the special data 
+file (always the top one) and press the <B>Make File</B> button.<BR>This will 
+take you to the <B>Text Creation Window</B> where you will find the 
+<B>Piano-style button</B> at the top.<BR><BR>In these cases, the MIDI data you 
+enter is extracted and converted automatically to the correct text 
+format.<BR><BR>The main processes involved are<BR>
+<UL>
+  <LI><B>Texture</B> processes<BR>The various types of texture process require a 
+  special data file containing (at least) a list of the (putative) MIDI pitches 
+  of the source sounds<BR>plus, possibly, (depending on the type of texture 
+  called), 
+  <UL>
+    <LI>MIDI pitches to specify harmonic field(s) or set(s) 
+    <LI>MIDI pitches to specify a pre-ordained melodic line. 
+    <LI>sets of MIDI pitches to specify Ornaments or Motifs. </LI></UL>In this 
+  case, pressing the piano-type button calls up a window which asks you for the 
+  necessary MIDI sets <B>in turn</B> and writes them, in the correct format, to 
+  the required textfile.<BR><BR>
+  <LI><B>Sequencer</B> processes<BR>require either 
+  <UL>
+    <LI>a list of time - transposition - loudness triples 
+    <LI>(for the multisound sequencer) a list of time - transposition - loudness 
+    - duration quadruples. </LI></UL>In this case, pressing the piano-type button 
+  calls up a window which first asks for the (putative) MIDI pitch(es) of the 
+  source(s) (which it will use to calculate the required transpositions form the 
+  MIDI notes you next enter).<BR>In the case of the multisound sequencer, you 
+  will asked if you wish to enter the data for each source <B>in 
+  turn</B>.<BR>The appropriate data is extracted from your MIDI input and 
+  written directly to a textfile in the correct format.<BR><BR>
+  <LI>The <B>Varibank</B> filters<BR>Here the input MIDI data is converted to a 
+  list of MIDI (or frq) values, each followed by an amplitude value of 1<BR>This 
+  data is then written at the position of the cursor in the text-creation 
+  window.<BR>You can therefore 
+  <UL>
+    <LI>Create a list of filter data times, using the <A 
+    style="COLOR: darkmagenta">Sound View</A> graphic entry window. 
+    <LI>Position the cursor after the time (on each line in turn) and 
+    <LI>Enter the required MIDI pitches from the MIDI keyboard. </LI></UL></LI></UL>
+<P></P>
+<DIV align=center>
+<TABLE cellPadding=3 border=2>
+  <TBODY>
+  <TR>
+    <TD align=middle><A 
+      href="http://www.trevorwishart.co.uk/MidiData.html#MIDITOP"><B>To 
+      Top</B></A> </TR></TBODY></TABLE></DIV></BODY></HTML>

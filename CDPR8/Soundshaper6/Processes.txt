@@ -1,0 +1,16 @@
+Accumulate
+Average
+Blur
+Echo
+Iterate
+Pick
+Repeats
+Reverse
+Ringmod
+Speed
+Stack
+Timestretch
+Trace
+Transpose
+Tremolo
+Vibrato

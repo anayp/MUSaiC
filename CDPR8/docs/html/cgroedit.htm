@@ -1,0 +1,3980 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cgroedit.htm  - SFEDIT HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP SFEDIT Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <dt><a href="#SFEDITLIST"><b>SFEDIT:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CUT"><b>CUT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CUTEND"><b>CUTEND</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CUTMANY"><b>CUTMANY</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#EXCISE"><b>EXCISE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#EXCISES"><b>EXCISES</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INSERT"><b>INSERT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INSIL"><b>INSIL</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#JOIN"><b>JOIN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#JOINDYN"><b>JOINDYN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#JOINSEQ"><b>JOINSEQ</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#MASKS"><b>MASKS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#NOISECUT"><b>NOISECUT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RANDCHUNKS"><b>RANDCHUNKS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RANDCUTS"><b>RANDCUTS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#REPLACE"><b>REPLACE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SPHINX"><b>SPHINX</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SYLLABLES"><b>SYLLABLES</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TWIXT"><b>TWIXT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ZCUT"><b>ZCUT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ZCUTS"><b>ZCUTS</b></a>
+  <br><br>
+  <b>OTHERS:</b><br>
+  <dt>&nbsp;&nbsp;<a href = "#CANTOR"><b>CANTOR</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CONSTRICT"><b>CONSTRICT</b></a>
+  <dt>&nbsp;&nbsp;<a href="#ENVCUT"><b>ENVCUT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ISOLATE"><b>ISOLATE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#MANYSIL"><b>MANYSIL</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PACKET"><b>PACKET</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PARTITION"><b>PARTITION</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PREFIXSIL"><b>PREFIX SIL</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#REJOIN"><b>REJOIN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RETIME"><b>RETIME</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SILEND"><b>SILEND</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SUBTRACT"><b>SUBTRACT</b></a>
+  <dt>&nbsp;&nbsp;<a href="#WAVEFORM"><b>WAVEFORM</b></a>
+  <br><br>
+  <dt><a href = "#RETIMING"><b>On Retiming</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+     <!-- 
+     <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+     -->
+
+     <div align=center>
+     <br>
+     <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+     </div>
+
+   <h1 align=center>CDP SFEDIT Functions</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="SFEDITLIST">Functions to Edit soundfiles</h2>
+
+<dl>
+<dt><a href="#CANTOR"><b>CANTOR</b></a> <dd>Cut holes in a sound in the manner of a cantor set (holes within holes within holes)</dd>
+<dt><a href="#CONSTRICT"><b>CONSTRICT</b></a> <dd>Shorten the durations 
+of any zero-level sections in a sound</dd>
+<dt><a href="#CUT">SFEDIT <b>CUT</b></a> <dd>Cut and keep a segment of a sound</dd>
+<dt><a href="#CUTEND">SFEDIT <b>CUTEND</b></a> <dd>Cut out and keep the end part of 
+a soundfile</dd>
+<dt><a href="#CUTMANY">SFEDIT <b>CUTMANY</b></a> <dd>Cut and keep several 
+segments of a sound</dd>
+<dt><a href="#ENVCUT"><b>ENVCUT</b></a> <dd>Cut sound into elements with falling envelope </dd>
+<dt><a href="#EXCISE">SFEDIT <b>EXCISE</b></a> <dd>Remove a segment from a soundfile 
+and close up the gap</dd>
+<dt><a href="#EXCISES">SFEDIT <b>EXCISES</b></a> <dd>Remove segments of a soundfile and 
+close up the gaps</dd>
+<dt><a href="#INSERT">SFEDIT <b>INSERT</b></a> <dd>Insert 2<sup>nd</sup> sound into 
+1<sup>st</sup> (overwriting or spreading first sound)</dd>
+<dt><a href="#INSIL">SFEDIT <b>INSIL</b></a> <dd>Insert silence into a sound (overwriting 
+or spreading the sound apart)</dd>
+<dt><a href="#ISOLATE"><b>ISOLATE</b></a> <dd>Disjunct portions of soundfile are specified by textfile or dB loudness and saved to separate files</dd>
+<dt><a href="#JOIN">SFEDIT <b>JOIN</b></a> <dd>Join files together, one after another</dd>
+<dt><a href="#JOINDYN">SFEDIT <b>JOINDYN</b></a> <dd>Join in loudness-patterned sequence</dd>
+<dt><a href="#JOINSEQ">SFEDIT <b>JOINSEQ</b></a> <dd>Join in patterned sequence</dd>
+<dt><a href="#MANYSIL"><b>MANYSIL</b></a> <dd>Insert many silences into 
+a soundfile</dd>
+<dt><a href="#MASKS">SFEDIT <b>MASKS</b></a> <dd>Mask specified chunks of a sound, with silence</dd>
+<dt><a href="#NOISECUT">SFEDIT <b>NOISECUT</b></a> <dd>Suppress noise in a (mono) sound 
+file, replacing with silence</dd>
+<dt><a href="#PACKET"><b>PACKET</b></a> <dd>Isolate or generate a sound packet</dd>
+<dt><a href="#PARTITION"><b>PARTITION</b></a> <dd>Partition a mono soundfile into disjunct files in blocks defined by groups of wavesets</dd>
+<dt><a href="#PREFIXSIL"><b>PREFIX SILENCE</b></a> <dd>Add silence to the 
+beginning of a soundfile</dd>
+<dt><a href="#RANDCHUNKS">SFEDIT <b>RANDCHUNKS</b></a> <dd>Cut chunks from a soundfile, 
+randomly</dd>
+<dt><a href="#RANDCUTS">SFEDIT <b>RANDCUTS</b></a> <dd>Cut soundfile into pieces with 
+cuts at random times</dd>
+<dt><a href="#REPLACE">SFEDIT <b>REPLACE</b></a> <dd>Insert a 2<sup><small>nd</small></sup> 
+sound into an existing sound, replacing part of the original sound</dd>
+<dt><a href="#REJOIN"><b>REJOIN</b></a> <dd>Remix segment-files originating in ISOLATE process</dd>
+<dt><a href="#RETIME"><b>RETIME</b></a> <dd>Rearrange and retime events within 
+a soundfile</dd>
+<dt><a href="#SILEND"><b>SILEND</b></a> <dd>Add silence to the end of a soundfile</dd>
+<dt><a href="#SPHINX">SFEDIT <b>SPHINX</b></a> <dd>Switch between several files, 
+with different switch times, to make new sound</dd>
+<dt><a href="#SUBTRACT">SFEDIT <b>SUBTRACT</b></a> <dd>Subtract one file from another</dd>
+<dt><a href="#SYLLABLES">SFEDIT <b>SYLLABLES</b></a> <dd>Separate out vocal syllables
+<dt><a href="#TWIXT">SFEDIT <b>TWIXT</b></a> <dd>Switch between several files, to 
+make a new sound</dd>
+<dt><a href="#WAVEFORM"><b>WAVEFORM</b></a> <dd>Generate a wavetable from existing sound </dd>
+<dt><a href="#ZCUT">SFEDIT <b>ZCUT</b></a> <dd>Cut and keep a segment of soundfile, 
+cutting at zero crossings</dd>
+<dt><a href="#ZCUTS">SFEDIT <b>ZCUTS</b></a> <dd>Cut and keep segments of a MONO soundfile, 
+cutting at zero crossings (no splice)</dd>
+<br>
+SEE ALSO:<br>
+<dt><a href="cdistort.htm#DISTCUT"><b>DISTCUT</b></a> &#150; Cut sound into elements with falling envelope</dt>
+</dl>
+<p>
+<a href="#RETIMING"><b>On Retiming</b></a>: An Overview of Rhythm Facilities
+
+
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="CANTOR">CANTOR &#150; Cut holes in a sound in the manner of a cantor set (holes within holes within holes)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>cantor set 1-2</b> <i>infile outfile holesize holedig depth-trig splicelen maxdur</i> [<b>-e</b>]<br />
+<b>cantor set 3</b> <i>infile outfile holelev holedig layercnt layerdec maxdur</i>
+<br />
+
+<p>
+Example command line to create cantor set type holes in a soundfile:<br>
+	<blockquote>
+	<b><code>cantor set 1 insndfile.wav outsndfile.wav 0.5 0.5 0.1 5 8</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; <i>holesize</i> is a percentage<br />
+<b>2</b>&nbsp; <i>holesize</i> is a (fixed) duration<br />
+<b>3</b>&nbsp; Use superimposed vibrato envelopes<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono)<br />
+<i>outfile</i> &#150; output soundfile:  use a generic root name for the output soundfiles. Numerals starting at 0 are appended to distinguish the outputs.
+<br />
+<b>Modes 1 &amp; 2:</b><br />
+<i>holesize</i> &#150; Mode <b>1</b>:  the percentage of current segment-time taken up by a hole.  The size of the hole depends on the size of the segment being cut.  Mode <b>2</b>:  the (fixed) duration of the holes<br />
+<i>holedig</i> &#150; the depth of each cut as the hole is gradually created.  Range:  &gt;0 to 1<br />
+<i>depth-trig</i> &#150; the level depth of the hole triggering the next hole-cutting<br />
+<i>splicelen</i> &#150; splicelength in milliseconds<br />
+<i>maxdur</i> &#150; the maximum output duration of all the output sound<br />
+<b>-e</b> &#150; extend the sound beyond the <i>splicelen</i> limits<br />
+<b>Mode 3:</b><br />
+<i>holelev</i> &#150; the level of signal at the base of the holes<br />
+<i>holedig</i> &#150; how many repeats before full-depth is reached<br />
+<i>layercnt</i> &#150; the number of vibrato layers used<br />
+<i>layerdec</i> &#150; the depth of the next vibrato in relation to the previous one<br />
+<i>maxdur</i> &#150; the maximum total duration of all the output sound
+</blockquote>
+
+<h3>
+Understanding the CANTOR SET Process
+</h3>
+
+<blockquote>
+CANTOR gradually cuts a hole in the central third of the input sound, 
+which must be mono, a 'hole' being a reduction in level 
+(see <a href = "cgroinfo.htm#FINDHOLE"><b>SNDINFO FINDHOLE</b></a>).   
+It then cuts holes in the central third of the remaining segments, and so on.  
+The output soundfile consists of a sequence of sounds with more and more holes cut in it.  
+Note that Mode <b>3</b> uses superimposed vibrato envelopes as well.
+</blockquote>
+
+<!--
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+...
+</blockquote>
+-->
+
+<p>
+End of CANTOR<br />
+<a href="#SFEDITLIST"><b>Return</b></a> to list of SFEDIT functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="CONSTRICT">CONSTRICT &#150; Shorten the durations 
+of any zero-level sections in a sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>constrict constrict</b> <i>infile outfile constriction</i><br />
+
+<p>
+Example command line to time-contract silent gaps in a soundfile :<br>
+	<blockquote>
+	<b><code>constrict constrict count 50</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile</i> &#150; output soundfile<br />
+<i>constriction</i> &#150; percentage deletion of zero-level areas. 
+For example, <i>constriction</i> = 20 reduces any silences by 
+20&#37; or one-fifth.
+
+</blockquote>
+
+<h3>
+Understanding the CONSTRICT Process
+</h3>
+
+<blockquote>
+<p>
+This is a form of time-contraction which does not time-stretch the 
+sonic-substance of the source.  Note that the <i>constriction</i> 
+is a percentage.  Thus:
+	<ul>
+	<li>50 will halve the silent gaps</li>
+	<li>75 will take away three quarters of the silent gaps</li>
+	<li>20 will reduce them to one-fifth their original length</li>
+	<li>100 will eliminate the silences</li>
+	<li>150 will cause the non-silent portions to <b>overlap</b> by 
+	half the duration of the original silences</li>
+	</ul>
+</p>
+
+<p>
+It works only with soundfiles which contain areas of zero-level signal 
+which can be contracted by the process.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+CONSTRICT can be used to take a sequence of rapidfile events separated 
+by silences and make them even tighter.
+</p>
+</blockquote>
+
+<p>
+End of CONSTRICT<br />
+<a href="#SFEDITLIST"><b>Return</b></a> to list of SFEDIT functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="CUT">SFEDIT CUT &#150; Cut and keep a segment of a sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit cut mode</b> <i>infile outfile start end</i> 
+[<b>-w</b><i>splice</i>]<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Time in seconds<br>
+<b>2</b>&nbsp; Time as sample count (rounded to multiples of channel count)<br>
+<b>3</b>&nbsp; Time as grouped sample count (e.g., 3 = 3 stereo pairs)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br>
+<i>outfile</i> &#150; cut section saved as new soundfile<br>
+<i>start</i> &#150; time in <i>infile</i> where segment to keep begins<br>
+<i>end</i> &#150; time in <i>infile</i> where segment to keep ends<br>
+<b>-w</b><i>splice</i> &#150; splice window in milliseconds (Default: 15ms)
+</blockquote>
+
+<h3>
+Understanding the SFEDIT CUT Process
+</h3>
+
+<blockquote>
+<p>
+The start and end locations for a block of sound are specified, and that 
+block is saved as a new soundfile.  A long splice will give a smooth 
+cutoff, a short splice an abrupt cutoff, and a zerio splice will 
+usually produce a click.  The splice window is applied to both the 
+beginning and the end of the sound, so cannot be larger than half the 
+length of the block.
+</p>
+
+<p>
+This function presumes the use of a graphic sound editor in order precisely 
+to locate the places at which to begin end the block to be cut.  CDP's 
+VIEWSF provides a display accurate to the individual sample (Zoom 
+level 0), so very precise locations can be specified.  Marks can be 
+saved to a textfile for future reference.
+</p>
+
+<p>
+In <i>Sound Loom</i>, ALT CLICK on a <b>Workspace</b> file, or clicking on 
+the (new) <b>View Source</b> button on the <b>Parameters</b> page, gives 
+a graphic display of the file and the facility to play any selected part 
+of it (and then cut the segment, if desired).
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Musical applications are many and varied:<br>
+<ul>
+<li>simply save a favoured portion of a soundfile</li>
+
+<li>select a short, timbrally evolving, section of a soundfile and 
+time-stretch it, cut part of the result and time-stretch again, etc.</li><br>
+
+<li>process a portion of a sound, and then reinsert it into the 
+original.  For example, isolate key portions of two sounds and 
+pre-process each of them in preparation for a morph-transition;  then 
+reinsert them into their respective original soundfiles and do the 
+morph</li><br>
+
+<li>collect segments of various soundfiles in preparation for making a 
+musical collage</li>
+</ul>
+</p>
+
+<p>
+Removing silence or unwanted portions of a soundfile should be done 
+with <a href="#EXCISE"><b>SFEDIT EXCISE</b></a>.
+</p>
+</blockquote>
+
+<p>
+End of SFEDIT CUT<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="CUTEND">SFEDIT CUTEND &#150; Cut and keep the end portion of a sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit cutend mode</b> <i>infile outfile length</i> 
+[<b>-w</b><i>splice</i>]<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Time in seconds<br>
+<b>2</b>&nbsp; Time as sample count (rounded to multiples of channel count)<br>
+<b>3</b>&nbsp; Time as grouped sample count (e.g., 3 = 3 stereo pairs)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br>
+<i>outfile</i> &#150; cut section saved as new soundfile<br>
+<i>length</i> &#150; length of sound to keep, ending at the end of 
+<i>infile</i><br>
+<b>-w</b><i>splice</i> &#150; splice window in milliseconds (Default: 15ms)
+</blockquote>
+
+<h3>
+Understanding the SFEDIT CUTEND Process
+</h3>
+
+<blockquote>
+<p>
+This function enables you to use a specified <i>length</i> of the 
+last section of a sound without having to work out where that 
+length begins.  You just specify the length you want.  Needless to 
+say, it has to be shorter than the whole soundfile.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The way a sound ends varies a great deal and often has extra attributes, 
+such as resonance, reverb or echoes.  This material can therefore be 
+useful in itself.  For example, a piano tone starts percussively and 
+ends gradually if left to ring on.  When reversed, the sound swells, 
+sounding very much like an organ.  SFEDIT CUTEND can quickly cut the 
+end portion, starting automatically after the beginning.  Given a 
+generous splice envelope and reversed with <a href="cgromody.htm#RADICAL">
+<b>MODIFY RADICAL</b></a> Mode 1, it can become quite a different sound 
+altogether.
+</p>
+</blockquote>
+
+<p>
+End of SFEDIT CUTEND<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="CUTMANY">SFEDIT CUTMANY &#150; Cut and keep several 
+segments of a sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit cutmany mode</b> <i>infile outgenericfilename cuttimes  
+splicelen</i><br />
+<br>
+
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Time in seconds<br />
+<b>2</b>&nbsp; Time as sample count (rounded to multiples of channel-count<br />
+<b>3</b>&nbsp; Time as grouped-sample count (e.g., 3 = 3 stereo pairs)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile</i> &#150; generic output filename (the numbers '1', '2' 
+etc. are added to this generic name to name the various output 
+soundfiles)<br />
+<i>cuttimes</i> &#150; text file of time-pairs for the start and end 
+of each segment<br />
+<i>splicelen</i> &#150; the duration of the splice window in 
+milliseconds: i.e., the amount of time to rise from and fall back to 
+zero amplitude.  <b>NB:</b> REQUIRED (not optional as in the other 
+CUT functions).<br />
+</blockquote>
+
+<h3>
+Understanding the SFEDIT CUTMANY Process
+</h3>
+
+<blockquote>
+<p>
+This is an extension of the basic "edit cutout and 
+keep" (<a href="cgroedit.htm#CUT"><b>SFEDIT CUT</b></a>) to allow several 
+segments to be cut from a file at a single pass.  The <i>start</i> 
+and <i>end</i> times of the cuts are placed in a textfile which 
+the process reads.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This function is useful if you want to extract several 
+interesting features from a source sound.  You can search the 
+sound first, noting down the edit times of the sections you want, 
+write them in a textfile, and then use the textfile to cut those 
+segments from the source in a single pass, saving them to a 
+generic name.  For example, if your generic name is <b>pop</b>, 
+the various cuts will be named <b>pop1</b>, <b>pop2</b> etc.).
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="#SYLLABLES"><b>SFEDIT SYLLABLES</b></a>.
+</p>
+
+<p>
+End of SFEDFIT CUTMANY<br>
+<a href="#SFEDITLIST">Return</a> to List of SFEDIT functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- *****************************************************  -->
+<h2 id="ENVCUT">ENVCUT &#150; Cut sound into elements with falling envelope</h2>
+
+<h3>
+Usage
+</h3>
+<b>envcut envcut 1</b> <i>infile generic_outfilename envlen attack exp</i> [<b>-c</b><i>limit</i>]<br />
+OR<br />
+<b>envcut envcut 2</b> <i>infile generic_outfilename envlen step attack exp</i> [<b>-c</b><i>limit</i>]
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> Segments are adjacent<br />
+<b>2</b> Segments are separated by step<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150;  input soundfile<br />
+<i>generic_outfilename</i> &#150; root name for output soundfiles<br />
+<i>envlen</i> &#150; duration of each outfile<br />
+<i>step</i> (Mode 2) &#150; timestep between start of each envelope cut.<br> 
+&nbsp;&nbsp;&nbsp;(In Mode 1 <i>envlen</i> = <i>step</i>: cut-segments abutted and disjunct).<br />
+<i>attack</i> &#150; envelope attack duration (Range: 0 to 500mS); must be &lt; than half envelope duration<br />
+<i>exp</i> &#150; envelope decay shape. (Range: 0.02 to 50; 1 linear, >1 more rapid decay, < 1 less rapid decay)<br />
+<b>-c</b><i>limit</i> &#150; minimum level of output events to accept (Range: 0 to 96dB; value 70 = -70dB)
+</blockquote>
+
+<h3>
+Understanding the ENVCUT Process
+</h3>
+
+<blockquote>
+<p>
+ENVCUT is closely related to <a href="cdistort.htm#DISTCUT"><b>DISTCUT</b></a>, which cuts segments in groups of wavesets (according to zero-crossings), also with a falling envelope.
+This process may have uses in creating segments for TEXTURE, or for other creative mixes derived from the same material.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO</b>: <a href="cdistort.htm#DISTCUT"><b>DISTCUT</b></a>
+</p>
+
+<p>
+End of ENVCUT<br>
+<a href="#SFEDITLIST">Return</a> to List of SFEDIT functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+ 
+
+
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="EXCISE">SFEDIT EXCISE &#150; Remove a segment from a soundfile and 
+close up the gap
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit excise mode</b> <i>infile outfile start end</i> 
+[<b>-w</b><i>splice</i>]<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Time in seconds<br>
+<b>2</b>&nbsp; Time as sample count (rounded to multiples of channel count)<br>
+<b>3</b>&nbsp; Time as grouped sample count (e.g., 3 = 3 stereo pairs)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br>
+<i>outfile</i> &#150; cut section saved as new soundfile<br>
+<i>start</i> &#150; time in <i>infile</i> where segment to remove begins<br>
+<i>end</i> &#150; time in <i>infile</i> where segment to remove ends<br>
+<b>-w</b><i>splice</i> &#150; splice window in milliseconds (Default: 15ms)
+</blockquote>
+
+<h3>
+Understanding the SFEDIT EXCISE Process
+</h3>
+
+<blockquote>
+<p>
+Here the block <i>start</i> and <i>end</i> points mark a block to be 
+removed.  The size of the splice determines the smoothness (long splice) 
+or abruptness (short splice) of the cuts.  A zero splice usually 
+creates a click at the splice point, except in the special case where 
+the signal is zero.  The splice 'window' enables the use to reshape the 
+amplitude envelope at the point where the cuts are made.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+A frequent use of this program will be to remove silence, glitches, or 
+otherwise unwanted material from a sound.  It could also be used to 
+chop up a sound in a rough sort of way in order to create unexpected 
+juxtapositions of material, e.g., words.
+</p>
+
+<p>
+SFEDIT EXCISE can be used to 'top and tail' a sound (remove silence at 
+the beginning and the end) when special attention to detail is needed.  
+Otherwise, <a href="cgrohous.htm#EXTRACT"><b>HOUSEKEEP EXTRACT</b></a> Mode 3 
+can be used.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="#EXCISES"><b>SFEDIT EXCISES</b></a> which uses a text file of 
+cut points to remove several chunks in one operation.
+</p>
+
+<p>
+End of SFEDIT EXCISE<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="EXCISES">SFEDIT EXCISES &#150; Remove segments of a soundfile and 
+close up the gaps
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit excises mode</b> <i>infile outfile excisefile</i> 
+[<b>-w</b><i>splice</i>]<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Time in seconds<br>
+<b>2</b>&nbsp; Time as sample count (rounded to multiples of channel count)<br>
+<b>3</b>&nbsp; Time as grouped sample count (e.g., 3 = 3 stereo pairs)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br>
+<i>outfile</i> &#150; cut sections joined up and saved as new soundfile<br>
+<i>excisefile</i> &#150; text file with (paired) start and end times of 
+chunks to be removed.  These must be in increasing time order.<br>
+<b>-w</b><i>splice</i> &#150; splice window in milliseconds (Default: 15ms)
+</blockquote>
+
+<h3>
+Understanding the SFEDIT EXCISES Process
+</h3>
+
+<blockquote>
+<p>
+The times in <i>excisefile</i> are given in seconds, a pair on each line, 
+separated by a space or a tab.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Multiple cuts may be useful when removing a series of glitches, or 
+when chopping up a sound as mentioned above in <a href="#EXCISE"><b>SFEDIT EXCISE</b></a> to create
+unexpected juxtapositions: collage techniques.
+</p>
+</blockquote>
+
+<p>
+End of SFEDIT EXCISES<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="INSERT">SFEDIT INSERT &#150; Insert 2<sup>nd</sup> sound into 
+1<sup>st</sup> (overwriting or spreading first sound)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit insert mode</b> <i>infile insert outfile time</i> 
+[<b>-w</b><i>splice</i>] [<b>-l</b><i>level</i>] [<b>-o</b>]<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Time in seconds<br>
+<b>2</b>&nbsp; Time as sample count (rounded to multiples of channel count)<br>
+<b>3</b>&nbsp; Time as grouped sample count (e.g., 3 = 3 stereo pairs)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br>
+<i>insert</i> &#150; soundfile ('chunk') to insert<br>
+<i>outfile</i> &#150; combination saved as new soundfile<br>
+<i>time</i> &#150; time in seconds in <i>infile</i> at which the 
+insert is to begin<br>
+<b>-w</b><i>splice</i> &#150; splice window in milliseconds 
+(Default: 15ms)<br>
+<b>-l</b><i>level</i> &#150; gain multiplier on inserted file 
+(Default: 1.0)<br>
+<b>-o</b> &#150; overwrite the original file with the inserted file 
+(Default:  the insert pushes the <i>infile</i> apart)<br>
+</blockquote>
+
+<h3>
+Understanding the SFEDIT INSERT Process
+</h3>
+
+<blockquote>
+<p>
+Note the difference between placing a sound into the midst of another 
+sound (pushing apart the two separated portions of the original), and 
+actually overwriting the original.  In the first instance, none of the 
+original is lost.  In the second, that part of the original which lasts 
+until the end of the insert is lost &#150; but if there is still more 
+original soundfile after this point, it will carry on after the insert 
+has finished. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Besides normal joinings and juxtapositions, SFEDIT INSERT can be used 
+with more far-reaching objectives in mind.  For example, a soundfile 
+could be constructed out of widely diverse materials in order to pave 
+the way for timbral transformations which will greatly alter the original 
+sources (making them unrecognisable).  E.g., blur, trace, extract 
+spectral envelope, spread peaks, invert spectrum ...
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="#REPLACE"><b>SFEDIT REPLACE</b></a>.
+</p>
+
+<p>
+End of SFEDIT INSERT<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="INSIL">SFEDIT INSIL &#150; Insert silence into a sound (overwriting 
+or spreading the sound apart)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit insil mode</b> <i>infile outfile time duration</i> 
+[<b>-w</b><i>splicelen</i>] [<b>-o</b>] [<b>-s</b>]<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Time in seconds<br>
+<b>2</b>&nbsp; Time as sample count (rounded to multiples of channel count)<br>
+<b>3</b>&nbsp; Time as grouped sample count (e.g., 3 = 3 stereo pairs)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br>
+<i>outfile</i> &#150; combination saved as new soundfile<br>
+<i>time</i> &#150; time in seconds in <i>infile</i> at which the 
+silence is to begin<br>
+<i>duration</i> &#150; length of silence in seconds<br>
+<b>-w</b><i>splicelen</i> &#150; splice window in milliseconds 
+(Default: 15ms)<br>
+<b>-o</b> &#150; overwrite the original file with the inserted silence 
+(Default:  the silence pushes the <i>infile</i> apart)<br>
+<b>-s</b> &#150; retains any silence written over file end (Default: 
+rejects silence added at file end)
+</blockquote>
+
+<h3>
+Understanding the SFEDIT INSIL Process
+</h3>
+
+<blockquote>
+<p>
+This process will create a gap in the <i>infile</i> at a specified point 
+in time, either pushing apart or overwriting the original sound for the 
+duration of the silence.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This can be used at the beginning of a sound to 'hard-wire' a gap into 
+a mix.  Another application would be to spread the timing of two 
+events in a sound by a specified amount.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="#PREFIXSIL"><b>PREFIX SILENCE</b></a> and <a href="#SILEND"><b>SILEND</b></a> 
+</p>
+
+<p>
+End of SFEDIT INSIL<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ********************************************************* -->
+
+<h2 id="ISOLATE">ISOLATE &#150; Disjunct portions of soundfile are specified by textfile or dB loudness and saved to separate files
+</h2>
+
+
+<h3>
+Usage
+</h3>
+<b>isolate isolate 1-2</b> <i>insndfile outname cutsfile</i> [<b>-s</b><i>splice</i>] [<b>-x</b>] [<b>-r</b>] <br />
+<b>isolate isolate 3</b> <i>insndfile outname dBon dBoff</i> [<b>-s</b><i>splice</i>] [<b>-m</b><i>min</i>] [<b>-l</b><i>len</i>] [<b>-x</b>] [<b>-r</b>] <br />
+<b>isolate isolate 4</b> <i>insndfile outname slicefile</i> [<b>-s</b><i>splice</i>] [<b>-x</b>] [<b>-r</b>] <br />
+<b>isolate isolate 5</b> <i>insndfile outname slicefile</i> [<b>-s</b><i>splice</i>] [<b>-d</b><i>dovetail</i>] [<b>-x</b>] [<b>-r</b>] 
+<br />
+
+<p>
+Example command line to create moulded snippets:<br>
+	<blockquote>
+	<b><code>isolate isolate 1 asound snip cuts.txt </code></b>
+	</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Create <em>several</em> output soundfiles each of which contains <em>one</em> segment of source (<i>cutsfile</i>) <br />
+<b>2</b>&nbsp; Create <em>several</em> output soundfiles each of which contains <em>several</em> segments of source (<i>cutsfile</i>)<br />
+<b>3</b>&nbsp; Create <em>one</em> output soundfile consisting of <em>several</em> disjunct segments (<i>dBon</i> &amp; <i>dBoff</i>)<br />
+<b>4</b>&nbsp; Cut the <em>entire</em> soundfile into disjunct segments (<i>slicefile</i>)<br />
+<b>5</b>&nbsp; Cut as in Mode <b>4</b> but also <em>overlap</em> the segments slightly: separates speech syllables (<i>slicefile</i>)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input soundfile<br />
+<i>outname</i> &#150; generic root name for the output soundfiles.  
+	Numerals starting at 0 are appended  to distinguish the outputs.<br />
+<i>cutsfile</i> &#150; a textfile containing <i>start end</i> time-pairs in (increasing) time order 
+	at which to cut segments.  Note that the file for Mode <b>3</b> is allows overlaps:
+	<ul>
+	<li>Modes <b>1-2</b>: none of the segments in any of the lines 
+		of the file are allowed to overlap</li>
+	<li>Mode <b>3</b>: in this Mode the <i>cutsfile</i> is the same, 
+		but the segment starts and ends are located using threshold-on and 
+		threshold-off (<i>dBon</i> and <i>dBoff</i>).  Also, if <i>len</i> is set, 
+		only the start portion of a segment of length <i>len</i> is kept.</li>
+	<li>In Modes <b>1-3</b> an <em>extra file of remnants</em> (if any) is created.  
+		Also, note that if cuts abutt or are so close that <i>end</i>+<i>start</i> splices overlap, 
+		the end of the first cut is moved back, and the start of the second cut is moved forward 
+		such that they will overlap by (only) a single splicelength.</li>
+	</ul>
+<i>dBon</i> &#150; Mode <b>3</b>: the dB level at which a segment is recognised<br />
+<i>dBoff</i> &#150; Mode <b>3</b>: the dB level at which a recognised segment is triggered to end<br />
+<i>slicefile</i> &#150; Modes <b>4 &amp; 5</b>: a textfile containing a list of increasing times at which the sound is to be cut.  Note that for Mode <b>5</b> the times are designed to overlap slightly.<br />
+<b>-s</b><i>splice</i> &#150; the length of the splice in milliseconds (Range:  0 to 500. Default: 15)<br />
+<b>-m</b><i>min</i> &#150; Mode <b>3</b>: the minimum duration in milliseconds of segments to accept (Range: &gt; 2 * <i>splice</i>)<br />
+<b>-l</b><i>len</i> &#150; Mode <b>3</b>: the duration in milliseconds of the (part-)segments to keep<br />
+<b>-d</b><i>dovetail</i> &#150; Mode <b>5</b>: the overlap of cut segments in milliseconds (Range: 0 to 20.  Default 5)<br />
+<b>-x</b> &#150; add silence to the end of the segments files so they become the same length as the source<br />
+<b>-r</b> &#150; reverse all the cut-segment files (but not the remnant file)<br />
+</blockquote>
+
+<h3>
+Understanding the ISOLATE Process
+</h3>
+
+<blockquote>
+ISOLATE is similar to <a href = "#PARTITION"><b>PARTITION</b></a> in that the primary operation 
+is to cut a soundfile into disjunct pieces and assign these to different output soundfiles.  
+It does this in a special way so that the time-position of these pieces in the original 
+soundfile is retained:  silence is inserted between the cut pieces in the 
+outputs to achieve this ('silent surrounds').  
+The result is that the disjunct pieces can be reassembled in their original 
+positions (remixed with everything synchronised at time zero):
+</p>
+
+<p>
+One difference between ISOLATE and PARTITION is that the number of output files 
+is user-defined in PARTITION, whereas in ISOLATE it depends on the Mode selected.  
+Another difference is that Modes <b>1</b>, <b>2</b> and <b>3</b> 
+of ISOLATE generate a file containing all the materials left over after cutting.  
+This is also used in reconstructing the original (now-treated) soundfile.
+</p>
+
+<p>
+However, the main difference between ISOLATE and PARTITION is how the disjunct pieces are identified.  
+In PARTITION there are automatic processes for this, but the number of output files is 
+user-defined by the <i>outcnt</i> parameter, and the durations are controlled by 
+the <i>groupcnt</i> or <i>dur</i> parameters.  
+In ISOLATE the user specifies <i>start end</i> times for the pieces in a textfile:  
+the <i>cutsfile</i> (Modes <b>1-2</b>) or specifies a list of (increasing) 
+times in <i>splicefile</i> Modes <b>4-5</b>, or they are picked up by level 
+thresholds (<i>dBon</i> and <i>dBoff</i> (Mode <b>3</b>).
+</p>
+
+<p>
+You are advised to familiarise yourself with the way the different 
+Modes create different numbers of output soundfiles containing different numbers of segments.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+The main purpose of ISOLATE is to be able to treat the different segment-streams 
+in some way before they are reassembled. Any processes that do not alter the segment lengths
+could be considered suitable.
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href = "#PARTITION"><b>PARTITION</b></a>
+</p>
+
+<p>
+End of ISOLATE<br />
+<a href="#SFEDITLIST"><b>Return</b></a> to list of SFEDIT functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="JOIN">SFEDIT JOIN &#150; Join files together, one after another
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit join</b> <i>infile1</i> <i>infile2</i> [<i>infile3 ...</i>] <i>outfile</i> 
+[<b>-w</b><i>splicelen</i>] [<b>-b</b>] [<b>-e</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1</i> &#150; first soundfile to splice<br>
+<i>infile2 infile3 ...</i>  &#150; additional soundfiles to splice<br>
+<i>outfile</i> &#150; resultant soundfile output<br>
+<b>-w</b><i>splicelen</i>  &#150; duration of splice in milliseconds 
+(Default: 15ms)<br>
+<b>-b</b>  &#150; splice slope at start of first file<br>
+<b>-e</b>  &#150; splice slope at end of last file<br>
+</blockquote>
+
+<h3>
+Understanding the SFEDIT JOIN Process
+</h3>
+
+<blockquote>
+<p>
+Splicing is joining soundfiles together.  The joins can be 'butt' or 
+sloped.  A butt join means that the sounds are butted up against each 
+other just as they are, with no overlap and no slope other than what they 
+may already possess.  This can be done by specifying 0 for <i>splice</i>.  
+Unless your sounds are already spliced at the start and end, this will 
+almost always produce a click at the edit point.
+</p>
+
+<p>
+Sloped joins either use the default overlap of 15 ms or specify 
+another <i>splicelen</i> time.  Longer times mean more overlap and more 
+gradual changes in relative amplitude, the preceding sound getting 
+softer while the following sound gets louder.  Splice times are 
+not restricted by the software, but if both <b>-b</b> and <b>-e</b> are 
+used, <i>splice</i> cannot be greater than half the length of the sound.
+</p>
+
+<p>
+[Thanks to Gustav Ciamaga for pointing out the following.] <br />
+SFEDIT JOIN requires at least 2 infiles, usually different but they 
+can also be the same. In this instance, one could also taper 
+(fade-in&#47;fade-out) the beginning and&#47;or end of the resultant 
+repeated sound.  To be more specific:  you would use the same soundfile 
+as both <i>infile1</i> and <i>infile2</i>.  In this instance the beginning 
+and end of the resultant repeated sound can both be tapered (fade-in &#47; 
+fade-out). Use the <b>-b</b> flag to set the fade-in at the beginning and 
+the <b>-e</b> flag to set the fade-out at the end (of the 
+2<sup><small>nd</small></sup>, repeated, sound).  You can confirm this 
+with a splice window of 1000 ms (<b>-w</b>1000).
+</p>
+
+<p>
+Thus, when the same sound is used several times: as <i>infile1</i>,  
+<i>infile2</i> or more times, this is one way to achieve repetitions or 
+pulsations, depending on the nature of the sound.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Splicing is one of the basic assembly procedures used in electroacoustic 
+music.  A butt join achieves maximum contrast and&#47;or a join with no 
+loss of time (no overlap), but there is a danger of clicks.  Sometimes 
+a portion of soundfile is removed, processed and replaced.  In this case, 
+it is best to use VIEWSF in single sample view mode in order to edit 
+with sample accuracy as close to zero as possible.
+</p>
+
+<p>
+Overlaps smooth the joins and reduce the possibility of clicks or other 
+unwanted 'bumps'.  Long splice times achieve a smooth flow of one sound 
+into the other without going as far as a full-length crossfade or morph.
+</p>
+</blockquote>
+
+<p>
+SEE ALSO: <a href="cgromixr.htm#CROSSFADE"><b>SUBMIX CROSSFADE</b></a>, and the 
+various <a href="cmorph.htm"><b>MORPH</b></a> functions.
+</p>
+
+
+<p>
+End of SFEDIT JOIN<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="JOINDYN">SFEDIT JOINDYN &#150; Join soundfiles in 
+loudness-patterned sequence
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit joindyn</b> <i>infile</i> [<i>infile2 ...</i>] <i>outfile 
+pattern</i> [<b>-w</b><i>splicelen</i>] [<b>-b</b>] [<b>-e</b>]<br />
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; first input soundfile to join<br />
+<i>infile2...</i> &#150; optional second or more soundfiles 
+to join<br />
+<i>outfile</i> &#150; resultant soundfile output<br />
+<i>pattern</i> &#150; text file containing a pattern of 
+<i>soundfile level</i> pairs.  The soundfiles are identified 
+by numbers, with the numbering following the order in which 
+they are listed, starting with the number 1.  <i>Level</i> 
+range is 0 to 1.  Example (repeating and fading):
+<pre>
+[sfile level]
+1	0.50
+2	0.75
+3	1.00
+3	0.90
+2	0.85
+2	0.75
+2	0.65
+1	0.70
+1	0.50
+1	0.40
+1	0.30
+</pre>
+<b>-w</b><i>splicelen</i> &#150; duration of splice window in 
+milliseconds.  Default: 15ms (optional)<br />
+<b>-b</b> &#150; option to apply splice to the start of the first sound<br />
+<b>-e</b> &#150; option to apply splice to the end of the last sound
+</blockquote>
+
+<h3>
+Understanding the SFEDIT JOINDYN Process
+</h3>
+
+<blockquote>
+<p>
+As with <a href="#JOINSEQ"><b>SFEDIT JOINSEQ</b></a>, this function 
+splices together soundfiles in the order in which they are 
+listed.  In addition, it specifies the relative loudness of 
+each soundfile in the sequence. 
+ 
+Note that in <i>Sound Loom</i> similar patterns can be created 
+as <i>mixfiles</i>, giving you the possibility to change the entry 
+times of the sounds.  This involves an advanced use of the TABLE 
+EDITOR.</p>
+
+<p>
+Also note that <a href="cgroextd.htm#SEQUENCE2"><b>EXTEND SEQUENCE2</b></a> 
+allows you to put several sounds into a patterned sequence using any 
+timing sequence (and patterns of levels).
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+SFEDIT JOINDYN provides a quick and direct way to create a group of 
+soundfiles in any order, with patterns of dynamic level.
+</p>
+</blockquote>
+
+<p>
+End of SFEDFIT JOINDYN<br>
+<a href="#SFEDITLIST">Return</a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="JOINSEQ">SFEDIT JOINSEQ &#150; Join soundfiles in 
+patterned sequence
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit joinseq</b> <i>infile</i> [<i>infile2 ...</i>] <i>outfile 
+pattern</i> [<b>-w</b><i>splicelen</i>] [<b>-m</b><i>maxlen</i>] 
+[<b>-b</b>] [<b>-e</b>]<br />
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; first input soundfile to join<br />
+<i>infile2...</i> &#150; optional second or more soundfiles 
+to join<br />
+<i>outfile</i> &#150; resultant soundfile output<br />
+<i>pattern</i> &#150; text file containing a pattern of 
+numbers specifying the sequence (ordering) of soundfiles to use.  
+The soundfiles are identified by numbers, with the numbering 
+following the order in which they are listed, starting with 
+the number 1.  Example (a permutation):
+<pre>
+1 2 3  2 3 1  3 1 2  3 2 1  2 1 3  1 3 2
+</pre>
+<b>-w</b><i>splicelen</i> &#150; duration of splice window in 
+milliseconds.  Default: 15ms (optional)<br />
+<b>-m</b><i>maxlen</i>  &#150; maximum number of items in pattern to use<br />
+<b>-b</b> &#150; option to apply splice to the start of the first sound<br />
+<b>-e</b> &#150; option to apply splice to the end of the last sound
+</blockquote>
+
+<h3>
+Understanding the SFEDIT JOINSEQ Process
+</h3>
+
+<blockquote>
+<p>
+SFEDIT JOINSEQ allows a set of sounds to be joined, end to end, in a pattern. 
+Any sound in the sequence can be repeated any number of times.
+</p>
+
+<p>
+The <i>pattern</i> is specified in a text file, with the sound pattern 
+value separated by spaces or newlines.  The soundfiles are identified 
+by numbers, with the numbering following the order in which 
+they are listed, starting with the number 1.  Thus only the numbers 
+are needed in the <i>pattern</i> file, as illustrated above.
+</p>
+
+<p>
+<i>Maxlen</i> enables you to use an existing <i>pattern</i> with fewer 
+active components (i.e., apply data reduction).
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This would be a way to generating patterns of events, such as sequences 
+of vocal syllables, with a melodic flavour &#150; given that the source 
+material has sufficiently different pitch levels and that you are going 
+the use the whole length of each sound before the next sound begins(this 
+is only a splice operation).
+</p>
+</blockquote>
+
+<p>
+End of SFEDFIT JOINSEQ<br>
+<a href="#SFEDITLIST">Return</a> to List of SFEDIT functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="MANYSIL">MANYSIL &#150; Insert many silences into 
+a soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>manysil manysil</b> <i>infile outfile silencedata splicelen</i>
+
+<p>
+Example command line to insert several silences into a sound:<br>
+	<blockquote>
+	<b><code>manysil manysil flocalc707 flosils manysils.txt 30</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile</i> &#150; output soundfile<br />
+<i>silencedata</i> &#150; a textfile with <i>time duration</i> pairs:  
+<i>time</i> is the insertion time of the silence, <i>duration</i> is 
+the duration of the inserted silence.<br />
+<i>splicelen</i> &#150; length in milliseconds of the splices used
+</blockquote>
+
+<h3>
+Understanding the MANYSIL Process
+</h3>
+
+<blockquote>
+<p>
+MANYSIL extends idea of inserting silence, to many silences.  Using 
+MANYSIL is straightforward, focusing on setting the times and durations 
+of the silences in the data file.
+</p>
+
+<p>
+Here is a sample <i>silencedata</i> file:<br />
+<pre>
+<font color = "#FF0000">Start-time  Duration</font>
+0.5         0.5
+1.0         1.0
+1.5         1.5
+2.0         2.0
+2.5         1.5
+3.0         1.0
+3.5         0.5
+4.0         3.0
+</pre>
+</p>
+
+<p>
+Note that on the <i>Sound Loom</i> the <b>Sound View</b> Window allows 
+you to mark the time and duration of each insertion.  This is done by 
+drawing out a box of the required duration.  The time sets the start 
+point for each silent section.  There is one box for each inserted 
+silence.  <b>Sound View</b> then <b>automatically transfers this data</b> 
+to the textfile format required.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+MANYSIL enables us to set up a number of silences all at once.  This 
+might be simply to separate data, or one may want to introduce a 
+duration pattern of silences into the sound.
+</p>
+</blockquote>
+
+<p>
+End of MANYSIL MANYSIL<br />
+<a href="#SFEDITLIST"><b>Return</b></a> to list of SFEDIT functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+
+<h2 id="MASKS">SFEDIT MASKS &#150; Mask specified chunks of a sound, with 
+silence
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit masks mode</b> <i>infile outfile excisefile</i> 
+[<b>-w</b><i>splice</i>]<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> Time in seconds<br>
+<b>2</b> Time as sample count (rounded to multiples of channel-count)<br>
+<b>3</b> Time as grouped sample count (e.g., 3 = 3 stereo pairs)<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br>
+<i>outfile</i> &#150; cut segment saved as a new soundfile<br>
+<i>excisefile</i> &#150; a textfile with (paired) start and end times 
+of chunks to be masked.  These must be in increasing time order.<br>
+<b>-w</b><i>splice</i> &#150; splice window in milliseconds (Default: 15)<br>
+</blockquote>
+
+<h3>
+Understanding the SFEDIT MASKS Process
+</h3>
+
+<blockquote>
+<p>
+The <i>excisefile</i> takes into consideration the overall length of 
+the input soundfile.  With paired <i>start</i> and <i>end</i> times 
+on separate lines, it specifies the start and end of silences.  These 
+are inserted into the <i>infile</i> replacing what was there previously.  
+The resultant soundfile is therefore the same length as the original 
+input.  It is convenient to be able to create several silences at once.
+</p>
+
+<p>
+The <i>splice</i> parameter enables you to smooth the edges of these 
+silences to varying degrees.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Some ideas:
+	<ul>
+	<li>create pulses of sound and silence</li>
+	<li>design excise times for two different soundfiles such 
+	    that they overlap or interlock exactly.  Then you can mix 
+	    <a href="cgromixr.htm#MIX">(<b>SUBMIX MIX</b>)</a> 
+	    or interleave <a href="cgromixr.htm#INTERLEAVE">
+	    (<b>SUBMIX INTERLEAVE</b>)</a> the two soundfiles so that 
+	    the two sounds alternate.  The latter merges mono 
+	    files into a multichannel file, so the sound and silence 
+	    of each input would end up on different channels.</li>
+	</ul>
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="#INSIL"><b>SFEDIT INSIL</b></a> above and 
+<a href="ccombine.htm#INTERLEAVE"><b>COMBINE INTERLEAVE</b></a> in the 
+spectral dimension.
+</p>
+
+<p>
+End of SFEDIT MASKS<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="NOISECUT">SFEDIT NOISECUT &#150; Suppress noise in a (mono) 
+sound file, replacing with silence
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit noisecut</b> <i>infile outfile splicelen noisfrq maxnoise 
+mintone</i> [<b>-n</b>]<br />
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile</i> &#150; output soundfile containing either only the 
+<b>non-noise</b> or the <b>noise</b> components (<b>-n</b> flag) 
+of the original sound<br />
+<i>splicelen</i> &#150; duration of splice slopes, in milliseconds<br />
+<i>noisfrq</i> &#150; frequency above which the signal is regarded 
+as noise (try 6000 Hz)<br />
+<i>maxnoise</i> &#150; the <b>maximum</b> duration in milliseconds of 
+any noise segments permitted to remain, i.e., NOT replaced.  
+Range: 1000 to 22050ms<br />
+<i>mintone</i> &#150; the <b>minimum</b> duration in milliseconds of 
+any non-noise segments to be retained.  Range: 0 to 50ms<br />
+<b>-n</b> &#150; option to retain noise rather than non-noise
+</blockquote>
+
+<h3>
+Understanding the SFEDIT NOISECUT Process
+</h3>
+
+<blockquote>
+<p>
+This process was developed after many attempts to automatically 
+separate the noise constituents (sibilants etc.) from speech 
+whilst trying to track the pitch of the other material. It 
+uses a filter to recognise the presence of sibilants in the 
+speech and allows vowels (and strongly pitched iteratives) to 
+be separated &#150; in place (i.e., remaining at their original 
+time) &#150; from the speech stream.
+</p>
+
+<p>
+Alternatively, the sibilants (i.e., noise) can be similarly 
+extracted, in place.  This is the <b>-n</b> option.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+One way to apply this function is to use it to treat the pitched 
+and unpitched components in a stream of events in different ways.  
+You could first separate the pitched and noise elements (using this 
+program in its two different senses).  Then you might add tremolo 
+to the pitched elements and after this reintroduce the unmodified 
+noise elements by mixing them with the undulating tones.
+</p>
+</blockquote>
+
+<p>
+End of SFEDFIT NOISECUT<br>
+<a href="#SFEDITLIST">Return</a> to List of SFEDIT functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="PACKET">PACKET &#150; Isolate or generate a sound packet
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>packet packet 1</b> <i>insndfile outsndfile times mindur narrowing centring</i> [<b>-n | -f</b>] [<b>-s</b>] <br />
+<b>packet packet 2</b> <i>insndfile outsndfile times dur narrowing centring</i> [<b>-n | -f</b>] [<b>-s</b>] 
+
+<br />
+
+<p>
+Example command line to create a packet:<br>
+	<blockquote>
+	<b><code>packet packet 1 in.wav out.wav 0.1 100 1 0</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Found packet:  looks for signal minima to determine the edges 
+of the wave-packet<br />
+<b>2</b>&nbsp; Forced packet: creates a packet at a specified time
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input soundfile<br />
+<i>outsndfile</i> &#150; output soundfile<br />
+<i>times</i> &#150; a single time or a textfile of times at which the 
+	packet or packets is&#47;are extracted or created<br />
+<i>mindur</i> &#150; Mode <b>1</b>: the minimum duration in milliseconds 
+	of the (found) packet; it must be less than half the source duration, OR<br />
+<i>dur</i> &#150; Mode <b>2</b>: the duration in milliseconds of the (forced) packet; 
+	it must be less than half the source duration<br />
+<i>narrowing</i> &#150; narrows the packet envelope (Range:  0 to 1000):
+	<ul>
+	<li>Values below 1.0 broaden the packet</li>
+	<li>Values very close to zero may produce clicks 
+		(square wave envelope)</li>
+	<li>Very high values with very short packets may 
+		produce click-impulses or silence</li>
+	</ul>
+<i>centring</i> &#150; centres the peak of the packet envelope.  
+(If the packet content has varying levels, the true peak position 
+may not correspond to the envelope peak position, unless the <b>-f</b> flag is used.)
+	<ul>
+	<li><b>&nbsp;&nbsp;0</b> &#150; the peak is at the centre</li>
+	<li><b>-1</b> &#150; the peak is at the start</li>
+	<li><b>&nbsp;&nbsp;1</b> &#150; the peak is at the end</li>
+	</ul>
+<b>-n</b> &#150; normalise the packet level<br />
+<b>-f</b> &#150; the packet wave maxima and minima are forced up or down 
+	to the packet contour.  Default:  the packet envelope is simply 
+	imposed on the existing signal.  
+	The <b>-n</b> normalisation flag is ignored if the <b>-f</b> flag is used.<br />
+<b>-s</b> &#150; shave off a leading or trailing silence
+</blockquote>
+
+<h3>
+Understanding the PACKET Process
+</h3>
+
+<blockquote>
+In effect, PACKET cuts out a portion of soundfile, envelopes it, and places 
+the amplitude peak at the beginning, centre or end of that envelope 
+as specified by the user.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+This process streamlines the task of creating a usable snippet of soundfile.  
+Trevor Wishart suggests that the main use of such snippets will be in 
+the <a href = "cgrotex.htm"><b>TEXTURE</b></a> set of programs.  
+Recall that these programs always begin each sound unit from the 
+beginning of the input soundfile, with the option to then use the 
+whole of the input soundfile for each iteration (the <b>-w</b> flag).  
+PACKET makes it easier to prepare a specific short snippet that can 
+then be proliferated into a texture.
+</blockquote>
+
+<p>
+End of PACKET<br />
+<a href="#SFEDITLIST"><b>Return</b></a> to list of SFEDIT functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="PARTITION">PARTITION &#150; Partition a mono soundfile into disjunct files in blocks defined by groups of wavesets
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>partition partition 1</b> <i>infile outname outcnt groupcnt</i><br />
+<b>partition partition 2</b> <i>infile outname outcnt groupcnt</i> [<b>rd</b><i>rand</i>] [<b>-s</b><i>splice</i>] 
+<br />
+
+<p>
+Example command line to create separate files from a single input:<br>
+	<blockquote>
+	<b><code>partition partition 1  insound outname 3 4</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; block durations are determined by number of 
+  <a href="cdistort.htm#PSEUDOWAVECYCLES"><b>wavesets</b></a><br />
+<b>2</b>&nbsp; block durations are specified by the user<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input soundfile to be partitioned (mono)<br />
+<i>outname</i> &#150; generic root name for the output soundfiles. Numerals starting at 0 are appended to identify the different streams.<br />
+<i>outcnt</i> &#150; the number of output soundfiles<br />
+<i>groupcnt</i> &#150; Mode <b>1</b>: the number of wavesets per block, OR<br />
+<i>dur</i> &#150; Mode <b>2</b>: the duration in seconds per block, where the duration of the blocks must be short enough to allow at least one block to be sent to every output file (i.e., minimum_dur = insndfilelen &divide; <i>outcnt</i>).  If too large a <i>dur</i> is specified, <i>dur</i> will be reduced appropriately.<br />
+<b>-r</b><i>rand</i> &#150; the randomisation of durations (only) (Range: 0 to 1)<br />
+<b>-s</b><i>splice</i> &#150; the splice length in milliseconds (Default: 3mS)
+</blockquote>
+
+<h3>
+Understanding the PARTITION Process
+</h3>
+
+<blockquote>
+<p>
+The purpose of PARTITION is to facilitate your sound design activities.  
+The program cuts ALL of the sound in a source soundfile into disjunct pieces, 
+assigning each of them in turn to <i>N</i> output soundfiles and 
+producing <i>N</i> streams of disjunct segments.  
+For example, if 8 pieces are cut and 2 output files are specified, 
+each output soundfile will get 4 pieces.
+</p>
+
+<p>
+The cut pieces, furthermore, are time-positioned in the output 
+soundfiles <i>at the same times that they occurred in the source</i>.  
+This is achieved by (automatically) inserting appropriate 
+silences between the cut pieces in the output soundfiles.
+</p>
+
+<p>
+The result of this process is that the different segment-streams 
+can then be treated differently.  
+Having done so, the resulting sounds can be remixed, 
+synchronised at time zero, and all the original segments (now treated) 
+will be returned to their original locations in the source.  
+Implied here is that treatments which alter time-location 
+within the soundfile should be avoided.
+</p>
+
+<p>
+There are two modes.
+	<ul>
+	<li>the blocks are defined by the number of 
+           <a href="cdistort.htm#PSEUDOWAVECYCLES"><b>wavesets</b></a>.  
+	This means that the duration of the resulting blocks will be set 
+	by the length of those wavesets.</li>.
+	<li>the blocks are defined by specifying a duration.  
+	This means that you have some control over the size of the blocks.</li>
+	</ul>
+Suppose there is an input soundfile which contains a series of 
+sounds-blocks (determined by wavesets &#150; zero crossings).  
+This series of <i>successive</i> blocks can be labelled "<b>abcdefghijklmno...</b>".  
+We decide to create <b>3</b> output soundfiles (streams) with these sounds.  
+<b>What happens is that every third block is assigned to a different 
+stream</b> (the "-" represents a  silence replacing a missing block):
+	<ul>
+	<li>Outfile 1 contains: "a--d--g--j--m--"... </li>
+	<li>Outfile 2 contains: "-b--e--h--k--n-"... </li>
+	<li>Outfile 3 contains: "--c--f--i--l--o"...</li>
+	</ul>
+</p>
+</blockquote>
+
+<!--
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+ ...
+</blockquote>
+-->
+
+<p>
+<b>SEE ALSO:</b> <a href = "#ISOLATE"><b>ISOLATE</b></a></h3> for a detailed discussion 
+of the similarities and differences between ISOLATE and PARTITION.
+<br>
+For the definition of a "waveset", or pseudo-wavecycle, 
+see the <a href = "cdistort.htm#PSEUDOWAVECYCLES"><b>DISTORT group</b></a>. 
+</p>
+
+<p>
+End of PARTITION<br />
+<a href="#SFEDITLIST"><b>Return</b></a> to list of SFEDIT functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="PREFIXSIL">PREFIX SILENCE &#150; Add silence to the beginning 
+of a soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>prefix silence</b> <i>infile outfile dur</i> 
+<br />
+
+<p>
+Example command line to add silence:<br>
+	<blockquote>
+	<b><code>prefix silence flute flutedel 1.7</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile</i> &#150; output soundfile with silence prefixed<br />
+<i>dur</i> &#150; duration of silence to add<br />
+</blockquote>
+
+<h3>
+Understanding the PREFIX SILENCE Process
+</h3>
+
+<blockquote>
+<p>
+PREFIX SILENCE simply places the specified duration of silence at 
+the beginning of the <i>infile</i>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This can be a straightforward way to create a gap between soundfiles, 
+or time an entry.  The utility might come in handy when running 
+batch files.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="#INSIL"><b>SFEDIT INSIL</b></a> and <a href="#SILEND"><b>SILEND</b></a> 
+</p>
+
+<p>
+End of PREFIX SILENCE<br />
+<a href="#SFEDITLIST"><b>Return</b></a> to list of SFEDIT functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+
+<h2 id="RANDCHUNKS">SFEDIT RANDCHUNKS &#150; Cut chunks from a soundfile, 
+randomly
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit randchunks</b> <i>infile chunkcnt minchunk</i> 
+[<b>-m</b><i>maxchunk</i>] [<b>-l</b>] [<b>-s</b>]
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br>
+	<blockquote>
+	<b>There is no outfile name.</b>  The cut sections will be 
+	saved as new soundfiles, named <i>infile</i> truncated by one 
+	character, with a number added, starting from zero.
+	</blockquote>
+<i>chunkcnt</i> &#150; the number of chunks to cut<br>
+<i>minchunk</i> &#150; the minimum length of the chunks, in seconds<br>
+<b>-m</b><i>maxchunk</i> &#150; the maximum lengths of the chunks, in 
+seconds<br>
+<b>-l</b> &#150; chunks chosen are evenly distributed over the file 
+(Default: random distribution)<br>
+<b>-s</b> &#150; all chunks start at the beginning of the file
+</blockquote>
+
+
+<h3>
+Understanding the SFEDIT RANDCHUNKS Process
+</h3>
+
+<blockquote>
+<p>
+SFEDIT RANDCHUNKS is like <a href="#RANDCUTS"><b>SFEDIT RANDCUTS</b></a> but 
+enables you to be more specific about the number of chunks 
+(<i>chunkcnt</i>) and their length (<i>minchunk</i> and the 
+optional <i>maxchunk</i>).  Each chunk is saved as a new soundfile, 
+with a name derived from the name of the <i>infile</i>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The number and length controls make it possible to make a controlled 
+number of chunks of random length within a specified range.  The 
+ability to focus on the start of the soundfile enables you to explore 
+the qualities of the attack portion of the sound.
+</p>
+</blockquote>
+
+<p>
+End of SFEDIT RANDCHUNKS<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="RANDCUTS">SFEDIT RANDCUTS &#150; Cut soundfile into pieces with 
+cuts at random times
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit randcuts</b> <i>infile average-chunklen scattering</i>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile
+	<blockquote>
+	<b>There is no outfile name.</b>  The cut sections will be 
+	saved as new soundfiles, named <i>infile</i> with an underscore 
+	and a number added, starting from zero.<br>  
+	(The program usage may 
+	still say that a character is truncated, but this has not happened 
+	since an alteration was made in 2010.)
+	</blockquote>
+<i>average-chunklen</i> &#150; the average length of the chunks to cut<br>
+<i>scattering</i> &#150; controls the amount of variation in the length of 
+the cuts (Range: 0 to 8)
+</blockquote>
+
+<h3>
+Understanding the SFEDIT RANDCUTS Process
+</h3>
+
+<blockquote>
+<p>
+SFEDIT RANDCUTS provides a way to cut up a soundfile into several 
+portions of a specified average length, saving each as a separate 
+soundfile.  The amount of difference in the lengths can be adjusted 
+with the <i>scattering</i> parameter:  the regularity of the lengths 
+gets less and less as <i>scatter</i> increases.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This could be a way of multiplying source material when a given soundfile 
+has sufficient variation in its contents to justify the procedure.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="#RANDCHUNKS"><b>SFEDIT RANDCHUNKS</b></a>.
+</p>
+
+<p>
+End of SFEDIT RANDCUTS<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="REJOIN">REJOIN &#150; Remix segment-files originating in ISOLATE process </h2>
+
+<h3>
+Usage
+</h3>
+<b>rejoin rejoin 1-2</b> <i>infile</i> <i>infile2</i> [<i>infile3 ...</i>] <i>outfile</i> 
+[<b>-g</b><i>gain</i>] [<b>-r</b>]<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp;Remix segment files only<br>
+<b>2</b>&nbsp;Remix segment files and remnant file<br>
+&nbsp;&nbsp;<b>NB</b> In mode 2, the remnant file must be the LAST infile in the list of input files.<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1</i> &#150; first soundfile to rejoin<br>
+<i>infile2, infile3 ...</i>  &#150; additional soundfiles to rejoin<br>
+<i>outfile</i> &#150; resultant soundfile output<br>
+<b>-g</b><i>gain</i>  &#150; change the output level (Range 0 - 1).<br>
+&nbsp;&nbsp;Note that the output level is automatically turned down if the output clips.<br> 
+<b>-r</b> &#150; reverse the segment-files before mixing with remnant file.<br>
+</blockquote>
+
+<h3>
+Understanding the REJOIN Process
+</h3>
+
+<blockquote>
+<p>
+The process <a href="ISOLATE"><b>ISOLATE</b></a> cuts a soundfile into disjunct segments and assigns these to different output soundfiles. It does this in a special way so that the time-position of these pieces in the original soundfile is retained: silence is inserted between the cut pieces in the outputs to achieve this ('silent surrounds'). The result is that the disjunct pieces can be re-mixed in their original positions. <b>REJOIN</b> provides a means of mixing the pieces together again, possibly after some or all have been processed further. Note that if the remnant file is used, it must be the last to be listed.
+</p>
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+<b>ISOLATE</b> provides a means of segmenting a sound into separate streams and processing these, perhaps differently. As the original time-position of each segment is preserved, the processed segments can be mixed together again using <b>REJOIN</b>, provided that none of the processes has stretched or shrunk the overall time and changed the position of the segments.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="cgroedit.htm#ISOLATE"><b>ISOLATE</b></a>.
+</p>
+
+
+<p>
+End of REJOIN<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="REPLACE">SFEDIT REPLACE &#150; Insert a 
+2<sup><small>nd</small></sup> sound into an existing sound, 
+replacing part of the original sound
+</h2>
+
+<h3>
+Usage
+</h3>
+
+<b>sfedit replace  mode</b> <i>infile insert outfile time endtime</i> 
+[<b>-w</b><i>splice</i>] [<b>-l</b><i>level</i>]<br />
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Time in seconds<br>
+<b>2</b>&nbsp; Time as sample count (rounded to multiples of channel count)<br>
+<b>3</b>&nbsp; Time as grouped sample count (e.g., 3 = 3 stereo pairs)
+</blockquote>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>insert</i> &#150; 2<sup><small>nd</sup></small> 
+soundfile to insert<br />
+<i>outfile</i> &#150; completed output soundfile<br />
+<i>time</i> &#150; the <i>time</i> at which the 
+2<sup><small>nd</sup></small> soundfile is to be inserted 
+into the 1<sup><small>st</sup></small> soundfile<br />
+<i>endtime</i> &#150; the <i>endtime</i> of the segment 
+in the original soundfile to be replaced<br />
+<b>-w</b><i>splice</i> &#150; splice window in milliseconds.  
+Default: 15 ms<br />
+<b>-l</b><i>level</i> &#150; gain multiplier on the 
+inserted soundfile.  Default: 1.0
+</blockquote>
+
+<h3>
+Understanding the SFEDIT REPLACE Process
+</h3>
+
+<blockquote>
+<p>
+There is already a process "insert sound" 
+(<a href="cgroedit.htm#INSERT"><b>SFEDIT INSERT</b></a>) which 
+allows you to insert a 2<sup><small>nd</small></sup> sound 
+into an existing sound, either by overwriting the original 
+sound at the point of insertion, or cutting the original sound 
+at the point of insertion, inserting the 
+2<sup><small>nd</small></sup> sound, and then continuing 
+with the first sound from the place where it was cut.
+</p>
+
+<p>
+This process allows you to overwrite a SPECIFIED SEGMENT of the 
+original sound with the new sound, even where this is not the 
+same length as the inserted sound.  Note however, that the 
+2<sup><small>nd</small></sup> sound must be AT LEAST AS LONG 
+as the gap created in the original sound .
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This function provides a overwrite facility.
+</p>
+</blockquote>
+
+<p>
+End of SFEDIT REPLACE<br>
+<a href="#SFEDITLIST">Return</a> to List of SFEDIT functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="RETIME">RETIME &#150; Rearrange and retime events within a soundfile</h2>
+
+<p>
+The <b>RETIME</b> program is a suite of processes for retiming events within a soundfile: to some pre-specified set of times, to a tempo, or to a pattern etc. <br>
+In many cases the events are assumed to be separated by silence; other processes can be applied to any sound (for which you must specify the location of its peaks).
+</p>
+
+<p>
+<div align=center>
+<table border="1" cellpadding="3" bgcolor="#B0E0E6">
+<tr>
+<!--
+<td align=center><a href="#RETIMEUSAGE"><b>Usage</b></a></td>
+-->
+<td align=center><a href="#RETIMEMODES"><b>Modes</b></a></td>
+<!--
+<td align=center><a href="#RETIMEPARAMETERS"><b>Parameters</b></a></td>
+-->
+<td align=center><a href="#RETIMEUNDERSTANDING"><b>Understanding</b></a></td>
+<td align=center><a href="#RETIMEAPPLICATIONS"><b>Applications</b></a></td>
+</tr>
+</table>
+</div>
+</p>
+
+<h3>Usage</h3>
+<b>retime retime 1-10, 13-14</b> <i>infile outfile various_params</i> (see individual modes)<br>
+<b>retime retime 11</b> <i>infile minsil</i><br>
+<b>retime retime 12</b> <i>infile out_textfile </i>
+<blockquote>
+  <i>infile</i> &#150;  input soundfile<br>
+  <i>outfile</i> &#150; output soundfile<br>
+  <i>outfile.txt</i> &#150; Output textfile: <b>must have '.txt' extension</b>. If the file already exists, output is APPENDED to it.<br> 
+  <i>minsil</i> &#150; minimum silence required to specify separation between events (Range: 2000/sample-rate to 10000 mS).<br>
+</blockquote> 
+
+<p>
+Example command line to to adjust tempo (Mode 1) :<br>
+<pre> <b>retime retime 1 infile outfile refpoints.txt 180 </b> </pre>
+</p>
+ 
+
+
+<h3 id="RETIMEMODES">Modes, Usage and Parameters</h3>
+<p>
+<b id="RETIME1">1 PULSED PEAKS:</b> Output user-specified peaks at a regular pulse at the given tempo
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 1</b> <i>infile outfile refpoints tempo</i><br>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>refpoints</i> &#150; times of peaks in the <i>infile</i> which will become on-the-beat events in the <i>outfile</i>.
+	<br>
+	<i>tempo</i> &#150; tempo of <i>outfile</i>, in beats-per-minute <a href="#MM">(BPM)</a> (for values &gt;20 to 400) <b>OR</b> a beat duration in seconds (for values &lt;1.0).  
+</blockquote>
+</p>
+
+
+
+<p>
+<b id="RETIME2">2 SYNCHRONISE PEAKS:</b> Reposition specified peaks to specified times at a given tempo
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+For further details, see <a href = "#MODE2"><b>Mode 2</b></a> below. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(This mode is intended for use with the <i>Sound Loom</i> only.)<br>
+ 
+
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 2</b> <i>infile outfile resyncdata tempo peakwidth splicelen</i>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>resyncdata</i> &#150; a textfile consisting of:
+	<ul>
+	<li>The approximate tempo (in BPM) of the input file sound</li>
+	<li>The time of the <b>first accented event</b>. This must be one of the times in column 2, below.</li>
+	<li>Two columns of timing data:</li>
+		<ul>
+		<li>The 1<sup><small>st</small></sup> column represents the time of each event in the input sound.</li>
+		<li>The 2<sup><small>nd</small></sup> column represents the new time of the event at the tempo specified in line 1.</li>
+		<li>Times in both columns must increase.</li>
+		</ul>
+	</ul>
+	<blockquote>
+	Note that, in the <i>Sound Loom</i>, this data can be automatically generated from a <b>property file</b> in which the 
+	<b><i>rcode</b></i> property has been specified for a sound. (The <i>rcode</i> property allows you to map the idealised rhythm 
+	of a musical phrase).
+	</blockquote>
+
+	<i>tempo</i> &#150; tempo of <i>outfile</i>, in BPM (for values &gt;20 to 400), <b>OR</b> a beat duration in seconds (for values &lt;1.0). <br>	
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    Changes the tempo of the input sound from its original BPM, specified in <i>resyncdata</i>, to that defined here.
+	<br>
+
+	<i>peakwidth</i> &#150; duration (in mS) of the events in the output sound.<br>
+	 &nbsp;&nbsp;&nbsp;&nbsp;
+	 Can vary over time, using a <i>time peakwidth</i> breakpoint file.
+	<br>
+	<i>splicelen</i> &#150; duration of splices cutting the events in the output sound (Range: 1- 1000 mS).
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME3">3 SHORTEN EVENTS:</b> Shorten existing silence-separated events
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 3</b> <i>infile outfile minsil inevwidth outevwidth splicelen</i>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>minsil</i> &#150; minimum silence required to specify separation between events (Range: 2000/sample-rate to 10000 mS).
+	<br>
+	<i>inevwidth</i> &#150; minimum width of events in the input sound (Range: (Range: 1 -1000 mS).
+	<br>
+	<i>outevwidth</i> &#150; required width of events in the output sound (Range: 1 -1000 mS).
+	<br>
+	<i>splicelen</i> &#150; duration of splices cutting the events in the output sound (Range: 1- 1000 mS).
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME4">4 PULSED:</b> Find existing silence-separated events and output them at a regular pulse.
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 4</b> <i>infile outfile tempo minsil pregain</i>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>tempo</i> &#150; tempo of <i>outfile</i>, in BPM (for values &gt;20 to 400) <b>OR</b> a beat duration in seconds (for values &lt;1.0).  
+	<br>
+  	<i>minsil</i> &#150; minimum silence required to specify separation between events (Range: 2000/sample-rate to 10000 mS).
+	<br>
+	<i>pregain</i> &#150; gain of input signal (Range: &gt;0 to 1).<br>
+	 &nbsp;&nbsp;&nbsp;&nbsp; 
+	 May need to be &lt;1 if events in the output overlap one another.  
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME5">5 SPEED:</b> Find existing silence-separated events and change their speed.
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 5</b> <i>infile outfile factor minsil</i>  [<b>-s</b><i>start</i> <b>-e</b><i>end</i> <b>-a</b><i>sync</i>]
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>factor</i> &#150; (Mode <b>5</b>) speed-change factor (Range: 0.01 - 100).<br>
+		 &nbsp;&nbsp;&nbsp;&nbsp; Can vary over time. 
+	<br>
+	<b>-s</b><i>start</i> &#150; time in <i>infile</i> at which speed changing begins (seconds).
+	<br>
+	<b>-e</b><i>end</i> &#150; time in <i>infile</i>at which speed changing ends (seconds).
+	<br>
+	<b>-a</b><i>sync</i> &#150; approximate time of an <i>infile</i>-event which synchronises with its copy in the output.<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 
+	Can be used to generate an output which will synchronise in a particular way with the input sound if the two are mixed together.  <br>
+	(See <a href = "#SYNCINFO">below</a>.)
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME6">6 REPOSITION AT BEATS:</b> Find existing silence-separated events and position them at specified beats in the output
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 6</b> <i>infile outfile retempodata tempo offset minsil pregain</i>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>retempodata</i> &#150; textfile contains positions of events in the output, in<b> BEATS</b>: events are assumed to start at beat zero.
+	<br>
+	<i>tempo</i> &#150; tempo of <i>outfile</i>, in BPM (for values &gt;20 to 400) <b>OR</b> a beat duration in seconds (for values &lt;1.0).  
+	<br>
+	<i>offset</i> &#150; time of the first sounding event in the output file. (Range: 0 to 1000 secs)<br>		 
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	Can be used to make the event sequence start at a later time.
+	<br>
+	<i>minsil</i> &#150; minimum silence required to specify separation between events (Range: 2000/sample-rate to 10000 mS).
+	<br>
+	<i>pregain</i> &#150; gain of input signal (Range: &gt;0 to 1).<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	May need to be &lt;1 if events in the output overlap one another. 	
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME7">7 REPOSITION AT TIMES:</b> Find existing silence-separated events and position them at specified times in the output
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 7</b> <i>infile outfile retempodata offset minsil pregain</i>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>retempodata</i> &#150; textfile contains positions of events in the output, in <b>SECONDS</b>: events are assumed to start at time zero.
+	<br>
+	<i>offset</i> &#150; time of the first sounding event in the output file. (Range: 0 to 1000 secs)<br>		 
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	Can be used to make the event sequence start at a later time.
+	<br>
+	<i>minsil</i> &#150; minimum silence required to specify separation between events (Range: 2000/sample-rate to 10000 mS).
+	<br>
+	<i>pregain</i> &#150; gain of input signal (Range: &gt;0 to 1).<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	May need to be &lt;1 if events in the output overlap one another. 
+
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME8">8 REPEAT EVENT(S):</b> Repeat one (or a group of) silence-separated event(s) at a specified tempo
+ 
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 8</b> <i>infile outfile tempo eventtime count repeats minsil</i>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>tempo</i> &#150; tempo of <i>outfile</i>, in BPM (for values &gt;20 to 400) <b>OR</b> a beat duration in seconds (for values &lt;1.0).  
+	<br>
+	<i>eventtime</i> &#150; approximate start time of event(s) to repeat: time must be <b>INSIDE</b> the event.
+	<br>
+	<i>count</i> &#150; number of silence-separated events to capture. (Range: 1 to 24)
+	<br>
+	<i>repeats</i> &#150; number of times to repeat the event(s)
+	<br>
+  	<i>minsil</i> &#150; minimum silence required to specify separation between events (Range: 2000/sample-rate to 10000 mS).
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME9">9 MASK EVENTS:</b> Replace some silence-separated events by silence in a specified pattern
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+This process can be used to change the rhythmic pattern of the input events.
+
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 9</b> <i>infile outfile maskdata minsil</i>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>maskdata</i> &#150; textfile with a sequence of <b>zeros</b> and <b>ones</b>: 0 masks event; 1 leaves event unmasked.
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;
+	The pattern of masking is repeated once its end is reached.
+	<br>
+  	<i>minsil</i> &#150; minimum silence required to specify separation between events (Range: 2000/sample-rate to 10000 mS).
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME10">10 ACCENTS:</b> Adjust levels of silence-separated events to be more equal, or accented.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+This process can be used to change the accent pattern of the input events.
+
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 10</b> <i>infile outfile minsil equalise</i> [<b>-m</b><i>meter</i> <b>-p</b><i>pregain</i>]
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>minsil</i> &#150; minimum silence required to specify separation between events (Range: 2000/sample-rate to 10000 mS).
+	<br>
+	<i>equalise</i> &#150; determines the level balance between accented and unaccented events. (Range: 0 - 1)
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;
+	If <i>meter</i> = 0: <i>equalise</i> = <b>0</b>: has no effect; <i>equalise</i> = <b>1</b>: all events are forced to equal loudness; intermediate values have 	intermediate effects.
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;
+	If <i>meter</i> &gt;0: unaccented beats take level relative to that specified in <i>equalise</i>, e.g. <i>equalise</i>= 0.3 sets unaccented beats to 1/3 level of accented.
+	<br>
+	<b>-m</b><i>meter</i> &#150; pattern of accented events, e.g. 0: no events emphasized; 3: every 3rd event accented. (default: presumably 0)
+	<br>
+	<b>-p</b><i>pregain</i> &#150; gain of input signal (Range: &gt;0 to 1).
+
+	<blockquote>
+	Relationship of <i>equalise</i> and <i>meter</i> in detail:
+	<ul>
+	<li><i>meter</i> = <b>0</b>, no events emphasized:</li>
+		<ul>
+		<li>The relative loudness of the events is adjusted 
+		by the value of <i>equalise</i>.</li>
+		<li>The loudest event remains at its original level.</li> 
+		<li>Other events are boosted towards this maximum. First, 
+		the difference between the amplitude of this event and 
+		the maximum is calculated.  If the event is 0.2 of 
+		the maximum, this difference is 0.8.  With an 
+		equalisation level of 0.5, the event is boosted half 
+		way (0.5) towards the maximum:  i.e., in this example, 
+		by half of 0.8 (0.4), bringing it to 0.6 of the 
+		maximum.</li>
+		</ul>
+	<li><i>meter</i> = any non-zero integer (<i>N</i>), e.g. 3:</li>
+		<ul>
+		<li>All events are first forced to the level of the loudest.</li>
+		<li>Then every <i>N</i><sup><small>th</small></sup> event 
+		remains at that maximum level, and all the others are reduced 
+		to <i>equalise</i> times the maximum level.</li>
+		</ul>				
+	</ul>
+	</blockquote>
+
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME11">11 FIND DURATIONS:</b> Find the durations of the shortest and longest silence-separated events. 
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Output is to the console, but could be re-directed to a textfile.
+
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 11</b> <i>infile minsil</i>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+    <i>minsil</i> &#150; minimum silence required to specify separation between events (Range: 2000/sample-rate to 10000 mS).<br>
+
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME12">12 FIND START:</b> Find first non-zero sample in soundfile
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b>NB: This is a useful information function, irrespective of any use within RETIME.</b>
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 12</b> <i>infile outfile.txt</i>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>outfile.txt</i> &#150; Output textfile: <b>must have '.txt' extension</b>. If the file already exists, output is APPENDED to it.
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The latter allows several sounds to be run through the process to the same datafile, accumulating a list of the starttimes of each sound processed. 
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; On the <i>Sound Loom</i> a list of sounds on the Chosen Files can be processed via the Bulk Process mechanism, to produce a single output datafile.
+
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME13">13 MOVE FOUND PEAK:</b> Find sound peak and move whole sound so peak goes to specified time
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    The entire sound is moved by inserting or removing silence at the start.
+
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 13</b> <i>infile outfile goalpeaktime</i>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>goalpeaktime</i> &#150; time to which the peak found in the input file is to be moved. <b>Must be greater than the original peaktime.</b>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Moving the peak backwards is only possible if there is sufficient silence at the start of the sound:
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the process fails if the sound would be moved before time zero.
+</blockquote>
+</p>
+
+<p>
+<b id="RETIME14">14 MOVE SPECIFIED PEAK:</b> Specify peak position, then move whole sound so peak goes to specified time.
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    The entire sound is moved by inserting or removing silence at the start.
+
+<blockquote> 
+	<b>USAGE:</b><br>
+	<b>retime retime 14</b> <i>infile outfile goalpeaktime peaktime</i>
+	</p><p>
+	<b>PARAMETERS:</b><br>
+	<i>goalpeaktime</i> &#150; time to which the peak found in the input file is to be moved. <b>Must be greater than the original peaktime.</b>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Moving the peak backwards is only possible if there is sufficient silence at the start of the sound:
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the process fails if the sound would be moved before time zero.
+    <br>
+	<i>peaktime</i> &#150; Time of existing peak within the input soundfile
+
+	<blockquote>
+	Modes <b>13</b> and <b>14</b> can be used to synchronise the peaks of two (or more) soundfiles, if the peak in one sound is moved to the same time as that in another.
+	Alternatively, if the sounds do not all start at time zero, Mode 14 could be used to synchronise their start-times. 
+    </blockquote>
+
+</blockquote>
+</p>
+
+
+<!-- 
+<h3 id="RETIMEUSAGE">Usage</h3> -->
+
+<h3>
+<a id= "RETIMEUNDERSTANDING">Understanding</a> the RETIME Process
+</h3>
+
+<blockquote>
+
+<p>
+The RETIME processes work by editing, rather than time-stretching. They insert small silences or, conversely, cut out small segments from the 
+original source.  They are therefore probably more appropriate for small-detail adjustments to material (especially if the time between 
+events is being shortened) than for grand redesigns.  The sound input to RETIME must have definable peaks. None of the processes alter the order of events in the source.
+
+</p><p>
+Modes <b>1</b> and <b>2</b> work on any soundfile. In these processes you are asked to mark the peaks in the source. <a href="cgroinfo.htm#PEAKFIND"><b>PEAKFIND</b></a> can help you produce a list of peak times.
+<ul>
+	<li>Mode <b>1</b> takes the peak events that you have marked and 
+	places them at regular time-intervals at a tempo (in <a href = "#MM">BPM</a>) that you specify.</li>
+	<li>Mode <b>2</b> takes the peak events that you have marked and places them at new times which you specify.</li>
+</ul>
+
+These processes work by directly editing the source, and the repositioned events in the output are separated by (usually tiny) silences.  For this 
+reason the output may sound slightly 'clipped' (in the sense used about speech &#150; <i>not</i> digitally distorted) relative to the input.
+</p>
+<p id= "MODE2">In <b>Mode 2:</b>
+	<ul>
+	<li>The process cuts the input sound at each specified peak in the source and reassembles the pieces at the specified output times.</li>
+	<li>This process can be applied to any sound-data (with definable peaks).</li>
+	<li>It generates a file of silence-separated peaks (<i>unless the output events overlap one another</i>).</li>
+	<li>The process can be used to force an event series with an approximate or indefinite rhythm and tempo to lie on a precisely defined rhythm in some (possibly different) tempo.</li>
+	</ul>
+
+</p><p>
+Modes 3 to 11 assume the input sound has events separated by silence, however short. They allow you to change the tempo, rhythm or accentuation pattern of the events in the input sound.
+</p><p>
+You can introduce silence into the sound in a number of ways, including:
+<ul>
+<li>Make a list of start times for the events and apply <a href="#MANYSIL"><b>MANYSIL</b></a> to insert tiny silences at these times. Suitable times can be obtained using the Gated-onsets information function HOUSEKEEP EXTRACT 6.<br>
+(In <i>Soundshaper</i>, click on the sound display for each time and send it to the Markers list. Then copy the list to the datafile memo for MANYSIL.)</li>
+<li><a href="cgrohous.htm#GATE-R6"><b>GATE</b></a> Mode 1, <a href="cgroenvl.htm#WARP"><b>ENVEL WARP</b></a> Modes 8 (gate) or 11 (Corrugate) replace low-level signal with silence. Use this method if there is an apparent gap before the event(s) which is not completely silent.</li>
+<li>Granulate a sound using <a href="cgromody.htm#BRASSAGE"><b>BRASSAGE Mode 5</b></a> with a density of &lt;1. The silences will be roughly regular, however.</li>
+<li><a href="cgroenvnu.htm#PEAKCHOP"><b>PEAKCHOP</b></a> gates around the peaks in a soundfile or outputs an envelope based around these peaks, which can be applied to the original sound using Envel Replace or Impose. </li>
+</ul>
+
+<p id= "MM">
+In a number of modes, tempo is indicated by the number of beats per minute &#150; also known as Metronome Mark (MM), e.g.:
+<ul>
+<li>BPM (or MM)= 60 : 60 beats per minute, or 1 beat every second.</li>
+<li>BPM (or MM)=180 : 180 beats per minute, or 3 beats every second (180/60).</li>
+<li>BPM (or MM)=30&nbsp; : 30 beats per minute, or 1 beat every 2 seconds (30/60: 1/2 beat per second).</li>
+</ul>
+
+</p>
+
+<p>
+Mode <b>11</b> provides information about the duration of silence-separated events in the sound.  This is a typical display (<i>minsil</i> was 0.1):
+
+	<pre>
+	INFO: Counting silences between events.
+	INFO: Marking silence-separated Events.
+	INFO:
+	INFO: Shortest event = 0.000023 secs :: = 0.022676 mS
+	INFO: Longest event = 0.960045 secs
+	</pre> 
+</p><p>
+
+Modes <b>12</b> &amp; <b>13</b> allow an event within the input soundfile to be positioned at a particular time relative 
+to the start of the file. The process works by inserting or removing silence at the start of the file.
+</p><p>
+Modifying the soundfile in this way ensures that, when several of 
+these soundfiles are mixed together, specific events in the files can be rhythmically aligned, by aligning the start times of the soundfiles themselves.
+</p>
+<p id="SYNCINFO">
+<b>"SYNC" what's this about?</b>
+</p>
+
+<p>
+For rhythmic work, you may well want a particular event in the time-modified sound to occur at a specific time relative to the original.  For example, say the original event is a 2 quaver anacrusis to a strong beat at 0.65 seconds.   If you want the strong beat to be at the same TIME in the output event, you can use the "SYNC" option to specify where this beat is.  Note that NOT all sync-specs are possible. Particularly, if you timestretch the entire file (using a factor greater than 1), then events in the output cannot be made to sync with events in the input (except at time zero).
+</p>
+
+</blockquote>
+
+<h3 id="RETIMEAPPLICATIONS">Musical Applications</h3>
+
+<blockquote>
+The overall application of RETIME is to (re)rhythmicise material. This suite of processes can be used to change the time-pattern within 
+an input sound, such as the rhythm of a melodic phrase or the prosody of speech.  
+</p><p>
+They were originally developed to slightly shift the true rhythm of spoken phrases of natural speech onto an idealised rhythmic 
+frame, permitting different vocal phrases to be rhythmically locked to a particular tempo, without radically altering the speech prosody.
+</blockquote>
+
+<p>
+End of RETIME<br />
+<a href="#SFEDITLIST"><b>Return</b></a> to list of SFEDIT functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="SILEND">SILEND &#150; Add silence to the end of a soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>silend silend 1</b> <i>insndfile outsndfile sildur</i><br>
+<b>silend silend 2</b> <i>insndfile outsndfile outdur</i>
+<br />
+
+<p>
+Example command line to add silence at the end:<br>
+	<blockquote>
+	<b><code>silend silend 1 insnd.wav outsnd.wav 3.5</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; specify duration of the silence<br />
+<b>2</b>&nbsp; specify total output duration<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile</i> &#150; input soundfile<br />
+<i>outsndfile</i> &#150; output soundfile with silence at ende<br />
+<i>sildur</i> &#150; duration of silence to add<br />
+<i>outdur</i> &#150; total duration of output sound after the silence is added
+</blockquote>
+
+<h3>
+Understanding the SILEND Process
+</h3>
+
+<blockquote>
+Other CDP programs can add silence at the start (<a href="#PREFIXSIL"><b>PREFIX SILENCE</b></a>) or in the middle (<a href="#INSIL"><b>SFEDIT INSIL</b></a>) of a soundfile, but not at the end.  SILEND completes the facilities by adding silence at the end of the soundfile.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<p>
+<blockquote>
+One application is to add silence at the end of each soundfile when <a href="cgroedit.htm#JOIN"><b>assembling</b></a> a list of soundfiles to be played as one sequence.  This puts pauses between the sounds, pauses that are more appropriately placed at the end rather than the beginning.  Using the blockedit facilities in <i>Sound Loom</i> or a batch file will do the job quickly.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="#PREFIXSIL"><b>PREFIX SILENCE</b></a> and <a href="#INSIL"><b>SFEDIT INSIL</b></a> 
+</p>
+
+<p>
+End of SILEND<br />
+<a href="#SFEDITLIST"><b>Return</b></a> to list of SFEDIT functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+<hr> <!-- *********************************************************** -->
+
+
+<h2 id="SPHINX">SFEDIT SPHINX &#150; Switch between several files, 
+with different switch times, to make a new sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit sphinx 1</b> <i>infile1 infile2 ... outfile switch-times 
+splicelen</i> [<b>-w</b><i>weight</i>] [<b>-r</b>]<br />
+<b>sfedit sphinx 2-3</b> <i>infile1 infile2 ... outfile switch-times splicelen segcnt</i> [<b>-w</b><i>weight</i>] [<b>-r</b>]<br />
+
+<br />
+
+<p>
+Example command line to create a soundfile from several inputs:<br />
+	<blockquote>
+	<b><code>sfedit sphinx 1 infile1 infile2 switchtimes.txt 12 
+	</code></b><br />
+	<b><code>sfedit sphinx 2 infile1 infile2 switchtimes.txt 12 48
+	</code></b><br />
+	<b><code>sfedit sphinx 3 infile1 infile2 switchtimes.txt 12 48
+	-r</code></b><br />
+	</blockquote>
+</p>
+
+<blockquote>
+	<blockquote>
+	SYNOPSIS<br />
+	The switch times are in rows and columns.  The rows have sets of 
+	times and the columns are like parallel tracks.  The program moves 
+	down through the rows, selecting one time from one of the rows at 
+	each row position.  The times in each column can be independent, 
+	but with no time gaps within a column.  The columns are read in order, 
+	from left to right, unless the <b>-r</b> (<i>randomisation</i>) 
+	flag is set.  (Imagine all files are running in parallel on a 
+	multitrack.  Switch from one 'track' to another at switch times, 
+	where the N<sup><small>th</small></sup> switch-time in one file 
+	corresponds to the N<sup><small>th</small></sup> in another file, 
+	<i>but these are not necessarily the same absolute time</i>.) See 
+	our <a href = "#SPHINXFILE">example file</a>.  
+	</blockquote>
+</blockquote>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1&nbsp; In Sequence</b> &#150; Move down the rows in sequence, selecting 
+one time from each column.<br />
+<b>2&nbsp; Permutated</b> &#150;  Randomly permutate the order of the rows of 
+times, selecting one time from each column.<br />
+<b>3&nbsp; Random Choice</b> &#150; Select any row at random, and a time from 
+each column.
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1 infile2 ...</i> &#150; 2 or more input soundfiles<br />
+<i>outfile</i> &#150; resulting output soundfile<br />
+<i>switch-times</i> &#150; text file containing the times in seconds at 
+which the input sound(s) are divided into segments
+	<ul>
+	<li>Include time zero if you want to use a segment at the start 
+	of the file</li>
+	<li>The 1<sup><small>st</small></sup> time values <i>for each file</i> 
+	are listed on the 1<sup><small>st</small></sup> line of the file</li>
+	<li>The 2<sup><small>nd</small></sup> time values <i>for each file</i> 
+	are listed on the 2<sup><small>nd</small></sup> line.</li>
+	<li>You need one more set of times than number of segments, because 
+	the last set of times forms the end-times for the start-times in 
+	the penultimate row.</li>
+	<li><b>The program cycles through the rows and times (in various 
+	ways) until it comes to the end of either the (shortest) input 
+	soundfile or the number of segments defined.</b>  There is a 	
+	soundfile for each column of data, and in all Modes you will 
+	hear the segments cycling repeatedly through the soundfiles in 
+	order: e.g., 1-2-3, 1-2-3, etc., unless <b>-r</b> is set.  
+	(See <a href = "#SPHINXFILE"><b>example file</b></a> below.)</li>
+	</ul>
+<i>splicelen</i> &#150; the duration of the splices, in milliseconds 
+(Range: 2 to 15 milliseconds)<br />
+<i>segcnt</i> &#150; Modes <b>2-3</b> only: the number of segments to use 
+in the output<br />
+<b>-w</b><i>weight</i> &#150; when set, <i>infile1</i> occurs 
+<i>weight</i> times more often than the other infiles<br />
+<b>-r</b> &#150; when set, the order of files used is randomly permutated, 
+otherwise the files retain the order in which they were invoked.  In 
+other words, it randomises from which column the time is taken.
+</blockquote>
+
+<h3>
+Understanding the SFEDIT SPHINX Process
+</h3>
+
+<blockquote>
+<p>
+Imagine that we are using 3 input soundfiles (A, B,&amp; C) with SPHINX, 
+and we cut 4 segments from each soundfile.
+</p>
+
+<p>
+We need to provide information on how these soundfiles are to be segmented. 
+For each soundfile we must provide a sequence of times at which the 
+soundfile will be cut, i.e., a column of times in the <i>switch-times</i> 
+data file for each soundfile.</p>
+
+<p>
+For soundfile <b>A</b>, we can call these 4 segments <b>a1</b>, <b>a2</b>, 
+<b>a3</b> and <b>a4</b>, and<br />
+for soundfile <b>B</b>, we can call these 4 segments <b>b1</b>, <b>b2</b>, 
+<b>b3</b> and <b>b4</b><br />
+and so on.<br />
+</p>
+
+<p>
+To make these 4 segments we will need to specify 5 times.  Thus the times 
+for soundfile <b>A</b> might be:
+	<blockquote>
+	<b>0.1 &nbsp;0.35 &nbsp;1.0 &nbsp;7.0 &nbsp;7.1</b>
+	</blockquote>
+and these will cut the input soundfile into these 4 segments (and only 
+these &#150; the output will play these 4 segments and then stop):
+	<blockquote>
+	<b>segment 1</b>: &nbsp;0.1 to 0.35, duration 0.35 seconds<br />
+	<b>segment 2</b>: &nbsp;0.35 to 1.0, duration 0.65 seconds<br >
+	<b>segment 3</b>: &nbsp;1.0 to 7.0, duration 6.00 seconds<br />
+	<b>segment 4</b>: &nbsp;7.0 to 7.1, duration 0.1 seconds
+	</blockquote>
+<b>NB:</b> Segments are cut from the soundfile <b></i>sequentially</b> 
+(end-to-end) starting at the first time (in a given column) and ending 
+at the last.  <i>You therefore cannot skip over any part of the input 
+soundfile &#150; i.e., leave time-gaps &#150; apart from:</i> 
+	<ul>
+	<li>the start of the file (by making the first time greater than 
+	0.0)</li>
+	<li>the end of the file (by making the last time less than the file's
+ 	duration)</li>
+	</ul>
+The information on how to segment each file is provided in the 
+<i>switch-times</i> text datafile containing <b><i>columns of time values</b></i>:
+	<ul>
+	<li>Each column in the data corresponds to one of the input 
+	soundfiles.</li>
+	<li><b><i>The same number of segments must be cut from each 
+	file</i></b> &#150; this implies that each column of the datafile must 
+	have the same number of rows.</li>
+	<li>The segments in the different files <b><i>do not have to 
+	correspond in length</i></b> &#150; <b>a1</b> does not need to 
+	be the same length as <b>b1</b> or <b>c1</b>.</li>
+	<li>The segments <b><i>do not have to be at the same times in the 3 
+	input soundfiles</i></b> &#150; the start times (or end times) in 
+	each column do not need to be the same &#150; but there are no 
+	time gaps between segments.</li>
+	</ul>
+</p>
+
+<p>
+For example, suppose we have a datafile of 5 times (schematically):
+	<blockquote>
+	<b>A</b><i>time1</i> <b>B</b><i>time1</i> <b>C</b><i>time1</i><br />
+	<b>A</b><i>time2</i> <b>B</b><i>time2</i> <b>C</b><i>time2</i><br />
+	<b>A</b><i>time3</i> <b>B</b><i>time3</i> <b>C</b><i>time3</i><br />
+	<b>A</b><i>time4</i> <b>B</b><i>time4</i> <b>C</b><i>time4</i><br />
+	<b>A</b><i>time5</i> <b>B</b><i>time5</i> <b>C</b><i>time5</i>
+	</blockquote>
+Producing 4 segments for each column:
+	<blockquote>
+	<b>a1 b1 c1<br />
+	   a2 b2 c2<br />
+	   a3 b3 c3<br />
+	   a4 b4 c4</b><br />
+	</blockquote>
+</p>
+
+<p>
+Here is a typical <i>switch-times</i> file: 3 columns, one for each of 3 
+input soundfiles, <b>A</b>, <b>B</b> &amp; <b>C</b>:
+<pre>
+<font color = "#FF0000">  A    B    C</font>
+ 2.0  4.5  7.0
+ 4.0  5.0  7.2
+ 6.0  5.5  7.4
+ 8.0  6.0  7.6
+10.0  6.5  7.8
+</pre>
+Here we have 15 times and 12 <i>possible</i> segments (4 from each of 3 
+soundfiles), which are:
+	<ul>
+	<li> <b>A1:</b> 2.0 -&gt; 4.0 <b>&nbsp;&nbsp;B1:</b>4.5 -&gt; 5.0 
+		<b>&nbsp;C1:</b> 7.0 -&gt; 7.2</li>
+	<li> <b>A2:</b> 4.0 -&gt; 6.0 <b>&nbsp;&nbsp;B2:</b>5.0 -&gt; 5.5 
+		<b>&nbsp;C2:</b> 7.2 -&gt; 7.4</li>
+	<li> <b>A3:</b> 6.0 -&gt; 8.0 <b>&nbsp;&nbsp;B3:</b>5.5 -&gt; 6.0 
+		<b>&nbsp;C3:</b> 7.4 -&gt; 7.6</li>
+	<li> <b>A4:</b> 8.0 -&gt; 10.0 <b>B4:</b>6.0 -&gt; 6.5 
+		<b>&nbsp;C4:</b> 7.6 -&gt; 7.8</li>
+	</ul>
+But note that still there are only 4 segments defined.  In the basic 
+operation of SPHINX in Mode <b>1</b>, the program will select the first 
+segment from row 1, column 1 (A1), the second from row 2, column 2 (B2), 
+the third from row 3, column 3 &#150; now there are no more columns so it 
+goes back to column 1 (in row 4) for the fourth segment (A4), and it 
+continues to cycle round in this way.  In this set of times, the length 
+of segment that will come from each input sound is controlled by having 
+progressively shorter lengths for soundfiles 2 &amp; 3.  The next section 
+discusses how SPHINX reorders these segments in various ways.
+</p>
+
+<h3>
+Mode 1: strict sequential order
+</h3>
+
+<p>
+In Mode <b>1</b>, the program choses each of the 3 input <b>soundfiles</b> 
+<i>in turn</i>, and selects a time from each <b>row</b> of segments <i>in 
+turn</i>.  In this case, the output will therefore be (with the order shown 
+in red):<br />
+<br />
+<pre id="SPHINXFILE">
+;this file will produce 12 segments
+<font color = "#FF0000">0.0</font>	1.0	3.0
+0.6	<font color = "#FF0000">1.4</font>	3.5
+1.2	1.8	<font color = "#FF0000">4.0</font>
+<font color = "#FF0000">1.8</font>	2.2	4.5
+2.4	<font color = "#FF0000">2.6</font>	5.0
+3.0	3.0	<font color = "#FF0000">5.5</font>
+<font color = "#FF0000">3.6</font>	3.4	6.0
+4.2	<font color = "#FF0000">3.8</font>	6.3
+4.8	4.2	<font color = "#FF0000">6.6</font>
+<font color = "#FF0000">5.4</font>	4.6	6.9
+6.0	<font color = "#FF0000">5.0</font>	7.2
+6.6	5.4	<font color = "#FF0000">7.5</font>
+7.2	5.8	7.8
+</pre>
+
+<br />
+Put together into one line, the order of segments in the output soundfile 
+will be like this: 
+  <blockquote>
+  <pre>
+  <b>Soundfiles: <font color = "FF0000">1    2    3  &#47; 1    2    3  &#47; 1    2    3  &#47; 1     2     3</font></b>
+  <b>Segments:   A1 - B2 - C3 &#47; A4 - B5 - C6 &#47; A7 - B8 - C9 &#47; A10 - B11 - C12</b>
+  </pre>
+  </blockquote>
+In this example, we should hear a repeating sequence of long (sound 
+<b>A</b>), medium-long (sound <b>B</b>), and short (sound <b>C</b>).  This 
+gives an indication of how the relationship of times and soundfiles can be 
+constructed to achieve specific effects.  Otherwise, more varied times 
+can be used, but the cycling through the input soundfiles in order will 
+remain the same unless the <b>-r</b> flag is set.
+</p>
+
+<p>
+Note that soundfiles and columns of data always match up:
+	<ul>
+	<li>At the 3<sup><small>rd</small></sup> entry (<b>C3</b>) we have 
+	used all the files, so the program goes back to the first soundfile 
+	(<b>A</b>) for the next segment (<b>A4</b>).</li>
+	<li>It proceeds across the columns and down the rows until it 
+	reaches the end of the shortest soundfile or runs out of 
+	segments.</li>
+	</ul>
+</p>
+
+<h3>
+Mode 2: randomly permutated row-order
+</h3>
+
+<p>
+In <b>Mode 2</b> the order of rows is set by a random <i>permutation</i>.  
+The program then selects a time from each row and produces a segment accordingly, until all rows have been used.  Then a new row-order is 
+chosen, etc.  All the rows are used once before a new permutation of 
+the row-order begins.
+</p>
+
+<p>
+Note that (unless the <b>-r</b> flag is set) the <b><i>input soundfiles</b> 
+</i> are still chosen strictly in order.
+</p>
+
+<h3>
+Mode 3: entirely randomised row-order
+</h3>
+
+<p>
+In Mode <b>3</b> the rows are selected <i>entirely at random</i> &#150; i.e., not even a reordering by permutation.  The program thus selects its time 
+from any row and produces the corresponding segment.
+</p>
+
+<p>
+The input soundfiles are still chosen in strict order (the order in which 
+the user supplied them) unless the <b>-r</b> flag is set.  In this case, 
+the time in each row (and therefore the order of the input soundfiles) is 
+randomly permutated.  This reordering of the soundfiles repeats each time 
+all the input soundfiles have been used, similar to the way the rows are 
+changed round in Mode <b>2</b>.
+</p>
+
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+SPHINX provides a way to mix up the contents of several soundfiles in a 
+semi-controlled way.  An example from Gustav Ciamaga provides a useful 
+illustration.  He has determined the start-time of each syllable in 
+soundfiles containing spoken text.  He then used SPHINX to rearrange 
+these syllables in various ways, maintaining their integrity.  If segment 
+start-times were to be chosen at random, then the input material would be 
+divided up with no regard for internal shapes, perhaps picking out 
+silences.  The effect of this would vary depending on the nature of the 
+sonic material.
+</p>
+
+<p>
+Note that the modes and 
+options can be thought of as progressive degrees of randomisation:
+	<ul>
+	<li>In Mode <b>1</b> both soundfiles and times remain in 
+	<b>sequential</b> order &#150; though the <i>weight</i> flag 
+	(<b>-w</b>) could be used to make the first soundfile predominate, 
+	and the <i>soundfile-randomisation</i> flag (<b>-r</b>) could be 
+	used to mix up the order of the soundfiles.  For the purposes of 
+	this list of progressive randomisations, let us say that it the 
+	latter flag is saved until last.</li>
+
+	<li>Mode <b>2</b> takes the randomisation process a step further 
+	by <b>randomly permutating</b> the order of the rows on each pass 
+	through the rows.  We are keeping the order of the soundfiles the 
+	same, although the option not to do so remains available.</li> 
+
+	<li>Mode <b>3</b> makes selection of rows <b>entirely random</b>.</li>
+
+	<li>We can intensify the randomisation process by not using the 
+	<i>weight</i> flag (<b>-w</b>) and by invoking the 
+	<i>soundfile-randomisation</i> flag (<b>-r</b>).</li>
+
+	<li>Segment start-times chosen by the user completely at random 
+	mix up the material of the input soundfiles in an even more 
+	unpredictable manner.</li>
+
+	<li>Finally, it should be mentioned that smaller segments will 
+	mix up the sounds to a greater degree than larger segments.</li>
+	</ul>
+</p>
+
+<p id="GCIAMAGA">
+<b>Gustav Ciamga has also provided this advice</b>. 
+"Creating lists of switch points can be facilitated with the function 
+<b>Gated Onsets</b> (<i>Soundshaper</i> INFO &gt; (SOUND) FILES &gt; Gated 
+Onsets), with <i>gate_level</i> .035 and <i>min_length</i> .05, and all 
+other parameters set at zero. (The program being used here is HOUSEKEEP 
+EXTRACT, Mode <b>6</b> [AE].)  I prefer this procedure as it guarantees that 
+switch points will coincide with the onsets or attack-points in a sound file. 
+Mind you, arbitrary lists of switch points can provide surprising outcomes.
+</p>
+
+<p>
+"<i>Soundshaper</i> users will find the TWIXT&#47;SPHINX functions integrated 
+on one parameter page, i.e., <b>Edit&#47;Mix &gt; Edit &gt; Switch</b>. The 
+first, third and fifth modes found on this parameter page are <a href="TWIXT"><b>TWIXT</b></a> routines; 
+the second, fourth and sixth modes are SPHINX routines."
+</p>
+
+<p>
+I did this gating with <i>count.wav</i> (female voice counting 1 to 10) 
+and the following file was produced (<i>countonsets.txt</i>):
+<pre>
+0.052245
+0.899773
+1.828571
+2.612245
+3.517823
+4.376961
+4.812336
+5.282540
+5.654059
+6.089433
+6.489977
+6.896327
+7.598730
+</pre>
+
+
+Then I ran <b>Edit&#47;Mix &gt; Switch</b> in <i>Soundshaper</i>, using 
+the first mode listed:  <b>Single-switch Sequence</b>.  <i>Count.wav</i> was 
+the first sound, and <i>frogs3cdt.wav</i> was the second sounds (chirping 
+frogs), and <i>countonsets.txt</i> (as above) was the <i>timesfile</i>.  
+The result was a fairly tidy alternation between the counting voice and 
+the frog's chirps, showing that the switch was taking place pretty much 
+at the onsets of the counts. (AE)
+</p>
+
+<p>
+In <i>Sound Loom</i>, the TWIXT and SPHINX functions are under the EDIT 
+button.  Please note:
+	<ul>
+	<li>TWIXT is listed as <b>switch between files</b></li>
+	<li>SPHINX is listed as <b>make a sphinx</b></li>
+	<li>2 or more input soundfiles need to be in the left panel 
+	(CHOSEN FILES).</li>
+	<li>Do <b>not</b> put the <i>timesfile</i> onto the left panel 
+	(CHOSEN FILES) &#150; it should be on the WORKSPACE.</li>
+	<li>You <b>GET</b> the <i>timesfile</i> when you are on the 
+	parameters dialogue page for either function.</li>
+	</ul>
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="#TWIXT"><b>SFEDIT TWIXT</b></a>.
+</p>
+
+<p>
+End of SFEDIT SPHINX<br />
+<a href="#R6OTHERLIST"><b>Return</b></a> to list of R6 OTHER functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="SUBTRACT">SUBTRACT &#150; Subtract one file from another
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>subtract subtract</b> <i>infile1 infile2 outfile</i> [<b>-c</b><i>chans</i>] 
+<br />
+
+<p>
+Example command line to perform a soundfile subtraction:<br />
+	<blockquote>
+	<b><code>subtract subtract inf1 inf2 outf -c3</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>insndfile1</i> &#150; mono or 2 or more channel input soundfile from which to subtract another soundfile (which must be mono)<br />
+<i>insndfile2</i> &#150; input mono-only soundfile to subtract from <i>insndfile1</i><br />
+<i>outsndfile</i> &#150; resultant mono or multi-channel soundfile<br />
+<b>-c</b><i>chan</i> &#150; which channel of a multi-channel <i>insndfile1</i> (includes a stereo soundfile) to use.  If <i>insndfile1</i> is mono, you will need to put <code>-c1</code> &#150; the parameter is not optional.
+</blockquote>
+
+<h3>
+Understanding the SUBTRACT Process
+</h3>
+
+<blockquote>
+<p>
+This program simply subtracts <i>infile2</i> (which must be mono) from <i>infile1</i>, which may be multi-channel.  The <i>chan</i> parameter enables you to specify which channel of an input multi-channel soundfile to use.  The output soundfile will be mono or multi-channel depending on the inputs.
+</p>
+</blockquote>
+
+<!--
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+...
+</blockquote>
+-->
+
+<p>
+End of SUBTRACT<br />
+<a href="#SFEDITLIST"><b>Return</b></a> to list of SFEDIT functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="SYLLABLES">SFEDIT SYLLABLES &#150; Separate out vocal 
+syllables
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit syllables mode</b> <i>infile outfile cuttimes dovetail 
+splicelen</i> [<b>-p</b>]<br />
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Time in seconds<br />
+<b>2</b>&nbsp; Time as sample count (rounded to multiples of channel-count)<br />
+<b>3</b>&nbsp; Time as grouped sample count (e.g., 3 = 3 stereo pairs)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile</i> &#150; generic name of output soundfiles;  the 
+filenames are formed by adding numbers starting at '1' to the 
+generic name<br />
+<i>cuttimes</i> &#150; text file containing the <i>start end</i> time 
+pairs for each syllable to be cut<br />
+<i>dovetail</i> &#150; the time in milliseconds to allow for syllable 
+overlap.  Range: 1 to 20 ms<br />
+<i>splicelen</i> &#150; the duration of the splice window in 
+milliseconds (cannot be shorter than the time between any two times)<br />
+<b>-p</b> &#150; forces the process to cut PAIRS of syllables
+</blockquote>
+
+<h3>
+Understanding the SFEDIT SYLLABLES Process
+</h3>
+
+<blockquote>
+<p>
+The syllables in speech are difficult to separate one from the 
+other simply by editing.  By their very nature, the sounds of speech 
+flow naturally one into another, and there is no 'natural' cutting 
+point between them.  This process compensates for this problem by shaving 
+a little bit from the end of the previous syllable and a little bit from 
+the start of the following syllable, thereby, for every syllable, 
+giving separated syllables that are more convincing.
+</p>
+
+<p>
+The <i>cuttimes</i> file needs to be carefully constructed 
+by noting in an appropriate sound editor the <i>start</i> and 
+<i>end</i> times of the syllables you want to extract .  They 
+are given with each <i>start end</i> time pair given on 
+separate lines:
+<pre>
+0.0058 0.215
+0.319  0.720
+1.01   1.56
+1.72   2.00
+2.1    2.467
+2.7    3.04
+</pre>
+You could then excise the syllables right away, but the 
+advantage of using SFEDIT SYLLABLES is ability to allow for 
+syllable overlap, thus capture endings and beginnings of 
+syllables that overlap and would otherwise be lost.
+</p>
+
+<p>
+Graphic sound editors should work for this purpose, such as 
+<i>Audition</i>, <i>Sound Forge</i> or the graphic display 
+and editing facilities on the <i>Sound Loom</i>, as you can block 
+out and hear a portion of soundfile.  In <i>Sound Loom</i>, you ALT 
+Mouse Click on a soundfile on the Workspace to access these 
+facilities.  
+<i>Soundshaper's</i> soundfile display likewise has looping start and end locators  
+which can be used to play and select edit points and store up to thirty markers for the <i>cuttimes</i> file.   
+</p>
+
+<p>
+Gaps between times need to be large enough to accommodate the 
+<i>dovetail</i> (overlap) and the <i>splice</i> (join slope).  
+The maximum <i>dovetail</i> is 20 ms, i.e., 0.02 seconds, so 
+this time distance should be regarded as the minimum.  This 
+applies to the length of the syllables as well as the time 
+between syllables.  Syllables that are too short, it should 
+be added, will not be useful as soundfiles because the 
+sound will disappear in the <i>splice</i>.  As a rule of 
+thumb, regard 200 ms as the shortest practical length of a 
+syllable.
+</p>
+
+<p>
+A series of soundfiles using the generic name as the base 
+are created.  If the generic name is 'speechsyl', the separate 
+soundfiles containing each syllable will be 'speechsy1', 
+'speechsy2' etc.  The soundfile extension is appended by 
+the program, as usual.  A variant of SFEDIT CUTMANY, all 
+the soundfiles are created in one pass.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+SFEDIT SYLLABLES can be used to separate 
+	<ul>
+	<li>the syllables of speech</li>
+	<li>the individual note events from a melody performed 
+	on an instrument with strong transitional characteristics 
+	where it passes from one note to another</li>
+	</ul>
+</p>
+</blockquote>
+
+<p>
+End of SFEDIT SYLLABLES<br>
+<a href="#SFEDITLIST">Return</a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="TWIXT">SFEDIT TWIXT &#150; Switch between several files, 
+to make a new sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit twixt 1</b> <i>infile1 infile2 ... outfile switch-times 
+splicelen</i> [<b>-w</b><i>weight</i>] [<b>-r</b>]<br />
+<b>sfedit twixt 2-3</b> <i>infile1 infile2 ... outfile switch-times 
+splicelen segcnt</i> [<b>-w</b><i>weight</i>] [<b>-r</b>]<br />
+<b>sfedit twixt 4</b> <i>infile1 infile2 ... outfile switch-times 
+splicelen</i><br />
+
+<br />
+
+<p>
+Example command line to create a soundfile from several inputs:<br />
+	<blockquote>
+	<b><code>sfedit twixt 1 infile1 infile2 switchtimes.txt 12
+	</code></b><br />
+	<b><code>sfedit twixt 2 infile1 infile2 switchtimes.txt 12 23 
+	-r</code></b><br />
+	<b><code>sfedit twixt 4 infile1 infile2 switchtimes.txt 12</code></b>
+	</blockquote>
+</p>
+
+<blockquote>
+	<blockquote>
+	SYNOPSIS<br />
+	The switch times in TWIXT are in strict ascending order, whether 
+	written in a row (times separated by 'white space'), in a column 
+	or in several columns.  If several columns, the times are read 
+	from left to right in each row and must constantly ascend.  A given 
+	segmentation is applied to any of the input soundfiles, depending 
+	on the parameter settings.  The <b>-r</b> (<i>randomisation</i>) 
+	flag mixes up the soundfiles rather than just cycling round the 
+	inputs.  The Modes change how the times are read.  See our 
+	<a href = "#TWIXTFILE">example file</a>.  
+	</blockquote>
+</blockquote>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1&nbsp; In Sequence</b> &#150; Imagine all soundfiles are running in parallel 
+on a multitrack.  Switch from one sound to another at switch times, where 
+the N<sup><small>th</small></sup> switch-time in one file corresponds to the 
+N<sup><small>th</small></sup> in another file, <i>and the times are 
+the same on all the tracks</i>.<br />
+<b>2&nbsp; Permuted</b> &#150;  Similar to Mode <b>1</b> but the time-segment 
+order is randomly permutated.<br />
+<b>3&nbsp; Random Choice</b> &#150; Similar to Mode <b>1</b> but choose any 
+time-segment at random as the next segment.<br />
+<b>2 Edit only</b> &#150;  Cut <i>infile1</i> (only) to chunks defined by 
+switch-times, and output the chunks as separate soundfiles.  Note that 
+at least two infiles need to be listed as input soundfiles for this mode 
+to work, even though the cuts are only made on the first of the listed 
+soundfiles.
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1 infile2 ...</i> &#150; two or more input soundfiles<br />
+<i>outfile</i> &#150; resulting output soundfile;  Mode <b>4</b> outputs 
+several numbered output soundfiles.<br />
+<i>switch-times</i> &#150; text file containing a single column of 
+<b>ascending times</b> in seconds at which the output soundfile switches 
+between the input soundfile(s):
+	<ul>
+	<li>Include time zero if you want to use a segment at the start 
+	of the file</li>
+	<li>The 1<sup><small>st</small></sup> time values <i>for each file</i> 
+	are listed on the 1<sup><small>st</small></sup> line of the file</li>
+	<li>The 2<sup><small>nd</small></sup> time values <i>for each file</i> 
+	are listed on the 2<sup><small>nd</small></sup> line.</li>
+	<li>You need one more time (or row of times) than number of segments, 
+	because the last time (in each column) forms the end-time for the 	
+		previous start-time.</li>
+	</ul>
+<i>splicelen</i> &#150; the duration of the splices, in milliseconds<br />
+<i>segcnt</i> &#150; Modes <b>2-3</b> only: the number of segments to use 
+in the output<br />
+<b>-w</b><i>weight</i> &#150; when set, infile1 occurs <i>weight</i> times 
+more often than the other infiles<br />
+<b>-r</b> &#150; when set, the order of files used is randomly permutated
+</blockquote>
+
+<h3>
+Understanding the SFEDIT TWIXT Process
+</h3>
+
+<blockquote>
+<p>
+Imagine we use the same 3 input soundfiles (A, B, C) cut into 4 segments, 
+as described in the notes about <a href = "#SPHINX"><b>SPHINX</b></a>.
+</p>
+
+<p>
+With TWIXT, input soundfiles <b>A</b>, <b>B</b> and <b>C</b> are cut into 
+segments (<b>a1</b>, <b>a2</b>, <b>a3</b>, <b>a34</b>.....<b>b1</b>, 
+<b>b2</b>, <b>b3</b>, <b>b4</b>.....<b>c1</b>, <b>c2</b>, <b>c3</b>, 
+<b>c4</b>), but corresponding segments in the 3 files are 
+	<ul>
+	<li>at the <b>same time</b></li>
+	<li>of the <b>same length</b></li>
+	</ul>
+i.e., (if you put the data in columns): 
+	<ul>
+	<li><b>a1</b> = <b>b1</b> = <b>c1</b> ..... <b>a2</b> = <b>b2</b> 
+	= <b>c2</b> etc.</li>
+	<li><b>A</b><i>cut1</i> = <b>B</b><i>cut1</i> = <b>C</b>
+	<i>cut1</i><br />
+	<b>A</b><i>cut2</i> = <b>B</b><i>cut2</i> = <b>C</b><i>cut2</i><br />
+	etc.</li>
+	</ul>
+</p>
+
+<p id="TWIXTFILE">
+Because of this, we don’t in fact need to 
+specify separate cutpoints for each of the 3 files.  One  set of cutpoints 
+specifies what happens in EVERY file, so the data can just as well be 
+written in a single line or column.  In the following <i>switch-times</i> 
+file, the times:
+<pre>
+0.1
+0.3
+1.0
+7.0
+7.1
+</pre>
+cut <b><i>every</b></i> input soundfile into the 4 segments:
+	<ul>
+	<b>segment 1</b>: 0.1 to 0.35, duration 0.35 seconds<br />
+	<b>segment 2</b>: 0.35 to 1.0, duration 0.65 seconds<br />
+	<b>segment 3</b>: 1.0 to 7.0, duration 6.00 seconds<br />
+	<b>segment 4</b>: 7.0 to 7.1, duration 0.1 seconds
+	</ul>
+</p>
+
+<p>
+<b>Twixt</b> then proceeds exactly as SPHINX, reading through the 
+times (in various ways) and cutting out the given segment from one 
+of the soundfiles (except for Mode <b>4</b> which adds an 'Edit' option). 
+The program cycles round the times in their input order, unless the 
+use of the <b>-r</b> flag randomises the soundfile order.
+</p>
+
+<p>
+It is possible to enter the <i>switch-times</i> for TWIXT in columns, 
+one column for each soundfile.  You might want to do this if you wanted 
+to plan out how each soundfile was to be used.  However, note that 
+TWIXT reads the data differently than SPHINX.  With TWIXT, the data is 
+read from left to right, row by row, <b>and therefore all times must be 
+in ascending order, row by row</b>.  We could re-work the <i>switch-times</i> 
+for a SPHINX example to be in ascending order:
+<pre>
+2.0 3.0 3.5 3.7 4.7 5.2 5.4 6.4 6.9 7.1 7.5 7.8 8.0
+</pre>
+In columns (note comment later about connecting these columns with the 
+soundfiles &#150; can be confusing because the segments are <i>between</i> 
+the times):
+<pre>
+2.0 3.0 3.5
+3.7 4.7 5.2
+5.4 6.4 6.9
+7.1 7.5 7.8
+8.0
+</pre>
+Note the 13<sup><small>th</small></sup> time to provide an end point 
+for the final (12<sup><small>th</small></sup>) segment.  The order of 
+the output sequence, cyling round the soundfiles in order, will be 
+like this:<br />
+<br />
+<div align = center>
+<table border = 1 cellpadding = 7>
+<caption><b>Order of Segments in a TWIXT Output Soundfile</b></caption>
+<tr>
+<td><font color = "#FF0000">[1]</font> A1 (2.0 -&gt; 3.0)</td>
+<td><font color = "#FF0000">[2]</font> B1 (3.0 -&gt; 3.5)</td>
+<td><font color = "#FF0000">[3]</font> C1 (3.5 -&gt; 3.7)</td>
+</tr>
+
+<tr>
+<td><font color = "#FF0000">[4]</font> A2 (3.7 -&gt; 4.7)</td>
+<td><font color = "#FF0000">[5]</font> B2 (4.7 -&gt; 5.2)</td>
+<td><font color = "#FF0000">[6]</font> C2 (5.2 -&gt; 5.4)</td>
+</tr>
+
+<tr>
+<td> <font color = "#FF0000">[7]</font> A3 (5.4 -&gt; 6.4)</td>
+<td> <font color = "#FF0000">[8]</font> B3 (6.4 -&gt; 6.9)</td>
+<td> <font color = "#FF0000">[9]</font> C3 (6.9 -&gt; 7.1)</td>
+</tr>
+
+<tr>
+<td> <font color = "#FF0000">[10]</font> A4 (7.1 -&gt; 7.5)</td>
+<td> <font color = "#FF0000">[11]</font> B4 (7.5 -&gt; 7.8)</td>
+<td> <font color = "#FF0000">[12]</font> C4 (7.8 -&gt; 8.0)</td>
+</tr>
+</table>
+</div><br />
+<br />
+Note that there are no gaps in the times.  We still get a repeating long, 
+medium-long, short sequence cycling through the input soundfiles, but the 
+movement through each soundfile will be forward, moving from the beginning 
+(or near the beginning) to the end (or near the end).
+</p>
+
+<p>
+The following single column <i>switch-times</i> file uses the use of the 
+equal times with three input soundfiles, all of which are at least 9 
+seconds long.  This is designed to help you hear the cycling around the 
+soundfiles.  Note that there are 9 segments and 10 times.  Also note that 
+comments are used in the text file to help clarify where the segments are. Comments are preceded by a semi-colon and go <i>after</i> the data if on 
+the same line.<br />
+<br />
+<pre>
+0.0	;sounds1-2-3, set1 (0-1, 1-2, 2-3)
+1.0
+2.0
+3.0	;sounds1-2-3, set2 (3-4, 4-5, 5-6)
+4.0
+5.0
+6.0	;sounds1-2-3, set3 (6-7, 7-8, 8-9)
+7.0
+8.0
+9.0	;time at which to end the last segment
+</pre>
+I find it easier to use this type of <i>switch-times</i> file format 
+(rather than columns) with TWIXT, because it is easier to keep clear 
+where the segments are in relationship to the input soundfiles if you 
+are creating some kind of duration pattern.  But remember that the 
+<b>-r</b> (<i>randomisation</i>) flag will mix up the order of the 
+soundfiles. [AE]
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The applications for TWIXT are the same as for <a href="#SPHINX"><b>SPHINX</b></a>, but with the 
+difference that the same times and lengths apply to all the input soundfiles 
+&#150; only the soundfile to which they apply changes (cycles round the 
+inputs in various ways by changing the order of the times), and 
+the soundfile order itself can be randomised. 
+</p>
+
+<p>
+Note that while <a href = "cgrohous.htm#EXTRACT"><b>HOUSEKEEP EXTRACT</b></a> Mode <b>6</b> results in a list of onset times, as noted above, SFEDIT TWIXT 
+Mode <b>4</b> is one way to use these times to create separate soundfiles 
+that start with these times and end with the next time in the list &#150; 
+or the end of the input soundfile.  On this point, note the advice provided 
+by <a href = "#GCIAMAGA">Gustav Ciamaga</a>.
+</p>
+
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="#SPHINX"><b>SFEDIT SPHINX</b></a>.
+</p>
+
+
+<p>
+End of SFEDIT TWIXT<br />
+<a href="#R6OTHERLIST"><b>Return</b></a> to list of R6 OTHER functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ========================================================================= -->
+<!--
+<p>
+26/01/2016  17:49           212,992 waveform.exe	<br />
+SUGGESTED GROUP PLACEMENT (though will be a separate prg):  SFEDIT (not DISTORT or SYNTH - it's a CUT) 
+</p>
+-->
+
+<h2 id="WAVEFORM">WAVEFORM &#150; Generate a wavetable from existing sound</h2>
+
+<h3>
+Usage
+</h3>
+<b>waveform make 1</b> <i>infile outfile time cnt </i>   <br>
+<b>waveform make 2</b> <i>infile outfile time dur </i>   <br>
+<b>waveform make 3</b> <i>infile outfile time dur balance </i>  <br>
+
+
+<h3>
+Modes
+</h3>
+<blockquote>
+<b>1</b> &nbsp; Cut at time: extract a group of half-wavesets at specified time in infile <br>
+<b>2</b> &nbsp; Cut at duration: extract given duration of source, cutting at zero-crossing <br>
+<b>3</b> &nbsp; Impoose sine: combines specified duration-segment of infile with a sinusoid <br>
+</blockquote>
+
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+
+<i>infile</i> &#150;input soundfile (MONO).<br>
+<i>outfile</i> &#150; output soundfile.<br>
+<i>time</i> &#150; time in infile where data is extracted. (Range: 0 to file-length secs.)<br> 
+<i>cnt</i> &#150; number of half-wavesets to extract. (Range: 1 to 256)<br>
+<i>dur</i> (Modes 2,3) &#150; duration of sound-clip to extract (1 to 10000 mS; &lt;= file-length).<br> 
+<i>balance</i> &#150; level of extracted material relative to the imposed sinusoid. (Range: 0.001 to 1)
+
+</blockquote>
+
+<h3>
+Understanding the WAVEFORM Process
+</h3>
+
+<blockquote>
+<p>
+Waveform generates a wavetable cut from an existing sound or imposed on a sine wave.  In each case, the cut segment is abutted to its inversion, making a symmetrical wavecycle (and doubling its duration). In Modes 1 & 2 this forms the output. In Mode 3 this is superimposed on a sinusoid of wavelength <i>dur</i> * 2.
+</p><p>
+The output of the process can provide a suitable input file for FRACTAL WAVE Mode 2.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of WAVEFORM<br>
+<a href="#R6OTHERLIST"><b>Return</b></a> to list of R6 OTHER functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+</p>
+
+
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="ZCUT">SFEDIT ZCUT &#150; Cut out and keep a segment of a MONO 
+soundfile, cutting at zero crossings (no splices)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit zcut mode</b> <i>infile outfile start end</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Time in seconds<br>
+<b>2</b>&nbsp; Time as sample count (rounded to multiples of channel-count)<br>
+<b>3</b>&nbsp; Time as grouped sample count (e.g., 3 = 3 stereo pairs)<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input MONO soundfile<br>
+<i>outfile</i> &#150; cut segment saved as a new soundfile<br>
+<i>start</i> &#150; (approximate) time in the <i>infile</i> where the 
+segment to keep begins<br>
+<i>end</i> &#150; (approximate) time in the <i>infile</i> where the 
+segment to keep ends<br>
+</blockquote>
+
+<h3>
+Understanding the SFEDIT ZCUT Process
+</h3>
+
+<blockquote>
+<p>
+This process uses an alternative method to splice the sound segment, 
+cutting it at the nearest zero-crossings in the signal, rather than 
+making a splice.  Nevertheless the cut should be clickless.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is a different way of cutting out a segment of sound.  The start and 
+end times you give are approximate because the nearest zero points will 
+probably not be precisely at those times.
+</p>
+</blockquote>
+
+<p>
+End of SFEDIT ZCUT<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="ZCUTS">SFEDIT ZCUTS &#150; Cut out and keep segments of a 
+MONO soundfile, cutting at zero crossings (no splices)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>sfedit zcuts mode</b> <i>infile outfile_generic_name cutttimes</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Time in seconds<br>
+<b>2</b>&nbsp; Time as sample count (rounded to multiples of channel-count)<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input MONO soundfile<br />
+<i>outfile_generic_name</i> &#150; generic name for cut segments saved 
+as new soundfiles (the numbers '1', '2' etc. are added to this generic 
+name to name the various output soundfiles)<br />
+<i>cuttimes</i> &#150; a textfile of time-pairs for the <i>start</i> 
+and <i>end </i> of each segment to cut
+</blockquote>
+
+<h3>
+Understanding the SFEDIT ZCUTS Process
+</h3>
+
+<blockquote>
+<p>
+This process uses an alternative method to 'splice' the sound segments, 
+cutting them at the nearest zero-crossings in the signal, rather than 
+making a splice slope of default or specified duration .  Nevertheless 
+the cuts should be clickless.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is a different way of cutting out a segment of sound.  The 
+<i>start</i> and <i>end</i> times you give are approximate because 
+the nearest zero points will probably not be precisely at those times.
+</p>
+
+<p>
+The <i>cuttimes</i> data file enables you to specify the <i>start</i> and 
+<i>end</i> times for several cuts.  As many new soundfiles are made as there 
+are data pairs in the file, with a number added to your generic name to 
+create the output filenames.  For example, if your generic name is 
+<b>pop</b>, the various cuts will be named <b>pop1</b>, <b>pop2</b> etc.).
+</p>
+</blockquote>
+
+<p>
+End of SFEDIT ZCUTS<br>
+<a href="#SFEDITLIST"><b>Return</b></a> to List of SFEDIT functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+<h2 id="RETIMING">ON RETIMING &#150; An Overview of Rhythm Facilities
+</h2>
+
+<blockquote>
+<h3>
+Overview of CDP programs that affect rhythm and timing
+</h3>
+
+	<ul>
+	<li><a href="#PREFIXSIL"><b>PREFIX SILENCE</b></a> and <a href="#MANYSIL"><b>MANYSIL</b></a> complement existing silence insertion processes 
+<a href="#INSIL"><b>INSIL</b></a> and <a href="#SILEND"><b>SILEND</b></a>.</li><br>
+	<li><a href="cgroenvnu.htm#EXPDECAY"><b>ENVNU EXPDECAY</b></a> produces a 
+	technically exact exponential decay to zero.</li><br>
+	<li><a href="cgroinfo.htm#PEAKFIND"><b>PEAKFIND</b></a> 
+	generates a list of the times of the peaks in a source sound.</li><br>
+	<li><a href="#CONSTRICT"><b>CONSTRICT</b></a> shortens a soundfile by shortening any 
+	silences it finds in the source.</li><br>
+	<li><a href="cgrogrns.htm#GRAINEX"><b>GRAINEX EXTEND</b></a> is a method for timestretching iterative sounds, such as a rolled-"rr" sound.</li>
+	</ul>
+
+<h3>
+Review of the facilities in RETIME
+</h3>
+
+	<ul>
+	<li>The existing rhythm programs in the CDP program set, <a href="cgroextd.htm#SEQUENCE"><b>EXTEND 
+SEQUENCE</b></a> and <a href="cgroextd.htm#SEQUENCE2"><b>EXTEND SEQUENCE2</b></a> have been complemented by a new suite of 
+processes, collectively known as <a href="#RETIME"><b>RETIME</b></a>, which has 14 Modes.</li><br>
+	<li>The sequence programs can be used to organise individual 
+soundfiles as events in a rhythmic pattern.</li><br>
+	<li>In contrast RETIME can be used to rearrange events <b>within</b> 
+a soundfile, and to synchronise particular events in one soundfile 
+with particular events in another.</li><br>
+	<li>On the <i>Sound Loom</i> all these rhythmic processes have 
+now been placed on a new <b>RHYTHM</b> menu, on the Process Page.</li><br>
+	<li>In <i>Soundshaper</i>, the <b>RETIME</b> processes are found in
+the menu <b>SOUNDFILES &gt; RHYTHM</b>, along with <a href="#MANYSIL"><b>MANYSIL</b></a>, <a href="#CONSTRICT"><b>CONSTRICT</b></a> and 
+<a href="cgroenvnu.htm#PEAKCHOP"><b>ENVNU PEAKCHOP</b></a> [R.F.].
+	</ul>
+
+</blockquote>
+
+<p>
+End of RETIMING OVERVIEW<br />
+<a href="#SFEDITLIST"><b>Return</b></a> to list of SFEDIT functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 29 Apr 2023 for CDP8<br>
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

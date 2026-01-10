@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cgrohous.htm  - HOUSEKEEP HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP HOUSEKEEP Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#HOUSEKEEPLIST"><b>HOUSEKEEP:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#BAKUP"><b>BAKUP</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#BATCHEXPAND"><b>BATCHEXPAND</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#BUNDLE"><b>BUNDLE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CHANS"><b>CHANS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#COPY"><b>COPY</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#DEGLITCH"><b>DEGLITCH</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#DISK"><b>DISK</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ENDCLICKS"><b>ENDCLICKS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#EXTRACT"><b>EXTRACT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#GATE"><b>GATE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#REMOVE"><b>REMOVE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RESPEC"><b>RESPEC</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SORT"><b>SORT</b></a>
+  <br /><br />
+  <b>OTHERS:</b>
+  <dt>&nbsp;&nbsp;<a href ="#CHANPHASE"><b>CHANPHASE</b></a>
+  <dt>&nbsp;&nbsp;<a href ="#GATE-R6"><b>GATE</b></a>
+  <dt>&nbsp;&nbsp;<a href="#PAIREX"><b>PAIREX</b></a>
+  <dt>&nbsp;&nbsp;<a href="#REPAIR"><b>REPAIR</b></a>
+  <dt>&nbsp;&nbsp;<a href="#TOSTEREO"><b>TOSTEREO</b></a>
+
+  <br><br>
+  <b>SEE ALSO:</b><br>
+  <dt>&nbsp;&nbsp;<a href="cmcrefmn.htm#CHANNELX"><b>CHANNELX</b></a>
+  <dt>&nbsp;&nbsp;<a href="cmcrefmn.htm#COPYSFX"><b>COPYSFX</b></a> 
+  <dt>&nbsp;&nbsp;<a href = "cgroenvl.htm#TOPANTAIL2"><b>TOPANTAIL2</b></a>
+  <dt>&nbsp;&nbsp;<a href="csysutil.htm"><b>UTILS Group</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <div align=center>
+   <br>
+   <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+   </div>
+
+   <h1 align=center>CDP HOUSEKEEP (SF Utils) Functions</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="HOUSEKEEPLIST">Functions to HOUSEKEEP (SF Utils) soundfiles</h2>
+
+<p>
+The HOUSEKEEP program is largely concerned with soundfile utilities, but it also includes channel and gating functions. <br>
+More recent processes of a similar nature have been added to the group.
+</p>
+
+<dl>
+<dt><a href="#BAKUP">HOUSEKEEP <b>BAKUP</b></a> <dd>Concatenate soundfiles in one backup file, with silences inbetween</dd>
+<dt><a href="#BATCHEXPAND">HOUSEKEEP <b>BATCHEXPAND</b></a> <dd>Expand an existing batch file</dd>
+<dt><a href="#BUNDLE">HOUSEKEEP <b>BUNDLE</b></a> <dd>List files into a textfile, for sorting, backup or creating a dummy mixfile</dd>
+<dt><a href="#CHANPHASE"><b>CHANPHASE</b></a> <dd>Invert the phase of a specified channel of an input sound</dd>
+<dt><a href="#CHANS">HOUSEKEEP <b>CHANS</b></a> <dd>Extract channels or change channel format of a soundfile</dd>
+<dt><a href="#COPY">HOUSEKEEP <b>COPY</b></a> <dd>Make and delete exact copies of a sound</dd> 
+<dt><a href="#DEGLITCH">HOUSEKEEP <b>DEGLITCH</b></a> <dd>Attempt to deglitch a sound</dd>
+<dt><a href="#DISK">HOUSEKEEP <b>DISK</b></a> <dd>Show available space on disk</dd>
+<dt><a href="#ENDCLICKS">HOUSEKEEP <b>ENDCLICKS</b></a> <dd>Remove clicks from the start or end of a soundfile</dd>
+<dt><a href="#EXTRACT">HOUSEKEEP <b>EXTRACT</b></a> <dd>Extract significant sound from a recording, top &amp; tail, remove glitches, etc.</dd>
+<dt><a href="#GATE">HOUSEKEEP <b>GATE</b></a> <dd>Chop at zeros</dd>
+<dt><a href="#GATE-R6"><b>GATE</b></a> <dd>Remove low-level sound from signal</dd>
+<dt><a href="#PAIREX"><b>PAIREX</b></a> <dd>Extract any pair of channels from a multichannel sound </dd>
+<dt><a href="#REMOVE">HOUSEKEEP <b>REMOVE</b></a> <dd>Remove existing copies of a file</dd>
+<dt><a href="#REPAIR"><b>REPAIR</b></a> <dd>Join a list of mono sounds into stereo or multi-channel outputs </dd>
+<dt><a href="#RESPEC">HOUSEKEEP <b>RESPEC</b></a> <dd>Change sample rate, format or properties of a soundfile (CARE!!)</dd>
+<dt><a href="#SORT">HOUSEKEEP <b>SORT</b></a> <dd>Sort files listed in a textfile</dd>
+<dt><a href="#TOSTEREO"><b>TOSTEREO</b></a> <dd>Diverge from mono to stereo, in a stereo file </dd>
+<br><br>
+<dt>SEE ALSO:
+<dt><a href="cmcrefmn.htm#CHANNELX"><b>CHANNELX</b></a> <dd>Extract all or selected channels from a (multi-channel) soundfile</dd>
+<dt><a href="cmcrefmn.htm#COPYSFX"><b>COPYSFX</b></a> <dd>Copy/convert soundfiles</dd>
+<dt><a href = "cgroenvl.htm#TOPANTAIL2"><b>TOPANTAIL2</b></a><dd>Fade beginning & end of a sound</dd>
+<dt><a href="csysutil.htm"><b>UTILS Group</b></a><dd>Sytem utilities</dd>
+</dl>
+
+<hr> <!-- ********************************************************* --> 
+
+<h2 id="BAKUP">HOUSEKEEP BAKUP &#150; Concatenate soundfiles
+in one backup file, with silences inbetween
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>housekeep bakup</b> <i>infile1 [infile2...] outfile</i>
+<br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1</i> &#150; first sound to back up<br />
+<i>infile2 ...</i> &#150; second and additional sounds to back up<br />
+<i>outfile</i> &#150; concatenated soundfile<br />
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP BAKUP Function
+</h3>
+
+<blockquote>
+<p>
+The input sounds are assembled into a single file in the same
+order that they are listed, with a few seconds of silence inbetween
+each file.
+</p>
+
+<p>
+It is possible to have only one input soundfile to back up.  This 
+wouldn't normally happen, but you could be backing up groups of 
+files to named backup files, and one of these groups might have 
+only one member.
+</p>
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+HOUSEKEEP BAKUP is similar to SFEDIT JOIN except that silences are
+placed between the sounds.  This makes it easy to transfer a list of
+soundfiles to tape or CD, to be listened to as separate soundfiles.
+</p>
+</blockquote>
+
+<p>
+End of HOUSEKEEP BAKUP<br />
+<a href="#HOUSEKEEPLIST">Return</a> to List of HOUSEKEEP functions at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ********************************************************* --> 
+
+<h2 id="BATCHEXPAND">HOUSEKEEP BATCHEXPAND &#150; Expand an existing
+batch file
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>housekeep batchexpand mode</b> <i>batchfile sndfile1 [infile2...] datafile 
+ic oc pc</i>
+<br />
+
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+A new batchfile is created, modelled on the original...<br />
+<b>1 &#150; In Mode 1:</b><br />
+	<ol>
+	<li>The <b>existing <i>batchfile</i></b> must operate on 
+	only one soundfile as input to the process(es).</li><br />
+	<li>The same sequence of operations is applied to each 
+	<i>in-soundfile</i> using each new parameter in turn.</li><br />
+	<li>Thus a 3-line <i>batchfile</i> with 3 sound inputs 
+	becomes a 9-line file.</li>
+	</ol>
+<b>2 &#150; In Mode 2:</b><br />
+	<ol>
+	<li>The <b>existing batchfile</b> can have only a single line</li><br />
+	<li>The soundfile in the original <i>batchfile</i> is replaced 
+	by the chosen input soundfile(s), using new parameters.</li><br />
+	<li>Thus the 1-line <i>batchfile</i>, when given 3 sound inputs, 
+	applies its process to each soundfile in turn, producing 3 
+	outputs.  This implies the presence of 3 different values in 
+	the <i>datafile</i>.</li>
+	</ol>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>batchfile</i> &#150; an existing batchfile (<b>.bat</b>) that uses 
+the same kind of parameter in one of its columns.  Whether the 
+programs called on different lines of the batchfile are the same 
+or different, the same parameter must be in the same column for 
+BATCHEXPAND to work.<br />
+<i>sndfile1</i> &#150; name of a soundfile in the batchfile, different 
+to or identical with the names in the <b>existing batchfile</b><br />
+[<i>sndfile2 ...</i>] &#150; any number of additional soundfile names<br />
+<i>datafile</i> &#150; text file of parameter values, where the
+1<sup><small>st</sup></small> parameter applies to the 1<sup></small>st
+</sup></small> soundfile, the 2<sup><small>nd</sup></small> parameter
+applies to the 2<sup><small>nd</sup></small> soundfile, etc.<br />
+<i>ic</i> &#150; <i></i> the number of the column in the <i>batchfile</i> 
+containing the input filename (usually '2')</li><br />
+<i>oc</i> &#150; <i></i> the number of the column in the <i>batchfile</i> 
+containing the output filename (usually '3')</li><br />
+<i>pc</i> &#150; <i></i> the number of the column in the <i>batchfile</i> 
+containing the parameter to be replaced (usually '4' ...)</li>
+	<blockquote>
+	Column numbering will usually begin at 4: '1' is the program name 
+	&amp; mode, '2' is the <i>infile</i>, '3' is the <i>outfile</i>, and '4' 
+	is, therefore, the first parameter.
+	</blockquote>
+</blockquote>
+
+<h3 id="BATCHEXPANDEXES">
+Understanding the HOUSEKEEP BATCHEXPAND Function
+</h3>
+
+<blockquote>
+<p>
+Mode <b>1</b> produces variants of the one input soundfile.  Here is
+a typical sequence:
+<pre>
+Existing Batchfile:
+modify speed 2 infile outfile -3  <font color="#FF0000">[one input soundfile]</font>
+
+Soundfile Inputs to HOUSEKEEP BATCHEXPAND:
+filea fileb  <font color="#FF0000">[two or more <i>infiles</i> are OK]</font>
+
+Datafile:  <font color="#FF0000">[two different values for the same parameter]</font>
+ 7
+10
+</pre>
+</p>
+
+<p>
+The resulting output batchfile will look like this:
+<pre>
+modify speed 2 filea outfile1  7  <font color="#FF0000">[each parameter value is applied to filea]</font>
+modify speed 2 filea outfile2 10
+modify speed 2 fileb outfile3  7  <font color="#FF0000">[each parameter value is applied to fileb]</font>
+modify speed 2 fileb outfile4 10
+</pre>
+</p>
+
+<p>
+You could also use Mode <b>1</b> to produce variants of a soundfile.  There 
+could be one process and one soundfile in the <b>existing batchfile</b>, and 
+one <i>infile</i> given to BATCHEXPAND, but e.g., 5 different parameter values 
+in the <i>datafile</i>.  5 different variants of <i>infile</i> would be produced.
+</p>
+
+<p>
+Mode <b>2</b> deals with existing <i>batchfiles</i> which have only 
+a single line, but several <i>infiles</i> may be given to it to process. 
+If, for example, you have 3 soundfiles and 3 parameters in the <b>existing 
+batchfile</b>, you create a <i>datafile</i> with 3 values and these replace 
+those in the batchfile, producing 3 output soundfiles.  A typical sequence 
+should look something like this:
+<pre>
+Existing Batchfile:
+modify speed 2 sound1 outfile1 2  <font color="#FF0000">[only a single line]</font>
+
+Input soundfiles to HOUSEKEEP BATCHEXPAND:
+infilea infileb infilec  <font color="#FF0000">[3 <i>infiles</i>, one could be the same</font>                       
+                         <font color="#FF0000">as that in the batchfile]</font>
+
+Datafile:  <font color="#FF0000">[3 different parameter values are supplied]</font>
+ 7
+10
+-5
+</pre>
+</p>
+
+<p>
+The resulting output batchfile will look like this:
+<pre>
+modify speed 2 infilea outfile1  7 <font color="#FF0000">[each parameter value is</font> 
+modify speed 2 infileb outfile2 10 <font color="#FF0000">applied once to each <i>infile</i></font>
+modify speed 2 infilec outfile3 -5 <font color="#FF0000">in the same order]</font>
+</pre>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Given the restrictions on matching formats, HOUSEKEEP BATCHEXPAND can
+help to speed up ringing the changes on exploring variant soundfile
+transformations.
+	<ul>
+	<li>In Mode <b>1</b> you just have to alter the <i>datafile</i> and
+	supply the names of the input soundfiles you want to process.  
+	It then processes each input soundfile with each of the 
+	parameter values in the <i>datafile</i>.</li><br />
+	<br />
+	<li>In Mode <b>2</b>, the first parameter is applied to the 
+	first process and soundfile, the second to the second process 
+	and soundfile (could be the same process), etc.  Your soundfile 
+	inputs supply different soundfiles to the existing <i>batchfile</i>.</li>
+	</ul>
+</p>
+</blockquote>
+
+<p>
+End of HOUSEKEEP BATCHEXPAND<br />
+<a href="#HOUSEKEEPLIST">Return</a> to List of HOUSEKEEP functions at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="BUNDLE">HOUSEKEEP BUNDLE &#150; List files into a textfile, for
+sorting, backup or creating a dummy mixfile
+</h2>
+
+
+<h3>
+Usage
+</h3>
+<b>housekeep bundle mode</b> <i>infile</i> [<i>infile2 ... </i>]
+<i>outtextfile</i><br />
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Bundle all files entered<br />
+<b>2</b>&nbsp; Bundle all non-text files entered<br />
+<b>3</b>&nbsp; Bundle all non-text files of same type as first non-text file,
+e.g., all soundfiles or all analysis files, etc.<br />
+<b>4</b>&nbsp; As <b>3</b> but only files with the same properties<br />
+<b>5</b>&nbsp; As <b>4</b> but if file1 is a soundfile, files with the
+same channel count only<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; any type of file with any extension, e.g.,
+asound.wav, atext.txt, amix.mix<br />
+<i>infile2 ... </i> &#150; continued series of file inputs<br />
+<i>outtextfile</i> &#150; textfile containing a grouped list of
+all the <i>infiles</i><br />
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP BUNDLE Function
+</h3>
+
+<blockquote>
+<p>
+You enter your all your filenames on the command line, and the
+program groups them according to the Mode instructions and writes
+an appropriate text file.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This facility could be used to document a project or to create the
+first stage of a mixfile.  <a href="cgromixr.htm#DUMMY">SUBMIX DUMMY</a>
+can then be used to take a list of sounds a step further by creating
+a dummy mixfile &#150; 'dummy' because it is presumed that some
+further editing will be required.  When entering soundfile etc. names,
+you don't need to include the extension if the environment variable
+CDP_SOUND_EXT has been set.  <b>HOUSEKEEP BUNDLE and SUBMIX DUMMY make
+a great time-saving combination when creating mixfiles.</b>
+</p>
+
+<p>
+SUBMIX DUMMY no longer takes a text file as an input:  the files are
+listed on the command line (the graphic user interfaces have their own
+ways of doing this).  The text file created in HOUSEKEEP BUNDLE can
+therefore only be used as a reference guide when entering the filenames.
+</p>
+</blockquote>
+
+<p>
+End of HOUSEKEEP BUNDLE<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to List of HOUSEKEEP functions
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ********************************************************* --> 
+
+<h2 id="CHANPHASE">CHANPHASE &#150; Invert the phase of a specified channel of an input sound
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>chanphase chanphase</b> <i>infile outfile channel</i>
+<br />
+
+<p>
+Example command line to invert a channel :<br>
+	<blockquote>
+	<b><code>chanphase chanphase insndfile outsndfile 2</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile <br />
+<i>outfile</i> &#150; output soundfile with one channel phase-inverted<br />
+<i>channel</i> &#150; channel to invert<br />
+</blockquote>
+
+<h3>
+Understanding the CHANPHASE Process
+</h3>
+
+<blockquote>
+<p>
+This program seeks to rectify a problem encountered by a couple of students at Durham University.  They had bought what seemed to be stereo digital recorders, but the output display on <i>Sound Loom's</i> SOUND VIEW showed no display.
+</p>
+
+<p>
+The SOUND VIEW display is a mono display.  To display stereo signals it mixes the 2 channels to mono.  The display was empty because the recorders were generating 2 identical mono, phase-inverted, signals. This may have been a manufacturing fault or a misrepresentation on the part of the manufacturer. Who knows?!
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+CHANPHASE allows you to phase-invert one of the channels so that is no longer identical with the other one and will therefore display in SOUND VIEW.  It is therefore a utility program with a specific purpose.  At the time of writing, it is not available in <i>Sound Loom</i> on the MAC.
+</blockquote>
+
+<p>
+End of CHANPHASE CHANPHASE<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to list of HOUSEKEEP functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ************************************************************* -->
+
+
+<h2 id="CHANS">HOUSEKEEP CHANS &#150; List channels or change
+channel format of a soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>housekeep chans 1</b> <i>infile channo</i><br />
+<b>housekeep chans 2</b> <i>infile</i><br />
+<b>housekeep chans 3</b> <i>infile outfile</i> <i>channo</i><br />
+<b>housekeep chans 4</b> <i>infile outfile</i> <b>-p</b><br />
+<b>housekeep chans 5</b> <i>infile outfile</i><br />
+
+	<blockquote>
+	<b>Release 6</b>:  HOUSEKEEP CHANS Mode <b>4</b> now accepts a 
+	multi-channel <i>infile</i> and mixes it to a MONO <i>outfile</i>.  
+	The <b>-p</b> (invert phasing) flag is ignored.
+	</blockquote>
+<h3>
+Modes &amp; Parameters
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Extract a channel<br />
+	<blockquote>
+	<i>channo</i> is channel to extract<br />
+	<i>outfile</i> is named <i>inname_c1</i> (for channel 1) etc.<br />
+	</blockquote>
+<b>2</b>&nbsp; Extract all channels<br />
+	<blockquote>
+	<i>outfiles</i> are named <i>inname_c1</i> (for channel 1) etc.<br />
+	</blockquote>
+<b>3</b>&nbsp; Zero one channel<br />
+	<blockquote>
+	<i>channo</i> is channel to zero<br />
+	a mono file goes to just one side of a stereo <i>outfile</i><br />
+	a stereo file has one channel zeroed out<br />
+	</blockquote>
+<b>4</b>&nbsp; Stereo to Mono<br />
+	<blockquote>
+	The <b>-p</b> option inverts the phase of the 2<sup>nd</sup> channel 
+	before mixing<br />
+	</blockquote>
+<b>5</b>&nbsp; Mono to Stereo<br />
+	<blockquote>
+	Creates a 2-channel equivalent of a mono <i>infile</i><br />
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP CHANS Process
+</h3>
+
+<blockquote>
+<p>
+Soundfiles may have one channel (mono), two channels (stereo), four
+channels (quad) and possible 6 or 8 channels.  Each channel is a
+different stream of data.  The streams may duplicate each other or
+have different contents.  The data for the various channels is
+interleaved in a multichannel soundfile;  for example, the samples
+of a quad file will be ordered:  ch1-ch2-ch3-ch4 ch1-ch2-ch3-ch4 etc.
+HOUSEKEEP CHANS can take apart this data, or merge a stereo file to
+form a mono file.  You can also piece together single channels of
+data to make real multi-channel files using
+<a href="cgromixr.htm#INTERLEAVE">SUBMIX INTERLEAVE</a>.
+</p>
+
+<p>
+Mode <b>1</b> will take out, for example, all the ch2's and stream
+them together into a single channel (mono) soundfile &#150; whichever
+channel is specified by <i>channo</i>.
+</p>
+
+<p>
+Mode <b>2</b> will take apart all the channels present and create
+as many separate single channel (mono) soundfiles as there are channels.
+</p>
+
+<p>
+Mode <b>3</b> will create a stereo soundfile with one empty channel.
+With a mono input, <i>channo</i> will be empty in the stereo output
+and the other channel will contain the original mono input.  With a
+stereo input, the <i>channo</i> side will be zeroed.
+</p>
+
+<p>
+Mode <b>4</b> will change a stereo file into a mono file &#150; often
+invoked when it is found that a certain function will only accept
+mono inputs.<br /> 
+	<blockquote>
+	<b>Release 6</b>:  HOUSEKEEP CHANS Mode <b>4</b> now accepts a 
+	multi-channel <i>infile</i> and mixes it to a MONO <i>outfile</i>.  
+	The <b>-p</b> (invert phasing) flag is ignored.<br />
+	<br />
+	In <i>SoundLoom</i> this process is used when mono <b>thumbnails</b> 
+	of multichannel files are generated.  This can be done from the 
+	<b>Workspace</b> menus, or when <b>Sound View</b> is called.  (See 
+	the <i>SoundLoom</i> update information for more details).  It is 
+	not directly accessible as a normal CDP process on the Loom.
+	</blockquote>
+</p>
+
+<p>
+Mode <b>5</b> will change a mono file into a stereo file, with both
+channels containing identical data.
+</p>
+
+<p>
+<b>NB:</b> HOUSEKEEP CHANS does <b>not</b> extract channels from analysis
+files.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Besides the obvious 'housekeeping' chores of Modes <b>4</b> &amp; <b>5</b>,
+the other Modes make it possible to dissect and rearrange channel data
+from different soundfiles.  Rejoining separated channels is done with
+<a href="cgromixr.htm#INTERLEAVE"><b>SUBMIX INTERLEAVE</b></a> or 
+<a href="cmcrefmn.htm#INTERLX"><b>INTERLX</b></a>.
+</p>
+
+<p>
+The primary application involves processing the extracted channels
+separately.  The logic of using HOUSEKEEP CHANS and SUBMIX INTERLEAVE
+rather than a mixing routine would seem to be that the intended output
+is conceived of as a single, more complex sound.  For example, it is
+possible to create pulsations of different frequencies with DISTORT
+ENVEL.  An effective way to do this is to split a stereo file into
+separate channels (HOUSEKEEP CHANS Mode <b>2</b>), process each with
+different rates of pulsation (DISTORT ENVEL), and then reunite them
+as a single stereo file with phased pulsations (SUBMIX INTERLEAVE).
+</p>
+<p>
+HOUSEKEEP CHANS 2 also provides a means of processing stereo or multi-channel files where the CDP function accepts only mono input. Split the file into individual channels, process these separately and re-combine the results by interleaving. 
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b>
+<a href="cmcrefmn.htm#CHANNELX"><b>CHANNELX</b></a> &#150; extracts all or selected channels from a (multi-channel) soundfile.
+</p>
+
+<p>
+End of HOUSEKEEP CHANS<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to List of HOUSEKEEP functions
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ********************************************************* --> 
+
+<h2 id="COPY">HOUSEKEEP COPY &#150; Make and delete exact copies
+of a sound
+</h2>
+
+
+<h3>
+Usage
+</h3>
+<b>housekeep copy 1</b> <i>infile outfile</i><br />
+OR: <b>housekeep copy 2</b> <i>infile count</i> [<b>-i</b>]<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Copy once: make one copy of <i>infile</i> named <i>outfile</i><br />
+<b>2</b>&nbsp; Copy many: produce <i>count</i> copies of <i>infile</i><br />
+	<blockquote>
+	If <i>infile</i> is named <i>X</i>, the <i>outfiles</i> will
+	be named <i>X_001</i>, <i>X_002</i>, etc.
+	</blockquote>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile to be copied<br />
+<i>outfile</i> &#150; name in Mode <b>1</b> of the single copy to be made<br />
+<i>count</i> &#150; number of copies to make in Mode <b>2</b><br />
+<b>-i</b> &#150; option to ignore existing duplicates: i.e., don't
+overwrite them.  The Default is to stop the copying process upon finding
+a pre-existing soundfile, i.e., one already named like the copies being
+made.<br />
+<b>-a</b> &#150; check all names in numbered sequence:  i.e., search
+for all possible duplicate filenames &#150; this may take some time.  In
+the standard case, once a numbered file is missing, the program checks
+for 10 more named files before stopping.
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP COPY Process
+</h3>
+
+<blockquote>
+<p>
+The system copy program, COPYSFX, focuses on making a single copy of a
+soundfile.  Although HOUSEKEEP COPY can also make a single copy, here
+the focus is on making multiple copies &#150; and deleting them.
+</p>
+
+<p>
+Mode <b>1</b> uses COPYSFX code, and both HOUSEKEEP COPY Mode <b>1</b> and
+COPYSFX are able to convert between <b>.wav</b> and <b>.aif</b> soundfile
+formats.  Be careful to specify the extension of the soundfile type
+different from the one you have made your default when you set the
+environment variable CDP_SOUND_EXT.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This facility is designed as a time-saver when working on mixes.  When
+creating a multi-event texture, repeated use of the same sound is
+frequently required.  On systems which can open the same soundfile
+more than once, using actual copies of the original soundfile is not
+necessary, though it could still be handy to make <i>count</i> copies,
+use them (don't forget about HOUSEKEEP BUNDLE) and then delete them.
+</p>
+
+<p>
+A previous third mode to delete soundfiles named with this numbering
+convention has been made into the separate function <a href="#REMOVE">
+HOUSEKEEP REMOVE</a>.
+</p>
+</blockquote>
+
+<p>
+End of HOUSEKEEP COPY<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to List of HOUSEKEEP functions
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ********************************************************* --> 
+
+<h2 id="DEGLITCH">HOUSEKEEP DEGLITCH &#150; Attempt to deglitch
+a soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>housekeep deglitch</b> <i>infile outfile glitch sil thresh
+splice window</i> [<b>-s</b>]
+<br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile to deglitch<br />
+<i>outfile</i> &#150; output, hopefully deglitched, soundfile<br />
+<i>glitch</i> &#150; maximum duration in milliseconds of an
+glitch to find<br />
+<i>sil</i> &#150; minimum duration in milliseconds of 'silence'
+on either side of the glitch<br />
+<i>thresh</i> &#150; maximum level of 'silence' on either side of
+the glitch<br />
+<i>splice</i> &#150; splice length in milliseconds to cut out
+the glitch.  It must be at least half the length of <i>sil</i>.
+	<blockquote>
+	With <i>thresh</i> = 0, use <i>splice</i> = 0.  Otherwise
+	<i>splice</i> = 0 will make clicks.
+	</blockquote>
+<br />
+<i>window</i> &#150; window length in milliseconds in which
+to search for glitches and 'silence'.
+	<blockquote>
+	Note that very short windows may mistake parts of the
+	waveform for 'silence'.  Use larger windows for see
+	larger features.
+	</blockquote>
+<br />
+[<b>-s</b>] &#150; option to see details about the (possible)
+glitches found
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP DEGLITCH Process
+</h3>
+
+<blockquote>
+<p>
+A <b>glitch</b> is heard as a brief click in the soundfile.  This is
+caused by a very rapid and large change in amplitude, usually from
+one sample to the next.  If they also overmodulate, there is also
+a nasty noise component.  These glitches appear in the Time Domain
+<i>time amplitude</i> sample display of a soundfile as vertical lines,
+and can comprise only a very small number of samples.  HOUSEKEEP
+DEGLITCH provides a way to search for these anomalies and remove them.
+</p>
+
+<p>
+The length of a glitch might be able to be determined aurally, with
+PLAY FROM - TO used to pin it down further, though it may be too short
+for this to work.  In a soundfile display, you could block one out and
+see its time in seconds (convert this to milliseconds by multiplying
+by 1000).  Alternatively, the display might show sample positions.  Then
+you would need to subtract the start from the end sample number and
+divide the result by the sample rate to get the time in seconds, and
+then multiply by 1000 to get the time in milliseconds.  E.g.,
+10573 - 9455 = 1118 samples.  1118 &divide; 44100 (the sample rate) =
+0.02535 seconds * 1000 = 25.35 milliseconds, rounding to 25.
+</p>
+
+<p>
+Note that extensive overmodulation after processing a sound is not a
+glitch problem.  Rather the amplitude level of the input to sound
+was too high for that particular process.  The solution in this case
+is to reduce the level of the input sound before processing (MODIFY
+LOUDNESS, Mode <b>1</b>, Gain).
+</p>
+
+<p>
+HOUSEKEEP DEGLITCH works by identifying and removing the glitch,
+closing up the gap.  The <i>splice</i> parameter smooths the join
+&#150; but it doesn't want to be too long either, lest it cause
+an audible dip in amplitude.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Certain processes involving extensive editing of small fragments of
+sound may lead to sharp amplitude changes audible as clicks.  It is
+extremely useful to have a tool to search for and eliminate them
+amongst the many thousands of samples per second in a soundfile.
+</p>
+
+<p>
+Another situation where it might be useful is after a process that
+leaves only a handful of glitches, perhaps as overmodulations, but
+it is important to keep the overall amplitude level as high as
+possible.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b><br>
+ <a href="#EXTRACT">HOUSEKEEP EXTRACT</a> for similar, but more comprehensive facilities.
+</p>
+
+<p>
+End of HOUSEKEEP DEGLITCH<br />
+<a href="#HOUSEKEEPLIST">Return</a> to List of HOUSEKEEP functions at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ********************************************************* --> 
+
+<h2 id="DISK">HOUSEKEEP DISK &#150; Show available space on disk
+</h2>
+
+
+<h3>
+Usage
+</h3>
+<b>housekeep disk</b> <i>anyinfile </i> <b></b><i></i>
+<br />
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>anyinfile</i> &#150; any of the various types of files used with
+the CPP System can be used as an input, including text files
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP DISK Function
+</h3>
+
+<blockquote>
+<p>
+The purpose of HOUSEKEEP DISK is to show you how much free space you have
+available on your hard disk.
+</p>
+
+<p>
+The display show available space in bytes, in samples (2 bytes per sample),
+and available time in hours, minutes and seconds for Mono and Stereo.
+If a soundfile is used as the <i>anyinfile</i>, the Mono and Stereo will
+relate to the sample rate of that soundfile (its header is interrogated).
+If your input is a mixfile, it will list time available for all valid
+sample rates, and will also tell you if a soundfile listed in the
+mixfile is no longer present on your disk (its name could be mis-spelled
+or it could be deleted.)
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+HOUSEKEEP DISK is very handy when about to make a very long recording, or
+when you know that you are starting to get low on disk space.
+</p>
+
+<p>
+'Disk' in this context means a partition of a hard disk (such as
+the c: or d: 'drive') if there is more than one on the physical hard
+disk unit.
+</p>
+
+<p>
+Hard disk software normally protects against problems occuring when the
+disk reaches full capacity.  Computer systems have been known in the past
+to 'wrap' round to the beginning of the disk and overwrite the FAT table
+(File Allocation Table:  system index of all the files on the disk!).
+To be on the safe side, it's best to stop writing to the disk when it's
+nearly full.  Stop and do some housework:  clean out redundant files
+to make more space on the disk.  Disks are happiest when they have some
+headroom in which to store their little bits and pieces of system
+information.
+</p>
+
+<p>
+Recently, my Internet Explorer refused to load.  It would start loading,
+and then I would get a system error message about an illegal operation.
+Richard Dobson acutely worked out that I didn't have enough space left
+on my disk for it to run, meaning places to which to copy temporary
+information.
+</p>
+</blockquote>
+
+<p>
+End of HOUSEKEEP DISK<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to List of HOUSEKEEP functions
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ********************************************************* --> 
+
+
+<h2 id="ENDCLICKS">HOUSEKEEP ENDCLICKS &#150; Remove clicks from 
+the start or end of a soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>housekeep endclicks</b> <i>infile outfile</i> <i>gate</i> 
+<i>splicelen</i> [<b>-b</b>] [<b>-e</b>]
+<br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile, presumably with clicks<br />
+<i>outfile</i> &#150; output, declicked, soundfile<br />
+<i>gate</i> &#150; level <b>above</b> which the signal is retained.  
+(Range: 0 to 1)<br />
+<i>splicelen</i> &#150; length of splice taper in milliseconds<br />
+[<b>-b</b>] &#150; trim start of sound<br />
+[<b>-e</b>] &#150; trim end of sound<br />
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP ENDCLICKS Process
+</h3>
+
+<blockquote>
+<p>
+Some CDP processes can produce output where the signal stops
+(or starts) abruptly (rather than falling, or rising, gradually
+from zero). This can happen with the output of transformed and
+resynthesized PVOC sounds, or at the end of mixes where the
+endtime of the mix process is not set at the end duration of
+the mixfile.  Such sharp cutoffs (or cut-ins) produce clicks,
+which can be removed using this process.
+</p>
+
+<p>
+Note that if a sharp cutoff occurs before the very end of the
+outfile data, a simple TOPNTAIL may not shave off the endclick,
+whereas this process searches for (start or) endclicks within
+the file in order to shave them off.
+</p>
+
+<p>
+Dale Perkins has noticed that this program can fail if there are 
+no edge clicks in the input soundfile.  In <i>Sound Loom</i>, a 
+red error message is displayed.  In <b>bulk process</b>, however, Trevor 
+Wishart explains, the bulk processor can lose the pipe-markers of 
+the many processes it is running and display a message such as:
+<i>cannot find channel named 'file 103'</i>.  These messages can 
+be safely ignored &#150; you just have to click on the 'OK' button 
+at the bottom of the TK/Tcl error-message box(es) that come up.  
+The bulk processor just carries on processing the files that do 
+not 'fail'.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This function provides a quick way to deal with clicks or even
+just overly sharp edges, without going as far as the, usually
+longer, slopes of a DOVETAIL.  The <i>gate</i> parameter provides
+a way to retain a touch of 'edge' by raising the level, while
+a longer <i>splicelen</i> will add some extra smoothness to the
+attack and decay portions of the sound.
+</p>
+
+<p>
+The <b>-b</b> and <b>-e</b> parameter provide the option to
+trim only the start or the end.  Both would be handled by default,
+i.e., by not using either.
+</p>
+</blockquote>
+
+<p>
+End of HOUSEKEEP ENDCLICKS<br />
+<a href="#HOUSEKEEPLIST">Return</a> to List of HOUSEKEEP functions at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="EXTRACT">HOUSEKEEP EXTRACT &#150; Extract significant sound
+from a recording, top &amp; tail, remove glitches, etc.
+</h2>
+
+
+<h3>
+Usage
+</h3>
+
+<b>housekeep extract 1</b> <i>infile</i>  [<b>-g</b><i>gate</i>]
+[<b>-s</b><i>splice</i>]   [<b>-e</b><i>endcutoff</i>]
+[<b>-t</b><i>threshold</i>] [<b>-h</b><i>hold</i>]
+[<b>-b</b><i>baktrak</i>]   [<b>-i</b><i>Initial</i>]
+[<b>-l</b><i>minlength</i>] [<b>-w</b><i>gate_window</i>] [<b>-n</b>]<br />
+<b>housekeep extract 2</b> <i>infile outfileview</i><br />
+<b>housekeep extract 3</b> <i>infile outfile</i>  [<b>-g</b><i>gate</i>]
+[<b>-s</b><i>splice</i>]  [<b>-b</b>]  [<b>-e</b>]<br />
+<b>housekeep extract 4</b> <i>infile outfile shift</i><br />
+<b>housekeep extract 5</b> <i>infile outfile valsfile</i> (No longer 
+available)<br />
+<b>housekeep extract 6</b> <i>insndfile outtextfile gate endcutoff 
+threshold baktrak initlevel minlength gate_window</i>
+	<blockquote>
+	 Gustav Ciamaga provided an example command line for Mode <b>6</b>, in 
+	which <i>gate</i> is 0.035 and <i>minlength</i> is 0.05, and all 
+	other parameters are 0:<br />
+	<code>housekeep extract 6 count countonsets.txt 0.035 0 0 0 0 0.05 
+	0</code><br />
+	There is <a href = "cgroedit.htm#GCIAMAGA">more information</a> 
+	about this in the reference for <a href="cgroedit.htm#SPHINX">SFEDIT SPHINX</a>.<br><br>
+	Note that in Mode <b>1</b>, the above example command line would 
+	look like this: <br> 
+	<code>housekeep extract 1 count -g0.035 -l0.05</code> 
+	and would produce a soundfile for each cut point.
+	</blockquote>
+
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1&nbsp; Cut out and keep </b>significant events from <i>infile</i>, creating
+a series of outfiles.  With an <i>infile</i> named <i>nn</i>, the
+soundfiles produced from the segments of significant data will be
+<i>n0</i>, <i>n1</i>, <i>n2</i>, etc., the last character being replaced by a number.
+<br><br>
+
+<b>2&nbsp; Extraction preview</b>, showing envelope of <i>infile</i> as a
+pseudo-soundfile, sector by sector.  It will often be useful to run this
+first and view the result in order to help choose parameter values for
+Mode <b>1</b><br><br>
+
+<b>3&nbsp; Top and tail</b>:  remove low level signal from start and end of
+sound.  This creates <i>outfile</i>, a version of the <i>infile</i>
+without unwanted silence or low level signal at the beginning and&#47;or
+end.  <br>
+<b>ALSO SEE <a href = "cgroenvl.htm#TOPANTAIL2">TOPANTAIL2</b></a> for 
+gated extraction of a sound with 'top and tailing' and a backtracking 
+facility.<br><br>
+
+<b>4&nbsp; Remove</b>:  shift (offset) the entire signal to eliminate unwanted
+DC component (in reference to a 0 to 1 amplitude range)<br><br>
+
+(<b>5</b> Modify 'by hand' &#150; this Mode is no longer available)<br> 
+<!-- (<i>valsfile</i> contains sample_number and sample_value pairs, which will replace those already in the file) --> <br />
+
+<b>6&nbsp; Find onset times</b>: find the places where significant signal
+begins and write to a text file<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; original sound from which to extract significant
+data<br />
+<i>outfileview</i> &#150; (Mode <b>2</b>): a pseudo-soundfile which shows 
+amplitude levels for each sector (rather than for each sample).  It provides 
+an overview which shows at what levels significant data occurs.  View with
+a soundfile display program, but remember that the time is compressed.<br />
+<i>outfile</i> &#150; top and tailed or shifted versions of <i>infile</i>. 
+In Mode <b>1</b>, the output soundfile name is derived from the input 
+soundfile name, replacing the last character with '0', '1', etc.<br />
+<b>-g</b><i>gate</i> &#150; amplitude level <b>above which</b> signal
+is to be accepted.  Range: 0 to 1 (Default: 0)<br />
+<b>-s</b><i>splice</i> &#150; length of splice slope in milliseconds
+(Default: 15ms)<br />
+<b>-e</b><i>endcutoff</i> &#150; end cut-off level below which the
+<b>end</b> of the sound is cut.  If zero, defaults to <i>gate</i>.<br />
+<b>-t</b><i>threshold</i> &#150; amplitude level to be reached within
+the retained segments.  If the level never exceeds <i>threshold</i>,
+the segment is not kept.  (Default: 0)<br />
+<b>-h</b><i>hold</i> &#150; hold the sound for <i>hold</i> sectors
+before the start of the next segment.  (Default: 0)<br />
+<b>-b</b><i>baktrak</i> &#150; go backwards in the soundfile and keep
+<i>baktrak</i> sectors prior to the current gate-on, but only if the
+level there is above the <i>Initial</i> level.  (Range: 0 to 64 sectors)
+<br />
+<b>-i</b><i>Initial</i> &#150; amplitude level at start of
+backtracked segment.  Range: 0 to 1; Default = 0.  Use with
+<b>-b</b><i>baktrak</i>.<br />
+<b>-l</b><i>minlength</i> &#150; minimum length in seconds of
+segment to keep  (Range: 0 to length of input soundfile &#150; but I 
+have seen it fail at 1.0 (with an 8 second soundfile) with the 
+message "Cannot achieve task: 1 segments are shorter than min dur can 
+get or than twice splicelen."  Gustav Ciamaga recommends '0.05'.[AE])<br />
+<b>-w</b><i>gate_window</i> &#150; length of the gate window in sectors
+(see Mode <b>2</b>).  Range: 0 to 64.  The gate closes only if the level 
+goes below<i>gate</i> for <i>gate_window</i> + 1 sectors.  The larger 
+the <i>gate_window</i>, the fewer the 'significant events' are likely 
+to be.  I have noticed the number of 'significant events' starting 
+to drop off with values of 10 and more.<br />
+<b>-n</b> &#150; the process stops if one of the soundfiles
+generated duplicates the name of an existing soundfile.  The Default
+is to not generate that particular soundfile and continue processing.<br />
+<b>-b</b> &#150; Mode <b>3</b>, don't trim the beginning of <i>infile</i>
+<br />
+<b>-e</b> &#150; Mode <b>3</b>, don't trim the end of <i>infile</i><br />
+	<blockquote>
+	The Default is to trim both ends.<br />
+	</blockquote>
+<i>shift</i> &#150; amplitude value applied to the whole file (subtracted
+from amplitudes):  in order to remove any DC (direct current) component
+which may be present. (Range: lowest part of a 0 to 1 range, as
+required by the level of the interference)<br />
+<!--
+<i>valsfile</i> &#150; contains sample_number and sample_value pairs,
+which will replace those already in the file.<br /> -->
+	<blockquote>
+	<b>NB:</b> Mode <b>6</b> does not use 'flags' (e.g., <b>-b</b>), 
+	only the parameter values.</b>
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP EXTRACT Process
+</h3>
+
+<blockquote>
+<p>
+Lots of parameters, but really a very simple process.  When recording,
+there are inevitably going to be pauses, low-level sections before one
+'really starts' to play or sing or speak, and often a number of events
+recorded at once.  The HOUSEKEEP EXTRACT process simply goes through the
+soundfile looks for signal above a certain amplitude level.  When it
+finds acceptably loud signal, it opens a 'gate', as it were, through
+which that signal passes, where it is stored as a separate soundfile.
+When the signal drops in level again, the gate closes and the soundfile
+for that segment is terminated.  Thus the original recording is split
+up into a number of separate soundfiles, hopefully with the signal
+starting at the beginning and finishing nicely at the end..
+</p>
+
+<p>
+The various parameters are designed to help get good signal levels at
+or near the beginning and end of each of the soundfiles produced.<br />
+	<ul>
+	<li><i>gate</i> defines where 'significant signal' starts
+	and ends:  it sets the level which must be reached before
+	starting to create one of the soundfiles</li>
+	<li><i>endcutoff</i> deals with the end of the <i>infile</i>
+	which may often have a level lower than those which occur
+	during the soundfile:  i.e, the last segment may need a lower
+	amplitude cut-off point.</li>
+	<li><i>threshold</i> handles matters within a segment to be
+	retained:  you may want to set a level which is lower or higher
+	than <i>gate</i></li>
+	<li><i>hold</i> enables you to extend the length of a a segment,
+	even if it contains separate elements:  it prevents saving
+	every tiny chunk as a separate file.</li>
+	<li><i>baktrak</i> enables you to be a little more sensitive
+	about the start of each segment: e.g., go back a bit and start
+	at an <i>initial</i> level a little lower than <i>gate</i></li>
+	<li><i>minlength</i> helps avoid keeping undesirably short
+	segments
+	<li><i>gate_window</i> enables you to give more or less time in
+	which to find an acceptable signal level</li>
+	</ul>
+
+<p>
+In practice, running Mode <b>2</b> will most often be done first, so as
+to get your bearings with the amplitude levels of that particular
+<i>infile</i>.  This will become less necessary as experience increases.
+</p>
+
+<p>
+Some signals have a DC constant component which you can see in your
+soundfile viewer because the whole signal is raised (or lowered) away
+from the zero line.  You also hear this as a click at the start and end
+of the sound, because of the sudden jumps in amplitude.  Mode
+<b>4</b> enables you to introduce a shift which will restore the
+signal to the zero line:  add a negative shift to lower to the zero
+line (e.g., 0.5 + -0.5 = 0), or a positive shift to raise it to the
+zero line (e.g., -0.5 + 0.5 = 0).  You can see in your viewer what value
+to enter by observing how far the signal is away from the zero line.
+CDP's VIEWSF, which can zoom to the single sample, will provide a precise
+value.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Move quickly from raw recordings to useable soundfiles.<br />
+Top and tail: quickly remove unwanted silence or low level signal from
+the beginning and&#47;or end of a soundfile.<br />
+Eliminate DC components.
+</p>
+</blockquote>
+
+<p>
+End of HOUSEKEEP EXTRACT<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to List of HOUSEKEEP functions
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ********************************************************* --> 
+
+<h2 id="GATE">HOUSEKEEP GATE &#150; Cut file at zero amplitude points
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>housekeep gate</b> <i>infile outfile</i> [-<b>z</b><i>zerocount</i>]
+<br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile</i> &#150; output soundfile<br />
+[-<b>z</b><i>zerocount</i>] &#150; the number of consecutive zero
+samples (per channel) to indicate a silent gap in the sound,
+where it can be cut<br />
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP GATE Process
+</h3>
+
+<blockquote>
+<p>
+HOUSEKEEP GATE finds the points of zero amplitude in a sound, 
+and cuts it at those points.
+</p>
+
+<p>
+It is useful for extracting distinct features from a sound (or
+separate sounds from a sequence of recordings) provided the
+segments have true silence (zero amplitude) in between them.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+HOUSEKEEP GATE helps to isolate distinct areas of a sound, 
+or distinct sounds in a sequence of recordings, or to get 
+rid of unwanted silence.
+</p>
+</blockquote>
+<p>
+<b>SEE ALSO:</b> <a href="#GATE-R6"><b>GATE</b></a> &#150; Remove low-level sound from signal 
+</p>
+
+
+<p>
+End of HOUSEKEEP GATE<br />
+<a href="#HOUSEKEEPLIST">Return</a> to List of HOUSEKEEP functions at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="GATE-R6">GATE &#150; remove low-level sound from signal</h2>
+
+<h3>
+Usage
+</h3>
+<b>gate gate</b> <i>mode infile outfile gatelevel</i>
+<br />
+
+<p>
+Example command line to gate a sound :<br>
+	<blockquote>
+	<b><code>gate gate 1 count countgate -9</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> &#150; low level sound is replaced by silence (output will be 
+the same length as the source)<br />
+<b>2</b> &#150; low level sound is edited out (output is therefore 
+shorter than the source)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile</i> &#150; output soundfile<br />
+<i>gatelevel</i> &#150; level below which sound is to be removed 
+(in dB - put value, but not 'dB') &#150; Range: 1.0 (full amplitude) 
+to -96.0 (silence)
+</blockquote>
+
+<h3>
+Understanding the GATE Process
+</h3>
+
+<blockquote>
+<p>
+Everything <i>below</i> the <i>gatelevel</i> is removed.  Therefore, the closer <i>gatelevel</i> is to 1.0, the greater amount will be removed.  Note that it does not reduce the amplitude, but cuts out signal below the threshold. It reminds me of the sign in <i>The Hitchhiker's Guide to the Galaxy</i> that had sunk into the ground, such that only the top part was visible, reading "Go stick your head in a pig."  With GATE GATE, only the top part of the sound, above <i>gatelevel</i>, remains.  It is not quieter, but there may be bits missing.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The applications can be twofold.  On the one hand, low level noise 
+can be removed.  On the other hand, a sound can be reduced to a 
+staccato image by using a <i>gatelevel</i> close to 1.0.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href = "#GATE"><b>HOUSEKEEP GATE</b></a>.
+</p>
+
+
+<p>
+End of GATE GATE<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to list of HOUSEKEEP functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ========================================================================= -->
+<h2 id="PAIREX">PAIREX &#150; Extract any pair of channels from a multichannel sound</h2>
+
+<h3>
+Usage
+</h3>
+<b>pairex pairex</b> <i>infile outfile pair</i>
+
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+<i>infile</i> &#150; input soundfile (MULTI-CHANNEL).<br>
+<i>outfile</i> &#150; output soundfile (STEREO).<br>
+<i>pair</i> &#150; the channel numbers of the two channels to be extracted as a stereo pair.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+N.B. NO SPACES between the numbers, e.g. 12 or 34 or 43 or 87, depending on the infile channels. 
+</blockquote>
+
+
+<h3>
+Understanding the PAIREX Process
+</h3>
+
+<blockquote>
+<p>
+CDP already has the function  <a href = "cmcrefmn.htm#CHANNELX"><b>CHANNELX</b></a> for extracting channels from a multichannel file, though it outputs separate mono files.  This function outputs a single stereo file.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+It can be useful to process multi-channel files as stereo pairs, before perhaps interleaving them to re-make a single multi-channel file. 
+</p>
+</blockquote>
+
+<p>
+End of PAIREX<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to list of HOUSEKEEP functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+
+<hr> <!-- ********************************************************* --> 
+
+<h2 id="REMOVE">HOUSEKEEP REMOVE &#150; Remove existing copies
+of a soundfile
+</h2>
+
+
+<h3>
+Usage
+</h3>
+<b>housekeep remove</b> <i>filename</i> [<b>-a</b>]<br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>filename</i> &#150; Deletes any copies of <i>filename</i>, having
+names <i>filename_001</i>, <i>filename_002</i> ...
+	<blockquote>
+	No checks are made that these are actually copies of
+	<i>filename</i>!
+	</blockquote>
+<b>-a</b> &#150; The program checks all names in numbered sequence.
+	<blockquote>
+	In the standard case, once a numbered file is missing, the
+	program checks for 10 more named files before halting.  Setting
+	the <b>-a</b> flag forces the program to search for all
+	possible duplicate filenames.  This may take some time.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP REMOVE Function
+</h3>
+
+<blockquote>
+<p>
+A series of soundfiles whose names end with '_001', '_002' etc. can
+be created with <a href="#COPY">HOUSEKEEP COPY</a> and <a href="#EXTRACT">
+HOUSEKEEP EXTRACT</a>.  HOUSEKEEP REMOVE is a handy way to remove these
+files after you have decided (and renamed) the ones you want to keep.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is just a housekeeping utility.
+</p>
+</blockquote>
+
+<p>
+End of HOUSEKEEP REMOVE<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to List of HOUSEKEEP functions
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+<h2 id="REPAIR">REPAIR  &#150; Join a list of mono sounds into stereo or multi-channel outputs</h2>
+
+<h3>
+Usage
+</h3>
+<b>repair repair</b> <i>infiles generic-outfilename channels</i>
+
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+<i>infiles</i> &#150; input MONO soundfiles of the same length in order of output channels.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+Input files must be listed with all channel 1 sources in order, first, then all channel 2 sources in order, etc. <br>
+<i>generic-outfilename</i> &#150; root name for a series of outfiles.<br>
+<i>channels</i> &#150; number of channels in the output files.
+
+</blockquote>
+
+
+
+<h3>
+Understanding the REPAIR Process
+</h3>
+
+<blockquote>
+<p>
+REPAIR (or "re-pair") interleaves mono soundfiles of the same length to make a stereo or multichannel file. The number of inputs must be a multiple of 2 and the output channels likewise. The program produces multiple outputs named &lt;outname&gt;_0.wav, &lt;outname&gt;_1.wav, etc.
+</p><p>
+REPAIR assigns output channels to the input files according to the total required number of output <i>channels</i>, by dividing them into groups. Sources A, B, C and D with <i>channels</i>=2 are interleaved as 2 stereos: A+C and B+D. With six input files and <i>channels</i>=2, output channels are assigned as 1 1 1 2 2 2 and there are three outputs: from inputs 1+4, 2+5 and 3+6. For 12 inputs and <i>channels</i>=4, the inputs are grouped as 1+4+7+10, 2+5+8+11 and 3+6+9+12.
+</p><p>
+CDP already has an easy-to-use interleaving program: <a href = "cmcrefmn.htm#INTERLX"><b>INTERLX</b></a>, in which you simply list the files you wish to interleave, in output-channel order. INTERLX requires the inputs to have the same number of channels, but these can be mono or stereo and do not have to be the same length. (The alternative CDP program <a href = "cgromixr.htm#INTERLEAVE"><b>SUBMIX INTERLEAVE</b></a> does the same job, but requires mono inputs, like REPAIR.)
+</p>    
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of REPAIR<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to List of HOUSEKEEP functions
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ********************************************************* -->
+
+<h2 id="RESPEC">HOUSEKEEP RESPEC &#150; Change sample rate, format or
+properties of a soundfile (CARE!!)
+</h2>
+
+
+<h3>
+Usage
+</h3><b>housekeep respec 1</b> <i>infile outfile new_samplerate</i><br />
+</h3><b>housekeep respec 2</b> <i>infile outfile</i><br />
+</h3><b>housekeep respec 3</b> <i>infile outfile</i>
+[<b>-s</b><i>srate</i>] [<b>-c</b><i>channels</i>]
+<!--
+[<b>-t</b><i>samptype</i>]<br />
+-->
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; resample at some different sample rate (rewrites sample data)<br />
+<b>2</b>&nbsp; convert from integer to float samples, or <i>vice versa</i><br />
+<b>3</b>&nbsp; change properties of sound (affects header only &#150; use
+with caution!)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; soundfile to adjust<br />
+<i>outfile</i> &#150; new soundfile with alterations made<br />
+<i>new_samplerate</i>  &#150; Mode <b>1</b>, new sample rate at which to
+rewrite the soundfile<br />
+	<blockquote>
+	New sample rate must be one of: 96000, 88200, 64000, 48000, 24000, 44100, 22050,
+	32000 or 16000
+	</blockquote>
+<b>-s</b><i>srate</i> &#150; Mode <b>3</b>, new sample rate to impose<br />
+	<blockquote>
+	New sample rate must be one of: 96000, 88200, 64000, 48000, 24000, 44100, 22050,
+	32000 or 16000<br />
+	<b>NB:</b> This process <b>does not</b> resample the data.  It
+	simply causes the original data to be read at a different sample rate.
+	The sound will have the same number of samples, a different
+	duration and be transposed in pitch (up or down).
+	</blockquote>
+<b>-c</b><i>channels</i>  &#150; Mode <b>3</b>, the new channel count
+to impose<br />
+	<blockquote>
+	<b>NB:</b> This <b>does not</b> rechannel the data.  A stereo
+	file, for example, will appear twice as long.
+	</blockquote>
+<!--
+<b>-t</b><i>samptype</i> &#150; Mode <b>3</b>, new sample type to
+	impose: <b>0</b> = integers, <b>1</b> = floats<br />
+	<blockquote>
+	<b>Warning:</b> use this only to restore an incorrect header.
+	</blockquote>
+-->
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP RESPEC Process
+</h3>
+
+<blockquote>
+<p>
+The key issue here is the difference between 'resampling' (Mode <b>1</b>)
+and simply changing the information in the header of the soundfile
+(Mode <b>2</b>).
+</p>
+
+<p>
+If the sample rate is 22050, resampling with a <i>new_samplerate</i> of
+44100 will rewrite the file, doubling up every sample so that there will
+then be 44100 samples per second in the file.  (The information in the
+header is also changed accordingly).  This is what is meant by the phrase
+'rewrites the sample data'.  This is what happens in (Mode <b>1</b>), and
+this is why the length of the file in bytes will be longer or shorter, but
+the duration and pitch of the sound will remain <b>unchanged</b>.  When the
+PLAY program checks the header and finds e.g., 44100, there are indeed
+44100 samples to play, etc.
+</p>
+
+<p>
+The resampling operation is relatively simple in nature, which is why
+it works only with the named sample rates.  A fully flexible resampling
+algorithm is much more complex, requires extensive filtering
+procedures and has not been implemented in CDP.  Resampling should be
+used sparingly for this reason, as some loss of quality is likely,
+especially in downsampling, as no anti-aliasing is applied to the sound file.
+</p>
+
+<p>
+In Mode <b>3</b> the information in the header is changed but the
+actual sample data is left untouched.   Thus, when the PLAY program
+checks the header and finds e.g., 44100 when the file actually contains
+only 22050 samples, it will play it at a 44100 rate &#150; which gets
+through the 22050 samples at double speed, takes half as long and raises
+the pitch by an octave (twice as fast).
+</p>
+
+<p>
+Mode <b>2</b> converts between 16-bit and floating-point soundfile data.
+At the moment, all soundfiles are normally 16-bit.  The CDP System
+automatically converts to floating point, does the processing and then
+at the output stage the data is automatically converted from float
+back to short, thus losing the extra precision (= audio quality) which
+the floating point provides.  It has to do this as there are at present
+no soundcards which can handle floating point soundfiles.
+</p>
+
+<p>
+If there is a floating point soundfile that you want to use,
+Mode <b>2</b> will convert it to shorts so you can use it with the
+CDP System.  However, we are gradually extending the capacity of
+the System to handle floating point files, both as inputs, and to
+output a floating point result.  HOUSEKEEP RESPEC will itself be
+updated in this way.
+</p>
+
+<p>
+Mode <b>2</b> will come into its own in the future as soundcards
+appear which can play floating point soundfiles, but will also be
+less needed as more CDP functions become capable of creating
+floating point soundfiles.
+</p>
+
+<p>
+Floating point output is also useful for DSP testing.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Sometimes when mixing, one finds that the sample rates of the component
+soundfiles are not the same (they all must be the same for a mix).
+HOUSEKEEP RESPEC in Mode <b>1</b> provides a reasonably effective way to
+get the sample rates to conform.  However, it shouldn't be regarded as
+a standard tool.  <b>You should really work at a consistent sample
+rate.</b>  However, if at some inconvenient moment you find you have a
+stray soundfile at an incompatible rate for mixing, you can quickly
+alter it &#150; with some loss of quality.
+</p>
+
+<p>
+Some versions of <i>Cooledit Pro</i> will incorrectly write a floating point
+header on a 16-bit soundfile.  The <i>sampletype</i> can be changed
+to SHORT with HOUSEKEEP RESPEC Mode <b>3</b>.
+</p>
+</blockquote>
+
+<p>
+End of HOUSEKEEP RESPEC<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to List of HOUSEKEEP functions
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr>
+
+<h2 id="SORT">HOUSEKEEP SORT &#150; Sort files listed in a textfile
+</h2>
+
+
+<h3>
+Usage
+</h3>
+<b>housekeep sort 1</b> <i>listfile </i><br />
+<b>housekeep sort 2-3</b> <i>listfile small large step</i> [<b>-l</b>]<br />
+<b>housekeep sort 4</b> <i>listfile </i> [<b>-l</b>]<br />
+<b>housekeep sort 5</b> <i>listfile </i><br />
+<b>housekeep sort 6</b> <i>listfile </i><br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Sort by filetype, listing in textfile(s) with 3-letter file
+extension(s) to identify the groups of files (see table below)<br />
+<b>2</b>&nbsp; Sort by sample rate, listing in textfile(s) with extension(s)
+indicating SR<br />
+<b>3</b>&nbsp; Sort by duration, listing in textfile named 'your_listfile.len'
+(in <i>step</i> duration groups if <i>step</i> was specified)<br />
+<b>4</b>&nbsp; Sort by log duration, relating file lengths by a duration ratio,
+and listing in textfile named 'your_listfile.len'<br />
+<b>5</b>&nbsp; Sort into duration order, listing in 'your_listfile.len'<br />
+<b>6</b>&nbsp; Find rogues (check for invalid files and report potential
+anomalies)<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>listfile</i> &#150; a text file containing a list of the files to
+be sorted.  The normal extension of the file must be included:  e.g.,
+.wav or .aif for a soundfile.<br />
+<i>small</i> &#150; maximum size of the smallest soundfiles, in seconds<br />
+<i>large</i> &#150; minimum size of the largest soundfiles, in seconds<br />
+<i>step</i> &#150; groups the files according to duration increment<br />
+<b>-l</b> &#150; causes file durations <b>not</b> to be written to the output
+text file<br />
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP SORT Function
+</h3>
+
+<blockquote>
+<p>
+Mode <b>1</b> reads a textfile containing a list of files (with their
+extensions) and groups them into one or more text files containing the
+names of all the files of a given type.  These output textfiles are given
+extensions by which you can easily identify their contents.  The
+extensions of the actual source files named in <i>listfile</i> can
+vary, but the conventions now recognised by the CDP System are placed
+in the 3<sup>rd</sup> column of the table below.<br />
+
+<p>
+<div align=center>
+<table border=2 cellpadding=3>
+<caption><b>Extensions to identify filetypes in SORT output
+textfiles</b></caption>
+
+<tr>
+<th align=center><b>SORT textfile extension</b></th>
+<th align=center><b>File type</b></th>
+<th align=center><b>Source's actual extension</b></th>
+</tr>
+
+<tr>
+<td align=center><b>.mot</b></td>
+<td>mono soundfiles</td>
+<td align=center><b>.wav</b> or <b>.aif</b></td>
+</tr>
+
+<tr>
+<td align=center><b>.stt</b></td>
+<td>stereo soundfiles</td>
+<td align=center><b>.wav</b> or <b>.aif</b></td>
+</tr>
+
+<tr>
+<td align=center><b>.ant</b></td>
+<td>analysis files</td>
+<td align=center><b>.ana</b></td>
+</tr>
+
+<tr>
+<td align=center><b>.qtt</b></td>
+<td>4-channel soundfiles</td>
+<td align=center><b>.wav</b> or <b>.aif</b></td>
+</tr>
+
+<tr>
+<td align=center><b>.pct</b></td>
+<td>binary pitch data files</td>
+<td align=center><b>.frq</b></td>
+</tr>
+
+<tr>
+<td align=center><b>.ent</b></td>
+<td>binary envelope files</td>
+<td align=center><b>.evl</b></td>
+</tr>
+
+<tr>
+<td align=center><b>.fot</b></td>
+<td>binary formant files</td>
+<td align=center><b>.for</b></td>
+</tr>
+
+<tr>
+<td align=center><b>.trt</b></td>
+<td>binary transposition files</td>
+<td align=center><b>.trn</b></td>
+</tr>
+
+<tr>
+<td align=center><b>.ott</b></td>
+<td>any other files</td>
+<td align=center><b>.txt</b> or whatever</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+<p>
+In Mode <b>2</b> you get a list of all the soundfiles in your current
+directory grouped by sample rate.  The sample rate of the sounds in a
+given textfile generated by SORT Mode <b>2</b> is indicated by a
+numerical extension:  <b>.24</b> for 24000, <b>.44</b> for 44100 etc.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+As a directory for a given project starts to fill up, confusion about
+what is what may begin to set in, especially if the naming conventions
+vary for one reason or another.  HOUSEKEEP SORT Mode <b>1</b> looks at
+the headers of all the files and automatically groups them correctly,
+writing a series of files for future reference.  This is also a great
+way to document a project.
+</p>
+
+<p>
+The other modes tend to be useful when preparing mixes.  You may need
+a quick check on whether all the files you intend to mix have the same
+sample rate (required by the mixing operation), or you might want a
+listing of all the soundfiles with durations within a certain range, or
+you might want to get an ordered list of all your soundfiles from the
+shortest to the longest.  HOUSEKEEP SORT handles all these various
+operations.  The resulting files can, if appropriate, be used as
+source textfiles for your actual mixfile, with SUBMIX DUMMY automatically
+turning them into a prototype mixfile.
+</p>
+
+<p>
+All of these operations are simple and quick, and the larger your mixes,
+the more useful these facilities become.  SUBMIX MIX can handle more than
+50 soundfiles at once, so it may be worth exploring the potential speed
+and power of a non-graphic approach.
+</p>
+</blockquote>
+
+<p>
+End of HOUSEKEEP SORT<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to List of HOUSEKEEP functions
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+<h2 id="TOSTEREO">TOSTEREO &#150; Diverge from mono to stereo, in a stereo file</h2>
+
+<h3>
+Usage
+</h3>
+<b>tostereo tostereo</b> <i>infile outfile start end</i> [<b>-o</b><i>ochans</i> <b>-l</b><i>leftchan</i> <b>-r</b><i>rightchan</i> <b>-m</b><i>mixlev</i>]
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+<i>infile</i> &#150; input soundfile (STEREO)<br>
+<i>outfile</i> &#150; output stereo or multi-channel soundfile.<br>
+<i>start</i> &#150; start time of divergence from mono to stereo.<br> 
+<i>end</i> &#150; end time of divergence from mono to stereo.<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; N.B. If end time is before start time, the file goes from stereo to mono.<br><br>
+
+<b>For multichannel output, the following optional parameters are selected as a group:</b><br>
+<b>-o</b><i>ochans</i> &#150; output channel count (Range: 2 to 16; default: stereo). <br>
+<b>-l</b><i>leftchan</i> &#150;  output left channel (Range: 1 to 16; default: 1). <br>
+<b>-r</b><i>rightchan</i> &#150; output right channel (Range: 1 to 16; default: 2).<br> 
+<b>-m</b><i>mixlev</i> &#150; level of each channel when mixed to mono. Set this to avoid clipping.(Set to ZERO for a good default level.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Value: 0 <b>OR</b> range 0.5 to 1. (Set to ZERO for a good default level.) >0.707 is not recommended. 
+</blockquote>
+
+
+
+<h3>
+Understanding the TOSTEREO  Process
+</h3>
+
+<blockquote>
+<p>
+TOSTEREO causes a stereo file to start mixed to mono and then diverge to real stereo (or vice versa). The output is either to a stereo file or to a stereo pair within multi-channel space. For stereo output, the only parameters needed are the start and end times of the divergence. 
+</p><p>
+For multichannel output, various optional parameters are used: the number of output channels (<i>ochans</i>), which of these carries the left channel of stereo (<i>leftchan</i>) and which the right (<i>rightchan</i>), and <i>mixlev</i>, the level of each channel when mixed to mono &#150; also relevant for stereo output.  In multichannel, if <i>leftchan</i> is selected but <i>rightchan</i> is set to zero, the signal will fork from the indicated channel to the channels on either side.
+
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of TOSTEREO<br />
+<a href="#HOUSEKEEPLIST"><b>Return</b></a> to List of HOUSEKEEP functions
+at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+
+</p>
+
+<!-- ***************************************************************** -->
+<!--
+<h2 id="">HOUSEKEEP  &#150;
+</h2>
+
+1<sup>st</sup> ... 2<sup>nd</sup>
+
+<h3>
+Usage
+</h3>
+<b>housekeep </b> <i>infile infile2 outfile</i> [<b></b><i></i>]
+<br />
+
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b></b> ...<br />
+<b></b> ...<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i></i> &#150; ...<br />
+<i></i> &#150; ...<br />
+<i></i> &#150; ...<br />
+<b></b><i></i> &#150; <i></i> ... <br />
+<b></b><i></i> &#150; <i></i> ... <br />
+<b></b><i></i> &#150; <i></i> ... <br />
+	<p>
+	<blockquote>
+	<i></i> may vary over time
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the HOUSEKEEP xxx Process
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of <br />
+<a href="#HOUSEKEEPLIST">Return</a> to List of HOUSEKEEP functions at top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top">Return</a> to 'Groucho' Time-Domain Index
+</p>
+
+-->
+
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 2 Apr 2023 for CDP8<br>
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

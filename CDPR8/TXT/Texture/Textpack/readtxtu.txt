@@ -1,0 +1,135 @@
+readtxtu.txt:   Contents of the 'TEXTURE PACK' which accompanies 
+		the HTML Reference Documentation
+
+		by Archer Endrich
+		Last Updated:  20 July 2000
+ZIP FILE
+	texturepack.zip
+
+
+PROGRAM VERSION
+	texture.exe 9 March 2000 18:43  (command line use)
+	Using this version is essential, because previous versions 
+	did not parse the millisecond parameter inputs -- the whole 
+	function to do this was missed out.  One could use seconds, 
+	but all the documentation in this 'texture pack' is now 
+	geared up for milliseconds.
+
+	This program is included in texture packs being sent for 
+	Sound Loom users, because the Sound Loom TEXTURE.EXE does 	
+	not handle command line use.  Keep separate from your 
+	Sound Loom TEXTURE.EXE -- do not overwrite the latter!  
+	I recommend you put all of the texture pack in a special 
+	folder, including the command line TEXTURE.EXE, call up 
+	MS-DOS, go to that folder and run the batch files.  It 
+	will find the TEXTURE.EXE in that folder because it will 
+	automatically look there first.
+
+	It may also be useful to print out the .txt forms of the 
+	batch files for easy reference.
+
+	SoundShaper users do not need to have this TEXTURE.EXE 
+	because they already have this version as part of their 
+	distribution.
+
+
+HTML FILES
+	cgrotext.htm (18 July 2000) - main reference document
+	ndfchart.htm - printable reference chart for ndfs (2 sides 
+		of A-4, double-sided printing recommended)
+
+SOURCE SOUND(s)
+	horn.wav (as used in the Theocharidis GrainMill Tutorial)
+		sustains for 5.26 sec.
+	marimba.wav - single marimba stroke 0.99 sec.
+
+	Try other sounds such as bells, as well as inharmonic sounds 
+		to make unpitched textures.
+	
+
+BATCH FILES TO MAKE THE EXAMPLES (simplexs.txt etc. are forms of the 
+file for printing:  with carriage returns so see all the parameters.  
+These carriage returns invalidate the actual batch file as they prevent 
+it from running the command properly).
+
+	simplexs.bat
+	groupexs.bat
+	decorexs.bat
+	ornatexs.bat
+	motifexs.bat
+	timedexs.bat
+	tgrouexs.bat
+	tmotiexs.bat
+
+BATCH FILES TO DELETE THE SOUNDS MADE
+	simpldel.bat
+	groupdel.bat
+	decordel.bat
+	ornatdel.bat
+	motifdel.bat
+	timeddel.bat
+	tgroudel.bat
+	tmotidel.bat
+
+BATCH FILE	NOTE DATA FILES	OUTPUT SOUNDFILES	DELETION FILE
+simplexs.bat	ndfsim1.txt	simplex1a/b.wav		simpldel.bat
+		ndfsim2.txt	simplex2.wav
+		ndfsim3a.txt	simplex3a.wav
+		ndfsim3b.txt	simplex3b/c.wav
+		ndfsim4a.txt	simplex4a/b.wav
+		ndfsim4b.txt	simplex4c.wav
+		ndfsim5.txt	simplex5.wav
+		ndfsim6.txt	simplex5.wav
+
+groupexs.bat	ndfgrp1.txt	groupex1-6.wav		groupdel.bat
+
+decorexs.bat	ndfdec1.txt	decorex1a/b.wav		decordel.bat
+		ndfdec2a.txt	decorex2a.wav
+		ndfdec2b.txt	decorex2b.wav
+		ndfdec2c.txt	decorex2c.wav
+		ndfdec3.txt	decorex3.wav
+
+ornatexs.bat	ndforn1.txt	ornatex1.wav		ornatdel.bat
+		ndforn2.txt	ornatex2.wav
+		ndforn3.txt	ornatex3.wav
+		ndforn4.txt	ornatex4.wav
+
+motifexs.bat	ndfmot1.txt	motifex1.wav		motifdel.bat
+		ndfmot2.txt	motifex2a/b/c.wav
+		ndfmot3.txt	motifex3a/b/c.wav
+		ndfmot4.txt	motifex4.wav
+
+timedexs.bat	ndftim1.txt	timedex1.wav		timeddel.bat
+		ndftim2.txt	timedex2.wav
+		ndftim3.txt	timedex3a/b.wav
+
+tgrouexs.bat	ndftgr1.txt	tgrouex1a/b/c/d.wav	tgroudel.bat
+		ndftgr2.txt	tgrouex2.wav
+
+tmotiexs.bat	ndftmo1.txt	tmotiex1.wav		tmotidel.bat
+		ndftmo2.txt	tmotiex2a/b.wav
+
+
+TIME-VARYING PARAMETERS
+simplexs.bat	packchng.brk
+		grplo.brk
+		grphi.brk
+		simplpak.brk
+groupexs.bat	grppack.brk
+decorexs.bat	dm5gprhi.brk
+		dx3gprhi.brk
+ornatexs.bat	none
+motifexs.bat	none
+timedexs.bat	none
+tgrouexs.bat	none
+tmotiexs.bat	none
+
+KNOWN BUGS
+Mode 5 in MOTIFS, ORNATE and TMOTIFS:  the figure plays once, and then
+subsequent repetitions only play the first two notes.  This bug is 
+only in the command line version of TEXTURE.EXE.  It is correct in the 
+Sound Loom version of TEXTURE.EXE.  (You can therefore realise these 
+Mode 5 examples if you have Sound Loom.)
+
+MOTIFSIN refuses to read a harmonic field/set in both versions of 
+TEXTURE.EXE.

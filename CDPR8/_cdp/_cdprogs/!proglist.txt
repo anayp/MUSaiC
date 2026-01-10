@@ -1,0 +1,129 @@
+CDP RELEASE 8
+=============+
+This folder contains the latest (March 2023) CDP program set for PC,
+including the new CDP Release 8 programs.
+
+It includes programs that are needed for Soundloom (only) and some extras:
+mf2t.exe and t2mf.exe (utilities for TV) and robocopy (for Soundshaper).
+
+Also included are ness-brass.exe and assocated files (for Soundloom).
+
+==========================================================
+
+abfdcode.exe          abfpan.exe            abfpan2.exe
+ana2pvx.exe           analjoin.exe          asciiget.exe
+blur.exe              bounce.exe            brkdur.exe
+brkedit.exe           brktopi.exe           brownian.exe
+caltrain.exe          cantor.exe            cascade.exe
+cdparams.exe          cdparams_other.exe    cdparse.exe
+ceracu.exe            channelx.exe          chanphase.exe
+chirikov.exe          chorder.exe           chxformat.exe
+clicknew.exe          clip.exe              columns.exe
+combine.exe           constrict.exe         convert_to_midi.exe
+copysfx.exe           crumble.exe           crystal.exe
+cubicspline.exe       dirsf.exe
+diskspace.exe         distcut.exe           distmark.exe
+distmore.exe          distort.exe           distortt.exe
+distrep.exe           distshift.exe         distwarp.exe
+dshift.exe            dvdwind.exe           envcut.exe
+envel.exe             envnu.exe             
+envspeak.exe          extend.exe            fastconv.exe
+fconv.exe             features.exe          filter.exe
+filtrage.exe          fixgobo.exe           flatten.exe
+flutter.exe           fmdcode.exe           focus.exe
+fofex.exe             formants.exe          fractal.exe
+fracture.exe          frame.exe             freeze.exe
+fturanal.exe          gate.exe              getcol.exe
+get_partials.exe      glisten.exe           gobo.exe
+gobosee.exe           grain.exe             grainex.exe
+grnmill.exe           GRNMILL.HLP           hfperm.exe
+hilite.exe            histconv.exe          hornvalve.m
+hornvalves.m          housekeep.exe         hover.exe
+hover2.exe            impulse.exe           interlx.exe
+isolate.exe           iterfof.exe           iterline.exe
+iterlinef.exe         listaudevs.exe
+listdate.exe          logdate.exe           logistic.exe
+madrid.exe            manysil.exe           materials.txt
+matrix.exe            maxsamp2.exe          mchanpan.exe
+mchanrev.exe          mchiter.exe           mchshred.exe
+mchstereo.exe         mchzig.exe            mf2t.exe
+modify.exe            morph.exe             motor.exe
+mton.exe              multimix.exe          multiosc.exe
+multisynth.exe        ness-brass.exe        newdelay.exe
+newmix.exe            newmorph.exe          newscales.exe
+newsynth.exe          newtex.exe            njoin.exe
+nmix.exe              notchinvert.exe       oneform.exe
+onset.exe             packet.exe            pagrab.exe
+pairex.exe            panorama.exe          paplay.exe
+partition.exe         paudition.exe
+paview.exe            pa_devs.exe           pdisplay.exe
+peak.exe              peakfind.exe          peakiso.exe
+phase.exe             phasor.exe            pitch.exe
+pitchinfo.exe         pmodify.exe           prefix.exe
+process.exe           progmach.exe          psow.exe
+ptobrk.exe            pulser.exe            putcol.exe
+pview.exe             pvoc.exe              pvocex2.exe
+pvplay.exe            quirk.exe             (readme.txt)
+recsf.exe             refocus.exe           rejoin.exe
+repair.exe            repeater.exe          repitch.exe
+retime.exe            reverb.exe            rhymorph.exe
+rhymorph2.exe         rmresp.exe            rmsinfo.exe
+rmverb.exe            robocopy.exe          rotor.exe
+scramble.exe          search.exe            selfsim.exe
+sfecho.exe            sfedit.exe            sfprops.exe
+shifter.exe           shrink.exe            silend.exe
+smooth.exe            sndinfo.exe           sorter.exe
+spacedesign.exe       spec.exe              specanal.exe
+specav.exe            specenv.exe           specfnu.exe
+specfold.exe          specgrids.exe         specinfo.exe
+speclean.exe          specnu.exe            specross.exe
+specsphinx.exe        spectrum.exe          spectstr.exe
+spectune.exe          spectwin.exe          speculate.exe
+specvu.exe            spike.exe             spin.exe
+splinter.exe          strands.exe           strange.exe
+strans.exe            stretch.exe           stretcha.exe
+stutter.exe           submix.exe            subtract.exe
+superaccu.exe         suppress.exe          synfilt.exe
+synspline.exe         synth.exe             t2mf.exe
+tangent.exe           tapdelay.exe          tesselate.exe
+texmchan.exe          texture.exe           textureR7.exe
+tkusage.exe           tkusage_other.exe     topantail2.exe
+tostereo.exe          transit.exe           tremenv.exe
+tremolo.exe           ts.exe                tsconvert.exe         
+tunevary.exe          tv.exe                tweet.exe             
+unknot.exe            vectors.exe           verges.exe            
+viewsf.exe            vuform.exe            waveform.exe          
+wrappage.exe          
+
+
+NESS-BRASS (for SoundLoom):
+libgcc_s_dw2-1.dll    libiconv-2.dll
+libstdc++-6.dll       libxml2-2.dll 
+test1.m               test2.m               test3.m
+test4.m               test5.m               test6.m
+test7.m               test8.m               tester.m
+trombonevalve.m       Trombonevalves.m
+trumpetvalve.m        trumpetvalves.m 
+
+LIKELY DUPLICATES: 
+fconv = fastconv
+freeze = extend freeze
+repeat = distortt
+
+EXTRAS:
+brasssageR4  - an earlier version of modify brassage (Grain)
+pa_devs      - a port-audio test application
+robocopy     - Microsoft utility used in Soundshaper
+textureR7    - legacy version of texture (for texture simple)
+mf2t/t2mf    - public-domain utilities needed for tv (Tabula Vigilans)
+
+
+
+RF June '23
+
+
+
+ 
+
+
+

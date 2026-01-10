@@ -1,0 +1,3315 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- crepitch.htm HTML5 version-->
+
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html"; charset=UTF-8">
+<title>CDP REPITCH</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+ <link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg">
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cspecndx.htm" Target="_top"><b>Spectral Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <dt><a href = "#REPITCHLIST"><b>REPITCH:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ANALENV"><b>ANALENV</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#APPROX"><b>APPROX</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#COMBINE"><b>COMBINE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#COMBINEB"><b>COMBINEB</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CUT"><b>CUT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#EXAG"><b>EXAG</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FIX"><b>FIX</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#GENERATE"><b>GENERATE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#GETPITCH"><b>GETPITCH</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INSERTSIL"><b>INSERTSIL</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INSERTZEROS"><b>INSERTZEROS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INTERP"><b>INTERP</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INVERT"><b>INVERT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#NOISETOSIL"><b>NOISETOSIL</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PCHSHIFT"><b>PCHSHIFT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PCHTOTEXT"><b>PCHTOTEXT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PITCHTOSIL"><b>PITCHTOSIL</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#QUANTISE"><b>QUANTISE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RANDOMISE"><b>RANDOMISE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SMOOTH"><b>SMOOTH</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SYNTH"><b>SYNTH</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TRANSPOSE"><b>TRANSPOSE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TRANSPOSEF"><b>TRANSPOSEF</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#VIBRATO"><b>VIBRATO</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#VOWELS"><b>VOWELS</b></a>
+  <br><br>
+  <b>OTHERS:</b><br>
+  <dt>&nbsp;&nbsp;<a href = "#BRKTOPI"><b>BRKTOPI</b></a>
+<br><br>
+  <b>SEE ALSO:</b><br>
+<dt>&nbsp;&nbsp;<a href="ccombine.htm#MAKE"><b>COMBINE MAKE</b></a>  
+<dt>&nbsp;&nbsp;<a href="ccombine.htm#MAKE2"><b>COMBINE MAKE2</b></a>
+<!--
+<dt>&nbsp;&nbsp;<a href = "cptchinf.htm#CONVERT"><b>PITCHINFO CONVERT</b></a> 
+<dt>&nbsp;&nbsp;<a href="cgropsow.htm#PTOBRK"><b>PTOBRK</b></a>
+-->
+ 
+  <br /><br>
+  <dt><a href = "#REPITCHTECHNICAL"><b>Technical</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+    <div align=center>
+    <br>
+    <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+    </div>
+
+   <h1 align=center>
+   CDP Pitch Extraction and Handling</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+
+   </div>  <!-- End of 'head' -->
+<!-- ========================================================================= -->
+<h2 align="center" id="REPITCHLIST">Functions to REPITCH spectral pitch data</h2>
+
+<p>
+<em>(Names in brackets mean that these are separate programs.  The others are sub-modules of REPITCH.)</em>
+</p>
+
+   <blockquote>
+   The REPITCH Group consists mostly of operations on pitch data files &#150 binary
+   (<b>.frq</b>) or breakpoint &#150 extracted from spectral analysis files (<b>.ana</b>)
+    by <a href="#GETPITCH"><b>GETPITCH</b></a>. To get back to sound from a binary pitch
+   data file, it must be combined with a formant file (<b>.for</b>), extracted via <a href="cformant.htm#GET"><b>FORMANTS GET</b></a>, using the functions <a href="ccombine.htm#MAKE"><b>COMBINE MAKE</b></a> or <a href="ccombine.htm#MAKE2"><b>MAKE2</b></a>. <br><br>
+Note also two key functions in the group which process analysis files (<b>.ana</b>): <a href="#TRANSPOSE"><b>TRANSPOSE</b></a> and <a href="#TRANSPOSEF"><b>TRANSPOSEF</b></a>. These aim to transpose pitch without altering time.
+   </blockquote>
+
+<dl>
+<dt><a href="#ANALENV"><b>ANALENV</b></a> <dd>Extract the window-loudness envelope of an analysis file </dd>
+<dt><a href="#APPROX"><b>APPROX</b></a> <dd>Make an approximate copy of a binary pitch data file </dd>
+<dt><a href="#BRKTOPI"><b>[BRKTOPI]</b></a> <dd>Convert a breakpoint pitch data file to a binary pitch data file </dd>
+<dt><a href="#COMBINE"><b>COMBINE</b></a> <dd>Generate transposition data from 2 sets of pitch data,<br> or transpose pitch data with transposition 
+data,<br> or combine 2 sets of transposition data to form new transposition data, producing a binary data file output</dd> 
+<dt><a href="#COMBINEB"><b>COMBINEB</b></a> <dd>Generate transposition data from 2 sets of pitch data,<br> OR transpose pitch data with transposition 
+data,<br> OR combine 2 sets of transposition data to form new transposition data, producing a <i>time value</i> breakpoint file output</dd> 
+<dt><a href="#CUT"><b>CUT</b></a> <dd>Cut out and keep a segment of a binary pitch data file </dd>
+<dt><a href="#EXAG"><b>EXAG</b></a> <dd>Exaggerate the contour of a pitch data file </dd>
+<dt><a href="#FIX"><b>FIX</b></a> <dd>Massage pitch data in a pitch data file</dd> 
+<dt><a href="#GENERATE"><b>GENERATE</b></a> <dd>Create a binary pitch data file from a textfile of <i>time midi</i> value pairs</dd>
+<dt><a href="#GETPITCH"><b>GETPITCH</b></a> <dd>Extract pitch from spectrum to a pitch data file </dd>
+<dt><a href="#INSERTSIL"><b>INSERTSIL</b></a> <dd>Mark areas as silent in a binary pitch data file</dd>
+<dt><a href="#INSERTZEROS"><b>INSERTZEROS</b></a> <dd>Mark areas as unpitched in a pitch data file</dd>
+<dt><a href="#INTERP"><b>INTERP</b></a> <dd>Replace noise or silence by pitch interpolated from existing pitches</dd>
+<dt><a href="#INVERT"><b>INVERT</b></a> <dd>Invert pitch contour of a pitch data file </dd>
+<dt><a href="#NOISETOSIL"><b>NOISETOSIL</b></a> <dd>Replace unpitched windows by silence in a pitch data file</dd>
+<dt><a href="#PCHSHIFT"><b>PCHSHIFT</b></a> <dd>Transpose pitches in a pitch data file by a constant number of semitones</dd> 
+<dt><a href="#PCHTOTEXT"><b>PCHTOTEXT</b></a> <dd>Convert binary pitch data to text</dd>
+<dt><a href="#PITCHTOSIL"><b>PITCHTOSIL</b></a> <dd>Replace pitched windows by silence</dd>
+<dt><a href="#QUANTISE"><b>QUANTISE</b></a> <dd>Quantise pitches in a pitch data file </dd>
+<dt><a href="#RANDOMISE"><b>RANDOMISE</b></a> <dd>Randomise pitch line in a pitch data file 
+<dt><a href="#SMOOTH"><b>SMOOTH</b></a> <dd>Smooth pitch contour in a pitch data file </dd>
+<dt><a href="#SYNTH"><b>SYNTH</b></a> <dd>Create the spectrum of a sound following the pitch contour in a pitch data file</dd>
+<dt><a href="#TRANSPOSE"><b>TRANSPOSE</b></a> <dd>Transpose spectrum (spectral envelope also moves) </dd>
+<dt><a href="#TRANSPOSEF"><b>TRANSPOSEF</b></a> <dd>Transpose spectrum: but retain original spectral envelope </dd>
+<dt><a href="#VIBRATO"><b>VIBRATO</b></a> <dd>Add vibrato to pitch in a pitch data file </dd>
+<dt><a href="#VOWELS"><b>VOWELS</b></a> <dd>Create spectrum of vowel sound(s) following pitch contour in pitch file</dd>
+<br>
+<dt><a href="#REPITCHTECHNICAL"><b>Technical Discussion</b></a> <dd> Extracting and Tracking Spectral Pitch Data</dd>
+<dt><br><b>SEE ALSO:</b>
+<dt><a href="ccombine.htm#MAKE"><b>COMBINE MAKE</b></a><dd>Generate spectrum from pitch & formant data</dd>
+<dt><a href="ccombine.htm#MAKE2"><b>COMBINE MAKE2</b></a> <dd>Generate spectrum from pitch, formant &amp; envelope data only</dd> 
+<dt><a href = "cptchinf.htm#CONVERT"><b>PITCHINFO CONVERT</b></a> <dd>Convert a binary pitch data file to a time-frequency breakpoint text file</dd>
+<dt><a href="cgropsow.htm#PTOBRK"><b>PTOBRK</b></a> <dd>Convert pitch trace from binary file (.frq) to text breakpoint file (with zeros) for PSOW</dd>
+</dl>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="ANALENV">REPITCH ANALENV &#150; Extract the window-loudness 
+envelope of an analysis file</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch analenv</b> <i>inanalysisfile outenvelopefile</i>
+<br>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalysisfile</i> &#150; analysis file from which to extract the 
+window-loudness data<br />
+<i>outenvelopefile</i> &#150; the output is a binary envelope file 
+(<b>.evl</b>)
+</blockquote>
+
+<h3>
+Understanding the REPITCH ANALENV Function
+</h3>
+
+<blockquote>
+<p>
+This function extracts the loudness envelope of an analysis 
+file. It is part of a suite of processes to extract the pitch, 
+formants or time-loudness envelope of spectral and then 
+cross-combine them.  The output is saved as a binary envelope 
+file, for which <b>.evl</b> is the standard CDP extension.  This 
+file can be used in a number of other CDP processes, as described 
+below.  
+</p>
+
+<p>
+Both <i>Soundshaper</i> and <i>Sound Loom</i> produce the 
+<b>.evl</b> extension.  If you find that <i>Sound Loom</i> 
+is not doing this, you can change it in the SYSTEM STATE menu:  
+SYSTEM STATE > OUTPUT FILETYPES &amp; EXTENSIONS > FILENAME 
+EXTENSIONS TO USE.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The binary envelope file produced by this application can be used 
+with CDP Time Domain processes, notably <a href="cgroenvl.htm#IMPOSE">
+ENVEL IMPOSE</a>, <a href="cgroenvl.htm#REPLACE">ENVEL REPLACE</a> 
+and <a href="cgroenvl.htm#RESHAPE">ENVEL RESHAPE</a>.  You can 
+use these to transform the (binary) envelope file before using it 
+again.
+</p>
+
+<p>
+Having the envelope data as a separate file also allows for more 
+flexibility in the Spectral Domain.  With <a href="cformant.htm#GET">
+FORMANTS GET</a>, for example, when combining the <b>pitch contour</b> 
+from one sound with the <b>formant data</b> from a 
+2<sup><small>nd</small></sup>, the resultant loudness contour will 
+come from the formant envelope, and so will be from the 
+2<sup><small>nd</small></sup> sound.  However, you may want the 
+loudness envelope to be that of the 1<sup><small>st</small></sup> 
+sound.  Extracting the loudness envelope here would make that a 
+possibility. 
+</p>
+
+<p>
+This possibility (and others) is realised by using 
+<a href="ccombine.htm#MAKE2">COMBINE MAKE2</a>.  With this program 
+you can generate a spectrum by combining a pitch trace (<b>.frq</b>), 
+a formant structure (<b>.for</b>) and envelope data (<b>.evl</b>), 
+with each extracted from a different sound.  The envelope data 
+overwrites the loudness contour in the formant file.
+</p>
+
+<p>
+The binary envelope file can be used with or without additional 
+transformations.  It also enables you to continue your processing without 
+having to revert back to the original signal.
+</p>
+</blockquote>
+
+<p>
+End of REPITCH ANALENV<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="APPROX">REPITCH APPROX &#150; Make an approximate copy of 
+a pitchfile </h2>
+ 
+<h3>
+Usage
+</h3>
+<b>repitch approx mode</b> <i>pitchfile outfile</i> [<b>-p</b><i>prange</i>] 
+[<b>-t</b><i>trange</i>] [<b>-s</b><i>srange</i>]
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Gives a pitchfile as output<br>
+<b>2</b>&nbsp; Gives a transposition file as output<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> a binary pitch data file produced by REPITCH GETPITCH<br>
+<b>-p</b><i>prange</i> the interval in semitones over which the pitch 
+varies (upwards or downwards) from the original  (Range: &gt; 0.0)<br>
+<b>-t</b><i>trange</i> time interval in milliseconds by which the pitch 
+value can stray from the original time.  It is applied to turning points 
+in the pitch contour.  (Range:  from the duration of 1 analysis window 
+to the duration of the entire file.<br>
+<b>-s</b><i>srange</i> the time interval in milliseconds over which the 
+pitch contour is scanned.  A pitch shift by a semitone within <i>srange</i> 
+indicates pitch rise or fall.  (Range:  from the duration of 8 analysis 
+windows to (approximately) the duration of pitchfile.)<br>
+	<p>
+	<blockquote>
+	<i>prange</i>, <i>trange</i> and <i>srange</i> may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the REPITCH APPROX Function
+</h3>
+<blockquote>
+
+<p>
+This produces a deliberately approximate copy of the original pitch file.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+When two people sing 'in unison', they do not sing <i>exactly</i> the 
+same pitches, with exactly the same vibrato, exactly synchronously.  
+This function might be used to make such a 'natural' copy of a 
+pitch line.
+</p>
+</blockquote>
+
+
+<p>
+End of REPITCH APPROX<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ******************************************************* -->
+
+<h2 id="BRKTOPI">BRKTOPI &#150; Convert a breakpoint pitch data file to a binary pitch data file</h2>
+
+<h3>
+Usage
+</h3>
+<b>brktopi brktopi</b> <i>intextpitchfile outbinarypitchfile</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>intextpitchfile</i> &#150; breakpoint pitch data file (<b>.txt</b>, <b>.brk</b> or <b>.pch</b>) extracted by REPITCH GETPITCH or created &#47 manipulated as text<br />
+<i>outbinarypitchfile</i> &#150; binary pitch data file (<b>.for</b>)  
+</blockquote>
+
+<h3>
+Understanding the BRKTOPI Function
+</h3>
+
+<blockquote>
+<p>
+BRKTOPI converts a breakpoint pitch data file (text) to a binary pitch data file (<b>.for</b>). The function is the opposite of <a href = "#PCHTOTEXT">REPITCH PCHTOTEXT</a>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+While a great variety of manipulation is possible with binary pitch data files (<b>.for</b>), there is unlimited scope for altering the pitch data in breakpoint (text) form. As only binary pitch data can be converted into sound (via <a href ="ccombine.htm#MAKE"><b>MAKE</b></a>), this function provides the necessary conversion to the binary format.
+</p>
+
+<p>
+You need to be aware, however, that altering pitch data is not altering the formant data with which it will be combined in MAKE. The pitches you specify will sound only to the extent of the level that their equivalent frequencies (fundamental and harmonics) have in the formant file.
+</p>
+</blockquote>
+
+<p>
+End of BRKTOPI<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="COMBINE">REPITCH COMBINE &#150; Generate transposition data 
+from 2 sets of pitch data,<br> or transpose pitch data with transposition 
+data,<br> or combine 2 sets of transposition data to form new transposition 
+data, producing a binary data file output</h2>
+ 
+<h3>
+Usage
+</h3>
+<b>repitch combine 1</b> <i>pitchfile pitchfile2 outtransposfile</i><br>
+<b>repitch combine 2</b> <i>pitchfile transposfile outpitchfile</i><br>
+<b>repitch combine 3</b> <i>transposfile transposfile2 outtransposfile</i><br>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Generate transposition data from 2 sets of pitch data (<b>.frq</b> 
++ <b>.frq</b> = <b>.trn</b>)<br />
+<b>2</b>&nbsp; Transpose pitch data with transposition data (<b>.frq</b> + 
+<b>.trn</b> = <b>.frq</b>)<br>
+<b>3</b>&nbsp; Combine 2 sets of transposition data to form new transposition 
+data, producing a binary data file as output (<b>.trn</b> + <b>.frq</b> 
+= <b>.trn</b>)<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> binary pitch data file (.frq) OR <i>time pitch (frq-in-Hz)</i> 
+.brk breakpoint file<br>
+<i>transposfile</i> binary transposition file (.trn) OR <i>time 
+transposition-ratio</i> breakpoint file (.brk)<br> 
+<i>outpitchfile</i> binary pitch data file (.frq)<br>
+<i>outtransposfile</i> binary transposition file (.trn)<br>
+	<p>
+	<blockquote><b>NB:</b> It's IMPOSSIBLE to generate a binary 
+	outfile from exclusively breakpoint infiles.<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the REPITCH COMBINE Function
+</h3>
+<blockquote>
+
+<p>
+We need to look carefully at each of the modes in order to learn to 
+navigate these functions.  
+</p>
+
+<p>
+<b>NB: REPITCH COMBINE is the only way to produce a binary pitch 
+transposition file (.trn) with the output of <a href="#PCHSHIFT">
+REPITCH PCHSHIFT</a> (which is a .frq file).  A .trn file is one 
+of the required inputs for REPITCH TRANSPOSE&#47;F.</b>
+</p>
+
+<p>
+In <b>Mode 1</b> two files of time-varying pitch data are used as 
+inputs.  They can both be produced from input analysis files by 
+(separate runs of) <a href="#GETPITCH">REPITCH GETPITCH</a>.  Both can 
+be binary pitch data files (.frq), or one can be a <i>time pitch 
+(frq-in-Hz)</i> breakpoint file &#150; not both, because this process 
+will not generate (the needed) binary output from breakpoint data only.
+</p>
+
+<blockquote>
+<p>
+These input pitch data files are used by REPITCH COMBINE in <b>Mode 1</b> 
+to produce a new <b>binary</b> transposition file (.trn), or, using 
+REPITCH COMBINEB (Text) Mode 1, a <i>time transposition-ratio</i> breakpoint 
+file (.brk).  This new transposition file contains the <b>difference</b> 
+between the two input pitch data files <b>translated into the transposition 
+ratios</b> needed to move from the pitch shape of the first file to the 
+pitch shape of the second file.  (The order of the two input pitch data 
+files is therefore important!).
+</p>
+
+<p>
+You then go to REPITCH TRANSPOSE or REPITCH TRANSPOSEF, using Mode 4 
+(binary .trn file) to apply this transposition data to the original 
+sound (as an analysis file) and create a new version reshaped with the 
+pitch shape of the second file.  <a href="#TRANSPOSE">REPITCH TRANSPOSE</a> 
+is used to apply this transposition data without preserving formants and 
+<a href="#TRANSPOSEF">REPITCH TRANSPOSEF</a> is used to apply it while 
+preserving formants.
+</p>
+</blockquote>
+
+<p>
+<b>Mode 2</b> puts together a binary pitch data file (.frq) and a 
+transposition file:  a binary .trn file made from two sound sources, or a 
+(hand-written) breakpoint file containing <i>time transposition-ratio</i> 
+pairs.  The transposition file reshapes the pitch trace of the pitch 
+file.  The output produced is a new pitch shape in binary pitch data file 
+format (.frq).
+</p>
+
+<blockquote>
+<p>
+A binary transposition file (.trn) made in Mode 1 involves two source .frq 
+files and can be used in Mode 2 to reshape the first of these sources with the 
+characteristics of the second.  However, it may also be applied to the pitch 
+data (.frq) from any other sound.  Thus the difference between the two 
+Mode 1 source files is applied to a new, third file (with results that 
+will be difficult to predict).  The COMBINE Mode 2 output is another 
+time varying binary pitch data file (.frq).  <b>NB:</b> This file 
+<b>cannot</b> be used as an input to TRANSPOSE or TRANSPOSEF, which only 
+use transposition files (.trn or .brk) as inputs.
+</p>
+
+<p>
+<b>The primary purpose of Mode 2</b> is to create binary pitch data (.frq) 
+which can be given to various of the other REPITCH pitch shaping functions 
+in order to further modify the data:  see APPROX, CUT, EXAG, FIX, INVERT, 
+QUANTISE, RANDOMISE, SMOOTH and VIBRATO in the listing at the top of 
+this file.
+</p>
+</blockquote>
+
+<p>
+In <b>Mode 3</b>, two sets of tranposition data (two binary .trn files &#150; 
+<b>NB:</b> this means 4 sources), or one binary .trn file and one <i>time 
+transposition-ratio</i> breakpoint file &#150; 3 sources) are the inputs 
+combined to form a new binary .trn transposition file as the output.  
+<b>This process will sum the transposition data in the two files.</b>  
+At least one of these input files must be binary, because two input 
+breakpoint files will NOT produce a binary output.  The output 
+transposition data can be cycled round again with Mode 2, or can be 
+applied to a sound with TRANSPOSE or TRANSPOSEF, using Mode 4 (with 
+a .trn binary input).
+</p>
+
+<p>
+<b>Summary of things to remember:</b>
+  <ul>
+  <li>  COMBINE <b>Mode 1</b> inputs can be two binary pitch data files (.frq) 
+  from GETPITCH or one binary and one (possibly handwritten) <i>time 
+  frequency-in-Hz</i> breakpoint file.  Both CANNOT be breakpoint.  (The 
+  binary .frq file also contains <i>time frequency-in-Hz</i> data.) </li><br> 
+
+  <li>
+  COMBINE Mode 1 output is a binary transposition file (.trn).  
+  COMBINEB (Text) Mode 1 output is a <i>time transposition-ratio</i> 
+  breakpoint file.</li><br>
+
+  <li>
+  TRANSPOSE and TRANSPOSEF apply a transposition to a soundfile.  As 
+  COMBINE only produces a transposition file which is binary(.trn), Mode 4 
+  (binary .trn file) of TRANSPOSE&#47;F must be used when using data made 
+  by COMBINE.  Mode 1 (ratios) is used when COMBINEB (Text) is used to 
+  create <i>time transposition-ratio</i> breakpoint output.</li><br>
+
+  <li>
+  Note that ENVELOPE EXTRACT in the Time Domain (the <b>ProcessSF</b> 
+  menu) can produce breakpoint output (this will be amplitude envelope 
+  data), which can be used as transposition data in TRANSPOSE&#47;F because 
+  the envelope data is between 0 and 1.  To load the .brk file, tick 
+  time-vary, click on edit and then go to File\Load breakpoint file.  
+  When you click OK to save, this file will then be present on the 
+  TRANSPOSE page.</li><br>
+
+  <li>
+  COMBINE <b>Mode 2</b> inputs use a pitch file (.frq or .brk) and a 
+  transposition file (.trn or .brk).  Either of these can be binary or 
+  breakpoint, but both CANNOT be breakpoint.</li><br>
+
+  <li>
+  The main purpose of Mode 2 is to provide a binary pitch data file 
+  (.frq) for use as input by the other pitch shaping functions, but it 
+  can also be recycled in Mode 1 with a different second file.</li><br>
+
+  <li>
+  COMBINE <b>Mode 3</b> sums transposition data (two .trn inputs or one 
+  binary .trn and one <i>time transpose-ratio</i> .brk).  Its binary 
+  transposition file output (.trn) can be recycled or used directly with 
+  TRANSPOSE or TRANSPOSEF (Mode 4).</li><br>
+
+  <li>
+  To save confusion, you are recommended to choose binary or breakpoint 
+  file types and use them consistently.</li>
+  </ul>
+</p>
+
+<p>
+<div align=center>
+<table bgcolor="#B0E0E6" border="1" cellpadding="3">
+<caption><b>Table to summarise the origin &amp; uses of the Pitch 
+&amp; Transposition files:</b></caption>
+
+<tr>
+<th rowspan=6>Pitch File</th>
+<th rowspan=4>Origin</th>
+<td>binary pitch data file (.frq) or <i>time pitch (frq-in-Hz)</i> 
+breakpoint file as made by REPITCH GETPITCH</td>
+</tr>
+
+<tr>
+<td>binary pitch data file (.frq) made by COMBINE Mode 2 from a pitch (.frq) 
+&amp; a binary transposition file (.trn)<br>
+(either &#150; but not both &#150; of which can be breakpoint)</td>
+</tr>
+
+<tr>
+<td><i>time pitch (frq-in-Hz)</i> breakpoint file made by COMBINEB 
+from a pitch (.frq) &amp; a binary transposition file (.trn)<br>
+(either &#150; but not both &#150; of which can be breakpoint)</td>
+</tr>
+
+<tr>
+<td><i>time pitch (frq-in-Hz)</i> breakpoint file hand written with a text 
+editor</td>
+</tr>
+
+<tr>
+<th rowspan=2>Use</th>
+<td>inputs to Modes 1 or 2 of COMBINE or COMBINEB</td>
+</tr>
+
+<tr>
+<td>(.frq binary data file only) inputs to the other REPITCH pitch processing 
+functions</td>
+<tr>
+
+<tr>
+<th rowspan=7>Transposition File</th>
+<th rowspan=4>Origin</th>
+<td>binary made by COMBINE, Mode 1 from two pitch data files (.frq)<br>
+(either &#150; but not both &#150; of which can be breakpoint)</td>
+</tr>
+
+<tr>
+<td>binary made by COMBINE, Mode 3 from two transposition files (.trn)<br>
+(either &#150; but not both &#150; of which can be breakpoint)</td>
+</tr>
+
+<tr>
+<td><i>time transposition-ratio</i> made by COMBINEB, Mode 1 from two pitch 
+data files (.frq)<br>
+(either &#150; but not both &#150; of which can be breakpoint)</td>
+</tr>
+
+<tr>
+<td><i>time transposition-ratio</i> hand-written with a text editor</td>
+</tr>
+
+<tr>
+<th rowspan=3>Use</th>
+<td>inputs to Modes 2 or 3 of COMBINE or COMBINEB</td>
+</tr>
+
+<tr>
+<td>if breakpoint (.brk), input for Modes 1&#150;3 of TRANSPOSE or TRANSPOSEF</td>
+</tr>
+
+<tr>
+<td>if binary (.trn), input for Mode 4 of TRANSPOSE or TRANSPOSEF<br>
+<b>NB: These require a transposition file proper, not just a binary (or 
+breakpoint) pitch data file.</td>
+</tr>
+
+</table>
+</div>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Shape, often visually imagined somehow, is one of the key factors in 
+musical organisation.  It can be used in an abstract manner by which 
+it forms the material structurally without drawing too much attention 
+to itself, or it can be used in a very direct, overt manner as a 
+'gesture'.
+</p>
+
+<p>
+Extracting shapes from one sound and imposing them on another sound 
+is one way of altering sounds to get interesting new effects, or of 
+drawing together disparate data.  In FORMANTS, this idea is used with 
+spectral envelope data.  Here in REPITCH, it is used with pitch data, 
+i.e., the pitch curve a sound makes.
+</p>
+
+<p>
+For example, sometimes spoken words can cover a remarkably wide 
+pitch range.  This could be used to shape non-pitch material, thus 
+establishing some common ground between the two different kinds of 
+sound.  Conversely, a melodic passage could be used to put some 'song' 
+into otherwise somewhat monotonous spoken material.
+</p>
+
+
+<p>
+COMBINE is designed to be flexible.  The inputs can mix binary and 
+breakpoint, and the latter make it possible to design arbitrarily 
+simple or complex shape-designs by writing the files by hand.  Pitch 
+data can be extracted from existing sounds with REPITCH GETPITCH 
+in a binary or a breakpoint format.  <a href="#COMBINEB">REPITCH 
+COMBINEB</a> can be used to produce breakpoint files in each of the 
+three modes, thus making it possible to work and rework breakpoint 
+data before producing the binary transposition files needed by TRANSPOSE 
+and TRANSPOSEF, or the binary pitch data files needed by the other 
+pitch shaping functions.
+</p>
+
+<p>
+When planning manoeuvres with pitch data, it might be an idea to 
+sketch out what you want to happen to the data using mind maps, and 
+then write in the names of the functions (and any necessary intermediate 
+steps) that will be needed at each stage.
+</p>
+</blockquote>
+
+<p>
+End of REPITCH COMBINE<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="COMBINEB">REPITCH COMBINEB &#150; Generate transposition data 
+from 2 sets of pitch data,<br> or transpose pitch data with transposition 
+data,<br> or combine 2 sets of transposition data to form new transposition 
+data, producing a <i>time value</i> breakpoint file output</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch combineb 1</b> <i>pitchfile pitchfile2 outtbrkfile</i> 
+[<b>-d</b><i>I</i>]<br>
+<b>repitch combineb 2</b> <i>pitchfile transposfile outpbrkfile</i> 
+[<b>-d</b><i>I</i>]<br>
+<b>repitch combineb 3</b> <i>transposfile transposfile2 outtbrkfile</i> 
+[<b>-d</b><i>I</i>]<br>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Generate transposition data from 2 sets of pitch data 
+(<b>.frq</b> OR <i>time frq-in-Hz</i> <b>.brk</b> + <b>.frq</b> 
+OR <i>time frq-in-Hz</i> <b>.brk</b> = <i>time transposition-ratio</i> 
+<b>.brk</b>)<br />
+<b>2</b>&nbsp; Transpose pitch data with transposition data (<b>.frq</b> OR 
+<i>time frq-in-Hz</i> <b>.brk</b> + <b>.trn</b> OR <i>time 
+transposition-ratio</i> = <i>time frq-in-Hz</i> <b>.brk</b>)<br />
+<b>3</b>&nbsp; Combine 2 sets of transposition data to form new transposition 
+data (<b>.trn</b> OR <i>time transposition-ratio</i> <b>.brk</b> + 
+<b>.trn</b> OR <i>time transposition-ratio</i> <b>.brk</b> = 
+<i>time transposition-ratio</i> <b>.brk</b>)<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> &#150; binary pitch data file (.frq) OR <i>time pitch (frq-in-Hz)</i> 
+breakpoint file (.brk)<br>
+<i>transposfile</i> &#150; binary transposition file (.trn) OR <i>time 
+transposition-ratio</i> breakpoint file (.brk)</br> 
+<i>outpbrkfile</i> &#150; <i>time pitch (frq-in-Hz)</i> breakpoint file<br>
+<i>outtransposfile</i> &#150; <i>time transposition-ratio</i> breakpoint file<br>
+<b>-d</b><i>I</i> acceptable pitch error in breakpoint file data reduction<br>
+	<p>
+	<blockquote>
+	Range: <i>I</i> &gt; 1.0.  Default: eighth_tone = 0.250000<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+
+<h3>
+Understanding the REPITCH COMBINEB Function
+</h3>
+<blockquote>
+
+<p>
+The inputs to COMBINEB can be the same mix of binary and breakpoint as 
+for COMBINE.  However, all the ouputs are breakpoint files, whether of 
+pitch or of transposition data.  (Scroll up a bit to see the 
+'Table summarising the origin &amp; uses of the Pitch &amp; Transposition 
+files').
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+See REPITCH COMBINE above.
+</p>
+</blockquote>
+
+<p>
+End of REPITCH COMBINEB<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="CUT">REPITCH CUT &#150; Cut out and keep a segment of a 
+binary pitch data file</h2>
+ 
+<h3>
+Usage
+</h3>
+<b>repitch cut 1</b> <i>pitchfile outpitchfile starttime</i><br>
+<b>repitch cut 2</b> <i>pitchfile outpitchfile endtime</i><br>
+<b>repitch cut 3</b> <i>pitchfile outpitchfile starttime endtime</i><br>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Cut and retain from <i>starttime</i> to end of file<br>
+<b>2</b>&nbsp; Cut and retain from start of file to <i>endtime</i><br>
+<b>3</b>&nbsp; Cut and retain portion between <i>startime</i> and 
+<i>endtime</i><br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> the input is a binary pitch data file, as produced 
+by GETPITCH or COMBINE, Mode 2<br>
+<i>outpitchfile</i> the output is a binary pitch data file<br>
+<i>starttime</i> time in seconds at which to begin the cut &shy; 
+if 0, begins at start of the file</i>
+<i>endtime</i> time in seconds at which to end the cut<br>
+</blockquote>
+
+<h3>
+Understanding the REPITCH CUT Function
+</h3>
+<blockquote>
+
+<p>
+This function makes it possible to use part of a pitch data file without 
+having to return to the time domain.  PITCHINFO SEE and PITCHINFO HEAR 
+might be helpful in deciding upon the time cut points in the binary 
+pitch data file.  Or you could view&#47;listen to the original sound 
+in the time domain (the timings ought to match!).
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+The cut segment might be used, for example, as a template for the pitch of 
+another sound, using <a href="#COMBINE">REPITCH COMBINE</a> to generate 
+the appropriate transposition data (Mode 1 or 2), and <a href="#TRANSPOSE">
+REPITCH TRANSPOSE</a> or <a href="#TRANSPOSEF">REPITCH TRANSPOSEF</a> to 
+change the pitch of the other file. 
+</p>
+</blockquote>
+
+<p>
+End of REPITCH CUT<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="EXAG">REPITCH EXAG &#150; Exaggerate pitch contour</h2>
+ 
+<h3>
+Usage
+</h3>
+<b>repitch exag 1&shy;2</b> <i>pitchfile outfile meanpch range</i><br>
+<b>repitch exag 3&shy;4</b> <i>pitchfile outfile meanpch contour</i><br>
+<b>repitch exag 5&shy;6</b> <i>pitchfile outfile meanpch range contour</i>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1,3,5</b>&nbsp; Give a pitchfile as output<br> 
+<b>2,4,6</b>&nbsp; Give a transposition file as output<br>
+</blockquote>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> the input is a binary pitch data file, as produced 
+by GETPITCH or COMBINE, Mode 2<br>
+<i>outfile</i> the output is a binary pitch data file or a transposition 
+file, depending on the Mode<br>
+<i>meanpch</i> the pitch as a MIDI note number around which intervals 
+are stretched<br>
+<i>range</i> exaggeration of the pitch range: an interval expressed in 
+semitones and used as a multiplier  (Range: &gt; 0)<br>
+<i>contour</i> exaggeration of the pitch contour  (Range: values between 
+0 and 1)<br>
+	<p>
+	<blockquote>
+	<i>meanpitch</i>, <i>range</i> and <i>contour</i> may all vary 
+	over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the REPITCH EXAG Function
+</h3>
+<blockquote>
+
+<p>
+Mean pitch &#150; which may vary over time &#150; is the pitch around 
+which the stretchings or shrinkings of intervals takes place.  With 
+the <i>contour</i> exaggeration, the program measures how far (above 
+or below) each pitch is from the specified mean, then pushes it up 
+or down, depending on the value set for <i>contour</i>.  This either 
+stretches the intervals close to the mean by a lot, and those far from 
+the mean by a little, or <i>vice versa</i>.
+</p>
+
+<p>
+With the <i>interval</i> exaggeration, the program finds the interval 
+between the mean and a note and multiplies it by the <i>range</i> 
+variable.  For example, a value of 0.5 will compress the intervals.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Some form of alteration of the spectrum will result, but it is 
+virtually impossible to tell what, as it is so highly dependent on 
+the spectral content of the <i>infile</i>.
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="cspecfnu.htm#PCHEXAGG"><b>SPECFNU: PITCH EXAGGERATE</b></a> (Mode 16)
+</p>  
+
+
+<p>
+End of REPITCH EXAG<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="FIX">REPITCH FIX &#150; Massage pitch data in a binary 
+pitchfile</h2>
+ 
+<h3>
+Usage
+</h3>
+<b>repitch fix</b> <i>pitchfile outpitchfile</i> <b>-r</b><i>T1</i> 
+<b>-x</b><i>T2</i> <b>-l</b><i>bf</i> <b>-h</b><i>tf</i> 
+<b>-s</b><i>N</i> <b>-b</b><i>f1</i> <b>-e</b><i>f2</i> 
+<b>-w</b> <b>-i</b> 
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> the input is a binary pitch data file, as produced 
+by GETPITCH or COMBINE, Mode 2<br><br>
+<i>outpitchfile</i> the output is a binary pitch data file<br>
+CUT<br>
+<b>-r</b><i>t1</i> Starttime: remove pitch from time <i>t1</i> 
+(Default: 0.0)(<br>
+<b>-x</b><i>t2</i> Endtime: end pitch removal at time <i>t2</i> 
+(Default: end of file)<br>
+FILTER<br>
+<b>-l</b><i>bf</i> Bottom frequency:  remove pitch below frequency <i>bf</i><br>
+<b>-h</b><i>tf</i> Top frequency:  remove pitch above frequency <i>tf</i><br>
+SMOOTH<br>
+<b>-s</b><i>N</i> Smooth count:  smooth onset errors &amp; glitches in 
+pitchdata, <i>N</i> times<br>
+<b>-w</b> removes 2-window glitches (Default: 1-window) (Use ONLY with the 
+<b>-s</b> paramter)<br>
+MARK<br>
+<b>-b</b><i>f1</i> Start frequency:  force start frequency to be <i>f1</i><br>
+<b>-e</b><i>f2</i> End frequency:  force end frequency to be <i>f2</i><br>
+INTERPOLATE<br>
+<b>-i</b> interpolate through ALL non-pitch windows in the pitch data, 
+producing pitch everywhere<br>
+</blockquote>
+
+<p>
+<blockquote>
+<b>Rules:</b><br>
+1. AT LEAST ONE flag must be used.<br>
+2. When pitches are removed, they are replaced by a 'no-pitch' 
+indicator.  These (and any already existing unpitched windows in 
+the file) can be converted to pitch data (by interpolation between 
+adjacent pitches) using the <b>-i</b> flag.<br>
+3. With multiple flags, the ORDER of operations within the 
+program is:
+   <blockquote>     	
+		1. Remove time-wise (<b>-r&#47;-x</b>)<br>
+		2. Remove frequency-wise (<b>-l&#47;-h</b>)<br>
+		3. Smooth (<b>-s&#47;-w</b>)<br>
+		4. Set end values (<b>-b&#47;-e</b>)<br>
+		5. Interpolate (<b>-i</b>)<br>
+   </blockquote>		
+</blockquote>
+</p>
+
+<h3>
+Understanding the REPITCH FIX Function
+</h3>
+<blockquote>
+
+<p>
+Formerly SPECPMOD, this function attempts to improve on (or smooth) the 
+pitch contour produced by REPITCH GETPITCH.  It is easiest to use if the 
+pitch contour is first converted to a pseudo-soundfile (with 
+<a href="cptchinf.htm#SEE"><b>PITCHINFO SEE</b></a>) and viewed at the 
+sample level with VIEWSF or another sound editor capable of zooming 
+to sample accuracy.  This should reveal the presence of any unwanted 
+glitches.<br>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+If the pitch output from REPITCH GETPITCH sounds awry, you can look 
+at it with <a href="cptchinf.htm#SEE"><b>PITCHINFO SEE</b></a>) 
+to see what kind of glitches there might 
+be.  Then use the appropriate REPITCH FIX option to eliminate or 
+reduce the glitches.
+</p>
+</blockquote>
+
+<p>
+End of REPITCH FIX<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="GENERATE">REPITCH GENERATE &#150; Create binary pitchdata 
+from a textfile of <i>time midi</i> value pairs</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch generate</b> <i>outpitchdatafile midipitch-data srate</i>
+<br>
+
+<h3>
+Parameters
+</h3> 
+      <blockquote>
+        <i>outpitchdatafile</i> &#150; binary pitchdata file produced by the
+        program (these files have a <b>.frq</b> extension)<br>
+        <i>midipitch-data</i> &#150; a text file containing a list of paired
+        <i>time</i> and <i>midi-note-values</i>:<i><br>
+        </i>
+        <blockquote><i><font size="-1">• </font>times</i> must start at
+          zero and increase<i><br>
+          </i><i><font size="-1">• </font>midi-note-values</i> may be:<br>
+          <blockquote><font size="-1">• </font>numeric MIDI note values
+            (MPV); e.g., Middle-C = 60. See the <a href="notechrt.htm"><b>Chart
+                of Equivalent Pitch &nbsp;&nbsp; Notations</b></a> for a
+            full listing.<br>
+            <font size="-1">• </font>OR: note names (A,B,C,D,E,F or G<font
+              size="-1">)<br>
+            </font><font size="-1">• </font>possibly followed by a '#'
+            for a sharp or a 'b' for a flat<br>
+            <font size="-1"></font><font size="-1">• </font>and
+            (required) followed by an octave number between -5 and 5,
+            where 0 corresponds to the octave starting at Middle C<br>
+            <font size="-1"></font>Example file:&nbsp;&nbsp;&nbsp; <br>
+            [time MPV]
+            <br>
+            0.0 &nbsp;&nbsp;&nbsp; 60
+            <br>
+            1.0 &nbsp;&nbsp;&nbsp; Eb0
+            <br>
+            2.4 &nbsp;&nbsp;&nbsp; F#0
+            &nbsp;&nbsp; <br>
+            3.7 &nbsp;&nbsp;&nbsp; 67.25
+            <br>
+            4.0 &nbsp;&nbsp;&nbsp; C1<i><br>
+            </i>
+          </blockquote>
+        </blockquote>
+        <i>srate</i> – the sample rate of the soundfile that might later
+        be generated from the binary pitch data, such as 44100.
+      </blockquote>
+
+<h3>
+Understanding the REPITCH GENERATE Function
+</h3>
+
+<blockquote>
+<p>
+<p>
+REPITCH GENERATE allows you to generate a binary pitchdata file 
+<b>.frq</b> by directly typing in <b>MIDI</b> or musical <b>note 
+name</b> information.  Note that this is the same type of file as that 
+produced by <a href="#GETPITCH"><b>REPITCH GETPITCH</b></a>.  The difference 
+is that with REPITCH GENERATE you are designing your own pitch trace 
+by specifying the (changing) pitch levels using musician-friendly data 
+entry, and with REPITCH GETPITCH the pitch levels are extracted 
+automatically from the input analysis file.
+</p>
+
+<p>
+The advantages offered by REPITCH GENERATE are:
+     <blockquote>
+	1. an easy, musical, form of data entry<br>	
+	2. the ability to use the resultant <b>.frq</b> file in 
+	combination with other files to produce complex transposition 
+	relationships.  <a href="crepitch.htm#COMBINEB">REPITCH 
+	COMBINEB</a> can produce text breakpoint file output, but 
+	neither it nor <a href="crepitch.htm#COMBINE">REPITCH 
+	COMBINE</a> accept a text breakpoing file as an input.<br>
+	3. the ability to use your own <b>.frq</b> pitch 
+	data file crafted with the help of REPITCH GENERATE as an 
+	input to <a href="ccombine.htm#MAKE2">COMBINE MAKE2</a>.
+	With this program, you can create new sounds by using 
+	pitch <b>.frq</b>, formant <b>.for</b> and envelope data 
+	<b>.evl</b> from various sources.
+     </blockquote>
+See the <a href="rpchchrt.htm"><b>Transposition &amp; Shifting Inputs 
+and Outputs</b></a> Chart for a summary of the relevant PITCH and 
+REPITCH operations.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Two programs in the COMBINE group enable you to create a spectrum 
+from inputs derived from different sources.  <a href="ccombine.htm#MAKE">
+MAKE</a> accepts a binary pitch data file <b>.frq</b> and a formant 
+file <b>.for</b>.  You can make the binary pitch data file (<b>.frq</b>) 
+with REPITCH GETPITCH, which does an automatic pitch-trace, or you can 
+design it yourself in a musician-friendly way with REPITCH GENERATE.  
+COMBINE MAKE outputs an analysis file <b>.ana</b>.
+</p>
+
+<p>
+<a href="ccombine.htm#MAKE2">COMBINE MAKE2</a> is another variant 
+of this, <b>also accepting envelope loudness data</b> in binary form 
+(<b>.evl</b>).  There are various ways to create an <b>.evl</b> 
+file, including <a href="#ANALENV">ANALENV</a> in the REPITCH 
+Group.  It also produces an analysis file <b>.ana</b>.
+</p>
+
+<p>
+Another option is simply to impose a specific sequence of pitches 
+on a spectrum. You could do that by combining auto-pitch extraction 
+with your own hand-crafted pitch contour:
+     <blockquote>
+	1. extract the pitch of the analysis-file source (REPITCH 
+	GETPITCH, producing a binary pitch data file <b>.frq</b>),<br>
+	2. combine (REPITCH COMBINE, Mode <b>1</b>) this with your 
+	new pitch data file (a <b>.frq</b> made with REPITCH GENERATE) 
+	to generate a transposition file <b>.trn</b> (<b>.frq</b> + 
+	<b>.frq</b> = <b>.trn</b>)<br>
+	3. and then apply the transposition data (<b>.trn</b>) to the 
+	original analysis-file (REPITCH TRANSPOSE, Mode <b>4</b>).
+     </blockquote>
+	
+     <blockquote><font color="#FF0000">
+	Note that the <b>.trn</b> file is only produced by REPITCH 
+	COMBINE or COMBINEB.  It is the required (binary) input for 
+	REPITCH TRANSPOSE.  The binary pitch data file <b>.frq</b> 
+	is not a transposition file and cannot be used as an input 
+	to REPITCH TRANSPOSE.</font>
+     </blockquote>
+</p>
+
+<p>
+Because of the complexity of these various program combinations, 
+it is recommended that you prepare some <a href="filestxt.htm#BATCHFILES">
+<b>batch files</b></a> (<b>Instruments</b> in <i>Sound Loom</i>) for 
+your favourite operations.
+</p>
+</blockquote>
+
+<p>
+End of REPITCH GENERATE<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="GETPITCH">REPITCH GETPITCH - Attempt to extract pitch from 
+spectral data</h2>
+
+<h3>		
+Usage
+</h3>
+<b>repitch getpitch 1</b> <i>infile outfile pfil</i> 
+[<b>-t</b><i>R</i>] [<b>-g</b><i>M</i>] [<b>-s</b><i>S</i>] [<b>-n</b><i>H</i>]
+[<b>-l</b><i>L</i>] [<b>-h</b><i>T</i>] [<b>-a</b>] [<b>-z</b>]<br>
+
+<b>repitch getpitch 2</b> <i>infile outfile bfil</i> 
+[<b>-t</b><i>R</i>] [<b>-g</b><i>M</i>] [<b>-s</b><i>S</i>]
+[<b>-n</b><i>H</i>] [<b>-l</b><i>L</i>] [<b>-h</b><i>T</i>] 
+[<b>-d</b><i>i</i>] [<b>-a</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>outfile</i>  (dummy) analysis file (.ana): when resynthesized, 
+produces a tone at the detected (possibly varying) pitch<br>
+
+<i>pfil</i>  binary output file (.frq) containing pitch information<br>
+
+<i>bfil</i>  breakpoint (text) output file (.brk) of pitch information (as 
+<i>time Hz</i> pairs)<br>
+&nbsp;&nbsp;&nbsp;Either of these may be reused in other pitch-manipulating 
+options.<br>
+
+<b>-t</b><i>R</i>  <i>R</i> = Tuning range(semitones) within which harmonics 
+are accepted as in tune (Default 1)<br>
+
+<b>-g</b><i>M</i>  <i>M</i> = minimum number of adjacent windows that must be 
+pitched, for a pitch-value to be registered (Default 2)<br>
+
+<b>-s</b><i>S</i>  <i>S</i> = signal to noise ratio, in decibels 
+(Default 80dB)<br>
+&nbsp;&nbsp;&nbsp;Windows which are more than <i>S</i>dB below maximum 
+level in sound, are assumed to be noise,<br>
+&nbsp;&nbsp;&nbsp; and any detected pitch value is assumed spurious.<br>
+
+<b>-n</b><i>H</i>  <i>H</i> = how many of the 8 loudest peaks in spectrum 
+must be harmonics to confirm sound is pitched (Default 5)<br>
+
+<b>-l</b><i>L</i>  <i>L</i> = frequency of LOWEST acceptable pitch 
+(Default minimum: 0Hz)<br>
+
+<b>-h</b><i>T</i>  <i>T</i> = frequency of TOPMOST acceptable pitch 
+(Default maximum: Nyquist&#47;8)<br>
+
+<b>-d</b><i>i</i>  <i>i</i> = acceptable pitch-ratio error in data reduction 
+(semitones) (Default 1&#47;8 tone = 0.250000)<br>
+
+<b>-a</b>  Alternative pitch-finding algorithm (avoid N &lt 2)<br>
+
+<b>-z</b>  Retain unpitched windows (set them to -1)<br>
+&nbsp;&nbsp;&nbsp;Default: Set pitch by interpolation between adjacent 
+pitched windows<br>
+</blockquote>
+
+<h3>
+Understanding the REPITCH GETPITCH Function
+</h3>
+<blockquote>
+
+<p>
+<b>This is the key program in the REPITCH Group.</b>  It extracts a pitch trace 
+from analysis data, producing a binary pitch data file (<b>.frq</b>) in 
+Mode <b>1</b>, which can then be massaged by the other REPITCH 
+functions.  A number of these functions handle noise or silent data 
+in the the <b>.frq</b> file.  An overview of these is given in the 
+<a href="#REPITCHTECHNICAL"><b>Technical Discussion</b></a> section.   The 
+other key program is COMBINE&#47;B, which can combine binary pitch 
+data files (i.e., pitch traces) to produce transposition data etc.
+</p>
+
+<p>
+You can resynthesise the output analysis file produced during the pitch 
+extraction process in order to audition the results.  This is a simple 
+sine-wave sound based on the pitch extraction.  See the 
+<a href="#REPITCHTECHNICAL"><b>Technical Discussion</b></a> for an overview.
+</p>
+
+<p>
+Handling noise elements</a> is important.  A complex sound with a varying 
+degree of noise elements will need to be handled carefully to enable the 
+process to find the pitched material.  Pay special attention to the 
+parameters relating to noise.  You can:<br>
+	<blockquote>
+	a. use <b>-z</b> to flag the retention of unpitched windows if 
+	    you're going to use <a href="cspecedi.htm#BARE"><b>SPEC BARE</b></a> because it helps SPEC BARE to 
+	    identify non-harmonic windows;  unpitched windows are marked 
+	    with a '-1' to indicate that they have zero pitch.  Otherwise, 
+	    they are replaced with interpolated pitch values.<br></br>
+	b. use <b>-g</b> to discard a specified range of windows to be 
+	    treated as noise <br></br>
+	c. use <b>-s</b> (signal to noise ratio) to set a dB level 
+	    below which the signal is to be regarded as noise
+	</blockquote>
+</p>
+
+<p>
+On the other hand, notice how you can specify how many of the eight loudest 
+partials must be harmonics.  Here the source will be a clearly pitched tone, 
+so you're expecting harmonics to be present, and you try to judge just how 
+many the process should find at any given point in order to verify that a 
+pitch is present.  That is, when the criterion is not met, too much of a 
+noise element may be present.  In this way, the pitched material may be 
+separated out from the noise more effectively.  But if you overspecify for 
+the source sound, you may throw away too much;  it depends how clear it is 
+in the first place.
+</p>
+
+<p>
+When generating a binary pitch data file for use by another process, you 
+can use the <b>-z</b> parameter to mark unpitched windows for retention.  
+These are flagged in the data file (with a -1), and this information can 
+be used by a subsequent process, for example, to help it ignore unpitched 
+material.  <a href="cspecedi.htm#BARE"><b>SPEC BARE</b></a> is the primary 
+(and possibly only) application for this.<br>  
+<b>NB:</b> At the time of 
+writing, it is my understanding (Ed.) that <b><i>no REPITCH process will 
+work if the binary pitch data file has been created with the flag to retain 
+unpitched windows set</b></i>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+The many musical applications are indicated by the following list of 
+processes which use the pitch data file produced by PITCH as their 
+input:
+<blockquote>
+<a href="cspecedi.htm#BARE"><b>SPEC BARE</b></a> (isolate the harmonic partials)<br>
+<a href="#APPROX"><b>REPITCH APPROX</b></a> (approximate copy of the file)<br>
+<a href="#COMBINE"><b>REPITCH COMBINE</b></a> (generate pitch transposition data, 
+producing a binary output)<br>
+<a href="#COMBINEB"><b>REPITCH COMBINEB</b></a> (generate pitch transposition 
+data, producing a breakpoint output)<br>
+<a href="#CUT"><b>REPITCH CUT</b></a> (cut out and retain part of the file)<br> 
+<a href="#FIX"><b>REPITCH FIX</b></a> ('correct' pitch data)<br>
+<a href="#QUANTISE"><b>REPITCH QUANTISE</b></a> (snap to a pitch grid)<br>
+<a href="#RANDOMISE"><b>REPITCH RANDOMISE</b></a> (randomise pitch line)<br>
+<a href="cptchinf.htm#SEE"><b>PITCHINFO SEE</b></a> (view data in the file)<br>
+<a href="#SMOOTH"><b>REPITCH SMOOTH</b></a> (smooth pitch contour)<br>
+<a href="#TRANSPOSE"><b>REPITCH TRANSPOSE</b></a> (transpose pitch values)<br>
+<a href="#VIBRATO"><b>REPITCH VIBRATO</b></a> (add vibrato)<br>
+<a href="cptchinf.htm#WRITE"><b>PITCHINFO WRITE</b></a> (convert a binary pitch 
+data file to a <i>time frequency</i> breakpoint file;  this breakpoint file 
+can then be used as an input for any time-varying process)<br>
+<a href="cptchinf.htm#ZEROS"><b>PITCHINFO ZEROS</b></a> (show if uninterpolated 
+zeros are present)
+</blockquote>
+</p>
+</blockquote>
+
+<p>
+End of REPITCH GETPITCH<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="INSERTSIL">REPITCH INSERTSIL &#150; Mark areas as silent in a 
+pitchdata file</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch insertsil mode</b> <i>inpitchdatafile outpitchdatafile 
+silence-data</i>
+<br>
+
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; the data is given as a list of times<br />
+<b>2</b>&nbsp; the data is given as (grouped) sample counts:  count 
+samples in mono, pairs in stereo, etc.
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inpitchdatafile</i> &#150; input binary pitchdata file 
+(<b>.frq</b>)<br />
+<i>outpitchdatafile</i> &#150; output binary pitchdata file produced 
+(<b>.frq</b>) by the program<br />
+<i>silence-data</i> &#150; text file (<b>.txt</b>) specifying where 
+to mask the unsatisfactory analysis data.  See examples below.
+</blockquote>
+
+<h3>
+Understanding the REPITCH INSERTSIL Function
+</h3>
+
+<blockquote>
+<p>
+This function enables you to replace questionable pitch information 
+with silence.
+</p>
+
+<p>
+When the binary pitch data file (the 'pitch trace') is created with 
+<a href="crepitch.htm#GETPITCH">REPITCH GETPITCH</a>, the software is 
+examining the analysis bins for definable pitch content.  This is not 
+infrequently rather ambiguous, leading to spurious artefacts in the 
+output, such as noise components.  By default, REPITCH GETPITCH 
+smooths over these places with an interpolation function, but you can 
+set an option retain the unpitched windows (<b>-z</b> flag), which makes 
+it possible for REPITCH INSERTSIL to distinguish between pitch and noise.  
+It then goes through the file looking for clearly recognisable pitch data, 
+retains this and replaces the 'questionable' material with silence.
+</p>
+
+<p>
+Suppose you had extracted the pitch trace (<b>.frq</b>) from some complex 
+soundstream (A) containing pitch, noise and undecidable material, such 
+as a sequence of avant-garde sounds from a string or brass instrument 
+with noisy ormultiphonic effects.  Then you also make a formant analysis 
+(<b>.for</b>) &#150; this could in fact be from another source (B).  If 
+you use <a href="ccombine.htm#MAKE">COMBINE MAKE</a> to combine the pitch 
+(<b>.frq</b>) and formant data (<b>.for</b>) to make a new sound via
+the new analysis file produced, you will probably discover some rather 
+unpleasant artefacts where the original signal (A) did not produce 
+reliable pitch data.  This applies even if the input is a perfectly 
+acceptable harmonic sound but uses <b>more than one</b> pitch.
+</p>
+
+<p>
+You can use this program to mask out the bits that are a bit
+dubious, i.e., you don't get the pitch or pitchiness you expect, 
+in order to achieve a file of (say) pure pitch and silence.
+You can then recombine the pitch and formant data and the silent 
+sections in the pitch file will be silent in the output.  Thus only 
+sound for which you have reliable data will be resynthesized in the 
+output.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+REPITCH INSERTSIL therefore enables you to focus in on the most salient 
+pitch features of a sound, discarding the rest.  It is part of a group 
+of programs designed especially for processing spoken material.
+</p>
+
+<p>
+This process was used by Trevor Wishart, for example, in <i>The Division 
+of Labour</i>.  There he extracted the pitch of the speaker and used it 
+to synthesise a chord that glides around, following the pitch of the 
+original voice.  This is a typical example of using a pitch trace as 
+a contour with which to shape other material.  But in this case, he 
+also wanted to have silent sections within this movement.  He was able 
+to do this by adding silence to the pitch trace (binary pitch data file), 
+with INSERTSIL.
+</p>
+
+<p>
+To end up with a sound that contains real silence when shaping it with 
+the contours of a pitch data file, it is not enough to use REPITCH COMBINE 
+with the REPITCH INSERTSIL <b>.frq</b> output.  Rather, a pitchfile 
+containing silence will only lead to an output <b>sound</b> containing 
+silence if you use it <b>directly</b> for synthesising that output, 
+i.e., with <a href="#SYNTH">REPITCH SYNTH</a>.
+</p>
+
+<p>
+It is useful to understand why this is so.
+     <blockquote>
+	<font size="-1">• </font>Combining two pitch data files to make a transposition file 
+	(<a href="#COMBINE">REPITCH COMBINE</a> Mode <b>1</b>) must generate 
+	meaningful a transposition value <b>everywhere</b> in the file, or 
+	the transposition process will fail.<br>
+	<font size="-1">• </font>A transposition file (<b>.trn</b>) does <i>transposition</i>, 
+	not changes of level.<br>
+	<font size="-1">• </font>Thus, when combining two pitch data files, at times where 
+	<b>either</b> of the pitch input files has pitch-zeros or silence 
+	indicated, a transposition value of 1.0 is generated (i.e., no 
+	transposing takes place at those times).<br>
+	<font size="-1">• </font>If you start off with one pitchfile, then insert silence to create 
+	a second, then combine the two to make a transposition file (REPITCH 
+	COMBINE:  <b>.frq</b> + <b>.frq</b> = <b>.trn</b>), the places where 
+	you inserted the silence will output transposition values of 1.0:  
+	it <i>doesn't</i> create silence (nor does it transpose).
+     </blockquote>   
+</p>
+
+<p>
+Creating the required <i>silence-data</i> file might be a bit haphazard 
+unless you make use of the <b>Pitch Editor</b> in <i>Sound Loom</i>.  This 
+facility displays binary pitch data files, with both time and frequency 
+labelling.  If you have extracted the pitch trace with interpolation turned 
+off ('retain the unpitched windows'), you will see these portions of the 
+pitch trace marked out in grey.<br />
+<IMG SRC="displayunpitched.jpg" ALT="[display of unpitched material]" 
+VSPACE="10"></a><br clear>
+<b>Pitch Editor showing unpitched material</b>
+</p>
+
+<p>
+<b>Control-Alt-MouseClicks</b> will then give you precise location data 
+for the edges of these grey sections, so that you can find the precise 
+time, or window or sample where they appear, for use in preparing your 
+<i>silence-data</i> file.  The <b>Pitch Editor</b> also enables you to 
+smooth and transpose selected portions of the pitch trace.  If you then 
+display the <b>.frq</b> file with the silence inserted, you will see it 
+marked out in red.
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b>  <a href="#INSERTZEROS"><b>INSERTZEROS</b></a>, <a href="#INTERP"><b>INTERP</b></a>, 
+<a href="#NOISETOSIL"><b>NOISETOSIL</b></a> and <a href="#PITCHTOSIL"><b>PITCHTOSIL</b></a>.
+</p>
+
+
+<p>
+End of REPITCH INSERTSIL<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="INSERTZEROS">REPITCH INSERTZEROS &#150; Mark areas as 
+unpitched in a pitchdata file</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch insertzeros mode</b> <i>inpitchdatafile outpitchdatafile 
+zeros-data</i>
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; the data is given as a list of times<br />
+<b>2</b>&nbsp; the data is given as (grouped) sample counts:  count 
+samples in mono, pairs in stereo, etc.
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inpitchdatafile</i> &#150; input binary pitchdata file<br />
+<i>outpitchdatafile</i> &#150; output binary pitchdata file produced 
+by the program<br />
+<i>zeros-data</i> &#150; a list of pairs of times between which unpitched 
+data is to be inserted.  See examples below.
+</blockquote>
+
+<h3>
+Understanding the REPITCH INSERTZEROS Function
+</h3>
+
+<blockquote>
+<p>
+REPITCH INSERTZEROS indicates where <b>no pitch</b> is 
+detected in the binary pitch data file.  No pitch means 
+that there is actual noise or signal too complex to 
+extract the pitch successfully.
+</p>
+
+<p>
+Note that this process is different from <a href="#INSERTSIL">
+<b>INSERTSIL</b></a> which indicates where there is <b>no signal</b> 
+in the file.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+<p>
+Pitch data can be extracted with various caveats. For 
+example, what should happen at places where there is no 
+sound, or no pitched sound (just noise)? On comparing the 
+pitch output with the original, you may decide that a 
+segment of pitch extracted by the process is so vaguely 
+defined in the original that it would be better to treat 
+it as unpitched. With this process you can do this. 
+</p>
+</p>
+</blockquote>
+
+<p>
+End of REPITCH INSERTZEROS<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="INTERP">REPITCH INTERP &#150; Replace noise or silence by 
+pitch interpolated from existing pitches</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch interp</b> <i>inpitchdatafile outpitchdatafile</i>
+<br>
+
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Glides from a previous valid pitch to the next valid pitch.<br />
+<b>2</b>&nbsp; Sustains the previous valid pitch until the next valid pitch 
+appears.
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inpitchdatafile</i> &#150; input binary pitchdata file (.frq)<br />
+<i>outpitchdatafile</i> &#150; output binary pitchdata file (.frq) 
+produced by the program<br />
+</blockquote>
+
+<h3>
+Understanding the REPITCH INTERP Function
+</h3>
+
+<blockquote>
+<p>
+When you use <a href="#GETPITCH"><b>REPITCH GETPITCH</b></a> to extract the 
+pitch data from a source with interpolation turned off (option to 
+'Retain unpitched windows' &#47; 'Keep pitch zeros'), the resulting 
+binary pitch data file (<b>.frq</b>) will keep a record of any 
+unpitched (noise) or silent sections.
+    <blockquote>
+	<font size="-1">• </font><b>unpitched</b> means noise or waveforms 
+	too complex to deduce pitch successfully<br>
+	<font size="-1">• </font><b>silent</b> means no significant signal is detected
+    </blockquote>
+</p>
+
+<p>
+If you decide not to keep this information (i.e. you prefer 
+the pitch data to be continuously pitched, for some musical 
+purpose, rather than to contain gaps) REPITCH INTERP will cause 
+the pitch data to interpolate across the unpitched gaps. 
+</p>
+
+<p>
+Using one or the other Mode, you can do this in two ways:
+    <blockquote>
+    <font size="-1">• </font>either you create pitch glissandi across the unpitched 
+	areas, moving ('gliding') from the pitch before the noise or 
+	silence to the pitch after it, or<br>
+    <font size="-1">• </font>you sustain the pitch before the noise or silence until you 
+        reach the pitch after it.</li>
+    </blockquote>	
+</p>
+
+<p>
+There are also facilities within the <i>Sound Loom</i> <b>Pitch Editor</b> 
+to smooth across areas of noise or silence manually.
+</p>
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is particularly important when working with two different files 
+in which continuity of pitch is important.  For example, 
+<a href="#COMBINE"><b>REPITCH COMBINE</a>, Mode 1</b> enables you to 
+combine two different pitch traces, creating a transposition file 
+(<b>.trn</b>) that 'contains the difference between the two input pitch 
+data files translated into the transposition ratios needed <b>to move from 
+the pitch shape of the first file to the pitch shape of the second file</b>'.  
+In other words, you are imposing the pitch contour of file 2 onto file 1.  
+If, for example, you have recorded two instruments one or both of which is 
+playing staccato, there will be silent gaps in your pitch files.  Without 
+interpolation, these gaps will make it impossible for the pitch traces 
+to interact properly, unless they were perfectly in sync.
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b> <a href="#INSERTSIL"><b>REPITCH INSERTSIL</b></a> for a discussion of how 
+to end up with an output sound that <i>does</i> contain silence.
+</p>
+
+<p>
+End of REPITCH INTERP<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="INVERT">REPITCH INVERT &#150; Invert pitch contour of a 
+pitch data file</h2> 
+<h3>
+Usage
+</h3>
+<b>repitch invert mode</b> <i>pitchfile outfile map</i> 
+[<b>-m</b><i>meanpitch</i>] [<b>-b</b><i>bot</i>] [<b>-t</b><i>top</i>]
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Gives a pitchfile as output<br>
+<b>2</b>&nbsp; Gives a transposition file as output<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> the input is a binary pitch data file<br>
+<i>outfile</i> the output may be a binary pitch data file or a (binary) 
+transposition file, depending on which Mode is set<br>
+<i>map</i> set <i>map</i> to 0 if no mapping is required.  Otherwise, 
+<i>map</i> is a text file of paired values showing how intervals expressed 
+in (possibly fractional) semitones are to be mapped onto their inversions.  
+(Range:  -96 to 96)<br>
+<b>-m</b><i>meanpitch</i> pitch expressed as a MIDI note value around which 
+the pitch line is to be inverted  (Range:  MIDI equivalents of 9Hz to the 
+Nyquist frequency (sample rate divided by 2))<br>
+<b>-b</b><i>bot</i> bottom pitch (MIDI note value) permissible  (Default: 
+0;  Range:  MIDI equivalents of 9Hz to Nyquist)<br>
+<b>-t</b><i>top</i> top pitch (MIDI note value) permissible (Default: 127; 
+Range:  MIDI equivalents of 9Hz to Nyquist)<br>
+	<p>
+	<blockquote>
+	<i>meanpitch</i> may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the REPITCH INVERT Function
+</h3>
+<blockquote>
+
+<p>
+The no mapping option (<i>map</i> set to 0) will give a mirror inversion 
+of the original contour, i.e., all intervals will be identical, but in 
+the opposite direction.  This is fine for various styles, such as atonal 
+and serial music, but may not be what is wanted in a tonal context.  Here 
+the inversion often needs to remain within the same scale or 'key'.  The 
+mapping function makes it possible to specify what's needed here.
+</p>
+
+<p>
+The Mode 1 output (binary pitch data file) can be fed back into another 
+pitch modification process.  The Mode 2 output (binary transposition file) 
+can be given as input to <a href="#TRANSPOSE"><b>TRANSPOSE&#47;TRANSPOSEF</b></a> Mode 4 to create an 
+analysis file which can be resynthesised:  i.e., to complete the process.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Inversion is a very basic and universal musical technique.  It is a way 
+of extending material, introducing something new while retaining a good 
+part of what is already familiar.  Here in the spectral domain, there 
+will also be timbral alterations as a result of the inversion.
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="cspecfnu.htm#PCHINVERT"><b>SPECFNU: PITCH INVERT</b></a> (Mode 15)
+</p>  
+
+<p>
+End of REPITCH INVERT<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="NOISETOSIL">REPITCH NOISETOSIL &#150; Replace unpitched 
+windows by silence</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch noisetosil</b> <i>inpitchdatafile outpitchdatafile</i>
+<br>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inpitchdatafile</i> &#150; input binary pitchdata file (.frq)<br />
+<i>outpitchdatafile</i> &#150; output binary pitchdata file (.frq) 
+produced by the program
+</blockquote>
+
+<h3>
+Understanding the REPITCH NOISETOSIL Function
+</h3>
+
+<blockquote>
+<p>
+When you've made a pitch-extraction of a real sound, it 
+will have moments of pitch, moments of silence, and moments 
+when it can't decide what the pitch is but knows it does 
+not have silence.  It marks these indeterminate areas as 
+'noise'.  They may be noise in the conventional sense, or 
+complex tones where a single pitch cannot be determined.
+</p>
+
+<p>
+If your original source contains pitched and unpitched 
+(noise) elements, REPITCH NOISETOSIL allows you to make 
+a 'pitch' file where all the unpitched (noise) data is 
+eliminated.
+</p>
+
+<p>
+The binary pitch data file (<b>.frq</b>) is made with 
+<a href="crepitch.htm#GETPITCH"><b>REPITCH GETPITCH</b></a>.  Its 
+default mode sets pitch extraction so that it interpolates 
+the pitch over any unpitched (noise) material.  In this way 
+you get a continuously pitched readout from a sound that may 
+not be continuously pitched.  Therefore, to make use of REPITCH 
+NOISETOSIL and the related functions in REPITCH 
+(<a href="crepitch.htm#INSERTSIL"><b>INSERTSIL</b></a> and 
+<a href="crepitch.htm#INTERP"><b>INTERP</b></a>), you need to set the 
+<b>-z</b> flag in REPITCH GETPITCH so that interpolation does 
+NOT take place, and the noise components are retained.
+</p>
+
+<p>
+REPITCH NOISETOSIL then replaces these noise components 
+in a <b>.frq</b> file with silence, i.e., leaving pauses 
+without breaking the pitch continuity of the sound.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This contour with pauses where the noise components were is 
+compositionally useful because it allows you transfer e.g., 
+the pitch contour of speech onto another sound (e.g. a flute) 
+without having to worry about the unpitched areas in the speech, 
+and still obtain a continuous line. With NOISETOSIL (replace 
+noise by silence), your flute output will have pauses where 
+noise (e.g. sibilants) occur in the original speech.
+</p>
+
+<p>
+This is quite a different result than interpolating in REPITCH 
+GETPITCH when extracting the pitch trace, because then the 
+pitch contour is continuous, without pauses where the noise 
+components occurred.
+</p>
+
+<p>
+Again, you may well want to skip these undecidable areas in
+reconstructing a sound, such as when combining with formants 
+in <a href="ccombine.htm#MAKE"><b>COMBINE MAKE</b></a> or in 
+<a href="ccombine.htm#MAKE2"><b>COMBINE MAKE2</b></a>.  
+REPITCH NOISETOSIL therefore enables you to mask out the noise.
+You can reconstruct sounds with the noise left in if you would 
+like to, but REPITCH NOISETOSIL provides an option because 
+at present, reconstruction of signals from noise and
+format data does not work ideally (especially for speech
+sibilants).
+</p>
+</blockquote>
+
+<p>
+End of REPITCH NOISETOSIL<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="PCHSHIFT">REPITCH PCHSHIFT &#150; Transpose pitches in 
+a binary pitch data file by a constant number of semitones</h2>
+ 
+<h3>
+Usage
+</h3>
+<b>repitch pchshift</b> <i>inpitchdatafile outpitchdatafile transposition</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> the input is a binary pitch data file (.frq)<br>
+<i>outpitchfile</i> the output is a binary pitch data file (.frq)<br> 
+<i>transposition</i> amount of (constant) transposition in (fractions of) 
+semitones;  negative numbers transpose downwards<br>
+	<p>
+	<blockquote>
+	To transpose pitch in a time-varying way, see the various PITCH 
+	functions, especially REPITCH TRANSPOSE or REPITCH TRANSPOSEF.<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the REPITCH PCHSHIFT Function
+</h3>
+<blockquote>
+
+<p>
+This is a straightforward upward or downward shift by a constant 
+amount, in this case applied directly to a binary pitch data file 
+(.frq), as made by <a href="#GETPITCH"><b>REPITCH GETPITCH</b></a>, or even 
+by <a href="#COMBINE"><b>REPITCH COMBINE</b></a>, Mode 2.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+As part of REPITCH, the intention here is to provide a function to 
+change the pitch of a binary pitch data file prior to further processing 
+with another REPITCH function.  The output of REPITCH PCHSHIFT is a 
+binary pitch data file (.frq) with the requested transposition.
+</p>
+
+<p>
+This .frq output  must then be run through <a href="#COMBINE"><b>REPITCH COMBINE</b></a> 
+to create a transposition (.trn) file proper.  It can be combined with the 
+pitch trace (.frq) from the original analysis file (.ana) used with 
+PCHSHIFT or with a pitch trace from some other analysis file (.ana).  
+Note how a transposed pitch trace from one file can be applied to 
+another one, an example of cross-file processing.
+</p>
+
+<p>
+The sound is then made with <a href="#TRANSPOSE"><b>REPITCH TRANSPOSE</b></a> 
+or <a href="#TRANSPOSEF"><b>REPITCH TRANSPOSEF</b></a>, using the .trn output 
+of REPITCH COMBINE as the input.
+</p>
+
+<p>
+Though the use of all these different functions may seem cumbersome, 
+the purpose is to provide opportunities for cross-file processing.  
+</p>
+
+<p>
+<b>For straightforward transposition in the spectral domain &#150; 
+transposition without change of duration &#150; you can use the other 
+modes of REPITCH TRANSPOSE and REPITCH TRANSPOSEF, which allow the 
+use of both transposition constants and time-varying files.</b>
+</p>
+</blockquote>
+
+<h3> Related Functions </h3>
+<p>
+<a href="cspecfnu.htm#OCTSHIFT"><b>SPECFNU: OCTAVE-SHIFT</b></a> (Mode 11)<br>
+<a href="cspecfnu.htm#TRANSPOSE"><b>SPECFNU: TRANSPOSE</b></a> (Mode 12)<br>
+<a href="cpitch.htm#OCTMOVE"><b>PITCH OCTMOVE</b></a>
+</p>
+
+<p>
+End of REPITCH PCHSHIFT<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="PCHTOTEXT">REPITCH PCHTOTEXT &#150; Convert binary pitch 
+data (<b>.frq</b> to breakpoint text file (<b>.txt</b>)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch pchtotext</b> <i>inbinarypitchdatafile outtextpitchdatafile</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inbinaryfile</i> &#150; binary pitch data file (<b>.frq</b>) 
+generated by REPITCH GETPITCH or REPITCH GENERATE<br />
+<i>outtextfile</i> &#150; data in breakpoint text format 
+(<b>.txt</b>)<br />
+</blockquote>
+
+<h3>
+Understanding the REPITCH PCHTOTEXT Function
+</h3>
+
+<blockquote>
+<p>
+Converts binary pitch data <b>.frq</b> to text data <b>.txt</b> 
+so that you can read it. This can be further converted to MIDI 
+data on the <i>Sound Loom</i> <b>Table Editor</b> (see COLUMNS 
+in <i>Soundshaper</i> and on the Command Line). 
+</p>
+
+<p>
+Note also two other functions which do much the same thing:<br>
+&nbsp;&nbsp;&bull;&nbsp;<a href = "cptchinf.htm#CONVERT"><b>PITCHINFO CONVERT</b></a> and<br>
+&nbsp;&nbsp;&bull;&nbsp;<a href = "cgropsow.htm#PTOBRK"><b>PTOBRK WITHZEROS</b></a>, developed for the <a href= "cgropsow.htm"><b>PSOW</b></a> program group. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The binary pitch data is encapsulating the pitch contour of a 
+sound.  In its binary format it can be manipulated by most of 
+the REPITCH functions, including combining with other binary 
+pitch data files so that the contour of one file is used to 
+reshape that of another.
+</p>
+
+<p>
+Once this data is in text format, it can not only be altered 
+'by hand' but also by the many numerical facilities provided 
+in <a href="csysutil.htm#COLUMNS"><b>COLUMNS</b></a>, such as adding a random value between min and max 
+limits to each number in the file (i.e., column of numbers), 
+thus randomising the pitch trace of a sound.  The result can 
+be reapplied to the original sound or to another sound.  Given 
+the range of operations in COLUMNS, the potential for reshaping 
+pitch contours is enormous.
+</p>
+</blockquote>
+
+<h3>
+Related functions
+</h3>
+<p>
+<a href = "cptchinf.htm#CONVERT"><b>PITCHINFO CONVERT</b></a>, <a href = "cgropsow.htm#PTOBRK"><b>PTOBRK</b></a>, <a href = "crepitch.htm#BRKTOPI"><b>BRKTOPI</b></a>.  
+</p>
+
+<p>
+End of REPITCH PCHTOTEXT<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="PITCHTOSIL">REPITCH PITCHTOSIL &#150; Replace pitched 
+windows by silence</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch pitchtosil</b> <i>inpitchdatafile outpitchdatafile</i>
+<br>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inpitchdatafile</i> &#150; input binary pitchdata file (.frq)<br />
+<i>outpitchdatafile</i> &#150; output binary pitchdata file (.frq) 
+produced by the program
+</blockquote>
+
+<h3>
+Understanding the REPITCH PITCHTOSIL Function
+</h3>
+
+<blockquote>
+<p>
+The opposite of <a href="#NOISETOSIL"><b>REPITCH NOISETOSIL</b></a>, 
+REPITCH PITCHTOSIL may be useful if you want to do something 
+different with the noise segments of the speech &#150; 
+because in this case the pitch components become pauses, 
+leaving only the noise components.
+</p>
+
+<p>
+Again, it is important that the binary pitch data file extracted 
+via REPITCH GETPITCH retains the unpitched material so that 
+REPITCH PITCHTOSIL can separate out the pitch from the noise.  
+Note that retaining the unpitched material is the option (which 
+would need to be selected), and interpolating across the 
+unpitched material (keeping the pitch contour going) is the 
+default when running <a href="#GETPITCH">REPITCH GETPITCH</a>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The spoken word contains vowels and consonants.  The vowels tend 
+to be pitched to some degree, while the consonants contain noise.  
+With REPITCH PITCHTOSIL the vowel content is removed, leaving 
+the consonants.
+</p>
+
+<p>
+The application comes when combining this consonants-only pitch data 
+file (the essential components of speech) with a formant file to 
+generate a new, speech-like sound.  See <a href="ccombine.htm#MAKE">
+COMBINE MAKE</a> and <a href="ccombine.htm#MAKE2">COMBINE MAKE2</a>.  
+<a href="crepitch.htm#COMBINE">REPITCH COMBINE</a> offers the 
+possibility of other types of file combinations to make new spectra.
+</p>
+</blockquote>
+
+<p>
+End of PITCHTOSIL<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="QUANTISE">REPITCH QUANTISE &#150; Quantise pitches in a 
+pitch data file</h2>
+ 
+<h3>
+Usage
+</h3>
+<b>repitch quantise mode</b> <i>pitchfile outfile q_set</i> <b>-o</b>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Gives a pitchfile as output<br>
+<b>2</b>&nbsp; Gives a transposition file as output<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> the input is a binary pitch data file<br>
+<i>outfile</i> the output may be a binary pitch data file or a (binary) 
+transposition file, depending on which Mode is set<br>
+<i>q_set</i> a file of (possibly fractional) MIDI pitch values over which 
+the pitch is to be quantised<br>
+<b>-o</b> duplicates <i>q_set</i> in all octave transpositions<br>
+</blockquote>
+
+<h3>
+Understanding the REPITCH QUANTISE Function
+</h3>
+<blockquote>
+
+<p>
+Operating on extracted pitch contour data saved as a binary pitch data 
+file, this function 'snaps' the pitches of the contour to the intervallic 
+grid specified in <i>q_set</i>.  Note that this grid can be defined for 
+a single octave and then duplicated in all the octaves.  The pitch or 
+transposition outfile can be used by other REPITCH functions as appropriate.  
+The transposition outfile will be used mostly by REPITCH TRANSPOSE or 
+REPITCH TRANSPOSEF.
+</p>
+
+<p>
+If the <b>-o</b> flag is to be used, enter the grid as MIDI note values 
+starting at the bottom of the range.  This pattern will then be duplicated 
+in all the higher octaves (within the MIDI pitch range).
+</p>
+
+<p>
+The <i>q_set</i> file is written as a series of MIDI note values, either 
+separated by spaces, or on separate lines.
+</p>
+
+<p>
+The Mode 1 output (binary pitch data file) can be fed back into another 
+pitch modification process.  The Mode 2 output (binary transposition file) 
+can be given as input to TRANSPOSE&#47;TRANSPOSEF Mode 4 to create an 
+analysis file which can be resynthesised:  i.e., to complete the process.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+This process has to be regarded as experimental in nature.  In most 
+cases, it will probably be most useful to employ the <b>-o</b> flag to 
+make the grid apply to more than one octave region.  From my own 
+use of this function so far, the results vary a great deal, generally 
+producing very strange combinations of pitching and glissandi (Ed.).
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="cspecfnu.htm#PCHQUANT"><b>SPECFNU: PITCH QUANTISE</b></a> (Mode 17)
+</p>  
+
+
+<p>
+End of REPITCH QUANTISE<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="RANDOMISE">REPITCH RANDOMISE &#150; Randomise pitch line</h2>
+ 
+<h3>
+Usage
+</h3>
+<b>repitch randomise mode</b> <i>pitchfile outfile maxinterval 
+timestep</i> <b>-s</b><i>slew</i>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Gives a pitchfile as output<br>
+<b>2</b>&nbsp; Gives a transposition file as output<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> the input is a binary pitch data file<br>
+<i>outfile</i> the output may be a binary pitch data file or a (binary) 
+transposition file, depending on which Mode is set<br>
+<i>maxinterval</i> number of semitones over which the pitches can 
+plus or minus randomly vary  (Range: 0 to 96;  single value or a 
+<i>time maxinterval</i> breakpoint file)<br>
+<i>timestep</i> maximum timestep in milliseconds between random pitch 
+fluctuations.  The timesteps will be random values less than <i>timestep</i>.  
+Range:  duration of 1 analysis window to the duration of the entire file.<br>
+<b>-s</b><i>slew</i> e.g. 2:  the range of the upward variation will be 
+twice that of the downward variation<br>
+e.g. -3:  the range of the downward variation will be 3 times that of the 
+upward variation.  (Range: &gt; 1 OR &lt; -1)<br>
+	<p>
+	<blockquote>
+	<i>maxinterval</i> and <i>timestep</i> may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the REPITCH RANDOMISE Function
+</h3>
+<blockquote>
+
+
+<p>
+The provision of both <i>maxinterval</i> and <i>timestep</i> parameters 
+provide ways to vary a process which is inherently unpredictable.
+</p>
+
+<p>
+The Mode 1 output (binary pitch data file) can be fed back into another 
+pitch modification process.  The Mode 2 output (binary transposition file) 
+can be given as input to TRANSPOSE&#47;TRANSPOSEF Mode 4 to create an 
+analysis file which can be resynthesised:  i.e., to complete the process.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+With this process you can produce strange and unpredictable pitch 
+movements&#47;distortions.  It can only be used on an experimental 
+basis while searching for wierd effects.
+</p>
+</blockquote>
+
+<h3> Related Function </h3>
+<p>
+<a href="cspecfnu.htm#PCHRAND"><b>SPECFNU: PITCH RANDOMISE</b></a> (Mode 18)
+</p>  
+
+<p>
+End of REPITCH RANDOMISE<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="SMOOTH">REPITCH SMOOTH &#150; Smooth pitch contour in a 
+pitch data file</h2>
+ 
+<h3>
+Usage
+</h3>
+<b>repitch smooth mode</b> <i>pitchfile outfile timeframe</i> 
+[<b>-p</b><i>meanpitch</i>] [<b>-h</b>]
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Gives a pitchfile as output<br>
+<b>2</b>&nbsp; Gives a transposition file as output<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> the input is a binary pitch data file<br>
+<i>outfile</i> the output may be a binary pitch data file or a (binary) 
+transposition file, depending on which Mode is set<br>
+<i>timeframe</i> number of milliseconds over which to interpolate 
+pitch values  (Range:  duration of 1 analysis window to the duration of 
+the entire file)<br>
+<b>-p</b><i>meanpitch</i> interpolate between the <b>peak</b> value in each 
+<i>timeframe</i> block of pitch values<br>
+	<blockquote>
+	<i>meanpitch</i> is the pitch from which the peaks are measured 
+	(and must be within the pitch range, in every timeframe block).<br>
+	Peak is the maximum displacement from the mean (up or down)<br>
+	</blockquote>
+<b>-h</b> At the end of the file, hold the last interpolated pitch value 
+calculated (Default: interplate from that point to last actual value in 
+input)<br>
+	<p>
+	<blockquote>
+	<i>timeframe</i> <i>meanpitch</i> may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the REPITCH SMOOTH Function
+</h3>
+<blockquote>
+
+<p>
+The smoothing operation is applied to the pitch contour.  If the time 
+frame is 8 windows, REPITCH SMOOTH takes the average pitch of those 
+8 windows, then interpolates to the average pitch of the next 8 windows.  
+This is the PITCH equivalent of BLUR BLUR.
+</p>
+
+<p>
+With the <b>-p</b> flag set, it takes the <b>peak</b> value (the highest 
+above the specified mean, or the lowest below the specified mean), 
+rather than the average pitch, in each window, and interpolates as 
+before.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+The averaging&#47;interpolating of pitch data process will produce 
+results which will vary according to the spectral content of the 
+<i>infile</i>, so the degree of pitch focus and differentiation in 
+the source will greatly affect the result.
+</p>
+</blockquote>
+
+<p>
+End of REPITCH SMOOTH<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="SYNTH">REPITCH SYNTH &#150; Create the spectrum of a 
+sound following the pitch contour in the pitch file</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch synth</b> <i>inpitchdatafile outanalysisfile harmonics-data</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inpitchdatafile</i> &#150; input binary pitchdata file (.frq)<br />
+<i>outanalysisfile</i> &#150; output analysis file (.ana) 
+produced by the program<br />
+<i>harmonics-data</i> &#150; a text file that just lists the 
+amplitudes of each harmonic in sequence, from 1 upwards.  
+These amplitude values must lie in the range 0 to 1.  For 
+example, the file below gives amplitudes for harmonics 1 to 
+5 in ascending order:
+<pre>
+1.0
+0.8
+0.6
+0.4
+0.2
+</pre>
+</blockquote>
+
+<h3>
+Understanding the REPITCH SYNTH Process
+</h3>
+
+<blockquote>
+<p>
+REPITCH SYNTH synthesises the spectrum of a sound while following 
+the pitch trace in the input pitch data file. Once the pitch contour 
+of a sound (e.g. a stream of speech, with a complex changing pitchline) 
+has been extracted, new sounds can be generated which follow the 
+same pitchline.  Furthermore, the pitchline can be modified 
+(inverted, quantised etc.) using the other pitch data file manipulation 
+programs in REPITCH and then the new spectrum added to it. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The general effect of this function is to create a buzzy tone.  Its timbre 
+is affected by the weighting of the amplitudes, i.e., the relative 
+amplitude of the various harmonics.  It would be worthwhile to write 
+out the (lower part of) the harmonic series in musical notation as a 
+reference sheet to help select harmonics with more understanding.  The 
+function tables given <i>Csound</i> provide another point of reference.
+</p>
+
+<p>
+It is possible to adjust this further by skipping harmonics.  This is done 
+by putting a zero as the amplitude value.  The example above used the 
+first 5 harmonics.  Suppose we wanted to use 1, 4, 6, 7, 8.  Then the 
+<i>harmonics-data</i> file would be:
+<pre>
+1.0
+0
+0
+0.8
+0
+0.6
+0.4
+0.2
+</pre>
+</p>
+
+<p>
+Having extracted the pitch from such natural events as a dog barking, 
+you can therefore listen to it with whatever spectrum you specify by 
+using this process.  It takes some experience, however, to get beyond 
+simple buzzy tones.
+</p>
+</blockquote>
+
+<p>
+End of REPITCH SYNTH<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="TRANSPOSE">REPITCH TRANSPOSE &#150; Transpose 
+spectrum (spectral envelope also moves)</h2>
+ 
+<h3>
+Usage
+</h3>
+<b>repitch transpose 1&#150;3</b> <i>infile outfile transpos</i> 
+[<b>-l</b><i>minfrq</i>] [<b>-h</b><i>maxfrq</i>] [<b>-x</b>]<br>
+<b>repitch transpose 4</b> <i>infile transpos outfile</i> 
+[<b>-l</b><i>minfrq</i>] [<b>-h</b><i>maxfrq</i>] [<b>-x</b>]<br>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Transposition as a frequency ratio<br>
+<b>2</b>&nbsp; Transposition in (fractions of) octaves<br>
+<b>3</b>&nbsp; Transposition in (fractions of) semitones<br>
+<b>4</b>&nbsp; Transposition as a binary data file (<b>.trn</b>)<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> and <i>outfile</i> are analysis files<br>
+<i>transpos</i> for modes <b>1&#150;3</b> a transposition factor or time 
+varying breakpoint file in a format according with the mode being used, but 
+note that Mode 4 must be used if the transposition data is in a binary 
+format (.trn).  The binary or breakpoint input files can be made by 
+<a href="#COMBINE">REPITCH COMBINE</a> or <a href="#COMBINEB">REPITCH 
+COMBINEB</a>, and a breakpoint file can also be created 'by hand' in a 
+text editor.<br> 
+<b>-l</b><i>minfrq</i> &#150; minimum frequency, below which data is filtered 
+out<br>
+<b>-h</b><i>maxfrq</i> &#150; maximum frequency, above which data is filtered 
+out<br>
+<b>-x</b> &#150; fuller spectrum<br>
+	<p>
+	<blockquote>
+	Frequency ratio, octave or semitone transpositions may vary 
+	over time.<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the REPITCH TRANSPOSE Process
+</h3>
+<blockquote>
+
+<p>
+REPITCH TRANSPOSE does fixed or time varying transposition in the spectral 
+domain.  It accepts a variety of breakpoint file inputs as well as a 
+binary data file.  The spectral envelope moves with the transposition 
+(as opposed to TRANSPOSEF, where it does not), meaning that the timbres 
+associated with formants are going to change.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+The process of transposition can be approached in various ways:
+  <ul> 
+  <li>Transpose a file by a constant amount.</li><br>
+
+  <li>Create a transposition breakpoint file by hand and apply it to any sound.</li><br>
+
+  <li>Extract a pitch contour with <a href="#GETPITCH">REPITCH GETPITCH</a>, 
+     saving as a breakpoint (.brk) file and use this output to combine with 
+     another pitch contour or transposition file in COMBINE&#47;B to form 
+     another (time varying) transposition file to apply to an <i>infile</i>.</li><br>
+
+  <li>
+     Extract pitch contours from two files with REPITCH GETPITCH.  Then 
+     create a transposition file with REPITCH COMBINE&#47;COMBINEB Mode 1 which 
+     contains the information needed to change the pitch contour of the first 
+     file into that of the second.  Then apply this transposition data to the 
+     first file here with TRANSPOSE in order to effect the transposition.</li><br>
+
+   <li>
+     Similarly the output of COMBINE&#47;COMBINEB Mode 3 can be used as the 
+     transposition input to TRANSPOSE.  Summing transposition data can be an 
+     interestingly serendipitous (unpredictable) exercise.</li><br>
+
+   <li> 
+     Modify <i>pitchfile</i> data in some way, save as a transposition file 
+     and use as an input to TRANSPOSE&#47;F.  The following REPITCH pitchfile 
+     modification functions have a transposition file output mode:  APPROX, 
+     EXAG, INVERT, QUANTISE, RANDOMISE, SMOOTH and VIBRATO.</li>
+  </ul>
+</p>
+
+<p>
+The results of these transpositions can be used to alter timbre, especially 
+with TRANSPOSE.  Also, some use of transposition could form an important step 
+when realising a morph:  to draw one sound closer to that of another in 
+frequency region or timbre, or to create a aurally transitional stage 
+in the morphing process.
+</p>
+
+</blockquote>
+
+<h3> Related Functions </h3>
+<p>
+<a href="cspecfnu.htm#OCTSHIFT"><b>SPECFNU: OCTAVE-SHIFT</b></a> (Mode 11)<br>
+<a href="cspecfnu.htm#TRANSPOSE"><b>SPECFNU: TRANSPOSE</b></a> (Mode 12)<br>
+<a href="cpitch.htm#OCTMOVE"><b>PITCH OCTMOVE</b></a>
+</p>  
+
+<p>
+End of REPITCH TRANSPOSE<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="TRANSPOSEF">REPITCH TRANSPOSEF &#150; Transpose 
+spectrum: but retain original spectral envelope</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch transposef 1&#150;3</b> <i>infile outfile</i> <b>-f</b><i>N</i> 
+&#124; <b>-p</b><i>N</i> [<b>-i</b>] <i>transpos</i> 
+[<b>-l</b><i>minfrq</i>] [<b>-h</b><i>maxfrq</i>] [<b>-x</b>]<br>
+
+<b>repitch transposef 4</b> <i>infile transpos outfile</i> <b>-f</b><i>N</i> 
+&#124; <b>-p</b><i>N</i> [<b>-i</b>] [<b>-l</b><i>minfrq</i>] 
+[<b>-h</b><i>maxfrq</i>] [<b>-x</b>]<br>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Transposition as a frequency ratio<br>
+<b>2</b>&nbsp; Transposition in (fractions of) octaves<br>
+<b>3</b>&nbsp; Transposition in (fractions of) semitones<br>
+<b>4</b>&nbsp; Transposition with a binary data file (.trn) as input<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> and <i>outfile</i> are analysis files<br>
+<i>transpos</i> transposition factor or time varying breakpoint file, 
+with data in a form according with one of the four modes.  This can be 
+made by <a href="#COMBINE">REPITCH COMBINE</a> or <a href="#COMBINEB">
+REPITCH COMBINEB</a>, but note that Mode 4 must be used if the 
+transposition data is in a binary format (.trn).<br> 
+<b>-f</b><i>N</i> extract formant envelope linear frequency-wise, using 
+1 point for every <i>N</i> equally spaced frequency channels<br>
+<b>-p</b><i>N</i> extract formant envelope linear pitchwise, using 
+<i>N</i> equally spaced pitch bands per octave<br>
+	<blockquote>
+	There is more (and very important) information on <a href = 
+	"cformant.htm#extractformants">extracting formants</a> in the 
+	FORMANTS GET reference section.
+	</blockquote>
+<b>-i</b> quicksearch for formants (less accurate)<br>
+<b>-l</b><i>minfrq</i> &#150; minimum frequency, below which data is filtered 
+out<br>
+<b>-h</b><i>maxfrq</i> &#150; maximum frequency, above which data is filtered 
+out<br>
+<b>-x</b> &#150; fuller spectrum<br>
+	<p>
+	<blockquote>
+	Frequency ratio, octave or semitone transpositions may vary 
+	over time.<br>
+	<i>maxfrq</i> and <i>minfrq</i> may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the REPITCH TRANSPOSEF Process
+</h3>
+<blockquote>
+
+<p>
+Here, formants are preserved (see TRANSPOSE, where they are not).  Thus, 
+for example, the vowel characteristics of the original source should 
+be preserved.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+This process may be used when one wants to retain the original sound 
+as much as possible, though in a different register.  On the other hand, 
+it creates an interesting play between the unfamiliar (appearing in a 
+different, and perhaps unnatural, register), and the familiar (original 
+formants are preserved).
+</p>
+
+<p>
+The process of transposition can be approached in various ways:
+  <ul>
+  <li>
+  Transpose a file by a constant amount.</li><br>
+
+  <li>
+  Create a transposition breakpoint file by hand and apply it to any 
+  sound.</li><br>
+
+  <li>
+  Extract pitch contours from two files with REPITCH GETPITCH.  Then 
+  create a transposition file with REPITCH COMBINE&#47;COMBINEB Mode 1 which 
+  contains the information needed to change the pitch contour of the first 
+  file into that of the second.  Then apply this transposition data to the 
+  first file here with TRANSPOSEF in order to effect the transposition.</li><br>
+
+  <li>
+  Similarly the output of COMBINE&#47;COMBINEB Mode 3 can be used as the 
+  transposition input to TRANSPOSEF.  Summing transposition data can be an 
+  interestingly serendipitous (unpredictable) exercise.</li>
+  </ul>
+</p>
+</blockquote>
+
+<h3> Related Functions </h3>
+<p>
+<a href="cspecfnu.htm#OCTSHIFT"><b>SPECFNU: OCTAVE-SHIFT</b></a> (Mode 11)<br>
+<a href="cspecfnu.htm#TRANSPOSE"><b>SPECFNU: TRANSPOSE</b></a> (Mode 12)<br>
+<a href="cpitch.htm#OCTMOVE"><b>PITCH OCTMOVE</b></a>
+</p> 
+
+<p>
+End of REPITCH TRANSPOSEF<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="VIBRATO">REPITCH VIBRATO &#150; Add vibrato to pitch in 
+a pitch data file</h2>
+ 
+<h3>
+Usage
+</h3>
+<b>repitch vibrato mode</b> <i>pitchfile outfile vibfreq vibrange</i>
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Gives a pitchfile as output<br>
+<b>2</b>&nbsp; Gives a transposition file as output<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>pitchfile</i> the input is a binary pitch data file<br>
+<i>outfile</i> the output may be a binary pitch data file or a (binary) 
+transposition file, depending on which Mode is set<br>
+<i>vibfreq</i> frequency of vibrato itself in Hz (Range: values &gt; 0)<br>
+<i>vibrange</i> maximum interval over which the vibrato moves away from the 
+central pitch (in semitones)  (Range: values &gt; 0)
+	<p>
+	<blockquote>
+	<i>vibfreq</i> and <i>vibrange</i> may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the REPITCH VIBRATO Function
+</h3>
+<blockquote>
+
+<p>
+This operates like a LFO (low frequency oscillator).  <i>Vibfreq</i> is 
+the speed of oscillation and <i>vibrange</i> is the depth (interval swing) 
+of the oscillation.<br>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+Perhaps the following chart maps out the territory.  The numbers in 
+parentheses are fairly extreme parameter values, used to illustrate the 
+different types of result.<br>
+
+<div align=center>
+<table border="1" cellpadding="3" bgcolor="B0E0E6">
+<!-- FFEBCD is blanchedalmond -->
+<caption><b>Table to outline VIBRATO options:</b></caption>
+
+<tr>
+<th><i>vibfreq</i></th>
+<th><i>vibrange</i></th>
+<th><i>(approximate) result</i></th>
+</tr>
+
+<tr>
+<td>slow (1)</td>
+<td>narrow (1)</td>
+<td>gentle undulation</td>
+</tr>
+
+<tr>
+<td>slow (1)</td>
+<td>wide (24)</td>
+<td>glissando see-sawing</td>
+</tr>
+
+<tr>
+<td>fast (50)</td>
+<td>narrow (0.5)</td>
+<td>fluttering&#47;shimmering</td>
+</tr>
+
+<tr>
+<td>fast (50)</td>
+<td>wide (24)</td>
+<td>starts to reduce to burbling</td>
+</tr>
+</table>
+</div>
+</p>
+
+<p>
+To go directly to making a sound, use Mode 2 to produce a (binary) 
+transposition file;  then use this as an input to TRANSPOSE or TRANSPOSEF, 
+resynthesise and play.
+</p>
+</blockquote>
+
+<p>
+End of REPITCH VIBRATO<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="VOWELS">REPITCH VOWELS &#150; Create spectrum of vowel sound(s) 
+following pitch contour in pitch file</h2>
+
+<h3>
+Usage
+</h3>
+<b>repitch vowels</b> <i>inpitchdatafile outanalysisfile vowel-data 
+halfwidth curve pk_range fweight foffset</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inpitchdatafile</i> &#150; input binary pitchdata file (.frq)<br />
+<i>outanalysisfile</i> &#150; output analysis file, ready to play or  
+resynthesise<br />
+<i>vowel-data</i> &#150; text file containg a vowel, OR a file of 
+paired <i>time vowel</i> values, where vowel is one of the following 
+strings:
+<p>
+<div>
+<table border="0" cellpadding="4">
+<td>
+	<table border="1" cellpadding="4" bgcolor="#B0E0E6">
+	<caption><h3>Chart of Vowel Symbols ('V' = Vowel)</h3></caption>
+	<tr>
+	<th>V</th>
+	<th>as in</th>
+	<th>V</th>
+	<th>as in</th>
+	<th>V</th>
+	<th>as in</th>
+	<th>V</th>
+	<th>as in</th>
+	</tr>
+
+	<tr>
+	<td align="center"><b>ee</b></td>
+	<td align="left"><i>heat</i></td>
+	<td align="center"><b>i</b></td>
+	<td align="left"><i>hit</i></td>
+	<td align="center"><b>ai</b></td>
+	<td align="left"><i>hate</i></td>
+	<td align="center"><b>aii</b></td>
+	<td align="left">Scottish <i>e</i></td>
+	</tr>
+
+	<tr>
+	<td align="center"><b>e</b></td>
+	<td align="left"><i>pet</i></td>
+	<td align="center"><b>a</b></td>
+	<td align="left"><i>pat</i></td>
+	<td align="center"><b>ar</b></td>
+	<td align="left"><i>heart</i></td>
+	<td align="center"><b>o</b></td>
+	<td align="left"><i>hot</i></td>
+	</tr>
+
+	<tr>
+	<td align="center"><b>or</b></td>
+	<td align="left"><i>taught</i></td>
+	<td align="center"><b>u</b></td>
+	<td align="left"><i>hood</i></td>
+	<td align="center"><b>uu</b></td>
+	<td align="left">Scottish <i>you</i></td>
+	<td align="center"><b>ui</b></td>
+	<td align="left">Scottish <i>could</i></td>
+	</tr>
+
+	<tr>
+	<td align="center"><b>x</b></td>
+	<td align="left" colspan="3">neutral V in <i>herb</i> or 
+	<i>a</i></td>
+	<td align="center"><b>xx</b></td>
+	<td align="left" colspan="3">Southern English 
+	<i>hub</i></td>
+	</tr>
+
+	<tr>
+	<td align="center"><b>n</b></td>
+	<td align="left" colspan="3"><i>mean, can, done</i></td>
+	<td colspan="4"><br /></td>
+	</tr>
+	</table>
+</td>
+
+<td align="right"><b>Vowel breakpoint file</b>
+<pre>
+[time	vowel]
+0.0	e
+1.0	a
+2.0	i
+3.0	x
+4.0	o
+5.0	u
+6.0	n
+</pre>
+</td>
+</table>
+</div>
+Simply enter the times and the vowels you would like to use at those 
+times.  They remain the same until the next vowel comes in, but there 
+is no interpolation between the vowels as with numerical values.
+</p>
+
+<i>halfwidth</i> &#150; the half-width of a formant, in Hz, as a 
+fraction of the formant centre-frequency.  Range: 0.01 to 10<br />
+<i>curve</i> &#150; the steepness of the formant peak.  Range: 0.1 
+to 10.0<br />
+<i>pk_range</i> &#150; the ratio of the (maximum) amplitude 
+range of the formant peaks to the (maximum) total range.  
+Range: 0 to 1<br />
+<i>fweight</i> &#150; the amplitude weighting of the fundamental.  
+Range: 0 to 1<br />
+<i>foffset</i> &#150; the range of scattering of the frequencies 
+of the harmonics from their true value.  Range: 0 to 1<br />
+	<p>
+	<blockquote>
+	<i>Halfwidth, curve, pk_range, fweight</i> and <i>foffset</i> 
+	may vary over time.  In breakpoint files, times must start 
+	at zero, and increase.
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the REPITCH VOWELS Process
+</h3>
+
+<blockquote>
+<p>
+This process allows a sequence of vowels to be synthesized over 
+a pitch-contour extracted from a source sound. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+You can combine pitch data (<b>.frq</b>) from one speaker with 
+formant data (<b>.for</b>) from another (<a href="ccombine.htm#MAKE">
+COMBINE MAKE</a>).  In contrast, REPITCH VOWELS allows you to define 
+the vowel (formant) data from scratch, by writing out the vowels
+in a breakpoint file, before combining them with the binary pitch data.
+</p>
+
+<p>
+The overall effect is the semblance of speech added to a sound.
+</p>
+</blockquote>
+
+<p>
+End of REPITCH VOWELS<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="REPITCHTECHNICAL">Technical Discussion About Extracting and 
+Tracking Spectral Pitch Data</h2>
+
+<p>
+The main program in the REPITCH Group is <a href="#GETPITCH"><b>GETPITCH</b></a>, 
+which seeks to extract a pitch trace from an analysis file.  Pitch tracking 
+in the spectral domain is concerned with identifying the frequency content 
+('partials') in all the various analysis windows.  This changes constantly 
+throughout the course of the sound, more with some sounds than with others.
+</p>
+
+<p>
+Identifying the frequency content on a channel-to-channel (frequency band) 
+and window-to-window is a difficult operation, particularly when there 
+is a good deal of inharmonic&#47;noise content.  This is why <a href="#GETPITCH"><b>REPITCH GETPITCH</b></a> produces a sine-wave based output file:  when resynthesised, 
+you can listen to it to see if sensible results have been achieved.  
+Saving as a text breakpoint file makes it possible to hand-edit any 
+anomalies which you would like to remove.
+</p>
+
+<p>
+Release 5.0 introduced a number of programs to handle the pitch tracking 
+data in the binary pitch data file (<b>.frq</b>) produced by REPITCH 
+GETPITCH.
+	<ul>
+	<li>
+        First of all, REPITCH GETPITCH enables you to extract 
+	the pitch while interpolating pitch through any noise or silence 
+	anomalies.  <b>This is the default.</b></li><br>
+
+       	<li>
+        REPITCH GETPITCH also enables you to preserve all details of the 
+	extraction process, i.e., where noise or silence as well as pitch 
+	is found.  'Noise' is actual noise or places where the waveform is 
+	too complex a signal for the extraction process to handle.  It is 
+	represented as 'pitch zeros'.  'Silence' is where no significant 
+	<b>signal</b> is detected.  <b>To make use of this option in REPITCH 
+	GETPITCH, you must turn off interpolation.</b> This is done by ticking
+        the <b>-z</b> flag: 'retain unpitched windows'.<br> 
+        (In <i>Sound Loom</i>, this appears as a tick-box below parameter (8): 
+        'Keep Pitch Zeros'. In <i>Soundshaper</i>, it appears as a tick-box 
+	labelled 'retain unpitched windows'.)</li><br>
+	
+	<li>
+        <a href="#INSERTSIL"><b>REPITCH INSERTSIL</b></a> puts an indicator 
+	where <b>no signal</b> appears in the file.  This makes it 
+	possible to make use of real silence in the file.</li><br>
+
+	<li>
+        <a href="#INSERTZEROS"><b>REPITCH INSERTZEROS</b></a> indicates where 
+	<b>no pitch</b> is detected.  It therefore zeros the noise areas.</li><br>
+
+	<li>
+        <a href="#NOISETOSIL"><b>REPITCH NOISETOSIL</b></a> converts noise 
+	portions to silence portions of the file.  If the source were 
+	speech, this would remove most of the consonants, leaving a 
+	weaving of (tuneful &#150; somewhat pitched, anyway) vowels.</li><br>
+
+	<li>
+        <a href="#PITCHTOSIL"><b>REPITCH PITCHTOSIL</b></a> converts areas where 
+	pitch has been successfully extracted to silence.  This process 
+	will retain the noise data, such as the consonants of speech, 
+	which can then be used to shape other material.</li><br>
+
+        <li>	
+        <a href="#INTERP"><b>REPITCH INTERP</b></a> enables to to interpolate 
+	across areas of noise or silence in two different ways:  either 
+	<b>glide between</b> (different) pitches (Mode <b>1</b>, or 
+	<b>sustain</b> the previous pitch (Mode <b>2</b>).  This provides 
+	more flexibility than REPITCH GETPITCH with interpolation on (the 
+	default), which always glides.</li>
+	</ul>
+</p>
+
+
+<p>
+Transposition can be done in many different ways with the CDP System.  
+Basic time-domain transposition moves the whole sound up and down, either 
+by a constant amount, or in a time-varying way, which can produce 
+glissandos.  A similar operation can be achieved in the spectral domain, 
+using ratios or semitones, constant or time-varying.  Also, parts of 
+the spectrum can be transposed or shifted inharmonically, tuned to chords, 
+or replaced by the harmonics of specified pitches.
+</p>
+
+<p>
+However, another approach involves imposing shapes taken from elsewhere 
+onto a soundfile.  This includes extracting an amplitude envelope from 
+one soundfile and imposing it on another soundfile &#150; a time-domain 
+operation.  In the spectral domain, one can extract a formant envelope 
+(amplitude shape of the partials on a window-to-window basis) and impose 
+it on another file.
+</p>
+
+<p>
+The REPITCH set provides another specialised approach which focuses on the 
+pitch traces extracted from analysis files.  These can be used in various 
+combinations to form transposition data which can be applied to the 
+original or another sound.  The point here is that one is working with 
+the extracted pitch traces, which related in a detailed way to the 
+<i>spectral</i> content of sound.  Thus you are more likely to get 
+(often somewhat unpredictable) internal modulations of the sound.
+</p>
+
+<p>
+Various functions provide an option to retain or not retain the spectral 
+envelope.  This is the time-changing amplitude pattern of the time-changing 
+partial content of the sound.  When formants are present in a sound 
+&#150; steady state frequency regions &#150; retaining the spectral 
+envelope will tend to keep more of the original timbral qualities of 
+the sound.  The discussion <a href="cformant.htm#extractformants">on 
+extracting formants</a> can be a useful point of reference in this area.
+</p>
+
+<p>
+End of Technical Discussion<br>
+<a href="#REPITCHLIST"><b>Return</b></a> to List of functions to process 
+spectral pitch data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index
+</p>
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 11 Apr 2023 for CDP8<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+		SOUNDSHAPER SETTINGS FILE (Date: 20/06/2023)
+Simple 6: Time-varying (enveloped) texture shapes
+
+Process:	Simple
+CDP: texture simple 3
+NOTEDATA:	simple_6\ndfsim6.txt
+OUT DUR:	21
+PACKING:	simple_6\simplpak.brk
+SCATTER:	0
+TIMEGRID:	0
+FIRSTSND:	1
+LASTSND:	1
+MIN GAIN:	40
+MAX GAIN:	80
+MIN DUR:	0.2
+MAX DUR:	1.5
+MIN PITCH:	simple_6\gprlo.brk
+MAX PITCH:	simple_6\gprhi.brk
+OMIT:       0
+ATTEN:		NO
+POSITION:	NO
+SPREAD:		NO
+SEED:		NO
+OPTION1:	YES

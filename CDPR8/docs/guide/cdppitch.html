@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <! cdppitch.htm  CDP Guide: Pitch Data -->
+
+<head>
+  <meta charset="utf-8">
+  <title>CDP-Pitch</title>
+  <link rel="stylesheet" type="text/css" href="cdpguide.css">
+  <link rel="stylesheet" href="menu.css">
+  <link rel="icon"  href="images/cdp_favicon.ico">
+  
+    <style>
+	  a { text-decoration: none }
+	  a:hover { color:#FF3333;
+      text-decoration: underline } 
+      a:link {color: #000099}
+      a:visited {color: ##993399}
+      a:active {color: #0000FF}         	
+    </style>  
+</head>
+
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(51, 0, 51);">
+    
+<!--  LEFT COLUMN  -->   
+
+  <div id="left" class="column">
+	<div class="top-left"> <!--Left Hdr -->
+
+	</div> <!-- end of left hdr -->
+			
+	<div class="bottom-left"> <!-- SIDEBAR -->
+<!--
+<div align="center"> <img src="images/CDPCIRCS2.gif"  alt="CDP Logo"> </div>	
+-->
+
+
+  <dl>
+  <dt><a href="cdpguide.html"><b>CDP GUIDE: INDEX</b></a>
+  <hr>
+  <dt><a href="cdpsnd.html#SOUNDFILES"><b>SOUNDFILES:</b></a>
+  <dt><a href="cdpsnd.html#ENVELOPE"><b>&nbsp;ENVELOPE</b></a>
+  <dt><a href="cdpsnd.html#FILTER"><b>&nbsp;FILTER</b></a>
+  <dt><a href="cdpsnd.html#PITCH"><b>&nbsp;PITCH</b></a>
+  <dt><a href="cdpsnd.html#REVDELAY"><b>&nbsp;REVERB/DELAY</b></a>
+  <dt><a href="cdpsnd.html#EXTEND"><b>&nbsp;EXTEND/SEGMENT</b></a>
+  <dt><a href="cdpsnd.html#REORDER"><b>&nbsp;RE-ORDER</b></a>
+  <dt><a href="cdpsnd.html#GRAIN"><b>&nbsp;GRANULAR</b></a>
+  <dt><a href="cdpsnd.html#PSOW"><b>&nbsp;PITCH-SYNC GRAINS</b></a>
+  <dt><a href="cdpsnd.html#TEXTURE"><b>&nbsp;TEXTURE</b></a>
+  <dt><a href="cdpsnd.html#RETIME"><b>&nbsp;RETIME</b></a>
+  <dt><a href="cdpsnd.html#WAVESETS"><b>&nbsp;WAVESETS</b></a>
+  <hr>
+  <dt><a href="cdpspect.html#SPECFILES"><b>SPECTRAL FILES:</b></a>
+  <dt><a href="cdpspect.html#SPECENV"><b>&nbsp;RESHAPE</b></a>
+  <dt><a href="cdpspect.html#SPECFILT"><b>&nbsp;FILTER</b></a>
+  <dt><a href="cdpspect.html#PCHFRQ"><b>&nbsp;PITCH/FREQ</b></a>
+  <dt><a href="cdpspect.html#MORPH"><b>&nbsp;MORPH</b></a>
+  <dt><a href="cdpspect.html#FORMANTS"><b>&nbsp;FORMANTS</b></a>
+  <dt><a href="cdpspect.html#COMBINE"><b>&nbsp;COMBINE</b></a>
+  <dt><a href="cdpspect.html#TIME"><b>&nbsp;TIME</b></a>
+  <dt><a href="cdpspect.html#SPECUTILS"><b>&nbsp;SPEC UTILS</b></a>
+  <hr>
+  <dt><a href="#PCHFILES"><b>PITCH-DATA:</b></a>
+  <dt><a href="#PCHCONV"><b>&nbsp;CONVERSIONS</b></a>
+  <dt><a href="#PCHPROCESS"><b>&nbsp;PITCH PROCESSES</b></a>
+  <dt><a href="#PCHSUPPORT"><b>&nbsp;SUPPORT FUNCTIONS</b></a>
+  <hr>
+  <dt><a href="cdpedit.html#EDITMIX"><b>EDIT / MIX:</b></a>
+  <dt><a href="cdpedit.html#EDIT"><b>&nbsp;EDIT</b></a>
+  <dt><a href="cdpedit.html#LEVEL"><b>&nbsp;LEVEL</b></a>
+  <dt><a href="cdpedit.html#CHANNELS"><b>&nbsp;CHANNELS</b></a>
+  <dt><a href="cdpedit.html#SPATIAL"><b>&nbsp;SPATIAL</b></a>
+  <dt><a href="cdpedit.html#MIX"><b>&nbsp;MIX</b></a>
+  <dt><a href="cdpedit.html#MIXFILES"><b>&nbsp;MIXFILES</b></a>
+  <dt><a href="cdpedit.html#UTILS"><b>&nbsp;SNDFILE UTILS</b></a>
+  <hr>
+  <dt><a href="cdpother.html"><b>OTHER FUNCTIONS:</b></a>
+  <dt><a href="cdpother.html#SYNTH"><b>&nbsp;SYNTHESIS</b></a>
+  <dt><a href="cdpother.html#DATA"><b>&nbsp;GENERATE DATA</b></a>
+  <dt><a href="cdpother.html#INFO"><b>&nbsp;INFORMATION</b></a>
+  <dt><a href="cdpother.html#SYSUTILS"><b>&nbsp;SYSTEM UTILS</b></a>
+  </dl>
+
+
+	</div> <!-- end of Sidebar -->
+</div> <!-- end of Left Column -->
+
+<!--- START OF RIGHT COLUMN -->
+<div id="right" class="column"> <!-- NB shared class -->
+
+   <div class="top-right"> <!--Right Hdr -->
+
+      <div align="center">
+      <img src="images/cdplogo2.jpg"  alt="CDP Logo">
+      </div>
+      
+   <!-- ----------------- MENU BAR ------------------- -->
+   <!---- NB If class='has-sub' then put </li> AFTER <ul> -->
+
+   <div id='cssmenu'>  
+   <ul>
+   <li class='has-sub'><a href="..\html\ccdpndex.htm"><span><b>INDEX</b></span></a>
+     <ul>
+     <li><a href="..\html\cdphome.htm"><span><b>HOME PAGE</b></span></a>
+     <li><a href="..\html\ccdpndex.htm"><span><b>MAIN INDEX</b></span></a>
+	 <li><a href="..\html\cbutnndx.htm"><span><b>Table Index</b></span></a></li>
+     <li><a href="..\html\alphindex.htm"><span><b>A-Z Function Index</b></span></a></li>
+     <li class='last'><a href="..\html\calphndx.htm"><span><b>Operations Index</b></span></a></li>
+     </ul>	
+   </li>
+   <li><a href="..\html\cgroundx.htm"><span><b>TIME-DOMAIN</b></span></a></li>
+   <li><a href="..\html\cspecndx.htm"><span><b>SPECTRAL</b></span></a></li>
+   <li><a href="..\html\graphic.htm"><span><b>GRAPHIC</b></span></a></li>
+   <li class='active has-sub'><a href="#"><span><b>EXPLAIN</b></span></a>
+   	  <ul>
+   	    <li><a href="..\html\charts.htm"><span><b>CHARTS</b></span></a></li>
+   	    <li><a href="..\html\tutorials.htm"><span><b>TUTORIALS</b></span></a></li>
+   	  </ul>
+   </li>
+   <li class='last'><a href="updates.htm"><span><b>DOWNLOADS</b></span></a></li>    
+   </ul>
+   </div> <!-- end of menu -->
+
+   </div> <!-- End of Right Hdr -->       
+   
+   
+<div class="bottom"> <!-------------- MAIN CONTENT ----------------->
+ 
+    
+    <table id="PCHFILES" bgcolor="#950000" border="0" width="100%">
+      <tbody>
+        <tr>
+          <td bgcolor="#ffffff" width="72"><img
+              src="images/cdpcircs72.jpg" nosave="" height="47"
+              width="72"></td>
+          <td>
+            <center><b><font face="Arial, Helvetica"><font
+                    color="#ffffff"><font size="+2">CDP GUIDE: &nbsp;&nbsp; PITCH-DATA FILES</font></font></font></b></center>
+          </td>
+        </tr>
+      </tbody>
+    </table>    
+
+<blockquote>
+    
+    <div align="right">
+	<i><b>PREVIOUS:&nbsp; <a href="cdpspect.html"><b>SPECTRAL</a></b></i>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<i><b>NEXT:&nbsp; <a href="cdpedit.html"><b>EDIT/MIX</a></b></i>
+    </div>
+
+
+
+<p>
+CDP can extract pitch data from the time-varying spectrum, if the sound is pitched (contains harmonic frequencies). Pitch files can then be manipulated in various ways, before being re-synthesised.
+</p>
+<p>
+Pitch can be extracted either as a binary pitch file (<b>.frq</b>), or a breakpoint text file (<b>.pch</b> or <b>.brk</b>). The breakpoint version may also provide a useful profile for controlling other processes, such as changing the dynamic contour to match a rise and fall in pitch.<br> 
+
+	<div style="text-align: center;"><img style="width: 691px;
+                height: 286px;" alt="Pitch Breakpoint"
+                src="images/CHANT.jpg"><br>
+		 <small><font size="-2">Breakpoint file of extracted pitch from
+                      three notes (A-G-F) of sung plainchant.</font></small><br>   
+        </div>
+
+</p>
+<p>
+To re-sythesise sound, the pitch file is combined with a formant file (<b>.for</b>). Formant files extract the time-varying spectral envelope of a sound  &#150; see <a href="cdpspect.html#FORMANTS"><b>FORMANTS</b></a>). The formant file can come from the source or a different sound. However, it's important to realise that:
+<ul>
+<li>changes to pitch data will only succeed to the extent that the frequencies of the altered pitches are also present (i.e. strong or weak) in the formant file.</li>
+<li>the dynamic profile will be entirely that of the formant file.</li>
+</ul></p>
+<p>
+It can often be useful to use a formant file taken from a noise-like sound, or one created from a mix of multiple transpositions, to ensure that the desired pitches are present at sufficient strength.
+</p>
+
+
+<!------------------------------------------------------------------------------------>
+<h2 id="PCHCONV" style="color: #ffffff; background-color: #950000">&nbsp;CONVERSIONS &nbsp;&nbsp;&nbsp; (CDP groups: REPITCH, COMBINE, ONEFORM)</h2>
+<p>
+<ul>
+<li><a href="../html/crepitch.htm#GETPITCH"><b>GetPitch</b></a> extracts pitch from a spectral file to either a binary pitch file (<b>.frq</b>) or a breakpoint text data file (<b>.pch</b> or <b>.brk</b>). (In Soundshaper pitch extraction is normally performed automatically in the background using current settings.) The breakpoint file can be fully edited (e.g. in Soundshaper's <b>Graph-Edit</b> or CDP's <a href="../html/cbrkedit.htm"><b>BrkEdit</b></a> editor) to change pitch or timings. Data reduction can also be performed in <b>BrkEdit</b>.<br><br>
+The conversion parameter values have a marked effect on the result and some experimentation may be required with these to get a good outcome for your purposes.</li><br>
+
+<li><a href="../html/ccombine.htm#MAKE"><b>Make</b></a> combines a pitch data file (<b>.frq</b>) with a formant (spectral envelope) file (<b>.for</b>) to create a spectral file (<b>.ana</b>) (which can then be converted back to sound via <b>PvocSynth</b>). Both files must have been derived from the same PVOC settings, but they can come from different source sounds.<br>
+The success of this process depends on the presence in the formant file of the harmonics implied by the pitchfile's pitch: the amplitude of these harmonics in the formant file, at the time of the pitch in the pitch file, will determine the extent to which the pitch is heard in the combined file.</li><br>
+
+<li><a href="../html/ccombine.htm#MAKE2"><b>Make2</b></a> is a variant of <a href="../html/ccombine.htm#MAKE"><b>Make</b></a>, generating a spectrum from pitch, formant and also envelope data (<b>.evl</b>), possibly from different sounds. (The envelope is extracted using <b><a href="../html/cgroenvl.htm#EXTRACT">Envel Extract</a></b> or <a href="../html/crepitch.htm#ANALENV"><b>Analenv</b></a>.)</li><br>
+
+<li><a href="../html/coneform.htm#COMBINE"><b>Oneform Combine</b></a> is a version of <b>Make</b> for a single-formant file (<b>.for</b>). It combines pitch and single-moment-formants data to make a new spectral file. </li>
+</ul>
+</p>
+
+
+<!------------------------------------------------------------------------------------>
+<h2 id="PCHPROCESS" style="color: #ffffff; background-color: #950000">&nbsp;PITCH-DATA PROCESSES &nbsp;&nbsp;&nbsp; (CDP group: REPITCH)</h2>
+
+<p>Several pitch-altering functions have been considered in the <a href="cdpspect.html"><b>SPECTRAL</b></a> section, for re-synthesis with the source's formant file. (Soundshaper has these built into batch files). However, re-synthesising with a formant file taken from a different source opens up many possibilities for creating hybrid sounds.     
+</p><p>
+The <a href="../html/crepitch.htm"><b>REPITCH</b></a> function group offers several ways to alter binary pitch files (<b>.frq</b>):
+<p>
+<ul>
+
+
+<li><a href="../html/crepitch.htm#APPROX"><b>Approx</b></a> makes a randomly varied copy of a pitch file, varying slightly or radically within a range of up to 96 semitones, and with timing variations up to the length of the file. Several slightly-varying copies can be resynthesized and mixed to give a natural chorus effect.</li><br>
+
+<li><a href="../html/crepitch.htm#EXAG"><b>Exag</b></a> exaggerates the range and/or contour of the extracted pitch. The interval from a mean pitch to the actual pitch is either stretched or shrunk, or both. </li><br>
+
+<li><a href="../html/crepitch.htm#INVERT"><b>Invert</b></a> inverts the pitch contour around a given pitch, either using mirror inversion, or a mapping text file of intervals and their inversions. You can map intervals however you wish, including fractional (microtonal) MIDI values.</li><br>
+
+<li><a href="../html/crepitch.htm#QUANTISE"><b>Quantise</b></a> constrains pitches to a given template. For example, quantising to the semitone eliminates microtonal shifts, which matches some of the behaviour of "autotuning" programs, though not in real-time:<br><br>
+	<div style="text-align: center;"><img style="width: 703px;
+                height: 292px;" alt="Pitch Quant."
+                src="images/CHANT2.jpg"><br>
+		 <small><font size="-2">Extracted pitch quantized to exact MIDI values (from plainchant above)</font></small><br>   
+        </div>
+
+ </li><br>
+
+<li><a href="../html/crepitch.htm#RANDOMISE"><b>Randomise</b></a> varies the pitch line randomly, with control over the pitch and time ranges and the slew: whether the upward range is more than the downwards, or vice-versa. </li><br>
+
+<li><a href="../html/crepitch.htm#PCHSHIFT"><b>Pchshift</b></a> transposes by fixed number of semitones. </li><br>
+
+<li><a href="../html/crepitch.htm#SMOOTH"><b>Smooth</b></a> averages the pitch across the specified time-window and then interpolates from there to the next averaged time-frame. The mean pitch around which it is averaged is time-variable and could come from quantized pitch data</li><br>
+
+<li><a href="../html/crepitch.htm#VIBRATO"><b>Vibrato</b></a> modulates pitch, preserving time (necessary if several pitches vibrato simultaneusly).</li><br>
+
+<li><a href="../html/crepitch.htm#VOWELS"><b>Vowels</b></a> is similar to the spectral filtering process <a href="../html/chilite.htm#VOWELS"><b>Hilite Vowels</b></a>, which imposes vowel formants on a sound. <b>Repitch Vowels</b> imposes vowels on a pitch file, creating artificial speech-like sounds.</li><br>
+
+<li><a href="../html/crepitch.htm#GENERATE"><b>Generate</b></a> creates a pitch file from a time and MIDI-pitch data file, which can be edited in Graph-Edit. The function is potentially extremely useful for the purposes of imposing pitch, when combined with a suitable formant file, especially a sound rich in partials such as a gong or cymbal.</li><br>
+
+<li><a href="../html/crepitch.htm#SYNTH"><b>Synth</b></a> synthesises a pitch-changing, but timbrally static, spectrum from a pitchfile, according to a given set of weighted harmonics. This can be vocoded with another sound to give it some dynamic life.</li>
+</ul>
+</p>
+
+
+<!------------------------------------------------------------------------------------>
+<h2 id="PCHSUPPORT" style="color: #ffffff; background-color: #950000">&nbsp;SUPPORT FUNCTIONS &nbsp;&nbsp;&nbsp; (CDP groups: REPITCH, PCHINFO, PSOW)</h2>
+<p>
+These utilities offer mainly conversion between pitch-data types and handling of unpitched (zero) or silent windows in the pitch file.
+</p>
+<ul>
+
+<li><a href="../html/crepitch.htm#CUT"><b>Cut</b></a> extracts a segment of a pitch file (<b>.frq</b>).</li><br>
+
+<li><a href="../html/crepitch.htm#FIX"><b>Fix</b></a> is a collection of pitch file utilities: <b>Cut</b> &#150; remove pitch between timepoints; <b>Filter</b>; &nbsp;<b>Smooth</b> &#150; onset errors and glitches; <b>Force pitch</b> &#150; to be some value at start/end; <b>Interpolate</b> &#150; through unpitched windows to produce pitch throughout.</li><br>
+
+<li><a href="../html/crepitch.htm#INTERP"><b>Interp</b></a> interpolates from one pitched area to the next, replacing noise or silence with sustained pitch or a glissando. This is an essential "fix" if the pitch file is to be used in a process that will reject unpitched areas (such as Pitchinfo Convert)</li><br>
+
+<li><a href="../html/crepitch.htm#INSERTSIL"><b>Insertsil</b></a> inserts silence into a pitch file. </li><br>
+
+<li><a href="../html/crepitch.htm#INSERTZEROS"><b>Insert Zeros</b></a> inserts unpitched areas (zeros) into a pitch file (.frq). </li><br>
+
+<li><a href="../html/crepitch.htm#NOISETOSIL"><b>NoisetoSil</b></a> converts unpitched areas of a pitch file (noise) to silence.</li><br> 
+
+<li><a href="../html/crepitch.htm#PITCHTOSIL"><b>PitchToSil</b></a> replaces pitched areas of a pitch file with silence.<br><br>
+
+Three functions are available to convert binary pitch files (<b>.frq</b>) to breakpoint pitch files (<b>.pch</b> or <b>.brk</b>):
+</li>
+
+<li><a href="../html/crepitch.htm#PCHTOTEXT"><b>PchToText</b></a> (<i>Soundshaper: PchToBrk</i>) produces an outline of the pitch (quite sufficient for many purposes).</li>
+<li><a href="../html/cgropsow.htm#PTOBRK"><b>PtoBrk</b></a> is much more detailed and is really intended for use with <b>PSOW</b> programs.</li>
+<li><a href="../html/cptchinf.htm#CONVERT"><b>Pitchinfo Convert</b></a> has a data-reduction parameter for simplifying the breakpoint file.</li><br>
+
+<li><a href="../html/crepitch.htm#BRKTOPI"><b>BrktoPi</b>(tch)</a> converts a pitch breakpoint textfile (<b>.pch</b> or <b>.brk</b>) to a pitch file (<b>.frq</b>).</li><br>
+
+<li><b><a href="../html/crepitch.htm#COMBINE">Combine/CombineB</b></a>: these convert and combine the various pitch file-types: <b>.frq</b> (pitch file), <b>.pch/.brk</b> (breakpoint) and <b>.trn</b> (transposition). They can also be used to impose one pitch or transposition profile on another.<br><br>
+
+Combine introduces a new data type: a binary transposition file (<b>.trn</b>) generated from two pitch contours (<b>.frq</b>), or one plus a pitch breakpoint file.<br>
+A bewidering number of combinations are catered for (pch = breakpoint pitch): 
+<ul>
+<li><b>Combine:</b> frq+frq to trn, frq+pch to trn, frq+trn to frq, frq+trnbrk to frq, trn+trn to trn, trn+trnbrk to trn.</li>
+<li><b>CombineB:</b> frq+frq to trnbrk, frq+pch to trnbrk, frq+trn to pch, frq+trnbrk to pch, trn+trn to trnbrk, trn+trnbrk to trnbrk.</li> 
+</ul>
+<br>
+Transposition files can be used with <b>Repitch Transpose</b> (Mode 4)</a>, but nothing else (except the various combinations). The CDP Reference provides an example of how to impose a specific transposition contour: 
+<ul>
+<li> extract the pitch from the source using <b>Getpitch</b>, producing a binary pitch data file (<b>.frq</b>). </li>
+<li> generate the pitch contour to be imposed, from time and MIDI data, using <b>Repitch Generate</b>. </li> 
+<li> combine this with the extracted pitch to generate a transposition file (<b>.trn</b>)</li>
+<li> apply the transposition data (<b>.trn</b>) to the source analysis-file using <b>Transpose</b>, Mode 4.
+</li>
+</ul>
+<br>
+However, a simple breakpoint file applied directly to <b>Transpose</b> or <b>Speed</b> will have the same effect. 
+<!--
+<br>To this end, Soundshaper has a function <b>PchToRatio</b>, which converts a pitch breakpoint file to ratios of the initial pitch, giving a pitch contour for transposition. The varying pitch of one sound can then be imposed on another sound, using <b>Transpose</b> or <b>Speed</b>. CDP also has a similar function, in the COLUMNS program, to convert frequencies to ratios ...  
+-->
+
+</li>  <!-- end of combine -->
+</ul>
+
+
+<!--------------- BACK / NEXT TABLE ------------->
+
+            <div align="center">
+              <table border="0" cellpadding="0" cellspacing="0"
+                width="50%">
+                <tbody>
+                  <tr>
+                    <td valign="top" align="center">
+                        <b><i>SPECTRAL PROCESSES</b></i></td>
+                    <td valign="top" align="center">
+			<i><b>EDIT/MIX PROCESSES</b></i></td>
+                  </tr>
+                  <tr>
+                    <td valign="top" align="center">
+			<a href="cdpspect.html"><img alt="BACK" src="images/BACK.gif"
+                          border="0" width="54" height="44"></a></td>
+                    <td valign="top" align="center">
+			<a href="cdpedit.html"><img alt="NEXT" src="images/NEXT.gif"
+                          border="0" width="54" height="44"></a></td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+            </div>
+
+
+<p align="center">
+<small><b>The descriptions above are adapted from the Soundshaper manual and do not necessarily reflect the views of CDP.<br>
+For details of each function, always refer to the <a href="../html/cdphome.htm"><b>CDP Reference Documentation</b></a>.<br>
+For further details about CDP see the Composers' Desktop Project <a href="http://www.composersdesktop.com">website</a>.</b></small>  
+</p>
+
+</blockquote>
+
+<br>
+
+<!-- ----------------------------   End of Main Text ------------------------------ -->
+
+<table style="text-align: left; width: 100%; " border="0" cellpadding="8" cellspacing="0">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top; background-color: #d9b18c"><b>NEXT PAGE:</b>
+              <b><a href="cdpedit.html">&nbsp;<b>EDIT/MIX PROCESSES</b></a>
+	  </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+<!-- ************************************************************* -->
+
+      <div class="footer">
+        <p> 
+		   &nbsp;<b><i>Last Updated 7 May 2022 &nbsp;&nbsp;
+          © Copyright 2021-22 Robert Fraser and CDP</i></b>
+        <br>
+    
+        </p>
+      </div>
+      
+
+  </div> <!-- END of MAIN CONTENT (bottom right) --> 
+</div> <!-- END OF RIGHT COLUMN -->
+
+</body>
+</html>   

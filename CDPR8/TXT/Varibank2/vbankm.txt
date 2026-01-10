@@ -1,0 +1,12 @@
+;Time MPV Amp   MPV Amp   MPV Amp   MPV Amp   MPV Amp
+0.00  60 -3dB   64 -3dB   67 -3dB   70 -3dB   72 -3dB
+3.00  66 -1.5dB 66 -1.5dB 66 -1.5dB 66 -1.5dB 66 -1.5dB
+6.25  60  0dB   62  0dB   65  0dB   71  0dB   72  0dB
+#
+;VARIBANK2: Time Partials with Amplitude weighting
+0    1 0.3  2.237 0.4	7.615 0.8 
+1    1 0.3  3.34  0	14.22  0.8 
+;    ...partial 3.34 disappears
+2    1 0.3  16.3  0	8.322 0.8 
+;    ...partial 16.3 disappears
+3    1 0.3  22.6   0.4 	7.615 0.8

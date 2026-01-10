@@ -1,0 +1,223 @@
+{
+  "project": "MusaicSessionDemo",
+  "tempo": 128,
+  "timeUnits": "beats",
+  "tracks": [
+    {
+      "name": "Kick",
+      "type": "sample",
+      "events": [
+        {
+          "time": 0.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 4.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 8.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 12.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 16.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 20.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 24.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 28.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 32.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 36.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 40.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 44.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 48.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 52.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 56.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 60.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 64.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 68.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 72.0,
+          "dur": 1.0,
+          "pitch": 60
+        },
+        {
+          "time": 76.0,
+          "dur": 1.0,
+          "pitch": 60
+        }
+      ],
+      "source": "examples/kick.wav",
+      "amp": 1.0
+    },
+    {
+      "name": "Bass",
+      "type": "synth",
+      "events": [
+        {
+          "time": 0.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 4.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 8.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 12.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 16.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 20.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 24.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 28.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 32.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 36.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 40.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 44.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 48.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 52.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 56.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 60.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 64.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 68.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 72.0,
+          "dur": 4.0,
+          "pitch": 48
+        },
+        {
+          "time": 76.0,
+          "dur": 4.0,
+          "pitch": 48
+        }
+      ],
+      "waveform": "saw",
+      "amp": 0.6
+    }
+  ]
+}

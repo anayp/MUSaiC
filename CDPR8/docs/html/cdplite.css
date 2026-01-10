@@ -1,0 +1,104 @@
+/* cdplitenew.css - new version based on cdpmanshtml5.css; text choices from old cdplite */
+
+#head {
+	background-color: #F8F8F8;
+	text-align: left;
+	border-bottom: 3px double #800000;
+}
+
+#left {
+	background-color: #EFCF75;
+	position: fixed;
+	padding-left: 1%;
+        padding-right: 1%;
+	float: left;
+	width: 13%;
+	height: 100%;
+	overflow: auto;
+}
+
+#right {
+	background-color: #F8F8F8;
+	border-left: 3px double #800000;
+	float: left;
+	position: relative;
+	padding-left: 2%;
+ 	padding-right: 3%;
+	left: 15%;
+	width: 80%;
+}
+
+#footer {
+	clear: both;
+	border-top: 3px double #800000;
+	text-align: left;
+}
+
+h1 {
+	color: #800000;
+        font-family: "verdana", geneva, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1.5;
+}
+
+h2 {
+	color: #009F3C;
+        font-family: "verdana", geneva, sans-serif;
+	font-size: 18pt;
+	font-weight: bold; 
+	text-align: center;
+	padding-bottom: 3pt;
+}
+
+h3 {
+	color: #009F3C;
+        font-family: "verdana", geneva, sans-serif;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+h4 {
+	color: #990099;
+        font-family: "verdana", geneva, sans-serif;
+	font-size: 9pt;
+	font-weight: normal;
+}
+
+h5 {
+	color: #000000;
+        font-family: "verdana", geneva, sans-serif;
+	font-size: 11pt;
+	font-weight: normal;
+	text-align: center;
+	padding-bottom: 2pt
+}
+
+p {
+        font-family: "verdana", geneva, sans-serif;
+	font-size: 11pt;
+	font-weight: normal;
+}
+
+dl	{
+	text-align: left;
+}
+
+div 	{text-align: center}
+
+
+li 	{
+	color: #000000;
+        font-family: "verdana", geneva, sans-serif;
+	font-size: 11pt;
+	font-weight: normal;
+	text-align: left;
+}
+
+body	{
+	color: #000000;
+        font-family: "verdana", geneva, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+	margin-top: 0pt
+}

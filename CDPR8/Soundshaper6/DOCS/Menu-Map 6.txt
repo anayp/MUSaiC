@@ -1,0 +1,854 @@
+SOUNDSHAPER 6 MENU MAP (May '23)
+===================================
+Indented functions (e.g. Prefix silence) belong to a process group
+or are merged with another process in one parameter page.
+Programs in CDP Release 8 (forthcoming) are labelled (R8)
+
+
+Menu description           Short name        CDP name
+----------------           ----------        --------
+EDIT/MIX MENU
+==============
+
+EDIT
+-----
+Cut (extract)              Cut               sfedit cut 
+Zero Cut                   Zerocut           sfedit zcut
+Excise (discard)           Excise            sfedit excise
+Multi-excise               Discards          sfedit excises
+Trim (Topntail)            Trim              topantail2  
+Waveform                   Waveform          waveform (R8)
+- - - - - - -
+MULTI-OUTS:
+ Multi Cuts                Multicut          sfedit cutmany
+ Multi zero Cuts           Zerocuts          sfedit zcuts
+ Gate Extract              Gatextract        housekeep extract 1
+ Timegrid                  Timegrid          envel timegrid
+ Env Cuts                  EnvCuts           envcut (R8)
+ Waveset groups            DistCuts          distcut (R8)
+ Random Chunks             Randchunks        sfedit randchunks
+ Random Cuts               Randcuts          sfedit randcuts
+ - - - -
+ Packet                    Packet            packet
+ Partition                 Partition         partition (R8)
+ Isolate                   Isolate           isolate
+ Rejoin                    Rejoin            rejoin     
+ Cantor                    Cantor            cantor
+- - - - - - -
+Insert                     Insert            sfedit insert
+Paste segment              Segpaste          sfedit insert
+Replace                    Replace           sfedit replace
+Insert silence             Insil             sfedit insil
+  Prefix silence           Presil            prefix silence
+  End silence              Endsil            silend
+Silences                   Silences          manysil
+Masks                      Masks             sfedit masks
+Switch                     Switch            sfedit twixt / sphinx
+- - - - - - -
+Join s'files (splice)      Join              sfedit join
+Patterned                  Joinseq           sfedit joinseq
+Patterned + dynamics       Joindyn           sfedit joindyn
+Single-source seq.         Sampleseq         extend sequence
+Sequencer                  Sequencer         extend sequence2
+
+LEVEL
+------
+Gain                       Level             modify loudness 1-4
+  Normalise                Normalise         modify loudness 3
+  Force level              ForceLevel        modify loudness 4 
++3dB boost                 GainDB            modify loudness 2
++6dB boost                   "                  "      "  
+-3dB cut                     "                  "      " 
+-6dB cut                     "                  "      " 
+- - - -
+Equalise                   Equalise          modify loudness 8
+Balance                    Balance           modify loudness 5
+Multi Chan Level           MchGain           frame shift 7
+- - - -
+Invert Phase               PhaseInvert       modify loudness 6 
+Channel Phase              ChanPhase         chanphase
+Gate                       Gate              gate
+- - - - -
+Clip                       Clip              clip (R8)
+Overload                   CycOverload       distort overload
+Power                      Power             quirk (R8)
+
+CHANNELS
+---------
+Split channels             Splitchans        housekeep chans 2
+Extract channels           Getchans          channelx
+Extract stereo pair        Pairex            pairex (R8)
+Swap channels              Swapchans         modify space 2
+Subtract channel           Subtract          subtract
+Zero channel               Zerochan          housekeep chans 3
+- - - - -
+Merge chans (interleave)   Interleave        interlx
+Merge to Wave-Ex           Interlx           interlx 
+Mono to Stereo             MtoS              housekeep chans 5
+Stereo/m-c to Mono         StoM              housekeep chans 4
+Mono to Multi              MtoN              interlx
+Stereo to Multi            StoN              interlx
+Place stereo(s)            MchStereo         mchstereo
+- - - - -
+Reorder                    MchOrder          chorder     
+Move channels              Movechans         frame shift 3-6/8
+Rotate channel order       Rotatechans       frame shift 1-2
+
+SPATIAL
+--------
+Pan                        Pan               modify space 1
+PanMix                     Panmix            modify space 1 +
+Narrow                     Narrow            modify space 4
+Widen (phase shift)        PhaseShift        phase 2
+Diverge mono-stereo        ToStereo          tostereo (R8)
+Spin stereo                SpinStereo        spinstereo (R8)
+- - - - - - - - -
+MULTI-CHANNEL:
+Mch-Pan/Rotate             MchPan            mchanpan 1/9
+Mch-Pan Sets               MchPanSet         mchanpan 7           
+Mch-Spread                 MchSpread         mchanpan 4
+Mch-Switch antiphonally    Pantiphon         mchanpan 6
+- - - - -
+Ambisonic Pan              Ambipan           abfpan
+Decode ambisonic file      Ambidecode        fmdcode
+- - - - -
+Panorama                   Panorama          panorama
+Spin Two stereos           SpinQuad          spinquad (R8)
+- - - - -
+Mchan Spread events        MchEvents         mchanpan 3 
+Mchan Switch events        MchSwitch         mchanpan 2/5/10
+Transit                    Transit           transit simple   (audio-out)
+Tangent                    TangentOne        tangent onefile  (audio-out)
+
+
+MIX
+----
+Mix                        Mix               submix mix
+Mix Multichan              MchMix            newmix multichan
+-- - - -
+Mix Many                   MixMany           submix mergemany
+Mix Two                    MixTwo            submix merge
+Multichan Mix Two          MchMixTwo         nmix
+Premix                     Premix             - 
+- - - -
+Merge Two                  MergeTwo          submix merge
+Mix Balance                MixBalance        submix balance 
+Crossfade                  Crossfade         submix crossfade
+- - - -
+Inbetween                  Inbetween         submix inbetween
+    Inbetween(0-cross)     Inbetween0        submix inbetween2
+  
+
+UTILS
+-----
+Copy/Convert               CopySfX           copysfx
+WAVEX Convert-Wavex        CopySFX           copysfx
+Resample                   Respec            housekeep respec
+  Integer<-->Float           "                  "        "
+  Rewrite Header             "                  "        "
+Degrade                    Degrade           modify radical 4
+- - - - -
+DC Remove                  DCOffset          housekeep extract 4
+Deglitch                   Deglitch          housekeep deglitch
+Endclicks                  Endclicks         housekeep endclicks
+
+
+------------------------------------------------------------------
+SOUNDFILE MENU
+==============
+
+ENVELOPE
+--------
+CREATE:
+ Envelope file             EnvCreate         envel create
+ Brkpt envelope            EnvCreateB        envel create
+ Cyclic envelope           Cyclic            envel cyclic
+ Edit brkpt envelope       EnvEdit            -
+EXTRACT:
+ Set extract defaults      EnvExtract        envel extract 1 
+ Envelope (with defaults)     "                "     "
+ Envelope (with params)       "                "     "
+ Brkpt Env (with defaults) EnvExtractB       envel extract 2
+ Brkpt Env (with params)      "                "     "  
+ Peak Envelope             PeakEnv           envnu peakchop 2
+ Envelope from Spec.       EnvAnal           repitch analenv 
+CONVERT:
+ Envelope to Brkpt         EnvToBrk          envel envtobrk         
+ Brkpt to Envelope         BrkToEnv          envel brktoenv
+ dbBrkpt to Brkpt          dBtobrk           envel dbtogain
+IMPOSE:
+ Using soundfile           EnvImpose         envel impose 1 
+ Using envel file          EnvEImpose        envel impose 2  
+ Using brkpt env           EnvBImpose        envel impose 3
+ Scaled                    EnvScaled         envel scaled
+REPLACE:
+ Using soundfile           EnvReplace        envel replace 1
+ Using envel file          EnvEReplace       envel replace 2 
+ Using brkpt env           EnvBReplace       envel replace 3
+- - - - - - - - -
+ALTER ENVELOPE MENU:
+Attack                     Attack            envel attack 
+Decay (fadeout)            Curtail           envel curtail
+   Decay to zero           Expdecay          envnu expdecay
+Fade In/Out                Fades             envel dovetail 
+Swell                      Swell             envel swell
+     (modes 2-3)                             spike (R8)
+Reshape                    EnvWarp           envel warp
+Flatten                    Flatten           flatten (R8)
+Trigger                    Trigger           envel warp
+Gate                       Gate              gate
+- - - - -
+Tremolo                    Tremolo           tremolo
+  Mchan Tremolo            Flutter           flutter
+  Tremolo after peak       TremEnv           tremenv (R8)
+Pulsed                     Pulsed            distort pulsed
+Shudder                    Shudder           modify shudder
+- - - -
+Warp Envelope file         EnvEWarp          envel reshape 
+Trigger	Env file           ETrigger          envel reshape
+- - - -
+Warp brkpt env.            EnvBWarp          envel replot
+Trigger brkpt env          BTrigger          envel replot
+
+FILTER
+------
+Fixed EQ                   FltFixed          filter fixed
+Low-Pass/High-Pass         LoHi              filter lohi 
+Variable                   FltVari           filter variable
+- - - -
+Phasor                     Phasor            phasor (R8)
+Phasing                    Phasing           filter phasing
+Sweeping                   Sweep             filter sweeping
+Iterated                   FltIterate        filter iterated
+- - - - 
+Bank                       Bank              filter bank
+Userbank                   Userbank          filter userbank
+Varibank                   Varibank          filter varibank
+Varibank/partials          Varibank2         filter varibank2
+
+
+PITCH
+-----
+Speed/Transpose            Speed             modify speed 1/2
+Vibrato                    Vibrato           modify speed 6
+Accel/Decel                Accel             modify speed 5
+Verges                     Verges            verges (R8)
+Stack                      Stack             modify stack
+- - - - -
+Ringmod                    Ringmod           modify radical 5
+Cross-mod                  Crossmod          modify radical 6
+
+
+REVERB/DELAY
+-----------
+Reverb                     Reverb            reverb
+Roomverb                   Roomverb          rmverb
+Convolve                   Convolve          fastconv
+- - - - 
+Delay                      Delay             modify revecho 1/2
+Stadium Echo               Echo              modify revecho 3
+                           MchEcho           mchanrev
+Iterate                    Iterate           extend iterate 
+                           MchIter           mchiter              
+Iterline                   Iterline          iterline
+Freeze-Delay               Freezedelay       extend freeze
+- - - - 
+Repetitions                Repetitions       extend repetitions
+Tapped Delay               Tapdelay          tapdelay
+- - - -
+Echoes                     Echoes            sfecho echo
+Bounce                     Bounce            bounce (R8)
+Shrink                     Shrink            shrink 1/4
+Shrink around peaks        ShrinkPks         shrink 5/6
+- - - -
+Mch-Repeats                MchRepeats        madrid
+Polyrhythms                Polyrhythms       ceracu
+Shifter                    Shifter           shifter
+Tesselate                  Tesselate         tesselate (R8)
+
+EXTEND/SEGMENT
+--------------
+Reverse                    Reverse           modify radical 1
+- - - - -
+Back to Back               BakToBak          extend baktobak 
+Zig-zag                    Zigzag            extend zigzag
+  Mch-zig                  MchZig            mchzig
+Hover                      Hover             hover
+                                             hover2  (R8)
+Scrub                      Scrub             modify radical 3
+DVDWind                    Dvdwind           dvdwind (R8)
+Noise-extend               Noisextend        grain noise_extend
+- - - - 
+Loop                       Loop              extend loop
+Repeat segments            Repeats           extend doublets
+Repeater                   Repeater          repeater (R8)
+Segenv                     Segenv            envspeak (R8)   
+- - - - -    
+Pulser                     Pulser            pulser (R8)
+Pulser Multi               Pulsemulti        pulser multi (R8)
+Motor                      Motor             motor (R8)
+Splinter                   Splinter          splinter (R8)
+- - - - -
+Cascade                    Cascade           cascade (R8)
+Crumble                    Crumble           crumble (R8)
+Fracture                   Fracture          fracture
+
+
+RE-ORDER
+--------
+Drunk                      Drunk             extend drink
+Shred                      Shred             modify radical 2
+  Mch-shred                MchShred          mchshred
+Scramble                   Scramble          extend scramble
+Scramble Wavesets          CycScramble       scramble (R8)
+Sorter                     Sorter            sorter (R8)
+Stutter                    Stutter           stutter (R8)
+
+
+GRANULAR
+--------
+Grain (Brassage)           Grain             modify brassage
+Multi-Grain                Grain             modify brassage 7 (Sausage)
+Multi-chan Grain           MchGrain          wrappage
+Grain-Texture              Graintex          newtex
+- - - -
+Granulate                  Granulate         modify brassage 5
+Grain-Assess               Assess            grain assess
+- - - - -
+Manipulate by envelope     GrnEnv            grain grev  	 
+Align                      GrnAlign          grain align
+Repeat                     GrnDupl           grain duplicate
+Reverse order              GrnReverse        grain reverse 
+Omit                       GrnOmit           grain omit
+Extend                     GrnExtend         grainex
+Reposition                 GrnPosn           grain reposition
+Rhythm                     GrnRhythm         grain rerhythm
+Shuffle                    GrnShuffle        grain reorder 
+Timedtretch                GrnTimewarp       grain timewarp
+Pitch                      GrnPitch          grain repitch
+Motif                      GrnMotif          grain remotif
+
+PITCH-SYNC GRAINS
+-----------------
+Get Pitch Trace            PchTrace          ptobrk withzeros
+- - - -
+Grab                       PSGrab            psow grab
+Chop                       PSChop            psow chop  
+- - - -
+Stretch                    PSStretch         psow stretch 
+   Stretch-Trans           PSStrTrans        psow strtrans 
+Repeat                     PSDupl            psow dupl
+Delete                     PSDelete          psow delete
+Features                   PSFeatures        psow features
+Sustain                    PSSustain         psow sustain
+Sustain 2                  PSSustain2        psow sustain2
+Partials                   PSPartials        psow reinforce
+Space                      PSSpace           psow space
+Split                      PSSplit           psow split  
+- - - -
+Impose                     PSImpose          psow impose 
+Interleave                 PSInterleave      psow interleave 
+Replace                    PSReplace         psow replace
+Interpolate                PSInterp          psow interp
+Synth                      PSSynth           psow synth
+
+TEXTURE
+-------
+Multichannel               TexMchan          texmchan
+- - - -
+Simple                     Simple            texture simple
+Groups                     Groups            texture grouped  
+Timed                      Timed             texture timed
+Timed Groups               TGroups           texture tgrouped
+Decorate                   Decorate          texture decorated 
+                                               /predecor /postdecor
+Ornate                     Ornate            texture ornate
+                                               /preornate /postornate
+Motifs                     Motifs            texture motifs
+Timed Motifs               TMotifs           texture tmotifs
+   Hmc Motifs              THmcMotifs        texture tmotifsin 
+
+RETIME
+------
+Add Silences               Silences          manysil
+Gate                       Gate              gate  
+Constrict Silences         Constrict         constrict
+- - - -
+Pulse                      PeakPulse         retime retime 1
+Retime                     PeakRetime        retime retime 2
+Move                       PeakMove          retime retime 13/14
+Gate around peaks          PeakChop          envnu peakchop 1
+- - - -
+Shorten                    R-Shorten         retime retime 3
+Pulsed                     R-Pulse           retime retime 4 
+Speed                      R-Speed           retime retime 5
+Reposition                 R-Times           retime retime 6/7
+Repeat                     R-Repeat          retime retime 8
+Mask                       R-Mask            retime retime 9
+Accents                    R-Accents         retime retime 10  
+
+
+WAVESETS (DISTORT Cycles)
+-------------------------
+Average                    CycAverage        distort average
+Frequency                  CycFreq           distort multiply/divide/harmonic/fractal
+                                             distmore double; (R8)
+Repeat                     CycRepeat         distort repeat/replim/interpolate
+                           Distrep           distrep (R8)
+Repeat for duration        Distortt          distortt (R8)
+Omit                       CycOmit           distort omit/delete/replace/telescope 
+Envelope                   CycEnvelope       distort envel
+Filter                     CycFilter         distort filter
+- - - -
+Interleave                 CycInterl         distort interact 1
+Impose                     CycImpose         distort interact 2
+Warp Pitch                 CycPchwarp        distort pitch 
+Multiply (warp)            Distwarp          distwarp
+Reshape                    Cycreform         distort reform
+- - - -
+Fractal                    FractalWave       fractal wave (R8)
+Interpolate                DistMark          distmark (R8)
+Reverse                    CycReverse        distort reverse
+                           Distrev           distmore segsbkwd (R8) 
+Re-order                   DistBright        distmore bright (R8)
+Shift                      DistShift         distshift  (R8)             
+Shuffle                    CycShuffle        distort shuffle
+Zig-zag                    DistZig           distmore segszig (R8) 
+(Scramble                  CycScramble       scramble (R8) - SEE REORDER MENU) 
+
+------------------------------------------------------------------
+SPECTRAL MENU
+=============
+
+PVOC (FFT)
+----
+Analyse                    PvocAnal          pvoc anal
+Synth                      PvocSynth         pvoc synth
+
+RESHAPE
+--------
+Accumulate                 Accumulate        superaccu
+   Accumulate (orig)       Accu              focus accu 
+Arpeggiate                 Arpeggiate        hilite arpeg
+- - - -
+Average                    Average           blur avrg
+Glisten                    Glisten           glisten
+Invert                     Mirror            strange invert
+Noise                      SpecNoise         blur noise
+Spread                     Spread            blur spread	
+
+
+FILTER
+------
+Filter                     Filter            hilite filter
+Graphic                    Graphic           hilite greq
+Focus                      Focus             focus focus
+Blur Freqs                 BlurFreqs         caltrain (R8)           
+Vowels                     Vowels            hilite vowels
+Slice                      Slice             soecnu slice
+Speculate                  Speculate         speculate (R8)
+- - -
+Clean/Subtract             Clean             specnu clean 
+Remove                     Remove            specnu remove
+- - -
+Trace                      Trace             hilite trace
+Suppress                   Suppress          blur suppress
+  in freq band             SuppressBnd       suppress partials (R8)
+Scatter                    Scatter           blur scatter
+
+
+
+PITCH/FREQUENCY
+---------------
+Transpose (preserving time);
+  Part of spectrum         TransPch          pitch transp
+  Transpose                Transpose         repitch transpose
+  T'stretch+Speed          Pchstretch        stretch time + modify speed   
+Transpose (preserving fmts):
+  PchShift                 PchShift          repitch pchshift
+                                             repitch octmove
+  Alt.Method               FmtTransp         specfnu 11/12 (R8)
+Transpose -> prominent pch SpecTune          spectune (R8) 
+Transpose (using .trn)     TransposeTrn      repitch transpose 4 / transposef 4
+- - - - - - -
+Approximate                PchApprox         repitch approx
+Exaggerate                 PchExagg          repitch exag
+  Alt method               ExaggPch          specfnu 16 (R8)
+Fractal                    SpecFract         fractal spectrum (R8)
+Invert                     PchInvert         repitch invert
+  Alt method               InvertPch         specfnu 15 (R8)   
+Quantize                   PchQuant          repitch quantise
+  Alt Method               QuantPch          specfnu 17 (R8)  
+Randomize                  PchRand           repitch randomise
+  Alt Method               RandPch           specfnu 18 (R8)     
+Smooth                     PchSmooth         repitch smooth
+Vibrato                    PchVib            repitch vibrato 
+------------------------
+Tune                       Tune              pitch tune /tunevary
+Pick (partials)            Pick              pitch pick
+Fold or Invert             FoldInvert        focus fold / specnu slice 5 
+  Alt method               SpecFold          specfold (R8)
+Shift or Respace           Shift             strange shift
+  Shift/Respace            FmtFreq           specfnu 13,14,19 (R8)
+Stretch spectrum           SpecStretch       stretch spectrum
+Waver                      Waver             strange waver 
+Chorus                     Chorus            blur chorus
+Squeeze                    Squeeze           specnu squeeze 
+Gliss                      Gliss             strange glis
+
+
+MORPH
+------
+Morph                      Morph             morph morph 
+Bridge                     Bridge            morph bridge
+Morph Peaks                MorphPeaks        nemorph
+Multi-Morph                Multimorph        newmorph 7
+Morph Tune                 Morphtune         newmorph2
+Peak Freqs (for Morphtune) PeakFreqs         newmorph2
+Harmonics                  MorphHmcs         specross partials
+Glide                      Glide             morph glide
+
+
+FORMANTS
+---------
+Vocode                     Vocode            formants vocode
+Cross                      Cross             combine cross
+SpecEnv                    SpecEnv           specenv (R8)
+Hybrids                    Hybrids           specsphinx
+Twin                       Spectwin          spectwin
+Exaggerate                 Exaggerate        focus exag
+Modify                     SpecFmt           specfnu 1-6 (R8)
+Move                       FmtMove           specfnu 8-9 (R8)
+Arpeggiate                 FmtArpegg         specfnu 10  (R8)
+Sine-Speech                SineSpeech        specfnu 23  (R8)
+- - - -
+Get Formants               GetFmts           formants get
+Put Formants               PutFmts           formants put
+View Formants              SeeFmts           formants see
+Make Spectrum              MakeSpec          combine make
+Make Spectrum 2            MakeSpec2         combine make2
+- - - -
+SINGLE FORMANTS:
+Get 1 Formant              1FmtGet           oneform get
+Put 1 Formant              1FmtPut           oneform put 
+Make Spectrum              1FmtCombine       oneform combine
+
+
+COMBINE
+-------
+Sum                        SpecSum           combine sum             
+Difference                 SpecDiff          combine diff
+Interleave                 SpecInterl        combine interleave 
+Maximum                    SpecMax           combine max 
+Mean                       SpecMean          combine mean 
+
+TIME
+----
+Time-Stretch               Timestretch       stretch time
+  (other params)                             spectstr (R8)
+Expand                     Expand            spec magnify
+Hold                       Hold              focus hold
+Freeze                     Freeze            focus freeze
+Step-Freeze                Stepfreeze        focus step
+- - - -
+Blur                       Blur              blur blur
+Self-similar               Selfsim           selfsim  
+Shuffle                    Shuffle           blur shuffle
+Weave                      Weave             blur weave 
+Drunk                      SpecDrunk         blur drunk
+Randomize                  Specrand          specnu rand
+
+SPEC UTILS
+----------
+Cut                        SpecCut           spec cut
+Gain                       SpecGain          spec gain
+Gate                       SpecGate          spec gate
+Grab                       Grab              spec grab
+- - - -
+Bare                       Bare              spec bare
+Alt. Harmonics             AltHmcs           pitch altharms
+Join                       SpecJoin          analjoin join
+
+
+------------------------------------------------------------------
+PITCH DATA MENU
+===============
+EXTRACT PITCH:
+Set GetPitch defaults      SetGetPch          -
+- - - - 
+Get Pitch (with defaults)  GetPitch          repitch getpitch 1
+Get Pitch (with params)    GetPitch          repitch getpitch 1
+Get Pitch Brkpt (defaults) GtPitchBrk        repitch getpitch 2
+Get Pitch Brkpt (params)   GetPitchBrk       repitch getpitch 2
+- - - -
+Hear Pitch                 PchHear           pitchinfo hear
+Transposition              PchToRatio         n/a
+Generate (from MIDI)       PchGen            repitch generate
+- - - - - - - - 
+PROCESS PITCH DATA: (most have .frq out)
+Approximate                PchApprox         repitch approx
+Cut                        PchCut            repitch cut
+Exaggerate                 PchExagg          repitch exag 
+Fix                        PchFix            repitch fix 
+Invert                     PchInvert         repitch invert
+Quantize                   PchQuant          repitch quantise
+Randomize                  PchRand           repitch randomise 
+Transpose                  PchShift          repitch pchshift
+Smooth                     PchSmooth         repitch smooth
+Vibrato                    PchVib            repitch vibrato
+- - - -
+Vowels                     PchVowels         repitch vowels
+Synthesize                 PchSynth          repitch synth
+- - - -
+Interpolate (Glide)        PchInterp         repitch interp 1 
+Interpolate (Sustain)      PchInterp2        repitch interp 2
+Silence                    PchInsil          repitch insertsil
+Unpitched                  PchUnpitch        repitch insertzeros
+Unpitched to Silence       NoiseToSil        repitch noisetosil
+Pitched to Silence         PchToSil          repitch pitchtosil
+- - - - - - - -
+Make Spectrum              MakeSpec          combine make
+Make Spectrum 2            MakeSpec2         combine make2
+- - - - - - - -
+Bare                       Bare              spec bare (.frq Infile 2)
+Alt Harmonics              AltHmcs           pitch altharms ( " )
+Octave-Shift (orig)        Octmove           pitch octmove  ( " )
+- - - - - - - - 
+CONVERT:
+ Pitch to brkpt (outline)  PchToTxt          repitch pchtotext
+ Pitch to brkpt (detail)   PtoBrk            ptobrk withzeros
+ PItch to brkpt (alt.)     PchToBrk          pitchinfo convert
+ Breakpt to Pitch          BrkToPch          brktopi
+COMBINE:
+ Frq+Frq to Trn            FrqFrq>Trn        repitch combine
+ Frq+PchBrk to Trn         FrqPch>Trn
+ Frq+Trn to Frq            FrqTrn>Frq            
+ Frq+TrnBrk to Frq         FrqTrB>Frq
+ Trn+Trn to Trn            TrnTrn>Trn
+ Trn+TrBrk to Trn          TrnTrB>Trn
+COMBINEB:
+ Frq+Frq to TrnBrk         FrqFrq>Trn        repitch combineb
+ Frq+PchBrk to Trn         FrqPch>Trn
+ Frq+Trn to PchBrk         FrqTrn>Pch            
+ Frq+TrnBrk to PchBrk      FrqTrB>Pch
+ Trn+Trn to TrnBrk         TrnTrn>TrB
+ Trn+TrBrk to TrnBrk       TrnTrB>TrB 
+
+------------------------------------------------------------------
+SYNTH MENU
+==========
+Wave                       Wave              synth wave
+Chord                      Chord             synth chord 
+Noise                      Noise             synth noise
+Silence                    Silence           synth silence
+Spectra                    Spectra           synth spectra
+Additive                   Addsynth          newsynth 1/2                   
+Multi-channel              MchSynth          newsynth 3
+Filtered Noise             Synfilt           synfilt      (R8)
+Fractal                    SynFract          newsynth 4   (R8)
+Impulse                    Impulse           impulse  (R8)
+Pulse                      PulseSynth        pulser synth (R8)
+Multi-Osc                  MultiOsc          multiosc     (R8)
+Spline                     SynSpline         synspline    (R8) 
+- - - - -  
+Clicks                     Clicks            clicknew     (R8)
+Click-Track                ClikTrak          synth clicks
+
+------------------------------------------------------------------
+INFO MENU
+=========
+
+SOUNDFILES
+---------
+File Info                  FileInfo          sndinfo props
+Length of file/segment     SFLength          sndinfo len
+File Properties            SFProps           sfprops
+Max level (whole file)     Maxsamp           sndinfo maxsamp
+ "   "  (loops/markers)    Maxrange          sndinfo maxsamp2 
+RMS/Average level          RmsInfo           rmsinfo
+Find Hole                  Findhole          sndinfo findhole
+Zero Crossings             ZCross            sndinfo zcross
+Gated Onsets               Onsets            housekeep extract 6
+Find Peaks                 PeakFind          peakfind
+Find Durations             R-FindDurns       retime 11
+Find Start                 FindStart         retime 12
+Zero Crossings             Zcross            sndinfo zcross
+- - - - -
+Count cycles (Distort)     CycCount          distort cyclecnt
+Assess/Count grains        GrnAssess         grain assess
+Grain Count                GrnCount          grain count
+Find Grains                GrnFind           grain find 
+Grain times by envelope    GrnTimes          grain grev 
+Find Pan                   Findpan           modify findpan
+Calc Time-stretch          SndStretch        stretcha
+- - - - - - -
+COMPARE:
+Loudest SF                 Loudest           modify loudness 7
+Loudest channel            Loudchan          sndinfo loudchan
+Lengths of SFs             SFLengths         sndinfo lens
+Time difference            Timediff          sndinfo timediff
+Sum Lengths                Sumlen            sndinfo sumlen
+Levels of SFs              Levels            sndinfo maxi
+Difference                 SFdiff            sndinfo diff
+Channel difference         Chandiff          sndinfo chandiff
+- - - - - - -
+View envelope              EnvView           housekeep extract 2
+Print to file              SFPrint           sndinfo prntsnd
+List files                 SFList            dirsf
+
+SPECTRAL
+--------
+File Info                  FileInfo          sndinfo props
+File Length                SFLength          sndinfo len
+File properties            SFProps           sfprops
+- - - - -
+Channel (of freq.)         FreqToChan        specinfo channel
+Frequency (of channel)     ChanToFreq        specinfo frequency 
+Windows (count)            Windows           specinfo windowcnt
+Octaves (t-v Amplitude)    Octvu             specinfo octvu
+Peak Amp                   Peakamp           specinfo peak
+Peak Freq.                 Peakfrq           specinfo report
+Peak Freqs (Morphtune)     PeakFreqs         newmorph2
+Extract peaks              PeakExtract       peak extract
+Harmonics (pitched sound)  GetHmcs           get_partials hmc
+- - - -
+View Level                 Levelvu           specinfo level
+Print to file              SpecPrint         specinfo print
+- - - -
+See Formants               SeeFmts           formants see
+Get+See Formants           GetSeeFmts        formants getsee
+
+PITCH
+-----
+File Info                  FileInfo          sndinfo props
+File properties            SFProps           sfprops
+Pitch Info                 PchInfo           pitchinfo info
+Zeros                      PchZeros          pitchinfo seros
+- - - - -
+See Pitch                  PchSee            pitchinfo see
+View Transposition         TranSee               "      "
+
+CONVERT UNITS
+-------------
+MIDI-Hz                    PitchConv         sndinfo units
+Hz-MIDI                       "                 "      " 
+Ratio-Semitones               "                 "      "
+Semitones-Ratio               "                 "      "
+Ratio-Time                 SpeedConv            "      "
+Time-Ratio                    "                 "      "
+Semitones-Time                "                 "      " 
+Time-Semitones                "                 "      "
+dB-Gain                    GainConv             "      "  
+Gain-dB                       "                 "      " 
+Samples-Time               Timesamps         sndinfo timesmp
+Time-Samples                  "                 "      "
+Frq-Chans                  FrqToChan         specinfo channel
+Chans-Freq                 ChanToFrq         specinfo frequency   
+Calc Timestretch           CalcStretch       stretcha
+
+------------------------------------------------------------------
+DATA MENU
+=========
+Mirror (panfile)           MirrorPan         modify space 3
+Brkpoint to Ratio          BrkToRatio         n/a
+
+GENERATE:
+Bank freqs                 Bankfreqs         filter bankfrqs
+Varibank data file         VFilters         (filter vflters equivt.)
+Filtrage                   Filtrage          filtrage
+Room response (reverb)     Roomresp          roomresp
+Sine Data file (pan etc.)  Sinedata          modify spaceform
+Doppler-shift transpos'n   Doppler           dshift
+- - - - - - - - -
+MIXFILE:
+Create/Edit Mix            MixCreate          -            
+Edit Mix                   MixEdit            -
+Get level                  MixGetLevel       submix getlevel
+Test mixfile               MixTest           submix test 
+Attenuate                  MixAtten          submix attenuate
+Shuffle                    MixShuffle        submix shuffle
+Spacewarp                  MixSpacewarp      submix spacewarp
+Synchronise                MixSync           submix syncattack
+Timewarp                   MixTimewarp       submix timewarp
+Timewarp Gaps              MixTimegaps       submix timewarp
+Create Mch-mixfile         Multimix          multimix create
+Panorama                   Panorama          panorama 
+Tangent grp (.mmx out)     TangentOne        tangent onefile
+                           TangentTwo        tangent twofiles
+                           TangentSeq        tangent sequence
+Transit grp (.mmx out)     Transit           transit simple
+                           TransitFlt        transit filtered
+                           TransitDop        transit doppler
+                           TransitDflt       transit doplfilt
+                           TransitSeq        transit sequence
+- - - - - - - - -
+DATA EDITOR:
+  Music 1/2/3              Music1 /2 /3      columns
+  Math 1/2                 Math1  /2 /3        "
+  Generate                 Generate            "
+  Random                   Random              "
+  Sort                     Sort                "
+  Manipulate Columns       Manipulate          "
+  Info General             InfoData            " 
+  Info Pitch               InfoPch             "
+
+------------------------------------------------------------------
+XTRA MENU
+=========
+LEGACY:
+ - no list: all items here are found in the mormal menus.
+The Legacy versions are needed only to access existing preset collections.
+Old patches will still work, using the original versions.
+ 
+EDIT/MIX:
+ Cut End                   Cutend            sfedit cutend
+ Noise Cut                 Noisecut          sfedit noisecut
+ Syllables                 Syllables         sfedit syllables
+ Zero Extract              ZeroExtract       housekeep gate
+ Tangent Two               TangentTwo        tangent twofiles (audio out)
+ Tangent Sequence          TangentSeq        tangent sequence (audio out)
+ Transit Filter            TransitFlt        transit filtered (audio out)
+ Transit Doppler           TransitDop        transit doppler  (audio out)
+ Transit DopFilt           TransitDflt       transit doplfilt (audio out)
+ Transit Sequence          TransitSeq        transit sequence (audio out)
+
+ENVELOPE:
+  Pluck                    EnvPluck          envel pluck
+
+PSOW:
+  Locate Grains            PSLocate          psow locate
+  Cut at Grain             PSCut             psow cut
+
+SPECTRAL:
+  Chord                    SpecChord         pitch chord
+  Clean (orig)             SpecClean         spec clean
+  Transpose (using .trn)   TransposeTrn      repitch transpose 4
+  Pluck                    Pluck             hilite pluck       
+
+
+REL 8:
+  Rotor                    Rotor             rotor
+  Repair                   Repair            repair
+  Duffing oscill.          Duffing           newsynth 5
+
+------------------------------------------------------------------
+TOOLS MENU
+==========
+View SF                    ViewSF            viewsf
+Record Soundfile           RecSF             recsf
+Play Soundfile             PlaySF            paplay
+Play Spectral file         PvPlay            pvplay
+Midi to Sequence           MIDI-SEQ          n/a
+Break Edit                 BrkEdit           brkedit
+Pitch Calc                   -               n/a
+Grain Mill                 GrnMill           grnmill 
+- - - - - 
+Run User Batch Script
+Run CSOUND Script          Synth
+                           1-input
+                           >1 input
+                           Paulstretch
+
+------------------------------------------------------------------
+
+ 

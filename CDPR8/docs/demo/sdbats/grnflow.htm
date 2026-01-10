@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- grnflow.htm - HTML file for grnflow.bat,
+     3rd Sound-Builder Template - HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>GRAINFLOW</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpcssdf.css" />
+<link rel="icon"  href="../images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333; text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+<p>
+<IMG SRC="images/hg2sm150.gif" align="center"></a><br clear>
+&nbsp;<b>H<small>ITHER</small> G<small>ATE</small> M<small>USIC</small></b>
+</p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="../../html/ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="../../html/tutorials.htm" Target="_top"><b>Tutorials Index</b></a> 
+  <dt><a href="../../html/cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="../../html/cspecndx.htm" Target="_top"><b>Spectral Index</b></a> 
+  <dt><a href="../../html/filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+<dl>
+<dt><a href="#START"><b>START</b></a>
+<br /><br />
+<dt>&nbsp;&nbsp;<a href="#STEP1"><b>1. COPY</b></a>
+<dt>&nbsp;&nbsp;<a href="#STEP2"><b>2. ANALYSE</b></a>
+<dt>&nbsp;&nbsp;<a href="#STEP3"><b>3. REPLACE</b></a>
+<dt>&nbsp;&nbsp;<a href="#STEP4"><b>4. INTERLEAVE</b></a>
+<dt>&nbsp;&nbsp;<a href="#STEP5"><b>5. RANDOM MIX</b></a>
+<dt>&nbsp;&nbsp;<a href="#STEP6"><b>6. SPLICE</b></a>
+<dt>&nbsp;&nbsp;<a href="#STEP7"><b>7. GRANULATE</b></a>
+<dt>&nbsp;&nbsp;<a href="#STEP8"><b>8. FILTER</b></a>
+<dt>&nbsp;&nbsp;<a href="#STEP9"><b>9. ANALYSE</b></a>
+<dt>&nbsp;<a href="#STEP10"><b>10. SHIFT</b></a>
+<dt>&nbsp;<a href="#STEP11"><b>11. GRAINMILL1</b></a>
+<dt>&nbsp;<a href="#STEP12"><b>12. GRAINMILL2</b></a>
+<br /><br />
+<dt><a href="#BATCH3"><b>BATCH FILE</b></a>
+<br /><br />
+<dt><a href="#PT3"><b>PLAY LIST</b></a>
+<br><br>
+<dt><a href="#SOUNDSHAPER"><b>Screenshot Updates</b></a>
+
+<hr>
+<dt><a href = "sdbatstemplatesindex.htm"><b>TEMPLATES INDEX</b></a>
+<br>
+<dt>&nbsp;&nbsp;<a href = "reentry.htm"><b>1. RE-ENTRY</b></a>
+<dt>&nbsp;&nbsp;<a href = "churbles.htm"><b>2. CHURBLES</b></a>
+<dt>&nbsp;&nbsp;<a href = "grnflow.htm"><b>3. GRAIN-FLOW</b></a>
+<dt>&nbsp;&nbsp;<a href = "glissswp.htm"><b>4. GLISS-SWEEP</b></a>
+<dt>&nbsp;&nbsp;<a href = "rmrepeat.htm"><b>5. RING-MOD REPEAT</b></a>
+<dt>&nbsp;&nbsp;<a href = "widentrn.htm"><b>6. WIDEN</b></a>
+
+</dl>
+
+
+</div>  <!----------------- End of left index panel ----------------------->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+
+<p>
+<IMG SRC="images/hg2sm150.gif" align="left"></a><br> &nbsp;&nbsp;&nbsp;
+<b>H<small>ITHER</small> G<small>ATE</small> M<small>USIC</small></b>
+</p>
+
+<br>
+
+<!-- ********************************************************** -->
+<h1>
+Sound-builder Template 3<br />'GRAINFLOW'<br />
+<h5>&#126; Processing Sequence, Step-by-Step &#126;</h5>
+<h2>for Sound Design Workshops,<br>prepared by A Endrich</h2>
+</h1>
+
+<p align="center">
+<i><b>Goal:</b> an ever-changing flow of sonic grains</i>
+</p>
+
+<p>
+<div align="center">
+<table border="0" cellpadding="3">
+<!-- <caption><h3>This is a Table</h3></caption> -->
+
+<tr>
+<td align="left"><h3><a href="aklcdp.wav">Starting Point 1</a> &nbsp;&nbsp;&nbsp;<br /> 
+<a href="tomcdt.wav">Starting Point 2</a></h3></td>
+<td align="right"><h3><a href="cmcicerflthgrnshift.mp3">
+End Result</a> (before <i>GrainMill</i> is used)</h3></td>
+</tr>
+
+<tr>
+<td colspan="2" align="center"><a href="#PT3"><h3>All Steps Play 
+Table</h3></td>
+
+</table>
+</div>
+</p>
+
+   </div>  <!-- End of 'head' -->
+
+<!-- ********************************************************** -->
+<h2 id="START">Starting Point (varied inputs)</h2>
+
+<blockquote>
+<p>
+In general, varied and rhythmic sounds work well.  If the sound is 
+too steady state, the result may not change enough during the course 
+of playback to remain interesting.  Also, if a sound is already very 
+rough to start with, the distortion processing may go over the top, 
+leading to an end result which remains pretty much the same throughout.
+</p>
+
+<p>
+However, for this sound-builder sequence, we want to stress the 
+'ever-changing' aspect.  For this we will input pairs of soundfiles into 
+programs which put together selected features from both files.  Three 
+varied results from 3 different programs will then be spliced to 
+create the changing sonic pattern.  After some harmonic filtering, 
+we then move on to the granulation procedures.
+</p>
+
+<p>
+Because processes that use two different soundfiles are to be employed, 
+we select a pair of contrasting inputs: a busy or rhythmic one and a 
+more steady-state one.  The Envelope Replace function will transfer 
+the busy or rhythmic amplitude pattern onto the steady-state sound.  
+Using sounds which contrast in this way provides the maximum opportunity 
+to find interesting sonic interactions and varied outputs.
+</p>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+<!-- ********************************************************** -->
+<h2 id="STEP1">Step 1: Copy</h2>
+
+<blockquote>
+<h3>
+Make copies of the input soundfiles, giving them a single letter name.
+</h3>
+
+<p>
+We have only to provide a name for the outfiles, in this case just 'c1' 
+and 'c2'.  The other parameters use the defaults &#150; any other 
+settings refer to multi-channel soundfiles.
+</p>
+
+<blockquote>
+<h4>Dialogue box:</h4>
+
+<p align="center">
+<IMG SRC="images/copysfx1.gif" align="center" hspace="15" vspace="10" alt="[default 
+parameters]"><br clear>
+<b>Default parameters</b></a><br> 
+</p>
+
+<p align="center">
+<IMG SRC="images/copysfx2c.gif" align="center" hspace="15" vspace="10" alt="[new 
+name specified]"><br clear>
+<b>New name is 'c1.wav'</b></a>
+</p>
+
+<p>
+We also make a copy of the second input, naming it 'c2.wav'.
+</p>
+
+<h4>Command:</h4>
+
+<p><code>
+rem function mode infile outfile<br>
+copysfx aklcdp.wav c1.wav<br>
+copysfx tomcdt.wav c2.wav
+</code></p>
+</blockquote>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+<!-- ********************************************************** -->
+<h2 id="STEP2">Step 2: Analyse</h2>
+
+<blockquote>
+<h3>
+Analyse soundfile to create data needed by spectral operations.
+</h3>
+
+<p>
+The 'Time Domain' stream of <i>time amplitude</i> data is converted 
+to a detailed <i>frequency amplitude</i> data file.  In the graphic 
+interface, the <b>.ana</b> extension is added automatically, but 
+with the Command, we specify it. 
+</p>
+
+<p>
+We do this for each of the input soundfiles, naming the second one 
+'d'.
+</p>
+
+<blockquote>
+<h4>Dialogue box:</h4>
+
+<p align="center">
+<IMG SRC="images/analyse3.gif" align="center" hspace="15" vspace="10" 
+alt="[create analysis data]"><br clear>
+<b>Create analysis data</b></a><br> 
+</p>
+
+<h4>Command:</h4>
+
+<p><code>
+rem function mode infile outfile<br>
+pvoc anal 1 c1 c1.ana<br>
+pvoc anal 1 c2 c2.ana
+</code></p>
+</blockquote>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="STEP3">Step 3: Envelope Replace</h2>
+
+<blockquote>
+<h3>
+Extract the amplitude profile from one sound and impose it on another.
+</h3>
+
+<p>
+The first sound opened is the one <i>onto which</i> the envelope is 
+imposed.  The second sound is the one <i>from which</i> the envelope 
+is taken.  In this case we take rhythm from c2.wav (2<sup><sm>nd</sm></sup> 
+input) and impose it onto c1.wav (1<sup><sm>st</sm></sup> input).
+</p>
+
+<p>
+The <i>enveloping_window</i> parameter refers to the time-resolution 
+of the envelope extraction process (the time in milliseconds over 
+which to average the envelope amplitude data).  Smaller values will 
+achieve a more accurate envelope.  10ms = 0.010 sec (1/100<sup><sm>th</sm>
+</sup> of a second.
+</p>
+
+<blockquote>
+<h4>Dialogue box:</h4>
+
+<p align="center">
+<IMG SRC="images/cer3a.gif" align="center" hspace="15" vspace="10" 
+alt="[envelope replace]"><br clear>
+<b>Envelope replace</b></a><br> 
+</p>
+
+<p align="center">
+<IMG SRC="images/cer3b.gif" align="center" hspace="15" vspace="10" 
+alt="[inputs and outputs]"><br clear>
+<b>Inputs and output</b></a>
+</p>
+
+<h4>Command:</h4>
+
+<p><code>
+rem function mode impose_infile extract_infile outfile enveloping_window<br>
+envel replace 1 c2 c1 cer 10
+</code></p>
+
+<p>
+PLAY <a href="cer.mp3"><b>cer.mp3</b></a> (re-enveloped soundfile)<br>
+New name: 'c envelope replace'
+</p>
+
+</blockquote>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="STEP4">Step 4: Interleave</h2>
+
+<blockquote>
+<h3>
+Join two (or more) different analysis files by interleaving groups 
+of analysis windows.
+</h3>
+
+<p>
+There is a way of shuffling cards in which the cards alternate (more or 
+less) when the two decks are strummed adjacent to each other.  The 
+<b>Interleave</b> process is similar to this.  Here we are dealing 
+with analysis windows rather than cards, and we also set how many 
+windows to group together.  Then they alternate, a group from the 
+1<sup><sm>st</sm></sup> soundfile followed by a group from the 
+2<sup><sm>nd</sm></sup> soundfile.  Small window groups result in 
+a fine-grained interleave, while larger groups are more coarse-grained.
+</p>
+
+<p>
+The rapid interleaving of two different sounds in this manner can result 
+in acoustic serendipities &#150; it's a very interesting process.
+</p>
+
+<blockquote>
+<h4>Dialogue box:</h4>
+
+<p align="center">
+<IMG SRC="images/ci3a.gif" align="center" hspace="15" vspace="10" 
+alt="[window group size]"><br clear>
+<b>Window group size</b></a><br> 
+</p>
+
+<p align="center">
+<IMG SRC="images/ci3b.gif" align="center" hspace="15" vspace="10" 
+alt="[inputs and output]"><br clear>
+<b>Inputs and output</b></a>
+</p>
+
+<h4>Command:</h4>
+
+<p><code>
+rem function inanalfile1 inanalfile2 outanalfile windows<br>
+combine interleave c1.ana c2.ana ci.ana 10
+</code></p>
+</blockquote>
+
+<p>
+(Optionally) audition the analysis file with F10 in <i>SoundShaper</i>.  
+Now go straight to Spectral/Convert to Resynthesise ci.ana to 
+create ci.wav.
+</p>
+
+  <blockquote>
+<p>
+PLAY <a href="ci.mp3"><b>ci.mp3</b></a> (interleaved soundfile)<br>
+New name: 'c interleave'
+</p>
+  </blockquote>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="STEP5">Step 5: Random Mix</h2>
+
+<blockquote>
+<h3>
+Put together the loudest components of 2 or more soundfiles.
+</h3>
+
+<p>
+This is a very unusual mixing process based on the amplitude of 
+the frequencies in the analysis file.  For each analysis window, 
+the software compares the amplitude in each file, keeps the 
+loudest window and discards the less loud one(s).  
+</p>
+
+<blockquote>
+<h4>Dialogue box:</h4>
+
+<p align="center">
+<IMG SRC="images/cm3a.gif" align="center" hspace="15" vspace="10" 
+alt="[keep loudest frequencies]"><br clear>
+<b>Keep loudest frequencies</b></a><br> 
+</p>
+
+<p align="center">
+<IMG SRC="images/cm3b.gif" align="center" hspace="15" vspace="10" 
+alt="[inputs and output]"><br clear>
+<b>Inputs and output</b></a>
+</p>
+
+<h4>Command:</h4>
+
+<p><code>
+rem function inanalfile1 in analfile2 outanalfile<br>
+combine max c1.ana c2.ana cm.ana
+</code></p>
+</blockquote>
+
+<p>
+(Optionally) audition the analysis file using F10 in <i>Soundshaper</i>.  
+Now go straight to Spectral/Convert to Resynthesise cm.ana to 
+create cm.wav.
+</p>
+
+  <blockquote>
+<p>
+PLAY <a href="cm.mp3"><b>cm.mp3</b></a> (randomly mixed soundfile)<br>
+New name: 'c envelope max'
+</p>
+  </blockquote>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="STEP6">Step 6: Splice</h2>
+
+<blockquote>
+<h3>
+Splice together the 3 previous results.
+</h3>
+
+<p>
+After some experimentation with the inputs used while writing this, 
+I decided to place the Random Mix first, the Interleaving second and 
+the Envelope Replace third &#150; that order seemed to sound best.  
+Another order might be better when different inputs are used.  Open 
+the first file and then add the next two by selecting them in the 
+splice Select box.
+</p>
+
+<p>
+The default splice slope of 15ms is used, so it doesn't need to be 
+specified.  The output filename is made up of the deliberately 
+concise names of the 3 inputs.  This reminds us of what went into 
+the splice and in what order.
+</p>
+
+
+<blockquote>
+<h4>Dialogue box:</h4>
+
+<p align="center">
+<IMG SRC="images/splice3b.gif" align="center" hspace="15" vspace="10" 
+alt="[3 file splice]"><br clear>
+<b>3 file splice</b></a><br> 
+</p>
+
+<h4>Command:</h4>
+
+<p><code>
+rem function infile1 infile2 infile3 outfile<br>
+sfedit join cm ci cer cmcicer
+</code></p>
+
+<p>
+PLAY <a href="cmcicer.mp3"><b>cmcicer.mp3</b></a> (spliced soundfiles)<br>
+New name: 'c max interleave envelope replace'
+</p>
+
+</blockquote>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="STEP7">Step 7: Filter</h2>
+
+<blockquote>
+<h3>
+Pass the sound through a harmonic filter bank.
+</h3>
+
+<p>
+The aim here is to add a harmonic dimension to the sound by passing 
+it through a filter bank focused on the harmonics.  This means that  
+the frequency foci of the filter frequency bands are determined by 
+multiplying a root frequency by successive integers: 2, 3, 4 etc.  
+This creates the natural overtone series.
+</p>
+
+<p>
+We can define the bank of filters in a text file we write ourselves.  
+It contains pitch data, either as frequencies in Herz or as MIDI 
+pitch values.  In this case we choose to use the harmonic overtone 
+series option of the BANKFREQS program to help us on our way.  This 
+creates a set of frequencies related in this way.  We then have to edit 
+the file to add amplitude data in dB (decibels), either to cut or boost 
+the amplitudes.  In this way we create <i>cmcicer1h.txt</i>.  Note 
+that part of it is shown in the file window of the dialogue box 
+below. [The screenshot mistakenly shows it as <i>cmcicer3h.txt</i> &#150; R.F.]
+</p>
+
+<p>
+The <i>Q</i> parameter controls how tightly the filter band is 
+restricted to its frequency focus.  If very tight, there can be 
+resonance which needs to be reduced by lowering the amplitude values.  
+If broader, the filtering process can reduce the volume too much, 
+and the amplitude values may need to be increased.  A broader <i>Q</i> 
+(lower values with USERBANK) allows more of the original sound through.  
+The value of 100 selected here is high enough to produce the harmonic 
+effect desired, but low enough to retain some of the original sound 
+and rhythm.
+</p>
+
+<blockquote>
+<h4>Dialogue box:</h4>
+
+<p align="center">
+<IMG SRC="images/filtharm3.gif" align="center" hspace="15" vspace="10" 
+alt="[harmonic filter]"><br clear>
+<b>Harmonic filter</b></a><br> 
+</p>
+
+<h4>Command:</h4>
+
+<p><code>
+rem function mode infile outfile filterbank_file Q Gain<br>
+filter userbank 1 cmcicer cmcicerflth cmcicer1h.txt 100 5
+</code></p>
+
+<p>
+PLAY <a href="cmcicerflth.mp3"><b>cmcicerflth.mp3</b></a> 
+(filtered soundfile)<br>
+New name: 'c max interleaved envelope_replace filter_harmonic'
+</p>
+
+</blockquote>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="STEP8">Step 8: Granulate</h2>
+
+<blockquote>
+<h3>
+Break up the sound into a series of adjacent tiny segments.
+</h3>
+
+<p>
+Here we call a simple form of granulation, which only uses a 
+<i>density</i> parameter, for which we select the maximum value, 2.  
+This parameter controls the degree to which the grains overlap 
+(a default grainsize is employed).  If 1, the grains will be 
+adjacent, i.e., virtually no change.  When greater than 1, they 
+overlap.  A value of 2 will overlap them half-way: i.e., 1 &divide; 
+2, or 0.5.  A value of less than one will create gaps between grains.
+</p>
+
+<p>
+The result in this case adds a bit of light flapping to the soundfile.
+</p>
+
+<blockquote>
+<h4>Dialogue box:</h4>
+
+<p align="center">
+<IMG SRC="images/graindens3.gif" align="center" hspace="15" vspace="10" 
+alt="[grain overlap density]"><br clear>
+<b>Grain overlap density</b></a><br> 
+</p>
+
+<h4>Command:</h4>
+
+<p><code>
+rem function mode infile outfile overlap_density<br>
+modify brassage 5 cmcicerflth cmcicerflthgrn 2
+</code></p>
+
+<p>
+PLAY <a href="cmcicerflthgrn.mp3"><b>cmcicerflthgrn.mp3</b></a> 
+(filtered soundfile)<br>
+New name: 'c max interleaved envelope_replace filter_harmonic granulate'
+</p>
+
+</blockquote>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="STEP9">Step 9: Analyse</h2>
+
+<blockquote>
+<h3>
+Analyse <b>cmcicerflthgrn.wav</b> to prepare it for a spectral process.
+</h3>
+
+<p>
+This now a familar single-step data conversion operation.
+</p>
+
+
+<blockquote>
+<h4>Dialogue box:</h4>
+
+<p align="center">
+<IMG SRC="images/analyse3b.gif" align="center" hspace="15" vspace="10" 
+alt="[create analysis data]"><br clear>
+<b>Create analysis data</b></a><br> 
+</p>
+
+<h4>Command:</h4>
+
+<p><code>
+rem function mode infile outfile<br>
+pvoc anal 1 cmcicerflthgrn cmcicerflthgrn.ana
+</code></p>
+</blockquote>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="STEP10">Step 10: Linear Frequency Shift</h2>
+
+<blockquote>
+<h3>
+Shift the whole spectrum of frequencies with a time contour.
+</h3>
+
+<p>
+With the following time contour (breakpoint file <i>shift2.brk</i>), we 
+push the frequencies into the stratosphere, and then have them drift 
+downwards.
+<pre>
+0	1500
+1	1000
+1.1	1200
+3	 700
+3.1	 900
+4.4	  50
+</pre>
+</p>
+
+<p>
+The shift that is made here is a <b>linear</b> one, meaning that 
+the <i>same value</i> (at each time period) is <i>added</i> to each 
+partial value.  This tends to squeeze the frequencies together, 
+frequencies which normally are in logarithmic relationship: i.e., 
+doublings are replaced by constants.
+</p>
+
+<blockquote>
+<h4>Dialogue box:</h4>
+
+<p align="center">
+<IMG SRC="images/sshift3.gif" align="center" hspace="15" vspace="10" 
+alt="[time-varying linear shift]"><br clear>
+<b>Linear shift</b></a><br> 
+</p>
+
+<h4>Command:</h4>
+
+<p><code>
+rem function mode infile outfile shift_file<br>
+strange shift 1 cmcicerflthgrn.ana cmcicerflthgrnshift.ana shift2.brk
+</code></p>
+
+<p>
+(Optionally) audition the analysis file using F10 in <i>Soundshaper</i>.  
+Now go straight to Spectral/Convert to Resynthesise cmcicerflthgrnshift.ana 
+to create cmcicerflthgrnshift.wav.
+</p>
+
+<p>
+PLAY <a href="cmcicerflthgrnshift.mp3."><b>cmcicerflthgrnshift.mp3.</b></a> 
+(shifted soundfile)<br>
+New name: 'c max interleave envelope_replace filter_harmonic granulate shift'
+</p>
+
+</blockquote>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="STEP11">Step 11: Granulate with more features</h2>
+
+<blockquote>
+<h3>
+Use <i>GrainMill</i> to process <b>cmcicerflth.wav</b>.
+</h3>
+
+<p>
+We now have several parameters which we can set:
+	<ul>
+	<li><b><i>timestretch:</i> 4</b> &#150; factor by which to 
+	multiply the length of the output soundfile</li>
+	<li><b><i>density:</i> 10.2105</b> &#150; also grain overlap, but 
+	in this case it can be very much larger than 2!</li>
+	<li><b><i>grainsize:</i> 22.03</b> &#150; now this can be specified, 
+	and we are making it very small, only 0.02203 sec.</li>
+	<li><b><i>pitch:</i> 0</b> &#150; this is a transposition value 
+	in semitones;  in the first version it is zero (no change), 
+	and in the second version we give it a range of 1 octave.</li>
+	<li><b><i>scatter: </i> 75&#37;</b> &#150; this randomly displaces the 
+	time of each grain, here set at 75&#37; of the maximum 
+	allowed displacement</li>
+	<li><b><i>loudness:</i> 0dB to -10.5dB</b> &#150; a volume setting 
+	which here randomly selects a volume level for each grain between 
+	the upper and lower limits we have set</li>
+	<li><b><i>spatial</i> 0 (L) to 1 (R)</b> &#150; pan (horizontal 
+	placement between the speakers), here set to full Left-Right range; 
+	thus <i>each grain</i> will be randomly placed anywhere 
+	between the speakers, including full Left or Right.</li>
+	<li><b><i>wander:</i> 0.5 (&#189;sec)</b> &#150; this creates a 
+	'searchfield' from somewhere within which each grain is taken, 
+	i.e., it displaces from where in the infile a given grain is 
+	taken.</li>
+	</ul>
+</p>
+
+<p>
+In running <i>GrainMill</i> we have first to ensure that the 'Working 
+Directory' is set (under Options), then 'Open' a soundfile to granulate.  
+Having done this, the dialogue box is displayed or can be called up 
+by clicking on 'Show Dialog' under 'View'.  We can then fill in the 
+values we want.  Alternatively, we can close the dialogue box, go to 
+'Load Settings' under 'File' and select <i>grnflowgm1.grn</i>.  However, 
+this will only work if the Working Directory is c:\sdbats.  I had to 
+put it somewhere, and selected the C: drive as the one most likely to 
+be available.  If your files are elsewere, fill in the dialogue box 
+and then 'Save Settings' under 'File' to the same name, overwriting 
+the existing preset.  The preset will then be available for future use.
+</p>
+
+<p>
+After making the sound(s), Save it to the name cmcicerflthgm1.wav 
+(and cmcicerflthgm2.wav) so that they will play from this HTML file.
+</p>
+
+<blockquote>
+<h4>Dialogue box:</h4>
+
+<p align="center">
+<IMG SRC="images/gm1.gif" align="center" hspace="15" vspace="10" 
+alt="[granulate without a pitch range]"><br clear>
+<b>Granulate without a pitch range</b></a><br> 
+</p>
+
+<p>
+An alternative version creates a pitch range of an octave in which 
+to place (transpose) the grains.  This is done by ticking 'Range' next 
+to the <i>pitch</i> parameter.  Boxes for specifying upper and lower 
+transposition values appear, which we set as 7 and -5 respectively.  
+The 7 goes up seven semitones (a Perfect 5<sup><sm>th</sm></sup>) and 
+the -5 goes down five semitones (a Perfect 4<sup><sm>th</sm></sup>).  
+7 + 5 = 12, so the total range is 12 semitones, or one octave.
+</p>
+
+<p>
+Here is the dialogue box showing this change:
+<p align="center">
+<IMG SRC="images/gm2.gif" align="center" hspace="15" vspace="10" 
+alt="[granulate with a pitch range]"><br clear>
+<b>Granulate with a pitch range</b></a><br> 
+</p>
+</p>
+
+<p>
+Much more can be done with <i>GrainMill</i> to shape the granulated 
+texture: by making the parameters vary over time.  The means of 
+doing this come to life when the 'Time Contours' boxes to the right 
+of each parameter are ticked.  This enables you to create, load and 
+edit breakpoint files, i.e., automated time contours.
+</p>
+
+<h4>Command:</h4>
+
+<p>
+The command format for this program is so complex that it is very 
+unwieldy, so I only use the <i>GrainMill</i> graphic version.
+</p>
+
+<p>
+PLAY <a href="cmcicerflthgm1.mp3"><b>cmcicerflthgm1.mp3</b></a> 
+(GrainMill soundfile)<br>
+PLAY (if made) <a href="cmcicerflthgm2.mp3"><b>cmcicerflthgm2.mp3</b></a> 
+(GrainMill soundfile)<br>
+New name: 'c max interleaved envelope_replace filter_harmonic grainmill'
+</p>
+
+</blockquote>
+
+</blockquote>
+
+<p>
+<br>
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="STEP12">Step 12: Run <i>GrainMill</i> again</h2>
+
+<p>
+We can now process <b>cmcicerfltagrnshift.wav</b> with <i>GrainMill</i> 
+as in <a href="#STEP11">Step 11,</a> loading this new soundfile and 
+re-using the same Preset: <i>grnflowgm1.grn</i>.  My initial results weren't 
+too exciting &#150; everything too smoothed out &#150; so it will be 
+work exploring changes to the <i>density</i>, <i>grainsize</i> and 
+<i>pitch</i> parameters.
+</p>
+
+<p>
+The output soundfile can be named cmcicerflthgrnshiftgm3.wav and, if 
+more changes are made, cmcicerflthgrnshift4.wav, etc.
+</p>
+
+<p>
+PLAY <a href="cmcicerflthgrnshiftgm3.mp3">
+<b>cmcicerflthgrnshiftgm3.mp3</b></a> (GrainMill soundfile)<br>
+PLAY (if made) <a href="cmcicerflthgrnshiftgm4.mp3">
+<b>cmcicerflthgrnshiftgm4.mp3</b></a> (GrainMill soundfile)<br>
+New name: 'c max interleaved envelope_replace filter_harmonic granulate 
+shift grainmill'
+</p>
+
+<p>
+<br>
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="BATCH3">Complete Sequence:</a> Batch File <i>grnflow.bat</i></h2>
+<h3 align="center">Use <i>grnfldel.bat</i> to remove the outputs</h3>
+
+<p>
+<pre>
+rem grnflow.bat - 'GRAINFLOW' batch file for third set of functions
+rem Description: multiple file operations combined, filtered & granulated
+rem Last updated: 28 March 2003
+
+rem Use grnfldel.bat to clear outputs before using again
+
+rem Source Pairs (with comments on results after processing):
+rem   aklcdp.wav  (1.38 sec) & tomcdt.wav  (1.3 sec) - rhythms good
+rem   frogcdt.wav (1.8 sec)  & bashdt.wav  (1.5 sec) - frogs good
+rem   touccdt.wav (3.0 sec)  & hoggdt.wav  (3.7 sec) - toucan audible
+rem   touccdt.wav (3.0 sec)  & whdtm.wav   (2.4 sec) - steadier high pitch
+
+
+echo on
+
+rem Step 1. Copy to simple name
+copysfx aklcdp.wav c1.wav
+copysfx tomcdt.wav c2.wav
+
+rem Step 2. Prepare analysis data files
+pvoc anal 1 c1 c1.ana
+pvoc anal 1 c2 c2.ana
+
+rem Step 3. Replace d's envelope with c's
+envel replace 1 c2 c1 cer 10
+
+rem Step 4. Interleave c & d
+combine interleave c1.ana c2.ana ci.ana 10
+pvoc synth ci.ana ci
+
+rem Step 5. Random mix based on max amplitude, on window-to-window basis
+combine max c1.ana c2.ana cm.ana
+pvoc synth cm.ana cm
+
+rem Step 6. Splice the three results together: cm+ci+cer in that order
+sfedit join cm ci cer cmcicer
+
+rem Step 7. Filter, using pre-edited & existing filterbank data file
+rem (Otherwise create with FILTER BANKFREQS, 100-2000Hz)
+rem cmcicer1h.txt (HARMONIC) cmcicer2a.txt (ALT HARMONICS) or 
+rem    cmcicer3s.txt (SUBHARMONIC).
+filter userbank 1 cmcicer cmcicerflth cmcicer1h.txt 100 5
+
+rem Step 8. Granulate (only using density parameter)
+modify brassage 5 cmcicerflth cmcicerflthgrn 2
+
+rem Step 9. Prepare ...grn sound for shift function
+pvoc anal 1 cmcicerflthgrn.wav cmcicerflthgrn.ana
+
+rem Step 10. Time-varying spectral shift
+rem (NB: check that timings in shift2 .brk match infile length)
+strange shift 1 cmcicerflthgrn.ana cmcicerflthgrnshift.ana shift2.brk
+rem Resynthesise the shifted analysis file
+pvoc synth cmcicerflthgrnshift.ana cmcicerflthgrnshift.wav
+
+rem THE FOLLOWING ARE DONE WITH THE GRAPHIC GRAINMILL PROGRAM
+rem Step 11. Granulate with GrainMill, opening cmcicerflth.wav (or another 
+rem   soundfile) and loading grnflowgm1.grn (if able to do so). 
+rem   See grnflowgm1.txt for ascii version.
+rem   Outfile(s) should be named cmcicerflthgm1.wav (cmcicerflthgm2.wav 
+rem   with pitch range settings, e.g., +7 & -5 to give octave spread)
+
+rem Step 12. Granulate with GrainMill opening cmcicerflthgrnshift.wav and 
+rem   re-loading (if possible) grnflowgm1.grn.
+rem   Outfile(s) should be named cmcicerflthgrnshiftgm3.wav and 
+rem   cmcicerflthgrnshiftgm4.wav
+
+echo off
+
+</pre>
+</p>
+
+<!-- ********************************************************** -->
+<p>
+<div><table border="1" align="center" cellpadding="5" bgcolor="#B0E0E6">
+<caption align="center">
+<h2 id="PT3">All Steps Play Table</h2></caption>
+
+<tr>
+<th align="center"><h3>STEP</h3></th>
+<th align="center"><h3>PROCESS</h3></th>
+<th align="center"><h3>OUTPUT</h3></th>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP1">Step 1.</a></td>
+<td align="center">Copy</td>
+<td align="center"><a href="c1.wav">c1.mp3</a> &nbsp; <a href="c2.wav">
+c2.mp3</a></td>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP2">Step 2.</a></td>
+<td align="center">Analyse</td>
+<td align="center">c1.ana</a> &nbsp; c2.ana</td>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP3">Step 3.</a></td>
+<td align="center">Envelope Replace</td>
+<td align="center"><a href="cer.mp3">cer.mp3</a></td>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP4">Step 4.</a></td>
+<td align="center">Interleave<br>(Analysis Windows)</td>
+<td align="center"><a href="ci.mp3">ci.mp3</a></td>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP5">Step 5.</a></td>
+<td align="center">Random Mix</td>
+<td align="center"><a href="cm.mp3">cm.mp3</a></td>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP6">Step 6.</a></td>
+<td align="center">Splice 3 Previous</td>
+<td align="center"><a href="cmcicer.mp3">cmcicer.mp3</a></td>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP7">Step 7.</a></td>
+<td align="center">Filter, Harmonic</td>
+<td align="center"><a href="cmcicerflth.mp3">cmcicerflth.mp3</a></td>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP8">Step 8.</a></td>
+<td align="center">Granulate</td>
+<td align="center"><a href="cmcicerflthgrn.mp3">cmcicerflthgrn.mp3</a></td>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP9">Step 9.</a></td>
+<td align="center">Analyse</td>
+<td align="center">cmcicerflthgrn.ana</td>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP10">Step 10.</a></td>
+<td align="center">Linear Shift</td>
+<td align="center"><a href="cmcicerflthgrnshift.mp3">
+cmcicerflthgrnshift.mp3</td>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP11">Step 11.</a></td>
+<td align="center">GrainMill on<br>cmcicerflth.wav</td>
+<td align="center"><a href="cmcicerflthgm1.mp3">cmcicerflthgm1.mp3</a> 
+(no transposition)<br>
+<a href="cmcicerflthgm2.mp3">cmcicerflthgm2.mp3</a> (octave range)</td>
+</tr>
+
+<tr>
+<td align="left"><a href="#STEP12">Step 12.</a></td>
+<td align="center">GrainMill on<br>cmcicerflthgrnshift.mp3</td>
+<td align="center"><a href="cmcicerflthgrnshiftgm3.mp3">
+cmcicerflthgrnshiftgm3.mp3</a> (no transposition)<br>
+<a href="cmcicerflthgrnshiftgm4.mp3">cmcicerflthgrnshiftgm4.mp3</a>
+ (octave range)</td>
+</tr>
+
+</table>
+</div>
+</p>
+
+
+<!-- ********************************************************** -->
+<hr>
+<h2 id="SOUNDSHAPER">SCREENSHOT UPDATES</h2>
+<p>(by Robert Fraser, March 2016)</p>
+<p>
+<b>The Soundshaper screenshots used in this tutorial are out of date in two respects:</b>
+<ul>
+<li>Output files are no longer named on Parameter Pages: instead, the output is saved to a temporary file and appears on the Main Page patchgrid in a new cell named after the process. <br>
+If you want to save the output permanently, highlight the cell (if necessary) and click File/Save or CTRL+S to obtain a standard SAVE dialog:
+	<br><br>
+	<div style="text-align: left;"><img style="width: 500px;
+                height: 285px;" alt="Save File"
+                src="images/save1.jpg">
+        </div>
+	<br>
+There is normally no need to do this until the end of the sequence.</li><br>
+
+<li>FFT conversion (PVOC Analysis / Resynthesis) now uses current settings and the FFT page is only used to set these, not to perform a conversion, as shown. As the tutorial examples use default values, there is nothing to set!<br>
+Furthermore, Soundshaper does these conversions in the background, so you do not even have to select ANALYSE or SYNTH &#150; just select the next process.</li>
+</ul>
+</p>
+
+<p>
+<b>To run the GRAINFLOW chain of CDP processes in Soundshaper:</b><br>
+<blockquote>
+[After each step, you can play the result in the transport panel.]<br>
+</blockquote>
+
+<ul>
+<li><b>STEP 1</b> (COPYSFX): Open the tutorial folder. Drag and drop the source <b>aklcdp.wav</b> onto Soundshaper's Main Page.<br>
+	Program runs COPYSFX and outputs to cell A_0.<br>
+	Click on cell B_0. Drag and drop the source <b>tomcdt.wav</b> onto the page.<br>
+	Program runs COPYSFX and outputs to cell B_0.</li><br>
+
+<li><b>STEP 2</b> (PVOC ANALYSE): <b>You can skip this step!</b> <br>
+	The settings used are the defaults, so there is nothing to set.<br>
+	Soundshaper will run PVOC automatically before performing a spectral function.</li><br>
+
+<li><b>STEP 3</b> (ENVEL REPLACE): Click on Cell B_0, if not highlighted. Select Soundfiles/Envelope/Replace.<br>
+	'Add Input' dialog appears: click on cell A_0 to select this as the 2nd input. Click dialog's 'OK' button.<br>
+	Parameter page: set parameters as in tutorial (Window=10). <br>
+	Click OK to run; output appears in cell B_1 ("EnvReplace").</li><br>
+
+<li><b>STEP 4</b> (INTERLEAVE): Click on Cell A_0. Select Spectral/Combine/Interleave.<br>
+        'Add Input' dialog appears: click on cell B_0 to select this as the 2nd input. Click dialog's 'OK' button.<br> 
+	Parameter page: set splice slope to 15ms. Click OK to run; output appears in cell A_1 ("SpecInterl").</li><br>
+
+<li><b>Copy cell A_0 to C_0:</b> Click on cell A_0; click the Copy Cell <b>START</b> button; click on cell C_0.<br>
+	The copy is needed so that the first sound can be treated in STEP 5.</li><br>
+
+<li><b>STEP 5</b> (RANDOM MIX [combine max]): Click on Cell C_0, if not highlighted. Select Spectral/Combine/Maximum.<br>
+	Add Input' dialog appears: click on cell B_0 to select this as the 2nd input. Click dialog's 'OK' button.<br>
+	There are no parameters. Output appears in cell C_1 ("SpecMax"):</li>
+	<br>
+	<div style="text-align: left;"><img style="width: 112px;
+                height: 72px;" alt="Step 5"
+                src="images/step5.jpg">
+        </div>
+	<br>
+
+<li><b>STEP 6</b> (SPLICE): With cell C_1 (Max) highlighted, select Soundfiles/Edit /Join. <br>
+	'Add Input' dialog appears: click on cell A_1 (Interl) to select this as the 2nd input.<br>
+	(This is a spectral file, but it is converted to .wav on selection.)<br>  
+	Now click on cell B_1 (EnvReplace) to select this as the 3rd input. Click dialog's 'OK' button.<br> 
+	Parameter page: nothing to set as the default 15ms splice is used. Click OK to run.<br>
+	Output appears in cell C_2 ("Join").</li><br>
+
+
+<li><b>STEP 7</b> (FILTER): Select Soundfiles/Filter/Userbank.<br>
+	Parameter page: Select Mode 1 (bands as freq.). Drag and drop the datafile <b>cmcicer1h.txt</b> 
+	onto the Parameter page (or click the Open button and select it).<br>
+        Parameters: Q=100; Gain=5. Click OK to run; output appears in cell C_3 ("Userbank").</li><br>
+
+<li><b>STEP 8</b> (GRANULATE): Select Soundfiles/Grain/Granulate (Selects Mode 5).<br>
+	Parameter page: set Density=2. Click OK to run; output appears in cell C_4 ("Granulate").</li><br>
+
+<li><b>STEP 9</b> (PVOC ANALYSE): <b>You can skip this step!</b> <br>
+	The settings used are the defaults, so there is nothing to set.<br>
+	Soundshaper will run PVOC automatically before performing a spectral function..</li><br>
+
+<li><b>STEP 10</b> (FREQ. SHIFT): Select Spectral/Freq.Pitch/Shift Spectrum.<br>
+	Parameter page (Mode 1): Click T-V checkbox.Uncheck <b>Auto-scale .brks</b> at the top.<br>
+	Drag and drop the datafile <b>shift2.brk</b>. Click OK to run. Output appears in cell C_5 ("Shift").</li>
+	<hr><!--  ------------------------------------------- -->
+	<p>
+	The next step has been done in <i>GrainMill</i>, which, like Soundshaper, uses the CDP program MODIFY BRASSAGE, but it interprets some of the parameter names and value-ranges differently, making a direct "translation" difficult. Here is an approximation to the Grainmill file <b> cmcicerflthgrnshiftgm4.mp3</b>, mentioned in Step 12:</b>
+	</p>
+<li><b>STEP 11</b> (GRAIN): Select Soundfiles/Grain/Grain.<br>
+	Parameter page (Mode: Whole Grain). This mode sets High-Low ranges, so most parameters have to be entered twice to achieve a single value. Set parameters: Velocity=0.25 (=Timestretch 4); Density=10.2105; Grainsize=22.03; Pitchshift -5 to +7 (Pitchshift Hi);  Amp 0.297; Space 0 to 1 (Space Hi); (Start/End splices: use defaults); Range=500ms; Jitter=0.75.<br>
+	 Click OK to run; output appears in cell C_6 ("Grain"):</li><br>
+
+	<div style="text-align: center;"><img style="width: 508px;
+                height: 123px;" alt="GrainFlow"
+                src="images/grnflow.jpg">
+        </div>
+	<br>
+
+	</li>
+<hr>
+<!-- ------------- -->
+
+<li><b>SAVE FILE (OPTIONAL)</b>: Save the result to a permanent file. Hit CTRL+S or File / Save(As) to obtain a standard SAVE dialog.<br>
+Enter a file name, e.g. <b>grainflow.wav</b> (or <b>cmcicerflthgrnshiftgm4.wav</b> if you prefer). </li><br>
+
+<li><b>SAVE PATCH (OPTIONAL)</b>: <b>Uncheck</b> "Include Sources", unless you want to save the copied source (~A_0.wav) with the patch.<br> Click the patch <b>SAVE</b> button (central panel). Select a save name (e.g. <b>churbles.ssp</b>); click OK. Optionally enter a description; click OK.<br></b></li>
+<br>
+<li><b>RUN PATCH (OPTIONAL)</b>: To run the patch with a different source (assuming the patchgrid has not been cleared), click on cell A_0, select a source (e.g. by drag+drop) and click the central <b>RUN</b> button, with the "Whole Patch" checkbox checked.</li>
+<br>
+<li><b>RELOAD PATCH (OPTIONAL)</b>: If the patch is not on the grid, click the central <b>LOAD</b> button. Select the .ssp file (e.g. churbles.ssp). If you have not saved the source (~A_0.wav), the patch will still run with it, provided it still exists in the same location. Otherwise, you will be prompted to select a source. To run the patch with a different source, see RUN PATCH above. </li>  
+
+</ul>
+
+</p>
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 1 Apr. 2016 -- HTML5 version<br />  
+    Created with funding from North Wiltshire District Council<br>
+    Documentation: Archer Endrich; last updated: 25 August 2004<br />
+    mp3 format changes: 21 February 2010 (sources or near sources are kept as wav)<br>    
+    Revisions: Robert Fraser<br>
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@talktalk.net<br />
+    &#169; Copyright 2003-2016 Archer Endrich, Chippenham, Wiltshire, England<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+<!-- 
+Outline for a Step:
+
+<h2>
+Step x: 
+</h2>
+
+<blockquote>
+<h3>
+w
+</h3>
+
+<p>
+x
+</p>
+
+<p>
+<b>Dialogue box:</b><br>
+<IMG SRC=".gif"><b></b></a>
+</p>
+
+<p>
+<b>Command:</b><br>
+<code>
+rem function mode infile outfile
+y
+</code></p>
+
+</blockquote>
+
+ -->
+
+<!-- 
+Play table outline
+
+<p>
+<div id="PTx"><table border="1" cellpadding="5">
+<caption align="center"><h2>All Steps Play Table</h2></caption>
+
+<tr>
+<th align="center"><h3>STEP</h3></th>
+<th align="center"><h3>PROCESS</h3></th>
+<th align="center"><h3>OUTPUT</h3></th>
+</tr>
+
+<tr>
+<td align="left">Step x.</td>
+<td align="center">y</td>
+<td align="center"><a href="x.mp3">x.mp3</a> &nbsp; <a href="y.mp3">
+y.mp3</a></td>
+</tr>
+
+</table>
+</div>
+</p>
+
+ -->
+
+
+</body>
+
+</html>

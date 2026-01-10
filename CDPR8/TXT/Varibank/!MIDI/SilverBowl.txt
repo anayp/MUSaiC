@@ -1,0 +1,2 @@
+;MIDI: Silver Bowl 1
+0.00  58 -3dB	63 -3dB	  69 -3dB   72 -3dB   78 -3dB  85 -3dB

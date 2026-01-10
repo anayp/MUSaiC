@@ -1,0 +1,23 @@
+		SOUNDSHAPER SETTINGS FILE (Date: 20/06/2023)
+Simple 3C: Repeated noes with wider pitch range than Ex3B
+
+Process:	Simple
+CDP: texture simple 2
+NOTEDATA:	simple_3c\ndfsim3b.txt
+OUT DUR:	12
+PACKING:	0.25
+SCATTER:	0
+TIMEGRID:	0
+FIRSTSND:	1
+LASTSND:	1
+MIN GAIN:	36
+MAX GAIN:	84
+MIN DUR:	0.2
+MAX DUR:	1.5
+MIN PITCH:	36
+MAX PITCH:	96
+OMIT:       0
+ATTEN:		NO
+POSITION:	NO
+SPREAD:		NO
+SEED:		NO

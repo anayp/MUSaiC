@@ -1,0 +1,134 @@
+<html>
+<!-- exenv1.htm - tour page for enveloping -->
+<!-- Individual pages name format: extex1.htm and extex1mo(re).htm -->
+<!-- COLOURS: FFD700=GOLD  FFFFF0=IVORY  EEE8AA=PALEGOLDENROD -->
+<!-- COLOURS: FFF8DC=CORNSILK 0000CD=MEDIUMBLUE B0E0E6=POWDERBLUE -->
+<!-- COLOURS: FFFACD=LEMONCHIFFON FFFFFF=WHITE -->
+
+<head>
+<meta name="GENERATOR" content="Prepared with EMACS text editor">
+<LINK REL="stylesheet" TITLE="CDP Style Sheet" HREF="cdpcsssm.css">
+<link rel="icon"  href="../images/cdp_favicon.ico">
+<title>Sound Example: Enveloping</title>
+</head>
+
+<body bgcolor="#FFFFFF" background="cdpwatermark.gif" bgproperties="fixed">
+
+<div>
+<p>
+<IMG SRC="bannersw.gif" alt="[CDP Logo & Software Banner]"></a>
+</p>
+</div
+
+<p>
+<div>
+<table border="0" cellpadding="3">
+<tr>
+<td align="left"><a href="cdptour.htm"><b>Return</b></a> to list of sound 
+examples.</td>
+<td align="right"><a href="exstr1.htm"><b>Continue</b></a> to next sound 
+example on the tour.</td>
+</tr>
+</table>
+</div>
+</p>
+
+<p>
+<div align="center">
+<table cellspacing="3" bgcolor="#0000CD" cellpadding="3">
+<caption><h1>CDP Sound Examples &#150; ENVELOPING</h1></caption>
+
+<tr>
+<td colspan="2" bgcolor="#FFFACD"><h2 align=center>Envelope 
+transfers</h2></td>
+</tr>
+
+<tr>
+<td bgcolor="#FFFFF0"><h3 align="center">SOURCE SOUNDS<br><p></p>
+<a href="streamc.mp3">babbling brook</a><br>
+<a href="panthc.mp3">panther cry</a></h3></td>
+<td bgcolor="#EEE8AA"><h3 align="center">TRANSFORMATIONS<br><p></p>
+<a href="exenv1.mp3">panther on brook</a> (amplitude)<br>
+<a href="exenv2.mp3">panther on brook</a> (spectrum) </h3></td>
+</tr>
+
+<tr>
+<td colspan="2" bgcolor="#FFFFFF"><h3 align="center">DESCRIPTION<br>
+&#126; CDP Functions: ENVEL REPLACE and FORMANTS VOCODE &#126;</h3><p></p>
+	<ul>
+	<li>In the first example, the <i>amplitude</i> contour of the 
+	panther's cry is imposed on the sound of the brook.  We therefore 
+	hear the loudness of the brook rise and fall as did the 
+	panther's cry.</li><br>
+	<br>
+	<li>In the second example, the result is quite different.  In 
+	this case, the changing pattern of frequencies (spectral 
+	envelope) of the panther's cry is imposed on the frequency 
+	profile of the brook, and we hear some higher frequencies 
+	emerge towards the end of the transformed sound.</li><br>
+	<br>
+	<li>The result of the second transformation is more broken up 
+	than might have been expected.  The frequent dip in amplitude 
+	of the babbling brook may be the cause.</li>
+	</ul>
+<p align="right"><a href="exenv1mo.htm"><b>Additional Information</b></a>
+</p></td>
+</tr>
+
+<tr>
+<td bgcolor="#FFFFF0"><h3 align="center">PARAMETER SETTINGS<br>
+(Click on image to view fullsize)</h3>
+<div>
+<a href="exenv1dbx.gif"><img src="exenv1dbxthumb.gif" ALT="[amplitude envelope 
+parameters dialogue box]" align="center"></a><br>
+<a href="exenv2dbx.gif"><img src="exenv2dbxthumb.gif" ALT="[spectral envelope 
+parameters dialogue box]" align="center"></a>
+</div></td>
+<td bgcolor="#EEE8AA"><h3 align="center">KEY POINTS</h3><p></p>
+	<ul>
+	<li>In ENVEL REPLACE, the extraction and imposition of the 
+	amplitude envelope of the second file onto the first is done all 
+	at once.  Mode 1 specifies that the envelope comes from another 
+	sound.  It could also come from a binary envelope file, a 
+	breakpoint file or a breakpoint file in decibels.</li><br>
+	<br>
+	<li>The <i>window</i> parameter in ENVELOPE REPLACE relates to 
+	the resolution of the extracted envelope: smaller values for a 
+	finer resolution.</li><br>
+	<br>
+	<li>In FORMANTS VOCODE, it is the <i>channels</i> parameter that 
+	determines the resolution of the (spectral) envelope: smaller 
+	values for a finer resolution.</li><br>
+	<br>
+	<li>Frequencies below <i>low freq</i> and above <i>high freq</i> 
+	are disregarded.  I have used the default values here.  They 
+	can be lowered&#47;raised as required by the input sounds.</li><br>
+	<br>
+	<li><i>Gain</i> is sometimes needed to compensate for differences 
+	in the two signals.  It can be applied here, or before or after 
+	the vocoding process.</li><br>
+	<br>
+	</ul>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" bgcolor="#FFF8DC"><h3>SUPPLEMENTARY FILES USED</h3><br>
+<p>
+<b>No other files are used.  None of the parameters are time-varying.<br>
+<br>
+If other types of envelope file are used for ENVEL REPLACE, these are 
+given as the second input.</b>
+</tr>
+
+</table>
+</div>
+</p>
+
+<p>
+Last updated: 4 December 2003
+</p>
+
+</body>
+
+</html>

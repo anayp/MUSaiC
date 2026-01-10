@@ -1,0 +1,2905 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- glosstec.htm  - TECHNICAL GLOSSARY HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP Technical Glossary</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpgloss.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="../html/ccdpndex.htm" Target="_top"><b>MAIN INDEX</b></a>
+  <dt><a href="../html/charts.htm" Target="_top"><b>Charts Index</b></a> 
+  <dt><a href="../html/cgroundx.htm" Target="_top"><b>Time Domain Index</b></a> 
+  <dt><a href="../html/cspecndx.htm" Target="_top"><b>Spectral Index</b></a>
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <a href="https://www.composersdesktop.com/index.html"  target="_blank"><b>CDP WEBSITE</b></a> 
+  <hr>	
+  <dt><a href = "#TOP"><b>Top of Page</b></a>
+  <br /><br>
+  <dt><a href = "#AMPLITUDE"><b>AMPLITUDE</b></a>
+  <dt><a href = "#ANALYSIS"><b>ANALYSIS</b></a>
+  <dt><a href = "#ANALSETTINGS"><b>ANALYSIS<br />
+&nbsp;&nbsp;SETTINGS</b></a>
+  <dt><a href = "#ATTACK"><b>ATTACK</b></a>
+  <dt><a href = "#BAND"><b>BAND</b></a>
+  <dt><a href = "#BATCHFILE"><b>BATCH FILE</b></a>
+  <dt><a href = "#BINARY"><b>BINARY</b></a>
+  <dt><a href = "#BLUR"><b>BLUR</b></a>
+  <dt><a href = "#BREAKPOINT"><b>BREAKPOINT</b></a>
+  <dt><a href = "#CHANNELS"><b>CHANNELS</b></a>
+  <dt><a href = "#COMMANDLINE"><b>COMMAND LINE</b></a>
+  <dt><a href = "#DECAY"><b>DECAY</b></a>
+  <dt><a href = "#DIGITALNOISE"><b>DIGITALNOISE</b></a>
+  <dt><a href = "#ENVELOPE"><b>ENVELOPE</b></a>
+  <dt><a href = "#EXPONENTIALCURVE"><b>EXPONENTIAL</b></a>
+  <dt><a href = "#FFT"><b>FFT &#150;</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FFTOVERLAP"><b>OVERLAP</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RECOMMENDED"><b>RECOMMENDED</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RULESOFTHUMB"><b>RULES OF<br />
+&nbsp;&nbsp;&nbsp;&nbsp;THUMB</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FFTSIZE"><b>SIZE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FFTWINDSIZE"><b>WINDOW SIZE</b></a>
+  <dt><a href = "#FILETYPES"><b>FILETYPES</b></a>
+  <dt><a href = "#FILTER"><b>FILTER</b></a>
+  <dt><a href = "#FLAG"><b>FLAG</b></a>
+  <dt><a href = "#FORMANTS"><b>FORMANTS</b></a>
+  <dt><a href = "#FRAME"><b>FRAME</b></a>
+  <dt><a href = "#FREQUENCY"><b>FREQUENCY</b></a>
+  <dt><a href = "#GAIN"><b><GAIN/b></a>
+  <dt><a href = "#GRAIN"><b>GRAIN</b></a>
+  <dt><a href = "#HARMONIC"><b>HARMONIC</b></a>
+  <dt><a href = "#HERTZ"><b>HERTZ</b></a>
+  <dt><a href = "#INHARMONIC"><b>INHARMONIC</b></a>
+  <dt><a href = "#INTERPOLATION"><b>INTERPOLATION</b></a>
+  <dt><a href = "#LATENCY"><b>LATENCY</b></a>
+  <dt><a href = "#LOGARITHMIC"><b>LOGARITHMIC</b></a>
+  <dt><a href = "#MIDIPITCH"><b>MIDI PITCH</b></a>
+  <dt><a href = "#MODULATOR"><b>MODULATOR</b></a>
+  <dt><a href = "#OVERLOAD"><b>OVERLOAD</b></a>
+  <dt><a href = "#PAN"><b></b>PAN</a>
+  <dt><a href = "#PARAMETER"><b>PARAMETER</b></a>
+  <dt><a href = "#PARTIALS"><b>PARTIALS</b></a>
+  <dt><a href = "#PHASE"><b>PHASE</b></a>
+  <dt><a href = "#PHASEVOCODER"><b>PHASE VOCODER</b></a>
+  <dt><a href = "#PITCH"><b>PITCH</b></a>
+  <dt><a href = "#Q"><b></b>'Q'</a>
+  <dt><a href = "#QUANTISE"><b>QUANTISE</b></a>
+  <dt><a href = "#SAMPLEHOLD"><b>SAMPLE HOLD</b></a>
+  <dt><a href = "#SAMPLERATE"><b>SAMPLE RATE</b></a>
+  <dt><a href = "#SEGMENT"><b>SEGMENT</b></a>
+  <dt><a href = "#SPECTRALDOMAIN"><b>SPECTRAL<br>
+&nbsp;&nbsp;DOMAIN</b></a>
+  <dt><a href = "#SPECTRALENVELOPE"><b>SPECTRAL<br>
+&nbsp;&nbsp;ENVELOPE</b></a>
+  <dt><a href = "#SPECTRUM"><b>SPECTRUM</b></a>
+  <dt><a href = "#SPLICE"><b>SPLICE</b></a>
+  <dt><a href = "#TIMBRE"><b>TIMBRE</b></a>
+  <dt><a href = "#TIME"><b>TIME</b></a>
+  <dt><a href = "#TIMEDOMAIN"><b>TIME DOMAIN</b></a>
+  <dt><a href = "#WAVECYCLE"><b>WAVECYCLE</b></a>
+  <dt><a href = "#WAVEFORM"><b>WAVEFORM</b></a>
+  <dt><a href = "#WAVESET"><b>WAVESET</b></a>
+  <dt><a href = "#WINDOW"><b>WINDOW</b></a>
+  <dt><a href = "#ZEROCROSSING"><b>ZERO CROSSING</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+	<p>
+	<IMG SRC="images/cdpcircs.jpg" ALT="CDP circles logo"><br clear>
+	<b>Composers' Desktop Project</b></a>
+	</p>
+
+   <!-- 
+     <div align=center>
+     <br>
+     <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+     </div>
+   -->
+
+   <h1 align=center>CDP Glossary of Technical Terms </h1>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2  id="TOP">Technical Aspects of Working with Sound</h2>
+
+<!-- ========================================================================= -->
+<blockquote>
+
+<h3 id="AMPLITUDE"><b>AMPLITUDE</b> &#150; the loudness level of 
+a sound (i.e., of a sample or a frequency component)
+</h3>
+
+<p>
+A waveform is usually represented digitally by a graph of its 
+<i>instantaneous amplitude</i> against time.  The gradual change 
+of the instantaneous amplitude, from sample to sample, maps out 
+the waveform of the sound.  If we now take the average sample 
+height over a largeish group of samples, we can trace out how 
+the loudness, or <b>amplitude</b>, of the sound changes over 
+time.  Note that we have to take the <i>absolute value</i>, 
+ignoring the minus signs &#150; all minuses become plus &#150; or 
+else the average will always be close to zero.
+</p>
+
+<p>
+Referring to the perceived loudness of a sound, the power driving a 
+loudspeaker, the volume of playback, amplitude refers to the overall 
+<i>energy level</i> of the waveform.  It is often represented 
+graphically by locating the amplitude value for each digital sample 
+on a vertical scale, such as from -32768 (minimum, virtual silence) 
+to +32767 (maximum, full volume, 'normalised' sound).  This scale 
+represents the dynamic range available for 16-bit samples and is 
+used by <i>Csound</i> and the CDP 4.5 System.
+</p>
+
+<p>
+CDP handles a wide variety of <a href="#FILETYPES">
+<b>soundfile sample types and formats</b></a>.  Regarding amplitude, 
+24-bit soundfiles increase the dynamic range to -8388608 to +8388607.  
+However, all types of amplitude measure are converted 
+internally to a -1.0 to +1.0 range (since Release 5).  This is the range with which 
+the user will work.  Most internal calculation in the CDP software 
+has always been done in this way as it is more accurate, and 
+it allows the software to handle sound from different file formats 
+in an identical way.  The floating point format option gives the 
+highest precision, handles streaming, and doesn't clip overmodulated 
+signal, which means that it can be normalised without distortion 
+occurring.
+</p>
+
+<p>
+Another common measure of amplitude is Decibels ('dB').  This relates 
+to the 'intensity' of the sound and measures the ratio of two values.  
+Because intensity is proportional to the square of the amplitude, 
+the Decibel range is logarithmic:  every change of 6dB halves or 
+doubles the amplitude.  This range used in both the analogue studio 
+and in computer software goes from -96dB (minimum, virtual silence) 
+to 0.0 dB (maximum, full volume, 'normalised' sound).  This 
+Decibel range can be used in CDP's MIX program, as can expression 
+of relative amplitude levels in terms of <i>gain_factor</i>.  Thus 
+in SUBMIX MIX you could state the relative level of a sound as 
+-6dB or 0.5.
+</p>
+
+<p>
+Somewhat confusingly, the Decibel range is also described as going 
+from 0dB (virtual silence) to 120dB, the threshold of pain.  The 
+relative levels of different types of sound, such as the rustle of 
+leaves, conversational tones, or airplanes, are often given in this 
+way, as on p. 66 of David Sonnenschein's excellent book, 
+<i>Sound Design</i>.
+</p>
+
+<p>
+Changing amplitude levels can also be done with a multiplier.  This 
+is called a <i>gain_factor</i>.  Thus 1.0 makes no change, while 0.5 
+halves the amplitude and is therefore equal to -6dB.  The 
+<a href="gadbchrt.htm"><b>Chart of Gain &#150; dB Correlations</b></a> 
+maps out the relationships between the <i>gain_factor</i>, the Decibel 
+and the 32767 measurement scales.  The <b>Music Calculator</b> in 
+<i>Sound Loom</i> does these gain&#47;dB calculations.  You can also 
+access this facility in the music section of COLUMNS in <i>Soundshaper</i> 
+or on the command line.
+</p>
+
+<p>
+A detailed discussion of these matters is given in <i>Computer Music</i> 
+by Dodge & Jerse, pp. 19-25, to which the above summary is indebted.
+</p>
+
+<p>
+<IMG SRC="images/awaveform.gif" align="left" ALT="[typical amplitude 
+representation of a waveform]"></a><br clear>
+</p>
+
+<p>
+This is the <i>amplitude time</i> representation of a waveform in 
+the <a href="#TIMEDOMAIN"><b>time domain</b></a>.  It is the shape made 
+by a bouncing ball.
+</p>
+
+<p>
+<IMG SRC="images/ananalysis.gif" align=left hspace="10" ALT="[typical amplitude 
+representation of frequency components]"></a>
+</p>
+
+<p>
+Analysis files operate in the <a href="#SPECTRALDOMAIN"><b>spectral 
+domain</b></a>, in which amplitude (vertical axis) is plotted for each 
+frequency (horizontal axis) component.  Here one frame of the same bouncing 
+ball sound is captured in the <a href="#FFT"><b>FFT</b></a> analysis data 
+stream, showing an <i>amplitude</i> &#43; frequency</i> graph.  It can 
+also be represented in several other forms:  a bar graph, a sonogram, a 
+spectrogram, or a 3-D 'mountain' graph.
+</p>
+
+<p>
+What is relevant here is to realise that altering the amplitude of 
+frequency components affects the timbre, the tonal qualities of the sound: 
+depending on which frequencies are louder.  This effect is special to the 
+spectral domain.  In the time domain, where the amplitude of each sample 
+is involved, altering amplitude simply makes the <i>whole sound</i> louder 
+or softer, without changing tonal characteristics.
+</p>
+
+<p>
+CDP's FOCUS EXAG effect plays with the amplitude of frequency components 
+and therefore has a direct effect on the timbral quality of the sound.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="ANALYSIS"><b>ANALYSIS</b> &#150; format conversion of sample 
+to analysis data
+</h3>
+
+<p>
+ANALYSIS converts from the <a href="#TIMEDOMAIN"><b>Time Domain</b></a> to 
+the <a href="#SPECTRALDOMAIN"><b>Spectral Domain</b></a>, i.e., from a 
+<i>time amplitude</i> to a <i>frequency amplitude</i> representation of 
+the sound.  The analysis data is stored in a completely different way 
+than a soundfile, and these files are referred to as <b>analysis files</b>.  
+The Fast Fourier Transform (FFT) is used to carry out this conversion 
+and the Inverse FFT to convert back to a soundfile.
+</p>
+
+<p>
+The detailed workings of these processes do not need to be known by 
+the composer, only that certain sound transformation processes require 
+analysis files as inputs.  For the technically minded and for a greater 
+ability to fine-tune the analysis procedure, see the section below on 
+<a href="#ANALSETTINGS"><b>Analysis Settings</b></a>.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="ANALSETTINGS"><b>ANALYSIS SETTINGS</b> &#150; optimise 
+the conversion process
+</h3>
+
+<p>
+Normally, a sound is represented as a series of samples.  Each 
+sample has two data items: an <i>amplitude</i> and a <i>time</i>.  
+This is the 'time domain' and changes made in this domain can, 
+therefore, adjust the amplitude or the time data items.
+</p>
+
+<p>
+The 'spectral domain' also has two data items: <i>frequency</i> and 
+<i>amplitude</i>, and this is derived from the sample data by means of 
+a nifty mathematical manouevre known as a Fast Fourier Transform (FFT).  
+Thus it is directly concerned with which frequencies are present in 
+any given slice of time (they are always changing) and how loud each 
+of them is.  Note that time is not represented here &#150; time is 
+represented by the regular stream of frames.
+</p>
+
+<blockquote>
+<p>
+<b>There are three ways in which we can fine-tune this FFT analysis 
+process</b>, and in considering what they are, we get a reasonably 
+clear picture of what the analysis is doing.
+</p>
+
+<p>
+<div align="center">
+<IMG SRC="images/analsettings.gif" align="center" ALT="[Analysis Settings 
+dialogue box]"></a>
+</div>
+</p>
+
+<p>
+	<ul>
+	<li id="FFTSIZE"><b>FFT size</b> &#150; The FFT 
+	analysis works on incoming samples in groups.  FFT size is the 
+	number of samples in each group used to make each analysis 
+	frame.  The larger the group, the better the frequency 
+	resolution is.  However, the larger number of samples also 
+	means a longer chunk of time, so time resolution is 
+	coarsened.  Thus there is a frequency - time tradeoff.  
+	Higher values for FFT size improves pitch tracking, and 
+	therefore transposition accuracy.</li>
+
+	<li id="FFTOVERLAP"><b>FFT Overlap</b> &#150; The analysis 
+	overlaps frames so that it produces smoother results.  The 
+	overlap is given in number of samples from the start of the 
+	previous frame, so smaller values mean more overlap.  The 
+	FFT size divided by the number of overlap samples gives the 
+	overlap factor, which is normally kept at 4.  E.g., 1024 
+	&divide; 256 = 4, 2048 &divide; 512 = 4.  Making the overlap 
+	tighter than this will increase the CPU load.  The main reason 
+	for doing so would be to improve quality in extreme 
+	transpositions.</li>
+
+	<li id="FFTWINDSIZE"><b>Window size</b> &#150; This is a 
+	multiple of FFT size.  Normally set to 2, it can be set to 1 
+	in order to reduce latency.  This will, however, <i>reduce</i> 
+	frequency resolution and <i>increase</i> time resolution &#150; 
+	but this also means more frames per analysis, more data and 
+	higher CPU load.</li>
+	</ul>
+</p>
+
+<p id="RULESOFTHUMB"><b>3 Rules of Thumb</b> provide guidelines for 
+adjusting the above settings:
+	<ol>
+	<li><b>Audio quality</b> &#150; Audio quality is enhanced 
+	with <b>larger FFT sizes and small overlaps</b>.</li>
+
+	<li><a href="#LATENCY"><b>Latency</b></a> &#150; FFT 
+	size * Window size is the main factor in determining latency, 
+	higher values causing more latency.  E.g., 1024 * 2 = 2048 (samples 
+	in an analysis frame), 2048 * 4 = 8192 (samples in an analysis 
+	frame).  <b>Use low values for low latency.</b></li>
+
+	<li><b>CPU load</b> &#150; The analysis rate is the number of 
+	frames to process per second.  It is calculated by dividing the 
+	number of overlap samples into the sample rate: e.g., 44100 
+	&divide; 256 = 172 frames per second.  <b>The higher the rate, the 
+	higher the CPU load.</b></li>
+	</ol>
+</p>
+
+<p id="RECOMMENDED"><b>Recommended settings:</b>
+	<ul>
+	<li>most situations: 1024 - 256 - 2 (current default for 
+	low CPU load, but not lowest latency)</li>
+
+	<li>high resolution pitch transposition: 2048 - 320 - 1, 
+	especially if transposing up more than 7 semitones.</li>
+
+	<li>drum sounds: 512 - 64 - 1 (Smearing on drum sounds with 
+	the phase vocoder is a classic problem.  This very small window, 
+	low latency setting gives the best results.)</li>
+
+	<li>good quality pitch transposition while retaining a lower 
+	latency: 1024 - 160 - 1, a good high quality setting, 
+	e.g., for transposition up an octave without increasing 
+	latency too much.</li>
+	</ul>
+</p>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<h3 id="ATTACK"><b>ATTACK TRANSIENTS</b> &#150; the angle of 
+amplitude increase at the beginning, the 'onset' of a sound
+</h3>
+
+<p>
+The way a sound begins is one of its most important features.  When we 
+imagine beating a drum, or starting a violin string vibrating by moving 
+the bow across it, or blowing into a trumpet with that extra umph to get 
+the note sounding, we realise that the act of producing the sound differs 
+according to the physical nature of the instrument.  In fact, it is in 
+hearing this start to the sound that we can recognise what instrument 
+is being played.  If we take away the beginning or reverse the sound, 
+the nature of the instrument &#150; whatever it was that made that 
+sound &#150; becomes surprisingly ambiguous.
+</p>
+
+<p>
+This beginning is known as the <b>attack</b> of a sound, and it has 
+both amplitude (loudness curve) and frequency (timbral) components.  
+Striking or blowing an instrument with great force increases the 
+amplitude of many frequency components, especially the higher frequencies. 
+This makes the sound brighter, like the piercing, clarion call of a 
+trumpet.  This would be a 'sharp' attack with a fast attack 'transient', 
+meaning that the slope of the amplitude rises steeply, such as from 
+zero to its full volume in 0.1 sec.  A slow attack has an amplitude 
+that rises more slowly, such as from zero to its full volume in 2 sec.
+</p>
+
+<p>
+Trumpets are known for their sharp attacks, strings for their gentle 
+attacks, while instruments such as the clarinet or saxophone are 
+really good at doing either.  Computer sound editors alter the 
+attack transient by drawing an amplitude slope and adjusting the 
+amplitude values to stay within this slope.
+</p>
+
+<p>
+The overall amplitude shape of a sound is called its 
+<a href="#ENVELOPE"><b>envelope</b></a>.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="BAND"><b>BAND</b> &#150; width of a group of frequencies
+</h3>
+
+<p>
+If we think of the whole range of frequencies that make up a sound, 
+a <b>band</b> of frequencies will be a section, a 'ribbon' as it were of 
+<i>adjacent</i> frequencies lying between a low frequency limit and 
+a high frequency limit.
+</p>
+
+<p>
+Using computer tools, we can isolate bands of frequency, either retaining 
+them while removing what is above and&#47;or below, or removing them, a 
+process known as <a href="#FILTER"><b>filtering</b></a>.  Altering 
+significant chunks of frequency components has a major effect on the 
+sound.
+</p>
+
+<p>
+Another type of frequency band is known as a <a href="#FORMANTS">
+<b>formant</b></a>, fixed frequency bands of relatively high amplitude 
+which more than anything else define the timbral character of a sound.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="BATCHFILE"><b>BATCH FILE</b> &#150; run a series of commands 
+from the Console&#47;Terminal (via a 'command line interpreter')
+</h3>
+
+<p>
+A batch file is a powerful tool for automating a sequence of operations. 
+The essential facility is that such a file will run an executable program 
+along with its parameter inputs.  The CDP software is relatively unusual 
+among high level sound design software packages in that it supports this 
+tool.  Our SDBATS set of sound examples makes use of this mechanism.  This 
+type of file has a <b>.bat</b> file extension on PC (CMD, formerly MS-DOS) and a 
+<b>.sh</b> file extension on MAC (BASH).  Please see the <a href="../demo/sdbats" Target="_blank"><b>SDBATS folder</b></a> for complete examples of batch files.
+</p>
+
+<p>
+The batch file is invoked by typing its name in the command line 
+interpreter, with or without its extension.  On PC, it will look 
+something like this, with the folder 'mysoundwork' located on Drive 
+D:, and the batchfile named <i>txsimpl.bat</i>:
+<pre>
+d:\mysoundwork>txsimpl
+</pre>
+
+
+<p>
+There are two main types of statement used in a batch file.  One is in 
+effect a comment, enabling you to insert explanatory text.  These begin 
+with 'rem' on PC and 'echo' on Mac.  The second type of statement runs 
+an executable program.  It starts with the name of the program &#150; 
+other types of shell may use 'exec' or 'system'.  Here are examples of 
+these two statements, first for PC and then for MAC.
+<pre>
+<font color = "#FF0000">PC</font>
+rem Distort Repeat x cycles in y groups
+rem distort repeat b bdr 5 -c2
+distort repeat b bdr 5 -c2
+
+<font color = "#FF0000">MAC</font>
+echo Distort Repeat x cycles in y groups
+echo distort repeat b bdr 5 -c2
+distort repeat b bdr 5 -c2
+echo 
+</pre>
+</p>
+
+<p>
+While CDP still uses the environment variable CDP_SOUND_EXT (which will 
+be withdrawn at some point), it is possible to batch the PLAY command 
+in a way which will work for both PC and MAC.  To do this, the environment 
+variable is named rather than the extension itself &#150; the extension 
+has to be explicit for the PLAY command.  The batch file lines to do this 
+are as follows:
+<pre>
+<font color = "#FF0000">PC</font>
+paplay -i asound.%CDP_SOUND_EXT%
+
+<font color = "#FF0000">MAC</font>
+paplay -i asound.$CDP_SOUND_EXT$
+</pre>
+</p>
+
+<p>
+The batch file can be used as a way to create libraries of one's 
+favourite process sequences.  This is done making a copy of the input 
+soundfile with a generic name (using COPYSFX).  This generic name is used 
+throughout the batch file.  Thus, the only edit that has to be made to 
+run it with a different soundfile is to edit the COPYSFX statement.
+</p>
+
+<p>
+Batch files can also be used to run specific programs, especially those 
+with many parameters.  The Usage can be put into a comment line as a 
+reminder, and the executable program called with all its parameters in 
+place.  This can be re-run after editing the parameters on the line that 
+calls the program.  Here is an example for TEXTURE SIMPLE (PC) &#150; note 
+that this example uses several input soundfiles and time-varying use of 
+these files to make the output texture:
+<pre>
+rem txsimpl.bat - batch file to run TEXTURE SIMPLE
+rem texture simple mode infile(s) outfile ndf outdur packing scatter tgrid 
+rem sndfirst sndlast mingain maxgain mindur maxdur minpch maxpch -aatten -ppos 
+rem -sspread
+texture simple 5 count horndown7 omahum seven txsndtest ndf60.txt 45 0.075 0 0
+ txsndsf.txt txsndsl.txt 60 90 0.5 1.25 72 84 -a0.9
+</pre>
+Note that newlines are invalid in a batch file when calling the program, as 
+they break off the command being invoked.  You may want to put one in when 
+you print a copy of the batch file for your records (as above), but do not 
+put one in when actually running the batch file.
+</p>
+
+<p>
+A programmer-user also has more advanced types of shell that can be used 
+because the CDP programs are actually U<small>NIX</small>-based command 
+line in nature, for example TCL, PERL, PYTHON, <i>Tabula Vigilans</i> etc. 
+Applications involving scripting can therefore make use of the CDP sound 
+processing software.  Although appearing to be 'old fashioned', the 
+batch&#47;scripting approach to the CDP software is actually a very 
+advanced and flexible way to use it.
+</p>
+
+<p>
+Also see <a href = "#COMMANDLINE"><b>Command Line</b></a> and our brief 
+manual on using MS-DOS:  <a href = "..\htmltuts\cmsdos.htm">
+<b>cmsdos.htm</a>.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="BINARY"><b>BINARY</b> &#150; machine-readable encoding
+</h3>
+
+<p>
+Files can be <b>binary</b> or <b>text</b> in format.  If 'text', they 
+can be written and edited in a normal text editor.  If 'binary', 
+they have been encoded in a way that can only be read by the computer.  
+Most CDP file formats are text, but some are binary, such as sound, 
+analysis and formant files;  others can be both, such as envelope 
+and transposition files.
+</p>
+
+<p>
+Another meaning for 'binary' is more generic, namely the binary 
+number system that is base-2 rather than base-10.  The binary 
+number system lies at the heart of how a computer operates, 
+because all numbers can be expressed in terms of 0s and 1s: 
+OFF or ON.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="BLUR"><b>BLUR</b> &#150; result of averaging 
+data, smoothing over features of the original
+</h3>
+
+<p>
+When water gets on writing done with water soluble ink, such as 
+used by an ink-jet printer, the ink begins to dissolve and the 
+edges of the letters begin to blur.  At first it is hard to read, 
+but you can still make out the letters.  But when the dissolving ink 
+from one letter begins to overlap and mix with the ink from another 
+letter, it becomes more difficult to read the text.  It's a bit like what 
+comes out when you try to speak without moving your lips.  Clear precise 
+diction becomes a kind of verbal porridge as the sharp contrasts between 
+consonants, vowels, pitch levels and amplitudes become smeared together.  
+</p>
+
+<p>
+It is very exciting that this kind of effect can also be achieved 
+with sounds.  In the spectral domain, the two components of the 
+analysis, the amplitude and the frequency, are calculated for e.g., 
+1024 vertical bands in the layer cake of the sound for every e.g., 
+100<sup><small>th</small></sup> part of a second (which is called a 
+'frame' &#150; usually several frames overlap to form a 'window' 
+in order to ensure a smooth result).  We can therefore picture 100 
+windows of amplitude &amp; frequency information for every second of 
+sound.  Blurring effects can be achieved in Spectral Transformer by 
+accumulating the data of several windows, or by removing some of the 
+frequency components (such as those with lesser amplitude).  The 
+ACCUMULATOR and TRACE employ these two methods, respectively.
+</p>
+
+<p>
+The overall effect is to smooth out differences by reducing the 
+differences from one window to the next:  amplitudes (of the frequencies) 
+are more consistent, meaning that the tonal characteristics are 
+spread over a greater period of time, and the frequency content, 
+even when it becomes more complex, changes more gradually.  The 
+result is softer-edged, gentler, more slowly changing sounds, but 
+full of (changing) timbral interest.  The ACCUMULATOR adds a glissando 
+effect as well, further blurring with pitch bends.
+</p>
+
+<p>
+The blurring effect reduces the recognisability of the original sound, 
+making it more abstract.  Thus it is a route towards original sounds 
+with a flowing, sonorous character.  These may be used for 'ambient', 
+'chill-out' music and to create flowing, abstract sonic imagery.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="BREAKPOINT"><b>BREAKPOINT</b> &#150;  file containing 
+time-contour instructions
+</h3>
+
+<p>
+For music to be supple and engaging, it needs to change over time.  
+That is to say, time-contours need to be implemented.  These specify 
+specific values at specific time points, such as:
+<pre>
+<font color="FF0000">time  parameter_value</font>
+0.0   0
+0.5   6
+0.73  2.1
+1.0   4.5
+</pre>
+The 'value' refers to the numerical value assigned to a given 
+parameter.  Time is given in seconds.
+</p>
+
+<p>
+Usually referred to as 'automation', in much software today these 
+time-contours are entered graphically in real time.  In spite of 
+being quick and intuitive to use, there is some limitation on the 
+degree of precision that can be achieved when created in this way:  
+precise time points and precise values.  Although a text breakpoint 
+file might actually be created behind the scenes, the user cannot 
+access it.
+</p>
+
+<p>
+The <b>breakpoint</b> file mechanism used by CDP software 
+allows for direct entry with a text editor.  Thus the file can be 
+created, stored and accessed via a text editor, and all values 
+can be absolutely precise to several decimal places.  This can be 
+particularly important when specific time shapes are being designed 
+as part of the formal structure of a composition.
+</p>
+
+<p>
+CDP also provides graphic text editors for creating breakpoint 
+files, and Richard Dobson's BRKEDIT enables you to make use of 
+exponential and logarithmic curves as well as straight lines.  
+CDP does not, however, have real-time automation facilities at 
+this point.  Our <i>Spectral Transformer</i> plugin for 
+Cakewalk's <i>Project 5</i> does operate in real-time, so 
+we shall have facilities of this nature in our forthcoming 
+software.
+</p>
+
+<p>
+A detailed explanation of how to create and use breakpoint files 
+can be found in <a href="filestxt.htm#BREAKPOINTFILES"><b>CDP File 
+Formats</b></a>.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="CHANNELS"><b>CHANNELS</b> &#150; the frequency bands 
+or 'bins' into which the sound is analysed, i.e., frequency resolution
+</h3>
+
+<p>
+'Channels' in this context has a specific technical meaning.  
+Normally, we think of 2 or 4+ channels on a tape or in a digital 
+sound file, each of which is eventually routed to a different 
+loudspeaker.  In the spectral domain, 'channels' means the number 
+(and size) of the frequency bands into which the sound is analyzed.  
+Normally around 85 Hz apart, more and smaller bands means higher 
+frequency resolution, fewer and larger bands means lower frequency 
+resolution.  The FFT analysis examines each of these bands, 
+these channels, these 'bins' to see what is in it:  i.e., which 
+frequency&#47;frequencies and its&#47;their amplitude(s).  Some of 
+the channels may be empty.
+</p>
+
+<p>
+Which frequencies are present in the various frequency bands of an 
+analysis frame determines the tonal quality of the sound <i>at that 
+moment</i>.  Each frame covers only a tiny fraction of the length of 
+the sound, and the contents of the successive frame of analysis data 
+are constantly changing.  
+</p>
+
+<p>
+This contour profile of the data in a frame is called the 
+<a href="#SPECTRALENVELOPE"><b>spectral envelope</b></a>, and the 
+overall, constantly changing set of profiles for the whole sound, 
+can be referred to as its 'timbral envelope'.
+</p>
+
+
+<p>
+<br />
+</p>
+
+<h3 id="COMMANDLINE"><b>COMMAND LINE</b> &#150; a call to 
+an executable program <i>via</i> a 'command line interpreter'
+</h3>
+
+<p>
+Some computer operating systems have programs known as command 
+line interpreters.  This means that the user can call (access 
+and run) a named program from within the interpreter.  These 
+are text-based, such as the PC's Command Line Interface program 
+<a href="https://technet.microsoft.com/en-us/library/bb490890.aspx"><b>CMD</b></a> 
+(formerly MS-DOS) and OS X's <a href="https://en.wikipedia.org/wiki/Terminal_%28OS_X%29"><b>Terminal</b></a>.  
+Essential for low-level 
+computer maintenance because they access computer internals 
+independently of the graphic 'Windows' environment, they also 
+provide useful facilities for composers.
+</p>
+
+<p>
+CDP's software began in a U<small>NIX<sup>TM</sup></small>-like 
+environment (created on the Atari ST by Martin Atkins) and was 
+therefore based on the use of a command line interpreter.  This 
+made it possible for CDP programmers to create a great many 
+sound processing programs without having to worry about graphic 
+features.  It also meant that the software was highly portable.  
+There are other advantages in having a command line mechanism, 
+as discussed below.
+</p>
+
+<p>
+The instructions for a command line are called its 'usage'.  A 
+typical usage includes:
+	<ul>
+	<li>the program's name</li>
+	<li>a mode (if there is one)</li>
+	<li>input_sound</li>
+	<li>output_sound</li>
+	<li>and any parameters (with flags, if used)</li>
+	</ul>
+Here is usage and implementation for CDP'S DISTORT REPEAT:<br />
+<br />
+<code>
+program_name   mode infile  outfile  parameters<br />
+distort repeat      infile  outfile  multiplier -ccyclecount [-sskipcycles]<br />
+distort repeat      soundin soundout 2          -c2<br />
+</code>
+<br />
+Commenting on this command line, we see that:
+	<ul>
+	<li>There are no modes, so there is nothing between the 
+	program name and the infile (modes are usually given 
+	as numbers: 1, 2 etc.).</li>
+	<li>The <i>multiplier</i> parameter has no 
+	<a href=#FLAG"><b>flag</b></a>, so we see just the 
+	value in the command line.</li>
+	<li>The <i>cyclecount</i> parameter does have a 
+	flag (<b>-c</b>) so its value on the command line 
+	is preceded by <b>-c</b>.</li>
+	<li>Nothing is given for the parameter <i>skipcycles</i>.  
+	This is because it is an optional parameter, indicated by 
+	the square brackets [...].  Optional parameters are in 
+	fact used by the software, but they have Default values.  
+	If you are happy with the default value, you don't need 
+	to enter anything.  In this case, <i>skipcycles</i> means 
+	the number of wavecycles to skip before starting to 
+	process the sound.  The Default is 0 (i.e., none), so 
+	when the paramter is omitted, processing begins at the 
+	start of the sound.
+	</ul>
+</p>
+
+<p>
+<b>A program's usage is displayed</b> when you enter only the 
+program name on the command line.  In the example above, entering 
+just DISTORT will display all the sub-programs of that Group 
+of programs (Wavecycle Distortion).  Entering DISTORT REPEAT 
+will display the usage for that particular program.
+</p>
+
+<p>
+The command line mechanism with DOSKEY installed (PC) gives 
+you a <b>command history</b>.  This enables you to use the 
+UP-ARROW to return to previous commands.  Thus you can process 
+a sound, play it, delete it and return to its command line (as 
+previously filled out by you), alter a parameter or two and 
+re-run it &#150; all done more quickly than in a graphic 
+interface.
+</p>
+
+<p>
+The command line mechanism is, therefore, simple to understand 
+and to use, though programs with large numbers of parameters 
+can be confusing.  Creating a <a href="filestxt.htm#BATCHFILES">
+<b>batch file</b></a> for that program, with its full usage in 
+a 'rem' statement as a guide, can be helpful.
+</p>
+
+<p>
+Furthermore, the batch file mechanism can be used to create 
+your own <b>library of sound processing sequences</b>.  The 
+Sound-Builder Templates make use of the mechanism.  These include 
+generic batch files written so that you only have to alter the 
+input soundfile name in order to run the entire sequence with a 
+different sound.  Similarly, you could create a batch file to run 
+the same different program with, e.g., 10 different parameter 
+settings, so that you could quickly make all the different versions 
+and select the one you like the best.  Although 'ancient history' 
+in terms of computing, batch file libraries are often developed 
+by CDP's most experienced users.
+</p>
+
+<p>
+This text-entry method is also helpful for <b>diagnostic 
+purposes</b>, to check on the operation of a program that 
+appears to be failing, independently of the graphic user 
+interface.  This can help to pinpoint where the problem lies: 
+i.e., in the program itself or in the graphic user interface.
+</p>
+
+<p>
+Finally, the text entry nature of batch files makes them 
+a beneficial option for those with impaired sight.
+</p>
+
+<p>
+CDP software maintains its command line core 
+for all the reasons mentioned above.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="DECAY"><b>DECAY</b> &#150; data values reducing over time
+</h3>
+
+<p>
+Decay refers to a gradual lowering of a set of values, usually 
+amplitude.  If a sound ends with the amplitude values descending from 
+full to zero over 2 or 3 seconds, it is said to decay slowly.  When 
+applied to other parameters, the effect differs according to the 
+function of the parameter.  With FOCUS ACCUMULATE, <i>decay</i> is 
+controlling reverberation.  When the value is higher, the 
+reverberation time increases, when at zero, there is no 
+reverberation at all.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="DIGITALNOISE"><b>DIGITAL NOISE</b> &#150; artefacts related 
+to the sample rate
+</h3>
+
+<p>
+Digital noise is an artefact created by the digital sound 
+<a href="#SAMPLERATE"><b>sampling</b></a> process.  If there are 
+(only) 22050 samples per second, each with its own amplitude 
+value, then it is possible to have fairly large changes 
+in amplitude level from sample to sample, and if the actual sound is 
+changing during the time of this sample, that change is not captured 
+by the sampling process.  When these relatively sudden changes are 
+eventually translated into the power driving the loudspeaker cones, 
+the lack of smoothness in the motion of the cones introduces a noise 
+factor (random frequencies).
+</p>
+
+<p>
+This is why higher sampling rates have been sought: 44100, 96000, and 
+even 192000 samples per second:  it captures the moment to moment 
+changes in the sound more smoothly, resulting in less information loss, 
+cleaner loudspeaker movement and higher fidelity in the output sound.
+</p>
+
+<p>
+The potential presence of digital noise means that applying digital 
+<a href="#GAIN"><b>gain</b></a> needs to be done with care.  The 
+reason is simple:  if the amplitude level is jacked up indiscriminately, 
+the changes from sample to sample may also be increased to the point 
+where digital noise is created by the irregularities produced.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="ENVELOPE"><b>ENVELOPE</b> &#150; amplitude contour
+</h3>
+
+<p>
+The word 'envelope' is used in music to describe the profile of a 
+sound, like the peaks and troughs of a mountain range.  The 
+<b>amplitude envelope</b> describes how the <b>loudness</b> changes 
+with time: e.g., the amplitude envelope would have 'peaks' where 
+the sound became loudest.  The <b>frequency envelope</b> of the 
+spectrum of a sound describes which frequencies in the sound are 
+most prominent.  For example, a sound described as 'bright' would 
+have a peak in the higher frequencies of its spectrum.
+</p>
+
+<p>
+In the time domain, <i>time</i> runs horizontally, and <i>amplitude</i> 
+vertically.  Thus each vertical bar will be potentially at a different 
+height.  When we connect up the tops of all these vertical bars, we 
+get the waveform shape, as displayed by sound editors which act on the 
+stream of <i>time amplitude</i> samples.  We get an image of the 
+amplitude contour of the sound when we average a number of samples.  
+We have to decide at what <i>scale</i> to measure the loudness: 
+we can look at every sample, or we can take an average (absolute) 
+value over a number of samples.  If the scale is too small (too few 
+samples), we will not see the changing loudness of the sound, but 
+only the changing <i>shape of the waveform</i>.  If it is too big 
+(too many samples), we might miss fine details such as tremolando 
+effects.  In some cases (like a tremolando through a crescendo) 
+we might <i>want</i> to ignore the tremolando and just see the 
+crescendo, so the choice of <i>envelope window size</i> is 
+important (i.e., how many samples).  The CDP envelope programs use 
+a default window size (which you can change) which avoids the 
+envelope being too small.  The range of this parameter is 5ms 
+to the length of the soundfile.
+</p>
+
+<p>
+The same comments apply to the spectral envelope.  For example, 
+the spectrum of a clarinet playing Ab will only have energy at the 
+frequency of Ab and at (some of) the <a href="#HARMONIC">
+<b>harmonic</b></a> frequencies of Ab.  All the other channels 
+(of which there are very many more!) will show (approximately) 
+zero amplitude.  When we describe the <a href="#SPECTRALENVELOPE">
+<b>spectral envelope</b></a>, we're only really interested in how 
+the heights of the channels containing the harmonics change as we 
+go up the spectrum, so we have to choose a scale of operation that 
+shows us this.  Within the CDP software, the extraction of 
+<a href="#FORMANTS"><b>formants</b></a> (peak shapes in the 
+spectral envelope takes care of this scaling for you.  This 
+is the <b>-f</b> (frequency-wise) &#47; <b>-p</b> (pitch-wise) 
+formant extraction option discussed in 
+<a href="cformant.htm#extractformants">FORMANTS GET</a>.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="EXPONENTIALCURVE"><b>EXPONENTIAL CURVE</b> &#150; 
+increasingly faster increase or slower decrease
+</h3>
+
+<p>
+The CDP software makes use of both exponential and of its 
+inverse, <a href="#LOGARITHMIC"><b>logarithmic</b></a> 
+curves.  They can be inserted into breakpoint files using 
+the 'extended format' available in BRKEDIT.  The exponential 
+function appears in ENVEL DOVETAIL to enable a more supple 
+type of fade in and fade out, and a logarithmic interpolation 
+option is available in STRANGE SHIFT.
+</p>
+
+<p>
+The rise of exponential curves starts slowly and then 
+speeds up.  This occurs because the underlying 
+<font color="#FF0000">y</font> value is being doubled at each 
+subsequent linear increase of 
+<font color="#FF0000">x</font>:
+	<ul>
+	<li><font color="#FF0000">2<sup><small>
+	    x</small></sup> = y</font></li>
+	<li>2<sup><small>0</small></sup> = 1</li>
+	<li>2<sup><small>1</small></sup> = 2</li>
+	<li>2<sup><small>2</small></sup> = 4</li>
+	<li>2<sup><small>3</small></sup> = 8</li>
+	<li>2<sup><small>4</small></sup> =16</li>
+	</ul>
+Similarly, the descent of exponential curves (&lt; 1) 
+starts quickly and slows down:  with every linear negative 
+integer change of <font color="#FF0000">x</font> exponents, 
+the value of <font color="#FF0000">y</font> halves:
+	<ul>
+	<li><font color="#FF0000">2<sup><small>
+	    x</small></sup> = y</font></li>
+	<li>2<sup><small>&nbsp;0</small></sup> = 1</li>
+	<li>2<sup><small>-1</small></sup> = 0.500</li>
+	<li>2<sup><small>-2</small></sup> = 0.250</li>
+	<li>2<sup><small>-3</small></sup> = 0.125</li>
+	<li>2<sup><small>-4</small></sup> = 0.063</li>
+	</ul>
+Thus, as the exponent increases by 1, the value on the 
+<font color="#FF0000">y</font> axis doubles and the 
+curve produced rises with increasing rapidity.  With  
+values less than 1 or negative for the exponent, the 
+downward movement along the <font color="#FF0000">y</font> 
+axis slows down as the difference between the 
+<font color="#FF0000">y</font> values decreases.  The  
+<font color="#FF0000">y</font> value diminishes infinitely, 
+never reaching the <font color="#FF0000">x</font> axis.
+</p>
+
+<p>
+The terminology 'starts slow and then speeds up' etc. is used 
+because, in this musical context the 
+<font color="#FF0000">x</font> axis represents <i>time</i>.
+</p>
+
+
+<p>
+Curves of this nature are used in the CDP software in various 
+ways to produce more subtle time-varying results.  They can 
+be used in:
+	<ul>
+	<li>Envelope shapes between breakpoint times (our 
+	'extended format').  This is most easily done with the 
+	BRKEDIT graphic breakpoint editor, but it can also be 
+	done by hand in text files by preceding a second value 
+	with 	an 'e'.  This means that the interpolation from 
+	the first to the second value will be an exponential 
+	curve.  An example is given in the 
+	<a href="filestxt.htm#CREATEFILES"><b>createfile</b></a> 
+	section of <b>CDP Files &amp; Codes</b>.</li>
+	<li>In the ENVEL DOVETAIL program, Mode <b>1</b> enables 
+	you to select ('flag') a linear (0) or  an exponential 
+	(1) fade-in and&#47;or fade-out.  In the exponential form, 
+	the fade-in starts slowly and rises increasingly 
+	quickly, and the fade-out starts slowly and falls 
+	increasingly quickly.  Besides being a more supple 
+	movement, it also seems to work better in starting 
+	and ending the sound at zero amplitude.</li>
+	<li>In ENVEL DOVETAIL Mode <b>2</b>, fade-in and&#47;or 
+	fade-out can be <i>doubly</i> exponential, i.e., 
+	faster than exponential.</li>
+	</ul>
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="FFT"><b>FFT</b> &#150; Fast Fourier Transform
+</h3>
+
+<p>
+The FFT analysis is the wonderful mathematical process used 
+by the <a href="#PHASEVOCODER"><b>Phase Vocoder</b></a> and 
+translates <i>amplitude time</i> sample data into <i>amplitude 
+frequency</i> data.  It does this for a whole series of frequency 
+bands called <a href="#CHANNELS"><b>channels</b></a> for as many 
+tiny time segments as it takes to work through the sound from start 
+to finish.  These time segments are called <a href="#WINDOW">
+<b>windows</b></a>.  Implied in the fact that the time segments 
+move through the sound is the notion of 'phase', which locates 
+you in the sound:  taking into account previous states, you are 
+<i>here</i> now, you were <i>there</i> then.
+</p>
+
+<p>
+The result of the FFT analysis is an 'analysis file', which is 
+a huge amount of <i>frequency amplitude</i> data about the sound, 
+covering as it does every channel in every window (plus a frame 
+overlap factor to ensure smoothness when the sound is reconstructed 
+by a 'reverse FFT').
+</p>
+
+<p>
+The FFT analysis is what creates the <a href="#SPECTRALDOMAIN">
+<b>spectral domain</b></a> and makes possible amazing sonic 
+transformations, of which the Spectral Transformer effects represent 
+good examples of how powerful these processes can be.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="FILETYPES"><b>FILE TYPES</b> &#150; varying sample 
+types and formats for CDP files
+</h3>
+
+<p>
+CDP not only handles 16-bit and 24-bit soundfiles, 
+but also other forms of sound data, including (as shown in the 
+Usage of <a href="cmcrefmn.htm#COPYSFX"><b>COPYSFX</b></a>):
+	<ol>
+	<li><b>Sample types:</b>
+		<ol>
+		<li>16-bit integer (shorts)</li>
+		<li>32-bit integer (longs)</li>
+		<li>32-bit floating-point</li>
+		<li>24-bit integer 'packed'</li>
+		</ol>
+	</li><br /><br />
+	<li><b>Output formats:</b>
+		<ol start="0">
+		<li>standard soundfile: <b>.wav, .aif, .afc, 
+		.aifc</b></li>
+		<li>generic WAVE_EX (no speaker assignments)</li>
+		<li>WAVE_EX mono&#47;stereo&#47;quad (LF, RF, LR, RR) 
+		&#150; number of infile channels must match</li>
+		<li>WAVE_EX quad surround (L, C, R, S) &#150; infile 
+		must be quad</li>
+		<li>WAVE_EX 5.1 format surround &#150; infile must be 
+		6-channel</li>
+		<li> WAVE_EX Ambisonic B-Format (W, X, Y, A ...) &#150   
+		the <b>.amb</b> extension is supported</li>
+		<li> WAVE_EX 5.0 surround &#150  <i>infile</i> must be 5-channel</li>
+		<li> WAVE_EX 7.1 surround &#150  <i>infile</i> must be 8-channel</li>
+		<li> WAVE_EX cube surround &#150  <i>infile</i> must be 8-channel</li>
+		<li> WAVE_EX 6.1 Surround &#150  <i>infile</i> must be 7-channel<br>
+		</ol>
+	</li>
+	</ol>
+Basically, the system will by default reflect the input format 
+in the output:  i.e., in all cases, the output soundfile will have 
+the same format as the infile unless told to do otherwise, 
+such as convert between <b>.wav</b> and <b>.aif</b>, etc.  The 
+conversions are made with COPYSFX, the usage of which gives 
+the full list of formats.
+</p>
+
+<p>
+Besides the two basic binary formats for soundfiles and analysis 
+files, CDP software's amazing flexibility is rooted in the <b>many 
+different kinds of text file that can be created as inputs</b> to 
+specific functions.  Most of CDP's 50<sup><small>&#43;</small></sup> 
+file formats are text files that can be hand-written, edited and 
+stored.
+</p>
+
+<p>
+Full details on all CDP file formats are summarised in 
+<a href="filestxt.htm"><b>CDP Files & Codes</b></a>,
+accessible from all reference documents.  
+<!--
+There is 
+also a version using frames in which a full index is contained 
+in a scrollable lower panel.  It is recommended that you place 
+a shortcut to the frame document on your Desktop for easy 
+reference.  This is <b><i>filesfrm.htm</i></b> and can be found 
+in the top level of the CDP HTML folder.  It can also be accessed 
+via CDP's main index to the documentation, <b><i>ccdpndex.htm</i></b>.
+-->
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="FILTER"><b>FILTER</b> &#150; to remove part of
+</h3>
+
+<p>
+In general terms, filtering is removing part of the contents of something, 
+like straining fruit through a cheesecloth to make a jelly.
+</p>
+
+<p>
+The musical use of the term relates to the removal of part of the 
+frequency content of a sound.  Removal:
+	<ul>
+	<li><b>above</b> a given frequency = <b>lo-pass</b> (those above 
+	are removed, those below pass through)</li>
+	<li><b>below</b> a given frequency = <b>hi-pass</b> (those below 
+	are removed, those above pass through)</li>
+	<li><b>within</b> a pair of frequencies <b>retained</b> = 
+	<b>band-pass</b> (those above the upper limit and below the 
+	lower limit are removed, while those within the limits pass 
+	through).  There can be numerous bands-to-keep specified, 
+	sometimes enabling the user to tune the sound to a chord.</li>
+	<li><b>within</b> a pair of frequencies <b>rejected</b> = 
+	<b>band-reject</b> (those within are removed, and those above 
+	the upper limit and below the lower limit pass through.  This 
+	leaves a hole in the middle of the sound, so it is also called 
+	a notch-filter.  There can be numerous bands-to-reject, creating 
+	a comb-like effect.</li>
+	<li><b>multiple spectral peaks and troughs</b> are what happens 
+	in a <b>comb filter</b>, which combines a signal with a delayed 
+	version of itself, creating <i>periodic</i> cancellations in 
+	the frequency domain.</li>
+	</ul>
+</p>
+
+<p>
+Another aspect of filters is a boost factor, creating resonant 
+frequencies.  The degree to which this resonance is focused on 
+specific frequencies depends on how sharply the adjacent frequencies 
+fall away in amplitude.  <b>The slope of this amplitude reduction is 
+known as 'Q'</b>.  If amplitude falls away quickly, one tends to hear 
+a focused pitch in the retained portion of the sound, if more 
+slowly, the filter is fuzzier and one hears more of the original 
+sound &#150; the 'skirt' of the filter is wider and encompasses more 
+of the neighboring frequencies.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="FLAG"><b>FLAG</b> &#150; command line component to 
+signal the presence of a parameter
+</h3>
+
+<p>
+'Flags' are sometimes used in <a href="#COMMANDLINE"><b>command 
+lines</b></a> to make it clear to the software which parameter 
+is being accessed.  They take the form of single letters preceded 
+by a minus sign, such as <b>&#45;d</b>.  The value for that 
+parameter follows immediately without an intervening space, 
+such as <b>&#45;d2.5</b>.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="FORMANTS"><b>FORMANT</b> &#150; a fixed-position resonant 
+frequency region
+</h3>
+
+<p>
+Formants are amazing.  They are what makes speech comprehensible, 
+regardless of who is speaking (e.g., a man or a woman) and 
+regardless of what pitch (if any) they use.  In the human body, 
+formants are created by the variously shaped resonant cavities 
+of the head.  Each shape matches particular wavelengths, 
+thus setting up specific resonances, i.e., vibrations.  
+Some of these resonant cavities are fixed in size, allowing us 
+to distinguish between individual speakers or singers, but 
+many of them can be varied by changing the shape of our vocal 
+tract &#150; altering the size of the mouth, the position and 
+shape of the tongue, the relative opening or closing of the 
+back of the throat or of the nasal passages, the raising or 
+lowering of the larynx.
+</p>
+
+<p>
+Humans' ability to change these formant resonances is what 
+enables us to speak, and what distinguishes the human voice 
+from other musical instruments which, on the whole, have 
+only fixed formants.
+</p>
+
+<p>
+REPITCH TRANSPOSEF effect provides a way to transpose while retaining 
+formant information.  This is essential in transposing vocal 
+sources if both the sense (particularly the vowel content) and 
+the human-ness of the source are to be preserved.  It is less 
+critical in the transposition of instrumental sounds, for which 
+REPITCH TRANSPOSE appears to be robust and effective.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="FRAME"><b>FRAME</b> &#150; unit of analysis
+</h3>
+
+<p>
+The analysis frame is derived from a group of samples in the original 
+sound.  This group of samples, e.g., 882, represents a tiny time-slice of 
+the original, e.g., 0.02 (2 100<sup><small>ths</small></sup> of a) second 
+at a sample rate of 44100 per second.  To ensure smoothness in analysis and 
+resynthesis, frames are <a href="#FFTOVERLAP"><b>overlapped</b></a> by a 
+specified number of samples.
+</p>
+
+<p>
+The overall analysis usually contains millions of bytes of data from 
+all these frames.  This is the analysis data upon which the spectral 
+Transformation processes operate, and it is only recently that computers 
+have been fast enough to handle all this work in real-time without the 
+help of specialist outboard DSP hardware, although that can help as 
+well, as in the very powerful KYMA System.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="FREQUENCY"><b>FREQUENCY</b> &#150; number of cycles of a 
+waveform per second (= Herz - Hz)
+</h3>
+
+<p>
+Frequency means how many times a second a given (periodic) 
+<a href="#WAVEFORM"><b>waveform</b></a> repeats (oscillates).  
+Frequency is measured in <a href="#HERTZ"><b>hertz</b></a>.  
+Below about 16 Hz, this is heard as separate clicks, but above 
+ca 16 Hz we begin to hear steady tones.
+</p>
+
+<p>
+All but the most artificial of sounds contain many frequencies, 
+also called <a href="#PARTIALS"><b>partials</b></a>.  Sounds 
+need not have any repeating waveform (e.g., noise).  Steady 
+sounds that are not clearly pitched may contain many frequency 
+components, often in <a href="#INHARMONIC"><b>inharmonic</b></a> 
+relationship.  Even the waveform of a steady pitched sound can 
+usually be broken down into a number of different smaller 
+repeating shapes.  Each of these has a different frequency.  The 
+frequency of the whole shape is known as the fundamental, and 
+usually (but not always) determines the pitch we hear.  The 
+frequencies of the smaller shapes (always whole number 
+multiples of the fundamental in these steady pitched 
+sounds) are also important.  These frequencies in 'integer 
+relationship', together with the fundamental, are known as the 
+<a href="#HARMONICS"><b>harmonics</b></a> of the sound, a 
+subset of all the partials in the sound.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="GAIN"><b>GAIN</b> &#150; changes to the loudness of a 
+sound, louder or softer
+</h3>
+
+<p>
+Gain is the process of increasing or reducing the amplitude of a 
+sound.  This is done quite simply by multiplying the numbers by 
+which the amplitude is represented in the computer, usually a 
+range between -32766 and +32767 for 16-bit samples.  Thus, if a 
+given amplitude is 10000 (1/3<sup><small>rd</small></sup> max), 
+multiplying it by a gain factor of 2.5 will bring the amplitude 
+to 25000.  The use of gain needs to be balanced by an appreciation of 
+<a href="#DIGITALNOISE"><b>digital noise</b></a>.
+</p>
+
+<p>
+As mentioned in the entry on <a href="#AMPLITUDE"><b>amplitude</b></a>, 
+CDP handles not only 16-bit files, but also other soundfile 
+formats, including 24-bit soundfiles, enabling a much wider 
+dynamic range: -8388607 to +8388607.  But from the user's point of 
+view, it will work exclusively within a -1.0 to +1.0 range.  A 
+value of 0.5 will therefore be &#189; max, and 0.2 will be 
+1&#47;5<sup><small>th</small></sup> max.  Multiplying 0.2 times 
+a <i>gain_factor</i> of 2.5 will bring it to 0.5.
+</p>
+
+<p>
+An important feature of the 32-bit floating-point sample type 
+is that it does not clip the signal when it overmodulates.  Therefore, 
+when you later apply a <i>gain</i> reduction to normalise it or bring 
+it below a normalised signal, it will do this without incurring 
+distortion.  The highest precision and safety is therefore achieved 
+in this format.  Conversion to other formats can then be done later 
+with COPYSFX.
+</p>
+
+<p>
+SNDINFO MAXSAMP returns the maximum amplitude value of a soundfile 
+and specifies which <i>gain_factor</i> will bring it to full amplitude.  
+Detailed information about this is given in the 
+<a href="filestxt.htm#SNDINFOMAXSAMPFILES"><b>maxsamp</b></a> entry in 
+<i>CDP Files &amp; Codes</i>.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="GRAIN"><b>GRAIN</b> &#150; a very tiny 
+fragment of sound
+</h3>
+
+<p>
+Sound in the digital domain can be cut into very tiny fragments.  
+For practical purposes, i.e., to avoid clicks, they need to be 
+enveloped, in the sense that they are DOVETAILED with an 
+amplitude line or curve rising from and returning to 0 at the 
+beginning and end of the fragment.  The smallest feasible grain 
+is usually considered to be about 12.5ms (0.0125 sec.): 551 
+samples at a <a href="#SAMPLERATE"><b>sample rate</b></a> 
+of 44100.
+</p>
+
+<p>
+One approach, pioneered by Barry Truax, <i>synthesises</i> 
+grains digitally in real time and builds huge, dramatic flows 
+of grains, often diffused over multiple loudspeaker systems 
+with complex <a href="#PAN"><b>panning</b></a> algorithms.  
+One advantage of this method is that the timbral constituents 
+of the sound can also be altered in real time.
+</p>
+
+<p>
+Another approach, used in the CDP System, breaks up existing 
+(sampled) soundfiles into grains.  Pioneered by the <i>Groupe 
+de Researche Musicale</i> (GRM) as 'brassage' (mashing 
+together), this 'granulation' technique enables the composer 
+to work with pre-existing sound material.  Trevor Wishart's 
+program for CDP is appropriately called BRASSAGE, and in its 
+graphic form developed by Richard Dobson, GRAINMILL.  This 
+software moves through the sound from beginning to end, with 
+many (time-varying) ways to affect the density, timestretch, 
+pitch etc. of the grains.  Timbral variety is limited by the 
+nature of the input sound, so when timbral change is important, 
+it is useful to construct a complex source with SPLICE 
+or MORPH before granulation.
+</p>
+
+<p>
+Certain naturally occurring sounds are perceived to be 
+intrinsically grainy, e.g., vocal rolled 'rrr' sounds, 
+or very low sounds on a bass clarinet.  In these sounds we 
+seem to be able to hear a rapid sequence of very short 
+events.  The CDP program GRAIN allows these grains to be 
+distinguished, counted and manipulated in various ways.  
+One interesting feature of the GRAIN programs is that they 
+enable a sequence of <i>events</i> to be run in reverse 
+<i>without reversing the events themselves</i>, provided 
+that the grain program can distinguish those individual 
+events as grains.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="HARMONIC"><b>HARMONIC</b> &#150; integer relationship 
+among partials
+</h3>
+
+<p>
+A harmonic is a term used for a partial which is an integer multiple 
+of a real or implied fundamental &#150; the fundamental is the 
+predominant pitch perceived by the listener.  Anything vibrating 
+produces a complex of oscillations, and when these synchronise in 
+integer relationship, they lock together aurally and are perceived as 
+a single, focused, timbrally colored pitch.  For example, if the 
+fundamental is A-220 Hz (A below Middle-C), harmonics will be 
+<b>2</b> x 220 = 440 Hz, <b>3</b> x 220 = 660 Hz, <b>4</b> x 220 = 
+880 Hz, <b>5</b> x 220 = 1100 Hz, etc.  Subharmonics go the other 
+way, i.e., below the fundamental.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="HERTZ"><b>HERTZ (Hz)</b> &#150; units used to 
+measure the number of oscillations per second
+</h3>
+
+<p>
+One full oscillation is generally represented as starting at zero 
+amplitude, rising to its maximum (speaker cone forward), falling 
+through the zero point to its minimum (speaker cone backward) and 
+back to the starting point.  This is also called a 'cycle', and 
+<b>hertz</b> (abbreviated to 'Hz') is a measure of the number of 
+cycles per second, that is to say, it is a measure of 
+<a href="#FREQUENCY"><b>frequency</b></a>.
+</p>
+
+<p>
+A full oscillation need not begin at and return to amplitude.  
+Starting locations along the waveform after the zero point 
+mean that the <a href="#PHASE"><b>phase</b></a> is altered.
+</p>
+
+<p>
+To say that a sound is oscillating at 1000 Hz therefore means 
+that 1000 full oscillations are taking place in one second, 
+that 1 full oscillation takes 1 millisecond.  Regular waveforms 
+are termed 'periodic', the 'period' being the length of time 
+a full oscillation occupies.  Frequency and period are therefore 
+the inverse of one another.  Another way to look at these 
+matters is to consider the physical length of the waveform 
+at a given frequency.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="INHARMONIC"><b>INHARMONIC</b> &#150; a partial not 
+in sync with the fundamental
+</h3>
+
+<p>
+Inharmonic partials are those which are not integer multiples of 
+the fundamental.  If the fundamental were to be A-220 (A below 
+Middle-C) and this were multiplied by 2.01, the resulting partial 
+would be 442.2 Hz, just slightly higher than the octave 440 Hz.  
+This discrepancy means that the fundamental and this partial (which 
+is slightly more than twice as fast) do not end at the same time: the 
+second oscillation of the partial's waveform starts a little <i>before</i> 
+the fundamental, thus overlapping the start of the next oscillation of 
+the fundamental.  This overlap puts the two oscillations out of sync 
+and they begin to be heard separately rather than as a single colored 
+pitch.  There are various levels of inharmonicity:
+	<ul>
+	<li>just slightly out and the sound is slightly denser and 
+	richer</li>
+	<li>a little more out and we begin to hear distinct, separate 
+	pitches, as in bells and gongs</li>
+	<li>even more out, and the timbral colouration of the sound 
+	begins to change</li>
+	<li>when there is a jumble of many mutually inharmonic partials, 
+	the sound is almost totally aperiodic and loses any sense of 
+	pitchedness, and may become noiselike</li>
+	</ul>
+</p>
+
+<p>
+The BANDSHIFT effect creates inharmonicity by <i>adding</i> or 
+<i>subtracting</i> to the frequency of a partial or group of partials.  
+Harmonic relationships are the result of multiplication: each higher octave 
+is twice the vibration rate as the one below.  When values are added, 
+this relationship is broken and the frequencies overlap to varying 
+degrees, with the proportions between them compressing (<i>amount</i> is 
+&gt; 0) or expanding (<i>amount</i> = &lt; 0):
+	<ul>
+	<li><b>octave multiplication of 220</b> &#150; 220 x 2 = 440 
+	(220:440 = 1:2), 220 x 4 = 880 (440:880 = 1:2), 220 x 8 = 1760 
+	(880:1760 = 1:2 etc. &#150; each successive octave maintains an 
+	exact 1:2 proportion</li>
+	<li><b>adding 17 to the octaves of 220</b> &#150; 440 + 17 = 457 
+	(220:447 = 1:2.077), 880 + 17 = 897 (440:897 = 1:2.039), 
+	1760 + 17 = 1777 (880:1777 = 2.019) etc. &#150; notice how 
+	the ratio, the proportion between the 'octaves' is in fact 
+	getting a little smaller each time: i.e., the frequencies are 
+	being compressed together.  This compression is more dramatic 
+	when larger values are being added to each partial.</li>
+	<li><b>subtracting 50 from the octaves of 220</b> &#150; 
+	440 - 50 = 390 (220:390 = 1:1.772), 880 - 50 = 830 (440:830 = 
+	1:1.886), 1760 - 50 = 1710 (880:1710 = 1:1.943) etc. &#150; 
+	when <i>amount</i> is &lt; 0, it is subtracted, and the 
+	proportions between the partials expand.
+	</ul>
+</p>
+
+<p>
+Thus inharmonicity is created by <i>adding</i> or <i>subtracting</i> 
+fixed values rather than <i>multiplying</i> by a fixed value.  The 
+timbral change to the sound is therefore produced by the overlapping of 
+the frequencies and the compression or expansion of the proportions 
+between them.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="INTERPOLATION"><b>INTERPOLATION</b> &#150; insert 
+intermediate values
+</h3>
+
+<p>
+Some processes require that you enter a series of values, but the 
+software actually needs many more values than that in order to 
+complete its process.  For example, a transposition breakpoint file 
+that you create may specify 0 transposition at <i>time</i> 0.0 sec, 
+and 12 semitones later at <i>time</i> 1.0 sec.  You have only had 
+to enter two values.  However, the software creates a 
+<i>portamento</i> or <i>glide</i> or, more loosely, a 
+<i>glissando</i> rising through an octave (12 semitones) 
+over <i>time</i> 1 sec.  To do this, it automatically creates 
+all the intermediate values required.  This is 'interpolation'.  
+In the CDP software, it is always done automatically by the software.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="LATENCY"><b>LATENCY</b> &#150; perceptible delay in 
+hearing the processed sound
+</h3>
+
+<p>
+When processing in 'real-time', we expect to hear the processed 
+sound with no perceptible delay.  The processing does take a certain 
+amount of time, so the key here is 'perceptible'.  When the processing 
+is completed and the sound restored to our ears within about 20ms 
+0.020 sec., there is normally no noticeable delay.  Above this amount 
+of time, the time gap between hearing the original sound and hearing 
+the processed sound becomes increasingly apparent and unacceptable.
+</p>
+
+<p>
+In a real-time process, one is grabbing a buffer of input sound 
+and then doing something to it, and the latency is determined by 
+how long it takes to do that something before you can output the 
+result.  In the CDP real-time FFT applications, the main factor 
+that affects latency is the window size, which is actually the 
+multiple of FFTsize * Window size.  Basically, it means 
+how many samples are being processed in each frame, before 
+moving on to the next frame.  Lower values mean lower latency.  
+The FFTsize and Window size can be adjusted in 
+<a href="#ANALSETTINGS"><b>analysis settings</b></a>.
+</p>
+
+<p>
+The above latency factor is added to the latency imposed by the audio 
+subsystem of the soundcard in the computer.  Lowest latency is 
+provided by modern cards with ASIO or WDM drivers supporting kernal 
+streaming.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="LOGARITHMIC"><b>LOGARITHMIC</b> &#150; finding the 
+exponent of a number
+</h3>
+
+<p>
+The logarithmic curve turns out to be the opposite of the 
+<a href="#EXPONENTIAL"><b>exponential</b></a> curve:  it is 
+the inverse, the mirror image.  This is quickly seen in BRKEDIT 
+when a linear segment is changed first to 'exponential' and 
+then to 'logarithmic'.  Both of these functions deal with 
+exponents:  the exponential function calculates the result of 
+raising a number to a given exponent.  The logarithmic function 
+works out which exponent results in the given number.
+</p>
+
+<p>
+The expression <font color="#FF0000">
+log<sub><small>2</small></sub>8 = 3</font> is usually 'read' as 
+'log base 2 of 8 equals 3'.  This is already a very coded way 
+of reading the expression, so it may be more helpful to read 
+it like this: 'the exponent of 2 that yields 8 is 3'.
+</p>
+
+<p>
+Logarithmic curves rise or fall quickly and then slow down.  This 
+occurs because the <font color="#FF0000">y</font> value is 
+increasing linearly (it <i>is</i> the exponent) while the 
+<font color="#FF0000">x</font> value is doubling:
+	<ul>
+	<li><font color="#FF0000">
+	log<sub><small>2</small></sub>x = y</font></li>
+	<li>log<sub><small>2</small></sub>0.5 = -1</li>
+	<li>log<sub><small>2</small></sub>1 = 0</li>
+	<li>log<sub><small>2</small></sub>2 = 1</li>
+	<li>log<sub><small>2</small></sub>4 = 2</li>
+	<li>log<sub><small>2</small></sub>8 = 3</li>
+	</ul>
+Similarly, with values for <font color="#FF0000">
+x</font> less than 1 halving, the value of 
+<font color="#FF0000">y</font> increases linearly in a 
+negative direction, but <font color="#FF0000">x</font> 
+never reaches the <font color="#FF0000">y</font> axis:
+	<ul>
+	<li><font color="#FF0000">
+	log<sub><small>2</small></sub>x = y</font></li>
+	<li>log<sub><small>2</small></sub>0.50000 = -1</li>
+	<li>log<sub><small>2</small></sub>0.25000 = -2</li>
+	<li>log<sub><small>2</small></sub>0.12500 = -3</li>
+	<li>log<sub><small>2</small></sub>0.06250 = -4</li>
+	<li>log<sub><small>2</small></sub>0.03125 = -5</li>
+	</ul>
+Thus, as the  <font color="#FF0000">x</font> value 
+doubles, the  <font color="#FF0000">y</font> value increases 
+by 1.  Thus it moves quickly in the  <font color="#FF0000">y</font> 
+direction, but then slows down as it spreads across the 
+ <font color="#FF0000">x</font> axis.  And in the negative 
+direction, it the descent moves slowly at first because 
+the points on the  <font color="#FF0000">x</font> axis start 
+relatively far apart;  then the motion speeds up as the 
+<font color="#FF0000">x</font> distance between the points 
+diminishes, but the <font color="#FF0000">y</font> value 
+continues to move at the same (linear) rate.
+</p>
+
+<p>
+The terminology 'starts quickly and then slows down' etc. 
+is used because, in this musical context the 
+<font color="#FF0000">x</font> axis represents <i>time</i>.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="MIDIPITCH"><b>MIDI PITCH</b> &#150; values used 
+for pitch in the MIDI system
+</h3>
+
+<p>
+Pitch and other parameters such as velocity in the MIDI system 
+('Musical Instrument Digital Interface') uses integer values 
+from 0 to 127.  Middle C is set at 60, though there is some 
+variation as to which octave this is considered to be.  CDP 
+sets it at C-5, for example, but others set it at C-3.  I 
+suppose it depends on the extent of the pitch range being 
+used.
+</p>
+
+<p>
+MIDI instruments can also apply pitch bend (microtonal deviations), 
+but this only slides them away from or back to the integer value.  
+In CDP, MIDI values can also be specified microtonally, up to two 
+decimal places.  This means that the division of the semitone into 
+'cents' (hundredths) can be specified.  E.g. 60.50 would be a 
+quarter tone above Middle C.  This can be very useful when creating 
+new types of harmony in a convenient way.
+</p>
+
+<p>
+The CDP <a href="notechrt.htm"><b>Chart of Equivalent Pitch 
+Notations</b></a> shows pitch values in the MIDI, frequency and 
+<i>Csound</i> octave notations.  CDP also has facilities to 
+convert between precise frequency and (microtonal) MIDI values.
+</p>
+
+
+<h3 id="MODULATOR"><b>MODULATOR</b> &#150; data which acts upon 
+and alters other data
+</h3>
+
+<p>
+Rather like a gear change, a modulator is one value or set of values 
+acting on another value or set of values.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="OVERLOAD"><b>OVERLOAD</b> &#150; amplitude level above 
+the upper limit
+</h3>
+
+<p>
+<a href="#AMPLITUDE"><b>Amplitude</b></a> is measured on various 
+scales of values.  When the amplitude level of a sound exceeds 
+the maximum limit of the scale, it means that it is exceeding 
+what both the software and the physical playback equipment can 
+handle, and audio distortion results.  To correct this, one 
+needs to apply a <i>gain_factor</i> to reduce the level of the 
+sound.  It is essential to do this <i>before</i> processing rather 
+than attempt to bring down the level of a sound that has already 
+distorted.  Once a sound has been distorted, its actual 
+waveshape is altered, and reducing its level will not change 
+this fact &#150; you will get merely a quieter version of the 
+distorted sound.
+</p>
+
+<p>
+Another term for overload is 'overmodulation'.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="PAN"><b>PAN</b> &#150; position or move sounds 
+in the virtual space between loudspeakers
+</h3>
+
+<p>
+An orchestra layout spreads the instrument groups in various 
+types of formation in physical space.  Additionally, solo 
+instruments can be placed some distance away from the rest 
+of the orchestra or physically move in space as they play, 
+such as choirs of trumpets on a balcony, a clarinettist 
+on top of a ladder, or a solo bagpipe coming down the main 
+aisle.  These placements help clarify the overall sound mass 
+for the listener as well as add dramatic interest.
+</p>
+
+<p>
+In electroacoustic music, the positioning of the sound in 
+the virtual space between loudspeakers is similarly 
+important.  In complex 'diffusion' systems (such as 
+The Birmingham ElectroAcoustic Sound Theatre &#150; 
+BEAST &#150; developed by Jonty Harrision), complex 
+arrays of speakers are positioned around the concert 
+hall, as well is in low, mid and high positions.
+</p>
+
+<p>
+Although the loudspeakers, whether a stereo pair or 
+a complex array, are in fixed positions, it <i>is</i> 
+possible to locate sound between (and even beyond) the 
+speakers.  This process is called PAN or PANNING and is 
+based on adjusting the relative volume outputs of two 
+or more speakers.  (There are more complex methods as 
+well.)  This makes the electroacoustic setup more flexible 
+than the orchestra's and has led to the evolution of the 
+art of 'diffusion', the dynamic positioning of sound during 
+a live performance.  Sometimes spatial location is built 
+into the composition itself, sometimes it is left entirely 
+to live performance, and sometimes it is a mixture of the 
+two.  It is an evolving art.
+</p>
+
+<p>
+PAN can locate sound in fixed positions, or can cause it to 
+move in time from one speaker to another.  Stockhausen's 
+<i>Oktophony</i> uses 8 channels and rich timbral sounds 
+move slowly between them in ever-changing configurations.  
+British composer Denis Smalley has written extensively 
+on the musical importance and technique of sound 
+spatialisation, as has Trevor Wishart in <i>On Sonic 
+Art</i>.
+</p>
+
+<p>
+PAN files are described in the 
+<a href="filestxt.htm#SUBMIXPANFILES">
+<b>CDP Files &amp; Codes</b></a> document.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="PARAMETER"><b>PARAMETER</b> &#150; feature of a 
+sound that can be adjusted
+</h3>
+
+<p>
+A sound is a complex entities and have many properties from 
+simple things like their duration, or their average loudness, 
+to subtle features, like the moment-to-moment variation of 
+the spectral energy.
+</p>
+
+<p>
+We can change features of a sound using transformation processes, 
+and these processes will usually have a number of 'parameters'.  
+We can think of the parameters like the things we change by   
+turning a knob or moving a slider.  On an amplifier, we 
+can change the overall loudness of the music by turning the 
+gain control (thus changing the loudness parameter) and 
+alter the spectral envelope by moving the Equalisation (EQ) 
+sliders (thus changing various parameters of the spectral 
+envelope).
+</p>
+
+<p>
+Parameters in CDP processes can usually be controlled 
+<i>through time</i>, so we can not only move the knob 
+or fader, but we can describe exactly how the knobs and 
+sliders are to move as the sound progresses.
+</p>
+
+<p>
+The sound transformation algorithms access various parameters and 
+enable the user to adjust them, usually within limited ranges of 
+values.  Thus the command to run a sound transformation process 
+calls the program, names an infile and an outfile and then 
+lists the values to be used for each paramater relevant to that 
+process.
+</p>
+
+<p>
+It helps to try to think about parameters and their values in 
+as visual a way as possible, such as the contour line created 
+by connecting up the tops of different value 'heights'.  Being 
+able to think about, visualise and adjust parameter values is 
+essential in computer-based music, so developing fluency in 
+'parametric thinking' is advantageous.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="PARTIALS"><b>PARTIALS</b> &#150; frequency components 
+of a sound
+</h3>
+
+<p>
+A partial is a frequency component of a sound, whether 
+<a href="#HARMONIC"><b>harmonic</b></a> or  <a href="#INHARMONIC">
+<b>inharmonic</b></a>.  Before starting to work with sound in the 
+spectral domain, we may not realise that each sound is a huge 
+amalgam of many partials.  This is what gives a sound its richness, 
+its complexity and ever-changing colouration.  The task of spectral 
+analysis is to find these partials so that the composer can then 
+alter them in inventive ways in order to transform the sound.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="PHASE"><b>PHASE</b> &#150; point along a waveform at 
+which a full oscillation is said to begin
+</h3>
+
+<p>
+A full oscillation can be described as a 360&#176; circle, which, 
+when unfurled (rolled along) forms a curving up and down shape.  
+It is useful to plot where a given waveform actually begins:  at 
+0, at 90&#176; (0.25) etc.  After 360&#176; it will be at the 
+same point in the next oscillation.
+</p>
+
+<p>
+Similarly, two identical waveforms may begin at different times 
+relative to one another.  For example, a second waveform may 
+begin at the 0.25 point (90&#176;) relative to the first one 
+(which begins at 0.0 (0&#176;).  They are therefore said to 
+be 90&#176; 'out of phase'.  If two waveforms are 180&#176; 
+out of phase, they cancel each other out: because the &#43; 
+amplitude and the &#45; amplitude levels are equal.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="PHASEVOCODER"><b>PHASE VOCODER</b> &#150; software 
+tool which performs the FFT analysis
+</h3>
+
+<p>
+The Phase Vocoder performs digital spectrum analysis using a complex 
+mathematical program called a 'fast Fourier transform' 
+(<a href="#FFT"><b>FFT</b></a>).  The analysis process creates 
+a list of each sinusoidal frequency component together with its 
+amplitude and phase.  The analysis moves through the sound, capturing 
+the changing detail in a series of analysis frames 
+&#47; <a href="#WINDOW"><b>windows</b></a>.
+</p>
+
+<p>
+The results of analysis can be a little confused when the input sound 
+has a significant noise component, rather than a clear, periodic 
+waveform.  A long analysis window (larger number of samples in each one) 
+improves capturing high frequencies (short wavelengths), while short 
+analysis windows are good for capturing transient detail.  Thus there 
+is a constant trade-off between high-frequency resolution and tracking 
+transient detail, and the best solution will differ from sound to sound.  
+Adjusting the <a href="#ANALSETTINGS"><b>analysis settings</b></a> 
+enables you to fine-tune this trade-off.
+</p>
+
+<p>
+The CDP Phase Vocoder is an evolved, 'streaming' form developed by 
+Richard Dobson from the original Phase Vocoder created by CARL 
+(The Computer Assisted Research Laboratory of the University 
+of California at San Diego.)  It is now also built into 
+<i>Csound</i> and the <i>Spectral Tranformer</i> plugin 
+(a CDP creation) written for Cakewalk's <i>Project 5</i>.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="PITCH"><b>PITCH</b> &#150; the perceived frequency 
+level of a periodic waveform
+</h3>
+
+<p>
+We are so used to talking about pitches that we may not realise that 
+it is actually a technical term with a very specific meaning.  A pitch 
+is a focused tone in which the partials present are dominated by a 
+single frequency, which is called the fundamental.  A fundamental 
+frequency &#150; which may really be there or may be only a mental 
+construct &#150; is perceived because most of the other frequencies are 
+in sync with it, and they are in sync because they are integer 
+multiples of the fundamental, i.e., <a href="#HARMONIC">
+<b>harmonics</b></a>.  The net result of these synchronised 
+frequencies is the perception of a pulse at regular intervals 
+(i.e., 'periodic'), heard as a 'tonal' sound as opposed to a 
+noisy sound.
+</p>
+
+<p>
+If the fundamental were to be 100 Hz, then the first harmonic would 
+be 100 x 2, or 200 Hz.  In graphic terms, this first harmonic vibrates 
+exactly twice as fast as the fundamental, such that two cycles of the 
+harmonic end <i>at the same precise moment</i> as one cycle of the 
+fundamental &#150; etc. for higher harmonics.  This integer relationship 
+synchronisation aurally locks in the harmonics with the fundamental, 
+and we hear mainly the fundamental, but with colouration dependent on 
+which harmonics are present.
+</p>
+
+<p>
+When the partials of a sound go slightly out of sync, we begin to 
+hear separate pitches, as in bells and some gongs.  As they go 
+further out of sync, they become spoken of as 'frequency complexes', 
+and eventually as 'noise'.  All of these terms and states of sound 
+have a place when working with sound material.
+</p>
+
+<p>
+The psycho-acoustics of pitch is more complex than the above suggests.  
+Trevor Wishart observes: "The fundamental frequency of the perceived 
+pitch may be <i>entirely absent</i> from the sound, as happens, for 
+example, in the lower strings of the piano.  Pitch is essentially a 
+mental construct from the harmonic analysis done by the ear.  In the 
+case of the lower notes of the piano, the brain <i>implies</i> a 
+pitch from the existing partials, without having a corresponding 
+fundamental.  In a similar way, the pitches heard in inharmonic 
+sounds are not usually those of the partials, but the pitches that 
+the brain thinks are implied by the relationships between the partials.  
+The brain is looking for pitch relationships, and finds what it can."
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="Q"><b>'Q'</b> &#150; slope of amplitude reduction
+</h3>
+
+<p>
+'Q' is discussed in the section on <a href="#FILTER">
+<b>filtering</b></a>.
+</p>
+
+<p>
+<br />
+</p>
+
+
+<h3 id="QUANTISE"><b>QUANTISE</b> &#150; snap data to a range 
+which has regular divisions
+</h3>
+
+<p>
+To quantise is to move in fixed steps.  It implies that more complex 
+data is rounded off so that it fits into these fixed steps.  The term 
+is often used in connection with rhythms.  Music is usually notated 
+in fixed steps of half-, quarter-, eighth- and sixteenth-notes, etc.  
+But when played, it is seldom absolutely regular in this way &#150; in 
+fact it would sound wooden if it was.  When music is played into the 
+computer via a MIDI instrument, notation programs would (and do) make 
+quite a mess on the page when they respond to every timing nuance of 
+the performer.  Therefore the software sieves the performance through 
+a time grid so that the notations use the conventional fixed steps.  
+This is the process of quantisation.
+</p>
+
+<p>
+A similar situation can occur with sliders for changing numerical 
+values, this time causing it to take too long to move between numbers 
+or 'land' on simple numbers if every possible division of the integer 
+is included.  Therefore the process of moving the slider is quantised, 
+so that the movement is in steps:  small enough to be useful, large 
+enough to enable the user to move through the range of available values 
+in a reasonable amount of time.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="SAMPLEHOLD"><b>SAMPLE-HOLD</b> &#150; pick up and 
+sustain lengths of sound
+</h3>
+
+<p>
+The original meaning of <b>sample-hold</b< was in the 
+context of the modular analogue synthesiser.  A signal 
+such as an LFO (low-frequency oscillator), e.g., 
+generating noise, was <b>sampled</b> at a low rate (a few Hz), 
+and the sampled value <b>held</b> until the next sample 
+instant.  The equivalent in <i>Csound</i> is "randh".
+The <b>hold</b> part of the procedure means that the 
+tone sampled is sustained, creating a harmonic colouration 
+as the different pitch levels were prolonged.
+</p>
+
+<p>
+CDP approaches this technique in a characteristically 
+flexible manner.
+</p>
+
+<p>
+One aspect of <b>sample-hold</b> is that it can convert 
+a continuously changing, but unpulsed sound into a pulsed 
+sound by sample-holding at regular intervals. This is 
+implemented in CDP's FOCUS STEP, which can convert a 
+continuous and continuously changing, but unpulsed, sound 
+into a sequence of regularly pulsed sustained events.  
+The <i>step</i> paramter defines the length of the hold.
+</p>
+
+<p>
+Another way is to set start times for segments of varying 
+lengths and then move forwards or backwards from the 
+specified time (FOCUS FREEZE).
+</p>
+
+<p>
+A third approach is to freeze lengths of soundfile with 
+a randomised delay and a number of other parameters 
+designed to give a 'natural' result (EXTEND FREEZE) 
+in the same way that <i>iteration</i> produces a more 
+naturalistic extension of a sound than any kind of pure 
+looping.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="SAMPLERATE"><b>SAMPLE RATE &#150; the number 
+of times per second that a reading is taken on the 
+amplitude level of a sound
+</h3>
+
+<p>
+When sound is digitised, signal level (and implicitly, phase) 
+is calculated at a series of time points.  This process is 
+called 'sampling' and involves analogue-to-digital conversion 
+(ADC), i.e., conversion from a steady electrical energy stream 
+to a discrete set of numerical values.  The number of times 
+per second that the signal level is calculated, i.e., a 
+digital sample created, is called the sample rate.  A common 
+sample rate is 44100 times per second.
+</p>
+
+<p>
+It is important to realise that the analogue signal is 
+continuous and the digital sample stream discrete.  That 
+is to say, nothing is recorded <i>between</i> the sampling 
+time points, even if the sound is in 'real life' changing 
+during this time.  The advantage of digital versions of 
+a signal is that the numbers can be manipulated without 
+the loss of signal involved in re-recording analogue 
+tape.  The disadvantage is the loss of information between 
+sample points and the introduction of another kind of 
+noise: <a href="#DIGITALNOISE"><b>digital noise</b></a>.  
+This is why sample rates have become progressively higher, 
+to reduce the time between sample points.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="SEGMENT"><b>SEGMENT</b> &#150; a relatively 
+short length of soundfile
+</h3>
+
+<p>
+In the classical tape studio, magnetic tape was literally 
+cut into various lengths so that sections of a sound could 
+be rearranged or different sounds could be interpolated.  
+A well known example of this is John Cage's <i>Fontana Mix</i> 
+in which several tapes were cut into hundreds of segments and 
+randomly <a href="#SPLICE"><b>spliced</b></a> back together 
+again.
+</p>
+
+<p>
+With the advent of the computer, digital editing made it possible 
+to do this much more easily and to segment and rearrange sounds 
+in many different ways.  The CDP software abounds in segmentation 
+options, with programs such as BRASSAGE, DRUNK, FREEZE, LOOP, 
+ITERATE, SAUSAGE, SCRAMBLE, STEP, WEAVE and ZIGZAG.
+</p>
+
+<p>
+The musical roles of segmentation are many and form fascinating 
+additions to musical technique:
+	<ul>
+	<li>roughen the surface</li>
+	<li>create nonsense speech</li>
+	<li>obscure the source of a sound: make more abstract</li>
+	<li>completely scramble or shred a sound</li>
+	<li>randomise contrasts</li>
+	<li>introduce pulsations</li>
+	</ul>
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="SPECTRALDOMAIN"><b>SPECTRAL DOMAIN</b> &#150; digital 
+representation of sound as <i>frequency</i> and <i>amplitude</i> data
+</h3>
+
+<p>
+The spectral domain is really a special digital realm in which data 
+about sound is held in a way that gives direct access to its 
+frequency components, the <a href="#PARTIALS"><b>partials</b></a>.  
+This data is achieved by an <a href="#FFT"><b>FFT</b></a> analysis, 
+producing a file of analysis data.
+</p>
+
+<p>
+Every sound has its own frequency profile, an ever-changing mix of 
+partial components that give the sound its (ever-changing) timbral 
+colouration.  For example, a piercing trumpet tone will start with 
+a rich assortment of high frequency components and then settle down 
+to a more harmonically ordered set of partials, giving a warmer 
+steady state tone.  Access to frequency components therefore means 
+access to timbral colouration: which frequencies are present and how 
+loud they are &#150; and how this profile changes as the sound 
+progresses through time (analysis windows).  The frequency profile 
+is called the <a href="#SPECTRALENVELOPE"><b>spectral envelope</b></a>.
+</p>
+
+<p>
+What is important for the composer is to have a modest understanding 
+of what happens when the different aspects of analysis data are 
+altered.  The main idea here is that once the data is available, 
+play can commence.  The following gives a brief synopsis of what 
+is involved and the terminology used.
+	<ul>
+	<li><a href="#CHANNELS"><b>channel</b></a> &#150; Each 
+	<a href="#FRAME"><b>frame</b></a> contains a number of bands 
+	of frequency, <b>channels</b>, also called 'bins', in which 
+	the analysis process 'looks' to see what frequencies at what 
+	amplitudes are there.  The profile of these frequencies and 
+	amplitudes in a frame comprises its <a href="#SPECTRALENVELOPE">
+	<b>spectral envelope</b></a>.  A channel can have more than one 
+	or no partials in it.  This can and almost invariably does change 
+	as one moves from window to window (i.e., from frame to frame) in 
+	the analysis.  The number of (vertical frequency) bands into 
+	which the sound is divided is the frequency resolution of the 
+	analysis, and as with windows, more channels can introduce a 
+	latency problem.  Manipulating the sound by removing channels 
+	(HILITE TRACE) means that the partial data in those channels is 
+	eliminated, thus altering the timbral colouration or even 
+	reducing the sound first to essential components and then 
+	to only a mere 'trace' of itself.<br /><br /></li>
+
+	<li><a href="#PARTIALS"><b>partial</b></a> &#150; This is a 
+	frequency component of a sound.  A partial can be  
+	<a href="#HARMONIC "><b>harmonic</b></a> or 
+	<a href="#INHARMONIC"><b>inharmonic</b></a>.  The main 
+	factor in the timbral colouration of a sound, the partials 
+	can be transposed (multiplication factor), eliminated, 
+	selected by type, or shifted (addition factor).<br /><br /></li>
+
+	<li><a href="#AMPLITUDE"><b>amplitude</b></a> &#150; As usual, 
+	amplitude is a measure of loudness, here relating to partials.  
+	It is the contour produced by joining up the amplitude levels 
+	of the partials in a single <a href="#FRAME"><b>frame</b></a> 
+	that give us the graphic representation of the spectral 
+	envelope.<br /><br /></li>
+
+	<li><a href="#WINDOW"><b>window</b></a> &#150; An analysis 
+	window is the set of frequency and amplitude values obtained 
+	for a particular time slice (<b>frame</b>) in the source 
+	sound.  As the windows derive from time slices, the size 
+	of these slices determines the temporal resolution of the 
+	analysis.  If smaller, the time resolution is finer: there 
+	are more of them and therefore much more data &#150; but 
+	the frequency resolution is diminished.  This can result 
+	in a smoother analysis, but also an increase in the amount 
+	of data, which could case a <a href="#LATENCY"><b>latency</b></a> 
+	problem: i.e., a perceived delay before hearing the processed 
+	sound again.  Also, the order of the windows can be rearranged 
+	(BLUR WEAVE), shuffled like a deck of cards (BLUR SHUFFLE), something 
+	that has a big effect on what we hear!  Accumulating data from 
+	previous windows (FOCUS ACCU) both builds up frequency components 
+	and introduces and introduces sustaining in the interior of 
+	the sound.  These <b>windows</b> &#47; <b>frames</b> are given an 
+	amplitude pattern to avoid glitching, e.g., the 'Hamming window'.  
+	The 'window' here is not the superimposed amplitude contour, 
+	take note, but the frame, the time slice itself.<br /><br /></li>
+
+	<li><a href="#FFTOVERLAP"><b>overlap</b></a> &#150; the number 
+	of samples after which the next frame begins, e.g., 256.  The 
+	<i>overlap factor</i> is calculated as the FFT rate divided by 
+	the number of overlap samples: e.g., 1024 &divide; 256 gives 
+	an overlap factor of 4.  This frame overlap improves the 
+	quality of the analysis.</li>
+	</ul>
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="SPECTRALENVELOPE"><b>SPECTRAL ENVELOPE</b> &#150; 
+amplitude profile of the frequencies in one analysis frame
+</h3>
+
+<p>
+<IMG SRC="images/specenvenv.gif" align="left" ALT="[spectral envelope 
+contour]"></a>
+</p>
+
+<p>
+Each frame of a spectral analysis contains the <i>frequency 
+amplitude</i> information for the partials (if any) in each 
+of the <a href="#CHANNELS"><b>channels</b></a> ('bins') of the 
+analysis.  Each frame is therefore a snapshot, as it were, of 
+the state of the partials in that time-slice, with the height of the 
+vertical bars representing the amplitude level (energy) of the 
+frequencies in the various channels &#150; the graph moves from 
+lowest frequency on the left to the highest frequency on the right.
+</p>
+
+<p>  
+<b>Thus the overall profile (which partials are present and their 
+respective energy levels) of a single analysis frame is its spectral 
+envelope.</b>  The spectral envelope of each successive frame 
+normally differs, and the overall timbral pattern of the sound 
+is built up as a series of overlapping frames.  The frame shown 
+here is within the attack portion of a Tibetan singing bowl sound.  
+The whole sequence of frames (of varying contents) gives the 
+overall 'timbral envelope' of the sound. 
+</p>
+
+<p>
+To be clear about this we need to distinguish between a number of 
+different ways the term 'envelope' is used:
+	<ul>
+	<li>In the Time Domain, the 'envelope' averages the 
+	amplitude of the samples at time points in varying degrees 
+	of promixity &#150; <i>Csound</i> refers to this as 'control 
+	data', as it is usually much slower than the sample (audio) 
+	rate.<br /><br /></li>
+
+	<li>In the Spectral Domain, there is the amplitude pattern 
+	(contour shape) that is imposed on the block of samples to 
+	be analysed.  This <b>time-slice</b> is a 'frame', and it 
+	is amplitude shaped by a <a href="#WINDOW"><b>window 
+	function</b></a>.  This windowing contour shape is a form of 
+	envelope, but it is best to <b>focus on 'window' in this context 
+	as meaning a time-slice</b> &#150; that there is a contour shape 
+	is taken for granted.  That is, beware confusing the enveloped 
+	time-slice with the <b>spectral envelope</b>.<br /><br /></li>
+
+	<li>In the Spectral Domain, the <b>spectral envelope</b> is the 
+	profile of the frequency energy levels in the various 
+	<b>bins</b> &#47; <b>channels</b> of a single <b>frame</b> 
+	(time-slice).  Thus it forms the (amplitude) profile across 
+	the frequencies from low to high for that instant.  The full 
+	sequence of (overlapping) frames gives the <i>time-varying</i> 
+	spectral envelope, the <i>ever-changing</i> timbral content &#47; 
+	colouration of the sound, often shown as a 'mountain' display.</li>
+	</ul>
+Some understanding of these various terms can be helpful when working 
+on the CDP spectral processes involving window manipulations, formants, 
+envelope transfers, transitions, and morphing.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="SPECTRUM"><b>SPECTRUM</b> &#150; the changing frequency 
+content of a sound
+</h3>
+
+<p>
+The word 'spectrum' refers to a range of vibrations.  The vibrations 
+of the electro-magnetic field in space cover a huge range of 
+wavelengths, from many light years to the wavelengths defined by 
+the very granularity of space time itself.  Sound, on the other 
+hand, is vibrations in the physical medium of air.  We are unable 
+to hear sounds whose wavelengths are too long (the sounds are two 
+low in pitch) or too short (the sounds are too high in pitch).  
+Between these limits (normally 20 to 20,000 Hz), we may hear 
+vibrations at any frequency.  <b>The mix of vibrations in any sound 
+that we do hear is known as its spectrum</b>.
+</p>
+
+<p>
+The spectrum of a sound refers specifically to its overall 
+vibrational content i.e., frequencies.  Different frequencies 
+come and go during the course of a sound, and this frequency 
+content is always changing in some way.  The <a href="#FFT">
+<b>FFT analysis</b></a> finds the partials in each frame, and 
+the sequence of frames gives the overall spectrum.
+</p>
+
+<p>
+Most sounds are quite a complex set of (ever-changing) frequencies, 
+and it is this which gives them their timbral colouration.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="SPLICE"><b>SPLICE</b> &#150; join sounds together
+</h3>
+
+<p>
+In the early days of <i>musique concr&egrave;te</i>, when tape 
+recorders and magnetic tape were used, sounds were joined together 
+physically with the help of a splicing bar and white splicing tape.  
+The splicing bar had a groove into which the magnetic tape fitted 
+snugly, and slanting (oblique) and vertical slots into which a 
+razor blade was inserted in order to cut the tape.  The oblique 
+slot gave a soft join in which the two sounds overlapped, while 
+the vertical slot gave a 'butt' join so that the second sound 
+began without any overlap.  Composers in the 'classical tape 
+studio' were used to performing this operation hundreds of times 
+during a composition.
+</p>
+
+<p>
+Thus in the digital domain, this early terminology is still used:
+	<ul>
+	<li>The act of 'splicing' means joining sounds together.</li> 
+	<li>The 'splice window' is the length of the overlap: one 
+	sound fades while the second gets louder.</li>
+	<li>The 'splice window' or just 'splice' is usually calculated 
+	in milliseconds, and can be 0 (= a butt join).  15ms is 
+	generally accepted as the default (0.015 sec.) but in the 
+	CDP software can be as much as 5000ms (5 sec.) for very 
+	gradual, smooth, transitions, or as short as you wish.</li>
+	<li>Long joins may cause dips in the amplitude level because 
+	the first amplitude is fading to 0 while the second is 
+	rising from 0 &#150; if signals are low, there may be a 
+	section of low amplitude before the second sound rises 
+	in amplitude.</li>
+	<li>Butt joins, because they do not necessarily begin at 
+	0 amplitude, may produce clicks. A practical 
+	application would be to use a butt splice to split a 
+	large soundfile into chunks for writing to floppy disks, 
+	for later reconstruction on another machine.  A splice 
+	window in this situation would cause dips in amplitude 
+	when the chunks were rejoined.  Other than this, 
+	butt joins should <i>never</i> be used unless the first 
+	sound falls to zero and the second begins at zero.  
+	CDP's VIEWSF enables you to see the envelope at a 
+	single sample zoom, thereby precisely identifying 
+	the zero crossings.</li>
+	<li>Splices as short as 1ms are often audibly 
+	acceptable.</li>
+	</ul>
+</p>
+
+<p>
+The degree of accuracy needed when splicing may vary.  Current 
+software is fairly robust in making the cuts and joins without 
+causing clicks, but when it is vital that there be not the 
+slightest hint of a click or otherwise unwanted 'glitch', 
+the CUT points for material to be spliced should be made at 
+<a href="#ZEROCROSSING"><b>zero crossings</b></a>.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="TIMBRE"><b>TIMBRE</b> &#150; the tone&#47;'color' 
+qualities of a sound
+</h3>
+
+<p>
+There are so few words with which to describe the tone quality of 
+sounds!  Those that we do find ourselves using are mostly inaccurate: 
+thin, fuzzy, smooth, glowing, metallic, dull, bright ..., but these 
+give us some idea of what is meant by the timbre of a sound.  In 
+particular, it refers to those qualities resulting from the 
+frequency content of the sound: which vibrations are present, and 
+how loud each of them is.  The frequency content of the sound is 
+its <a href="#SPECTRUM"><b>spectrum</b></a>.  This is not a single, 
+fixed frequency configuration, but something which is <i>constantly 
+changing</i>, especially as the sound moves through from the all-important 
+<a href="#ATTACK"><b>attack</b></a> portion to its areas of 'sustain' 
+and 'release'.  The time-varying character of a sound's timbre is 
+therefore absolutely crucial, and this is what the Phase Vocoder 
+<a href="#FFT"><b>FFT analysis</b></a> captures in intimate detail.
+</p>
+
+<p>
+We are most familiar with tone quality as the recognisable sound 
+of different musical instruments: flute, oboe, violin, horn, 
+clarinet, trumpet etc.  In the spectral dimension, tone qualities 
+can be transformed in many amazing and subtle ways.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="TIME"><b>TIME</b> &#150; time values
+</h3>
+
+<p>
+We are familiar with Metronome markings, e.g., crotchet 
+(quarter note) = 60.  This means 60 beats per minutes, 
+which is obviously 1 second duration for each beat.  The 
+general formula for calculating the duration of a note 
+event from the Metronome mark is to divide 60 by the 
+Metronome indication.  Thus 60 (seconds in a minute) 
+&divide; MM=60 = 1 sec., while 60 &divide; MM=120 = 0.5 sec.
+</p>
+
+<p>
+Time in a digital music context is usually given in hours, 
+minutes, seconds and milliseconds.  Milliseconds can be relatively 
+unfamiliar ground, as can varying MIDI clock rates and SMPTE 
+frame rates (24 per second for film and 30 per second for video).  
+How all this relates to beats and tempos can be come rather 
+complicated.
+</p>
+
+<p>
+A millisecond (ms) divides the second into 1000 parts.  Thus 1 
+ms = 0.001 second, 10 ms = 0.01 second and 100 ms = 0.1 second.  
+A crotchet (quarter note) at 60 per second will be 1 second long.  
+Thus a quaver (eighth note) at this tempo will be &#189; second 
+(500 ms), and a semi-quaver (sixteenth note) will be &#188; second 
+(250 ms).  Similarly, the smallest <i>grainsize</i> in CDP is 
+12.5 ms, or 0.0125 sec., producing a very smooth granular flow.
+</p>
+
+<p>
+Very small values expressed in milliseconds are used for splice 
+slopes (i.e., attack transients and decay times), delay times, 
+loop lengths and steps, grainsizes etc.  Attacks at less than 
+40 ms are virtually simultaneous, but at around 60 ms start to be 
+perceived as discrete (separate).  The default splice slope in 
+CDP is 15 ms.  This is perceptually virtually simultaneous with 
+the start of the sound, but it does smooth the beginning of the 
+sound nonetheless.  Longer splice slopes noticeably reduce the 
+sharpness of the attack, if not remove it altogether.  Applying 
+this to DOVETAIL, which smooths the beginning and end of a sound, 
+a value of 0.01 to 0.05 seconds (10 and 50 ms respectively) will 
+have a smoothing effect without a perceptual alteration of the 
+attack.  At the end of the sound, values of &#189; second or 
+1 second give a smooth fade.
+</p>
+
+<p>
+The TEXTURE Set currently requires that event durations be 
+entered in seconds.  The easiest way to do this is to relate 
+everything to 1 second and then use the tempo parameter 
+(called <i>mult</i>) when available.  Our <a href="timechart.htm">
+<b>Time Chart</b></a> describes how to 'bring numbers to life' and 
+covers a range of calculations relating to beats, durations, 
+tempo, correspondence between durations and musical notation, 
+and hit points in film &amp; video.  
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="TIMEDOMAIN"><b>TIME DOMAIN</b> &#150; digital 
+representation of sound as <i>amplitude</i> and <i>time</i> 
+sample data
+</h3>
+
+<p>
+To digitally sample a sound, we first convert the sound wave into an 
+electrical wave which is an 'analogue' of the sound wave in the air, 
+using a microphone.  In the electrical wave, the time-varying 
+displacement of the air (the amplitude of the wave) is represented 
+by the time-varying voltage of the electrical signal.
+</p>
+
+<p>
+When a sound is 'sampled', its analogue features (voltages) are 
+converted into digital samples, each of which records an 
+instantaneous <i>amplitude</i> at a given <i>time</i>.  
+The number of samples per second of the sound is its 'sample rate'.  
+There is no data inbetween these sample times, which is why the 
+digital samples are said to be 'discrete' (separate) rather than 
+continuous like the original displacement of air and its 
+corresponding electrical signal.
+</p>
+
+<p>
+<IMG SRC="images/tdsoundwave.gif" align="left" ALT="[amplitude + time 
+soundwave]"></a>  We see sounds graphed as a waveform in sound editors, 
+showing us the amplitude profile along the duration of the sound.  Some 
+editors can zoom this display down to the individual sample.  The 
+center-line is zero, above this line is the positive and below is the 
+negative part of the wave.
+</p>
+
+<p>
+This specific digital representation of the sound creates the 'time 
+domain', and the sound can be further manipulated by altering those 
+two parameters:  amplitude and time.  For example, the amplitude contour 
+can be reshaped, the order of the samples can be reversed or shuffled, 
+etc.  Transposition in the time domain makes sounds faster (and therefore 
+shorter) when the pitch level is raised, slower (and therefore longer) 
+when lowered.  Thus voices become fast and squeaky, or slow and growly. 
+This does not happen in the spectral domain, where transposition does 
+not affect the duration of the sound.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="WAVECYCLE"><b>WAVECYCLE</b> &#150; a complete 
+wavelength of a sound
+</h3>
+
+<p>
+A <b>wavecycle</b> is a complete wavelength of a sound, 
+before the pattern repeats itself.  The key word here is 
+'pattern'.  It is the recurring pattern of oscillation 
+that enables us to identify a wavelength.  The sine wave 
+is the simplest and clearest example: it starts at 0 or 
+some other non-zero amplitude, rises to its peak positive 
+amplitude, falls to its peak negative amplitude, crossing 
+0 to do so, and then rises again back to the 0 or other 
+non-zero amplitude at which it started, thus completing 
+its full wavelength.
+</p>
+
+<p>
+Sounds with a high noise content oscillate in a wild and 
+randomised way.  Regular pattern is absent, and we cannot 
+speak in terms of 'wavecycles'.
+</p>
+
+<p>
+Also see the description of <a href="#WAVESET"><b>wavesets</b></a>, 
+another subtly different wave concept that forms the basis of 
+CDP's distortion programs.
+</p>
+
+<p>
+<br />
+</p>
+
+
+<h3 id="WAVEFORM"><b>WAVEFORM</b> &#150; a single oscillation 
+containing a positive and negative phase
+</h3>
+
+<p>
+An oscillation comprises an up&#47;down, in&#47;out, back and forth 
+motion &#150; however one wants to look at it.  A vibrating drumskin 
+goes up and down, the membrane of a speaker cone goes in and out, 
+a violin string goes up and down before repeating.  One direction is 
+represented by positive numbers, and the other with negative numbers, 
+with the central position being zero.
+</p>
+
+<p>
+When the numbers for a waveform are shown graphically on an X-Y axis, 
+as on an oscilloscope, we clearly see that each oscillation 
+has a characteristic shape, normally very complex.  The simplest forms 
+of these contour shapes define a basic set of shapes, as shown in the 
+diagram below:
+</p>
+
+<div align="center">
+<p>
+<IMG SRC="images/lfowaves4.gif" align="center" ALT="[basic waveform shapes]"></a>
+</p>
+</div>
+
+<p>
+<br />
+</p>
+
+
+<h3 id="WAVESET"><b>WAVESET</b> &#150; (pseudo-)wavecycles 
+between zero crossings
+</h3>
+
+<p>
+A complex waveform makes <a href="#ZEROCROSSING"><b>zero 
+crossings</b></a> at irregularly spaced time points.  This 
+forms the basis of the waveset distortion techniques developed 
+by Trevor Wishart as part of the CDP software.
+</p>
+
+<p>
+A <b>waveset</b> is defined as that part of the signal between 
+every 2<sup><small>nd</small></sup> crossing of the zero.  In 
+general a waveset and a <a href="#WAVECYCLE"><b>wavecycle</b></a> 
+are not the same thing.  With a simple sine wave, the waveform crosses 
+the zero twice in each cycle (once in the middle and once at the 
+end) but, in general a wavecycle may cross the zero any (even) 
+number of times in a wavecycle, or, with noise, zero crossings 
+may have no relationship to a regular wavecycle.  Hence wavesets 
+rarely correspond to wavecycles.
+</p>
+
+<p>
+Also see the <a href="cdistort.htm#PSEUDOWAVECYCLES">description</a> 
+in the Reference Manual.
+<p>
+<br />
+</p>
+
+
+<h3 id="WINDOW"><b>WINDOW</b> &#150; the momentary spectrum of a 
+sound derived by FFT analysis
+</h3>
+
+<p>
+The <a href="#FFT"><b>FFT analysis</b></a> converts a block of sound 
+samples (a <a href="#FRAME"><b>frame</b></a>) into a block of spectral 
+data, which describes the (momentary) spectrum of the sound at the 
+time where the block-of-samples was found.  The momentary spectrum 
+produced is referred to as a spectral <b>window</b>.  For technical 
+reasons, the frame of sound has to be given an amplitude contour shape 
+<i>before</i> being converted to a spectral window.  The amplitude 
+contour is provided by a <b>window function</b>.  (The CARL Phase Vocoder 
+implemented in the CDP software uses the Hamming window function.  Other 
+contour shapes are the Kaiser, Blakman_Harris and Triangular.)  Note that 
+this window function is applied to the sound <i>before the spectrum 
+is produced</i> and has nothing whatever to do with the shape of the 
+spectrum (the <a href="#SPECTRALENVELOPE"><b>spectral envelope</b></a>) 
+that results from the FFT analysis.
+</p>
+
+<p>
+The 'time slice' here is the block of samples that will be analysed 
+at one time.  This block of samples is a <a href="#FRAME">
+<b>frame</b></a>, also referred to as a <b>window</b>.  It is 
+taken for granted that this 'window' will be given an amplitude 
+contour shape prior to <a href="#FFT"><b>FFT analysis</b></a> 
+in order to prevent glitches (sudden changes in amplitude level), but 
+we musn't confuse the <b>window as time slice</b> with the contour 
+shape imposed on it (although these contour shapes are named e.g., 
+'Hamming window'), nor the contour shape with the 
+<a href="#SPECTRALENVELOPE"><b>spectral envelope</b></a>.  The CARL 
+Phase Vocoder implemented in the CDP software uses the Hamming window. 
+Other contour shapes are the Kaiser, Blakman_Harris and Triangular.  
+</p>
+
+<p>
+In practical use, we focus on the fact that the window is a time slice, 
+and take the presence of a contour shape for granted.  Thus, when a 
+CDP program such as BLUR SHUFFLE or BLUR WEAVE talks about moving 
+windows around, it is referring to time slices of the original 
+soundfile, i.e., (extremely tiny) segments of soundfile.
+</p>
+
+<p>
+Richard Dobson has provided us with a detailed technical discussion of 
+these matters in his article <i>The Operation of the Phase Vocoder</i>, 
+particularly Section 4., <a href="operpvoc.htm#OPV4">
+<b>The FFT Window</b></a>.
+</p>
+
+<p>
+The analysis looks through this time slice &#47; frame &#47; window 
+in a series of frequency bands (or 'bins') that may or may not 
+contain significant partials.  The profile of the partials it 
+finds in all the bins of that time slice is called the 
+<a href="#SPECTRALENVELOPE"><b>spectral envelope</b></a>.
+</p>
+
+<p>
+Another issue with the time slice is that there is a <b>frequency vs. 
+time resolution trade-off</b>.  A typical window size is 1024 samples.  
+The window size is in fact the number of frequency bands (= 'bins' 
+= 'channels') into which that time slice is divided for analysis.  
+A longer window has a finer frequency resolution (picks out the 
+partials effectively), but at the cost of time resolution (some 
+time-varying detail is lost).  The sample rate divided by the 
+window size gives the frequency resolution: e.g., 44100 sample 
+rate &divide; 1024 samples in the analysis block = 43.06Hz.  Thus, 
+the larger the window size, the finer the resolution.  This is 
+discussed in considerably more detail in the 
+<a href="cpvocman.htm#ANALB"><b>The analysis 'bandwidth'</b>
+</a> and <a href="cpvocman.htm#CHANS"><b>Channels</b></a> sections 
+of the <i>Phase Vocoder Manual</i>, in Section 5 of Richard 
+Dobson's article: <a href="operpvoc.htm#OPV5"><b>Window 
+length</b></a> and above under <a href="#ANALSETTINGS">
+<b>Analysis Settings</b></a>.
+</p>
+
+<p>
+Also see the section on <a href="cpvocman.htm#WINDOWS">
+<b>Windows</b></a> in the Phase Vocoder Manual.
+</p>
+
+<p>
+<br />
+</p>
+
+<h3 id="ZEROCROSSING"><b>ZERO CROSSING</b> &#150; a sample in a 
+waveform with zero amplitude
+</h3>
+
+<p>
+When a speaker cone moves back and forth, it creates a forward and 
+backward vibration that passes through a mid-point.  The depth of 
+the movement equates to the amplitude of the sound, and the mid-point 
+therefore equates to zero amplitude.  When this movement is 
+converted to digital data, it is shown in graph form, with the 
+mid-line as the zero amplitude mid-point, forward movement above 
+the line and backward movement below it.
+</p>
+
+<p>
+A simple sine tone moves smoothly and steadily above and below the 
+mid-line in every full oscillation, but more complex waves have 
+more intricate patterns above and below before they pass through 
+the mid-point.
+</p>
+
+<p>
+Passing through the mid-point is called the 'zero-crossing' (amplitude 
+= zero), and this may happen at regular or irregular time intervals 
+depending on the complexity of the waveform.  CDP refers to portions  
+of the signal spanning two zero-crossings as <a href="#WAVESET">
+<b>wavesets</b></a> or 'pseudo-wavecycles', and they form the 
+basis of its (Trevor Wishart's) waveset distortion routines.
+</p>
+
+<p>
+<b>Editing (i.e., CUT) a soundfile at zero-crossings ensures 
+that there will not be a click at the start of the cut portion 
+of sound.</b>
+</p>
+
+
+<p>
+<hr>
+Last updated:</b> 20 September 2010 - AE<br />
+<br />
+<b>Contributors:</b> Written by A Endrich, with vital 
+suggestions, technical corrections and additions by T Wishart, 
+R Dobson and R Fraser<br />
+<br />
+<b>&copy; 2010</b> A Endrich &amp; CDP.  This material may be 
+reproduced without permission from CDP.  Any suggestions for 
+additional terms or regarding technical accuracy would be 
+appreciated.
+</p>
+
+
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 18 Jan 2024 -- links revised<br />
+    Text last updated:</b> 20 September 2010 - AE<br />
+    <b>Contributors:</b> Written by A Endrich, with vital 
+    suggestions, technical corrections and additions by T Wishart, 
+    R Dobson and R Fraser<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2024 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

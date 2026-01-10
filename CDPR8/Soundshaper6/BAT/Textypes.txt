@@ -1,0 +1,10 @@
+SOUNDSHAPER TEXTFILE TYPES
+.txt 
+.brk
+.col
+.tun
+.ptr
+.pch
+.env
+.mix
+.mmx

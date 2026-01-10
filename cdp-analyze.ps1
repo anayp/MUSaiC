@@ -1,7 +1,6 @@
 param(
-    [Parameter(Mandatory = $true)]
-    [ValidateSet("info", "beats", "pitch")]
-    [string]$Mode,
+    [Parameter(Mandatory = $false)]
+    [string]$Mode = "all",
     
     [Parameter(Mandatory = $true)]
     [string]$InputFile
@@ -16,81 +15,164 @@ $viewExe = Join-Path $cdpBin "view.exe"
 if (-not (Test-Path $InputFile)) { throw "Input file not found: $InputFile" }
 $InputFile = (Resolve-Path $InputFile).Path
 
-function Get-Info {
-    if (Test-Path $sndInfo) {
-        $out = & $sndInfo $InputFile 2>&1
-        # sndinfo output entries are usually "Label: Value"
-        # Select-String returns MatchInfo. We want the Line.
-        
-        $dur = ($out | Select-String "Duration").Line -replace ".*Duration\s*:\s*", ""
-        $sr = ($out | Select-String "Sample Rate").Line -replace ".*Sample Rate\s*:\s*", ""
-        $ch = ($out | Select-String "Channels").Line -replace ".*Channels\s*:\s*", ""
-        $peak = ($out | Select-String "Peak Level").Line -replace ".*Peak Level\s*:\s*", ""
-
-        return @{
-            Tool       = "sndinfo"
-            Duration   = $dur
-            SampleRate = $sr
-            Channels   = $ch
-            Peak       = $peak
-            Raw        = $out[0..4] # Debug context
-        }
-    }
-    else {
-        # Fallback to ffmpeg
-        $p = Start-Process ffmpeg -ArgumentList "-i", $InputFile -NoNewWindow -Wait -PassThru 2>&1
-        return @{ Tool = "ffmpeg"; Note = "Install CDP for better info" }
+function Get-Loudness {
+    # ffmpeg volumedetect
+    $p = Start-Process ffmpeg -ArgumentList "-i", $InputFile, "-af", "volumedetect", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "vol_err.txt"
+    $err = Get-Content "vol_err.txt"
+    $mean = ($err | Select-String "mean_volume") -replace ".*mean_volume:\s*", "" -replace " dB", ""
+    $max = ($err | Select-String "max_volume") -replace ".*max_volume:\s*", "" -replace " dB", ""
+    
+    return @{
+        RMS_dB  = if ($mean) { [double]$mean } else { $null }
+        Peak_dB = if ($max) { [double]$max } else { $null }
     }
 }
 
 function Get-Beats {
-    # Use ffmpeg bpm filter
-    # ffmpeg -i input -af "bpm" -f null /dev/null
-    Write-Host "Analyzing BPM with ffmpeg..."
+    # ffmpeg bpm
     $p = Start-Process ffmpeg -ArgumentList "-i", $InputFile, "-af", "bpm", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "bpm_err.txt"
     $err = Get-Content "bpm_err.txt"
     $bpmLines = $err | Select-String "BPM"
+    
     if ($bpmLines) {
-        return @{ BPM_Output = $bpmLines[-10..-1] } # Last few lines
-    }
-    return @{ Error = "Could not detect BPM" }
-}
-
-function Get-Pitch {
-    # Use CDP pitch + view
-    if ((Test-Path $pitchExe) -and (Test-Path $viewExe)) {
-        $anaFile = $InputFile + ".frq"
-        $txtFile = $InputFile + "_pitch.txt"
-        
-        Write-Host "Running CDP Pitch..."
-        # pitch mode 1 (pitch+amp) input output
-        $args = @("pitch", 1, $InputFile, $anaFile)
-        $p = Start-Process $pitchExe -ArgumentList $args -NoNewWindow -Wait -PassThru
-        
-        if ($p.ExitCode -eq 0) {
-            Write-Host "Refining with View..."
-            # view anafile 
-            $out = & $viewExe $anaFile
-            $out | Out-File $txtFile
-            Remove-Item $anaFile
-            
-            # Parse average pitch? view output is huge list of frames.
-            # Let's just return path to detailed text
-            return @{
-                Method       = "CDP Pitch"
-                AnalysisFile = $txtFile
-                Snippet      = $out[0..10]
-            }
+        # naive parse of last line: "BPM 123.45"
+        $last = $bpmLines[-1].Line
+        if ($last -match "BPM (\d+\.?\d*)") {
+            return [double]$Matches[1]
         }
     }
-    return @{ Error = "CDP pitch/view tools missing" }
+    return $null
 }
 
-$result = $null
-switch ($Mode) {
-    "info" { $result = Get-Info }
-    "beats" { $result = Get-Beats }
-    "pitch" { $result = Get-Pitch }
+function Get-PitchEstimate {
+    # Run CDP pitch extract (mode 1) -> view -> parse average?
+    # FIX: pitch.exe expects "mode" as first arg, not "pitch".
+    # FIX: sndinfo.exe "len" gives reliable duration.
+    
+    if (-not (Test-Path $pitchExe)) { return $null }
+    
+    $anaFile = $InputFile + ".frq"
+    $txtFile = $InputFile + "_pitch.txt"
+    
+    # pitch extract mode 1: Pitch + Amp
+    # USAGE: pitch extract ...
+    # Diagnosis: pitch.exe appears to fail with "Unknown program identification string" 
+    # for 'extract', 'mode 1', 'anal', etc. in this environment.
+    # Fallback to null to allow other analysis to proceed.
+    
+    try {
+        $args = @("extract", 1, $InputFile, $anaFile)
+        $p = Start-Process $pitchExe -ArgumentList $args -NoNewWindow -Wait -PassThru -ErrorAction SilentlyContinue
+        
+        if ($p.ExitCode -ne 0) {
+            # Last ditch: try raw mode 1
+            $args = @(1, $InputFile, $anaFile)
+            $p = Start-Process $pitchExe -ArgumentList $args -NoNewWindow -Wait -PassThru -ErrorAction SilentlyContinue
+        }
+        
+        if ($p.ExitCode -ne 0) {
+            Write-Warning "Pitch analysis tool failed. Skipping pitch detection."
+            return $null 
+        }
+    }
+    catch {
+        return $null
+    }
+    
+    $est = $null
+    
+    if ($p.ExitCode -eq 0) {
+        $out = & $viewExe $anaFile
+        # Output format lines: "Time   Pitch   Amp"
+        # Skip header, grab first valid line with amp > threshold?
+        foreach ($line in $out) {
+            if ($line -match "^\s*(\d+\.\d+)\s+(\d+\.\d+)\s+(\d+\.\d+)") {
+                $amp = [double]$Matches[3]
+                if ($amp -gt 0.01) {
+                    $est = [double]$Matches[2]
+                    break # Take first significant pitch
+                }
+            }
+        }
+        Remove-Item $anaFile -ErrorAction SilentlyContinue
+    }
+    return $est
 }
 
-$result | ConvertTo-Json -Depth 2
+function Get-Info {
+    if (Test-Path $sndInfo) {
+        # Use 'sndinfo len file' for duration
+        $outLines = & $sndInfo "len" $InputFile 2>&1
+        $outStr = $outLines -join "`n"
+        
+        # Output: "DURATION: 0.500000 secs samples 24000"
+        # Regex: DURATION:\s*([\d\.]+)
+        if ($outStr -match "DURATION:\s*([\d\.]+)") {
+            return $Matches[1]
+        }
+        # Fallback to general info parse
+        $out = & $sndInfo $InputFile 2>&1
+        $durLine = $out | Select-String "Duration"
+        if ($durLine) {
+            return ($durLine.Line -replace ".*Duration\s*:\s*", "")
+        }
+    }
+    return "Unknown"
+}
+
+# --- Main Analysis ---
+Write-Host "Analyzing $InputFile..."
+
+$loudness = Get-Loudness
+$bpm = Get-Beats
+$pitch = Get-PitchEstimate
+$dur = Get-Info
+
+$analysis = [ordered]@{
+    tempo_bpm = $bpm
+    pitch_hz  = $pitch
+    rms_db    = $loudness.RMS_dB
+    peak_db   = $loudness.Peak_dB
+    duration  = $dur
+}
+
+$warnings = @()
+if (-not $bpm) { $warnings += "Could not detect BPM" }
+if (-not $pitch) { $warnings += "Could not estimate Pitch" }
+
+$finalData = @{
+    analysis = $analysis
+    warnings = $warnings
+    details  = @{
+        filesize = (Get-Item $InputFile).Length
+    }
+}
+
+# --- Output ---
+$baseDetail = [System.IO.Path]::GetFileNameWithoutExtension($InputFile)
+$outDir = Join-Path $PSScriptRoot "output\analysis"
+if (-not (Test-Path $outDir)) { New-Item -ItemType Directory -Force -Path $outDir | Out-Null }
+
+$jsonPath = Join-Path $outDir "$baseDetail.json"
+$txtPath = Join-Path $outDir "$baseDetail.txt"
+
+$finalData | ConvertTo-Json -Depth 3 | Out-File -FilePath $jsonPath -Encoding UTF8
+Write-Host "JSON: $jsonPath"
+
+$report = "Analysis Report: $baseDetail`n"
+$report += "----------------------------`n"
+$report += "BPM:   $($analysis.tempo_bpm)`n"
+$report += "Pitch: $($analysis.pitch_hz) Hz`n"
+$report += "RMS:   $($analysis.rms_db) dB`n"
+$report += "Peak:  $($analysis.peak_db) dB`n"
+$report += "Dur:   $($analysis.duration)`n"
+if ($warnings.Count -gt 0) {
+    $report += "`nWarnings:`n" + ($warnings -join "`n")
+}
+
+$report | Out-File -FilePath $txtPath -Encoding UTF8
+Write-Host "Text: $txtPath"
+
+# Cleanup
+if (Test-Path "vol_err.txt") { Remove-Item "vol_err.txt" -ErrorAction SilentlyContinue }
+if (Test-Path "bpm_err.txt") { Remove-Item "bpm_err.txt" -ErrorAction SilentlyContinue }

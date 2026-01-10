@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- UsingTerminal.htm  -  HTML5 version of "usingTerminal.rtf" -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>USING TERMINAL</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="../images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+<body>
+
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "../images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="../../html/ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="../../html/tutorials.htm" Target="_top"><b>Tutorials Index</b></a> 
+  <hr>
+  <br>
+  <dt><a href="#TOP"><b>Using Terminal:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#BASIC"><b>Basic Commands</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#BASH"><b>Initialise Bash</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TCSH"><b>Initialise Tcsh</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TOOLKIT"><b>Run Toolkit</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#STANDARD"><b>Standard <br>&nbsp;&nbsp;&nbsp Operations</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+<!-- ========================================================================= -->
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+   <div id = "head">
+
+	<p>
+	<IMG SRC="../images/cdpcircs.jpg" ALT="CDP circles logo"><br clear>
+	<b>Composers' Desktop Project</b></a>
+	</p>
+
+
+<h1 align="center" id="TOP">Configuring OS X for command-line programs</h1> 
+<h2 align=center><font color="#3366ff">by Richard Dobson</font></h2>
+
+   </div>  <!-- End of 'head' -->
+
+<!-- ========================================================================= -->
+<i>These instructions are written for users of the CDP Multi-Channel Toolkit who have not installed the full CDP system, and who have not used command-line programs before. CDP users may also find it relevant, if they want to use the system from the command line.</i></p>
+<p>
+Underneath the slick graphics, OS X is a species of Unix.  Some tasks can only be performed using a text console, and by typing in instructions.  In OS X, this text console is called "Terminal", which can be found in <b>/Applications/Utilities.</b> It is recommended that this be made accessible from the Dock: simply drag "Terminal" to the Dock.  OS X also provides a text editor, called "TextEdit", which can be found in <b>/Applications</b>. Drag this to the dock in the same way. Note that by default it creates new documents in RTF format; you will need to change this to Plain Text format via TextEdit's Preferences page.</p> 
+<p>
+Toolkit users are faced with three basic tasks:
+<ul>
+<li>configuring Terminal to find the various command-line programs in the Toolkit</li>
+<li>navigating through directories containing soundfiles</li>
+<li>running Toolkit programs to process or play soundfiles</li>
+</ul>
+</p>
+
+<p>
+Other tasks might include:
+<ul>
+<li>copying soundfiles</li>
+<li>moving soundfiles between directories</li>
+<li>deleting soundfiles</li>
+<li>renaming soundfiles</li>
+</ul>
+</p>
+
+<p>
+These tasks can all be performed from the command-line. In more advanced usage, wildcard characters can be used to perform multiple changes with one command. For more complex batch processing shell scripts (offering powerful programming facilities) can be used, taking full advantage of the underlying unix-like nature of OS X.</p>
+
+<p>
+Clicking on the Terminal icon in the Dock will launch Terminal, which will display a window to receive text commands and print any text output from them.
+</p>
+
+<p>
+The first thing to note is the title: this will indicate one of two forms of <b>command "shell"</b>:
+<blockquote>
+<b>bash<br>
+   tcsh</b>
+</blockquote>
+</p>
+
+<p>
+The difference between these is only of concern to advanced users experienced in using Unix tools.  However, the syntax for some commands is different, and the private initialization files are different, so it is important to know which shell you are using.  On all modern Mac systems, Bash is the default shell.</p>
+	
+<p>
+Open a Terminal session: you will see a command prompt comprising the computer name and your user name, for example:
+<blockquote>
+<b>bash shell:
+cdpmac:~ fred$ 
+
+<br><br>
+
+tcsh shell:
+[cdpmac:~] fred$</b>
+</blockquote>
+</p>
+
+<p>
+At this stage, you are "in" your <b>home directory</b>). The following instructions assume that you stay in this directory. 
+</p>
+<p>
+A standard Unix shorthand for "my home directory" is the tilde character: ~ which as shown above forms part of the initial shell prompt.
+</p>
+
+<p> 
+The CDP system, including the multi-Channel Toolkit, comprises a large number of programs that are <b>not</b> full Applications that one can double-click on from the Finder, <b>but rather are command-line tools</b>. Front-end applications such as Sound Loom run them behind the scenes; but they are actually designed to be run directly from the command-line, i.e. from within a Terminal session.  To access them, Terminal needs to know where they are &#150; what their <b>"path"</b> is  &#150; i.e. what directory they are in. This in turn means that we may want to create a directory in which to put such programs.  The natural procedure of course is to use the Finder to do this &#150; e.g. to create a folder called "bin" in your home directory. It is equally possible to do this directly from the Terminal.
+</p>
+
+<p>
+All commands comprise a (usually) short command name followed by any further arguments (separated by spaces), and completed by pressing the Enter key, which initiates the command. In the examples below, all text typed by the user is shown in a monospaced font.
+</p>
+<b3>
+
+<!-- ========================================================================= -->
+<h3 id="BASIC">Some basic unix commands:</h3>
+<blockquote>
+List directory:<br>
+<b>ls</b>
+
+<p>List Directory in a "long" format that displays the size and modification date of each file (or directory), and the permissions setting for each:
+<br>
+<b>ls -1</b>
+</p>	
+<p>		
+Make Directory "dirname":<br>
+<b>mkdir dirname</b>
+</p>
+<p>
+Change into Directory "dirname":<br>
+<b>cd dirname</b>
+</p>
+<p>
+Change to your home Directory:<br>
+<b>cd ~</b>
+</p>
+<p>
+Read environment variables:<br>
+<b>env</b>
+</p>
+</blockquote>
+
+<p>Note especially the <b>PATH</b> string reported by this command.</p>
+
+<p>To set up Terminal to run the Toolkit programs we must place them in a convenient directory, and then add the full path name of that directory to the user's PATH as shown by the <b>env</b> command.</p> 
+
+<p>A conventional name for a directory to contain executable programs (also termed "binary" files in unix-speak) is simply <b>bin</b>. You will find that some system directories on the system already have this name. These directories are not visible in the OS X finder (nor from any GUI application), but are accessible from a Terminal session. For  example: type the command ls followed by a space and a forward slash:
+<blockquote>
+<b>ls /</b>
+</p>
+</blockquote>
+
+<p>This asks the shell to list all the directories from the root of the whole system: these directories will include all the standard system directories familiar to any unix user. Similarly, to see the contents of the directory called /usr type:
+<blockquote>
+<b>ls /usr</b>
+</p>
+</blockquote>
+
+<p>A typical output would be:
+<blockquote><pre><code><b>
+X11R6           include         libexec         sbin            standalone
+bin             lib             local           share
+</blockquote></code></pre></b>
+</p>
+
+<p>In principle, the Toolkit programs could be placed in any of the available system bin folders, with 
+<b>/usr/bin</b> or <b>/usr/local/bin</b> the most likely locations. Writing to any of the system folders requires the use of the administrator password (and shell commands must be prefixed with the special command sudo). This is not recommended for users inexperienced in the command-line environment.</p>
+
+<p>Instead, we will see how to create a new bin folder inside the home directory, and how to add its path to the list searched by the shell. Each shell checks a special hidden initialisation file when it starts up - the name of this file is particular to each of the available shells. These files are not present by default in a new OSX system &#150; we will need to create them ourselves.</p>
+
+<p>Open a new Terminal session, and note whether you are using the <b>bash</b> or <b>tcsh</b> shells; currently <b>bash</b> seems to be the default. At the command prompt, type the following command to create the new directory:
+<blockquote>
+<b>mkdir bin</b>
+</blockquote>
+
+<p>It is easiest at this stage to use the finder to copy the unpacked Toolkit programs to the new directory.</p> 
+<br>
+
+<!-- ========================================================================= -->
+<h3 id="BASH">To create the bash initialisation file: </h3> 
+
+<b>1. If you do not have a file called .bash_profile</b>
+
+<p>This is a file read by the Bash shell when a new terminal session is started. It is not visible in Finder because the leading dot character marks it as a "hidden" file. So how do we find out?
+ Make sure you are in your home directory, as described above (symbolised by the ~ character). 
+Then type the command:</p>
+<blockquote>
+<b>ls -a</b>
+</blockquote>
+
+<p>This prints a directory listing including the "dot" files - there may be several (the -a flag asks ls to display all files). The following instructions assume that .bash_profile is not present, so we have to create one.</p>
+
+<p>Open the OS X application TextEdit to create a new text file. Write the following text exactly as shown:</p>
+<blockquote>
+<b>PATH=$PATH:~/bin</b>
+</blockquote>
+
+<p>Use File->Save As to save the file with the name .bash_profile  in your home directory.   In the Save As dialog, uncheck "If no extension is provided, use .txt". When you click Save, a further dialog will appear with a warning about using the dot name - click "use .".</p>
+
+<p>To confirm that the file has been correctly named and saved, go back to your Terminal window and type the list command again:</p>
+<blockquote>
+<b>ls -a</b>
+</blockquote>
+
+
+<b>2. If you do have .bash_profile</b>
+
+<p>This will have been created by some other program or library that you installed. It may or may not already have a PATH definition. You do not want to overwrite this file, or you will lose important configuration setting for whatever software created the file. This now includes the CDP system!</p>
+
+<p>You can open a file from Terminal in the default text editor (e.g. TextEdit.app) simply by typing:
+<blockquote>
+  <b>open .bash_profile</b>
+</blockquote>
+
+Or, if you are comfortable with the emacs editor, open the file in that directly:
+<blockquote>
+  <b>emacs .bash_profile</b>
+</blockquote>
+
+All we have to do is add our path to any existing one. In fact, exactly the same line can be used as shown above:
+<blockquote>
+  <b>PATH=$PATH:~/bin</b>
+</blockquote>
+
+as this appends our path to the existing one; or you can add the new path directly to the end of the existing PATH string, remembering to use the separator character, here a colon. Note that the system defines a default PATH early on in the boot process, inherited by each user. It is always essential to use an "update" PATH command as shown above; otherwise we will lose the paths to all the commands upon which Bash itself depends!</p> 
+<br>
+
+<!-- ========================================================================= -->
+<h3 id="TCSH">To create the tcsh initialisation file: </h3>
+
+Create a new file in TextEdit, entering the text below, exactly:
+<blockquote>
+  <b>setenv PATH ${PATH}:${HOME}/bin</b>
+</blockquote>
+
+<p>Again, you will need to confirm that the file .tcshrc does not already exist - use the same procedure as described above. Assuming it does not, save this file with the hidden name  .tcshrc. Otherwise, edit the file to add the new path at the end of any existing PATH statement.</p>
+
+<p>The different text in the two files reflects the differences of language between the two shells. However, the action is the same - to read the existing PATH string (as shown by the env command), and append the new path.</p> 
+
+<p><b>NB</b>:  As their name suggests, these initialisation files are only read when a Terminal session is launched, so to activate them you will need to close all Terminal Sessions (you can have more than one running at the same time!).</p>
+
+<p>It is also possible to run one shell from another, simply by typing the name of the required shell. If you do this, you return to the previous shell by typing exit.</p>
+<br>
+
+<!-- ========================================================================= -->
+<h3 id="TOOLKIT">Using the command line to run Toolkit and programs.</h3>
+
+<p>To test the installation it will be useful first to change to a folder containing some soundfiles. Assuming you have a folder <b>"sounds"</b> in your home directory, use the <b>Change Directory</b> command <b>"cd"</b> to change to it:
+<blockquote>
+<b>cd sounds</b>
+</blockquote>
+
+The directory sounds is now your "current directory". all commands operate relative to the current directory.</p>
+
+<b>A trick with cd</b><br>
+You can obtain a directory or file path by dragging it from the Finder into the open Terminal window - the path will then appear at the prompt line. The trick is to type cd and a space first, then do the drag; the command is then ready to be invoked. This is especially useful for paths to some deeply nested directory - saves typing and avoids those typing mistokes!</p>
+
+<p>Now run some programs, firstly by themselves:</p>
+<blockquote>
+  <b>sfprops</b>
+</blockquote>
+
+<p>This will list the properties of a soundfile.  Used without a filename it will print a usage message. Read this, and then run sfprops again, giving it the name of a soundfile:
+<blockquote>
+  <b>sfprops testfile.aiff</b>
+</blockquote>
+
+Other programs take one or more command-line arguments, separated by spaces. To play the soundfile <i>testfile.aiff</i>, use the Toolkit program paplay:
+<blockquote>
+  <b>paplay testfile.aiff</b>
+</blockquote>
+
+If the file is mono, you could create a surround version panned around the listener using <b>abfpan</b> or <b>abfpan2</b>. Type the name of the program by itself to obtain the usage message. To rotate the file two times around the listener, type the following:
+<blockquote>
+  <b>abfpan testfile.aiff  testpan.aiff 0 2</b>
+</blockquote>
+
+To play such a multi-channel file using paplay, it will of course be necessary to have an audio device that can render to the required number of channels.</p>
+
+<p>Alternatively, you can try out the AMB file format using the -b flag, and giving the output file the .amb extension:
+<blockquote>
+  <b>abfpan -b testfile.aiff  testpan.amb 0 2</b>
+</blockquote>
+
+Note that the new program <b>abfpan2</b> only outputs a (second-order) AMB file, it does not decode. Use the new program <b>fmdcode</b> for this (or <b>paplay</b>).</p>
+<br>
+
+<!-- ========================================================================= -->
+<h3 id="STANDARD">Some standard command-line operations.</h3>
+
+To copy files from the current directory to a sub-directory called "aiffsamples", use the command cp:
+<blockquote>
+  cp *.aiff aiffsamples
+</blockquote>
+
+The <b>'wildcard'</b> character <b>*</b> means "anything", so this says copy <b>all</b> files with names ending with <b>.aiff</b> to the folder <b>aiffsamples</b>. If you have a set of piano samples will a common root name (e.g. <i>pianoA1.aiff, pianoA#1.aiff, pianoB1.aiff</i>  etc.), you can use the wildcard mechanism to copy just those files to a new subdirectory <b>piano</b>:
+<blockquote>
+<b>mkdir piano
+  cp piano*.aiff  piano
+  cd piano
+  paplay pianoA1.aiff</b>
+</blockquote>
+
+You may be impressed how speedily these operations are performed, compared to the manoeuvres required to do it from the finder!</p>
+
+<p>The move command is similarly simple. This moves all files whose names start with "piano" to the new directory:
+<blockquote>
+  <b>mv piano*.aiff piano</b>
+</blockquote>
+
+The mv command is also used to rename files:
+<blockquote>
+  <b>mv verylongfilename.aiff  vname.aiff</b>
+</blockquote>
+
+Or in combination, to move the file to the new folder:
+<blockquote>
+  <b>mv verylongfilename.aiff  piano/vname.aiff</b>
+</blockquote>
+
+Note however that these commands will not work quite so conveniently with file or directory names containing spaces. Such names have to be enclosed in quotation marks:
+<blockquote>
+  <b>mkdir "Tenor Sax"
+  mv "sax A 1.aiff" "Tenor Sax"/saxA1.aiff</b>
+</blockquote>
+
+<p>Such filenames are really somewhat inimical to fluent command-line work, simply because spaces are universally interpreted as string separators. Users likely to make extensive use of the command-line will find it  expedient to rename such files to names replacing spaces with, say, the underscore character. An adept unix programmer would create a shell script ( a text program run by the shell itself)  to perform this task for a large number of files; at this stage it will be safer to perform the task by hand in the Finder. Worst of all are names containing multiple spaces; it is all but impossible to work with these from the command-line (at least, without investigating each filename individually from the finder first!).</p>
+
+<p>To delete a file (or files), use the rm command:
+<blockquote>
+  <b>rm testfile.aiff</b>
+</blockquote>
+
+Wild-cards can be used:
+<blockquote>
+  </b>rm piano*.aiff</b>
+</blockquote>
+But take care! The command:
+<blockquote>
+  <b>rm *</b>
+</blockquote>
+will remove every file in the current directory, with no possibility of recovery, and with no helpful warning message!</p> 
+
+<p>Finally, note that all such commands have online help available in the form of the "man" command.<br>
+Typing: 
+<blockquote>
+  <b>man mv</b>
+</blockquote>
+will print a stream of text information to the console (press the spacebar to read the next page, enter to move down a single line, and type q  to return to the shell prompt).</p>
+
+<p>To see just how comprehensive this documentation can be, try typing:
+<blockquote>
+  <b>man bash</b>
+</blockquote>
+This will print the full documentation on the bash shell, including the syntax and keywords used for advanced shell programming.</p>  
+
+<p>Needless to say, this document only scratches the surface of what is possible from the command line. OS X users are encouraged to research further, perhaps by buying one of the many books available on how to use a unix system (some are specific to OS X), how to write shell scripts, and how to use other scripting languages such as perl or Python, both supplied as standard with OS X.</p>
+
+ 
+<p>Richard Dobson, July 2006, updated November 2010</p>
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 30 Oct 2021 -- HTML5 version<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 2006-2021 Richard Dobson &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</body>
+</html>
+
+

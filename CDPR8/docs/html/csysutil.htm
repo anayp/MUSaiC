@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- csysutil.htm  - SYSUTIL HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP SYSUTILS Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="cspecndx.htm" Target="_top"><b>Spectral Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#UTILSCONTENTS"><b>SYSTEM UTILS:</b></a>
+  <dt>&nbsp;&nbsp;<a href="#ASCIIGET"><b>ASCIIGET</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ALIAS"><b>(ALIAS)</b></a>
+<!--  <dt>&nbsp;&nbsp;<a href = "#CDPCONV"><b>CDPCONV</b></a>  -->
+  <dt>&nbsp;&nbsp;<a href = "#COLUMNS"><b>COLUMNS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#COPYSFX"><b>COPYSFX</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#DIRSF"><b>DIRSF</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#GETCOL"><b>GETCOL</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#LISTAUDEVS"><b>LISTAUDEVS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PAPLAY"><b>PAPLAY</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PUTCOL"><b>PUTCOL</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PVPLAY"><b>PVPLAY</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RECSF"><b>RECSF</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#VECTORS"><b>VECTORS</b></a>
+<br><br>
+<b>SEE ALSO:</b></b>
+<dt>&nbsp;&nbsp;<a href="cgrohous.htm"><b>HOUSEKEEP</b></a>
+<dt>&nbsp;&nbsp;<a href="cmcrefmn.htm"><b>M-C TOOLKIT</b></a>
+<dt>&nbsp;&nbsp;<a href = "cgrosynt.htm#TSCONVERT"><b>TSCONVERT</b></a>
+
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <div align=center>
+   <br>
+   <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+   </div>
+
+   <h1 align=center>
+   CDP System Utilities<br></h1>
+   <h2 align="Center"><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="UTILSCONTENTS">Utility Functions </h2>
+<b><i>All functions in this group are standalone programs.</i></b>
+
+<dl>
+<dt><a href="#ASCIIGET"><b>ASCIIGET</b></a> <dd>Display the contents of a text file as a list of characters with ASCII decimal code</dd>
+<dt><a href="#ALIAS"><b>(ALIAS)</b></a> <dd>Create a shortcut to a soundfile (PC only) &#150; withdrawn</dd>
+<!--
+<dt><a href="#CDPCONV"><b>CDPCONV</b></a> <dd>Utility to convert analysis files from PPC to Intel format (MAC only)</dd>
+-->
+<dt><a href="#COLUMNS"><b>COLUMNS</b></a> <dd>Manipulate or generate columns of numbers</dd>
+<dt><a href="#COPYSFX"><b>COPYSFX</b></a> <dd>Copy&#47;convert a soundfile</dd>
+<dt><a href="#DIRSF"><b>DIRSF</b></a> <dd>Soundfile directory listing</dd>
+<dt><a href="#GETCOL"><b>GETCOL</b></a> <dd>Extract a column of numbers from a textfile </dd>
+<dt><a href="#LISTAUDEVS"><b>LISTAUDEVS</b></a> <dd>List audio devices</dd>
+<dt><a href="#PAPLAY"><b>PAPLAY</b></a> <dd>Playback of multi-channel soundfiles </dd>
+<dt><a href="#PUTCOL"><b>PUTCOL</b></a> <dd>Place a column of numbers into a textfile </dd>
+<dt><a href="#PVPLAY"><b>PVPLAY</b></a> <dd>Play back (audition) an analysis or soundfile</dd>
+<dt><a href="#RECSF"><b>RECSF</b></a> <dd>Record, creating a soundfile</dd>
+<dt><a href="#VECTORS"><b>VECTORS</b></a> <dd>Numerical operations between two columns of figures</dd>
+
+
+<h3>Related Functions</h3>
+<dt><a href = "cgrosynt.htm#TSCONVERT"><b>TSCONVERT</b></a> <dd>Convert input data to specified range and format</dd>
+<dt><a href="cgrohous.htm"><b>HOUSEKEEP Group</b></a> <dd>Housekeeping utilities for soundfiles</dd>
+<dt><a href="cmcrefmn.htm"><b>MULTI-CHANNEL TOOLKIT</b></a>, from which COPYSFX and PAPLAY are taken.
+
+</dl>
+
+<hr><!-- ****************************************************** -->
+<h2 id="ASCIIGET">ASCIIGET &#150; Display the contents of a text file as a list of characters with ASCII decimal code</h2>
+
+<h3>Usage</h3>
+<b>asciiget</b> <i>filename</i>
+
+
+<h3>Parameters</h3>
+<blockquote>
+<i>filename</i> &#150; name of an ASCII textfile
+</blockquote>
+
+
+
+<h3>
+Understanding the ASCIIGET Process
+</h3>
+
+<blockquote>
+<p>
+ASCIIGET is a utility to print the characters in a text file to the console, together with the corresponding ASCII decimal code.
+</p>
+</blockquote>
+
+<!-- 
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+-->
+
+<p>
+End of ASCIIGET<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities.<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="ALIAS">(ALIAS) &#150; Create a shortcut to a soundfile (PC only) </h2>
+<p><b>NB: ALIAS is not currently included in the CDP distribution. </b></p>
+
+<h3>
+Usage
+</h3>
+
+<b>alias</b> <i>full_path name</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<p>
+<i>full_path</i> &#150; the location of the soundfile, specifying the drive, 
+the directory (with subdirectories) in which it resides, and its name.  
+E.g.,
+	<blockquote>
+	<code>d:\compositions\project6\whirr.wav</code>
+	</blockquote>
+
+<i>name</i> &#150; the name of the shortcut soundfile;  it may be the same 
+as or different from that of the original name.
+</p>
+
+<p>
+Example command line to create an alias:<br>
+	<blockquote>
+	<code><b>alias d:\compositions\project6\whirr.wav &nbsp;&nbsp; 
+	whirr.wav</b></code>
+	</blockquote>
+</p>
+</blockquote>
+
+<h3>
+Understanding the ALIAS Function
+</h3>
+
+<blockquote>
+<p>
+A 'shortcut' on a PC system (Windows) is a path to a file.  It 
+does not duplicate that file.  This can be particularly useful for 
+soundfiles, which can be very large.  If you create a shortcut to a 
+soundfile, you can then access that file from your current directory 
+simply by entering the alias name.
+</p>
+
+<p>
+ALIAS creates a shortcut in the current directory.  It can be treated 
+as if it were an actual soundfile in the usual way. <br> 
+<b>To be recognised 
+by CDP programs the alias <i>name</i> must include the extension (e.g. .wav), as shown in the above example.</b>
+</p>
+
+<p>
+In <a href="#DIRSF"><b>DIRSF</b></a>, a soundfile for which a shortcut has been created is shown 
+with its additional <b>.lnk</b> extension:  e.g., <b>whirr.wav.lnk</b>.
+</p>
+</blockquote>
+
+<p>
+End of ALIAS<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities.<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="COLUMNS">COLUMNS &#150; Manipulate or generate columns 
+of numbers
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>columns</b> <i>infile</i> [<i>outfile</i> [<b>-flag@</b>] 
+[{<i>threshold&#124;</i>}<i>threshold</i>]<br>
+ALSO:<br>
+<b>columns</b> <i>inoutfile1 infile2</i> [<i>infile3....</i>] <b>-J</b> 
+to juxtapose columns in one file<br>
+<b>columns</b> <i>infile1 outfiles</i> <b>-S</b><i>X</i> to separate 
+columns to <i>X</i> distinct files<br>
+<b>columns</b> <i>infile1 outfiles</i> <b>-N</b><i>X</i> to separate 
+values to <i>X</i> distinct files, in blocks<br>
+<b>columns</b> <i>infile1 outfiles</i> <b>-Nr</b><i>X</i> to separate 
+values to <i>X</i> distinct files, in rotation<br>
+<br>
+	<blockquote>
+	<b>For more information:</b>
+		<blockquote>
+		<b>columns -f</b> &nbsp; to see all available flags<br>
+		<b>columns -g</b> &nbsp; for generative operations<br>
+		<b>columns -l</b> &nbsp; for list manipulation and editing<br>
+		<b>columns -m</b> &nbsp; for mathematical operations<br>
+		<b>columns -M</b> &nbsp; for musical operations<br>
+		<b>columns -R</b> &nbsp; for randome operations<br>
+		</blockquote>
+	</blockquote>
+	
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input text file containing a column of numbers<br>
+<i>outfile</i> &#150; optional output text file<br>
+<b>-flag@</b> &#150; flag to specify the operation to be performed on 
+the input column of numbers.  The '@' symbol indicates a numeric value 
+to be supplied by the user, and may be optional (in square [] brackets).<br>
+'{' = less than: '}' = greater than<br>
+<i>threshold</i> is a numeric value and can only be used with <b>R</b>, 
+<b>a</b>, <b>m</b>, <b>d</b>, <b>P</b>, <b>c</b> &#150; the specified 
+operation then applies only to values &gt; or &lt; the <i>threshold</i> 
+value.
+</blockquote>
+
+<h3>
+Understanding the COLUMNS Function
+</h3>
+
+<blockquote>
+<p>
+Although there are many operations available in COLUMNS, using the 
+program is relatively straightforward.  For example, the command
+	<blockquote>
+	<b>columns</b> <i>infile outfile</i> <b>-flag@</b><br> 
+	<code>columns &nbsp;acol.txt acoladd.txt -a20</code><br>
+	</blockquote>
+will add 20 to every value in <i>acol.txt</i> and write the resultant 
+column to <i>acoladd.txt</i>.
+	<blockquote>
+	This is what the two files would look like:<br>
+	<pre><code>
+	<i>acol.txt acoladd.txt</i>
+	1         21
+	2         22
+	3         23
+	4         24
+	5         25
+	</pre></code>
+	</blockquote>
+</p>
+
+<p>
+What can sometimes be confusing is how COLUMNS handles the first value in 
+the list and whether or not the sums accumulate.  You are recommended to 
+perform as simple a test as possible on an operation you wish to use and 
+study the result to see exactly what calculation(s) COLUMNS has made.  
+</p>
+
+<p>
+COLUMNS is fully implemented in <i>Sound Loom</i> as the 
+<b>TABLE EDITOR</b> and in <i>Soundshaper</i> as the <b>DATA EDITOR</b>. 
+There is excellent documentation 
+on the <b>Data Editor</b> in 'Help &gt; Soundshaper Help &gt; DATA EDITOR'.
+</p>
+
+<p>
+More information and user feedback on this utility would be welcome.
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b> <a href=#PUTCOL><b>PUTCOL</b></a>, <a href=#GETCOL><b>GETCOL</b></a>, <a href="#VECTORS"><b>VECTORS</b></a> 
+and <a href = "cgroinfo.htm"UNITS"><b>SNDINFO UNITS</b></a>, which is designed as a 'music calculator'.
+</p>
+
+
+
+<p>
+End of COLUMNS<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities.<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="COPYSFX">COPYSFX &#150; Copy&#47;convert soundfiles
+</h2>
+
+<h3>
+Usage
+</h3>
+
+<p>
+<b>copysfx</b> [<b>-d</b>] [<b>-h</b><i>N</i>] [<b>-s</b><i>N</i>] 
+[<b>-t</b><i>N</i>]  <i>infile outfile</i>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>infile</i> &#150; a <b>wav</b> or <b>aif</b> soundfile<br>
+
+<i>outfile</i> &#150; a <b>wav</b> or <b>aif</b> soundfile. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;Default in all cases: <i>outfile</i> has the format of the <i>infile</i>.<br><br>
+
+<b>-d</b> &#150; apply TPDF (2-LSB triangular) dither to a 16-bit 
+<i>outfile</i><br />
+<b>-h</b><i>N</i> &#150; write minimum header:<br>
+	<ul>
+	<li><b>0</b> = minimum (no extra data:  this avoids incompatibility 
+	    with software which cannot read the extra data)</li>
+	<li><b>1</b> = PEAK data only</li>
+	<li>Default (flag not used): include PEAK data.</li>
+	</ul>
+
+<b>-s</b><i>N</i> &#150; force output sample type to type <i>N</i><br />
+	<blockquote>
+	<b>Available sample types:</b>
+		<ol>
+		<li>16-bit integers (shorts)</li>
+		<li>32-bit integer (longs)</li>
+		<li>32-bit floating-point</li>
+		<li>24-bit integer 'packed'</li>
+		</ol>
+	Default (flag not used): format of <i>infile</i>
+	</blockquote>
+
+<b>-t</b><i>N</i> &#150; write <i>outfile</i> format as type <i>N</i><br>
+	<blockquote>
+	<b>Possible formats:</b>
+	<ol start = 0>
+	<li> &#150; (default) standard soundfile (<b>.wav</b>, 
+	<b>.aif</b>, <b>.afc</b>, <b>.aifc</b>)</li>
+	<li> &#150; generic WAVE_EX (no speaker assignments)</li>
+	<li> &#150; WAVE_EX mono&#47;stereo&#47;quad (LF, RF, LR, RR) &#150  
+	<i>infile</i> number of channels must match</li>
+	<li> &#150; WAVE_EX quad surround (L, C, R, S) &#150   <i>infile</i> 
+	must be quad</li>
+	<li> &#150; WAVE_EX 5.1 format surround &#150   <i>infile</i> must 
+	be 6-channel</li>
+	<li> &#150; WAVE_EX Ambisonic B-Format (W, X, Y, A ...) &#150   
+	the <b>.amb</b> extension is supported</li>
+	<li> &#150; WAVE_EX 5.0 surround &#150  <i>infile</i> must be 5-channel</li>
+	<li> &#150; WAVE_EX 7.1 surround &#150  <i>infile</i> must be 8-channel</li>
+	<li> &#150; WAVE_EX cube surround &#150  <i>infile</i> must be 8-channel</li>
+	<li> &#150; WAVE_EX 6.1 Surround &#150  <i>infile</i> must be 7-channel<br>
+	</ol>
+	<b>NB: Types 1 to 8 are for WAV format only.</b>
+	</blockquote>
+
+</blockquote>
+</p>
+
+<h3>
+About COPYSFX
+</h3>
+
+<blockquote>
+<p>
+COPYSFX is the primary workhorse program in the  <a href="cmcrefmn.htm"><b>MULTI-CHANNEL TOOLKIT</b></a> 
+for copying and converting files from one format to another.
+</p>
+
+<p>
+By default COPYSFX writes a PEAK chunk to the output soundfile.  This 
+stores the position and value of the first absolute maximum sample in 
+each channel, together with a timestamp.  Almost all the TOOLKIT 
+programs print the PEAK data to the screen on completion.  It can 
+also be shown via <a href = "#SFPROPS"><b>SFPROPS</b></a>.  For integer 
+formats, the value will of necessity be clipped to 1.0.  For 
+floating-point formats the value reflects the true peak values in 
+the file.
+</p>
+
+<p>
+It is still common for many applications to assume a fixed 
+length header, and be broken by any file with additional chunks 
+such as the PEAK data.  For such applications, use the <b>-h</b> flag to write a
+"minimal" header with no extra chunks.
+</p>
+
+<p>
+Note that while <a href = "#CHXFORMAT"><b>CHXFORMAT</b></a> 
+can save considerable disk space and time by changing the header of 
+a file directly, it is inherently risky.  COPYSFX is non-destructive and, if space and
+time permit, is still the recommended tool for format conversion. 
+CHXFORMAT may however be required where it is desired to set an unusual or experimental 
+speaker mask not supported by <a href="#COPYSFX"><b>COPYSFX</b></a>.
+</p>
+
+<p>
+This function is also documented in the <a href="cmcrefmn.htm#COPYSFX">
+<b>Multi-Channel Toolkit</b></a> manual.
+</p>
+
+</blockquote>
+
+<p>
+End of COPYSFX<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities
+<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+ 
+<h2 id="DIRSF">DIRSF  &#150; Soundfile directory listing
+</h2>
+
+<h3>
+Usage
+</h3>
+
+<p>
+<b>(dirsf -h</b> or <b>dirsf -?</b> displays the Usage)
+</p>
+
+<p>
+<blockquote>
+'<b>dirsf</b>' on its own provides a full listing of sound data 
+in the current directory with any of the following extensions<b>:</b>
+	<ul>
+	<li>soundfiles (<b>.wav</b> or these varieties of <b>.aif: .aif, 
+	.aiff, .aifc, .afc, .aic</b>)</li>
+
+	<li>analysis files (any extension is acceptable, <b>.ana</b> is 
+	the convention)</li>
+
+	<li>envelope files (<b>.evl</b>) for binary files containing 
+	amplitude envelope data (<b>.env</b> is no longer used)</li>
+
+	<li>formant files (binary files for which the system-provided 
+	extension is <b>.for</b>) (<b>.fmt</b> is no longer used)</li>
+
+	<li>binary pitch data files (<b>.frq</b>), i.e., as produced 
+	by <a href = "crepitch.htm#GETPITCH">REPITCH GETPITCH</a></li>
+
+	<li>binary data transposition files (<b>.trn</b>), i.e., as 
+	produced by <a href = "crepitch.htm#COMBINE">REPITCH COMBINE</a></li>
+
+	<li>soundfiles with a shortcut (<b>.lnk</b> is appended)</li>
+
+	<li>breakpoint files (<b>.brk</b> by convention &#150; or 
+	<b>.txt</b>)</li>
+	</ul>
+
+	<blockquote>
+	Other text files such as the note data file used in TEXTURE (i.e., 
+	ASCII text files) can be displayed with the computer's normal 
+	<b>dir</b> (PC) or <b>ls</b> (MAC OS X) command.
+	</blockquote>
+</blockquote>
+</p>
+
+<blockquote>
+<p>
+<b>dirsf</b> <i>filename.extension</i> provides information for the named 
+soundfile.
+	<blockquote>
+	<b>Note that the extension must be specified.</b>  This is 
+	because the same filename may have different extensions:  e.g., 
+	<i>owl.ana</i> (analysis file) and <i>owl.frq</i> (binary pitch data 
+	file &#150; the pitch trace &#150; derived from that analysis file).
+	</blockquote>
+</p>
+</blockquote>
+
+<!--
+<p>
+<b>PC:</b><br>
+<b>dirsf</b> [<b>-l</b> or <b>-t</b>] [<b>-d</b><i>path</i>] [<i>filespec</i>]
+</p>
+-->
+
+<h3>
+Parameters
+</h3>
+	<blockquote>
+	<b>-l</b> &#150;  list names only<br />
+	<b>-t</b> &#150; list modification dates and times<br />
+	<b>-d</b><i>path</i> &#150;  list only files in directory 
+	<i>path</i><br />
+	<i>path</i> &#150; location of the soundfile in the directory 
+	system<br />
+	<i>filespec</i> &#150; filenames specified with wildcards, 
+	e.g., s*.ana<br />
+	</blockquote>
+<!--
+<p>
+<b>Atari Falcon030 &#47; TT030:</b><br />
+<b>dirsf</b> [<b>-g</b>] [<b>-l</b> or <b>-p</b> or <b>-t</b>] 
+[<b>-d</b><i>path</i>] [<i>filespec</i>]
+</p>
+
+<blockquote>
+<h3>
+Parameters
+</h3>
+
+	<blockquote>
+	<b>-g</b> &#150;  list files with all prefixes<br />
+	<b>-l</b> &#150;  list names only<br />
+	<b>-p</b> &#150;  list positions and flags<br />
+	<b>-t</b> &#150;  list modification dates and times<br />
+	<b>-d</b> &#150;  list only files with the given <i>path</i><br />
+	<i>path</i> &#150; location of the soundfile in the directory 
+	system<br />
+	<i>filespec</i> &#150;  filenames specified with wildcards, 
+	e.g., s*.ana<br />
+	</blockquote>
+</blockquote>
+-->
+
+</blockquote>
+
+<h3>
+Understanding the DIRSF Function
+</h3>
+
+<blockquote>
+<p>
+The full soundfile display page shows, from left to right:
+<dl>
+<dt><b>Bytes</b> <dd>the size of the soundfile in bytes
+<dt><b>Channel</b> <dd>the number of channels.  If the file is an 
+analysis file, the number of channels shown is actually the number of 
+filter channels in the analysis + 2 for header information.
+<dt><b>Sample</b> <dd>the numerical format of the data (shorts or floats).  
+CDP now supports the floating point soundfile standard, for greater fidelity, 
+so a 'float' file can be either a soundfile or an analysis file.
+<dt><b>Rate</b> <dd>the sample rate of the soundfile, i.e., the number of 
+times per second the source sound has been 'sampled'.  CDP supports the 
+following sample rates:  96000 , 48000, 44100, 22050, 32000, 16000.  If 
+the file is an analysis file, the number of channels shown is actually 
+the frame rate, i.e., the number of analysis frames in the file.  The 
+PVOC manual explains how this works.
+<dt><b>Seconds</b> <dd>the duration of the soundfile in seconds
+<dt><b>fmt</b> <dd>the format of the file:  <b>.wav</b> or <b>.aif</b> 
+etc. (whether a soundfile or an analysis file with .ana extension), 
+or <b>?</b> if not recognised by the system
+<dt><b>Name</b> <dd>the name given to the soundfile
+</dl>
+</p>
+
+<div align=center>
+<table border=0 cellpadding=3>
+<caption>Example DIRSF display</caption>
+
+<tr>
+<th>Bytes</th>
+<th>Channel</th>
+<th>Sample</th>
+<th>Rate</th>
+<th>Seconds</th>
+<th>fmt</th>
+<th>Name</th>
+</tr>
+
+<tr>
+<td align=right>785408</td>
+<td>1</td>
+<td>short</td>
+<td>44100</td>
+<td>8.905</td>
+<td>W</td>
+<td>softspoken.wav</td>
+</tr>
+
+<tr>
+<td align=right>6357096</td>
+<td>1026</td>
+<td>float</td>
+<td align=right>172</td>
+<td>9.006</td>
+<td>W</td>
+<td>rmstr.ana</td>
+</tr>
+</table>
+</div>
+
+<p>
+DIRSF also handles and displays information about multi-channel file 
+types.  Also see <a href="cmcrefmn.htm">CDP MCTOOLS</a>.
+<p>
+</blockquote>
+
+End of DIRSF<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities.<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="GETCOL">GETCOL &#150; extract a column of numbers from a textfile</h2>
+
+<h3>
+Usage
+</h3>
+<b>getcol</b> <i>in_textfile out_textfile colno</i> [<i>skiplines</i>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>in_textfile</i> &#150; input textfile from which to extract the column<br />
+<i>out_textfile</i> &#150; output textfile to which to write this column<br />
+<i>colno</i> &#150; integer to specify which column to extract (count starts at 1)<br />
+<i>skiplines</i> &#150; number fo lines to skip from head of file (each blank line counts as one line)<br />
+</blockquote>
+
+<h3>
+Understanding the GETCOL Function
+</h3>
+
+<blockquote>
+<p>
+GETCOL provides a mechanism with which one can extract a column of numbers from a text file 
+containing two or more columns and save it to a separate file, for processing (or printing, etc.).<br>
+Using PUTCOL, it can later be placed in another file or returned to the source file. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The COLUMNS program provides many ways of manipulating data, usually as single columns. 
+For example, you might use it to quantise MIDI pitches. GETCOL can extract a column 
+from a breakpoint file to provide an input file for COLUMNS.  
+</p>
+<p>
+<b>ALSO SEE:</b> <a href=#PUTCOL><b>PUTCOL</b></a>, <a href=#COLUMNS><b>COLUMNS</b></a>, <a href="#VECTORS"><b>VECTORS</b></a> 
+</p>
+</blockquote>
+
+
+<p>
+End of GETCOL<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities
+<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="LISTAUDEVS">LISTAUDEVS &#150; list available audio devices</h2>
+
+<h3>
+Usage
+</h3>
+<b>listaudevs</b>
+<br>
+
+<h3>
+Parameters: none
+</h3>
+
+
+<h3>
+About LISTAUDEVS
+</h3>
+
+<blockquote>
+<p>
+Listaudevs provides a list of the audio devices (input and output) on your computer. 
+It reports to the console, but you can redirect the output to a text file by typing
+ <b>listaudevs &gt;<i>filename</i>.txt</b> (PC) or ....(OS X).
+</p>
+
+<p>
+The format of the output list is amost identical to that produced by PAPLAY
+ or PVPLAY (when invoked without parameters).
+Input and output devices are listed separately and 
+the current default output is indicated by a leading 
+asterisk before the device number. See examples in <a href="#PAPLAY"><b>PAPLAY</b></a> and <a href="#PVPLAY"><b>PVPLAY</b></a> below.
+</p>
+
+</blockquote>
+
+
+
+<p>
+End of LISTAUDEVS<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities
+<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="PAPLAY">PAPLAY &#150; Playback of multi-channel soundfiles
+</h2>
+
+<h3>Usage</h3>
+
+<p>
+<b>paplay</b> [<b>-B</b><i>N</i>] [<b>-d</b><i>N</i>] [<b>-g</b><i>N</i>] [<b>-h</b><i>N</i>]
+[<b>-i</b>] [<b>-l</b>]  [<b>-b</b>[<i>N</i>] | <b>-m</b>[<i>S</i>]]  [<b>-u</b>] [<b>-x</b>]
+ <i>soundfile</i> [<i>from</i>] [<i>to</i>]
+</p>
+
+<h3>Parameters</h3>
+
+<p>
+<blockquote>
+<i>soundfile</i> &#150; handles a variety of standard and multi-channel 
+soundfiles. <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;<b>NB:</b> You need to supply the extension explicitly with 
+this program.<br />
+<i>from</i> &#150; optional start-time in seconds (Default = 0).<br>  
+<i>to</i> &#150; optional end-time in seconds (Default= end-of-file)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Enables arbitrary block to be played and looped.<br><br>
+
+
+<b>-d</b><i>N</i> &#150; use output Device <i>N</i><br />
+<b>-g</b><i>N</i> &#150; apply gain factor <i>N</i> to input<br />
+
+<b>-B</b><i>N</i> &#150; set memory buffer size to N frames (default: 32768) <br>
+               &nbsp;&nbsp;&nbsp;&nbsp; N must be a power of 2 (e.g 4096, 8192, 16384 etc).<br>
+<b>-h</b><i>N</i> &#150; set hardware blocksize to N frames (32 < N <= BN/4). Default: from soundcard.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; N is recommended to be a power of two size. <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; Where set, buffer sizes are doubled internally for sample rates &gt;48KHz.<br>
+
+<b>-i</b> &#150; play immediately (do not wait for keypress)<br>
+<b>-l</b> &#150; loop file continuously, from start-time to end-time<br>
+<b>-m</b>[<i>S</i>] &#150; render using channel map string S. (Use -m without parameter for usage.) <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;S (order string) = any combination of characters a-z inclusive.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;No. of characters in S sets no. of output channels &#150; 
+    must be supported by selected device.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Further details &#150; see 
+	<a href="#CHORDER"><b>CHORDER</b></a> <i>orderstring</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>NB</b>: -m cannot be combined with -b (B-Format decoding).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If channel mapping is used, a B-format file (AMB) will be rendered without decoding.
+<br>
+<b>-u</b> &#150; suppress elapsed time updates<br>
+<b>-x</b> &#150; apply WAVE_EX infile channel mask to Direct Sound audio stream (ignored if -m or -b used)<br>
+
+<b>-b</b><i>N</i> &#150; apply 1<sup><small>st</small></sup>-order 
+B-Format decoding to a standard soundfile, which must have at least 
+3 channels.  <br>
+&nbsp;&nbsp;&nbsp;&nbsp; B-Format (<b>.amb</b>) files will be decoded automatically.<br />
+&nbsp;&nbsp;&nbsp;&nbsp; The output channel order is anticlockwise from Centre Front except where indicated.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Layouts marked with an asterisk (*) are compatible with WAVE_EX speaker position order.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <b><i>N</i> sets the speaker layout to one of the following:</b>
+	<ol>
+	<li> &#150; * mono (= W signal only)</li>
+	<li> &#150; * stereo (quasi mid&#47;side, = W +- Y)</li>
+	<li> &#150; square</li>
+	<li> &#150; * quad (FL, FR, RL, RR order) &#150; default</li> 
+	<li> &#150; pentagon</li>
+	<li> &#150; * 5.0 surround (WAVE_EX order)</li>
+	<li> &#150; * 5.1 surround (WAVE_EX order, silent LFE)</li>
+	<li> &#150; hexagon</li>
+	<li> &#150; octagon 1 (front pair, 45&deg;)</li>
+	<li> &#150; octagon 2 (front centre speaker)</li>
+	<li> &#150; cube (as <b>3</b>, low-high interleaved, 
+	     <i>Csound</i> compatible)</li>
+	<li> &#150; * cube (as <b>4</b>, low quad followed by high quad)</li>
+NB: no decoding is performed if the -m flag isused.
+	</ol>
+
+Please also note:
+	<ul>
+	<li> On Windows, ASIO as well as DirectSound is supported. </li>
+	<li> OS X version supports Jack as well as Core Audio.</li>
+	<li> Windows only: use the <b>-x</b> flag option to send 
+	WAVE_EX speaker positions (for starred layouts) to the hardware.  The default is to 
+	send a zero mask, so that channels map directly to successive hardware outputs.</li>
+	<li> PAPLAY reads the PEAK chunk if present to rescale over-range floating-point ('floatsam') files.</li>
+	<li> Type PAPLAY without arguments to display the usage message followed by a list of the available audio devices. Note that input and output devices are listed separately, so that the list can become quite long! The current default output is indicated by a leading asterisk before the device number (see example below).</li>
+<li> For ASIO multi-channel, you may need to select the highest device 
+number, for example:</li>
+	</ul>
+</p>
+
+
+<p>
+<table>
+<tr>
+<th>Device</th><th>Input</th><th>Output</th><th>Name</th>
+</tr>
+
+<tr>
+<td>0</td><td>2</td><td>0</td><td>Primary Sound Capture Driver</td>
+</tr>
+
+<tr>
+<td>1</td><td>2</td><td>0</td><td>Microphone (Realtek High Definition 
+Audio)</td>
+</tr>
+
+<tr>
+<td>2</td><td>2</td><td>0</td><td>Monitor (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>3</td><td>2</td><td>0</td><td>Line 1&#47;2 (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>4</td><td>2</td><td>0</td><td>S&#47;PDIF (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>*5</td><td>0</td><td>2</td><td>Primary Sound Driver</td>
+</tr>
+
+<tr>
+<td>6</td><td>0</td><td>2</td><td>Line 1&#47;2 (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>7</td><td>0</td><td>6</td><td>Speakers (Realtek High Definition 
+Audio)</td>
+</tr>
+
+<tr>
+<td>8</td><td>0</td><td>2</td><td>S&#47;PDIF (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>9</td><td>0</td><td>2</td><td>Realtek Digital Output (Realtek High 
+Definition Audio)</td>
+</tr>
+
+<tr>
+<td>10</td><td>6</td><td>4</td><td>M-Audio Delta ASIO</td>
+</tr>
+
+</table>
+
+</blockquote>
+</p>
+
+<h3>
+About PAPLAY
+</h3>
+
+
+<blockquote>
+<p>
+The same B-Format decoding is employed here as in <a href = "#FMDCODE">
+<b>FMDCODE</b></a>.  As in that program, no shelf filters or nearfield 
+compensation are employed.
+</p>
+
+<p>
+The <b>-i</b> flag is provided primarily to enable the program 
+to be invoked from a scripting language (e.g., TCL/Tk, MatLab, 
+Octave, Tabula Vigilans, etc.) or from batch files, where it is 
+inconvenient to interact with the program via the keyboard.  Otherwise, 
+note that when launched, the program <i>waits for a keypress</i> to 
+commence playback.  As the first block of data is pre-loaded, playback 
+will effectively start immediately.
+</p>
+
+<p>
+<b>Testing audio routing</b><br />
+<br />
+It is strongly recommended that users test their routing before 
+trying to play a multi-channel file.  The MULTI-CHANNEL TOOLKIT 
+can itself be used to prepare suitable test materials.
+</p>
+
+<p>
+One approach is to create a special file (e.g., of spoken idents, or 
+clearly distinguishable tones), with each channel clearly identified 
+in sequence.  The <b>-l</b> flag can be used to loop this or any 
+file until stopped via CTRL-C, while any necessary adjustments to 
+routing or levels are made.  For B-Format playback, it is especially 
+important that all speakers are as closely matched in level and 
+distance as possible, and that any mixer or other level controls 
+are ganged together.
+</p>
+
+<p>
+Such a file is especially easy to create using <i>Audacity</i>:  
+record each ident in sequence as a new track.  Then use <b>Export</b> 
+with <b>Advanced Mixing Options</b> enabled, to save each track as 
+a channel of a multi-channel soundfile.  You can use 
+<a href = "#COPYSFX">COPYSFX</a> to convert this file into the required 
+WAVE_EX format.  Alternatively, use the <b>Export Multiple</b> option to 
+save each track as a separate numbered file, and create the final 
+multi-channel file using <a href = "#INTERLX">INTERLX</a>.  This 
+approach is indicated, for example, when the same idents can be 
+used, in different combinations, for a variety of multi-channel 
+layouts.
+</p>
+
+<p>
+To check that speaker levels are exactly matched, a file with test 
+signals is required, with (ideally) a loudness meter at the listening 
+position.  This is especially important if unmatched speakers (and 
+amplifiers) are employed!
+</p>
+
+<p>
+<b>OS X</b><br />
+<br />
+It goes without saying that PAPLAY uses CoreAudio.  OS X itself 
+recognises both WAVE_EX files and the most standard speaker layouts 
+and renders them (e.g., via <i>Quicktime</i>) appropriately, given 
+multi-channel hardware.  PAPLAY simply sends the channels in order 
+to the chosen device.
+</p>
+
+<p>
+The historical limitations (and bugs) with respect to the WAVE formats 
+associated with earlier Macintosh systems are long gone, and with the 
+move to Intel processors the case for using WAVE (in general) over 
+the AIFF formats is even stronger.  The AIFF format is now arguably 
+all but obsolete &#150; such definitions as exist in the AIFF and 
+AIFFC specifications for multi-channel files are variously obsolete 
+and ambiguous.  Apple's replacement for the AIFF family is the new 
+CAF file format.  Support for this may appear in later updates to 
+the MULTI-CHANNEL TOOLKIT.
+</p>
+
+<p>
+<b>Windows</b><br />
+<br />
+PAPLAY supports both the DirectSound and the ASIO 
+APIs.  Accordingly, the displayed list of devices will be longer 
+than before, with the same hardware identified for each API as 
+appropriate. In Windows, it is not necessary to set a device number if you wish
+to play the file on the default audio playback device set in Control Panel.
+</p>
+
+<p>
+Note the <b>-x</b> flag, exclusive to the Windows platform.  Windows 
+recognises a very limited set of standard speaker layouts.  These 
+can be selected (in this example, in XP) via the <b>Advanced</b> 
+button on the Audio page of <b>Sound and Audio device Properties</b>.  
+To play a multi-channel WAVE_EX file using <b>Media Player</b> or 
+other Windows-standard player, users will need to check which layout 
+is selected.  If these is any mismatch, such as trying to play a 
+5.1 file to stereo speakers, the Windows kernel mixer will attempt 
+to map the audio channels to that layout in some representative 
+way.  This has some virtues, such as being able to audition an 
+arbitrary multi-channel file over stereo speakers.  Many commercial 
+editors and DAWs perform in much the same way, sending the WAVE_EX 
+channel mask directly to the subsystem.  Should the user want to 
+replicate this behaviour using PAPLAY, the <b>-x</b> flag can be 
+used.  This flag is not available in the OS X version of PAPLAY.
+</p>
+
+<p>
+Note, however, that when Windows plays, for example, a quad soundfile 
+to a stereo device, the rear channels are typically rendered at a 
+lower level.
+</p>
+
+<p>
+For such tasks as B-Format decoding to relatively unorthodox layouts 
+such as hexagon or octagon, this automatic remapping is not useful 
+beyound a simple integrity check.  The default behaviour of PAPLAY is 
+to send a 'generic' mask value of zero to the audio subsystem, so 
+that channels are simply mapped to successive device outputs.
+</p>
+
+</blockquote>
+
+<p>
+End of PAPLAY<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities
+<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="PUTCOL">PUTCOL &#150; place a column of numbers into a textfile</h2>
+
+<h3>
+Usage
+</h3>
+<b>putcol</b> <i>columnfile intofile out_textfile colno</i> <b>-r</b>|<b>-i</b> [[-]<i>skiplines</i>] [<b>-e</b>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>columnfile</i> &#150; input textfile containing the column to be placed<br />
+<i>intofile</i> &#150; name of existing textfile into which the column will be placed<br>
+<i>out_textfile</i> &#150; name of resultant textfile<br />
+<i>colno</i> &#150; position number of the column to be added (count starts at 1)<br />
+<b>-r</b> &#150; replace original column<br>
+<b>-i</b> &#150; insert new column amongst the original columns<br>
+<i>skiplines</i> &#150; number of lines to skip from head of <i>intofile</i> before writing the coluimn data, retaining the lines skipped over
+(each blank line counts as one line)<br />
+<i>-skiplines</i> &#150; number of lines to skip from head of <i>intofile</i> before writing the coluimn data, discarding the lines skipped over
+(each blank line counts as one line)<br />
+<b>-e</b> &#150; Ignore lines which contain only 'e' or 's' (possibly legacy values?) and comment lines starting with ';'. (Skipped lines should still be counted).<br>
+</blockquote>
+
+<h3>
+Understanding the PUTCOL Function
+</h3>
+
+<blockquote>
+<p>
+PUTCOL saves typing time by placing a whole column of numbers into a textfile already containing at least one column of numbers.
+For example, if you have extracted and processed numbers extracted from a breakpoint file, you can use PUTCOL to replace the original column.
+</p><p>
+Note that, as with all CDP functions, the original file (<i>intofile</i>) is not actually over-written; instead you are writing to a new file (<i>out_textfile</i>).   
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The COLUMNS program provides many ways of manipulating data, usually as single columns. 
+For example, you might use it to quantise MIDI pitches. PUTCOL can place the processed column 
+into a revised version of the original file. 
+</p>
+<p>
+<b>ALSO SEE:</b> <a href="#GETCOL"><b>GETCOL</b></a>, <a href="#COLUMNS"><b>COLUMNS</b></a>, <a href="#VECTORS"><b>VECTORS</b></a> 
+</p>
+</blockquote>
+
+
+<p>
+End of PUTCOL<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities
+<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="PVPLAY">PVPLAY &#150; Play multi-channel PCM and analysis files
+</h2>
+
+<h3>
+Usage
+</h3>
+<p>
+<b>pvplay</b> [<b>-B</b><i>N</i>] [<b>-d</b><i>N</i>] [<b>-g</b><i>N</i>] [<b>-h</b><i>N</i>]
+[<b>-i</b>] [<b>-l</b>]  [<b>-b</b>[<i>N</i>] [<b>-u</b>] [<b>-x</b>]
+ <i>infile</i> [<i>from</i>] [<i>to</i>]
+</p>
+
+
+<h3>
+Parameters
+</h3>
+(identical to PAPLAY, except no -m flag)
+<p>
+<blockquote>
+<i>infile </i>[<i>.wav</i> &#124; <i>.aif</i> &#124; <i>.ana</i> &#124; <i>.pvx</i>] &#150; analysis file or soundfile 
+to be played.  <b>NB:</b> You need to supply the 
+extension explicitly, so that the program knows what kind of file 
+is being played.<br />
+
+
+<i>from</i> &#150; start time (secs) for playback and looping. (Default: 0) <br>. 
+<i>to</i> &#150; end time (secs) for playback and looping. (Default: end-of-file)<br>
+
+
+<b>-d</b><i>N</i> &#150; use output Device <i>N</i><br />
+<b>-g</b><i>N</i> &#150; apply gain factor <i>N</i> to input<br />
+
+<b>-B</b><i>N</i> &#150; set memory buffer size to N frames (default: 32768) <br>
+               &nbsp;&nbsp;&nbsp;&nbsp; N must be a power of 2 (e.g 4096, 8192, 16384 etc).<br>
+<b>-h</b><i>N</i> &#150; set hardware blocksize to N frames (32 < N <= BN/4). Default: set internally.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; N is recommended to be a power of two size. <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; Where set, buffer sizes are doubled internally for sample rates &gt;48KHz.<br>
+
+<b>-i</b> &#150; play immediately (do not wait for keypress)<br>
+<b>-l</b> &#150; loop file continuously, from start-time to end-time<br>
+<b>-u</b> &#150; suppress elapsed time updates<br>
+<b>-x</b> &#150; apply WAVE_EX infile channel mask to Direct Sound audio stream (ignored if -b used)<br>
+
+<b>-b</b><i>N</i> &#150; apply 1<sup><small>st</small></sup>-order 
+B-Format decoding to a standard soundfile, which must have at least 
+3 channels.  <br>
+&nbsp;&nbsp;&nbsp;&nbsp; B-Format (<b>.amb</b>) files will be decoded automatically.<br />
+&nbsp;&nbsp;&nbsp;&nbsp; The output channel order is anticlockwise from Centre Front except where indicated.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Layouts marked with an asterisk (*) are compatible with WAVE_EX speaker position order.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <b><i>N</i> sets the speaker layout to one of the following:</b>
+	<ol>
+	<li> &#150; * mono (= W signal only)</li>
+	<li> &#150; * stereo (quasi mid&#47;side, = W +- Y)</li>
+	<li> &#150; square</li>
+	<li> &#150; * quad (FL, FR, RL, RR order) &#150; default</li> 
+	<li> &#150; pentagon</li>
+	<li> &#150; * 5.0 surround (WAVE_EX order)</li>
+	<li> &#150; * 5.1 surround (WAVE_EX order, silent LFE)</li>
+	<li> &#150; hexagon</li>
+	<li> &#150; octagon 1 (front pair, 45&deg;)</li>
+	<li> &#150; octagon 2 (front centre speaker)</li>
+	<li> &#150; cube (as <b>3</b>, low-high interleaved, 
+	     <i>Csound</i> compatible)</li>
+	<li> &#150; * cube (as <b>4</b>, low quad followed by high quad)</li>
+	</ol>
+
+Please also note:
+	<ul>
+	<li> On Windows, ASIO as well as DirectSound is supported. </li>
+	<li> OS X version supports Jack as well as Core Audio.</li>
+	<li> Windows only: use the <b>-x</b> flag option to send 
+	WAVE_EX speaker positions (for starred layouts) to the hardware.  The default is to 
+	send a zero mask, so that channels map directly to successive hardware outputs.</li>
+	<li> PVPLAY reads the PEAK chunk if present to rescale over-range floating-point ('floatsam') files.</li>
+	<li> Type PVPLAY without arguments to display the usage message followed by a list of the available audio devices. Note that input and output devices are listed separately, so that the list can become quite long! The current default output is indicated by a leading asterisk before the device number (see example below).</li>
+<li> For ASIO multi-channel, you may need to select the highest device 
+number, for example:</li>
+	</ul>
+</p>
+
+<p>
+<table>
+<tr>
+<th>Device</th><th>Input</th><th>Output</th><th>Name</th>
+</tr>
+
+<tr>
+<td>0</td><td>2</td><td>0</td><td>Primary Sound Capture Driver</td>
+</tr>
+
+<tr>
+<td>1</td><td>2</td><td>0</td><td>Microphone (Realtek High Definition 
+Audio)</td>
+</tr>
+
+<tr>
+<td>2</td><td>2</td><td>0</td><td>Monitor (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>3</td><td>2</td><td>0</td><td>Line 1&#47;2 (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>4</td><td>2</td><td>0</td><td>S&#47;PDIF (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>*5</td><td>0</td><td>2</td><td>Primary Sound Driver</td>
+</tr>
+
+<tr>
+<td>6</td><td>0</td><td>2</td><td>Line 1&#47;2 (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>7</td><td>0</td><td>6</td><td>Speakers (Realtek High Definition 
+Audio)</td>
+</tr>
+
+<tr>
+<td>8</td><td>0</td><td>2</td><td>S&#47;PDIF (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>9</td><td>0</td><td>2</td><td>Realtek Digital Output (Realtek High 
+Definition Audio)</td>
+</tr>
+
+<tr>
+<td>10</td><td>6</td><td>4</td><td>M-Audio Delta ASIO</td>
+</tr>
+
+</table>
+
+</blockquote>
+</p>
+
+
+<h3>
+Understanding the PVPLAY Function
+</h3>
+
+<blockquote>
+<p>
+PVPLAY enables you to audition spectral analysis files (with the extension <b>.ana</b>)
+ &#150; as well as soundfiles &#150; through the device selected. 
+The resynthesis is handled by PVPLAY in real-time.
+</p>
+
+<p>
+PVPLAY makes it possible to audition the result of a spectral data 
+manipulation process right away, prior to converting to a soundfile.  
+This saves both time and disk space:  you can hear and delete trial 
+runs until achieving the desired result.
+</p>
+
+<p>
+Because PVPLAY handles playback of both soundfiles and analysis files, 
+it can be used as the default CDP play program. The Windows wave-mapper is useful as a way of finding a way to play back 
+soundfiles which may not be supported by your main playback device.
+</p>
+
+<p>
+N.B. While PVPLAY can play multi-channel spectral analysis files, identified by 
+the <b>.pvx</b> extension (see usage), these have not yet been implemented in the 
+rest of the CDP system.
+</p>
+
+<h3>
+PVPLAY in <i>Sound Loom</i>
+</h3>
+When set in <i>Sound Loom</i> as the default play program, the <b>-i</b> flag should 
+be set.  The file which contains the information for playback for 
+<i>Sound Loom</i> is <i>playcmd.cdp</i>, which is placed in the 
+'_cdpenv' directory.  If PVPLAY were to be set as the default 
+play program, <i>playcmd.cdp</i> should contain:<br />&nbsp;&nbsp;&nbsp;&nbsp;
+<code>pvplay -i</code><br />
+
+The <i>playcmd.cdp</i> file is an editable text file, and you should 
+check that it contains what you expect it to contain.  If for example, 
+you set it from within <i>Sound Loom</i> itself, the <b>-i</b> flag 
+(for immediate playback without user intervention) may not have 'taken'. 
+You can put the flag there by editing the file.
+</p>
+
+</blockquote>
+
+<p>
+End of PVPLAY<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities.<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top"><b>Return</b></a> 
+to Spectral Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+
+</p>
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="RECSF">RECSF &#150; Record, creating a soundfile (PC only)
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>recsf</b>  [<b>-B</b><i>N</i>] [<b>-c</b><i>N</i>] [<b>-d</b><i>N</i>] 
+ [<b>-h</b><i>N</i>]  [<b>-i</b></i>]  [<b>-p</b>] [<b>-r</b><i>N</i>] [<b>-t</b><i>N</i>] 
+ <i>outfile</i> [<i>dur</i>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>outfile</i> &#150; output file in WAVE, AIFF or AIFC formats, determined by the file extension.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Use the extension <b>.amb</b> to create an ambisonic B-Format file.<br>
+<b>-B</b><i>N</i> &#150; set memory buffer size to N frames (default: 32768) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; N must be a power of 2 (e.g 4096, 8192, 16384 etc).<br>
+<b>-c</b><i>N</i> &#150; number of channels to record (Range: 1 to 16; default = 2)<br />
+<b>-d</b><i>N</i> &#150; use input device <i>N</i><br /> 
+&nbsp;&nbsp;&nbsp;&nbsp; Type <b>recsf</b> with no parameters for a list of available input devices.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Default device is marked with an asterisk (*).
+(See examples in <a href="#PAPLAY"><b>PAPLAY</b></a> and <a href="#PVPLAY"><b>PVPLAY</b></a>.)<br>
+&nbsp;&nbsp;&nbsp;&nbsp; For ASIO multi-channel, you may need to select the highest device number.<br>
+<b>-h</b><i>N</i> &#150; set hardware blocksize to N frames (32 < N <= BN/4). Default: set by device.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; N is recommended to be a power of two size. <br>
+<b>-i</b> &#150; start recording immediately (default: wait for keypress)<br>
+<b>-p</b> &#150; suppress running peak level indicator<br>
+<b>-r</b><i>N</i> &#150; set sample rate to N Hz (default: 44100)<br />
+<b>-t</b><i>N</i> &#150; set sample type to N (default: 1)
+	<ul>
+	<li>0: 16 bit integer </li>
+	<li>1: 24 bit integer </li>
+	<li>2: 32 bit floating-point </li>		
+	</ul> 
+<i>dur</i> &#150; optional fixed duration (secs) for the outfile (overriden by Ctrl-C).<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Otherwise, use Ctrl_C to terminate recording.<br><br>
+
+</blockquote>
+</p>
+
+<h3>
+Understanding the RECSF Process
+</h3>
+
+<blockquote>
+<p>
+RECSF inputs the sound from the device selected, creating a soundfile in 
+the specified format.  It is best to start the playback device just before 
+running RECSF so that any impulse generated when the device begins is not 
+recorded.
+</p>
+
+<p>
+The program also interrogates your system and displays the available 
+recording time in seconds for a 16-bit soundfile at a sample rate of 44100.
+</p>
+</blockquote>
+
+<p>
+End of RECSF<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities.<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="VECTORS">VECTORS &#150; numerical operations between two columns of figures</h2>                                                                                                                                                                                                                                                                                          
+
+<h3>
+Usage
+</h3>
+<b>vectors -h</b><br>
+OR<br>
+<b>vectors</b> <i>column1 column2</i> [<i>outfile</i>] <i>flag</i> [<b>-e</b><i>error</i>]</i><br>
+
+<h3>Parameters</h3>
+<blockquote>
+<b>-h</b> &#150; on-screen help message listing the flags<br>
+<i>column1</i> &#150; textfile with a list of numbers (on same or separate lines)<br />
+<i>column2</i> &#150; second textfile with a list of numbers (on same or separate lines)<br />
+<i>outfile</i> &#150; text file to which the output is written. If not specified, output is to the screen.<br />
+<i>flag</i> &#150; specifies the operation to perform. It can be one of:
+  <blockquote>
+  <b>-a</b> &#150; add each corresponding value of <i>column1</i> to <i>column2</i><br>
+  <b>-s</b> &#150; subtract each corresponding value of <i>column1</i> from <i>column2</i>  <br>
+  <b>-m</b> &#150; multiply each value of <i>column1</i> by the corresponding value of <i>column2</i><br>
+  <b>-d</b> &#150; divide each value of <i>column1</i> by the corresponding value of <i>column2</i><br>
+  <b>-p</b> &#150; raise each value of <i>column1</i> to the power expressed by the corresponding value of <i>column2</i> (must be &gt;=0)  <br>
+  <b>-Ra</b> &#150; add a random value between + and - the corresponding value of <i>column2</i> <br>
+  <b>-Rm</b> &#150; multiply <i>column1</i> value by a random value between 0 and the value in <i>column2</i>    <br>
+  <b>-Rs</b> &#150; apply random variation to (ascending) values in <i>column1</i> (cumulatively) by adding it to a random
+	value, the range of which is defined by the corresponding number in <i>column2</i> (which must be between 0 and 1); see further details below <br>
+  <b>-S</b><i>N</i> &#150; substitute value <i>N</i> in <i>column1</i> with the next value in <i>column2</i> <br>
+  <b>-q</b><i>N</i> &#150; quantise <i>column1</i> with <i>column2</i> (ascending order); see further details below <br>
+  <b>-o</b> &#150;  overwrite first and every <i>N</i>th term of <i>column1</i> with the corresponding value of <i>column2</i>   <br>
+  <b>-i</b><i>N</i> &#150; insert <i>column2</i> at start and after every <i>N</i>th term of <i>column1</i> <br>
+  <b>-I</b> &#150;  interleave <i>column2</i> alternately with <i>column1</i> <br>
+  </blockquote>
+</blockquote>
+
+<h3>
+Understanding the VECTORS Function
+</h3>
+
+<blockquote>
+<p>
+Along with <a href="#COLUMNS">COLUMNS</a>, VECTORS provides another range of facilities to manipulate columns of numbers.<br> 
+<b>The output is a single column</b>, in effect a massaged <i>column1</i>; thus <i>column2</i> is being used to modify <i>column1</i>. This can be useful to 'loosen up' the use of numbers, to make them more 'plastic' and 'human'.
+</p><p> 
+ <b>-Rs</b> flag (random variation): in effect, this is 'humanising' the <i>column1</i> numbers with a random factor.
+   <i>Column2</i> defines the range &#150; always between 0 and 1 &#150; within which the number is selected. For example, a 1 in <i>column2</i> means that the full 0-1 range will be used, whereas 0.5 in <i>column2</i> means that only half the range will be used, i.e., the random value will lie between 0 and 0.5.  
+</p><p>
+ <b>-q</b> flag (quantise): the values in <i>column1</i> are in effect 'snapped' to the nearest available value in <i>column2</i>. 
+<br>For example:
+	<pre><code>
+	<b>column1     column2  outfile</b>    Comment
+	2.5         3        3
+	4.5         4        4
+	6.5         9        4		6.5 is closer to 4 than to 9
+	8.5         10       9          8.5 is closer to 9 than to 10
+	10.5        12       10         10.5 is closer to 12 than to 10
+	12.5        15       12		12.5 is closer to 12 than to 15
+	            16       no output  outfile is truncated
+	            18       no output
+	</pre></code>
+
+</p>
+</blockquote>
+<p>
+<b>ALSO SEE:</b> <a href="#COLUMNS"><b>COLUMNS</b></a>, <a href="#GETCOL"><b>GETCOL</b></a>,  <a href="#PUTCOL"><b>PUTCOL</b></a>.
+</p>
+
+
+<p>
+End of VECTORS<br>
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile utilities
+<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a>
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm#startpos" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<!-- ************************************************************************ 
+
+<h2 id="CDPCONV"> CDPCONV &#150; Utility to convert analysis 
+files from PPC to Intel format (MAC only) </h2>
+<p><b>NB: CDPCONV is no longer included in the CDP distribution. </b></p>
+
+
+<h3>
+Usage
+</h3>
+<b>cdpconv</b> <i>infile</i> [<i>outfile</i>]
+<br />
+
+<blockquote>
+Provide an <i>outfile</i> name to perform a non-destructive copy. 
+Otherwise the 'destructive' mode is used.
+</blockquote>
+
+<p>
+Example command line to carry out the conversion :<br>
+	<blockquote>
+	<b><code>cdpconv splash.ana</i> <i>splashcnv.ana</i></code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input CDP file created on a PPC Mac, which can 
+be any of <b>.ana</b>, <b>.frq</b>, <b>.trn</b>, <b>.evl</b>, 
+<b>.fmt</b>, <b>.for</b><br />
+<i>outfile</i> &#150; optional new file, omitted if the new file 
+is to replace the old one ('destructive')<br />
+</blockquote>
+
+<h3>
+Understanding the CDPCONV Function
+</h3>
+
+<blockquote>
+<p>
+Computer memory architectures fall into two types, according to the
+"endianness" order in which they write multi-byte numbers into memory.
+A Power-PC (PPC) based Macintosh uses a "big-endian" byte order, while a
+machine based on an Intel CPU (i.e. including an Intel-based Mac) uses
+the opposite "little-endian" order.
+</p>
+
+<p>
+CDP analysis files employ a number of "custom" property fields written
+into the header. For historical reasons these do not maintain a
+specific endianness, but are simply written according to the "native"
+endianness of the host machine.  <b>To transfer such files from one
+architecture to another, such as when moving from an older PPC Mac to
+an Intel Mac or PC, these property fields need to be 'byte-swapped'.</b> 
+</p>
+
+<p>
+You can determine if a file needs byte-swapping by running one of the
+CDP programs that reports file properties:<br />
+<br />
+<blockquote>
+<code>sndinfo props</code> (may report failures to read the file)<br />
+<code>sfprops</code> (will report all properties, with bad values)
+</blockquote>
+Typically, integer fields will have huge or negative values, and
+floating-point fields will likely appear as zero.
+</p>
+
+<p>
+CDP provides this utility program, CDPCONV, to accomplish this task.  It 
+was written by Richard Dobson.  It can be used <i>either</i> <b> 
+destructively</b> (overwrites the file header directly) or 
+<b>non-destructively</b> (creates a new file).  Clearly the 'destructive' 
+mode will be very fast, saves disk space and avoids the inconvenience of renaming files, but in theory always carries the risk, however unlikely, of some hardware error causing the file header to become damaged. The audio data itself is not touched at all.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+While one may often need to convert a single file at a time, it may 
+be more convenient to carry out the conversion on those in a whole 
+directory at once.  The following information about a shell script 
+describes how to do this.
+</p>
+
+<p>
+<b>Batch processing via a Shell script</b><br />
+OS X supports simple shell-based scripting via Terminal.  This can be 
+used to batch-process all files in the current directory.  The example
+below (copy to a file called e.g., <i>anaconv.sh</i>) runs CDPCONV on 
+all soundfiles with the <b>.ana</b> extension:
+<pre>
+#!/bin/bash
+
+read -n1 -sp "ANACONV: press any key to continue..."
+
+for filename in *.ana
+do
+   echo
+   if(test -a "$filename")
+    then
+      echo converting "$filename"
+      cdpconv "$filename"
+   fi	
+done
+</pre>
+Note that it asks for a keypress before continuing &#150; this gives 
+you a chance to bail out if the script is run by accident!
+</p>
+
+<p>
+To convert all CDP analysis files replace the line starting 
+<code>for filename</code> with<br />
+<br />
+<code>for filename in *.ana, *.frq, *.trn, *.evl, *.fmt, *.for</code>
+</pre>
+You can modify the search list in this way to select any required set
+of files.
+</p>
+
+<p>
+Note that CDPCONV does not test the properties in any way &#150; it 
+simply performs the byteswap.  Applying CDPCONV again to the same file 
+will restore the original 'endianness'.
+</p>
+</blockquote>
+
+<p>
+End of CDPCONV<br />
+<a href="#UTILSCONTENTS"><b>Return</b></a> to List of soundfile 
+utilities<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+-->
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 10 Apr 2023 for CDP8<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

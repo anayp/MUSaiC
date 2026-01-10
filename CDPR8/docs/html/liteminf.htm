@@ -1,0 +1,1426 @@
+<html>
+<!-- liteminf.htm - More information re CDP-LITE functions revised HTML5 version -->
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP-LITE More Information</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdplite.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+
+<!--
+<p>
+<br />
+</p>
+
+
+<p>
+<IMG SRC="images/cdpcircs.jpg" align="left"></a>
+</p>
+
+
+<p>
+<br />
+<br />
+<br />
+<br />
+</p>
+-->
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="tutorials.htm" Target="_top"><b>Tutorials Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="cspecndx.htm" Target="_top"><b>Spectral Index</b></a>
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <dt><a href="#ORIENTATION"><b>Orientation</b></a>
+  <br><br> 
+  <b>LEVEL 1</b> 
+  <dt><b>Musical Role:</b>
+  <dt>&nbsp;<a href = "lite.htm#COLOUR"><b>COLOUR</b></a>
+  <dt>&nbsp;<a href = "lite.htm#COMBINE"><b>COMBINE</b></a>
+  <dt>&nbsp;<a href = "lite.htm#EDIT"><b>EDIT</b></a>
+  <dt>&nbsp;<a href = "lite.htm#LENGTH"><b>LENGTH</b></a>
+  <dt>&nbsp;<a href = "lite.htm#REARRANGE"><b>REARRANGE</b></a>
+  <dt>&nbsp;<a href = "lite.htm#REDUCE"><b>REDUCE</b></a>
+  <dt>&nbsp;<a href = "lite.htm#SPACE"><b>SPATIALISE</b></a>
+  <dt>&nbsp;<a href = "lite.htm#TIME"><b>TIME</b></a>
+  <dt>&nbsp;<a href = "lite.htm#TUNE"><b>TUNE</b></a>
+  <dt>&nbsp;<a href = "lite.htm#UPDOWN"><b>UP/DOWN/GLISS</b></a>
+
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+     <div align=center>
+     <br>
+     <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+     </div>
+
+   <h1 align=center>CDP-LITE &#150; MORE INFORMATION</h1>
+   <!--
+   <font color="0000BB">CDP-LITE &#150; MORE INFORMATION</font>
+   -->
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+
+<h2>
+Musical Role: COLOUR the whole sound
+</h2>
+
+<blockquote>
+<table border="1" cellpadding="4">
+
+<tr>
+<th bgcolor="#EFCF75">FUNCTION</th>
+<th bgcolor="#EFCF75">PURPOSE</th>
+</tr>
+
+<td align="center" bgcolor="#EFCF75" id="FBK">
+<b>FILTER BANK</b><br />[TD]</td>
+<td>The centers of several bands of frequencies are emphasised, 
+creating resonance effects.  Example uses:
+	<ul>
+	<li>lightly blur and warm a sound</li>
+	<li>keep even or odd harmonics, discarding the others</li>
+	<li>bring out the subharmonics of a sound</li>
+	<li>colour with the harmonic (overtone) series</li>
+	<li>colour with equal divisions of a frequency band</li>
+	</ul>
+The degree to which the filter focuses tightly on the bands 
+determines how much one hears pitches:  i.e., high <b>Q</b> and 
+narrow bands.  With lower <b>Q</b> and wider bands, more of 
+the original sound 'comes through'.  'Q' is the focus of the 
+filter.<br />
+<a href="cgrofilt.htm#BANK">Reference Manual</a> &nbsp;
+<a href="lite.htm#COLOUR">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="FFX">
+<b>FIXED</b><br />[TD]</td>
+<td>Use a fixed roll-off slope to boost or cut frequencies.  Example uses:
+	<ul>
+	<li><b>hi-pass filtering:</b> cut below a specified frequency</li>
+	<li><b>lo-pass filtering:</b> cut above a specified frequency</li>
+	<li><b>notch filtering:</b> cut around a specified frequency</li>
+	</ul>
+Boosting instead of cutting achieves the opposite effect: boost below 
+emphasises the lower frequencies, boost above emphasises the higher 
+frequencies, and boost around creates an area of resonance.  The roll-off 
+slope is known as <i>Q</i>.  Perhaps professional engineers know why.<br />
+<a href="cgrofilt.htm#FIXED">Reference Manual</a> &nbsp;
+<a href="lite.htm#COLOUR">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="FLH">
+<b>FILTER LOHI</b><br />[TD]</td>
+<td>Create LO- or HI-PASS filters by specifying the outer limits of the 
+frequency band to filter.  Example uses:
+	<ul>
+	<li><b>lo-pass:</b> stop-limit is above pass-limit.  This 
+	removes the upper frequencies, leaving the lower ones.  It 
+	produces a softer, muffled tone.  It can also be used to 
+	remove unwanted hiss in a sound, though a more elaborate 
+	CLEAN function is often needed.</li>
+	<li><b>hi-pass:</b> stop-limit is below pass-limit.  This 
+	removes lower frequencies, leaving the higher ones.  It produces 
+	a thin, perhaps metallic, tone.  It can also be used to remove 
+	unwanted bass resonance.</li>
+	</ul>
+The musical use, as suggested here, is simply to colour the tone of the 
+sound, making it either brighter or muffled.<br />
+<a href="cgrofilt.htm#LOHI">Reference Manual</a> &nbsp;
+<a href="lite.htm#COLOUR">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="FVR">
+<b>FILTER VARIABLE</b><br />[TD]</td>
+<td>Select modes for Lo- Hi- Band-Pass or Notch filters with only a 
+single specifying frequency to specify.  Example uses:
+	<ul>
+	<li>easily compare the effect of different filter types</li>
+	<li>create strong, pitched tones (resonance) by adjusting the 
+	<i>acuity</i> parameter</li>
+	</ul>
+Because only a single frequency is specified, this function has only a 
+limited effect on the sound, but it is useful for exploring resonance 
+effects placed at specific frequencies.<br />
+<a href="cgrofilt.htm#VARIABLE">Reference Manual</a> &nbsp;
+<a href="lite.htm#COLOUR">Back</a></td></td></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="FOF">
+<b>FOCUS FOLD</b><br />[TD]</td>
+<td>Move (fold) the partials of the spectrum into the bounds of a 
+specified frequency band.  This has a marked effect on the colour, the 
+timbre of the sound because the partials are so greatly moved from 
+their original pitch levels. Example uses:
+	<ul>
+	<li>folding frequencies up into a tight band can create eerie 
+	high pitched effects, sometimes like an ethereal wind or high 
+	and slightly ringing</li>
+	<li>folding frequencies down creates deep, complex tones</li>
+	</ul>
+In the spectral domain, the frequency and amplitude of each partial is 
+known as a result of the FFT analysis.  This function is a good example 
+of how this information can be used: in this case, shifting their 
+pitch levels such that all the frequencies of the sound end up within 
+the specified band.  It is a very interesting function to explore.<br />
+<a href="cfocus.htm#FOLD">Reference Manual</a> &nbsp;
+<a href="lite.htm#COLOUR">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="MRRM">
+<b>RING MODULATION</b><br />[TD]</td>
+<td>This is a great technique first used with analogue 
+equipment.  It both adds and subtracts a specified frequency, 
+thereby creating two 'sidebands', one above and one below 
+the original sound.  Example uses:
+	<ul>
+	<li>make a sound 'hollow' by giving a fairly high 
+	value for the modulating frequency, e.g, 1000</li>
+	<li>create beat patterns by specifying a very low 
+	frequency value, e.g., 5</li>
+	<li>enrich the timbre of a sound with a mid-range 
+	frequency value, e.g., 100</li>
+	</ul>
+This process adds timbral edge and variety, and also makes other 
+functions more effective because of the additional artefacts 
+in the sound.<br />
+<a href="cgromody.htm#RADICAL">Reference Manual</a> &nbsp;
+<a href="lite.htm#COLOUR">Back</a></td>
+</tr>
+
+</table>
+</blockquote>
+
+<p>
+<br />
+</p>
+<!-- ********************************************************** -->
+<h2 id="COMBINE">Musical Role: COMBINE features of different sounds
+</h2>
+
+<blockquote>
+<table border="1" cellpadding="4">
+<tr>
+<th bgcolor="#EFCF75">FUNCTION</th>
+<th bgcolor="#EFCF75">PURPOSE</th>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="CIL">
+<b>COMBINE INTERLEAVE</b><br />[SD]</td>
+<td>Alternate short sections of 2 or more sounds.  Example uses:
+	<ul>
+	<li>rough-grained, flapping effect (many windows)</li>
+	<li>fine-grained, sandy effect (few windows)</li>
+	<li>new timbral effects by mixing several sounds 
+	in this way.</li>
+	</ul>
+There is always a certain 'motoric', mechanical quality to 
+the outputs of this function, more pronounced when the inputs 
+contrast.  Working with more than 3 inputs is worth exploring!<br />
+<b>Key Parameter:</b> <i>windows</i> &#150; the number of analysis windows 
+from each sound to interleave.<br />
+<a href="ccombine.htm#INTERLEAVE">Reference Manual</a> &nbsp;
+<a href="lite.htm#COMBINE">Back</a>
+</td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="CMAX">
+<b>COMBINE MAX</b><br />[SD]</td>
+<td>Subtle and somewhat unpredictable mix because the inputs are 
+compared on a window-to-window basis, with only the loudest 
+window being retained.  Example uses:
+	<ul>
+	<li>smooth, seamless mix of similar sounds with steady 
+	amplitude contours.</li>
+	<li>features from contrasting sounds come and go</li>
+	</ul>
+The more the input sounds vary in timbral quality and change 
+in their loudness contours, the more unpredictable and 
+interesting the results.  I have always been inspired by 
+Rob Waring's mix of a female singing voice, a whistle and a 
+deep drone.  Note that a large number of inputs are allowed.<br />
+<a href="ccombine.htm#MAX">Reference Manual</a> &nbsp;
+<a href="lite.htm#COMBINE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="ERPL">
+<b>ENVELOPE REPLACE</b><br />[TD]</td>
+<td>Here we take the loudness contour from one sound and put it 
+onto another sound.  There is no change of timbre, but the 
+loudness of the second sound now rises and falls according to 
+the pattern derived from the first. Example uses:
+	<ul>
+	<li>introduce pulsations into a steady sound</li>
+	<li>prepare a sound for a MORPH by giving it some 
+	patterning from the sound it will turn into</li>
+	</ul>
+This function only really makes sense when a steady sound is 
+enlivened with the patterns of a changing sound.  Smoothing out 
+a lively sound only reduces its interest.<br />
+<a href="cgroenvl.htm#REPLACE">Reference Manual</a> &nbsp;
+<a href="lite.htm#COMBINE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="FVOC">
+<b>FORMANTS VOCODE</b><br />[SD]</td>
+<td>This technique is known as cross-synthesis: the tonal characteristics 
+cross from one sound to another.  Example uses:
+	<ul>
+	<li>one sound moves 'to the tune of another' &#150; not just 
+	the normal amplitude contour of the samples as in the time-domain, 
+	but influenced by the <i>colour</i> highs and lows</li>
+	<li>impose vocal speech on other types of sound</li>
+	<li>associate the 'wrong' timbre with the performance 
+	characteristics of an instrument</li>
+	</ul>
+The key element is the spectral envelope.  This means the changing pattern 
+of the <i>amplitude</i> of the partials contained in the sound.  Thus 
+different tone colours are emphasised at different times.  It is this 
+changing tone pattern in sound 2 which is imposed on sound 1.  Thus, if 
+sound 1 is water and sound 2 is a voice, the timbral rise and fall of the 
+voice is heard in the water, i.e., the water 'speaks'.  It is clear, then, 
+that this function will work best when sound 2 has very perceptible 
+changes in the loudness curve of the tone colour: prominent strong 
+frequency components.<br />
+<a href="cformant.htm#VOCODE">Reference Manual</a> &nbsp;
+<a href="lite.htm#COMBINE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="MMPH">
+<b>MORPH MORPH</b><br />[SD]</td>
+<td>Create a transition between the spectra of 2 sounds.  This means 
+interpolating, making gradual numerical transitions, between the 
+frequency (spectral) content of one sound to that of another.  The 
+aim is to hear the timbre, the tone qualities, of the 
+2<sup><small>nd</small></sup> sound coming into the 
+1<sup><small>st</small></sup> and gradually replacing it.  The two 
+sounds need to be reasonably close in pitch and tone for this to 
+work effectively.
+Example uses:
+	<ul>
+	<li>make a seamless transition from one sound to another</li>
+	<li>bring in the timbre of sound 2 before raising its amplitude</li>
+	<li>bring in the (unaltered) sound of sound 2 before making 
+	the transition to its timbre</li>
+	<li>with the help of other processes, as suggested below, 
+	<i>feel</i> sound 1 warp out of shape as it changes into sound 2</li>
+	</ul>
+The software allows linear (steady) transition or exponential curves 
+(getting faster or slower).  The psychoacoustic aspect of audio transitions 
+of this nature is still relatively unexplored.  While visual images 
+perceptibly distort very easily in the moment of transition, audio 
+tends to blend more readily, i.e., it just sounds like a smooth change 
+to the 2<sup><small>nd</small></sup> sound.  The Reference Manual 
+therefore discusses ways to prepare a perceptible half-way state that 
+gets across that a <i>morph</i> is taking place: an alteration, a warping 
+of shape, of form.<br />
+<a href="cmorph.htm#MORPH">Reference Manual</a> &nbsp;
+<a href="lite.htm#COMBINE">Back</a></td>
+</tr>
+
+</table>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ********************************************************** -->
+<h2>Musical Role: Basic EDITING, for convenience, or use a soundfile 
+editor &#47; audio sequencer
+</h2>
+
+<blockquote>
+<table border="1" cellpadding="4">
+<tr>
+<th bgcolor="#EFCF75">FUNCTION</th>
+<th bgcolor="#EFCF75">PURPOSE</th>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="EDC">
+<b>SFEDIT CUT</b><br />[TD]</td>
+<td>Cut out and keep part of a soundfile within specified 
+times.  Example uses:
+	<ul>
+	<li>remove unwanted portions before &amp; after a 
+	recording:  keep central portion FROM - TO specified times</li>
+	<li>remove attack portion by omitting it from the portion 
+	to be kept: makes source of sound ambiguous</li>
+	<li>cut out and keep consonants or vowels as separate 
+	soundfiles</li>
+	<li>keep most 'interesting' part of a sound for further 
+	use&#47;processing</li>
+	</ul>
+This is a vital tool.  It can be used aurally with the FROM-TO 
+option in <i>Soundshaper</i> (tick 'Play between markers').
+Alternatively, one can perform this operation visually, using 
+a graphic sound editor to block out the part to save, and then 
+Save Selection.<br />
+<a href="cgroedit.htm#CUT">Reference Manual</a> &nbsp;
+<a href="lite.htm#EDIT">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="EDG">
+<b>GAIN</b><br />[TD]</td>
+<td>Alter the loudness of a soundfile.  Example uses:
+	<ul>
+	<li>increase the loudness of a recording which is too 
+	quiet</li>
+	<li>reduce the loudness of a sound which tends to distort 
+	('overmodulate') during some types of processing</li>
+	<li>increase amplitude after a FILTER operation makes it 
+	too quiet</li>
+	</ul>
+GAIN is done by multiplying the amplitude values of the sound by 
+a <i>gain_factor</i>.  For example, 2 doubles the amplitude, and 
+0.5 halves it.  The -32766 to +32767 scale is used.  SNDINFO 
+MAXSAMP displays the maximum sample found in a soundfile and 
+advises on the highest <i>gain_factor</i> that can be used.  
+Note that too great an increase can cause 'digital noise': excessive 
+differences of amplitude level between adjacent samples.<br />
+<a href="cgromody.htm#LOUDNESS">Reference Manual</a> &nbsp;
+<a href="lite.htm#EDIT">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="EDV">
+<b>ENVELOPE DOVETAIL</b><br />[TD]</td>
+<td>Another basic editing tool, it smooths the beginning and 
+end of a soundfile.  Example uses:
+	<ul>
+	<li>eliminate a click at the beginning and&#47; or 
+	a sudden stop at the end</li>
+	<li>soften a very sharp attack &#150; attacks can be 
+	fine-tuned in endless ways, especially as there is the 
+	choice between a linear (steady slope) or exponential 
+	(slow to fast or v.vs. slope) shape.</li>
+	</ul>
+Always starting and ending at amplitude 0 (silence) and allowing 
+indefinitely long slopes, this function provides a quick way to 
+get a click-&#47;bump-free start and end to the sound.  Longer 
+slopes and exploring linear and exponential shapes also provide 
+ways to go beyond simple editing to real tonal changes.  This 
+can be especially helpful when preparing a sound for use in a 
+TEXTURE function, because every iteration in TEXTURE starts 
+at the beginning of the sound, unlike the granular functions, 
+which move steadily through the sound.<br />
+<a href="cgroenvl.htm#DOVETAIL">Reference Manual</a> &nbsp;
+<a href="lite.htm#EDIT">Back</a></td>
+</tr>
+
+</table>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="LENGTH">Musical Role: LENGTHEN or SHORTEN a sound, 
+roughening its surface texture
+</h2>
+
+<blockquote>
+<table border="1" cellpadding="4">
+<tr>
+<th bgcolor="#EFCF75">FUNCTION</th>
+<th bgcolor="#EFCF75">PURPOSE</th>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="DRPT">
+<b>DISTORT REPEAT</b><br />[TD]</td>
+<td>A form of wavecycle distortion:  it repeats irregular lengths 
+of soundfile, or groups of irregular lengths. Example uses:
+	<ul>
+	<li>create a repetitive, churning effect</li>
+	<li>extend the length of a sound</li>
+	</ul>
+The more repeats and larger the groups creates more of a 
+churning effect while lengthening the soundfile.  It can become 
+too long and overstay its welcome, so moderation is in order.<br />
+<a href="cdistort.htm#REPEAT">Reference Manual</a> &nbsp;
+<a href="lite.htm#LENGTH">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="EXLOO">
+<b>EXTEND LOOP</b><br />[TD]</td>
+<td>Move steadily through a sound, creating regular separate or 
+overlapping segments. Example uses:
+	<ul>
+	<li>separate the segments, creating a hic-cup effect 
+	(<i>step</i> longer than the segements)</li>
+	<li>introduce regular pulsations into the sound 
+	(<i>step</i> length close to normal rhythms, such as 
+	semiquaver, triplet or quaver.)</li>
+	<li>draw out a text by creating a stuttering effect</li>
+	<li>move slowly through a sound with dense overlaps 
+	(very short <i>step</i></li>
+	</ul>
+Surprisingly flexible, this tool is useful whenever some form 
+of regularity in the output sound is desired.<br />
+<a href="cgroextd.htm#LOOP">Reference Manual</a> &nbsp;
+<a href="lite.htm#LENGTH">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="EXSCR">
+<b>EXTEND SCRAMBLE</b><br />[TD]</td>
+<td>Here we have a random function controlling the placement of 
+the segments.  The process can be made to repeat, rescrambling 
+the previous result.  Example uses:
+	<ul>
+	<li>mild displacements</li>
+	<li>some loss of regularity and recognisability of the 
+	source</li>
+	<li>significant amount of jumbling up of the original</li>
+	<li>reduce original to a churning mass of sound</li>
+	</ul>
+Useful to roughen up or thoroughly jumble a sound, dramatic purpose 
+and psychological impression is a musical consideration, especially 
+when using words.<br />
+<a href="cgroextd.htm#SCRAMBLE">Reference Manual</a> &nbsp;
+<a href="lite.htm#LENGTH">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="GM">
+<b>GRAINMILL</b><br />[TD]</td>
+<td>Comprehensive granular manipulation facilities.  Example uses:
+	<ul>
+	<li>extend with <i>timestretch</i> (grain repeats) while 
+	adjusting <i>grainsize</i> (segment length) and 
+	<i>density</i> (grain overlap &#150; or gaps)</li>
+	<li>widen the pitch band in which the grains occur, 
+	possibly with time-varying upper and lower contour 
+	shapes.</li>
+	<li>provide variations in the loudness of each grain</li>
+	<li>create dense washes of sound</li>
+	</ul>
+<i>GrainMill</i> is different in that a large number of 
+parameters are available at once, that ranges can be specified, 
+that they can change over time, and that there is a built-in 
+graphic editor to create time-varying contours.  Within ranges 
+the program selects a random position somewhere inbetween the 
+limits <i>for each grain</i> of sound.<br />
+<a href="cgrnmill.htm">Reference Manual</a> &nbsp;
+<a href="lite.htm#LENGTH">Back</a></td></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="GB-2">
+<b>MODIFY BRASSAGE</b><br />[TD]</td>
+<td>Simple granulation of a soundfile.  Example uses:
+	<ul>
+	<li>produce surface ripples on a sound</li>
+	<li>introduce an echoey, reverberant quality</li>
+	<li>roughen and reduce recognisability</li>
+	<li>gradually slow down a sound while roughening 
+	its surface</li>
+	</ul>
+This is a straightforward tool for a minimal amount of granular 
+processing.  The various Modes allow you to focus on specific 
+types of effect, such as <b>Mode 2</b>, which only does 
+<b>timestretch</b>.  <b>Mode 6</b>, however, provides several 
+options, and <b>Mode 7</b>, everything.  <i>GrainMill</i> is 
+another version of Mode 7.<br />
+<a href="cgromody.htm#BRASSAGE">Reference Manual</a> &nbsp;
+<a href="lite.htm#LENGTH">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="STR">
+<b>STRETCH TIME</b><br />[SD]</td>
+<td>Literally stretch out the frequencies of a sound.  Example uses:
+	<ul>
+	<li>expose the beat patterns created by near frequencies</li>
+	<li>make timbral transitions occur slowly</li>
+	<li>slow down a sharp attack &#150; which often reveals 
+	that multiple percussive impacts are in fact occurring</li>
+	<li>draw out the syllables in spoken text, which emphasises 
+	the sonic role of the consonants</li>
+	<li>enhance reverberation qualities</li>
+	</ul>
+Fascinating when applied to high-pitched screeching sounds, 
+a <b>timestretch</b> yields equally interesting results when 
+applied to dense harmonies, sharp attacks, sounds that contain 
+strongly tone colours, and the spoken word.<br />
+<a href="cstretch.htm#TIME">Reference Manual</a> &nbsp;
+<a href="lite.htm#LENGTH">Back</a></td>
+</tr>
+
+</table>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ********************************************************** -->
+<h2 id="REARRANGE">Musical Role: REARRANGE a sound
+</h2>
+
+<blockquote>
+<table border="1" cellpadding="4">
+<tr>
+<th bgcolor="#EFCF75">FUNCTION</th>
+<th bgcolor="#EFCF75">PURPOSE</th>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="DRNK">
+<b>BLUR DRUNK</b><br />[SD]</td>
+<td>This process jumps about randomly within a specified <i>range</i> of 
+analysis windows (less than 64).  You tell it where in the sound to 
+begin, and it then proceeds towards the end until the output duration 
+you chose is completed.  If a big jump takes it past the end of the 
+sound, it is reflected back to the beginning.  Example uses:
+	<ul>
+	<li>mix up the attack portion of the sound</li>
+	<li>start at some useful place after the attack</li>
+	<li>move about in a restricted area &#150; the original sound 
+	(such as words) comes through better, but randomly granulated 
+	(small <i>range</i>)</li>
+	<li>jump about wildly &#150; there may be very little sense of 
+	progression through the sound (large <i>range</i>)</li>
+	</ul>
+Without time-varying parameters, this function is relatively restricted 
+(EXTEND DRUNK is more flexible).  If the sound is fairly steady-state, 
+there will be little perceptible effect: it works better with rapidly 
+changing sounds, such as spoken text.  Note that you can also <b>lengthen</b> 
+a sound with BLUR DRUNK.<br />
+<a href="cblur.htm#DRUNK">Reference Manual</a> &nbsp;
+<a href="lite.htm#REARRANGE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="BSHF">
+<b>BLUR SHUFFLE</b><br />[SD]</td>
+<td>This shuffle works on analysis windows, which are only ca. 0.02 seconds 
+long.  The mechanism is the same as DISTORT SHUFFLE: the <b>domain</b> 
+specifies how many windows to use before moving on to the next set and 
+gives them a letter name, such as <b>abc</b>, and the <i>image</i> defines 
+the order into which they are to be shuffled, with or without repeats, 
+such as <b>abbaccb</b>.   Example uses:
+	<ul>
+	<li>longer, but with little change in tone or texture (use a 
+	<i>groupsize</i> of 1)</li>
+	<li>slightly more texturing, but still relatively clear (use a 
+	<i>groupsize</i> of 2&#43; with a more complex <b>image</b>)</li>
+	<li>echoey bubbling (use a <i>groupsize</i> of 10 or more)</li>
+	</ul>
+DISTORT SHUFFLE operates on irregular lengths of wavecycle between zero 
+crossings, which are both irregular and generally longer.  BLUR SHUFFLE 
+operates on windows, which are of a regular length and very tiny.  This 
+means that you have to work harder to produce the shuffle effect: such as 
+by a longer <b>domain</b>, a more mixed up <b>image</b>, and especially, 
+a larger value for <i>groupsize</i> (i.e., repeats of the <b>image</b>).  
+The groups of windows are formed <i>before</i> shuffling, so a longer 
+section  of sound is affected with each shuffle operation.<br />
+<a href="cblur.htm#SHUFFLE">Reference Manual</a> &nbsp;
+<a href="lite.htm#REARRANGE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="DREV">
+<b>DISTORT REVERSE</b><br />[TD]</td>
+<td>Although the output of this function moves steadily through 
+the original soundfile, it turns around groups of (pseudo-)wavecycle 
+backwards.  Example uses:
+	<ul>
+	<li>roughen up the texture of a voice (small values) 
+	&#150; what is being said remains recognisable</li>
+	<li>large values (the number of cycles in a group can 
+	be as high as 5000) mostly have the effect of reversing 
+	the sound, with very little distortion</li>
+	<li>mid-range values are interesting, e.g., 100.  Now 
+	small portions of the sound are reversed, with sharp, 
+	sudden changes.</li>
+	</ul>
+This is a new and flexible way of playing with reversing a 
+soundfile.<br />
+<a href="cdistort.htm#REVERSE">Reference Manual</a> &nbsp;
+<a href="lite.htm#REARRANGE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="DSHF">
+<b>DISTORT SHUFFLE</b><br />[TD]</td>
+<td>Allows you to pattern a number of wavecycle elements.  The 
+DOMAIN defines the elements (e.g., <b>abc</b>) and the IMAGE 
+defines the pattern (e.g., <b>abcbbccaaa</b>).  Example uses:
+	<ul>
+	<li>introduce cyclic effects into the distortion</li>
+	<li>create repetitions, symmetries etc.</li>
+	<li>extend the length of the sound</li>
+	</ul>
+This is a powerful way to tease the ear with pattern in the midst 
+of a roughly churning sound.  There is a version in the spectral 
+domain called BLUR SHUFFLE that operates on analysis windows 
+rather than wavecycles.<br />
+<a href="cdistort.htm#SHUFFLE">Reference Manual</a> &nbsp;
+<a href="lite.htm#REARRANGE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="EXSCR2">
+<b>EXTEND SCRAMBLE</b><br />[TD]</td>
+<td>Here we have a random function controlling the placement of 
+the segments.  The process can be made to repeat, rescrambling 
+the previous result.  Example uses:
+	<ul>
+	<li>mild displacements</li>
+	<li>some loss of regularity and recognisability of the 
+	source</li>
+	<li>significant amount of jumbling up of the original</li>
+	<li>reduce original to a churning mass of sound</li>
+	</ul>
+Useful to roughen up or thoroughly jumble a sound, dramatic purpose 
+and psychological impression is a musical consideration, especially 
+when using words.<br />
+<a href="cgroextd.htm#SCRAMBLE">Reference Manual</a> &nbsp;
+<a href="lite.htm#LENGTHEN">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="MRREV">
+<b>REVERSE</b><br />[TD]</td>
+<td>Play a soundfile backwards (reverse the order of the samples).  
+Example uses:
+	<ul>
+	<li>long fades become gradual crescendi</li>
+	<li>spoken text becomes an abstract series of sounds</li>
+	<li>reduces recognisability of the original</li>
+	<li>brings out different sonic qualities</li>
+	<li>join backwards &amp; forwards verions for long fade 
+	in&#47;out</li>
+	</ul>
+Although a very simple process, reversing a sound can help prepare 
+for more effective use of other types of transformation.<br />
+<a href="cgromody.htm#REVERSE">Reference Manual</a> &nbsp;
+<a href="lite.htm#REARRANGE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="EDJ">
+<b>SFEDIT JOIN</b><br />[TD]</td>
+<td>Splice two or more sounds end to end, with a definable amplitude 
+slope at the joins.  Example uses:
+	<ul>
+	<li>join together original &#43; reversed sound, or the 
+	opposite: reversed &#43; original.  Depending on the 
+	amplitude envelope shape, these will dip and rise in 
+	amplitude, or rise and dip &#150; slow pulsations.</li>
+	<li>join together 2 or more contrasting sounds and then 
+	timestretch with granulation, thus turning the contrasts 
+	into gradual transitions</li>
+	<li>link several sounds with a silent soundfile inbetween 
+	each one in order to create a single soundtrack of separated 
+	sounds</li>
+	</ul>
+As suggested above, joining soundfiles can often be a way to 
+prepare a sound for further processing.<br />
+<a href="cgroedit.htm#JOIN">Reference Manual</a> &nbsp;
+<a href="lite.htm#REARRANGE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="SM">
+<b>SUBMIX MIX</b><br />[TD]</td>
+<td>Place several soundfiles on a time line, occuring separately or 
+overlapping.  Example uses:
+	<ul>
+	<li>assemble a passage of music out of several sounds</li>
+	<li>enrich a sound by mixing together several variants at 
+	the same or nearly the same start time</li>
+	<li>create new timbres by mixing disparate sounds</li>
+	<li>balance the levels of several sounds and place in 
+	horizontal space</li>
+	<li>create large-scale echo or stretto effects by overlapping 
+	the same sound at very small time intervals</li>
+	</ul>
+Mixing is the fundamental assembly process in audio music.  More 
+often than not, it will be achieved with full audio sequencer software.  
+It can be done quite simply with the CDP software, if this is 
+convenient.<br />
+<a href="cgromixr.htm#MIX">Reference Manual</a> &nbsp;
+<a href="lite.htm#REARRANGE">Back</a></td>
+</tr>
+
+</table>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ********************************************************** -->	
+<h2>
+Musical Role: REDUCE &#150; data reduction&#47;thinning
+</h2>
+
+<blockquote>
+<table border="1" cellpadding="4">
+<tr>
+<th bgcolor="#EFCF75">FUNCTION</th>
+<th bgcolor="#EFCF75">PURPOSE</th>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="BBLR">
+<b>BLUR BLUR</b><br />[SD]</td>
+<td>The frequency and amplitude data for defined lengths of 
+soundfile are averaged, thus smoothing and blurring the sonic 
+content.  Example uses:
+	<ul>
+	<li>create a smooth 'ambient', abstract flow</li>
+	<li>take the edges off a sound</li>
+	<li>slur speech</li>
+	</ul>
+Frequency and amplitude data in the spectral domain are organised 
+into 'windows', each of which is only e.g., 0.02 seconds long.  
+The number of windows is specified and the data in each group 
+of this size is averaged.<br />
+<a href="cblur.htm#BLUR">Reference Manual</a> &nbsp;
+<a href="lite.htm#REDUCE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="BSUP">
+<b>BLUR SUPPRESS</b><br />[SD]</td>
+<td>Remove the loudest components of the sound.  Example uses:
+	<ul>
+	<li>make a sound higher, lighter and somewhat metallic, 
+	especially voices (e.g., remove ca. 10-60 components)</li>
+	<li>significantly reduce a very strong sound (e.g., remove 
+	ca. 100 components &#150; much more than 100 and there may 
+	be very little left!)</li>
+	</ul>
+The strongest partials are often the fundamental frequency and first 
+few overtones.  Taking these away leaves the higher overtones and 
+inharmonic partials.  This leaves the higher and more complex 
+partials, which can sound thin, metallic and cramped &#150; such as 
+a voice heard at a distance coming out of cheap headphones.<br />
+<a href="cblur.htm#SUPPRESS">Reference Manual</a> &nbsp;
+<a href="lite.htm#REDUCE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="HTR">
+<b>HILITE TRACE</b><br />[SD]</td>
+<td>Take away frequencies except those in a specified number of 
+analysis bands.  This can be used:
+	<ul>
+	<li>to clean up a noisy sound &#150; keep e.g., &#189; 
+	the bands</li>
+	<li>to make a sound ambiguous &#150; keep something like 
+	50 bands</li>
+	<li>to reduce a sound to a mere burble &#150; keep e.g., 
+	5 bands</li>
+	</ul>
+The number of bands to keep will alter with the nature of the 
+input sound and the desired acoustic result.<br />
+<a href="chilite.htm#TRACE">Reference Manual</a> &nbsp;
+<a href="lite.htm#REDUCE">Back</a></td>
+</tr>
+
+</table>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ********************************************************** -->
+<h2>Musical Role: Add SPACE around a sound
+</h2>
+
+<blockquote>
+<table border="1" cellpadding="4">
+<tr>
+<th bgcolor="#EFCF75">FUNCTION</th>
+<th bgcolor="#EFCF75">PURPOSE</th>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="MREVE">
+<b>MODIFY REVECHO</b><br />[TD]</td>
+<td>Give a sound a reverberant quality.  Example uses:
+	<ul>
+	<li>slightly enhanced, a little more 'alive':  modest values 
+	for <i>delay</i>, <i>mix</i> (e.g. 0.5) and <i>feedback</i> 
+	(e.g., between 0.1 and 0.5 &#150; negative values can create 
+	distortion) [<b>Mode 1</b>, Standard Delay]</li>
+	<li>strongly reverberant:  higher values for <i>delay</i> 
+	(e.g., 25ms-100ms), <i>mix</i> and <i>feedback</i>weighted 
+	more towards 1 (more of the delayed signal) [<b>Mode 1</b>, 
+	Standard Delay]</li>
+	<li>make the sound flap, like a sheet in the wind: explore 
+	the modulation depth and frequency parameters available in 
+	<b>Mode 2</b> (variable delay)</li>
+	<li>create the ambience of large spaces, such as a football 
+	stadium: <b>Mode 3</b></li>
+	</ul>
+This is a fairly straightforward approach to reverberation, using 
+fixed (constant) delay times.  <i>Feedback</i> too close to 1 tends 
+to be too echoey.  Some unusual effects can be achieved in <b>Mode 2</b> 
+by pushing the values of the various parameters towards their upper 
+limits (or negative values for <i>lfofreq</i>, while <b>Mode 3</b> makes it 
+fairly easy to create the effect of large, open spaces.  You can 
+play with echoes in an interesting way by making the time between 
+echoes (<i>size</i>) quite long, and&#47;or by adjusting the 
+number of echoes (<i>count</i>) &#150; quite different parts of the 
+sound can be made to overlap.  The overall length of the sound 
+will be extended if higher values are given for these parameters.<br />
+<a href="cgromody.htm#REVECHO">Reference Manual</a> &nbsp;
+<a href="lite.htm#SPACE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="MSPA">
+<b>MODIFY SPACE</b><br />[TD]</td>
+<td>Place the sound in the Left-Right stereo field, either at a fixed 
+point or moving from place to place.  This process is called <b>panning</b> 
+(verb), or a <b>pan</b> (noun).  Example uses:
+	<ul>
+	<li>move from full left to full right or full right to full 
+	left, or anywhere in between</li>
+	<li>move back and forth across the stereo field several times, 
+	and to different locations each time</li>
+	<li>locate a number of sounds differently in the horizontal 
+	space so that, when mixed, they are nicely spread and do not 
+	cover each other &#150; this is usually done in the mix itself.</li>
+	<li>other functions enable you to narrow or reverse (mirror) 
+	the stereo image</li>
+	</ul>
+The <b>pan</b> operation requires a mono input and produces a stereo 
+output.  The <b>mirror</b> and <b>narrow</b> operations require 
+stereo inputs.  The location and movement of sounds in the aural space 
+is an essential part of creating living sonic landscapes.  As multi-channel 
+facilities expand, the possibilities for doing so will become more 
+and more interesting.<br />
+<a href="cgromody.htm#SPACE">Reference Manual</a> &nbsp;
+<a href="lite.htm#SPACE">Back</a></td>
+</tr>
+
+</table>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ********************************************************** -->
+<h2>Musical Role: &#150; Alter internal TIMING of a sound
+</h2>
+
+<blockquote>
+<table border="1" cellpadding="4">
+<tr>
+<th bgcolor="#EFCF75">FUNCTION</th>
+<th bgcolor="#EFCF75">PURPOSE</th>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="FOFRZ">
+<b>FOCUS FREEZE</b><br />[TD]</td>
+<td>Freeze the spectrum (i.e., continue in a steady state) at specified 
+time points, either <b>after</b> the time points or <b>before</b> 
+them.  The key is to select times in the sound where there is 
+interesting material to freeze.  Example uses:
+	<ul>
+	<li>freeze after a given time until next unfreeze point 
+	(e.g., <b>a</b>2.0 3.0: freeze at 2 sec., unfreeze at 3 sec.)</li>
+	<li>take a later window for freezing and start using it 
+	earlier (e.g., 2.0 <b>b</b>3.0: freeze the window found at 3 sec. 
+	and start holding it steady at 2 sec.)</li>
+	<li>in general, play around with starting and stopping the sound</li>
+	<li>use this process not to create a whole new soundfile, but just 
+	to find some interesting spectral material to CUT out and use 
+	elsewhere</li>
+	</ul>
+You can freeze either amplitudes or frequencies only, or both together.  
+The latter is very frozen, but the first two hold the one steady while 
+the other parameter continues to move as normal.  There really is a 
+lot of scope to explore the possibilities of this rather strange 
+function.<br />
+<a href="cfocus.htm#FREEZE">Reference Manual</a> &nbsp;
+<a href="lite.htm#TIME">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="FOHLD">
+<b>FOCUS HOLD</b><br />[SD]</td>
+<td>This is like FOCUS FREEZE when it freezes both amplitudes and 
+frequencies.  You freeze between specified start and end times, of 
+which there can be several.  Example uses:
+	<ul>
+	<li>Start (hold) and stop (release) at various points during the 
+	sound, e.g., at regular or irregular time intervals.</li>
+	<li>When the sound is released after a hold, its normal 
+	movement resumes.  Thus it is like the game of statues in which  
+	you freeze in position until released to move again.  The 
+	sense of release is very strong and can be used to create 
+	tension and release effects. </li>
+	</ul>
+There are no 'after' or 'before' facilities in FOCUS HOLD, so it is 
+simpler than FOCUS FREEZE and an easier way to do the starting and 
+stopping of the freeze operation.<br />
+<a href="cfocus.htm#HOLD">Reference Manual</a> &nbsp;
+<a href="lite.htm#TIME">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="FOSTP">
+<b>FOCUS STEP</b><br />[SD]</td>
+<td>Freezes spectral content for specified (regular) lengths of 
+time.  Example uses:
+	<ul>
+	<li>standard 'sample-hold' effect</li>
+	<li>find interesting spectra to cut &amp; use elsewhere</li>
+	<li>introduce a jangling effect</li>
+	<li>have a smooth, fine-resolution sandy effect</li>
+	</ul>
+The key factors is that the holds are regularly spaced.  Thus the 
+length of the holds determines the nature of the effect.<br />
+<a href="cfocus.htm#STEP">Reference Manual</a> &nbsp;
+<a href="lite.htm#TIME">Back</a></td>
+</tr>
+
+</table>
+</blockquote>
+
+<!-- ********************************************************** -->
+<h2>Musical Role: &#150; TUNE a sound to a harmony
+</h2>
+
+<p>
+<br />
+</p>
+
+<blockquote>
+<table border="1" cellpadding="4">
+<tr>
+<th bgcolor="#EFCF75">FUNCTION</th>
+<th bgcolor="#EFCF75">PURPOSE</th>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="FVFB">
+<b>FILTER VARIBANK</b><br />[TD]</td>
+<td>The 'vari' part of the name means that the frequencies specified 
+in the bank of filters can change over time.  The frequencies specified 
+should lie where the loudest partials of the sound occur, or the filter 
+bank will 'miss' the main part of the sound.  Example uses:
+	<ul>
+	<li>tune a sound to a recognisable harmony, or several 
+	harmonies that change over time</li>
+	<li>control the balance between original and harmonised 
+	qualities by adjusting <i>Q</i> (filter focus) and <i>roll-off</i> 
+	(amount the amplitude drops away)</li>
+	</ul>
+The required <i>datafile</i> is very straightforward.  It consists 
+of 1 or more lines giving the time and then the pitch (as frequency or 
+MIDI Pitch Value) and amplitude of each note in the harmony.  When 
+there are several lines with some time inbetween, the harmony 
+changes gradually from the first harmony at the first time to the 
+second harmony at the second time.  As with all CDP <i>time value</i> 
+automation files, the harmony will stay the same if two lines at 
+different times are the same.  Abrupt changes are made by placing 
+two different lines at very close, adjacent times.<br />
+<a href="cgrofilt.htm#VARIBANK">Reference Manual</a> &nbsp;
+<a href="lite.htm#TUNE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="PTUN">
+<b>PITCH TUNE</b><br />[SD]</td>
+<td>Operating directly on the spectrum (frequency content) of 
+a sound, this is the most effective way to tune a sound to the 
+pitches of a chord.  Example uses:
+	<ul>
+	<li>impart a harmonic flavour to a sound</li>
+	<li>create a harmonic dimension cleanly, without 
+	too much of the resonance effect that can occur 
+	in FILTER BANK.</li>
+	</ul>
+Effective if the original sound is not too tightly focused in 
+the first place.  While FILTER VARIBANK can alter chords over time, 
+tuning in PITCH TUNE remains the same throughout.<br>  
+(N.B. the newer <a href="cpitch.htm#TUNEVARY"><b>TUNEVARY</b></a> can change frequency over time.)<br />
+<a href="cpitch.htm#TUNE">Reference Manual</a> &nbsp;
+<a href="lite.htm#TUNE">Back</a></td>
+</tr>
+
+</table>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<!-- ********************************************************** -->
+<h2>Musical Role: Move UP&#47;DOWN or GLISSANDO
+</h2>
+
+<blockquote>
+<table border="1" cellpadding="4">
+<tr>
+<th bgcolor="#EFCF75">FUNCTION</th>
+<th bgcolor="#EFCF75">PURPOSE</th>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="DPW">
+<b>DISTORT PITCHWARP</b><br />[TD]</td>
+<td>Bends the pitch through parts of an octave.  Example uses:
+	<ul>
+	<li>about &#188; octave (0.3) puts a tremor into vocal 
+	sounds</li>
+	<li>higher values create a roller-coaster effect</li>
+	</ul>
+The fact that pseudo-wavecycles are present (irregular lengths) 
+introduces distortion.  On top of this the changing pitch levels, 
+which can be minuscule or major, raise and speed up or lower 
+and slow down the original sound material.  Unless a time-varying 
+automation file deliberately makes pitch changes instant, this will 
+happen with glissandi between the pitch levels.<br />
+<a href="cdistort.htm#PITCHWARP">Reference Manual</a> &nbsp;
+<a href="lite.htm#UPDOWN">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="FOACC">
+<b>FOCUS ACCUMULATE</b><br />[D]</td>
+<td>Create sustaining effects internal to the sound.  Example uses:
+	<ul>
+	<li>slow glissandi inside the sound, while its overall pitch 
+	remains the same:  the <i>decay</i> has to be long enough 
+	to accommodate the size of the <i>gliss</i></li>
+	<li>a rich, somewhat mobile reverberant effect: low <i>decay</i> 
+	with minimal octave range for the <i>gliss</i> (e.g., 0.1)</li>
+	<li>reverberant fluttering: <i>decay</i> values approach 1, 
+	and the octave width increases</li>
+	</ul>
+There is a balancing act here between the length of the <i>decay</i> and 
+the scope of the <i>gliss</i>.  A good place to start with this function 
+is a very slow decay, near the bottom of the range, e.g., 0.005 along 
+with a modest negative <i>gliss</i>, e.g., -0.4.  Even less <i>gliss</i> 
+results in a reverberant quality without too much sliding about, while 
+more <i>gliss</i> increases the background movement.  Higher <i>decay</i> 
+values increase the reverb&#47;sustaining until the whole sound 
+becomes like an aural quicksand.<br />
+<a href="cfocus.htm#ACCU">Reference Manual</a> &nbsp;
+<a href="lite.htm#UPDOWN">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="MSPE">
+<b>MODIFY SPEED</b><br />[TD]</td>
+<td>The simplest way to alter the pitch level of a sound is 
+to transpose in semitones (Mode 2) &#150; parts of semitones 
+can be used: a 100<sup><small>th</small></sup> part of a 
+semitone is a 'cent'.  Example uses:
+	<ul>
+	<li>raise or lower the pitch level of a sound</li>
+	<li>make voices high, fast & squeaky, or low and 
+	growley</li>
+	<li>create deep, rich, long tones</li>
+	</ul>
+Because this is a time-domain transposition, raising the 
+pitch level makes the sound shorter as well as higher;  
+lowering it makes it longer as well as lower.  While this 
+makes voices sound rather artificial, it is very useful 
+to get fuller, richer versions of a sound.  Time-varying 
+transposition creates <b>glissandi</b> between reasonably separated 
+time-points, while instant changes of level can be achieved 
+by making two time-points virtually adjacent, such as 2.00 
+and 2.01 (they have to be at least slightly different).  Also 
+note Mode 5, which enables you to ACCELerate or decelerate a 
+sound over time.  The spectral version, REPITCH TRANSPOSE 
+makes it possible to transpose without altering the duration.<br />
+<a href="cgromody.htm#SPEED">Reference Manual</a> &nbsp;
+<a href="lite.htm#UPDOWN">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="PTRP">
+<b>PITCH TRANSP</b><br />[SD]</td>
+<td>This transposition function preserves the spacing proportions 
+between the partials, which maintains the harmonic character of the 
+sound.  It operates either in fixed octaves or in semitones.  
+Example uses:
+	<ul>
+	<li>raise or lower a clearly pitched sound, intending to 
+	preserve its tone colour</li>
+	<li>use the up &#43; down option with fairly large values to 
+	split the sound, similar to a ring modulation</li>
+	<li>use the up &#43; down option with very small values to 
+	colour the sound with beat patterns</li>
+	</ul>
+Clearly pitched sounds are the most suitable inputs for this function.  
+FOCUS ACCUMULATE &#43; STRETCH TIME &#43; PITCH TRANSP is a powerful 
+combination: create internal movement,  (CUT out the most interesting 
+portion), time-stretch it to reveal the transitions, and move it up 
+or down or up &amp; down, keeping its harmonic character.  Some very 
+beautiful and haunting sounds may result.<br />
+<a href="cpitch.htm#TRANSP">Reference Manual</a> &nbsp;
+<a href="lite.htm#UPDOWN">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="RTRP">
+<b>PITCH TRANSPOSE</b>
+<br />[SD]</td>
+<td>Move whole sound up or down without altering its duration.  
+Example uses:
+	<ul>
+	<li>transpose a clearly pitched sound to several different 
+	pitch levels and MIX to create a chord &#150; all the 
+	notes of the chord will be equally long, which cannot be 
+	attained in the time-domain</li>
+	<li>change the pitch level of any sound without having 
+	too much impact on its timbre</li>
+	<li>transpose a sound only a fraction of a semitone up 
+	and down and MIX these two variants with the original: 
+	a subtly enhanced, slightly reverberant result is 
+	created &#150; if the transposition is even &#189; a 
+	semitone, fairly strong beat patterns will begin to emerge</li>
+	</ul>
+This is an important alternative way to transpose a sound, avoiding 
+the speed changes that occur in the time-domain, with all the timbral 
+change created as a side effect.<br />
+<a href="crepitch.htm#TRANSPOSE">Reference Manual</a> &nbsp;
+<a href="lite.htm#UPDOWN">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="SS">
+<b>STRANGE SHIFT</b><br />[SD]</td>
+<td>This is a non-linear shift of frequencies.  Example uses:
+	<ul>
+	<li>push a sound into the acoustic 'stratosphere', 
+	making it extremely high and thin</li>
+	<li>create long glissandi into or out of the 
+	acoustic 'stratosphere' or down into the depths</li>
+	</ul>
+It is the non-linear nature of this shift that alters the 
+timbre of the sound: the spacing between frequencies is 
+increasingly compressed (up) or expanded (down) instead of 
+remaining the same.<br />
+<a href="cstrange.htm#SHIFT">Reference Manual</a> &nbsp;
+<a href="lite.htm#UPDOWN">Back</a></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#EFCF75" id="SW">
+<b>STRANGE WAVER</b><br />[SD]</td>
+<td>This comes across mainly as a frequency (pitch) vibrato, although 
+the Reference Manual refers to an oscillation between harmonic and 
+inharmonic states.  This is because the <i>stretch</i> factor tends 
+to shift frequencies upwards and squeeze them closer together.  
+Example uses:
+	<ul>
+	<li>The upward squeezing effect creates an inharmonic effect, 
+	which sounds somewhere inbetween hollow and tinny.  The 
+	higher the value for <i>stretch</i>, the more this occurs. 
+	distorting the original sound.  Thus you are playing with 
+	distortion of a sort and a ringing colouration of the sound.</li>
+	<li>The <i)frequency</i> of the waver (in Herz, or cycles 
+	per second) can be very slow, very fast, or changing over 
+	time.  The faster it changes, the more a flapping effect 
+	is created.</li>
+	<li>Low values for <i>frequency</i> and <i>stretch</i> 
+	produce modest changes, but higher values whizz it round 
+	considerably.</li>
+	<li>The perception of the vibrato as a pitch vibrato is most 
+	noticeable on clearly pitched sounds, but not so much with 
+	more complex sounds, including vocal sounds.  With the 
+	latter, the inharmonic qualities are more prominent.</li>
+	</ul>
+It is easy to go over the top with this function.  Unless a wild 
+flutter effect is needed, controlled movement brings out the changes 
+it makes more effectively.<br />
+<a href="cstrange.htm#WAVER">Reference Manual</a> &nbsp;
+<a href="lite.htm#UPDOWN">Back</a></td>
+</tr>
+
+</table>
+</blockquote>
+
+<p>
+<br />
+</p>
+
+<hr><!-- ========================================================================= -->
+<h2 id="ORIENTATION">Orientation
+</h2>
+
+<blockquote>
+<p>
+There are now many ways to alter sounds with computer software.  
+This toolbox contains a selection of 19 tools, grouped by musical 
+task.
+</p>
+
+<p>
+These tasks work in two different domains, and it is important to 
+understand the difference:
+	<ol>
+	<li><b>the 'time-domain'</b> &#150; operates on 'normal' 
+	soundfiles.  These have data stored as a series of 
+	'samples', like a string of beads, each of which has 
+	a <i>time</i> when it occurs and an <i>amplitude</i>, 
+	i.e., how loud it is.  These sonic beads can be 
+	rearranged, duplicated or omitted (operations on the 
+	<i>time</i> data</li>) or be made louder or softer 
+	(operations on the <i>amplitude</i> data &#150; the 
+	overall shape of the amplitude contour is called the 
+	amplitude 'envelope').
+
+	<li><b>the 'spectral-domain'</b> &#150; operates on 
+	'analysis' files.  These have data created by a Fast 
+	Fourier Transform (FFT) process, stored in a complex, 
+	overlapping way as <i>frequency</i> (perceptible waves) 
+	and <i>amplitude</i>, i.e., how loud each perceptible 
+	wave is.  <b>To use the spectral-domain functions, a 
+	normal soundfile has to be <i>converted</i> ('ANALYSE') 
+	to an analysis file.</b>  After running a spectral process, 
+	the analysis file has to be <i>converted</i> back to a 
+	normal soundfile ('SYNTHESISE').  It is possible to audition 
+	an analysis file directly, using Richard Dobson's 
+	<a href="csysutil.htm#PVPLAY"><b>PVPLAY</b></a> 
+	program, implemented in several ways in <i>Soundshaper</i>.</li>
+	</ol>
+
+The table above lists 10 groups of musical tasks, lists the program 
+functions which perform them in one way or another, and gives a 
+necessarily general description of what to expect as a result.  Follow 
+links to the full Reference Manual for a complete explanation of all 
+the parameters and how the function works.
+</p>
+</blockquote>
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 14 Nov 2021<br />
+    Documentation: Archer Endrich (25 June 2004)<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 2004-2021 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+
+<!-- ========================================================================= -->
+<!--
+
+<h2>Musical Role: &#150; 
+</h2>
+
+<blockquote>
+<table border="1" cellpadding="4">
+<tr>
+<th>FUNCTION</th>
+<th>PURPOSE</th>
+</tr>
+
+<tr>
+<td align="center"><b></b><br />[D]</td>
+<td>  Example uses:
+	<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+	</ul>
+xx<br />
+<a href="cgrofilt.htm#BANK">Reference Manual</a> &nbsp;
+<a href="lite.htm#COMBINE">Back</a></td>
+</tr>
+
+<tr>
+<td align="center"><b></b><br />[D]</td>
+<td>  Example uses:
+	<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+	</ul>
+xx<br />
+<a href="cgrofilt.htm#BANK">Reference Manual</a> &nbsp;
+<a href="lite.htm#COMBINE">Back</a></td>
+</tr>
+
+</table>
+</blockquote>
+
+-->
+
+<!-- 
+		<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		</ul>
+  -->
+
+</body>
+
+</html>
+

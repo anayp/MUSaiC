@@ -1,0 +1,10 @@
+h1 	{font-family:"verdana"; font-weight: "bold"; color: "#3366ff"; text-align: center; line-height: 1.5;}
+h2	{font-family: "verdana"; font-size: "18pt"; font-style: bold; color: "#339900"; text-align: center; padding-bottom: 3pt}
+h3 	{font-family: "verdana"; font-size: "12pt"; font-style: bold; color: "#FF6347"}
+h4 	{font-family: "verdana"; font-size: "12pt"; font-style: normal; color: "#000000";}
+h5 	{font-family: "verdana"; font-size: "14pt"; font-style: bold; color: "#000000";}
+p 	{font-family: "verdana"; font-size: "11pt"; font-style: normal;}
+div 	{text-align: "center"}
+li 	{font-family: "verdana"; font-size: 11pt; font-style: normal; color: "#000000";}
+body	{font-family: "verdana"; font-size: 11pt; font-style: normal; color: "#000000"; margin-top:"0pt"}
+

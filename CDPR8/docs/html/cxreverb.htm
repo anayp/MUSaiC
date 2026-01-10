@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cxreverb.htm  - REVERB HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP REVERB Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <dt><a href="#OVERVIEW" ><b>OVERVIEW</b></a>
+  <br /><br />
+  <dt><a href="#REVERBLIST"><b>Reverb Group:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FASTCONV"><b>FASTCONV</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#REVERB"><b>REVERB</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ROOMRESP"><b>ROOMRESP</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ROOMVERB"><b>ROOMVERB</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#TAPDELAY"><b>TAPDELAY</b></a>
+  <br><br>
+  <b>SEE ALSO:</b><br>
+ <dt>&nbsp;&nbsp;<a href="cgroextd.htm#ECHOES"><b>ECHOES</b></a></dt> 
+ <dt>&nbsp;&nbsp;<a href="cgroextd.htm#ITERATE"><b>EXTEND ITERATE</b></a></dt>  
+ <dt>&nbsp;&nbsp;<a href="cgromody.htm#REVECHO"><b>MODIFY REVECHO</b></a></dt>   
+
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <div align=center>
+   <br>
+   <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+   </div>
+
+   <h1 align=center>
+   CDP REVERB Functions</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="REVERBLIST">Functions to REVERBERATE soundfiles<br />
+by R W Dobson</h2>
+
+<!-- ========================================================================= -->
+<dl>
+<dt><a href="#FASTCONV"><b>FASTCONV</b></a></dt> 
+	<dd>Multi-channel FFT-based convolution</dd>
+<dt><a href="#REVERB"><b>REVERB</b></a></dt> 
+	<dd>Multi-channel reverberation (classic Schroeder)</dd>
+<dt><a href="#ROOMRESP"><b>ROOMRESP</b></a></dt> 
+	<dd>Create early reflections data file for REVERB, &nbsp; ROOMVERB and TAPDELAY</dd>
+<dt><a href="#ROOMVERB"><b>ROOMVERB</b></a></dt> 
+	<dd>Multi-channel reverberation with room simulation</dd>
+<dt><a href="#TAPDELAY"><b>TAPDELAY</b></a></dt> <dd>Stereo multi-tapped
+delay line with feedback</dd>
+<br>
+<dt><a href="#OVERVIEW"><b>Overview</b></a></dt> 
+	<dd>Factors involved in reverberation</dd>
+<br>
+<dt><b>SEE ALSO:</b></dt>
+<dt><a href="cgroextd.htm#ECHOES"><b>ECHOES</b></a></dt> 
+	<dd>Repeat a sound with timing and level adjustments between repeats</dd>
+<dt><a href="cgroextd.htm#ITERATE"><b>EXTEND ITERATE</b></a></dt> 
+	<dd>Repeat sound with subtle variations</dd>
+<dt><a href="cgromody.htm#REVECHO"><b>MODIFY REVECHO</b></a></dt> 
+	<dd>Add reverberation or echo to the sound</dd>
+</dl>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="OVERVIEW">Overview</a></h2>
+
+<blockquote>
+<p>
+Artifical reverberation seeks to recreate the acoustical properties of
+a real or imagined space, using a variety of delay techniques.
+</p>
+
+<p>
+Reverberation is typically divided into two primary elements - the 
+<b>early reflections</b>, consisting of the first relatively distinct echoes, 
+and the <b>dense reverberation</b>, consisting of many thousands of 
+diffused echoes.
+</p>
+
+<p>
+The time-lapse between the direct signal and the first reflection is 
+referred to as <b>'pre-delay'</b>, and is a significant parameter affecting 
+not only the impression of the size of the space (echoes in a large space 
+will naturally arrive later than those in a small space), but also the 
+distance from the source to the listener.
+</p>
+
+<p>
+Other important factors contributing to the realism or otherwise of 
+the reverberation are the progressive loss of high frequencies with time, caused 
+by <b>absorption</b> by the air and by surfaces, the relative strength of 
+the direct and reverberated sound (suggesting distance from the source), and 
+of course the overall <b>reverberation time</b> &#150; which will be low 
+for small rooms with soft furnishings, and very long for a large stone 
+building such as a church or cathedral.
+</p>
+
+<p>
+These factors interact in complex ways. It is widely acknowledged that 
+the design of a good reverberator is not only a complex task, but also 
+one requiring as much art as science. The reverberators provided here 
+represent simple if classic designs, prividing enough control to the composer 
+to enable a wide range of effects to be created, without making the process 
+excessively complicated.
+</p>
+
+<p>
+One of the most important factors in determining the overall character 
+and realism is the <b>early reflections</b> &#150; merely by changing 
+these, it is possible to simulate both natural acoustic environments (with 
+smooth random echoes) and artificial ones unrelated to any plausible 
+physical space. For the emulation of physical spaces, the program 
+<b>ROOMRESP</b> can be used; alternatively, it is possible to create early 
+reflections by hand in a simple text format.
+</p>
+
+<p>
+It can be said that is it very easy to create a 'bad' reverberator.&nbsp; 
+However, similar techniques are widely used to create sounds such as cymbal 
+crashes, and even early reverberation systems such as springs and plates. 
+These typically arise when early reflections are almost synchronous, 
+imparting a strong harmonic colouration to the sound.
+</p>
+
+<p>
+Both Reverb programs include a set of simple <b>conditioning filters</b> for 
+the input.  Whereas the optional Highcut and Lowcut filters apply directly 
+to the source, the <i>lpfreq</i> parameter is applied only to the reverberator 
+input &#150; not to the direct signal passed through.  A lowpass filter is 
+typically used when the source is required to sound far away. The Lowcut 
+filter can be sued to remove excessive low frequency energy in the source 
+(e.g the 'proximity effect' in a vocal recording).
+</p>
+
+<p>
+Both REVERB and ROOMVERB can create a <b>multi-channel soundfile</b> of up 
+to 16 channels.  The default output is a stereo file, and inputs can be 
+mono or stereo.  In the case of multi-channel output, the direct signal 
+is added to the first two channels only; the remaining channels contain 
+only the reverb signal.  Note that many of the parameters are identical 
+in the two programs &#150; the description of REVERB thus embraces 
+both to a great extent.
+</p>
+</blockquote>
+
+
+<hr> <!-- ****************************************************** --> 
+<h2 id="FASTCONV">FASTCONV &#150; Multi-channel FFT-based convolution
+</h2>
+<p>
+NB: The CDP distribution includes an identical program called <b>fconv</b>.<br>
+This is to comply with any existing batch &#47; shell scripts or patches the user may have already.
+</p>
+
+<h3>
+Usage
+</h3>
+<b>fastconv</b> [<b>-a</b><i>X</i>] [<b>-f</b>] <i>infile impulsefile outfile</i> [<i>dry</i>]
+<br />
+
+<p>
+Example command line to create a convolved soundfile:<br />
+	<blockquote>
+	<b><code>fastconv -a0.7 count.wav sprrevm.wav countspr.wav 
+	0.5</code></b>
+	<br />
+	(Soundfile extensions are mandatory.  The <i>impulsefile</i> 
+	sprrevm.wav is a reverberated spring sound, Stereo converted to 
+	Mono.)
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<b>-a</b><i>X</i> &#150; scale output amplitude by <i>X</i> amount; 
+values below 1 reduce the amplitude, and values above 1 increase it<br />
+<b>-f</b> &#150; write the output as floats (no clipping).  Play these 
+with PVPLAY with the gain (level) reduced by <a href = 
+"cgromody.htm#LOUDNESS">MODIFY LOUDNESS</a>, Mode <b>1</b>.<br />
+<i>infile</i> &#150; input soundfile to be processed.  It must be Mono, or 
+have the same number of channels as the <i>impulsefile</i>.<br />
+<i>impulsefile</i> &#150; soundfile or text file containing an impulse response, e.g., reverb or FIR filter.  
+If text file, it must have the extension <b>.txt</b>.  Supported channel combinations:
+	<ol type = "a">
+      <li>mono infile, N-channel impulsefile</li>
+      <li>channels are the same</li>
+      <li>mono impulsefile, N-channel infile</li>
+	</ol>
+
+	<blockquote>
+	Note: some recorded reverb impulses typically include the 
+	direct signal.  In such cases <i>dry</i> need not be used.  Where 
+	<i>impulsefile</i> is a FIR filter, the optimum length is 
+	power-of-two minus 1. (See below)
+	</blockquote>
+
+<i>outfile</i> &#150; output soundfile<br />
+<i>dry</i> &#150; option to set a dry&#47;wet mix, e.g., for reverb.  
+Range: 0.0 to 1.0 (Default = 0.0): closer to 0 for dry, closer to 1 
+for wet.  This uses the sin&#47;cos law for constant power mix.  
+(See below)
+</blockquote>
+
+<h3>
+Understanding the FASTCONV Process
+</h3>
+
+<blockquote>
+<p>
+<b>Convolution</b> is, according to Wikipedia, "a mathematical operation on 
+two functions, producing a third function that is typically viewed as a 
+modified version of the original function."  In this case, we are using 
+an <i>impulsefile</i> (impulse response) to act upon an input soundfile.
+</p>
+
+<p>
+With FASTCONV we have a specialised way to create reverberation.  
+The key to its use lies in the <i>impulsefile</i>, which contains 
+the reverberation information to be applied to the input soundfile.  
+It was written to provide a fast and efficient way to carry out this process.  
+The unexpected can happen when a soundfile is convolved using itself as the 
+<i>impulsefile</i>.
+</p>
+
+<p>
+<b>Channel options</b><br />
+	<ul>
+	<li>When the <i>infile</i> is Mono, the <i>impulsefile</i> 
+	can be multi-channel, and the <i>outfile</i> has the channel count 
+	of the <i>impulsefile</i>.</li>
+	<li>Where the <i>impulsefile</i> is Mono, data is duplicated for all 
+	input channels.</li>
+	<li>When the <i>infile</i> is multi-channel, the <i>impulsefile</i> 
+	must be Mono, or have the same number of channels.</li>
+	<li>The AMB file format (for Ambisonic B-Format audio) is supported, 
+	also <i>Logic Pro</i> SDIR files for reading (for the latter, change the file extension to <b>.aifc</b>).</li>
+	</ul>
+</p>
+
+<p>
+It will be usual to supply a non-zero value for <i>dry</i>, e.g., 0.5.  
+Note however that some recorded or synthetic impulse responses may already include a 'direct' component &#150; meaning the sound of the source file 
+without any additional reverberation.  In such cases,  a <i>dry</i> value 
+may not be needed.
+</p>
+
+<p>
+The program employs a power-averaging (rms) gain scaling algorithm which attempts to ensure all outputs are approximately at the same level as the input.  In normal use (e.g., a naturally decaying reverb impulse response), the <b>-a</b> flag (scale output amplitude) should not be needed.  When the <b>-f</b> flag is used (write output as floats), output is forced to floats, with no clipping.  The program reports the output level together with a suggested corrective gain factor.  This will be of particular relevance to more experimental procedures, such as convolving a soundfile with itself or with some other arbitrary source.  In such extreme cases, automatic amplitude management becomes approximate at best!
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The primary application of FASTCONV is convolution-based reverberation 
+using a sampled impulse response of a building or other responsive space. 
+The term 'fast' refers to the use of the Fast Fourier Transform (FFT) 
+to perform the convolution.  The program can also be used more experimentally, 
+as the impulse response input can be any Mono or Multi-channel file 
+(see details of available channel combinations above).  
+A file can also be convolved with itself.  
+The sample rates of the two soundfiles must be the same. 
+</p>
+
+<p>
+The program uses double-precision processing throughout, and files of 
+considerable length can be processed cleanly.  Note however that the FFT 
+of the whole impulse response is stored in main memory, so very large files 
+may raise memory demands to critical levels.  The input impulse response file 
+is padded if necessary with silence to bring its size up to the next largest 
+power-of-two size (required for the FFT process).  This can result in a much 
+larger memory footprint (in the worst case, twice as much) 
+than the size of the file itself.
+</p>
+
+<p>
+A future version of the program may implement 'partitioned convolution', 
+which will not require this substantial memory overhead.
+</p>
+
+
+<h3 id="FIR">
+Note for advanced users &#150; use for FIR linear-phase filtering.
+</h3>
+
+<p>
+Convolution implements a filtering process - equivalent to multiplication 
+of the spectra of the two inputs.  The most common filter in audio work is 
+recursive &#150; it recycles output samples back into the input.  The output 
+continues in principle forever, hence the term <b>infinite impulse response</b> (IIR). 
+The advantage of this technique (as employed for example in CDP's 
+<a href="cgrofilt.htm"><b>FILTER</b></a> group) is that even a low-order filter 
+(i.e., using a small 
+number of delayed inputs and outputs) can be very powerful in its effects.  
+A disadvantage in some applications can be that an IIR filter changes the 
+relative phase of components in the input sometimes in a very non-linear way 
+(i.e., frequency components are delayed by different amounts).  
+This means, among other things, that the waveform shape of the input 
+is not preserved, something which will be noticed especially with respect to 
+sources with strong transients such as drums.  Thus the timbre of the sound 
+(even in regions not directly boosted or attenuated by the filter) will be changed. 
+In common parlance, such a filter 'colours' the signal.
+</p>
+
+<p>
+The alternative is a <b>linear phase filter</b>, which preserves all phase 
+relationships in the source.  All frequency components are delayed equally. 
+The result is spectrally 'neutral'.  To achieve this the impulse response 
+must have a symmetrical shape (see illustration).  The response decays 
+identically either side of the central peak.  
+</p>
+
+<div align = center>
+<p>
+<IMG SRC = "images/firdemopdf.jpg"></a><br /><br />
+<b>Finite Impulse Response (FIR) with all<br />
+frequency components delayed equally</b>
+</p>
+</div>
+
+<p>
+<i>In this filter no outputs are re-injected into the filter; 
+only delayed inputs are computed.</i>  Such a filter has a <b>Finite Impulse Response</b>  (FIR). The impulse response data now comprises literally the complete response of the filter to a single input sample (impulse).  An impulse response of 31 samples means that the filter generates and adds together 31 delayed copies of the input, to create each output sample.  
+</p>
+
+<p>
+While IIR filters may involve processing only two delayed samples (a 'second-order' filter), FIR filters need to employ many more samples to achieve similar effects.  It would not be unusual to use a 511
+<sup><small>th</small></sup> order FIR filter.  
+This also means that the overall delay ('latency') of a FIR filter 
+is much longer than that of an IIR filter. 
+</p>
+
+<p>
+A FIR filter cannot resonate as an IIR filter can.  
+By computing only delayed inputs, it is unconditionally 'stable' &#150; 
+whereas a badly designed IIR filter can 'blow up' with output values 
+rapidly exceeding the sample limit.
+</p>
+
+<p>
+FASTCONV supports the use of FIR coefficient files either in the form of 
+either a short soundfile, or a plain text file containing (in a single column) 
+the list of sample values ('coefficients') as floating-point numbers within 
+the 'normalised' range -1.0 to 1.0.  Note that a text file offers no 
+information on sampling rate &#150; it is therefore the responsibility 
+of the user to ensure that a given text file is appropriate to the source 
+soundfile being processed.  For orthodox filtering purposes a Mono soundfile 
+should be used, to process all channels identically.  
+Only Mono text files (one column) are supported.  
+Such FIR coefficient text files are generated by many engineering-oriented 
+filter design and digital signal processing tools.  
+Users may be tempted to write response files by hand; 
+this can be done, but the results will be virtually impossible to predict or control. 
+</p>
+
+<p>
+As noted above, for maximum efficiency such files should ideally have a 
+size that is a power-of-two less one: e.g. 255, 511, 1023, etc. 
+An odd-length impulse response causes all input samples to be delayed 
+by an exact number of samples, facilitating any later adjustments to 
+compensate for the net delay through the filter.
+</p>
+
+<p>
+For more information about FIR filter design, see:<br />
+<a href = "http://www.labbookpages.co.uk/audio/firWindowing.html">
+http://www.labbookpages.co.uk/audio/firWindowing.html</a>.
+</p>
+
+<p>
+For a detailed mathematical discussion of convolution, see the 
+<a href = "http://en.wikipedia.org/wiki/Convolution" Target="_blank">
+<b>Wikipedia article</b></a> on it.  It is a fascinating
+and non-trivial subject.  The link to cross-correlation is particularly 
+interesting.
+</p>
+
+<p>
+RWD: August 23 2010
+</p>
+</blockquote>
+
+<p>
+End of FASTCONV<br />
+<a href="#REVERBLIST"><b>Return</b></a> to List of REVERB functions at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm#startpos" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr> <!-- ****************************************************** --> 
+
+<h2 id="REVERB">REVERB &#150; Multi-Channel reverberation
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>reverb</b> [flags] <i>infile outfile egain mix rvbtime absorb lpfreq 
+trailertime</i> [<i>times.txt</i>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<b>flags</b> &#150; any or all of the following:
+	<blockquote>
+	<b>-c</b><i>N</i> &#150; create <i>outfile</i> with <i>N</i> channels 
+	(Range: 1 &lt;= <i>N</i> &lt; 16; Default = 2)<br>
+	<b>-e</b><i>FILE</i> &#150; read early reflections from breakpoint 
+	file <i>FILE</i><br>
+	<b>-f</b> &#150; write output as floating point (Default: format 
+	of <i>infile</i>)<br>
+	<b>-H</b><i>N</i> &#150; apply Highcut filter to <i>infile</i> with 
+	cutoff frequency <i>N</i>Hz (6dB per octave)<br>
+	<b>-L</b><i>N</i> &#150; apply Lowcut filter to <i>infile</i> with 
+	cutoff frequency <i>N</i>Hz (12dB per octave)<br>
+	<b>-p</b><i>N</i> &#150; set reverb pre-delay to <i>N</i> msecs 
+	(shifts early reflections)
+	</blockquote>
+<i>infile</i> &#150; soundfile to process<br>
+<i>outfile</i> &#150; reverberated output<br>
+<i>egain</i> &#150; set level of early reflections (Range: 0.0 to 1.0)<br>
+<i>mix</i> &#150; dry/wet balance of direct and reverb signal<br> 
+&nbsp;&nbsp;Range: 1.0 (weighted towards direct/'dry' signal) to 0.0 (weighted towards reverb/'wet' signal)<br>
+<i>rvbtime</i> &#150; reverb decay time (to -60dB) in seconds<br>
+<i>absorb</i> &#150; degree of high-freq. damping to suggest room size (Range: 0.0 
+to 1.0)<br>
+<i>lpfreq</i> &#150; lowpass filter cutoff frequency in Hz applied at input 
+to reverb<br>
+<i>trailertime</i> &#150; time in seconds added to <i>outfile</i> for reverb 
+tail<br>
+<i>times.txt</i> &#150; list of delay times in milliseconds for 6 comb and 
+4 allpass filters
+</blockquote>
+
+<h3>
+Understanding the REVERB Process
+</h3>
+<blockquote>
+
+<p>
+REVERB implements the now classic Schroeder&#47;Moorer model, consisting of 
+six comb filters in parallel, followed by four allpass filters in series.  
+The comb filters generate the dense reverberation, and the allpass filters 
+(with much shorter delay times) apply further smearing of the echoes to 
+minimize the spectral colouration of the comb filters.  A further allpass 
+is applied to each output channel, each with a different randomly-chosen 
+delay time.
+</p>
+
+<p>
+Each comb filter contains a simple low-pass filter to simulate high-frequency 
+absorption - this also affects the overall reverberation time. A preset 
+set of early reflections as defined by Moorer is incorporated; this can 
+be replaced by a user-defined set either hand-written or created using 
+ROOMRESP.  The delay times for the filters are preset to suit a 'medium 
+room' model, as suggested by Moorer.  In most situations the user will not 
+want to change these; however the option is provided to change these times 
+by means of a simple text file.
+</p>
+
+<p>
+<b>Further discussion of the parameters:</b><br>
+<b>-p<i>predelay</i></b> &#150; &nbsp; Whether using the preset early 
+reflections, or a custom set, setting a value for predelay adjusts all the 
+early reflections earlier or later.  This may be useful especially when 
+simulating large spaces, but where the listener is presumed to be close to 
+the source - the time between the direct sound and the first echo signifies 
+the time for the direct sound to reach the listener.
+</p>
+
+<p>
+<b><i>egain</i></b> &#150; the relative level of the early reflections 
+has a marked impact on the intensity and colour of the reverb.  The 
+setting for this parameter depends somewhat on the general level of the 
+early reflections as a whole.
+	<ul>
+	<li>Using those preset into REVERB, setting <i>egain</i> 
+	between 0.2 and 0.5 will produce a natural-sounding range 
+	between 'warm' and 'bright'.</li>
+	<li>If the level is set very low, the reverb will consist 
+	mostly of the dense reverberation, which will also 
+	tend to fade more quickly, as it is receiving less energy 
+	from the early reflections.</li>
+	<li>On the other hand, setting <i>egain</i> high will 
+	impart not only increased energy into the reverb (hence louder 
+	and longer) but also increased colouration.</li>
+	<li>Adjusting <i>egain</i> will be specially important when 
+	importing custom early reflections data, whether created by 
+	hand or using <a href="#ROOMRESP"><b>ROOMRESP</b></a>.</li>
+	</ul>
+</p>
+
+<p>
+<b><i>mix</i></b> &#150; For a typical 'small hall' simulation, mix should 
+be high &#150; betweeen 0.6 and 0.8.  This corresponds to a listener 
+position relatively close to the source. If it is required to suggest a 
+distant sound in a large space, where the reverb sound may be almost as 
+strong as the direct signal, a value of 0.5 or less can be used.  It is 
+also possible to remove the direct sound entirely if necessary, for 
+example, to enable other processing of the reverb sound.
+</p>
+
+<p>
+<b><i>rvbtime</i></b> &#150; Reverberation time is usually defined as the 
+time taken for the reverb to decay by 60dB.  The program attempts to 
+calculate this taking into account the amount of high-frequency damping 
+used (absorb).  Reverb time is dependent not only on room size, but also 
+on the 'liveliness' of the space.  Walls of brick or stone reflect 
+a high proportion of the sound, thus extending reverberation time, 
+whereas the presence of soft furnishings or a large audience will reduce 
+it significantly.  It will sound strange to set a long reverb time 
+combined with a high degreee of HF absorption. In this program a 
+true 'infinite reverb' cannot be set, though it can be very long!
+</p>
+
+<blockquote>
+According to the value of <i>rbvtime</i>, one of three preset sets of 
+early reflections is used, representing small, medium and large rooms.  
+Information about this is printed to the console when the program is run.  
+Note that both the early reflections and pre-delay can be changed.  The 
+roomsize thresholds are:
+	<ul>
+	<li>SMALL: &nbsp;&nbsp;&nbsp;&nbsp; 0.0 up to 0.6</li>
+	<li>MEDIUM: &nbsp;above 0.6 up to 1.3</li>
+	<li>LARGE: &nbsp;&nbsp;&nbsp; above 1.3</li>
+	</ul>
+</blockquote>
+
+<p>
+<b><i>absorb</i></b> &#150; this is always required for realistic 
+reverberation, a typical value will be around 0.7 (soft furnishings) 
+to 0.3 (hard surfaces); <i>absorb</i> can be bypassed by setting a 
+value of 0.
+</p>
+
+<p>
+<b><i>lpfreq:</i></b> &#150; reverberation typically loses the high-frequency 
+components of a sound.  Much of this is controlled by <i>absorb</i>, but 
+it can be useful to be able to limit high frequencies in the source at 
+the input to the reverberator, especially if the source is synthetic in 
+origin.  Also, as high frequencies tend to be lost with increasing 
+distance, setting <i>lpfreq</i> (together with use of the <b>-H</b> 
+flag &#150; use a higher frequency here than for <i>lpfreq</i>) can 
+assist in suggesting a distant source (e.g., in large open-air spaces 
+such as canyons).  Typical values are range between 5000 and 10000 Hz 
+(depending on the sample rate);  <i>lpfreq</i> can be bypassed by 
+setting a value of 0.
+</p>
+
+<p>
+<b><i>trailertime</i></b> &#150; extra time added to the outfile for the 
+reverb tail. Use a non-zero value if the source sound continues to the 
+end of the file, otherwise the reverb tail may&nbsp; be cut off.  Depending 
+on the loudness of the input, <i>trailertime</i> can typically be equal to 
+or slightly less than <i>rvbtime</i>.
+</p>
+
+<p>
+<b><i>times.txt</i></b> &#150; for experimenters! &nbsp; The internally 
+preset times used are (milliseconds):<br>
+	<blockquote>
+	<p>
+	<code>50 56 61 68 72 78 20 14 9 6</code>
+	</p>
+	<p>
+	<b>Note</b> that the order of the first six is not relevant, as 
+	the comb filters are arranged in parallel.  The four allpass 
+	filters are connected in series, so that in this case the relative 
+	ordering of the delays is very significant.  Internally the delay 
+	times are converted into prime-number integral sample delays &#150; 
+	this helps to avoid coincidence of echoes, which would lead to a 
+	highly coloured and uneven response.
+	</blockquote>
+</p>
+</blockquote>
+
+<p>
+End of REVERB<br>
+<a href="#REVERBLIST"><b>Return</b></a> to list of REVERB functions
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm#startpos" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="ROOMRESP">ROOMRESP &#150; Create early reflections data 
+file for <small>REVERB, ROOMVERB</small> and <small>TAPDELAY</small>
+</h2>
+<p>
+NB: In the CDP distribution, this program is called <b>RMRESP</b>.<br>
+</p>
+
+<h3>
+Usage
+</h3>
+<b>rmresp</b> [<b>-a</b><i>maxamp</i>] [<b>-r</b><i>res</i>] 
+<i>txtout.dat liveness nrefs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;roomL roomW roomH<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sourceL sourceW sourceH<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; listenerL listenerW listenerH</i><br>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<b>-a</b><i>maxamp</i> &#150; peak amplitude for data (Range: 0.0 to 1.0; 
+Default: 1.0)<br>
+<b>-r</b><i>res</i> &#150; time resolution in milliseconds for reflections 
+(Range: 0.1 to &lt;= 2;  Default: 0.1)<br>
+<i>txtout.dat</i> &#150; text output file containing early reflections 
+in breakpoint format suitable for input to 
+
+<a href="#ROOMVERB"><b>ROOMVERB</b></a>, 
+<a href="#REVERB"><b>REVERB</b></a>,or 
+<a href="#TAPDELAY"><b>TAPDELAY</b></a><br>
+<i>liveness</i> &#150; degree of reflection from each surface (Range: 
+0 to 1; typical value: 0.95)<br>
+<i>nrefs</i> &#150; number of reflections from each surface (&gt; 0; 
+typical value: 2 to 5).  <b>Warning:</b> high values will create 
+extremely long data files!<br>
+<b>ROOM PARAMETERS:</b><br>
+<i>roomL roomW roomH</i> &#150; room size (Length, Width, Height)<br>
+<i>sourceL sourceW sourceH</i> &#150; position of sound source (as above)<br>
+<i>listenerL listenerW listenerH</i> &#150; position of listener (as 
+above
+	<ul>
+	<li>All dimensions are in metres.</li>
+	<li>The first output time is non-zero.</li>
+	</ul>
+</blockquote>
+
+<h3>
+Understanding the ROOMRESP function
+</h3>
+<blockquote>
+
+<p>
+This program uses a simple ray-tracing model as widely used in computer 
+graphics, based on the dimensions of a rectangular room.
+</p>
+
+<p>
+Reverberation arises when a sound, as well as reaching listeners directly, 
+also reaches them after bouncing several times off one or more surfaces 
+(floor, walls, ceiling).  Depending on the degree of reflectivity or 
+<i>liveness</i> of these surfaces (e.g. stone walls reflect almost all 
+the sound, whereas soft furnishings reflect much less) many or few 
+reflections will reach the listeners, who will perceive discrete echoes 
+or a smooth ambience, and a longer or shorter reverberation time.
+</p>
+
+<p>
+Since the room model used is a simple rectangular shape, with parallel 
+walls, it is possible for reflections to form regular patterns.  For 
+smooth reverberation this needs to be minimised; this can be achieved 
+by placing the listener (and possibly the source too) assymetrically in 
+the room &#150; i.e., not equidistant between two walls.  On the other 
+hand, it is easy to generate the sorts of highly coloured reflections 
+experienced in bathrooms, tanks and similar spaces.
+</p>
+
+<p>
+Thus a typical arrangement for a medium room might be (all dimensions
+in metres):
+	<table>
+	<tr>
+	<td>ROOM:</td>
+	<td>length = 20</td>
+	<td>width = 11</td>
+	<td>height = 3.5</td>
+	</tr>
+
+	<tr>
+	<td>SOURCE:</td>
+	<td>length = 4.5</td>
+	<td>width = 5</td>
+	<td>height = 2.5</td>
+	</tr>
+
+	<tr>
+	<td>LISTENER:</td>
+	<td>length = 17</td>
+	<td>width = 6</td>
+	<td>height = 2</td>
+	</tr>
+	</table>
+</p>
+
+<p>The number of reflections generated depends on <i>nrefs</i>.  Useful 
+values are between 2 and 5;&nbsp; the latter will generate approximately 
+876 taps.  In theory there should be even more, but many echoes arrive 
+virtually at the same time, and these are averaged together to reduce 
+the overall data dize.  The<i>liveness</i>parameter does not affect the 
+number of reflections, but their amplitude.  When a lowish level for 
+<i>liveness</i> is set, many of the generated taps will have very low 
+amplitudes (they would be submerged in the dense reverberation), and it 
+will be reasonable to delete these to save processing time in the reverb 
+programs.
+</p>
+
+<p>
+The amplitude of the output taps is internally scaled ('normalized') 
+to 1.0.  The data can be evaluated by applying it to TAPDELAY, and once 
+a satisfactory level is found (using the <i>tapgain</i> parameter in 
+TAPDELAY), this can be used with the <b>-a</b> flag to generate a new 
+data file suitable to apply to the reverb programs.  The <i>egain</i> 
+parameter in <a href="#REVERB">REVERB</a> and 
+<a href="#ROOMVERB">ROOMVERB</a> can be used to the same end.  As ever, 
+experimentation is the rule!
+</p>
+</blockquote>
+
+<p>
+End of ROOMRESP<br>
+<a href="#REVERBLIST"><b>Return</b></a> to list of REVERBERATE functions
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm#startpos" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="ROOMVERB">ROOMVERB &#150; Multi-channel reverb with room 
+simulation
+</h2>
+<p>
+NB: In the CDP distribution, this program is called <b>RMVERB</b>.<br>
+</p>
+
+<h3>
+Usage
+</h3>
+<b>rmverb</b> [flags] <i>infile outfile rmsize egain mix fback absorb 
+lpfreq trtime</i><br>
+
+<br>
+<em>[<b>Note &#150 in the CDP distribution, the program name may be "rmverb", not "roomverb".
+In that case, either change the program name or use "rmverb" in the command line.</b>]</em>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<b>flags</b> &#150; any or all of the following:
+	<blockquote>
+	<b>-p</b><i>predelay</i> &#150; override early reflections delay
+	in milliseconds<br>
+	<b>-c</b><i>N</i> &#150; create <i>N</i>-channel <i>outfile</i> 
+	(Default:2)<br>
+	<b>-e</b><i>early.brk</i> &#150; load early reflections data from 
+	breakpoint file<br>
+	<b>-f</b> &#150; write output as floating point (Default: format 
+	of <i>infile</i>)<br>
+	<b>-L</b><i>N</i> &#150; apply Lowcut filter to <i>infile</i> with 
+	cutoff frequency <i>N</i>Hz (12dB per octave)<br>
+	<b>-H</b><i>N</i> &#150; apply Highcut filter to <i>infile</i> with 
+	cutoff frequency <i>N</i>Hz(6dB per octave)
+	</blockquote>
+<i>infile</i> &#150; input soundfile to process<br>
+<i>outfile </i> &#150; reverberated output<br>
+<i>rmsize</i> &#150; <b>1</b> (small), <b>2</b> (medium), or <b>3</b>
+(large)<br>
+<i>egain</i> &#150; set level of early reflections (Range: 0.0 to 1.0)<br>
+<i>mix</i> &#150; dry/wet balance of direct and reverb signal<br> 
+&nbsp;&nbsp;Range: 1.0 (weighted towards direct/'dry' signal) to 0.0 (weighted towards reverb/'wet' signal)<br>
+<i>fback</i> &#150; reverb feedback level: controls decaytime (Range: 0.0 to 1.0)<br>
+<i>absorb</i> &#150; degree of high-freq. damping to simulate air absorption (Range:
+0.0 to 1.0)<br>
+<i>lpfreq</i> &#150; lowpass filter cutoff frequency in Hz applied at input 
+to reverb
+	<blockquote>
+	Use the value <b>0</b> to disable either <i>absorb</i> or 
+	<i>lpfreq</i>.
+	</blockquote>
+<i>trailertime</i> &#150; time in seconds added to <i>outfile</i> for reverb
+tail
+</blockquote>
+
+<h3>
+Understanding the ROOMVERB Process
+</h3>
+<blockquote>
+
+<p>
+Although many of the parameters are the same as those for 
+<a href="#REVERB"><b>REVERB</b></a>, the program operates very differently. 
+Rather than use comb filters in parallel, ROOMVERB uses a variable network 
+of 'nested' allpass filters inside an overall feedback loop.  This has the 
+effect of increasing the density of the reverberation over time, as is 
+characteristic of most 'real' acoustic spaces.  It is therefore dedicated 
+more specifically to that task than is REVERB.  Nevertheless, as the 
+roomsize and feedback parameters are independently controllable, some 
+unusal effects can still be created.  For authentic reverb, it is 
+important that the feedback level is not set too high, otherwise audible 
+pulsations can be heard at the start of the reverberation.  These can be 
+mitigated to a degree by running <a href="#REVERB"><b>REVERB</b></a> several times in parallel, with 
+slightly different reverb times, and mixing the results, or combining 
+into a multi-channel file.  Conversely, it is also possible to create 
+an 'infinite reverb' effect by setting the feedback level to 1.0.
+</p>
+
+<p>
+The preset early reflections for a given room size are the same as those
+in <a href="#REVERB"><b>REVERB</b></a>.
+</p>
+</blockquote>
+
+<p>
+End of ROOMVERB<br>
+<a href="#REVERBLIST"><b>Return</b></a> to list of REVERBERATE functions
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm#startpos" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr> <!-- ****************************************************** -->
+
+<h2 id="TAPDELAY">TAPDELAY &#150; stereo multi-echo generator with
+feedback
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>tapdelay</b> [<b>-f</b>] <i>infile outfile tapgain feedback mix 
+taps.txt [trailtime]</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<b>-f</b> &#150; write floating-point <i>outfile</i> (Default: 
+<i>outfile</i> has same format as <i>infile</i>)<br>
+<i>infile</i> &#150; input soundfile to process<br>
+<i>outfile</i> &#150; reverberated output<br>
+<i>tapgain</i> &#150; gain factor applied to output from delay line 
+(Range: &gt; 0.0; typical value: 0.25)<br>
+<i>feedback</i> &#150; delayed signal fed back into the input (Range: 
+-1.0 to 1.0)<br>
+<i>mix</i> &#150; proportion of source mixed with delay output 
+(Range: 0.0 to &lt; 1.0)<br>
+<i>taps.txt</i> &#150; text file consisting of a list of taps in the 
+format:  <i>time amp</i> [<i>pan</i>]<br>
+	<ul>
+	<li>All values must be floating-point, one tap per line.</li>
+	<li>Times (in seconds) must be increasing.  Duplicate times 
+	    are ignored.</li>
+	<li>A zero time (no delay) overrides the mix parameter, and 
+	    determines the level and pan of the (mono) input.</li>
+	<li>Amplitude values must be in the range 0.0 to 1.0.</li>
+	<li>Empty lines are permitted, as are lines starting with a 
+	    semi-colon, which may be used for comments.</li>
+	<li>If a <i>pan</i> value is used in any line, the <i>outfile</i> 
+	    will be stereo.</li>
+	<li><i>Pan</i> values are nominally in the range -1 to +1, with 
+	    0 as centre (mono), within which range constant-power panning 
+	    is used.</li>
+	<li>Values beyond these limits result in attenuation according to 
+	    the inverse-square law, to suggest distance beyond the speakers.</li>
+	</ul>
+<i>trailtime</i> &#150; extra time in seconds (beyond <i>infile</i> 
+duration) for delays to play out<br>
+</blockquote>
+
+<h3>
+Understanding the TAPDELAY Process
+</h3>
+<blockquote>
+
+<p>
+The principle behind a tapped delay line is that whereas in a standard 
+delay line (e.g., 1 second long) the ouput is taken at the end, in a 
+tapped delay line extra outputs are also taken at intermediate points, 
+such as 0.1 secs, 0.3 secs and 0.75 secs.
+</p>
+
+<p>
+The <i>taps.txt</i> file corresonding to these delays would be as 
+follows:
+	<blockquote>
+	<table>
+	<tr>
+	<td><code>0.1</code></td>
+	<td><code>&nbsp;0.2</code></td>
+	</tr>
+
+	<tr>
+	<td><code>0.3</code></td>
+	<td><code>&nbsp;0.9</code></td>
+	</tr>
+
+	<tr>
+	<td><code>0.75</code></td>
+	<td><code>&nbsp;0.05</code></td>
+	</tr>
+
+	<tr>
+	<td><code>1.0</code></td>
+	<td><code>&nbsp;1.0</code></td>
+	</tr>
+
+	</table>
+	</blockquote>
+</p>
+
+<p>
+In each line the second number sets the amplitude (with respect to 
+the range 0.0 to 1.0) for the tap at the given time.
+</p>
+
+<p>
+Without the use of feedback, this would apply a simple rhythm 
+(with varying emphases per repeat) to the input sound.  When feedback 
+is applied, each of these tapped signals is returned to the input, 
+so that each then generates further delays in the same pattern.
+</p>
+
+<p>
+It is also possible to direct a tap to a position in the stereo 
+field, using the same 'equal-poser' method used in PAN (see 
+<a href="cgromody#SPACE"><b>MODIFY SPACE</b></a>).  A third (optional) 
+parameter is used in this case, for example, in the range 
+-1 (full left) to 1 (full right).
+</p>
+
+<p>
+The following illustrates a stereo four-stage tap.  The final tap 
+is at Centre:
+	<blockquote>
+	<table>
+	<tr>
+	<td><font color="#FF0000">;stereo 4-stage </font></td>
+	<td><font color="#FF0000">tap - final </font></td>
+	<td><font color="#FF0000">tap at centre</font></td>
+	</tr>
+
+	<tr>
+	<td><code>0.1</code></td>
+	<td><code>0.2</code></td>
+	<td><code>&nbsp;0.75</code></td>
+	</tr>
+
+	<tr>
+	<td><code>0.3</code></td>
+	<td><code>0.9</code></td>
+	<td><code>-0.5</code></td>
+	</tr>
+
+	<tr>
+	<td><code>0.75</code></td>
+	<td><code>0.05</code></td>
+	<td><code>&nbsp;0.1</code></td>
+	</tr>
+
+	<tr>
+	<td><code>1.0</code></td>
+	<td><code>1.0</code></td>
+	<td><br /></td>
+	</tr>
+
+	</table>
+	</blockquote>
+</p>
+
+<p>
+This example also illustrates the use of comment lines, which require
+a semi-colon (';') at the beginning of the line.
+</p>
+
+<p>
+So long as one position parameter is used in a line, the 
+<i>outfile</i> will be stereo.
+</p>
+
+<p>
+When <i>feedback</i> is applied, the stereo position for each tap is 
+preserved.  One musical consideration here is that the two channels may 
+decay at different rates, depending on the total amplitude set for each 
+side.
+</p>
+
+<p>
+The <i>tapgain</i> parameter provides addition control over the output 
+from the delay line.  Although some internal gain adjustments are carried 
+out, they cannot anticipate all the circumstances which a user may 
+impose.  The output of ROOMRESP can contain varying proportions of high 
+and low-amplitude taps, for example, and the internal rescaling may 
+result in an inappropriate signal level.
+</p>
+
+<p>
+In the usual case, the first tap time will be non-zero, and <i>mix</i> 
+controls the balance of direct and delayed signal. Stereo files are 
+internally mixed to mono before entering the delay line.  It is 
+however possible to set a tap time of zero (for the first line only!).  
+In this case, the position parameter is used to place the direct signal 
+in an arbitrary position in the stereo field. This overrides <i>mix</i> 
+which is ignored.  This facility also enables mono tapfiles (only) to 
+be edited in the CDP graphic breakpoint editor, <i>BrkEdit</i>.  Normal 
+breakpoint files require a first time of zero), though it must be borne 
+in mind that <b>a tapfile is not a breakpoint file</b> &#150; no 
+intermediate times and positions are calculated.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+
+<p>
+The natural application of TAPDELAY is with short impulsive sounds 
+such as plucked strings and percussion. A variety of regular and irregular 
+mono or stereo multiple echoes can be generated.  A single tap can be used, 
+to throw an echo to a position in the stereo field.  There is no limit on 
+the number of taps that can be specified, or on maximum delay, though large 
+numbers will naturally demand more processing time, and large delay times 
+may exceed available memory.
+</p>  
+<p>
+Short delay times combined with feedback can 
+create a variety of quasi-reverberant effects (see also <a href="#ROOMRESP"><b>ROOMRESP</b></a>).  Longer 
+tap times with feedback can generate chaotic (and possibly over-range) 
+outputs quite quickly. Unless you have an extremely fast computer, it will 
+be inadvisable to attempt to use TAPDELAY to create reverb, as this 
+is effectively a process of convolution, which with many hundreds or even 
+thousands or calculations per sample, will take a very long time!  For this 
+task, <a href="#ROOMVERB"><b>ROOMVERB</b></a> or <a href="#REVERB"><b>REVERB</b></a> is 
+much more suitable; in these progams the same tapped delay line system 
+is used, for early reflections. 
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b> <a href = "cgroextd.htm#ECHOES"><b>ECHOES</b></a>, which repeats a sound with timing and level adjustments between repeats.
+</p>
+
+<p>
+End of TAPDELAY<br>
+<a href="#REVERBLIST"><b>Return</b></a> to list of REVERBERATE functions
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br />
+<a href="cgroundx.htm#startpos" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 4 Apr 2023 for CDP8<br />
+    Text: R W Dobson<br>
+    Documentation Editor: Archer Endrich cdpse9@gmail.com<br>
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    &copy; Copyright 1998-2023 Richard Dobson &amp; CDP
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

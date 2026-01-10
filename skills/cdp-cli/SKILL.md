@@ -13,13 +13,13 @@ description: Use the Composer Desktop Project (CDP/CDPR8) CLI tools to synthesiz
       - Renders JSON scores to WAV/MP3.
       - Supports Synth and Sample tracks.
       - Features: Beat timing, Effects (reverb/pitch), Sample trimming/looping.
+      - Mixer: Per-track `gainDb`, `pan`, and `mute`. Pan uses safe arithmetic; Synth Amp is folded into gain.
       - Usage: `.\cdp-sequencer.ps1 -ScorePath score.json -OutWav "my_song.wav" -Play`
-      - Flags: `-OutWav <path>`, `-OutMp3 <path>`, `-Play`.
-    - **CDP Wrapper** (`cdp-wrapper.ps1`): 
-      - TUI for selecting/rendering scores.
-      - Usage: `.\cdp-wrapper.ps1` (or with `-NoPlay`).
-    - **Analysis** (`cdp-analyze.ps1`): Info/BPM/Pitch extraction.
-    - **Transform** (`cdp-transform.ps1`): Quick Tempo/Pitch changes.
+      - Flags: `-OutWav <path>`, `-OutMp3 <path>`, `-Play`, `-KeepTemp`.
+    - **CDP Wrapper** (`cdp-wrapper.ps1`): Simple menu for rendering.
+    - **Session Composer** (`music-session.ps1`): Generates scores from JSON sessions.
+    - **Analysis** (`cdp-analyze.ps1`): Outputs JSON/Text to `output/analysis/` with BPM, pitch, loudness, duration, and warnings.
+    - **Transform** (`cdp-transform.ps1`): Supports `-ConfigPath`; `-Method pvoc` automatically bypasses legacy tool issues by checking for `stretch`/`strans` first.
 - **Assets**: `examples/kick.wav` (generated test sample).
 - Outputs: `F:\CDP\output`
 
@@ -55,7 +55,7 @@ Scores define tracks, effects, and events.
   ]
 }
 ```
-See `examples/beat_score.json` and `examples/sample_beat_test.json` for live examples.
+See `examples/beat_score.json`, `examples/sample_beat_test.json`, `examples/mixer_demo.json`, and `examples/sample_loop_demo.json` for live examples.
 
 ## Common CDP binaries
 - `synth.exe`: generate waveforms (sine/square/saw/ramp)
@@ -67,5 +67,5 @@ See `examples/beat_score.json` and `examples/sample_beat_test.json` for live exa
 ## Workflow Tips
 - **Sequencing**: Prefer `cdp-sequencer.ps1` for multi-track or effects-heavy work.
 - **Paths**: Avoid spaces in file paths (CDP requirement).
-- **Mixing**: The sequencer uses `ffmpeg` `adelay`+`amix` to combine stems.
+- **Mixing**: The sequencer uses `ffmpeg` `adelay`+`amix` to combine stems. If pan/gain filters fail, it warns and keeps the raw stem.
 - **Extending**: Add new effects to `Apply-Effect` in `cdp-sequencer.ps1`.

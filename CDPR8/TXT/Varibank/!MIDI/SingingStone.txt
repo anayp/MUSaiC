@@ -1,0 +1,2 @@
+;MIDI: SingingStone
+0.00  63 -3dB	69 -3dB	  74 -3dB  77 -3dB  79 -3dB   84 -3dB  88 -3dB

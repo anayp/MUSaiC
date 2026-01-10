@@ -1,0 +1,3 @@
+;4ths with glissando - MIDI
+0.0 60 -3db 65 -3db 70 -3db 75 -3db 80 -3db
+10.0 54 -3db 59 -3db 64 -3db 69 -3db 74 -3db

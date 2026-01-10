@@ -1,0 +1,40 @@
+{
+    "project": "MusaicSessionDemo",
+    "tempo": 128,
+    "timeUnits": "beats",
+    "key": {
+        "root": "C",
+        "scale": "minor"
+    },
+    "sections": [
+        {
+            "name": "Intro",
+            "bars": 4
+        },
+        {
+            "name": "Verse",
+            "bars": 8
+        },
+        {
+            "name": "Chorus",
+            "bars": 8
+        }
+    ],
+    "tracks": [
+        {
+            "name": "Kick",
+            "type": "sample",
+            "search": "kick",
+            "pattern": "x...", // 4/4 beats: Hit on 1
+            "amp": 1.0,
+            "source": "examples/kick.wav"
+        },
+        {
+            "name": "Bass",
+            "type": "synth",
+            "waveform": "saw",
+            "pattern": "root", // Plays root note of key
+            "amp": 0.6
+        }
+    ]
+}

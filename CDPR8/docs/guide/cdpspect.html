@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+  <! cdpspect.htm  CDP Guide: Spectral Processes -->
+
+<head>
+  <meta charset="utf-8">
+  <title>CDP-Spectral</title>
+  <link rel="stylesheet" type="text/css" href="cdpguide.css">
+  <link rel="stylesheet" href="menu.css">
+  <link rel="icon"  href="images/cdp_favicon.ico">
+  
+    <style>
+	  a { text-decoration: none }
+	  a:hover { color:#FF3333;
+      text-decoration: underline } 
+      a:link {color: #000099}
+      a:visited {color: ##993399}
+      a:active {color: #0000FF}         	
+    </style>  
+</head>
+
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(51, 0, 51);">
+    
+<!--  LEFT COLUMN  -->   
+
+  <div id="left" class="column">
+	<div class="top-left"> <!--Left Hdr -->
+
+	</div> <!-- end of left hdr -->
+			
+	<div class="bottom-left"> <!-- SIDEBAR -->
+<!--
+<div align="center"> <img src="images/CDPCIRCS2.gif"  alt="CDP Logo"> </div>	
+-->
+  <dl>
+  <dt><a href="cdpguide.html"><b>CDP GUIDE: INDEX</b></a>
+  <hr>
+  <dt><a href="cdpsnd.html#SOUNDFILES"><b>SOUNDFILES:</b></a>
+  <dt><a href="cdpsnd.html#ENVELOPE"><b>&nbsp;ENVELOPE</b></a>
+  <dt><a href="cdpsnd.html#FILTER"><b>&nbsp;FILTER</b></a>
+  <dt><a href="cdpsnd.html#PITCH"><b>&nbsp;PITCH</b></a>
+  <dt><a href="cdpsnd.html#REVDELAY"><b>&nbsp;REVERB/DELAY</b></a>
+  <dt><a href="cdpsnd.html#EXTEND"><b>&nbsp;EXTEND/SEGMENT</b></a>
+  <dt><a href="cdpsnd.html#REORDER"><b>&nbsp;RE-ORDER</b></a>
+  <dt><a href="cdpsnd.html#GRAIN"><b>&nbsp;GRANULAR</b></a>
+  <dt><a href="cdpsnd.html#PSOW"><b>&nbsp;PITCH-SYNC GRAINS</b></a>
+  <dt><a href="cdpsnd.html#TEXTURE"><b>&nbsp;TEXTURE</b></a>
+  <dt><a href="cdpsnd.html#RETIME"><b>&nbsp;RETIME</b></a>
+  <dt><a href="cdpsnd.html#WAVESETS"><b>&nbsp;WAVESETS</b></a>
+  <hr>
+  <dt><a href="#SPECFILES"><b>SPECTRAL FILES:</b></a>
+  <dt><a href="#SPECENV"><b>&nbsp;RESHAPE</b></a>
+  <dt><a href="#SPECFILT"><b>&nbsp;FILTER</b></a>
+  <dt><a href="#PCHFRQ"><b>&nbsp;PITCH/FREQ</b></a>
+  <dt><a href="#MORPH"><b>&nbsp;MORPH</b></a>
+  <dt><a href="#FORMANTS"><b>&nbsp;FORMANTS</b></a>
+  <dt><a href="#COMBINE"><b>&nbsp;COMBINE</b></a>
+  <dt><a href="#TIME"><b>&nbsp;TIME</b></a>
+  <dt><a href="#SPECUTILS"><b>&nbsp;SPEC UTILS</b></a>
+  <hr>
+  <dt><a href="cdppitch.html#PCHFILES"><b>PITCH-DATA:</b></a>
+  <dt><a href="cdppitch.html#PCHCONV"><b>&nbsp;CONVERSIONS</b></a>
+  <dt><a href="cdppitch.html#PCHPROCESS"><b>&nbsp;PITCH PROCESSES</b></a>
+  <dt><a href="cdppitch.html#PCHSUPPORT"><b>&nbsp;SUPPORT FUNCTIONS</b></a>
+  <hr>
+  <dt><a href="cdpedit.html#EDITMIX"><b>EDIT / MIX:</b></a>
+  <dt><a href="cdpedit.html#EDIT"><b>&nbsp;EDIT</b></a>
+  <dt><a href="cdpedit.html#LEVEL"><b>&nbsp;LEVEL</b></a>
+  <dt><a href="cdpedit.html#CHANNELS"><b>&nbsp;CHANNELS</b></a>
+  <dt><a href="cdpedit.html#SPATIAL"><b>&nbsp;SPATIAL</b></a>
+  <dt><a href="cdpedit.html#MIX"><b>&nbsp;MIX</b></a>
+  <dt><a href="cdpedit.html#MIXFILES"><b>&nbsp;MIXFILES</b></a>
+  <dt><a href="cdpedit.html#UTILS"><b>&nbsp;SNDFILE UTILS</b></a>
+  <hr>
+  <dt><a href="cdpother.html"><b>OTHER FUNCTIONS:</b></a>
+  <dt><a href="cdpother.html#SYNTH"><b>&nbsp;SYNTHESIS</b></a>
+  <dt><a href="cdpother.html#DATA"><b>&nbsp;GENERATE DATA</b></a>
+  <dt><a href="cdpother.html#INFO"><b>&nbsp;INFORMATION</b></a>
+  <dt><a href="cdpother.html#SYSUTILS"><b>&nbsp;SYSTEM UTILS</b></a>
+  </dl>
+
+	</div> <!-- end of Sidebar -->
+</div> <!-- end of Left Column -->
+
+<!--- START OF RIGHT COLUMN -->
+<div id="right" class="column"> <!-- NB shared class -->
+
+   <div class="top-right"> <!--Right Hdr -->
+
+      <div align="center">
+      <img src="images/cdplogo2.jpg"  alt="CDP Logo">
+      </div>
+      
+   <!-- ----------------- MENU BAR ------------------- -->
+   <!---- NB If class='has-sub' then put </li> AFTER <ul> -->
+
+
+   <div id='cssmenu'>  
+   <ul>
+   <li class='has-sub'><a href="..\html\ccdpndex.htm"><span><b>INDEX</b></span></a>
+     <ul>
+     <li><a href="..\html\cdphome.htm"><span><b>HOME PAGE</b></span></a>
+     <li><a href="..\html\ccdpndex.htm"><span><b>MAIN INDEX</b></span></a>
+	 <li><a href="..\html\cbutnndx.htm"><span><b>Table Index</b></span></a></li>
+     <li><a href="..\html\alphindex.htm"><span><b>A-Z Function Index</b></span></a></li>
+     <li class='last'><a href="..\html\calphndx.htm"><span><b>Operations Index</b></span></a></li>
+     </ul>	
+   </li>
+   <li><a href="..\html\cgroundx.htm"><span><b>TIME-DOMAIN</b></span></a></li>
+   <li><a href="..\html\cspecndx.htm"><span><b>SPECTRAL</b></span></a></li>
+   <li><a href="..\html\graphic.htm"><span><b>GRAPHIC</b></span></a></li>
+   <li class='active has-sub'><a href="#"><span><b>EXPLAIN</b></span></a>
+   	  <ul>
+   	    <li><a href="..\html\charts.htm"><span><b>CHARTS</b></span></a></li>
+   	    <li><a href="..\html\tutorials.htm"><span><b>TUTORIALS</b></span></a></li>
+   	  </ul>
+   </li>
+   <li class='last'><a href="updates.htm"><span><b>DOWNLOADS</b></span></a></li>    
+   </ul>
+   </div> <!-- end of menu -->
+   
+
+   </div> <!-- End of Right Hdr -->        
+   
+   
+<div class="bottom"> <!-------------- MAIN CONTENT ----------------->
+
+    <table id="SPECFILES" bgcolor="#950000" border="0" width="100%">
+      <tbody>
+        <tr>
+          <td bgcolor="#ffffff" width="72"><img
+              src="images/cdpcircs72.jpg" nosave="" height="47"
+              width="72"></td>
+          <td>
+            <center><b><font face="Arial, Helvetica"><font
+                    color="#ffffff"><font size="+2">CDP GUIDE: &nbsp;&nbsp; SPECTRAL PROCESSES</font></font></font></b></center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+<blockquote>
+    
+    <div align="right">
+	<i><b>PREVIOUS:&nbsp; <a href="cdpsnd.html"><b>SOUNDFILES</a></b></i>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<i><b>NEXT:&nbsp; <a href="cdppitch.html"><b>PITCH</a></b></i>
+    </div>
+
+
+<p>
+Many of CDP's most distinctive processes take place in the <b>Frequency Domain</b> - that is, they process the changing frequency spectrum, operating on <b><i>frequency analysis files (.ana)</i></b>, which are converted from/to soundfiles via <b>PVOC</b> (see SPEC UTILS below).
+</p><p>
+In the frequency domain, you can do a lot more than manipulate frequencies. Each time-slice has a loudness contour across the frequency spectrum (rather like a graphic equaliser setting):<br>  
+
+	<div style="text-align: center;"><img style="width: 589px;
+                height: 244px;" alt="Spectral Envelope"
+                src="images/SPEC.gif">
+        </div>
+</p><p>
+This is known as the <b><i>spectral envelope</i></b> and it normally changes throughout the sound. Many spectral processes transform the spectral envelope or other aspects of amplitude. Sounds can also be successfully morphed from one to another, or you can make hybrids by imposing the characteristics of one sound onto another. A key parameter is usually the number of analysis <b><i>channels</i></b> (frequency bands) selected from the total present in the frequency analysis.
+</p><p> 
+On the frequency side, pitch can be changed without changing time and several processes allow the material to be radically re-tuned to the user's own pitch template, or one taken from a different sound.
+</p><p>
+Other processes manipulate how the spectrum changes across time, e.g. by blurring, freezing or time-stretching the sound. A key parameter is usually the number of analysis (time-)<b><i>windows</i></b>. 
+
+</p><p>
+<h3>SPECTRAL-PROCESSING CATEGORIES:</h3>
+<ol>
+<li><a href="#SPECENV"><b>RESHAPE</b></a></li> 
+<li><a href="#SPECFILT"><b>FILTER</b></a></li>
+<li><a href="#PCHFRQ"><b>PITCH/FREQUENCY</b></a></li> 
+<li><a href="#MORPH"><b>MORPH</b></a></li>
+<li><a href="#FORMANTS"><b>FORMANTS</b></a></li>
+<li><a href="#COMBINE"><b>COMBINE</b></a></li>
+<li><a href="#TIME"><b>TIME</b></a> </li>
+<li><a href="#SPECUTILS"><b>SPEC UTILS</b></a></li>
+</ol>
+</p><p>
+These categories are not mutually exclusive, as will be seen. The CDP programs such as HILITE, FOCUS and BLUR offer equally valid ways of looking at the spectral suite, but many related functions are in different programs (e.g. <b>Hilite Trace</b> vs <b>Blur Suppress</b>).  
+</p> 
+
+<!------------------------------------------------------------------------------------->
+<h2 id="SPECENV" style="color: #ffffff; background-color: #950000">&nbsp;RESHAPE SPECTRAL ENVELOPE &amp; PEAKS &nbsp;&nbsp;&nbsp; (CDP groups: HILITE, FOCUS, BLUR, STRANGE)</h2>
+<p>
+These processes reshape the spectral envelope and/or emphasise spectral peaks or other frequencies.
+</p>
+<ul>
+<li><a href="../html/cfocus.htm#ACCU"><b>Accumulate</b></a> sustains the frequencies in each band, optionally applying glissando to the sustained partials.</li>
+<li><a href="../html/cfocus.htm#SUPERACCU"><b>Superaccu</b></a> is a more recent version, in which you can also tune the resonances.</li><br>
+
+<li><a href="../html/chilite.htm#ARPEG"><b>Arpeggiate</b></a> focusses on a band of frequencies which is swept up and down through the spectrum. This parallels <b>Filter Sweeping</b> in the time-domain, which can often pick out individual frequencies more effectively. If the sweep-speed is too fast, consider time-stretching the result.</li><br> 
+
+<li><a href="../html/cblur.htm#AVRG"><b>Average</b></a> roughens the sound by averaging the spectral amplitude over adjacent frequency channels. This broadens, or defocuses, spectral peaks.</li><br>
+
+<li><a href="../html/cfocus.htm#EXAG"><b>Exaggerate</b></a> narrows the spectral peaks to focus the energy around formant frequencies (see also <a href="#FORMANTS"><b>FORMANTS</b></a>, below). Alternatively, the process may be used to broaden the spectral contour.</li><br> 
+
+<li><a href="../html/chilite.htm#PLUCK"><b>Pluck</b></a> aims to highlight spectral changes, such as those associated with <a href="../html/chilite.htm#ARPEG"><b>Arpeggiate</b></a>, and emphasize them. It is not very effective, however.</a></li><br>
+
+<li><a href="../html/chilite.htm#GLISTEN"><b>Glisten</b></a> plays a randomly chosen set of spectral channels, then switches to another random set. The varying spectral dropout gives a "glistening" or bubbling effect, the rate being determined by the window-count. (Compare with <b>Scatter</b> and <b>Step-Freeze</b>). The output normally needs to be normalised.</li><br>
+
+<li><a href="../html/cstrange.htm#INVERT"><b>Invert</b></a> reverses the spectral envelope from top frequencies to bottom (but not the frequencies themselves), so that the energy associated with high sounds is applied to low ones and vice-versa; this also tends to create a noisier spectrum.</li><br>
+
+<li><a href="../html/cblur.htm#NOISE"><b>Noise</b></a> adds noise to the spectrum by progressively making the data in every channel, most of which is actually low-level noise, equally loud.</li><br>
+
+<li><a href="../html/cblur.htm#SPREAD"><b>Spread</b></a> introduces noise into the spectrum by spreading the spectral peaks, exaggerating the less prominent (noise) constituents.  The effect is similar to AVERAGE and can be time-varied.</li><br>
+
+<li><a href="../html/cblur.htm#CALTRAIN"><b>Caltrain (R8)</b></a> distorts the spectrum by blurring above a given frequency and over a specified amount of the sound. The effect is a kind of added rattle, like listening on the other sound of a snare drum (with the snare on). The "ordinary" signal below the frequency cut-off is muffled, but the result can be improved by mixing it with the source.</li>
+
+</ul>
+
+<!------------------------------------------------------------------>
+<h2 id="SPECFILT" style="color: #ffffff; background-color: #950000">&nbsp;FILTER &nbsp;&nbsp;&nbsp; (CDP groups: HILITE, FOCUS, SPECNU, BLUR)</h2>
+<p>
+These processes remove or reduce the amplitude in selected frequency channels, or use frequency information to partition the spectrum.
+</p>
+<ul>
+<li><a href="../html/chilite.htm#FILTER"><b>Filter</b></a> implements classic filter types in the frequency domain, with the possibility of very precise and very sharp filtering.</li><br>
+
+<li><a href="../html/chilite.htm#GREQ"><b>Greq</b></a>: a text-specified Graphic-EQ filterbank with great flexibility in the number and definition of bands.</li><br>
+
+<li><a href="../html/cfocus.htm#FOCUS"><b>Focus</b></a> focuses the energy around the most prominent spectral peaks, by treating these as the centre frequencies of a filter set. </li><br>
+
+<li><a href="../html/chilite.htm#VOWELS"><b>Vowels</b></a> mimics the filter characteristics of spoken vowels (c.f. <a href="../html/crepitch.htm#VOWELS"><b>Repitch Vowels</b></a>).</li><br>
+
+<li><a href="../html/cspecnu.htm#SLICE"><b>Slice</b></a> partitions the spectrum into slices selected by user-defined bands, output as separate files. Thee can be then treated individually (e.g. distributed spatially, transposed, delayed or repetition) before being mixed or interleaved to reconstruct a single sound. One application is to create a false stereo out of a mono signal; another might be to create a chorus effect. Although it operates differently, this process effectively supersedes the early function <a href="../html/chilite.htm#BAND"><b>Hilite Band</b></a>. Note also that Specnu Slice 1 is identical to the separate function <a href="../html/cspecnu.htm#SPECGRIDS"><b>Specgrids</b></a>.</li><br>
+
+<li><a href="../html/cspecnu.htm#CLEAN"><b>Clean</b></a> reduces noise in a signal by eliminating low-level bands quieter than those in a comparative 'noise file'. (<b>Clean</b> supersedes an older function: <a href="../html/cspecedi.htm#CLEAN"><b>Spec Clean</b></a>.)</li>
+<li><a href="../html/cspecnu.htm#SUBTRACT"><b>Subtract</b></a> similarly compares two files and subtracts the amplitude in one (which may not actually be 'noise'), from the other. (In Soundshaper, this is Mode 2 of <b>Clean</b>.)</li>
+<li><a href="../html/cspecnu.htm#REMOVE"><b>Remove</b></a> subtracts a given pitch and its harmonics, or removes everything but these same frequencies (c.f. <b>Pick</b>) </li><br>
+
+<li><a href="../html/chilite.htm#TRACE"><b>Trace</b></a> thins the spectrum by retaining the strongest partials.</li> 
+<li><a href="../html/chilite.htm#BLTR"><b>Bltr</b></a> (Blur and Trace) is a variant of Trace offering time-averaged blurring as well (see also <b>Blur</b>.</li>
+<li><a href="../html/cblur.htm#SUPPRESS"><b>Suppress</b></a> is the opposite of <b>Trace</b>, thinning by rejecting the strongest partials.</li>
+<li><a href="../html/cblur.htm"><b>Suppress Partials (R8)</b></a> is a newer variant of Suppress, allowing you to set the frequency band in which partials are suppressed.</li>
+<li><a href="../html/cblur.htm#SCATTER"><b>Scatter</b></a> thins the spectrum randomly, retaining N random frequency blocks per analysis window. This usually produces a gurgling effect (c.f. <a href="../html/chilite.htm#GLISTEN"><b>Glisten</b></a>).</li><br>
+</ul>
+
+<!------------------------------------------------------------------------->
+<h2 id="PCHFRQ" style="color: #ffffff; background-color: #950000">&nbsp;PITCH &amp; FREQUENCY &nbsp;&nbsp;&nbsp; (CDP groups: REPITCH, PITCH, SPECFNU, BLUR, STRANGE)</h2>
+<p>
+These processes directly manipulate the frequency data in spectral analysis files and some have a radical effect on the pitch or harmonic content.
+</p>
+
+<h3>PITCH-ALTERING FUNCTIONS</h3>
+<p>
+Transposition preserving time can be done in several ways, either shifting the formants or attempting to preserve them (especially for vocal sounds). 
+</p>
+
+<h3>Transpose without preserving formants:</h3>
+<ul>
+<li><a href="../html/crepitch.htm#TRANSPOSE"><b>Transpose</b></a> transposes the sound, preserving time, but not the spectral envelope (formants).<br>
+Other ways of doing this may work better than Transpose in certain contexts:</li>
+<li><a href="../html/cpitch.htm#TRANSP"><b>Transp</b></a> transposes all or part of the spectrum, up or down or both.</li>
+<li><a href="../html/cstretch.htm#TIME"><b>Time-stretch</b></a> plus <a href="../html/cgromody.htm#SPEED"><b>Speed</b></a>: a composite batch file of time-stretching (or shrinking) and the time-domain <b>Speed</b> (which changes pitch and time) is worth considering (and has been implemented in Soundshaper).</li>
+</ul>
+
+<h3>Transpose preserving the spectral envelope (formants):</h3>
+<ul>
+<li><a href="../html/crepitch.htm#PCHSHIFT"><b>Pchshift</b></a> transposes by fixed number of semitones. It requires a pitch file (<b>.frq</b>) as input, extracted using <b><a href="../html/crepitch.htm#GETPITCH">Repitch GetPitch</b></a>.</li>
+<li><a href="../html/cpitch.htm#OCTMOVE"><b>Octmove</b></a>: transposes the sound by a ratio, with an optional bass boost.<br>
+Both Pchshift and Octmove require an extracted formant (spectral-envelope) file (<b>.for</b>) to reconstitute an analysis file, using <a href="../html/ccombine.htm#MAKE"><b>Make</b></a>.<br>
+To preserve the original formants, this should come from the same source sound.  The pitch and formant extraction, shifting and reconstruction can be implemented as a composite process, using a batch file (details below). </li>
+<li><a href="../html/cspecfnu.htm#OCTSHIFT"><b>Specfnu 11 (Octave-shift, R8)</a></b> and <a href="../html/cspecfnu.htm#TRANSPOSE"><b>12 (Transpose, R8)</a></b> also transpose, preserving formants, with options to silence non-harmonic or unpitched partials, arpeggiate, etc.</li><br>
+<li><a href="../html/crepitch.htm#TRANSPOSEF"><b>TransposeF</b></a> is an early variant of Transpose, intended to preserve formants, but it is less effective than the later methods above.</li>
+
+</ul>
+
+<h3>Other pitch-altering functions preserving formants:</h3>
+<p>
+In addition to PchShift and Octmove, the following pitch-data functions can be turned into composites (as done in Soundshaper), using a batch file consisting of:
+<ul>
+  <ul>
+  <li>Extract pitch using <a href="../html/crepitch.htm#GETPITCH"><b>GetPitch</b></a></li>
+  <li>Extract formants (spectral envelope) using <a href="../html/cformant.htm#GET"><b>Formants Get</b></a></li>
+  <li>Apply the pitch-data function to the extracted pitch</li>
+  <li>Combine the altered pitch with the formant file using <a href="../html/ccombine.htm#MAKE"><b>Make</b></a></li> 
+  </ul>
+<br>
+<li><a href="../html/crepitch.htm#APPROX"><b>Approx</b></a> produces a pitch contour varying slightly (or, optionally, radically) in pitch and time from the original. </li> 
+<li><a href="../html/crepitch.htm#EXAG"><b>Exag</b></a> exaggerates the range and/or contour of the extracted pitch.</li> 
+<li><a href="../html/crepitch.htm#INVERT"><b>Invert</b></a> inverts the pitch contour around a given pitch, either using mirror inversion, or a mapping text file of intervals and their inversions.</li> 
+<li><a href="../html/crepitch.htm#QUANTISE"><b>Quantise</b></a> constrains pitches to a given template. For example, quantising to the semitone eliminates microtonal shifts (c.f. autotuning programs).</li> 
+<li><a href="../html/crepitch.htm#RANDOMISE"><b>Randomise</b></a> randomises the pitch contour within user limits.</li>
+<li><a href="../html/crepitch.htm#SMOOTH"><b>Smooth</b></a> averages the pitch across the specified time-window, around a mean pitch.</li>
+<li><a href="../html/crepitch.htm#VIBRATO"><b>Vibrato</b></a> modulates pitch, preserving time (necessary if several pitches vibrato simultaneusly).</li> 
+</ul>
+
+<h3>Specfnu and Fractal</h3>
+<ul>
+<li><a href="../html/cspecfnu.htm"><b>Specfnu (R8)</b></a> has alternative methods for some of the above operations, again with the emphasis on preserving formants: <br>
+<a href="../html/cspecfnu.htm#PCHEXAGG"><b>Pch-Exagg</b></a> (<b><i>specfnu 16</b></i>), <a href="../html/cspecfnu.htm#PCHINVERT"><b>Pch-Invert</b></a> (<b><i>specfnu 15</b></i>), <a href="../html/cspecfnu.htm#PCHQUANT"><b>Pch-Quant</b></a> (<b><i>specfnu 17</b></i>), <a href="../html/cspecfnu.htm#PCHRAND"><b>Pch-Rand</b></a> (<b><i>specfnu 18</b></i>) &#150 see also under <a href="#FORMANTS"><b>FORMANTS</b></a>.</li><br>
+<li><a href="../html/cspecnu.htm#FRACTALSPECTRUM"><b>Fractal Spectrum (R8)</b></a> distorts the spectrum fractally by transposition. The musical effect is a kind of pitch wobble.</li>
+</ul>
+
+<h3>FREQUENCY-ALTERING FUNCTIONS</h3>
+<ul>
+<li><a href="../html/cpitch.htm#TUNE"><b>Tune/Tunevary</b></a> tunes a sound to a given set of pitches, by shifting individual partials to the nearest harmonic of the specified chord. The degree of the effect can be time-varied. Note that the tuning can only be effective to the extent that the partials are actually present in the source; using or mixing in an octave-transposed version can be helpful. <a href="../html/cpitch.htm#TUNEVARY"><b>TuneVary</b></a> adds a time-variable pitch template, using the <b>Varibank</b> format and inviting comparison with <a href="../html/cgrofilt.htm#VARIBANK"><b>Varibank</b></a> itself.</li>
+<li><a href="../html/cpitch.htm#PICK"><b>Pick</b></a> retains a set of partials (harmonics, octaves, or shifted harmonics) if these are present in the sound. (If not, the sound could be transposed first.)</li>
+<br>
+
+<li><a href="../html/cfocus.htm#FOLD"><b>Fold</b></a> octave-transposes spectral components into the specified range.</li>
+<li><a href="../html/cfocus.htm#SPECFOLD"><b>Specfold 1 (R8)</b></a> is a newer function which similarly (and more convincingly) folds spectral frequencies: in a given number of channels above a specified low one.</li><br>
+
+<li><a href="../html/cspecnu.htm#SLICE"><b>Specnu Slice 5 (Invert spectrum)</a></b> inverts all partials around a given frequency: high becomes low and vice versa. </li>
+<li><a href="../html/cfocus.htm#SPECFOLD"><b>Specfold 2 (Invert spectrum) (R8)</a></b> similarly inverts a given number of channels above a specified low one.</li> 
+<li><a href="../html/cfocus.htm#SPECFOLD"><b>Specfold 3 (R8)</a></b> randomises spectral frequencies in a given number of channels above a specified low one. </li>
+<br>
+
+<li><a href="../html/cstrange.htm#SHIFT"><b>Shift</b></a> frequency-shifts all or part of the spectrum up or down, by <i>adding</i> a value to all frequencies in a specified band, producing inharmonic sounds.</li>
+<li><a href="../html/cspecfnu.htm#FREQSHIFT"><b>Freq-Shift</b></a> (<b><i>Specfnu 13, R8</b></i>) also shifts the spectrum, under the existing formants. This tends to introduce artefacts not found in <a href="../html/cstrange.htm#SHIFT"><b>Shift</b></a>.</li>
+<li><a href="../html/cspecfnu.htm#RESPACE"><b>Respace</b></a> (<b><i>Specfnu 14, R8</b></i>)> re-spaces partials, under the existing formants, using a textfile of new spacings.</li>
+<li><a href="../html/cspecfnu.htm#PCHRAND"><b>Randomise partials</b></a> (<b><i>Specfnu 19, R8</b></i>) randomly shifts the partials, under the existing formants.</li>
+<li><a href="../html/cstretch.htm#SPECTRUM"><b>Stretch spectrum</b></a> stretches or compresses frequencies above or below a dividing frequency, turning harmonic sounds into inharmonic ones.</li><br>
+
+<li><a href="../html/cstrange.htm#WAVER"><b>Waver</b></a> is a kind of spectral vibrato, oscillating from the original (harmonic) state to a stretched (inharmonic) state and back.</li><br>
+
+<li><a href="../html/cblur.htm#CHORUS"><b>Chorus</b></a> randomises frequencies and/or amplitudes to create a chorus effect, or a more extreme gurgling effect.</li><br>
+
+<li><a href="../html/cstrange.htm#GLIS"><b>Glis</b></a> attempts to reproduce Shephard tones or an inharmonic glissando. The Shephard illusion is the equivalent of Escher's perpetual staircase drawing &#150 in the descending audio version, as new upper harmonics gradually appear, lower ones fade out, so that the effect is of an ever-descending tone. In this version, a good effect is hard to achieve, but the process is useful in its own right.</li>
+</ul>
+
+<h3>OTHER FUNCTIONS</h3>
+<ul>
+<li><a href="../html/cpitch.htm#CHORD"><b>Chord/Chordf</b></a> imposes transposed versions of the sound onto the original frequencies. In theory, this should sound like a transposer, but somehow it doesn't, probably because it's working with frequency sets, not actual transpositions (as does <a href="../html/cgromody.htm#STACK"><b>Stack</b></a> in the time-domain). <b>Chordf</b> additionally attempts to preserve the original formants.<br>
+To create an effective chord, mix multiple transpositions of the original sound (using <a href="../html/crepitch.htm#TRANSPOSE"><b>Transpose</b></a> and <a href="../html/cgromixr.htm#MERGEMANY"><b>Mergemany</b></a>).</li><br>
+
+<li><a href="../html/cspecnu.htm#SQUEEZE"><b>Squeeze</b></a> aims to squeeze frequencies around a given centre frequency. The function is either misleading or faulty, as it invariably squeezes around an F4 pitch, but varying the supposed frequency does alter the timbre, so perhaps it has some use.<br>
+More convincing is <a href="../html/cspecfnu.htm#SQUEEZE"><b>Specfnu 2 (R8) (Squeeze)</b></a> (q.v. under <b>FORMANTS</b>)</li><br>
+
+<li><a href="../html/cpitch.htm#SPECTUNE"><b>Spectune (R8)</b></a>: the name is misleading, as the function doesn't tune the spectrum, like <a href="../html/cpitch.htm#TUNE"><b>Tune/Tunevary</b></a>, but aims to find the most prominent pitch and transpose the file to it.
+Unfortunately there are often unwanted artefacts and breakthrough of the original pitch.</li>
+
+</ul>
+
+
+<!------------------------------------------------------------------------------>
+<h2 id="MORPH" style="color: #ffffff; background-color: #950000">&nbsp;MORPH &nbsp;&nbsp;&nbsp; (CDP group: MORPH) </h2>
+<p>
+Morphing processes interpolate ("morph") between two sets of spectra over time. 
+</p>  
+
+
+<ul>
+<li><a href="../html/cmorph.htm#MORPH"><b>Morph</b></a> and <a href="../html/cmorph.htm#BRIDGE"><b>Bridge</b></a> morph over time between the frequency and amplitude values of two sounds.</li><br>
+
+<li><a href="../html/cmorph.htm#NEWMORPH"><b>Newmorph</b></a> (<i>Soundshaper: MorphPeaks</i>) morphs between the spectral peaks of two sounds. This makes it possible to morph between dissimilar sounds. In its tuned modes, Sound 1 is gradually tuned to the average pitch field of Sound 2. You can also create multiple output files, representing different stages of the morph.</li><br>
+
+<li><a href="../html/cmorph.htm#NEWMORPH2"><b>Newmorph2 </b></a> (<i>Soundshaper: Morphtune</i>) gradually tunes the sound to the pitches in a given list.<br>
+<b>Newmorph2 Mode 1</b></a> (<i>Soundshaper: Peakfreqs</i>) extracts the peak frequencies from a given analysis file, in order of prominence, to provide a pitch template for Newmorph2. It reports the frequencies only, not their amplitude.</li><br>
+
+<li><a href="../html/ccombine.htm#SPECROSS"><b>Specross Partials</b></a> (<i>Soundshaper: MorphHmcs</i>) morphs the harmonics of an articulated pitched sound 1 (e.g. speech) towards those of a sustained pitched sound 2.  Spectral peaks are tracked in each source and those of sound 1 are transformed to match those of sound 2. The result may seem more like an altered sound 2 than sound 1.</li><br>
+
+<li><a href="../html/cmorph.htm#GLIDE"><b>Glide</b></a> makes a gradual glissando, over any time, between the frequencies of two single-moment spectra, grabbed at two specific times from different sounds (although they can be the same if the copy is named differently). (In Soundshaper, the <a href="../html/cspecedi.htm#GRAB"><b>Grab</b></a> and <b>Glide</b> procedure is built into a composite process behind the scenes.)<br>The only drawback with <b>Glide</b> is that it has no changing envelope, spectral or otherwise, but one can be imposed.</li><br>
+
+</ul>
+
+
+<!------------------------------------------------------------------------------>
+<h2 id="FORMANTS" style="color: #ffffff; background-color: #950000">&nbsp;FORMANTS &nbsp;&nbsp;&nbsp; (CDP groups: FORMANTS, ONEFORM, COMBINE, SPECFNU) </h2>
+<p>
+Formants are the resonant frequencies found in many sounds, especially vocal ones. These frequencies are emphasised whatever pitch is used (sung or spoken). If the pitch is changed (even while preserving time), the formants also move and the voice sounds un-natural. Several processes (esp. <b>Specfnu</b>) therefore attempt to manipulate sound while retaining the formants.  Others create hybrids by crossing the spectral contour of one sound with another.
+
+</p><p>
+CDP also employs formant files (<b>.for</b>), which extract the time-varying spectral envelope of a sound, mainly for use with other processes. In the <a href="cdppitch.html"><b>PITCH suite</b></a>, extracted pitch files (<b>.frq</b>) are transformed and later combined with a suitable formant file to create a frequency analysis file (<b>.ana</b>), which the Phase Vocoder can then convert back to a soundfile (<b>.wav</b>). 
+</p>
+
+<h3>EXTRACTING AND USING FORMANTS (Spectral Envelope)</h3>
+<ul>
+<li><a href="../html/cformant.htm#GET"><b>Formants Get</b></a> extracts the time-varying spectral envelope from a frequency analysis file (<b>.ana</b>) to a formant file (<b>.for</b>). (Soundshaper accepts a sound or analysis file as input.)  </li><br>
+<li><a href="../html/coneform.htm#GET"><b>Oneform Get</b></a> extracts a single spectral envelope at a specified time in a formant file. (Soundshaper accepts a sound, analysis or formant file as input.)<br>
+<br>
+Apart from <a href="../html/cformant.htm#PUT"><b>Formants Put</b></a> and <a href="../html/coneform.htm#PUT"><b>Oneform Put</b></a> (see below), formant files are normally combined with pitch files (see <a href="cdppitch.html"><b>PITCH-DATA</b></a> section):  </li>
+
+<li><a href="../html/ccombine.htm#MAKE"><b>Make</b></a> combines a formant (spectral envelope) file (<b>.for</b>) with a pitch data file (<b>.frq</b>) to make a spectral file (<b>.ana</b>). Both files must have been derived from the same PVOC settings, but they can come from different source sounds, which offers many possibilities for creating hybrids.<br>
+<b>Pitch-data</b> functions alter extracted pitch (<b>.frq</b>) in a number of ways; in addition, pitch-breakpoint files (<b>.pch</b>/<b>.brk</b>)can be manipulated manually and then converted to binary pitch files (<b>.frq</b>), or pitch files can be synthesized by <b>Repitch Generate</b>.  By creating a spectral file (<b>.ana</b>), <b>Make</b> provides a route back to sound.<br>
+</li><br>
+<li><a href="../html/ccombine.htm#MAKE2"><b>Make2</b></a> is a variant of <a href="../html/ccombine.htm#MAKE"><b>Make</b></a>, generating a spectrum from pitch, formant and also envelope data (<b>.evl</b>), possibly from different sounds.<br>
+In both <a href="../html/ccombine.htm#MAKE"><b>Make</b></a> and <a href="../html/ccombine.htm#MAKE2"><b>Make2</b></a>, some care is needed to ensure that the formant file (<b>.for</b>) has a wide enough spread of partials for the content of the pitch (<b>.frq</b>) file.</li>
+<li><a href="../html/coneform.htm#COMBINE"><b>Oneform Combine</b></a> is a version of <b>Make</b> for a single-formant file (<b>.for</b>). It combines pitch and single-moment-formants data to make a new spectral file. </li>
+<li><a href="../html/cformant.htm#SEE"><b>Formants See/GetSee</b></a> is a utility for viewing a formant file as a pseudo-soundfile, which should NOT be played.</li>
+</ul>
+
+
+<h3>FUNCTIONS CREATING HYBRIDS</h3>
+<ul>
+<li><a href="../html/cformant.htm#VOCODE"><b>Vocode</b></a>: the spectral version of a classic technique, this creates a hybrid between two sounds by imposing the spectral amplitude of one sound on top of another.</li><br>
+
+<li><a href="../html/ccombine.htm#CROSS"><b>Cross</b></a> creates a hybrid by <i>replacing</i> the spectral amplitude of one sound with that of another (more radical than vocoding).</li><br>
+
+<li><a href="../html/ccombine.htm#SPECENV"><b>Specenv (R8)</b></a>: like <b>Vocode</b>, Specenv extracts the spectral envelope of File2 and applies it to File1, but allows for larger spectral windows.<br>
+File2 must be longer than File1 &#150 an annoying restriction; otherwise this gives a good result.</li><br>
+
+<li><a href="../html/ccombine.htm#SPECSPHINX"><b>Specsphinx</b></a> (<i>Soundshaper: Hybrids</i>) is a variant of Cross which imposes the amplitudes of Sound 2 on the frequencies of Sound 1, or multiplies their spectra.</li><br>
+
+<li><a href="../html/ccombine.htm#SPECTWIN"><b>Spectwin</b></a> combines the formant and/or total spectral envelopes of two spectra.</li><br>
+
+<li><a href="../html/cformant.htm#PUT"><b>Formants Put</b></a> imposes or replaces the spectral amplitude, using an extracted formant file (<b>.for</b>) &#150 the equivalent of Vocode and Cross. </li><br>
+
+<li><a href="../html/coneform.htm#PUT"><b>Oneform Put</b></a> imposes or replaces the spectral amplitude, using a single-moment formant file (<b>.for</b>). This creates a static sound with frozen amplitudes, but with a changing spectrum/pitch (see also <b>Freeze</b>). </li>
+</ul>
+
+
+<h3>SPECFNU (R8)</h3>
+<p>
+<b><a href="../html/cspecfnu.htm">Specfnu (R8)</b></a> is a comprehensive set of functions altering the formants themselves or altering the spectrum under the existing formants.
+</p>
+<h3>Specfnu functions altering formants:</h3>
+<ul> 
+<li><a href="../html/cspecfnu.htm#NARROW"><b>Narrow Fmts (specfnu 1)</b></a> steepens the skirts of formant peaks, with an option to omit some. </li>
+<li><a href="../html/cspecfnu.htm#SQUEEZE"><b>Squeeze Fmts (specfnu 2)</b></a> squeezes the spectrum around a given formant (1-4).</li>
+<li><a href="../html/cspecfnu.htm#INVERT"><b>Invert Fmts (specfnu 3)</b></a>: formant peaks become troughs and troughs peaks, generally roughening the sound.</li>
+<li><a href="../html/cspecfnu.htm#ROTATE"><b>Rotate Fmts (specfnu 4)</b></a>: formant peaks and frequencies rotate around the spectrum at a given speed.</li>
+<li><a href="../html/cspecfnu.htm#NEGATIVE"><b>Spectral Negative(specfnu 5)</b></a> inverts the spectral values for each channel, usually producing a highly distorted output. </li> 
+<li><a href="../html/cspecfnu.htm#SUPPRESS"><b>Suppress Fmts (specfnu 6)</b></a> suppresses one or more of formants 1-4, changing the timbre.</li>
+<li><a href="../html/cspecfnu.htm#MOVEBY"><b>Move Fmts (specfnu 8/9)</b></a> moves each of formants 1-4 by or to a specified frequency. (Small values have little noticeable effect.) </li>
+<li><a href="../html/cspecfnu.htm#ARPEGG"><b>Arpeggiate Fmts (specfnu 10)</b></a> arpeggiates the spectrum, under formants, creating a sweeping-filter effect.</li>
+</ul>
+
+<h3>Specfnu functions preserving formants:</h3> 
+<p>
+Functions altering pitch or frequency while preserving formants have already been mentioned in the <a href="#PCHFRQ"><b>PITCH/FREQ</b></a> section, but are re-listed here for completeness. 
+</p>
+<ul>
+<li><a href="../html/cspecfnu.htm#OCTSHIFT"><b>Octave-shift (specfnu 11)</b></a> and <a href="../html/cspecfnu.htm#TRANSPOSE"> <b>Transpose (specfnu 12)</b></a> both transpose preserving formants, with options to silence non-harmonic or unpitched partials, arpeggiate, etc. (c.f. <b>Octmove</b>, <b>PchShift</b>)</li>
+<li><a href="../html/cspecfnu.htm#FREQSHIFT"><b>Freq-Shift (Specfnu 13)</b></a> shifts the spectrum, under the existing formants (c.f. <b>Shift</b>).</li>
+<li><a href="../html/cspecfnu.htm#RESPACE"><b>Respace (Specfnu 14)</b></a> re-spaces partials, under the existing formants, using a textfile of new spacings.</li>
+<li><a href="../html/cspecfnu.htm#pchINVERT"><b>Pch-Invert (Specfnu 15)</b></a> inverts the pitch, under existing formants (c.f. <b>Repitch Invert</b>)</li> 
+<li><a href="../html/cspecfnu.htm#PCHEXAGG"><b>Pch-Exagg/Smooth (Specfnu 16)</b></a>: exaggerate or smooth the pitch-line, retaining formants (c.f. <b>Repitch Exag</b>).</li> 
+<li><a href="../html/cspecfnu.htm#PCHQUANT"><b>Pch-Quant (Specfnu 17)</b></a> forces pitch onto a specified pitch field, retaining formants (c.f. <b>Repitch Quantise</b>).</li> 
+<li><a href="../html/cspecfnu.htm#PCHRAND"><b>Pch-Rand (Specfnu 18)</b></a> randomises pitch of source, under existing formants (c.f. <b>Repitch Randomise</b>).</li> 
+<li><a href="../html/cspecfnu.htm#RANDSHIFT"><b>Randomise partials(Specfnu 19)</b></a> randomly shifts partials, under the existing formants.</li>
+<li><a href="../html/cspecfnu.htm#SINESPEECH"><b>Sine-speech (Specfnu 23)</b></a> converts each formant frequency into a sine tone: a kind of pseudo-synthesis based on the source formants.</li>
+</ul>
+
+<hr>
+<ul>
+<li><a href="../html/cspecfnu.htm#FILTER"><b>Filter (Specfnu 7)</b></a> generates filter data for <b>Varibank</b>, based on formant peaks. The relative amplitude of formants can then be varied by filtering, or the sound could move towards a second set of filter data, derived from altered formants.</li>
+
+<li><a href="../html/cspecfnu.htm#SEESPECENV"><b>See Spectral Envelope (Specfnu 20)</b></a> produces a viewable (but not playable) pseudo-soundfile showing the spectral envelope at each window as a block of positive samples (c.f. FORMANTS GETSEE) </li>
+
+<li><a href="../html/cspecfnu.htm#SEESPECPKS"><b>See Spectral Peaks (Specfnu 21)</b></a> prints a textfile of frequencies of peaks &amp; troughs per analysis window.</li>
+
+<li><a href="../html/cspecfnu.htm#GETTROFS"><b>Get Troughs (Specfnu 22)</b></a> prints a texfile of the times of loudness troughs between distinct sound events (such as speech syllables).</li>
+
+</ul>
+
+
+
+<!---------------------------------------------------------------------------------->
+<h2 id="COMBINE" style="color: #ffffff; background-color: #950000">&nbsp;COMBINE &nbsp;&nbsp;&nbsp; (CDP group: COMBINE) </h2>
+<p>
+These processes operate on two spectra (channel by channel and across all time-windows):
+</p>
+<ul>
+<li><a href="../html/ccombine.htm#SUM"><b>Sum</b></a> adds the amplitudes of two spectra together, if they differ.</li><br>
+
+<li><a href="../html/ccombine.htm#DIFF"><b>Diff</b></a> takes the difference of the two amplitudes.</li><br>
+
+<li><a href="../html/ccombine.htm#INTERLEAVE"><b>Interleave</b></a> interleaves the analysis windows from two or more infiles.</li><br>
+
+<li><a href="../html/ccombine.htm#MAX"><b>Max</b></a> takes the maximum amplitudes of two spectra.</li><br>
+
+<li><a href="../html/ccombine.htm#MEAN"><b>Mean</b></a> takes the mean of two spectra, in amplitude and/or pitch/frequency. The latter can result in a radical transformation. </li>
+</ul>
+<p>
+The other functions in CDP's COMBINE group are considered elsewhere in this document: <b>CROSS</b>, <b>MAKE</b> and <b>MAKE2</b>. 
+</p>
+
+<!---------------------------------------------------------------------------->
+<h2 id="TIME" style="color: #ffffff; background-color: #950000">&nbsp;TIME &nbsp;&nbsp;&nbsp; (CDP groups:  BLUR, FOCUS, SPEC, STRETCH, SPECNU)</h2>
+<p>
+Although in the spectral domain, these processes are all concerned with the evolution of sounds in time. They change the information across a number of time-windows, e.g. by blurring, freezing, stretching sounds in time, or selecting a different succession of windows:
+</p>
+<ul>
+
+<li><b>Timestretch</b> (<a href="../html/cstretch.htm#TIME"><b>Stretch Time</b></a> or <a href="../html/cstretch.htm#SPECTSTR"><b>Spectstr,R8</b></a>): stretches or shrinks the sound over time, preserving pitch. Timestretch creates extra time-windows to expand the overall time-base of the sound, without a change of frequency. The stretch/shrink itself can be time-varying.<br>
+The newer function <b>Spectstr</b> adds a DISCOHERE parameter. </li><br>
+
+<li><a href="../html/cspecedi.htm#MAGNIFY"><b>Magnify</b></a> (<i>Soundshaper: Expand</i>) expands a single analysis window over time, freezing the sound.</li><br>
+
+<li><a href="../html/cfocus.htm#HOLD"><b>Hold</b></a> time-expands the spectrum using a list of times and hold-durations. The original file is lengthened.</li><br>
+
+<li><a href="../html/cfocus.htm#FREEZE"><b>Freeze</b></a> freezes the spectral amplitudes or frequencies, or both, at the times specified.</li>
+<li><a href="../html/cfocus.htm#STEP"><b>Step</a>(-freeze)</b>: like <b>Freeze</b>, except that the spectrum is frozen at regular time-intervals, for example, the sound frozen from time 1 is held until replaced by that frozen from time 2, and so on.</li><br>
+
+
+<li><a href="../html/cblur.htm#BLUR"><b>Blur</b></a> averages spectral amplitudes over time to create a blurring effect.</li>
+<li><a href="../html/chilite.htm#BLTR"><b>Bltr</b></a> (Blur and Trace) blurs and also thins the spectrum (c.f.<a href="../html/chilite.htm#TRACE"><b>Trace</b></a>).</li><br>
+
+<li><a href="../html/cblur.htm#SELFSIM"><b>Selfsim</b></a> replaces spectral windows with more prominent similar ones. This doesn't tend to produce a radical change. (The process also runs quite slowly.)</li><br>
+
+<li><a href="../html/cblur.htm#SHUFFLE"><b>Shuffle</b></a> permutates consecutive (groups of) windows according to a specified pattern (c.f. <a href="../html/cgrogrns.htm#REORDER"><b>Grain Reorder</b></a> and <a href="../html/cdistort.htm#SHUFFLE"><b>Distort Shuffle</b></a>).</li><br>
+
+<li><a href="../html/cblur.htm#WEAVE"><b>Weave</b></a> is a spectral version of <a href="../html/cgroextd.htm#ZIGZAG"><b>Zigzag</b></a>. It reads analysis windows according to a specified sequence of steps.</li><br>
+
+<li><a href="../html/cblur.htm#DRUNK"><b>Blur Drunk</b></a> is a spectral version of <a href="../html/cgroextd.htm#DRUNK"><b>Drunk</b></a>. It takes a random walk through analysis windows, moving through the file reading groups of windows, but jumps backwards or forwards at random.</li><br>
+
+<li><a href="../html/cspecnu.htm#RAND"><b>Specnu Rand</b></a> randomises the order of (groups of) analysis time-windows.</li>
+
+</ul>
+
+<!------------------------------------------------------------------------------------->
+<h2 id="SPECUTILS" style="color: #ffffff; background-color: #950000">&nbsp;SPECTRAL UTILITIES &nbsp;&nbsp;&nbsp; (CDP groups: PVOC and SPEC) </h2>
+<p>
+Spectral utility programs include:
+</p>
+<ul>
+<li><b>PVOC</b> (<a href="../html/cpvocman.htm#USAGEANAL"><b>PvocAnal</b></a> and <a href="../html/cpvocman.htm#USAGESYNTH"><b>PvocSynth</b></a>): the public-domain Phase Vocoder is used to convert soundfiles to spectral files (frequency analysis files) and back. These are workhorse functions, without which the spectral functions cannot be accessed. (Soundshaper does almost all such conversions in the background, using the current settings.)<br><br>
+The analysis parameters <i><b>points</b></i> and <i><b>overlap</b></i> are key: the defaults generally give good results, but the important thing is to be consistent, as spectral functions involving files with two different resolutions will not work. (For a detailed explanation of PVOC parameters, see the <a href="../html/cpvocman.htm"><b>PVOC manual</b></a> and <a href="../html/operpvoc.htm"><b><i>The Operation of the Phase Vocoder</i></b></a>).
+ </li><br>
+
+<li><a href="../html/cpvocman.htm#PVOCEX2"><b>PVOCEX</b></a> (by Richard Dobson) is an alternative format to CDP analysis files (<b>.ana</b>) and is supported throughout CDP. <br>
+PVOCEX2 converts (mono) soundfiles to PVOCEX and back. with a number of options.</li>
+<li><a href="../html/cpvocman.htm#ANA2PVX"><b>ANA2PVX</b></a> converts a CDP analysis file  (<b>.ana</b>) to a PVOCEX file.</li><br>
+
+
+<li><a href="../html/cspecedi.htm#CUT"><b>Spec Cut</b></a> cuts and keeps a segment from a spectral file at the times specified.</li><br>
+
+<li><a href="../html/cspecedi.htm#GAIN"><b>Spec Gain</b></a> is a spectral version of <b>GAIN</b>, altering the level in a spectral file.</li><br>
+
+<li><a href="../html/cspecedi.htm#GATE"><b>Spec Gate</b></a> is a spectral version of <b>GATE</b>, removing sound with a level lower than a given threshold, in each frequency band.</li><br>
+
+<li><a href="../html/cspecedi.htm#GRAB"><b>Spec Grab</b></a> extracts a single analysis window at the specified time, for use in <b>Glide</b>. (In Soundshaper, it is built into the Glide composite procedure behind the scenes.) </li><br> 
+
+<li><a href="../html/cspecedi.htm#BARE"><b>Spec Bare</b></a> zeros non-harmonic data, according to a pitch file used for comparison.<br>
+There are many spectral functions that might follow Bare; the CDP Reference lists: Blur, Morph, Pluck , Trace, Tune, Filter and Vocode</li><br>
+
+<li><a href="../html/cspecedi.htm#ALTHARMS"><b>AltHarms</b></a> deletes odd or even harmonics, using a pitch file as reference.</li><br>
+
+<li><a href="../html/cspecedi.htm#ANALJOIN"><b>Analjoin</b></b></a> is an experimental function joining two or more spectral files. It is unlikely to join them smoothly, for technical reasons.</li> 
+
+
+</ul>
+<br>
+
+
+<!--------------- BACK / NEXT TABLE ------------->
+            <div align="center">
+              <table border="0" cellpadding="0" cellspacing="0"
+                width="50%">
+                <tbody>
+                  <tr>
+                    <td valign="top" align="center">
+                        <b><i>SOUNDFILE PROCESSES</b></i></td>
+                    <td valign="top" align="center">
+			<i><b>PITCH PROCESSES</b></i></td>
+                  </tr>
+                  <tr>
+                    <td valign="top" align="center">
+			<a href="cdpsnd.html"><img alt="BACK" src="images/BACK.gif"
+                          border="0" width="54" height="44"></a></td>
+                    <td valign="top" align="center">
+			<a href="cdppitch.html"><img alt="NEXT" src="images/NEXT.gif"
+                          border="0" width="54" height="44"></a></td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+            </div>
+
+<p align="center">
+<small><b>The descriptions above are adapted from the Soundshaper manual and do not necessarily reflect the views of CDP.<br>
+For details of each function, always refer to the <a href="../html/cdphome.htm"><b>CDP Reference Documentation</b></a>.<br>
+For further details about CDP see the Composers' Desktop Project <a href="http://www.composersdesktop.com">website</a>.</b></small>   
+</p>
+
+
+
+
+</blockquote>
+
+<br>
+
+<!-- ----------------------------   End of Main Text ------------------------------ -->
+	<table style="text-align: left; width: 100%; " border="0" cellpadding="8" cellspacing="0">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top; background-color: #d9b18c"><b>NEXT PAGE:</b> 
+              <b><a href="cdppitch.html">&nbsp;<b>PITCH PROCESSES</b></a>
+	  </td>
+        </tr>
+      </tbody>
+    </table>
+
+<br><br><br><br><br><br>
+<!-- ************************************************************* -->
+
+      <div class="footer">
+        <p> 
+		   &nbsp;<b><i>Last Updated 30 Apr 2023 for CDP8 &nbsp;&nbsp;
+          © Copyright 2021-23 Robert Fraser and CDP</i></b>
+        <br>
+    
+        </p>
+      </div>
+      
+
+  </div> <!-- END of MAIN CONTENT (bottom right) --> 
+</div> <!-- END OF RIGHT COLUMN -->
+
+</body>
+</html>   

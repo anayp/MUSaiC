@@ -1,26 +1,6 @@
-# Vendor/CDP assets
-CDPR8/
-CDP8_002_PC.zip
-CDP-Check_Installation-PC.pdf
-CDP-InstallationNotesPC.pdf
-IntroducingCDP-R8.pdf
-README_FIRST.txt
-
-# Outputs and temp
-output/
-**/tmp_sequencer/
-**/melody_tmp/
-
-# Vendor docs (keep our own markdown docs)
-docs/*.zip
-docs/*.pdf
-docs/*.rtf
-
-# Logs
-*.log
-bpm_err.txt
-reverb_log.txt
-
-# OS
-Thumbs.db
-Desktop.ini
+output/*.wav
+output/*.mp3
+output/analysis/
+output/tmp_sequencer/
+*.zip
+.vscode/

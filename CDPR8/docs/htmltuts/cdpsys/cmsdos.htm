@@ -1,0 +1,245 @@
+<html>
+<head>
+<title>PC Command Window</title>
+<LINK REL="stylesheet" TITLE="CDP Style Sheet" HREF="cdpcsssm.css">
+<link rel="icon"  href="../images/cdp_favicon.ico">
+</head>
+
+<body>
+
+<p>
+<a href="../../html/tutorials.htm"><b>Return</b></a> to Tutorials Index<br>
+<a href="../../html/ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Main Index
+</p>
+
+<div align=center>
+<img src="../images/cdplogo2.jpg">
+</div>
+
+<h1 align=center>
+The Windows Command Prompt
+</h1>
+
+<h2 align=center>
+Archer Endrich
+</h2>
+
+<blockquote>
+<h2>
+Introduction
+</h2>
+
+<p><b>CMD.exe</b> is a Windows program which provides a <b>command 
+line interface</b> to the rest of the system.  This program contains a 
+number of in-built commands such as <b>dir</b>, <b>del</b>, <b>copy</b> etc.  
+One can also use it to type in commands which run other programs, such as the 
+command line programs of the CDP System. 
+The program is normally found in C:\Windows\System32 and if you are going to use it frequently, a desktop shortcut is recommended.
+
+</p>
+
+<p>One of the basic things to understand about this interface is that it 
+needs to know, as it were, <i>where it is</i>., i.e., which part of the 
+hard drive it is accessing and onto which it is going to place new or 
+altered files.  The key concept is that of <b>current directory</b>.  This 
+is where it is <i>now</i>.  Let's look at some terminology:
+</p>
+
+<dl>
+<dt><b>top level</b> <dd>this refers to the entire partition of a hard 
+disk, conventionally named <b>c:</b>, <b>d:</b>. etc.  When this is where 
+the command prompt is, the command line of the prompt will read:  
+<b>c:\&gt;</b>  In this notation, the <b>c:</b> means which partition, 
+the '<b>\</b>' is a level marker and the '<b>&gt;</b>' is pointing to 
+the active cursor (should be flashing).  All commands for this command 
+interface are placed adjacent to this '&gt;', without a space.  When it 
+says 'c:\' you know it's the top level because there's nothing to the left 
+of the '\' except the 'c:'.
+
+<dt><b>directory</b> <dd>this is a user-defined section of the hard 
+drive.  It's a logical section, meaning that the information may be 
+physically scattered, but linked in software under this one label.  These 
+are like the drawers of a filing cabinet and are used in the same way:  to 
+group information in some sensible way.
+
+<dt><b>sub-directory</b> <dd>this is a user-defined directory inside 
+another directory, such as ye olde manilla folders which we place inside 
+the drawers of our filing cabinet.
+
+<dt><b>files</b> <dd>and what do we have inside the drawers or manilla 
+folders?  Files, usually documents.  On the computer, these can be <i>text 
+files</i> of various kinds such as plain ascii text or the text created by 
+a word processor (which has extra, hidden formatting instructions);  the 
+files can also be <i>executable programs</i>, i.e., sets of instructions to 
+do something.  There is a special kind of file called a <i>batch file</i>;  
+these have the extension '.bat' on Windows systems, and '.sh' on 
+MAC and Linux conputers.  They are text files which can contain commands (i.e., a 
+list of command lines) and will execute all the commands in the list 
+when run.  The batch file is run by entering its name without the extension 
+&#150; except on the MAC, where the extension is used.
+
+<dt><b>current directory</b> <dd>this is literally where you are at any 
+given time, i.e., the directory which is currently active.  All new files 
+will automatically be placed here <i>unless explicitly told to do 
+otherwise</i>.  The computer can access all files in the current directory 
+without any further instructions about where it is.  But, and this is 
+vitally important, <i>it cannot access any files outside of the current 
+directory without being told where they are</i>.
+
+<dt><b>path</b>	<dd>'path' is the mechanism by which the computer is told 
+where something is.  This can be done explicitly by typing this information 
+on the command line.  For example, the command:<br>
+<b>c:\hereiam\&gt;copy ..\somewhereelse\myfile.txt</b><br>
+will copy 'myfile.txt' from the directory 'somewhereelse' to the current 
+directory 'hereiam'.  Why the two dots?  To go there and get this file, 
+the computer had to go <i>out of </i>'hereiam' (back up one level) and 
+then across to 'somewhereelse'.  The '..\' notation is how the computer 
+does this.  It is called 'going up a level'.  In this case, both of these 
+directories are directly under c:, the top level.  The path to executable 
+programs, <i>and only to<b> executable</b> <b>programs</i></b> can be set 
+to work automatically by setting the <b>path</b> command in Control Panel 
+(see <a href="cmas1cdp.htm#PATH"><b>RUNNING THE CDP SYSTEM &#150 Setting the Path</b></a>) 
+</dl>
+
+<h2>
+Files on the 'top level'
+</h2>
+
+<p>Files can be placed on the top level of a partition.  If this is the 
+case, they are simply on e.g. <b>c:\</b> and not within a directory or 
+sub-directory.  To do something with a text file, you have to use a 
+command such as <b>copy</b> or <b>del</b>(ete) or <b>type</b> and a 
+command to do this would look like this:
+
+<p><b>c:\&gt;type afile.txt</b>
+
+<p><b>NB1:  It is assumed that you will press the ENTER key in order to 
+run the command you've just put on the command line.</b>
+
+<p><b>NB2:  there is no space after the '\', but there is a space after the 
+command 'type';  otherwise it would appear that the command were 
+'typeafile.txt', which it wouldn't recognise, resulting in the message 
+'bad command or filename'.</b>
+
+<p>To do something with an executable file, i.e. a program or batch file, 
+you just enter its name on the command prompt, omitting its extension 
+'.exe' or .bat'.  This would look like this:
+
+<p><b>c:\&gt;aprogram</b>
+
+<p><b></b>The command <b>dir</b> lists all the files in the current 
+directory, giving name, size, date and time it was saved, etc.
+
+<p><font size=4><b>To go 'down' directory levels</b></font>
+
+<p>This procedure uses the command <b>cd</b>, i.e., 'change 
+directory' or, 'make the following the new current directory'.  I could 
+create a directory called 'drawer1' with the command <b>md</b> thus:
+
+<p><b>c:\&gt;md drawer1</b>
+
+<p><b></b>This places a directory inside the 'top level' of drive c:.  
+<i>I can then go there with the command <b>cd</i></b> thus:
+
+<p><b>c:\&gt;cd drawer1</b>
+
+<p>Now, when I next see the Command Prompt, it will show:
+
+<p><b>c:\drawer1&gt;</b>
+
+<p>Note that the '<b>&gt;</b>' is now to the right of 'drawer1', showing 
+that the <b>path</b> now includes 'drawer1'.  This means that 'drawer1' is 
+the current directory, and this is where you are now. <br> 
+<b>The computer will not find executable programs or any other files outside of this 
+directory unless a path has been set or it is explicitly told where that file is.</b>
+
+<p>To move to a<b> sub-directory</b>, such as ye olde manilla folder inside 
+the drawer, you just <i>continue the process</i>.  Thus, to move from 
+'drawer1 to 'manilla1' inside the drawer, you will enter:
+
+<p><b>c:\drawer1&gt;cd manilla1</b>
+
+<p><b></b>and now the command prompt will look like this:
+
+<p><b>c:\drawer1\manilla1&gt;</b>
+
+<p><b></b>To go 'up' directory levels
+
+<p>Going back up uses the notation '<b>..</b>' or, more explicitly, 
+'<b>..\</b>'.  One set of the two dots moves you out of one directory back 
+'up' to the next adjacent higher level, i.e., the directory your current 
+directory is inside of.  'Manilla1' is inside 'drawer1'.  So to move out 
+of 'manilla1' and up into 'drawer1', you enter:
+
+<p><b>c:\drawer1\manilla1&gt;cd ..\</b>
+
+<p>and the command prompt will now look like this:
+
+<p><b>c:\drawer1&gt;</b>
+
+<p>So you see what's happened.  Similarly, moving back up to the top level 
+can be done like this:
+
+<p><b>c:\drawer1&gt;cd ..</b>
+
+<p>and the command prompt will say:
+
+<p><b>c:\&gt;</b>
+
+<p>Finally, this move from a sub-directory to the top level (two levels up) 
+can be done in one step:
+
+<p><b>c:\drawer1\manilla1&gt;cd ..\..</b>
+
+<p>Etc.  This procedure works for any number of levels of 'nested' 
+directories:  up to whatever the system can handle.  (Having too many 
+levels of nesting can become both confusing and tedious.)
+
+<h2>
+Setting the path with a batch file
+</h2>
+
+<p>The normal thing to do is to add the Path to the CDP programs (executables) to the PC system path, found under:<br>
+&nbsp;&nbsp;<b>Control Panel &gt System (Properties) &gt Advanced (or Advanced System Properties) &gt Environment Variables</b>
+</p><p>
+In the LOWER window, select the Path line and click Edit. Put a semi-colon (';') after the last entry and then add the CDP programs path. This should be: <b>[drive-letter]:\cdpr7\_cdp\_cdprogs</b>
+</p><p>
+
+The computer will now be able to access any <b>.exe</b> <i>from 
+anywhere</i>, i.e., from whatever directory is the current one.  This 
+is because this <b>path</b> command instructs the computer to search the paths in turn to find the <b>.exe</b> being 
+invoked.
+</p><p>
+
+You can also set a local, customised <b>path</b> within your current 
+directory.  Just write the path you want into a <b>.bat</b> file of any 
+name (I use <i>ae.bat</i>) and run the batch file:  enter the 'ae' on the 
+command line with or without the '.bat' extension and press the ENTER key.
+</p>
+
+<h2>What can the command line interpreter do? </h2>
+
+<p>Enter the command <b>help</b> and you will be shown a list of all 
+available commands.  Note that you will probably be using only a handful 
+of these! For specific help on a command, type <b>help</b> followed by the command name, 
+for example <b>help dir</b>.
+</p><p>
+Detailed information on all <b>CMD.exe</b> commands can be found at the website <a href="http://ss64.com/"><b>ss64.com</b></a>. 
+
+<p>
+<a href="../../html/tutorials.htm"><b>Return</b></a> to Tutorials Index<br>
+<a href="../../html/ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Main Index
+</p>
+
+<hr>
+<p>
+Last updated: 15 July 2016 (revised R. Fraser for Windows 7 and later)<br>
+&#169; 1998-2016 Archer Endrich &amp; CDP
+</p>
+
+</blockquote>
+
+</body>
+</html>

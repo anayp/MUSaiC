@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0047)http://www.trevorwishart.co.uk/CleaningKit.html -->
+<HTML><HEAD><TITLE>Cleaning Kit</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+
+<BODY>
+
+<DIV align=center>
+<H1 style="COLOR: darkmagenta"><A name=CLEANTOP><B>Cleaning Kit</B></A></H1>
+<H3 style="COLOR: darkmagenta">Cleaning Up Noisy Recordings</H3>
+<P>
+<H2 style="COLOR: darkmagenta">Trevor Wishart (July 2007)</H2>
+<P></P></DIV>
+
+<H3><U>Introduction</U></H3>
+
+<P>The 'Cleaning Kit' was originally developed to clean up vocal recordings 
+made in noisy environments.<BR><BR>Typical sources of noise might be ... 
+  <UL>
+  <LI><B>Relatively Constant</B> (e.g. extractor fan or air-conditioning 
+hum)<BR>
+  <LI><B>Sustained but Changing</B> (e.g. a passing motor vehicle)<BR>
+  <LI><B>Intermittent</B> (creaks of furniture, clothing noise)<BR>
+  <LI><B>Intermittent but Complex</B> (e.g. other people talking)<BR></LI>
+  </UL>
+The Cleaning Kit uses some existing and some new CDP programs to tackle all 
+of these situations. However, it is not possible to deal with all possible noise 
+intrusions.<BR>At present, the Cleaning Kit handles only mono files. To clean 
+stereo or multichannel files you will need to split the source into its 
+constituent channels and clean each channel separately. 
+<P></P>
+
+<H3><U>The Cleaning Kit Framework</U></H3>
+
+The Main Cleaning Kit window presents 
+  <UL>
+  <LI><B>A list of <A href="#CKTOOLS">Cleaning Tools</B></A> to apply to 
+  your source.<BR><BR>
+  <LI><B>A soundfiles window</B> for listing soundfiles, where your file to be 
+  cleaned will appear.<BR><BR>Typically, cleaning a source will involved several 
+  passes. As you proceed, the soundfiles generated at each cleaning stage will 
+  be listed in the window. You can select (by clicking on a file in the window) 
+  which of these sounds you wish to clean (e.g. you can go back to the output of 
+  the penultiamte cleaning procedure, if the last cleaning operation proved 
+  unsatisfactory).<BR>The window defaults to chosing the output of the last 
+  cleaning operation.<BR><BR>
+  <LI><B>An output filename box</B>, where you can choose a name for the final, 
+  completely cleaned sound.<BR><BR>Often you will wish to overwrite the original 
+  source, so there is a button to put the name of the source file in the 
+  output-filename box.<BR></LI>
+  </UL>
+
+<H3><U><A name=CKTOOLS>The Cleaning Kit Tools and their Uses</A></U>
+</H3>
+There are currently 13 options for cleaning sources.<BR>You can call any one of these 
+options br pressing the button adjacent to its name.<BR>When a tool is called, a 
+new window will appear and you will be asked to enter relevant parameters for 
+that Cleaning process.<BR><BR>
+
+The 13 Cleaning options are 
+<OL>
+  <LI><B>Clean General Noise</B><BR><BR>This would typically be used to 
+  <B>remove constant background sounds</B> like air-conditioning or 
+  extractor-fan hum.<BR><BR>
+
+  <LI><B>Gate out Bad Signal</B><BR><BR>This replaces unwanted sound by silence 
+  of the same duration. This can be used, for example<BR><BR>
+
+    <UL>
+    <LI>To remove intakes of breath, or unwanted glossalalia. 
+    <LI>To remove any residual 'flutterings' from the <B>Clean General Noise</B> 
+    process. 
+    <LI>To remove low level, but complex, background sounds, like speech, where 
+    the principal source pauses (even momentarily). Particularly useful in 
+    situations where the foreground sound you want is loud enough to mask the 
+    background sounds most of the time, except when it pauses.<BR><BR></LI>
+    </UL>
+  <LI><B>Cut away Bad Signal</B><BR><BR>This can be used, for example<BR><BR>
+
+    <UL>
+    <LI>To remove loud, short, intrusive sounds (from door-slams to clicks and 
+    clinks). 
+    <LI>To remove hesitations.<BR><BR></LI>
+    </UL>
+  <LI><B>Reinsert Original Signal</B><BR><BR>
+
+  <LI><B>Remove Pitch in Signal</B><BR><BR>This is a spectral subtraction 
+  process, and can be used, for example<BR><BR>
+
+    <UL>
+    <LI>To remove clearly pitched electronic tones from gadgets used in the 
+    environment. 
+    <LI>To remove residual pitches left behind by the <B>Subtract Spectrum</B> 
+    or <B>Clean General Noise</B> options. 
+    <LI>To remove an interrupting voice, where both the principal speaker, and 
+    the interrupting speaker, are speaking vowels, and each has a clear but 
+    different pitch. This sometimes works perfectly and at other times fails 
+    completely!<BR><BR></LI>
+    </UL>
+
+  <LI><B>Remove Sound under Sibilant</B><BR><BR>This is a filtering process, and 
+  can be used to remove intrusive sounds where the foreground speaker is using a 
+  sibilant<BR>Typical intrusions might be<BR><BR>
+
+    <UL>
+    <LI>the hum of passing traffic. 
+    <LI>a 2nd voice using a vowel.<BR><BR></LI>
+    </UL>
+
+  <LI><B>Remove Noise Above Signal</B><BR><BR>This is a filtering process, and 
+  can be used to remove noise type intrusions<BR>Typical intrusions might 
+  be<BR><BR>
+
+    <UL>
+    <LI>clothing noise. 
+    <LI>a 2nd voice using a sibilant.<BR><BR></LI>
+    </UL>
+  This often causes some degradation of the principal source at the point where 
+  the filtering is done.<BR>It is usually better to use spectral subtraction if 
+  this is possible at the particular time in the source.<BR><BR>
+
+  <LI><B>Low Frequency Problem</B><BR><BR>This is a filtering process, and can 
+  be used to remove low frequency intrusions<BR><BR>Typical intrusions might be 
+    <UL>
+    <LI>Footfalls or falling objects on carpeted floors. 
+    <LI>physical knocks on microphones or stands. 
+    <LI>wind/breath noise on a microphone.<BR><BR></LI>
+    </UL>
+
+  <LI><B>Subtract Spectrum</B><BR><BR>This is typically useful where a noise 
+  intrusion begins, ends, or overlays a time where the foreground source is 
+  silent, but then continues over the foreground source. You are asked to 
+  specify the place where the intrusion is <B>not</B> overlaying the principal 
+  source as well as the whole area to be cleaned. The process works by 
+  subtracting the former from the latter. It can sometimes be used instead of 
+  filtering or gating.<BR><BR>
+
+  <LI><B>Graft segment Elsewhere</B><BR><BR>This is a last resort process, where 
+  nothing can be done to remove a noise intrusion. It allows you, for example, 
+  to cut a sliver of a sybillant from one part of the recording, and use that to 
+  replace a noise-intruded sibilant elsewhere.<BR><BR>
+
+  <LI><B>Insert Silence</B><BR><BR>Cutting away bad signal can sometimes result 
+  in unnatural speech (or other) rhythms. These can sometimes be mitigated by 
+  inserting an appropriate durations of silence.<BR><BR>
+
+  <LI><B>Attenuate Level</B><BR><BR>This can be used, for example, to compensate 
+  for the source's back and forth movement in front of the microphone.<BR><BR>
+  <LI><B>Dovetail the Ends</B><BR><BR>This can be useful where a section of 
+  recording has been cut from a longer source. For example, a single voice is 
+  extracted from a conversation and the 2 speakers overlap at the boundary but, 
+  to preserve the sense of the speech, the overlapped segment has to be 
+  retained. Using other processes (pitch or sibilant removal, see above) may 
+  still leave some residual unwanted signal. This can sometimes be hidden by 
+  subtlely dovetailing the start (or end) of the recording.<BR>
+  <P></P></LI>
+
+</OL>
+
+</BODY>
+
+</HTML>

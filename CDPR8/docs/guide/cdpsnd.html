@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+  <! cdpsnd.htm  CDP Guide: Soundfiles -->
+
+<head>
+  <meta charset="utf-8">
+  <title>CDP-Soundfiles</title>
+  <link rel="stylesheet" type="text/css" href="cdpguide.css">
+  <link rel="stylesheet" href="menu.css">
+  <link rel="icon"  href="images/cdp_favicon.ico">
+  
+    <style>
+	  a { text-decoration: none }
+	  a:hover { color:#FF3333;
+      text-decoration: underline } 
+      a:link {color: #000099}
+      a:visited {color: ##993399}
+      a:active {color: #0000FF}         	
+    </style>  
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(51, 0, 51);">
+    
+<!--  LEFT COLUMN  -->   
+
+  <div id="left" class="column">
+
+	<div class="top-left"> <!--Left Hdr -->
+
+	</div> <!-- end of left hdr -->
+
+			
+	<div class="bottom-left"> <!-- SIDEBAR -->
+
+  <dl>
+  <dt><a href="cdpguide.html"><b>CDP GUIDE: INDEX</b></a>
+  <hr>
+  <dt><a href="#SOUNDFILES"><b>SOUNDFILES:</b></a>
+  <dt><a href="#ENVELOPE"><b>&nbsp;ENVELOPE</b></a>
+  <dt><a href="#FILTER"><b>&nbsp;FILTER</b></a>
+  <dt><a href="#PITCH"><b>&nbsp;PITCH</b></a>
+  <dt><a href="#REVDELAY"><b>&nbsp;REVERB/DELAY</b></a>
+  <dt><a href="#EXTEND"><b>&nbsp;EXTEND/SEGMENT</b></a>
+  <dt><a href="#REORDER"><b>&nbsp;RE-ORDER</b></a>
+  <dt><a href="#GRAIN"><b>&nbsp;GRANULAR</b></a>
+  <dt><a href="#PSOW"><b>&nbsp;PITCH-SYNC GRAINS</b></a>
+  <dt><a href="#TEXTURE"><b>&nbsp;TEXTURE</b></a>
+  <dt><a href="#RETIME"><b>&nbsp;RETIME</b></a>
+  <dt><a href="#WAVESETS"><b>&nbsp;WAVESETS</b></a>
+  <hr>
+  <dt><a href="cdpspect.html#SPECFILES"><b>SPECTRAL FILES:</b></a>
+  <dt><a href="cdpspect.html#SPECENV"><b>&nbsp;RESHAPE</b></a>
+  <dt><a href="cdpspect.html#SPECFILT"><b>&nbsp;FILTER</b></a>
+  <dt><a href="cdpspect.html#PCHFRQ"><b>&nbsp;PITCH/FREQ</b></a>
+  <dt><a href="cdpspect.html#MORPH"><b>&nbsp;MORPH</b></a>
+  <dt><a href="cdpspect.html#FORMANTS"><b>&nbsp;FORMANTS</b></a>
+  <dt><a href="cdpspect.html#COMBINE"><b>&nbsp;COMBINE</b></a>
+  <dt><a href="cdpspect.html#TIME"><b>&nbsp;TIME</b></a>
+  <dt><a href="cdpspect.html#SPECUTILS"><b>&nbsp;SPEC UTILS</b></a>
+  <hr>
+  <dt><a href="cdppitch.html#PCHFILES"><b>PITCH-DATA:</b></a>
+  <dt><a href="cdppitch.html#PCHCONV"><b>&nbsp;CONVERSIONS</b></a>
+  <dt><a href="cdppitch.html#PCHPROCESS"><b>&nbsp;PITCH PROCESSES</b></a>
+  <dt><a href="cdppitch.html#PCHSUPPORT"><b>&nbsp;SUPPORT FUNCTIONS</b></a>
+  <hr>
+  <dt><a href="cdpedit.html#EDITMIX"><b>EDIT / MIX:</b></a>
+  <dt><a href="cdpedit.html#EDIT"><b>&nbsp;EDIT</b></a>
+  <dt><a href="cdpedit.html#LEVEL"><b>&nbsp;LEVEL</b></a>
+  <dt><a href="cdpedit.html#CHANNELS"><b>&nbsp;CHANNELS</b></a>
+  <dt><a href="cdpedit.html#SPATIAL"><b>&nbsp;SPATIAL</b></a>
+  <dt><a href="cdpedit.html#MIX"><b>&nbsp;MIX</b></a>
+  <dt><a href="cdpedit.html#MIXFILES"><b>&nbsp;MIXFILES</b></a>
+  <dt><a href="cdpedit.html#UTILS"><b>&nbsp;SNDFILE UTILS</b></a>
+  <hr>
+  <dt><a href="cdpother.html"><b>OTHER FUNCTIONS:</b></a>
+  <dt><a href="cdpother.html#SYNTH"><b>&nbsp;SYNTHESIS</b></a>
+  <dt><a href="cdpother.html#DATA"><b>&nbsp;GENERATE DATA</b></a>
+  <dt><a href="cdpother.html#INFO"><b>&nbsp;INFORMATION</b></a>
+  <dt><a href="cdpother.html#SYSUTILS"><b>&nbsp;SYSTEM UTILS</b></a>
+  </dl>
+
+	</div> <!-- end of Sidebar -->
+</div> <!-- end of Left Column -->
+
+<!--- START OF RIGHT COLUMN -->
+<div id="right" class="column"> <!-- NB shared class -->
+
+   <div class="top-right"> <!--Right Hdr -->
+
+      <div align="center">
+      <img src="images/cdplogo2.jpg"  alt="CDP Logo"> 
+      </div>
+      
+   <!-- ----------------- MENU BAR ------------------- -->
+   <!---- NB If class='has-sub' then put </li> AFTER <ul> -->
+
+
+   <div id='cssmenu'>  
+   <ul>
+   <li class='has-sub'><a href="..\html\ccdpndex.htm"><span><b>INDEX</b></span></a>
+     <ul>
+     <li><a href="..\html\cdphome.htm"><span><b>HOME PAGE</b></span></a>
+     <li><a href="..\html\ccdpndex.htm"><span><b>MAIN INDEX</b></span></a>
+	 <li><a href="..\html\cbutnndx.htm"><span><b>Table Index</b></span></a></li>
+     <li><a href="..\html\alphindex.htm"><span><b>A-Z Function Index</b></span></a></li>
+     <li class='last'><a href="..\html\calphndx.htm"><span><b>Operations Index</b></span></a></li>
+     </ul>	
+   </li>
+   <li><a href="..\html\cgroundx.htm"><span><b>TIME-DOMAIN</b></span></a></li>
+   <li><a href="..\html\cspecndx.htm"><span><b>SPECTRAL</b></span></a></li>
+   <li><a href="..\html\graphic.htm"><span><b>GRAPHIC</b></span></a></li>
+   <li class='active has-sub'><a href="#"><span><b>EXPLAIN</b></span></a>
+   	  <ul>
+   	    <li><a href="..\html\charts.htm"><span><b>CHARTS</b></span></a></li>
+   	    <li><a href="..\html\tutorials.htm"><span><b>TUTORIALS</b></span></a></li>
+   	  </ul>
+   </li> 
+   <li class='last'><a href="updates.htm"><span><b>DOWNLOADS</b></span></a></li>   
+   </ul>
+   </div> <!-- end of menu -->
+   
+
+   </div> <!-- End of Right Hdr -->       
+   
+   
+<div class="bottom"> <!-------------- MAIN CONTENT ----------------->
+
+<table id="SOUNDFILES" bgcolor="#950000" border="0" width="100%">
+      <tbody>
+        <tr>
+          <td bgcolor="#ffffff" width="72"><img
+              src="images/cdpcircs72.jpg" nosave="" height="47"
+              width="72"></td>
+          <td>
+            <center><b><font face="Arial, Helvetica"><font
+                    color="#ffffff"><font size="+2">CDP GUIDE: &nbsp;&nbsp; SOUNDFILE PROCESSES</font></font></font></b></center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+<blockquote>
+    
+    <div align="right"><i><b>NEXT:&nbsp; 
+	<a href="cdpspect.html"><b>SPECTRAL</a></b></i></div>
+
+
+<p>
+Soundfile functions operate in the <b>time domain</b>, that is, they alter the sound <b><i>waveform</i></b>, which is a representation of sound as amplitude against time: <br>
+	<div style="text-align: center;"><img style="width: 401px;
+                height: 71px;" alt="waveform"
+                src="images/wave.jpg">
+    </div>
+<br></b>
+Other time-domain processes which are concerned with mixing, spatialisation and editing are catalogued separately here &#150 see <a href="cdpedit.html"><i><b>EDIT/MIX FUNCTIONS</b></i></a>. 
+<p>
+
+<h3>SOUNDFILE PROCESSING CATEGORIES:</h3>
+<ol>
+<li><b> <a href="#ENVELOPE">ENVELOPE</b></a> (Main CDP reference: ENVEL and ENVNU) </li> 
+<li><b> <a href="#FILTER">FILTER</b></a> (Main CDP reference: FILTER)   </li> 
+<li><b> <a href="#PITCH">PITCH</b></a> (Main CDP reference: MODIFY)  </li> 
+<li><b> <a href="#REVDELAY">REVERB/DELAY</b></a> (Main CDP reference: REVERB and MODIFY)  </li>  
+<li><b> <a href="#EXTEND">EXTEND/SEGMENT</b></a> (Main CDP reference: EXTEND and MODIFY)   </li> 
+<li><b> <a href="#REORDER">RE-ORDER</b></a> (Main CDP reference: EXTEND)   </li> 
+<li><b> <a href="#GRAIN">GRANULAR</b></a>  (CDP reference: MODIFY and GRAIN)  </li> 
+<li><b> <a href="#PSOW">PITCH-SYNC GRAINS</b></a> (CDP reference: PSOW)   </li> 
+<li><b> <a href="#TEXTURE">TEXTURE</b></a> (CDP reference: TEXTURE)  </li> 
+<li><b> <a href="#RETIME">RETIME</b></a> (CDP reference: <a href="../html/cgroedit.htm#RETIME">SFEDIT RETIME</a>)  </li> 
+<li><b> <a href="#WAVESETS">WAVESETS</b></a> (CDP reference: DISTORT) </li>
+</b>
+</ol>
+
+<!--
+<p>
+Envelopes and filters will be familiar to synth players, while pitch functions are mostly speed-changing operations.  The other groups all involve making copies of (parts of) sounds, or segmenting them &#150 as in the grain, retime and waveset categories.
+</p> -->
+
+<!----------------------------------------------------------------->
+<h2 id="ENVELOPE" style="color: #ffffff; background-color: #950000">&nbsp;ENVELOPE &nbsp;&nbsp;&nbsp; (CDP groups: ENVEL and ENVNU)</h2>
+<p>
+The 'envelope' is the overall loudness contour of a sound: in CDP, it is the the actual time-varying level, rather than a simple percentage gain control. You can extract an envelope (either as a binary or <b><i>breakpoint*</b></i> text file) and edit it visually or transform it in over 30 different ways. Envelope functions alter the dynamic shape, creating fades and swells, warping the envelope in many ways, or totally re-drawing it, creating new envelopes, and imposing or replacing the envelope of one sound with that of another. The transformed data can also be applied to scores of time-varying parameters throughout the CDP system.
+</p><p>
+Most envelope functions use a parameter called window-size. This is the time-period used to measure the amplitude successively and it determines how accurately the envelope is defined: a small window-size gives a precisely defined envelope; with a larger one, amplitude values are averaged over a longer time.
+</p>
+	<blockquote>
+	<b>*</b><small>Breakpoint text files are lists of <b>time value</b> pairs. 
+		Envelope values use a scale of 0 (silence) to 1 (full gain). </small>
+	</blockquote>
+<p>
+<h3>CREATE / EXTRACT / CONVERT</h3>
+<ul>
+<li><b><a href="../html/cgroenvl.htm#CREATE">Create</a></b> creates a binary envelope file (<b>.evl</b>) or a breakpoint envelope file (<b>.brk</b> or <b>.env</b>). In Soundshaper, the latter can be edited in the <b>Graph-Edit</b> page, or created from scratch.<br>
+Binary envelope files (.evl) are presumably more accurate than text breakpoint ones, but the latter are more editable.<br></li><br>
+
+<li><b><a href="../html/cgroenvl.htm#CYCLIC">Cyclic</a></b> creates an envelope file of a cyclic nature (e.g. for <b>Envel Replace</b> or <b>Tremolo</b>). Any user-defined envelope shape can be used for the cyclic "cell".</li><br>
+
+<li><b><a href="../html/cgroenvl.htm#EXTRACT">Extract</a></b> extracts the envelope from a soundfile, either as a binary envelope file (<b>.evl</b>) or a breakpoint file of <b>time amp</b> values [0-1] (<b>.brk</b> or <b>.env</b>). Soundshaper can extract the envelope automatically, using current default settings. CDP's <b>BrkEdit</b> editor also has a data-reduction facility.</li>
+<a href="../html/crepitch.htm#ANALENV"><b>Analenv</b></a> is a spectral equivalent which extracts the binary envelope from a spectral analysis file.</li>
+</ul>
+
+              <div style="text-align: center;">
+                <table cols="2" border="0" width="100%" cellpadding="0"
+                  cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td height="150">
+                        <center><img alt="Env1" src="images/ENV1.gif"
+                            height="147" width="350">
+                        <br> 
+			<small><font size="-2">Detailed envelope breakpoint file.</font></small>
+                        
+                        </center>
+                      </td>
+                      <td  height="150">
+                        <center><img alt="Env3" src="images/ENV3.gif"
+			    height="145" width="350">
+			<br>
+         		<small><font size="-2">Data-reduced envelope breakpoint file.</br>
+			(The broken yellow lines are a product of image reduction.)</font></small>                   
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div><br>
+
+<ul>
+<li><a href="../html/cgroenvnu.htm#PEAKCHOP"><b>Peakchop</b></a> isolates peaks in the soundfile and either outputs the enveloped sound or produces an envelope file based around the peaks. A typical output from a drum sound:</li><br>
+	<div style="text-align: center;"><img style="width: 547px;
+                height: 227px;" alt="Peak Envelope"
+                src="images/PEAKENV.jpg">
+        </div><br>
+
+<li><b><a href="../html/cgroenvl.htm#ENVTOBRK">EnvToBrk</a>/<a href="../html/cgroenvl.htm#BRKTOENV">BrkToEnv</a></b>: EnvToBrk converts a binary envelope file (.evl) to breakpoint (.brk or .env). Data-reduction may then be applied using BrkEdit, if required. <a href="../html/cgroenvl.htm#BRKTOENV"><b>BrkToEnv</li></b></a> converts the other way. <br>
+Breakpoint files may be expressed in amplitude values from 0 to 1 or in dB. (See also <a href="../html/cgroenvl.htm#ENVTODB"><b>ENVTODB</b></a>, <a href="../html/cgroenvl.htm#DBTOENV"><b>DBTOENV</b></a>.)  </li>
+<li><b><a href="../html/cgroenvl.htm#DBTOGAIN">dBToGain</a></b>/<a href="../html/cgroenvl.htm#GAINTODB"><b>GainTodB</b></a>: two utilities converting between amplitude values (0-1) and decibel values (<0) in textfiles. These could be useful to convert an extracted envelope to time-varying dB values as required, or vice-versa.</li>
+</ul>
+
+<h3>ENVELOPE PROCESSES</h3>
+<ul>
+<li><b><a href="../html/cgroenvl.htm#IMPOSE">Impose</a></b> superimposes the envelope of one sound onto another. Imposing an envelope is akin to a traditional envelope-follower, which takes an audio input and converts it into a control voltage that may be applied to another sound. A variant <a href="../html/cgroenvl.htm#SCALED"><b>Scaled</b></a> timescales the imposed envelope first to match the length of the target sound.</li><br>
+
+<li><b><a href="../html/cgroenvl.htm#REPLACE">Replace</a></b> replaces the envelope of one sound with that of another.</li><br>
+
+<li><b><a href="../html/cgroenvl.htm#DOVETAIL">Dovetail</a>/<a href="../html/cgroenvl.htm#CURTAIL">Curtail</a>/<a href="../html/cgroenvnu.htm#EXPDECAY">ExpDecay</a></b>:  <b><a href="../html/cgroenvl.htm#DOVETAIL">Dovetail</b></a> applies fade-in and/or out to a sound, which is useful prior to mixing. <a href="../html/cgroenvl.htm#CURTAIL"><b>Curtail</b></a> creates a fade-out, similar to <b>Dovetail</b> but with wider choices, e.g. a gradual or steeper decay slope. <b><a href="../html/cgroenvnu.htm#EXPDECAY">ExpDecay</b></a> complements Dovetail and Curtail by offering a simple exponential fade-out with a defined start and end time.</li><br>
+
+<li><b><a href="../html/cgroenvl.htm#ATTACK">Attack</b></a>: emphasises the amplitude at a particular point, which need not be at the start of the sound.</li>
+<li><a href="../html/cgroenvl.htm#SWELL"><b>Swell</a>/<a href="../html/cgroenvl.htm#SPIKE">Spike (R8)</a></b>: <a href="../html/cgroenvl.htm#SWELL"><b>Swell</b></a> creates a rising and falling envelope shape, peaking at any specified point in the file &#150; it may or may not be an existing peak &#150; and the swell shape is pre-defined, with either a linear (steeper) or exponential (more gradual) shape. <a href="../html/cgroenvl.htm#SPIKE"><b>Spike</b></a> is a newer variant of the idea, in which a list of times (possibly representing pre-analysed peaks and troughs) can be employed.</li>
+<li><a href="../html/cgroenvl.htm#PLUCK"><b>Pluck</b></a> is an early version of <b>Spike</b> (similar to <b>Attack</b>), though perhaps less successful.</li><br>
+
+<li><b><a href="../html/cgroenvl.htm#TREMOLO-R7">Tremolo</a>/<a href="../html/cgromody.htm#SHUDDER">Shudder</a>/<a href="../html/cdistort.htm#PULSED">Pulsed</a></b>: three similar functions, each producing a cyclic amplitude variation. <b>Tremolo</b> (revised in Release 7 from the earlier <a href="../html/cgroenvl.htm#TREMOLO"><b>Envel Tremolo</b></a>) uses a built-in Low-Frequency Oscillator (LFO), set in the traditional manner by size (depth) and rate (frequency). Release 7 added a width parameter. 
+<a href="../html/cgromody.htm#SHUDDER"><b>Shudder</b></a> allows for random variation of the oscillation. <a href="../html/cdistort.htm#PULSED"><b>Pulsed</a></b> offers the greatest control: breakpoint files set an an envelope shape for the impulse and any pitch transposition within it; you set the start and end times of the effect, and can randomise the pitch, onset-time and amplitude from impulse to impulse. </li>
+<li><a href="../html/cgroenvl.htm#TREMENV"><b>Tremenv (R8)</b></a> offers a tremolo with width narrowed after the peak, possibly too subtle for many sources.</li>
+<li><a href="../html/cgromc.htm#FLUTTER"><b>Flutter</b></a> produces a tremolo effect across multi-channel space: on each cycle, different output channels fluctuate in loudness so that the tremolo effect moves rapidly from one set of channels to another.</li><br>
+
+<li><b><a href="../html/cgroenvl.htm#REPLOT">Warp/Reshape/Replot</a></b> are three versions of a 15-function suite for use with soundfiles (Warp), envelope files (Reshape) or breakpoint files (Replot). These functions directly alter the envelope shape:  attenuate, exaggerate, flatten, lift, normalise, reverse, timestretch, ceiling (raise whole envelope to max.), corrugate (tightens envelope peaks by reducing troughs to zero), ducked, expand, gate, inverse, limit, trigger (create sudden on-bursts triggered by rise-rate).</li>
+<li><a href="../html/cgroenvl.htm#FLATTEN"><b>Flatten (R8)</b></a> equalises the level of sound elements. It is a newer version of Warp/Flatten (though whether it offers anything more remains to be seen).</li>
+</ul>
+
+<!----------------------------------------------------------------->
+<h2 id="FILTER" style="color: #ffffff; background-color: #950000">&nbsp;FILTER &nbsp;&nbsp;&nbsp; (CDP group: FILTER)</h2>
+<p>
+Filtering changes the tone-colour of a sound, removing some of the harmonics and emphasizing others. The filter's power is well known through the classic "subtractive synthesis" model in which a synthesised waveform, rich in harmonics, is shaped by a time-varying filter. The classic filter types are:
+</p>
+<ul>
+<li><b>Low-pass</b>: cut off top frequencies</li>
+<li><b>High-pass</b>: cut off bottom frequencies</li>
+<li><b>Band-pass</b>: a mixture of Low and High which preserves a frequency band; and hence <b>Notch</b>, in which a band is rejected</li>
+<li><b>All-pass</b>: all frequencies are let through but with changed phase relationships</li>
+</ul>
+<p>
+CDP has all the classic types plus particularly effective <b><i>filter banks</i></b> (c.f. Graphic EQ), which can be used to "tune" the sound by strongly emphasising certain frequencies over others.  There are also very effective spectrally based filters (see <a href="cdpspect.html"><b>Spectral Processes</b></a>).
+</p>
+<h3>GENERAL FILTERS</h3>
+<ul>
+<li><a href="../html/cgrofilt.htm#FIXED"><b>Fixed</b></a> implements the standard filter types: High-Pass, Low-Pass and Band-Pass, using a single fixed frequency (not time-variable) to determine the cutoff point for High/Low pass and the centre frequency of the band in Band-Pass mode. The sharpness of the amplitude roll-off (<b>'Q'</b>) is also fixed.</li><br>
+
+<li><a href="../html/cgrofilt.htm#LOHI"><b>LoHi</b></a> is a simple Low/High-pass filter, which is capable of very tight 'brickwall' filtering. Given a cutoff frequency (where filtering begins) and a stopband (the frequency of full attenuation) the program computes and applies the necessary order of filtering to achieve this.</li><br>
+
+<li><a href="../html/cgrofilt.htm#VARIABLE"><b>Variable</b></a> has standard High-pass/Low-pass/Band-pass/Band-reject modes, with time-variable cutoff frequency and Q (sharpness of the pass band).</li><br>
+
+<li><a href="../html/cgrofilt.htm#PHASING"><b>Phasing</b></a>: the classic "phasing" effect is a product of wave-cancellation, as a waveform with time-varying delay is mixed with the original and different frequencies become prominent or drop out in turn.</li>
+<li><a href="../html/cgrofilt.htm#PHASOR"><b>Phasor (R8)</b></a> is a newer and more effective phasing function in which a number of output streams phase-interact.</li><br>
+
+<li><a href="../html/cgrofilt.htm#SWEEPING"><b>Sweeping</b></a>: an oscillator sweeps across the frequency spectrum, and with a tight filter band the sweeping filter picks out the component partials in a sound in turn. This version has High, Low, Bandpass/Band-reject modes and time-varying Q to emphasise the effect.</li><br>
+
+<li><a href="../html/cgrofilt.htm#ITERATED"><b>Iterated</b></a> is a filterbank with echo (c.f. <a href="../html/cgroextd.htm#ITERATE"><b>Iterate</b></a>), which may alternatively be seen as iteration with added filtering.</li><br>
+</ul>
+
+<h3>FILTER BANKS</h3>
+<ul>
+<li><a href="../html/cgrofilt.htm#BANK"><b>Bank</b></a> implements a filter bank (i.e. bank of band-pass filters, or Graphic EQ). The centre frequencies of the bands are based on harmonics, subharmonics, harmonics plus offset, or equal intervals; or they can be set randomly. The bandwidth (Q: higher Q =narrower band) is time-variable; if Q is set high, you can easily focus on a 'tuned' sound.</li><br>
+
+<li><a href="../html/cgrofilt.htm#USERBANK"><b>Userbank</b></a>: a filter bank in which the bands are defined by pairs of frequency/MIDI-pitch and amplitude. The bandwidth ('Q') is time-variable, but freq/pitch and ampltude are fixed. The frequencies and amplitudes can be set in Soundshaper's Graph-Edit, which has a number of presets for the purpose.</li><br>
+
+<li><a href="../html/cgrofilt.htm#VARIBANK"><b>Varibank/2</b></a>: is a versatile tool for 'tuning' a sound to a given chord. Sets of filter frequencies/MIDI-pitches and amplitudes can change over specified time-periods. A number of harmonics of the central frequency can be included as extra filters and the bandwidth is also time-variable.
+In <b>Varibank 2 (Partials)</b>, the partials (possibly inharmonic) and their amplitudes can be specified, also time-varying.</li><br>
+
+<li><a href="../html/cgrofilt.htm#BANKFRQS"><b>Bankfrqs</b></a>, <a href="../html/cgrofilt.htm#VFILTERS"><b>VFilters</b></a> and <a href="../html/cgrofilt.htm#FILTRAGE"><b>Filtrage</b></a> are three functions that generate filter data files for <b>Bank</b> and <b>Varibank</b>; <b>Filtrage</b> produces randomised frequencies within user-limits.</li>
+
+</ul>
+
+<!----------------------------------------------------------------->
+<h2 id="PITCH" style="color: #ffffff; background-color: #950000">&nbsp;PITCH &nbsp;&nbsp;&nbsp; (CDP group: MODIFY)</h2>
+<p>
+Most processes here change the speed of the sound, which also changes its pitch (and time). Quite different are the two modulation processes RingMod and CrossMod, which can radically change the frequency content. Even more radical transformation is possible in the spectral domain (see <a href="cdpspect.html"><b>Spectral Processes</b></a>) and in the functions which process pitch extracted from spectral files (see <a href="cdppitch.html"><b>Pitch Processes</b></a>).
+</p>
+
+<ul>
+<li><a href="../html/cgromody.htm#SPEED"><b>Speed</b></a> transposes the pitch by changing the speed of playback: a faster speed raises the pitch and shortens the duration, while a slower speed lowers the pitch and lengthens the duration. Transposition is by number of semitones or by ratio and both are time-variable.</li><br>
+
+<li><a href="../html/cgromody.htm#SPEED"><b>Accel</b></a> (<i><b>modify speed 5</b></i>) changes speed by accelerating (raising pitch) or decelerating (lowering pitch).<br>
+To change the time without altering the pitch, use a time-varying <a href="../html/cstretch.htm#TIME"><b>Timestretch</b></a> (a spectral function). </li><br>
+
+<li><a href="../html/cgromody.htm#SPEED"><b>Vibrato</b></a> (<i><b>modify speed 6</b></i>) raises and lowers (<i>modulates</i>) the speed under the control of a low-frequency oscillation, using the classic controls of modulation rate (frequency), and width of transposition. Both are time-variable.</li><br>
+
+<li><a href="../html/cgromc.htm#STRANSMULTI"><b>STRANS</b></a>: the multi-channel equivalent of the above <b>Speed</b> functions.</li><br>
+
+<li><a href="../html/cgromody.htm#VERGES"><b>Verges (R8)</b></a> introduces a brief glissando up or down at the times specified. </li><br>
+
+<li><a href="../html/cgromody.htm#STACK"><b>Stack</b></a> superimposes transposed copies of the sound to make a chord. Transpositions are by speed, so vary in length, but you can stop the process early and there is an optional off-set to help synchronise attacks.</li><br>
+
+<li><a href="../html/cgromody.htm#RADICAL"><b>Ringmod</b></a> (<i><b>modify radical 5</b></i>): ring-modulation is a classic effect in which all frequencies in a sound are multiplied by a modulating frequency, usually producing a metallic effect in which the timbre varies as the original sound's pitch changes.</li><br>
+
+<li><a href="../html/cgromody.htm#RADICAL"><b>Crossmod</b></a> (<i><b>modify radical 6</b></i>) modulates one sound with another (which can be itself). Each frequency component of File2 modulates each of those in File1, resulting in a complex mix.</li><br>
+
+</ul>
+
+<!----------------------------------------------------------------->
+<h2 id="REVDELAY" style="color: #ffffff; background-color: #950000">&nbsp;REVERB / DELAY &nbsp;&nbsp;&nbsp; (CDP groups: REVERB, MODIFY, EXTEND)</h2>
+<p>
+In this category, the whole sound is repeated (except for SHRINK), with possible overlap.
+</p><p>
+Reverberation consists of short-delayed echoes within an enclosed space. <b>Reverb</b> and <b>Roomverb</b> implement classic reverberation algorithms, while convolution uses impulse files or soundfiles to mimic any acoustic space.
+</p><p>
+Delay lines similarly produce echoes and CDP has a wide range of functions covering every aspect of delay and echo.<br> 
+</p>
+
+<ul>
+<li><a href="../html/cxreverb.htm#REVERB"><b>Reverb</a> / <a href="../html/cxreverb.htm#ROOMVERB">Roomverb</a> / <a href="../html/cxreverb.htm#ROOMRESP">Roomresp</b></a>:  <a href="../html/cxreverb.htm#REVERB"><b>Reverb</b></a> and <a href="../html/cxreverb.htm#ROOMVERB"><b>Roomverb</b></a> are comprehensive reverberation functions, incorporating such features as reverberation time, dry/wet mix, absorption (high-frequency damping) and early reflections: the programs use built-in sets for small, medium and large rooms, but these can be optionally entered in a datafile created by the separate <a href="../html/cxreverb.htm#ROOMRESP"><b>Roomresp</b></a> program. There is also optional filtering, optional pre-delay (which time-shifts the early reflections to give the effect of a bigger room), and multi-channel output. </li><br>
+
+<li><a href="../html/cxreverb.htm#FASTCONV"><b>Fastconv</b></a> is an FFT-based convolver. Its primary application is convolution-based reverberation, using a sampled impulse response of a building or other responsive space. (Many suitable impulse-response files are available on the Internet.) More experimentally, the impulse-response input can be any soundfile. Convolution can also implement an FIR linear-phase filter. <b>Fastconv</b> supersedes an earlier function <a href="../html/cgromody.htm#CONVOLVE"><b>Convolve</b></a>, which is very slow.</li><br>
+
+<li><a href="../html/cgromody.htm#REVECHO"><b>Delay</b></a> (<b><i>modify revecho 1/2</b></i>) implements a classic delay line, with fixed and variable delay times. The delayed sound can be fed back and mixed with the original to give a series of echoes or (if short enough) a pitched resonance. The delay time can be varied by a low-frequency oscillator (LFO), with its own controls for speed and depth of change.</li>
+<li><a href="../html/cgromody.htm#NEWDELAY"><b>Newdelay</b></a> sets the delay time by a pseudo-MIDI pitch, corresponding to the resonant pitch that occurs in a delay line with mutiple feedback.</li><br>
+
+<li><a href="../html/cgromody.htm#REVECHO"><b>Stadium-Echo</b></a> (<b><i>modify revecho 3</b></i>) produces stereo echoes with a specified delay time and number of echoes, within a given degree of roll-off (amplitude decay). The function can be very useful for creating a fake stereo signal (or chorus effect) from a mono signal, with tiny delays being scattered randomly in stereo space, as they might be in a hall.</li> 
+<li><a href="../html/cgromc.htm#MCHANREV"><b>Mchanrev</b></a> is a variant of Stadium-Echo in which mono or stereo input is echoed across multi-channel space.</li><br>
+
+<li><a href="../html/cgroextd.htm#ITERATE"><b>Iterate</b></a> produces multiple repetitions, with the options of randomizing the delay time and varying pitch and amplitude on each repeat. You can choose either an outfile length, or an exact number of repeats.</li> 
+<li><a href="../html/cgromc.htm#MCHITER"><b>MchIter</b></a> is identical to Iterate, but scatters output across multi-channel space. </li>
+<li><a href="../html/cgroextd.htm#ITERLINE"><b>Iterline</b></a> is a variant of <b>Iterate</b>, in which the repetitions follow a "transposition line" of time-transposition pairs</li><br>
+
+<li><a href="../html/cgroextd.htm#FREEZE"><b>Freeze</b></a> is a variant of <a href="../html/cgroextd.htm#ITERATE"><b>Iterate</b></a>, repeating a segment (or the whole sound) to produce a freezing or chorus effect. The delay time between repeats and the pitch of the iterations can be randomised; both of these are required for a chorus effect. </li><br>
+
+<li><a href="../html/cgroextd.htm#REPETITIONS"><b>Repetitions</b></a> repeats the whole sound at the times specified in a datafile; the playings overlap if the next start time occurs before the end of a previous playing. For short sounds (e.g. percussion), this process is a quick way of repeating the sound with a precisely timed rhythm.</li><br>
+
+<li><a href="../html/cxreverb.htm#TAPDELAY"><b>Tapdelay</b></a> is a delay line with user-selected delay times (taps). In a standard delay line the ouput is taken at the end, whereas in a tapped delay line, extra outputs are also taken at intermediate points. </li><br>
+
+<li><a href="../html/cgroextd.htm#ECHOES"><b>Echo</b></a> (<b><i>sfecho echo</b></i>) repeats the whole sound without any overlap: the delay-time is variable, but never shorter than the original length (which would give overlap)</li> <br>
+<li><a href="../html/cgroextd.htm#BOUNCE"><b>Bounce (R8)</b></a> repeats the whole sound with repetitions accelerating and decaying in level, mimicking a bouncing ball.</li><br>
+<li><a href="../html/cgroextd.htm#SHRINK"><b>Shrink</b></a> repeats a sound, shortening it on each repetition and contracting the gaps between repetitions.<br>
+A multi-output option (shrink 5/6) shrinks around found or given peaks.</li><br>
+
+<li><a href="../html/cgroextd.htm#MADRID"><b>Madrid</b></a> (multichannel repeats) repeats one or more sounds and outputs these to multi-channel space. Internally, the function produces several spatially distinct sound streams, each of which has the same time-delay and order of sounds. Some repetitions are then randomly deleted to give a sense of spatial syncopation.</li><br>
+
+<li><a href="../html/cgroextd.htm#CERACU"><b>Ceracu</b></a> (polyrhythms) repeats sounds at different times in different channels, creating musical polyrhythms such as 2 against 3. Very complex polyrhythms can easily be created (e.g. 11:13:17).</li><br>
+
+<li><a href="../html/cgroextd.htm#SHIFTER"><b>Shifter</b></a> sets up a number of polyrhythmic streams like <b>Ceracu</b>, but the repetition-times shift so that the streams will re-synchronise after a specified number of cycles.</li><br>
+
+<li><a href="../html/cgroextd.htm#TESSELATE"><b>Tesselate (R8)</b></a> repeats multiple sounds with staggered start-times and projects these across stereo or multi-channel space, the repeated pattern shifting in space and time.</li>
+</ul>
+
+<!----------------------------------------------------------------->
+<h2 id="EXTEND" style="color: #ffffff; background-color: #950000">&nbsp;EXTEND / SEGMENT  &nbsp;&nbsp;&nbsp; (CDP groups: EXTEND, MODIFY, MULTICHAN, GRAIN)</h2>
+<p>
+Segmenting and restructuring sounds is a strong feature of CDP. In this category, sounds are extended mainly by repeating segments. <br>
+<a href="../html/cgroextd.htm#LOOP"><b>Loop</b></a> is particularly important as an introduction to further segmentation and granular processes.
+</p>
+
+<ul>
+<li><a href="../html/cgromody.htm#RADICAL"><b>Reverse</b></a> (<b><i>modify radical 1</b></i>) reverses the soundfile so that it plays backwards. (This can be used in conjunction with other reversing procedures, like <a href="../html/cgrogrns.htm#GREV"><b>Grev 1</b></a> (reverses grains), <a href="../html/cdistort.htm#REVERSE"><b>Distort Reverse</b></a> (reverses pseudo-wavecycles) or <a href="../html/cgroenvl.htm#WARP"><b>Envel Warp 2</b></a> (reverses envelope).</li><br>
+
+<li><a href="../html/cgroextd.htm#BAKTOBAK"><b>BaktoBak</b></a> splices a reversed copy of the soundfile on to and before the original. For many sounds this will give a peak in the middle, unless they have been reversed first.</li><br>
+
+<li><a href="../html/cgroextd.htm#ZIGZAG"><b>Zigzag</b></a> plays portions of the soundfile alternately forwards and backwards. Zigzag is a good way of extending a sound (especially a percussive one). Short forwards and backwards movements create a stuttering or repeated note effect.</li>
+
+<li><a href="../html/cgromc.htm#MCHZIG"><b>MchZig</b></a> is a multi-channel version of Zigzag: output is sent to a new channel at each 'zig' or 'zag'. <br>
+MchZig is one of a number of multi-channel functions in which the signal is partitioned into channel-streams. The partitions themselves may have musical uses outside multi-channel space if the channels are then split. (Others include <a href="../html/cgromc.htm#MCHITER"><b>MchIter</b></a>, <a href="../html/cgromc.htm#MCHSHRED"><b>MchShred</b></a>, <a href="../html/cgrogrns.htm#WRAPPAGE"><b>Wrappage</b></a>, <a href="../html/cgromc.htm#TEXMCHAN"><b>Texmchan</b></a> and <a href="../html/cgromc.htm#MCHANREV"><b>Mchanrev</b></a>.)  </li><br>
+
+<li><a href="../html/cgroextd.htm#HOVER"><b>Hover</b></a> is like Zigzag, but hovers around a given location at a given modulation frequency &#150; both can be randomly varied. The width of the segment read is set by the frequency. The location point is time-variable, so the pointer can move through the file over time or move to any time-point. </li>
+<li><a href="../html/cgroextd.htm#HOVER2"><b>Hover2 (R8)</b></a> &#150; as Hover, but after each reading back and forth from a zero-crossing, it outputs the same data inverted, to form symmetrical zero-centred waveforms at each read. Each segment is in effect followed by a reversed copy of itself.</li><br>
+
+<li><a href="../html/cgromody.htm#RADICAL"><b>Scrub</b></a> (<b><i>modify radical 3</b></i>) attempts to simulate the sound of tape moved back and forth across a tape-head, producing wild glissando efffects.</li><br>
+
+<li><a href="../html/cgroextd.htm#DVDWIND"><b>DVDWind (R8)</b></a> shrinks a sound by skipping segments, somewhat like the fast-forward button on a CD player. The clip length to be played before each skipping is set by the user. Time-stretching followed by DVDWind shrinkage can produce an interesting transformation.</li><br>
+
+<li><a href="../html/cgrogrns.htm#NOISE_EXTEND"><b>Noise-extend</b></a> extends the noise portion of a sound by a given amount.</li><br>
+   
+<li><a href="../html/cgroextd.htm#LOOP"><b>Loop</b></a>: a segment of the sound is looped round and round, either a set number of times or enough to create a sound of a required length.  The segments do not overlap but are laid end-to-end. A key optional parameter is STEP, which moves the loop start-point forward through the sound. If the segment is small (within 100 ms) and the step-time is also short (<20 ms), the result is a simple form of time-stretching. The step-time creates a resonance at the frequency of the delay, but this can be varied to create a less focussed resonance.
+</li><br>
+
+<li><a href="../html/cgroextd.htm#DOUBLETS"><b>Doublets</b></a> provides a simple kind of repetition, dividing the sound into segments and repeating each a given number of times, in turn (e.g. AAABBBCCC). If the segment length is small enough, the process provides a simple form of time-stretching.</li><br>
+
+<li><a href="../html/cgroextd.htm#REPEATER"><b>Repeater (R8)</b></a> repeats segments defined in a file of start and end times, number-of-repeats and the delay between them.</li><br> 
+
+<li><a href="../html/cgroextd.htm#ENVSPEAK"><b>Envspeak (R8)</b></a> repeats, reverses or attenuates segments found by envelope or a list of times, with options to shrink or shorten the sound. Segment groups can also be reversed or re-ordered randomly.</li><br>
+
+<li><a href="../html/cgroextd.htm#PULSER"><b>Pulser/Multi (R8)</b></a> repeats short enveloped segments as pulses. These may be pitched, taken from the source start or randomly selected and the pulse speed is time-variable. Pulser Multi uses more than one source sound.</li><br>
+
+<li><a href="../html/cgroextd.htm#MOTOR"><b>Motor (R8)</b></a> creates a fast (inner) pulse-stream of enveloped segments, within a slower (outer) one. There can be more than one input. The relationship between the inner (freq) parameter and the outer (pulse) is quite complex and likely to generate an error message if not appropriate.</li><br>
+
+<li><a href="../html/cgroextd.htm#SPLINTER"><b>Splinter (R8)</b></a> produces a series of pulsed segments shrinking in time either towards or away from a target time in the source, with optional pitch change on each pulse. </li><br>
+
+<li><a href="../html/cgromc.htm#CASCADE"><b>Cascade (R8)</b></a> echoes segments of the source sound in the background, with spatialising options.</li><br>
+
+<li><a href="../html/cgromc.htm#FRACTURE"><b>Fracture</b></a> cuts enveloped segments and disperses these in multi-channel space.</li><br>
+
+<li><a href="../html/cgromc.htm#CRUMBLE"><b>Crumble (R8)</b></a> projects a mono source over 8 or 16 channels, with possible time-stretch and pitch variation, then segments it and distributes the segments over  progressively smaller numbers of channels. The order of segments and their time-positions are retained: each channel has same length, with silences between segments. </li><br>
+
+<li><a href="../html/cgroextd.htm#ROTOR"><b>Rotor (R8)</b></a> aims to read the soundfile at different speeds to create a stream of pitched events, which are permutated, the generated note-sets growing and shrinking in pitch-range, speed and spatial width. However, in tests, ROTOR appeared to generate a shimmering type of noise, potentially restricted to a limited pitch range. Some sources and parameter settings produced a series of pulsed noises.</li><br>
+
+<li><a href="../html/cgromc.htm#BROWNIAN"><b>Brownian (R8)</b></a> generates a texture of sampled elements in pitch and multichannel space, following Brownian motion. The soundfile is read at different speeds to generate output events.</li><br>
+
+<li><a href="../html/cgromc.htm#CRYSTAL"><b>Crystal (R8)</b></a> [untested] aims to generate N sound-events based on the position of N vertices of a crystal, then rotate the crystal in 3-D space and generate another group of N events, etc. Either one soundfile is multiply-read, with delay, to generate events, or N infiles generate different events for N vertices.</li>
+
+</ul>
+
+
+<!--
+<h3>OTHER FUNCTIONS (Release 8)</h3>
+-->
+
+
+<!----------------------------------------------------------------------------------->
+<h2 id="REORDER" style="color: #ffffff; background-color: #950000">&nbsp;RE-ORDER &nbsp;&nbsp;&nbsp; (CDP group: EXTEND)</h2>
+<p>
+In this category, the sound is chopped up and the segments re-ordered, often randomly. The result is usually a garbled jumble of sound fragments.
+</p>
+<ul>
+<li><a href="../html/cgroextd.htm#DRUNK"><b>Drunk</b></a> takes a 'drunken walk' through the soundfile, reading segments and splicing them together. Segments are read forwards and begin from within a range ('<i>ambitus</i>') around a given start-time ('<i>locus</i>'), which remains static or can move through the soundfile. Once a segment is read, the program moves randomly to a new position in either direction, within the range, from where it reads the next segment. The segment size is determined by a clock rate, a slower clock producing longer segments. </li><br>
+
+<li><a href="../html/cgromody.htm#RADICAL"><b>Shred</b></a> randomly cuts and splices repeatedly, within the existing file-length. The sound is cut into random segments, but retains its original duration. The segments are re-ordered by a permutation process, which is repeated so that the sound gets more and more jumbled, literally 'reducing it to shreds'.</li>
+<li><a href="../html/cgromc.htm#MCHSHRED"><b>MchShred</b></a> is a multi-channel version of Shred, with the segments scattered across the available output channels. </li><br>
+
+<li><a href="../html/cgroextd.htm#SCRAMBLE"><b>Extend Scramble</b></a>: like Drunk, segments are chosen at random and joined end-to-end. Segments are selected from a wide variety of locations in the soundfile, jumping back and forth a great deal, hence "scrambling" the sound. The size of the segments is chosen randomly within user-set limits.</li>
+<li><a href="../html/cdistort.htm#SCRAMBLE"><b>Scramble (R8)</b></a>: here the segment size is a number of wavesets (pseudo-cycles), whose order is scrambled randomly or by size and level. Segments can optionally be transposed or attenuated. </li><br>
+
+<li><a href="../html/cgroextd.htm#SORTER"><b>Sorter (R8)</b></a>: the chopped elements are sorted by loudness or duration</li><br>
+
+<li><a href="../html/cgroextd.htm#STUTTER"><b>Stutter (R8)</b></a> randomly repeats segments cut from a list of times, with optional transposition and attenuation and possible intervening silence.<br>
+The process can be used to extend a sustained sound by playing random portions of it. </li> 
+
+</ul>
+
+
+<!--
+<h3>OTHER FUNCTIONS (Release 8)</h3>
+
+<ul>
+<li><b>Extspeak (R8)</b> aims to manipulate syllables in one or more input soundfiles. Textfiles are required, to give start and end times for the syllables. With 18 modes and many parameters, this is the most complex CDP program to date. It appears to permutate the syllables.</li>
+</ul>
+
+-->
+<!-------------------------------------------------------------------------------->
+<h2 id="GRAIN" style="color: #ffffff; background-color: #950000">&nbsp;GRANULAR &nbsp;&nbsp;&nbsp; (CDP groups: GRAIN and MODIFY)</h2>
+
+<p>
+So-called Granular Synthesis is now a common feature of many sound-processing programs. In CDP, the main program is called <b>Brassage</b> (the French term for the technique). This extends the principles in <b>Loop</b> to create either thickly textured sounds out of overlaid segments, or separately segmented sounds.
+</p><p>  
+The other Grain functions manipulate the grains in 'grainy' sounds &#150; i.e. sounds with silences separating the segments/grains. Grains can be treated in many ways, e.g. duplicated, omitted, repitched, reversed in order.
+</p>
+
+<ul>
+<li><a href="../html/cgromody.htm#BRASSAGE"><b>Brassage</a>/ <a href="../html/cgromody.htm#SAUSAGE">Sausage</b></a> is similar to the delay functions, especially <b>Loop</b>. The soundfile is segmented and the repeated segments (grains) can overlap in time, giving thick textures. You can also timestretch/shrink the sound and change the pitch. In <a href="../html/cgromody.htm#SAUSAGE"><b>Sausage</b></a>, the process cycles round several input soundfiles.</li>
+<li><a href="../html/cgrogrns.htm#WRAPPAGE"><b>Wrappage</b></a> (<i>Soundshaper: MchGrain</i>) is a multi-channel version, in which the output is distributed over a given number of channels.</li><br>
+<li><a href="../html/cgromody.htm#BRASSAGE"><b>Granulate</b></a> (<b><i>modify brassage 5</b></i>) produces inter-grain silences, to create 'grainy' sounds for processing in the Grain functions (below).</li><br>
+
+<li><a href="../html/cgrogrns.htm#NEWTEX"><b>Newtex</b></a> is a variant of <b>Brassage</b> with aspects of <a href="../html/cgroextd.htm#DRUNK"><b>Drunk</b></a>, creating a time-varying texture in multi-channel space with segments cut from a source sound or sounds.</li><br>
+
+</ul>
+
+<h3>GRAIN FUNCTIONS</h3>
+These functions manipulate the grains in "grainy" sounds &#150 those with inter-grain silences. Any sound with gaps of minimum 32 msecs can be regarded as a 'grainy' sound.
+Apart from <a href="../html/cgromody.htm#BRASSAGE"><b>Granulate</b></a> (brassage 5), <a href="../html/cgrohous.htm#GATE-R6"><b>Gate</a>, 
+<a href="../html/cspecedi.htm#GATE">SpecGate</b></a> or <a href="../html/cgroenvl.htm#WARP"><b>Envel Warp 8 (Gate)</a></b> can produce inter-grain silences, and 
+<a href="../html/cgroedit.htm#MASKS"><b>Masks</b></a> and <a href="../html/cgroedit.htm#MANYSIL"><b>Manysil</b></a> can also create silent gaps. 
+<ul>
+<li><a href="../html/cgrogrns.htm#GREV"><b>Grev</b></a>: a number of functions manipulating grains found automatically by envelope troughs and zero-crossings. Several of the functions below are included as modes: Reverse, Repeat, Delete, Omit, Timestretch, and Put-grains (= reposition).<br>
+In many ways this is a more successful program than the individual grain functions, which require information about grains in a sound.</li><br>
+<li><a href="../html/cgrogrns.htm#ASSESS"><b>Assess</a>, <a href="../html/cgrogrns.htm#FIND">Find</a>, <a href="../html/cgrogrns.htm#COUNT">Count</a></b> and <a href="../html/cgrogrns.htm#GREV"><b>Grev 6</b></a> (grain times) provide information about grains in a sound and suitable settings for grain-function parameters.</li>
+<li><a href="../html/cgrogrns.htm#ALIGN"><b>Align</b></a> attempts to align grains in two soundfiles. </li>
+<li><a href="../html/cgrogrns.htm#DUPLICATE"><b>Duplicate</b></a> duplicates the grains found in a grainy sound, repeating each the specified number of times, in turn.</li>
+<li><a href="../html/cgrogrns.htm#REPITCH"><b>Repitch</b></a> transposes the pitch of grains.</li>
+<li><a href="../html/cgrogrns.htm#RERHYTHM"><b>Rerhythm</b></a> changes the duration of grains.</li>
+<li><a href="../html/cgrogrns.htm#REMOTIF"><b>Remotif</b></a> changes the pitch and duration of grains.</li>
+<li><a href="../html/cgrogrns.htm#REORDER"><b>Reorder</b></a> shuffles the order of grains, using a text shuffle code.</li>
+<li><a href="../html/cgrogrns.htm#REVERSE"><b>Reverse</b></a> reverses the order of grains without reversing the grains themselves.</li>
+<li><a href="../html/cgrogrns.htm#REPOSITION"><b>Reposition</b></a> changes the grain onset times to those in a datafile.</li>
+<li><a href="../html/cgrogrns.htm#OMIT"><b>Omit</b></a> keeps a specified number of grains out of a set, eg. 3 out of every 5.<b></li>
+<li><a href="../html/cgrogrns.htm#TIMEWARP"><b>Timewarp</b></a> timestretches or shrinks the sound by expanding or shrinking the gaps between grains.</li>
+<li><a href="../html/cgrogrns.htm#GRAINEX"><b>Grainex</b></a> extends an area containing grains (such as a rolling "r" sound), the start and end search times being set by the user. The grains are found by envelope troughs and zero-crossings.</li>
+<li><a href="../html/cgrogrns.htm#R_EXTEND"><b>R_Extend</b></a> attempts to timestretch a rolled "r" in speech.</li> 
+
+
+</ul>
+
+<!----------------------------------------------------------------->
+<h2 id="PSOW" style="color: #ffffff; background-color: #950000">&nbsp;PITCH-SYNCHRONOUS GRAINS &nbsp;&nbsp;&nbsp; (CDP group: PSOW)</h2>
+<p>
+<b>PSOW</b> is a set of experimental grain processes for vocal sounds (only), allowing manipulation of formants independently of pitch, often with unexpected results. It attempts to segment the sound according to grains it finds that might correspond to <b>FOFs</b>, and then process these grains. <b>FOFs</b> (from the French '<i>Forme d'Onde Formantique</i>'), are formant waveforms &#150; grains &#150; used to synthesise the singing voice. 
+</p>
+
+<ul>
+<li><a href="../html/cgropsow.htm#PTOBRK"><b>Ptobrk</b></a> extracts a pitch breakpoint datafile in a form suitable for PSOW functions.<br>
+All PSOW processes require this pitch-trace from a spectral analysis file. (In Soundshaper this is handled automatically behind the scenes.)</li><br>
+<li><a href="../html/cgropsow.htm#LOCATE"><b>Locate</b></a> finds the start of the pitch-synchronous grain nearest to the specified time.</li><br>
+<li><a href="../html/cgropsow.htm#CUTATGRAIN"><b>Cut at Grain</b></a> cuts the file at a specified pitch-synchronized grain. </li><br>
+<li><a href="../html/cgropsow.htm#GRAB"><b>Grab</b></a> grabs a pitch-synchronized grain or segment (optionally repeating it). The function is used to extract two grains to be interpolated by <b>Interp</b>.</li><br>
+<li><a href="../html/cgropsow.htm#CHOP"><b>Chop</b></a> extracts separate files, based on pitch-synchronised grains.</li>
+<hr>
+
+<li><a href="../html/cgropsow.htm#STRETCH"><b>Stretch</b></a> timestretches/shrinks a sound by repositioning the pitch-synchronized grains. The grains themselves are not time-stretched. The process time-stretches the sound and changes the pitch (like SPEED) but preserves the vowel formants.</li>
+<li><a href="../html/cgropsow.htm#STRTRANS"><b>StrTrans</b></a> (stretch-transposition) is similar to Stretch: the process timestretches a sound, without changing vowels. Each FOF is individually repeated. The pitch can also be independently transposed without changing the vowels.</li><br>
+<li><a href="../html/cgropsow.htm#DUPL"><b>Dupl</b></a> timestretches by repeating the (groups of) grains in a segment, a low number of grains in each segment giving a smoother result.</li><br>
+<li><a href="../html/cgropsow.htm#DELETE"><b>Delete</b></a> timeshrinks a vocal sound by deleting pitch-synchronized grains, retaining one in so-many out of a specified segment length.</li><br>
+<li><a href="../html/cgropsow.htm#FEATURES"><b>Features</b></a> imposes a selection of features on pitch-synchronized grains in a vocal sound, or modifies the grains themselves. Among the options are: transposition,  which does not change the timeframe of the sound but may introduce octaviation or other double-pitch features; transposing the spectrum above the fundamental (which itself doesn't change); a HOARSENESS parameter; generating subharmonics of the fundamental; and stretching the grains, but not the sound itself.</li><br>
+<li><a href="../html/cgropsow.htm#SUSTAIN"><b>Sustain</b></a> freezes & sustains a (vocal) sound on a specified pitch-synchronized grain. Either a single grain, or a segment of multiple grains, is expanded.</li>
+<li><a href="../html/cgropsow.htm#SUSTAIN2"><b>Sustain2</b></a> is a variant of <b>Sustain</b>; here the user gives the start and end times for the chunk to be frozen. Longer durations may produce clearly repeated chunks, e.g. groups of words. </li><br>
+<li><a href="../html/cgropsow.htm#REINFORCE"><b>Reinforce</b></a> attempts to reinforce partials in a (vocal) sound by overlaying pitch-synchronized grains that are harmonics or inharmonic partials of the fundamental pitch. There is also the option of sustaining partials.</li><br>
+<li><a href="../html/cgropsow.htm#SPACE"><b>Space</b></a> splits alternate pitch-synchronized grains into separate sound-streams, and distributes these spatially. For two streams, each at half the original pitch, the pitch drops by an octave, yet the output sound is not longer. A SUBHARMONIC parameter drops the pitch further, dividing the frequency by 3,4,5,etc.</li><br>
+<li><a href="../html/cgropsow.htm#SPLIT"><b>Split</b></a> splits vocal pitch-synchronized grains into subharmonic and upwardly transposed pitch. The pitch is transposed up without changing the timeframe or the vowels; the process also adds a subharmonic frequency, and there is a balance control between these two.</li><br>
+<hr>
+
+<li><a href="../html/cgropsow.htm#IMPOSE"><b>Impose</b></a> attempts to impose pitch-synchronized grains from one soundfile onto another. </li><br>
+<li><a href="../html/cgropsow.htm#INTERLEAVE"><b>Interleave</b></a> interleaves (groups of) pitch-synchronous grains, from two soundfiles. </li><br>
+<li><a href="../html/cgropsow.htm#REPLACE"><b>Replace</b></a> combines the pitch-synchronous grains (FOFs) of the first sound with the pitch of the second. </li><br>
+<li><a href="../html/cgropsow.htm#INTERP"><b>Interp</b></a> interpolates between two pitch-synchronous grains: both extracted from different files using PSOW Grab (although they can actually be from different points in the same file).  The key parameter is the length of interpolation between the two grains; either the start or end grain can be sustained and vibrato and tremolo can also be added.</li><br>
+<li><a href="../html/cgropsow.htm#SYNTH"><b>Synth</b></a> is an experimental program which attempts to impose a stream of pitch-synchronized grains onto a synthesized sound. The grains are taken from the input sound, while the synthesised sound can be specified using a variety of datafile formats.</li><br>
+<li><a href="../html/cgropsow.htm#TWEET"><b>Tweet (R8)</b></a> replaces FOFs in a vocal sound by synthetic tweets or noise.</li><br>
+</ul>
+
+<h3>OTHER FUNCTIONS (Release 8)</h3>
+<ul>
+<li><a href="../html/cgropsow.htm#FOFEX"><b>FOFEX (R8)</b></a> first appeared with Release 6 (2011), but has remained undocumented. It has two functions &#150 <b>Fofex Extract</b> and <b>Fofex Construct</b>.<br>
+<b>Fofex Extract</b> extracts FOFs to a special FOF-file for use with Fofex Construct, or to separate soundfiles.<br>
+<b>Fofex Construct</b> superimposes FOFs to make an output FOF.<br>
+It remains to be seen whether these add further functionality not already in the PSOW group. </li>
+
+</ul>
+
+<!---------------------------------------------------------------------------------->
+<h2 id="TEXTURE" style="color: #ffffff; background-color: #950000">&nbsp;TEXTURE &nbsp;&nbsp;&nbsp; (CDP group: TEXTURE)</h2>
+<p>
+The <a href="../html/cgrotext.htm"><b>TEXTURE</b></a> suite is based on algorithmic repetition and lies somewhere between a sophisticated arpeggiator and a fully-fledged algorithmic composer. TEXTURE processes repeat and transpose the input sound(s) in various ways to create a texture of events (<b><i>'notes'</i></b>). In this context, a <b>'note'</b> is any sound, which may or may not be played to the end. The user can easily edit one or more sounds to provide segmented events for the processes, and CDP has several functions to generate sound 'packets' (very short enveloped sounds) which may also be useful as input.
+</p><p>
+'<b><i>Notes</i></b>' can be treated as simple repetitions, or repeated in groups, or with a timed rhythm, or as transposed ornaments or fully-defined motifs (timed and transposed). Key parameter values such as pitch, duration, gain (level), spatialisation and sound number are generally chosen randomly from within a specified time-variable range (which can also be a fixed value). 
+</p><p>
+In each of the eight main functions, repetitions can be pitched at random within the defined pitch range, or restricted to a user-defined pitch-set or 'harmonic-field' (which octave-transposes the pitches); the set/field can be time-varying. More than one input sound can optionally be used, and the range of sounds chosen can be time-varied.
+</p><p>
+It is not easy to grasp the differences between the Texture programs, and the suite is best explored at first using a simple note sample or similar short sound. CDP supplies two sets of tutorial examples for this purpose.
+</p>
+<ul>
+<li><a href="../html/cgrotext.htm#SIMPLE"><b>Simple</b></a>: single 'note' events are repeated at regular intervals. Loudness, duration and pitch are selected randomly from the specified ranges, though pitch can be restricted to a pitch set/field.</li>
+
+<li><a href="../html/cgromc.htm#TEXMCHAN"><b>Texmchan</b></a> is a variant of <b>Simple</b></a> producing multi-channel output, with parameters to set the pan-position of events in multi-channel space.  The input is natively mono (though Soundshaper can handle stereo or multi-channel input). </li><br>
+
+<li><a href="../html/cgrotext.htm#GROUPED"><b>Grouped</b></a>: 'note'-events are repeated in groups. Various parameters control the timing, pitch and durations within the group, while others control the relationship between the groups. As always, pitch can be restricted to a pitch set/field.</li><br>
+
+<li><a href="../html/cgrotext.htm#TIMED"><b>Timed</b></a> is a variant of <b>Simple</b>: 'note'-events are repeated following a given rhythmic motif, with pitches selected at random from a pitch range or a specified pitch set/field.</li><br>
+
+<li><a href="../html/cgrotext.htm#TGROUPED"><b>Tgrouped</b></a> (Timed Groups) is a variant of Grouped: events within each group are shaped as in Groups, but the onset times of each group are determined by a timed rhythmic motif (instead of by the Grouped PACKING parameter). Pitches are selected randomly from within the pitch range or can be restricted to a defined pitch set/field.</li><br>
+
+<li><a href="../html/cgrotext.htm#DECORATED"><b>Decorated</b></a>: groups of notes decorate each pitch of a basic 'line', rather as a figure such as a turn might elaborate each note of a scale, arpeggio or other pitch sequence.  The notelist 'line' is a timed motif. Pitches are chosen randomly either from the pitch range, or from a given pitch set/field, and may be placed above, below or centred on the pitch of the basic note, or combinations of these (e.g. centred and above, etc.). <b>Predecor</b> and <b>Postdecor</b> are variants -  the decorations are connected to the line: centred (Decorate), before and ending on the line's note-event(Predecor), and starting precisely on the line's time points (Postdecor).</li><br>
+
+<li><a href="../html/cgrotext.htm#ORNATE"><b>Ornate</b></a> is like Decorate, but here the ornaments are fully-defined motifs (with pitch, amplitude and duration values). The notelist 'line' is again a timed motif.  As in Motifs, the total duration (tempo) of the ornament motif can be scaled up or down. <b>PreOrnate</b> and <b>PostOrnate</b> are variants &#150 the ornaments are connected to the line: centred (Ornate), before and ending on the line's note-event (PreOrnate), and starting precisely on the line's time points (PostOrnate).</li><br>
+
+<li><a href="../html/cgrotext.htm#MOTIFS"><b>Motifs</b></a> uses a fully-defined motif, with pitch, amplitude and duration values (somewhat like a figure in a Baroque sequence). The starting pitch of the motif-group is chosen randomly from within the pitch range, or from the defined pitch set/field, and the other notes of the motif are transposed exactly. The total duration (tempo) of the motif can be scaled up or down. </li>
+<li><a href="../html/cgrotext.htm#MOTIFS"><b>Motifsin</b></a> (Harmonic Motifs) is a variant of Motifs: all output notes are constrained by the defined pitch set/field. If a pitch in a transposedmotif is not in the pitch set/field, it is changed to the nearest member of the set/field.</li><br>
+
+<li><a href="../html/cgrotext.htm#TMOTIFS"><b>TMotifs</b></a> (Timed Motifs): fully defined motifs (with pitch, amplitude and duration values)  begin at the times specified in a timed rhythm. The rhythm controls the onsets of the motif-groups, as in TGroups. The starting pitch of each motif-group is chosen randomly within an overall range, or is restricted to the pitches specified in the pitch set/field.</li>
+<li><a href="../html/cgrotext.htm#TMOTIFS"><b>TMotifsin</b></a> (Timed Harmonic Motifs) is a variant of <b>TMotifs</b> and <b>Harmonic Motifs (motifsin)</b>: all output notes are constrained by the defined pitch set/field. If a pitch in a transposed motif is not in the pitch set/field, it is changed to the nearest member of the set/field. TMotifs and TMotifsin are the most defined and least randomized of the Texture functions.</li><br>
+
+</ul>
+
+<!-------------------------------------------------------------------------------->
+<h2 id="RETIME" style="color: #ffffff; background-color: #950000">&nbsp;RETIME &nbsp;&nbsp;&nbsp; (CDP group: SFEDIT)</h2>
+<p>
+The <a href="../html/cgroedit.htm#RETIME"><b>SFEDIT RETIME</b></a> program deals with the retiming of amplitude peaks or silence-separated events. As a producer of experimental retimings of events, it has potential, but is less successful at emulating commercial "beat-slicing" functions.  There are three divisions: functions that create or retime silences, those that retime amplitude peaks, and those that retime silence-separated events. Not all of the relevant functions are within <b>RETIME</b> itself.
+</p>
+<h3>SILENCES</h3>
+<ul>
+<li><a href="../html/cgroedit.htm#MANYSIL"><b>Manysil</b></a> (also in Edit/Mix page) inserts silences at given times. Suitable times can be obtained from the Info function <a href="../html/cgrohous.htm#EXTRACT"><b>GatedOnsets</b></a> (<b><i>housekeep extract 6</b></i>).</li>
+<li><a href="../html/cgrohous.htm#GATE-R6"><b>Gate</a>, <a href="../html/cgrohous.htm#GATE">Housekeep Gate</a></b> or <a href="../html/cgroenvl.htm#WARP"><b>Envel Warp 8 (Gate)</a></b> remove low-level signal from a sound, producing silences.</li>
+<li><a href="../html/cgroenvl.htm#WARP"><b>Corrugate</b></a> (<b><i>envel warp 11</b></i>) sets amplitude troughs to zero.</li>
+<li><a href="../html/cgroedit.htm#MASKS"><b>Masks</b></a> (<b><i>sfedit masks</b></i>) over-writes portions of a sound with silence; start and end times of each portion are specified in a textfile.</li>
+<li><a href="../html/cgromody.htm#BRASSAGE"><b>Modify Brassage 5</b></a> (Granulate) also creates silences, but not in relation to the changing level, like Gate.</li>
+<li><a href="../html/cgroenvnu.htm#PEAKCHOP"><b>Peakchop (mode 2)</b></a> isolates peaks in the soundfile and outputs an envelope based around these peaks. The envelope can then be applied to the original sound using <a href="../html/cgroenvl.htm#REPLACE"><b>Envel Replace</b></a> or <a href="../html/cgroenvl.htm#IMPOSE"><b>Envel Impose</b></a>. </li>
+<li><a href="../html/cgroedit.htm#CONSTRICT"><b>Constrict</b></a> shortens zero-level sections in a sound. The only parameter sets the amount of constriction, where a higher value shortens the silences more.</li>
+</ul>
+
+<h3>RETIME PEAKS</h3>
+<ul>
+<li><a href="../html/cgroinfo.htm#PEAKFIND"><b>PeakFind</b></a> (INFO function) reports the times of peaks it finds in a soundfile; the key parameter is THRESHOLD, the level below which peaks are ignored in any time-window. The report is to a textfile (e.g. peaktimes.txt) which can be used in some RETIME processes.</li><br>
+
+<li><a href="../html/cgroedit.htm#RETIME"><b>Peak Pulse</b></a> (<b><i>retime 1</b></i>) retimes events at regular times, based on tempo or beat-duration. The peaks are taken from a peaktimes datafile, as output by <b>PeakFind</b>.</li><br>
+
+<li><a href="../html/cgroedit.htm#RETIME"><b>Peak Retime</b></a> (<b><i>retime 2</b></i>) retimes events, designated in a peaktimes file, to new times. To construct the appropriate datafile, a second column is added to the <b><i>peaktimes</i></b> list, giving the new time for the peak. Tempo is also adjustable.</li><br>
+
+<li><a href="../html/cgroedit.htm#RETIME"><b>Peak Move</b></a> (<b><i>retime 13/14</b></i>) adjusts the sound in relation to a single peak, specified by the user, to a new position to which the peak is moved by inserting or deleting silence at the start.</li><br>
+
+<li><a href="../html/cgroenvnu.htm#PEAKCHOP"><b>Peakchop (mode 1)</a></b> gates the sound around peaks and plays it at a specified tempo.</li>
+</ul>
+
+
+<h3>RETIME EVENTS</h3>
+<ul>
+<li><a href="../html/cgroedit.htm#RETIME"><b>Shorten</b></a> (<b><i>retime 3</b></i>) shortens event lengths in a soundfile containing silences. The user specifies a minumum event duration in the Infile, shorter events being ignored, and an equivalent duration of output events.</li><br>
+
+<li><a href="../html/cgroedit.htm#RETIME"><b>Pulsed</b></a> (<b><i>retime 4</b></i>) shifts silence-separated events to regular times, according to a user-specified tempo.</li><br>
+
+<li><a href="../html/cgroedit.htm#RETIME"><b>Speed</b></a> (<b><i>retime 5</b></i>) changes the tempo of silence-separated events. The speed is time-variable.</li><br>
+
+<li><a href="../html/cgroedit.htm#RETIME"><b>Times</b></a> (<b><i>retime 6/7</b></i>) repositions silence-separated events at new specified times or at specified beats at a given tempo.</li><br>
+
+<li><a href="../html/cgroedit.htm#RETIME"><b>Repeat</b></a> (<b><i>retime 8</b></i>) repeats a single silence-separated event within a sound, the event occurring at a time specified by the user. The repeats are made at a specified tempo. The process works well provided the event is clearly preceded and followed by silence and the time is accurate: <b>Peak-Envelope</b> can help to find event times.</li><br>
+
+<li><a href="../html/cgroedit.htm#RETIME"><b>Mask</b></a> (<b><i>retime 9</b></i>) masks one or more silence-separated events using a pattern of 0 (silent) and 1 (sound). This function is also an easy way of separating granulated sounds into separate streams. </li><br>
+
+<li><a href="../html/cgroedit.htm#RETIME"><b>Accents</b></a> (<b><i>retime 10</b></i>) accentuates one in every N events by retaining the level of the accented events and reducing the others to a user-specified level.</li>
+</ul>
+
+<!----------------------------------------------------------------->
+<h2 id="WAVESETS" style="color: #ffffff; background-color: #950000">&nbsp;WAVESETS &nbsp;&nbsp;&nbsp; (CDP groups: DISTORT and DISTMORE)</h2>
+
+<p>
+CDP's <a href="../html/cdistort.htm"><b>DISTORT</b></a> suite, together with a newer set <b>DISTMORE</b> and other functions beginning with <b>"DIST"</b> (both R8), vary the grain concept in that the segments are pseudo-wavecycles (called <b>wavesets</b>) found at zero-crossings. These are used to produce a wide variety of distortion. The wavesets are processed by repetition, omission, replacing waveforms, adding "harmonics", and so on. Cycles can usually be processed singly or in groups. Many processes do produce distortion with small groups of cycles, because of rapid and uneven changes of waveform, but larger groups tend to produce smoother though often unpredictable results.
+</p>
+<ul>
+
+<li><a href="../html/cdistort.htm#CYCLECNT"><b>Cyclecnt</b></a> (INFO function) finds and count wavesets (pseudo-wavecycles) in a soundfile.</li>
+<hr>
+<li><a href="../html/cdistort.htm#AVERAGE"><b>Average</b></a> averages the waveshape over a number of cycles. In a melodic passage, this averages the melody too, creating an unpredictable sequence of pitches, which could be analysed (see pitch data section) and applied to other processes.</li><br>
+
+<li><a href="../html/cdistort.htm#MULTIPLY"><b>Multiply</a> / <a href="../html/cdistort.htm#DIVIDE">Divide</b></a>: cycles are duplicated so as to raise or lower the frequency by a proportion. These are not really transposition functions, though, unless the source waveform is very uniform.</li>
+<li><a href="../html/cdistort.htm#DOUBLE"><b>Distmore Double (R8)</b></a> offers an alternative function to raise frequency.</li>
+<li><a href="../html/cdistort.htm#FRACTAL"><b>Fractal</b></a> and <a href="../html/cdistort.htm#HARMONIC"><b>Harmonic</b></a> both add higher-frequency components to the sound. With <b>Fractal</b>, these are based on miniature copies of the waveform grafted on to itself. With <b>Harmonic</b>, the added waveforms are multiples of the original, using a datafile of <b>harmonic_number amplitude</b> pairs.</li><br>
+<li><a href="../html/cdistort.htm#FRACTALWAVE"><b>Fractal Wave (R8)</b></a> fractally distorts the soundfile by transposition, using data of <i>time transposition</i> pairs or <i>time MIDIpitch</i> pairs. It applies these either to the whole soundfile or to a single wavecycle. (There is also a spectral version: Fractal Spectrum.)</li>
+<hr>
+
+<li><a href="../html/cdistort.htm#REPEAT"><b>Repeat</a>/ <a href="../html/cdistort.htm#DISTREP">Distrep 1 (R8)</b></a> repeats (groups of) cycles the specified number of times, duplicating and timestretching.</li>
+<li><a href="../html/cdistort.htm#REPEAT2"><b>Repeat2</a>/ <a href="../html/cdistort.htm#DISTREP">Distrep 2 (R8)</b></a> duplicates without timestretching.</li> 
+<li><a href="../html/cdistort.htm#REPLIM"><b>Replim</b></a> duplicates cycles below a specified frequency limit (and timestretches).  </li>
+<li><a href="../html/cdistort.htm#INTERPOLATE"><b>Interpolate</b></a> repeats each cycle a given number of times and interpolates between them. Rather than being a simple time-stretching function, though, this produces a seriously "weird" output.</li><br>
+<hr>
+<li><a href="../html/cdistort.htm#OMIT"><b>Omit</b></a> omits a proportion of cycles out of a specified group size and substitutes silence. A small group size lowers the pitch in a gritty way; a larger one audibly granulates the sound.</li>
+<li><a href="../html/cdistort.htm#DELETE"><b>Delete</b></a> omits trhe quietest cycle in a group, or time-shrinks the sound by retaining the first or loudest in the group </li>
+<li><a href="../html/cdistort.htm#REPLACE"><b>Replace</b></a>: the strongest cycle in the group replaces all the others. This creates "random" melodies, even with large groups.</li>
+<li><a href="../html/cdistort.htm#TELESCOPE"><b>Telescope</b></a>: another time-shrinking procedure, retaining 1 in every group. Even a group of 2 will halve the sound in a gritty way.</li><br>
+<hr>
+<li><a href="../html/cdistort.htm#ENVEL"><b>Envel</b></a> imposes an envelope (which can be user-defined) on groups of cycles. With large groups (e.g. >100) this gives an audible amplitude modulation. With small groups, the modulation creates its own resonance, giving a distorted sound.</li><br>
+
+<li><a href="../html/cdistort.htm#FILTER"><b>Filter</b></a>: the "filter" idea is to delete cycles whose wavelength corresponds to a frequency in the chosen band. As cycles are rarely full waveforms, the result is usually another kind of grittiness, rather than a traditional filtering effect.</li><br>
+
+<li><a href="../html/cdistort.htm#INTERACT"><b>Interact</b></a> has two modes: <b>Interleave</b> (mode 1) merges cycles from two sounds; <b>Impose</b> (mode 2) imposes the cycles of one sound on another. Both give distortion: interleaving a sound with iteself can produce an interesting half-speed version (without formant shift), while the imposing mode is somewhat like a vocoder, but without the subtlety.</li><br>
+
+<li><a href="../html/cdistort.htm#OVERLOAD"><b>Overload</b></a>: the top of the waveform is clipped and optionally replaced with another frequency. This adds "bite" or obvious distortion to the sound.</li><br>
+
+<li><a href="../html/cdistort.htm#PITCH"><b>Pitch</b></a>: cycles are transposed randomly within a specified range &#150; unless this is small, the effect is similar to an extreme vibrato. With a small range it introduces a randomised pitch variation, which can sometimes be very useful, and if the group size is large there is a noticeable "stepping" effect.</li><br>
+
+<li><a href="../html/cdistort.htm#REFORM"><b>Reform</b></a> substitutes simple waveforms (sine, square etc.) for the pseudo-wavecycles.</li><br>
+
+<li><a href="../html/cdistort.htm#DISTMARK"><b>Distmark (R8)</b></a> interpolates between waveset groups at marked points.</li><br>
+<hr>
+<li><a href="../html/cdistort.htm#REVERSE"><b>Reverse</a> / <a href="../html/cdistort.htm#SEGSBKWD">Distmore Segsbkwd (R8)</b></a> reverses each cycle or group of cycles. Large groups give bigger reversed sections and less distortion.<br>
+The alternative DISTMORE version offers nine options for reversing listed Head and Tail segments (e.g. consonant and vowel) in a vocal or other suitable sound.</li><br>
+<li><a href="../html/cdistort.htm#BRIGHT"><b>Distmore Bright (R8)</b></a> re-orders segments in order of the average zero-crossing rate</li><br>
+<li><a href="../html/cdistort.htm#DISTSHIFT"><b>Distshift (R8)</b></a> time-shifts or swaps alternate groups of wavesets</li><br>
+<li><a href="../html/cdistort.htm#SHUFFLE"><b>Shuffle</b></a> (c.f. <b>Blur Shuffle</b> and <b>Grain Shuffle</b>): (groups of) cycles are shuffled, using a "domain" and "image" pattern.</li><br>
+<li><a href="../html/cdistort.htm#SEGZIG"><b>Zig-zag</b></a> (<b><i>distmore segzig R8</b></i>) (c.f. <a href="../html/cgroextd.htm#ZIGZAG"><b>Zigzag</b></a>) zig-zags across tail segments, a specified proportion, or the whole file, optionally repeating segments.</li>
+</ul>
+
+
+<!--
+<li><b></b></li>
+<li><b></b></li>
+<li><b></b></li>
+-->
+
+</ul>
+
+<br>
+<!--------------- NEXT TABLE ------------->
+        <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0" width="30%">
+            <tbody>
+              <tr align="center">
+                <td valign="top"><b><i>SPECTRAL &nbsp; PROCESSES</b></i></td>
+              </tr>
+              <tr align="center">
+                <td valign="top">
+		<a href="cdpspect.html"><img alt="NEXT"
+                 src="images/NEXT.gif"
+                 border="0" width="54" height="44"></a></td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+        </div>
+
+<p align="center">
+<small><b>The descriptions above are adapted from the Soundshaper manual and do not necessarily reflect the views of CDP.<br>
+For details of each function, always refer to the <a href="../html/cdphome.htm"><b>CDP Reference Documentation</b></a>.<br>
+For further details about CDP see the Composers' Desktop Project <a href="http://www.composersdesktop.com">website</a>.</b></small>  
+</p>
+ 
+
+
+</blockquote>
+<!-- ----------------------------   End of Main Text ------------------------------ -->
+	<table style="text-align: left; width: 100%; " border="0" cellpadding="8" cellspacing="0">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top; background-color: #d9b18c"><b>NEXT PAGE:</b> 
+              <b><a href="cdpspect.html">&nbsp;<b>SPECTRAL PROCESSES</b></a>
+	  </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+<!-- ************************************************************* -->
+
+      <div class="footer">
+        <p> 
+		   &nbsp;<b><i>Last Updated 30 Apr 2023 for CDP8 &nbsp;&nbsp;
+          © Copyright 2021-23 Robert Fraser and CDP</i></b>
+        <br>
+    
+        </p>
+      </div>
+      
+
+  </div> <!-- END of MAIN CONTENT (bottom right) --> 
+</div> <!-- END OF RIGHT COLUMN -->
+
+</body>
+</html>   

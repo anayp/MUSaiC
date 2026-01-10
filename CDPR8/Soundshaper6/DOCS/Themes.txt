@@ -1,0 +1,20 @@
+THEMES
+------
+
+Sounshaper has a new default theme, or "skin". Soundshaper supports a number of 3rd-party skins from Alphaskins. 
+The skins are stored in Soundshaper's subfolder \Skins. The default (pre-selected) theme is called Office2007 Black; the previous default theme Pulsar is still available.
+
+The choice of themes has been reduced in Soundshaper 6 to eliminate some that are not very effective. The remaining ones are:
+
+DARK: Office2007 Black (new default), Cold (darker background), Nautilus, WMP2008, TV-b (less effective)
+
+MEDIUM: Pulsar (former default), Dark Glass (not that dark), Gray Plastic
+
+LIGHT: MacMetal, XPSilver, Elegant, Next Alpha.
+
+To change the Theme, click on File | THEME and select one of the items from the "Skins" folder. You can also set the Theme to be applied when Soundshaper starts. See the Settings page: Settings tab | Change Skin.
+
+Previous users of Soundshaper will have a wider selection of themes in their \Skins subfolder. These can still be used, though those not listed above are not recommended.
+
+
+Sep. '22

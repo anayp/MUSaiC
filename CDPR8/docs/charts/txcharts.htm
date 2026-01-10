@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<!-- txcharts.htm - two more useful reference charts for Texture -->
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>2 Texture Reference Charts</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<h1 align=center>Two Useful Reference Charts for TEXTURE</h1>
+
+<p>
+<div align=center>
+<table border="1" cellpadding="3" bgcolor="#B0E0E6">
+<tr>
+<td align=center><b>MPV</b><br>Midi Pitch Value<br>
+(reference pitch<br>for the source)</td>
+<td align=center><b>HF-S</b><br>Harmonic Field-Set<br>
+(if 'None', uses parameter<br>Pitch Range)</td>
+<td align=center><b>Line&#47;NS</b><br>Linear Contour<br>
+with times for<br>the nodal points</td>
+<td align=center><b>M&#47;O</b><br>'Fully Defined'<br>Motif&#47;Ornament</td>
+<td align=center><b>Timing</b><br>Rhythmic Template<br>('Sieve')</td>
+</tr>
+</table>
+</div>
+</p>
+<br>
+
+<p>
+<div align=center>
+<table border=1 cellpadding=3 bgcolor="#B0E0E6">
+<caption><font size=+1><b>Illustrating the Format of Note Data File 
+Components</b></font><br>
+The 5 fields are: <i>Times</i>, <i>Instr_no</i>, <i>(Midi)_Pitch</i>, 
+<i>Vel</i>, <i>Dur</i><br>
+('Y' and 'N' refer to Active and Inactive Fields 
+&#150; they are <i>not</i> part of the file &#150;<br>
+the '1' for <i>instrument_number</i> must always be present, although 
+inactive)</caption>
+<tr>
+<th align=center>MPV</th>
+<th align=center>Timing</th>
+<th align=center>Line (NS)</th>
+<th align=center>HF-S</th>
+<th align=center>Motif&#47;Ornament</th>
+
+</tr>
+<tr>
+<td align=center><pre>60</pre></td>
+<td align=center><pre>
+#4
+0.00 1 0 0 0
+0.34 1 0 0 0
+0.67 1 0 0 0
+1.00 1 0 0 0
+ Y   N N N N
+</pre></td>
+<td align=center><pre>
+#4
+0.0 1 60 0 0
+1.0 1 65 0 0
+2.5 1 67 0 0
+3.5 1 72 0 0
+ Y  N Y  N N
+</pre></td>
+<td align=center><pre>
+#4 (M 1-3)    #4 (M 2-4)
+0 1 60 0 0    0.0 1 60 0 0
+0 1 65 0 0 OR 1.5 1 65 0 0
+0 1 67 0 0    2.0 1 67 0 0
+0 1 72 0 0    2.0 1 72 0 0
+N N Y  N N     Y  N Y  N N
+</pre></td>
+<td align=center><pre>
+#4
+0.00 1 60 85 0.3
+0.25 1 65 65 0.3
+0.50 1 67 75 0.3
+0.75 1 72 55 0.3
+ Y   N Y  Y   Y
+</pre></td>
+</tr>
+</table>
+</div>
+</p>
+
+<p>
+<br>
+<br>
+</p>
+
+<p>
+<div align=center>
+<table border=1 cellpadding=4 bgcolor="#B0E0E6">
+<caption><font size=+1><b>Note Data File Components Used by Each 
+Function</b></font></caption>
+<tr>
+<th align=center>Program</th>
+<th align=center>MPV</th>
+<th align=center>Timing</th>
+<th align=center>Line (NS)</th>
+<th align=center>Modes1-4: HF-S<br>Mode 5: None</th>
+<th align=center>Motif&#47;Ornament</th>
+</tr>
+
+<tr>
+<td><b>SIMPLE</b></td>
+<td align=center>MPV</td>
+<td align=center><br></td>
+<td align=center><br></td>
+<td align=center>HF-S or None</td>
+<td align=center><br></td>
+</tr>
+
+<tr>
+<td><b>GROUPED</b></td>
+<td align=center>MPV</td>
+<td align=center><br></td>
+<td align=center><br></td>
+<td align=center>HF-S or None</td>
+<td align=center><br></td>
+</tr>
+
+<tr>
+<td><b>DECORATED</b></td>
+<td align=center>MPV</td>
+<td align=center><br></td>
+<td align=center>Line</td>
+<td align=center>HF-S or None</td>
+<td align=center><br></td>
+</tr>
+
+<tr>
+<td><b>MOTIFS</b></td>
+<td align=center>MPV</td>
+<td align=center><br></td>
+<td align=center><br></td>
+<td align=center>HF-S or None</td>
+<td align=center>M&#47;O</td>
+</tr>
+
+<tr>
+<td><b>MOTIFSIN</b></td>
+<td align=center>MPV</td>
+<td align=center><br></td>
+<td align=center><br></td>
+<td align=center>HF-S only</td>
+<td align=center>M&#47;O</td>
+</tr>
+
+<tr>
+<td><b>ORNATE</b></td>
+<td align=center>MPV</td>
+<td align=center><br></td>
+<td align=center>Line</td>
+<td align=center>HF-S or None</td>
+<td align=center>M&#47;O</td>
+</tr>
+
+<tr>
+<td><b>TIMED</b></td>
+<td align=center>MPV</td>
+<td align=center>Times</td>
+<td align=center><br></td>
+<td align=center>HF-S or None</td>
+<td align=center><br></td>
+</tr>
+
+<tr>
+<td><b>TGROUPED</b></td>
+<td align=center>MPV</td>
+<td align=center>Times</td>
+<td align=center><br></td>
+<td align=center>HF-S or None</td>
+<td align=center><br></td>
+</tr>
+
+<tr>
+<td><b>TMOTIFS</b></td>
+<td align=center>MPV</td>
+<td align=center>Times</td>
+<td align=center><br></td>
+<td align=center>HF-S or None</td>
+<td align=center>M&#47;O</td>
+</tr>
+
+<tr>
+<td><b>TMOTIFSIN</b></td>
+<td align=center>MPV</td>
+<td align=center>Times</td>
+<td align=center><br></td>
+<td align=center>HF-S only</td>
+<td align=center>M&#47;O</td>
+</tr>
+</table>
+</div>
+</p>
+
+<p>
+<br>
+<a href="../html/charts.htm" Target="_top"><b>Return</b></a> 
+to Charts Index<br>
+<a href="../html/ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System<br>
+<a href="../html/cgroundx.htm#startpos" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index<br><br>
+</p>
+<p>
+<IMG SRC="images/cdpcircs72.jpg" align="left" ALT="CDP circles logo"></a>
+&nbsp;&nbsp;Last Updated: 9 September 2004<br>
+&nbsp;&nbsp;Layout revised: 30 July 2015; links revised 13 Nov '21
+</p>
+
+</body>
+
+</html>
+

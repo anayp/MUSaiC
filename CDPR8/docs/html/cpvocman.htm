@@ -1,0 +1,1754 @@
+#USAGE!DOCTYPE html>
+<html lang="en">
+<!-- cpvocman.htm - T Wishart PVOC manual in HTML5 format -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP PVOC Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cspecndx.htm" Target="_top"><b>Spectral Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#PVOCTOPICS"><b>PVOC:</b></a>
+  <dt>&nbsp;&nbsp;<a href="cpvocman.htm#USAGEANAL"><b>ANALYSIS</b></a>
+  <dt>&nbsp;&nbsp;<a href="cpvocman.htm#USAGEXTRACT"><b>EXTRACT</b></a>
+  <dt>&nbsp;&nbsp;<a href="cpvocman.htm#USAGESYNTH"><b>RESYNTHESIS</b></a>
+  <br><br>
+  <b>OTHERS: </b><br>
+  <dt>&nbsp;&nbsp;<a href="#PVOCEX2"><b>PVOCEX2</b></a>
+  <dt>&nbsp;&nbsp;<a href="#ANA2PVX"><b>ANA2PVX</b></a>
+  <dt>&nbsp;&nbsp;<a href="#FTURANALANAL"><b>FTURANAL ANAL</b></a>
+  <dt>&nbsp;&nbsp;<a href="#FTURANALSYNTH"><b>FTURANAL SYNTH</b></a>
+  <br><br>
+<hr>
+  <dt><a href="#INTRO"><b>PVOC MANUAL:</b></a>
+  <dt>&nbsp;&nbsp;<a href="cpvocman.htm#WINDS"><b>Windows</b></a>
+  <dt>&nbsp;&nbsp;<a href="cpvocman.htm#CHANS"><b>Channels</b></a>
+  <dt>&nbsp;&nbsp;<a href="cpvocman.htm#ANALF"><b>Analysis File</b></a>
+  <dt>&nbsp;&nbsp;<a href="cpvocman.htm#FLAGS"><b>Flags</b></a>
+  <dt>&nbsp;&nbsp;<a href="cpvocman.htm#BANDS"><b>Freq. Bands</b></a>
+  <dt>&nbsp;&nbsp;<a href="cpvocman.htm#ANALR"><b>Analysis Rate</b></a>
+  <dt>&nbsp;&nbsp;<a href="cpvocman.htm#TERMS"><b>Terminology</b></a>
+  <dt>&nbsp;&nbsp;<a href="cpvocman.htm#ANALB"><b>Bandwidth</b></a>
+
+<br><br>
+  <a href="operpvoc.htm"><b>THE PHASE VOCODER</b></a>
+<hr>
+
+  <!--  <a href="cpvocman.htm#OLDUSAGE"><b>Old Usage</b></a>   -->
+
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <br> 
+    <div align=center>
+    <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+    </div>
+
+  <h1 align=center>
+  THE CARL PHASE VOCODER
+  </h1>
+  <h2 align=center>
+  Introduction and Reference Manual<br>
+  by Trevor Wishart
+  </h2>
+
+  <h3 align=center>
+  <blockquote>
+  This program has been made available to CDP by the 
+  Computer Audio Research Laboratory at the University of California at San Diego ('CARL'). 
+  <br>It is distributed by CDP without charge.
+  </blockquote>
+  </h3>
+
+   </div>  <!-- End of 'head' -->
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="PVOCTOPICS">
+CDP PVOC Functions<br>(FFT Analysis and Resynthesis)</h2>
+
+<dl>
+<dt><a href="#USAGEANAL">PVOC <b>ANAL</b></a><dd>Convert soundfile to spectral file</dd>
+<dt><a href="#USAGEXTRACT">PVOC <b>EXTRACT</b></a><dd>Analyse, then resynthesise sound with various options</dd>
+<dt><a href="#USAGESYNTH">PVOC <b>SYNTH</b></a><dd>Convert spectral file to soundfile</dd>
+<br>
+<dt><a href="#PVOCEX2"><b>PVOCEX2</b></a><dd>Stereo phase vocoder based on CARL pvoc (Mark Dolson)</dd>
+<dt><a href="#ANA2PVX"><b>ANA2PVX</b></a><dd>Convert CDP analysis file (<b>.ana</b>) to PVOC-EX file (<b>.pvx</b>)</dd>
+<br>
+<dt><a href="cpvocman.htm#FTURANALANAL">[PVOC] <b>FTURANAL ANAL</b></a><dd>Extract spectral features from an analysis file and output to a textfile </dd>
+<dt><a href="cpvocman.htm#FTURANALSYNTH">[PVOC] <b>FTURANAL SYNTH</b></a><dd>Use spectral features data to reassemble MONO source file </dd>
+<br>
+<b>SEE ALSO:</b>
+<dt><a href="csysutil.htm#PVPLAY"><b>PVPLAY</b></a><dd>Direct playback of PVOC analysis files</dd>
+<hr>
+
+<dt><a href="#INTRO"><b>PVOC MANUAL</b></a> (by T.Wishart, with additional material by A. Endrich):
+<dt><a href="#WINDS"><b>WINDOWS</b></a> &#150; Introduction and Analysis Windows</dt>
+<dt><a href="#CHANS"><b>CHANNELS</b></a> &#150; Analysis Channels</dt>
+<dt><a href="#ANALF"><b>ANAL. FILE</b></a> &#150; Fequency Analysis File</dt>
+<dt><a href="#BANDS"><b>FREQ. BANDS</b></a> &#150; Points and Frequency Bands</dt>
+<dt><a href="#ANALR"><b>ANAL. RATE</b></a> &#150; Analysis Rate</dt>
+<dt><a href="#TERMS"><b>TERMS</b></a> &#150; Summary of Terminology</dt>
+<dt><a href="#ANALB"><b>BANDWIDTH</b></a> &#150; Analysis Bandwidth</dt>
+
+<br>
+<dt><a href="operpvoc.htm"><b>THE OPERATION OF THE PHASE VOCODER</b></a> (by R.W.Dobson)
+<dd>A non-mathematical introduction to the Fast Fourier Transform</dd>
+<!--
+<br>
+<dt><a href="#OLDUSAGE"><b>OLD USAGE</b></a>
+   <dd>Command Line and Flags before Release 4</dd>
+-->
+</dl>
+
+<hr> <!-- **************************************************** -->
+<h2 id="USAGEANAL">PVOC ANAL &#150; Analysis: convert soundfile to 
+spectral file</h2>
+<em>The flags mentioned refer to Old Usage pre-Release 4. The documentation may refer to the -N flag (points) and the -W flag (overlap). </em>
+
+<h3>		
+Usage
+</h3>
+
+<b>pvoc anal mode</b> <i>infile outfile</i> [<b>-c</b><i>points</i>] 
+[<b>-o</b><i>overlap</i>]
+
+<h3>
+Modes
+</h3>
+<blockquote>
+
+<p>
+<b>1</b>&nbsp; Standard analysis &nbsp;&nbsp; (originally the <b>-A</b> flag)<br>
+<b>2</b>&nbsp; Output spectral envelope values only &nbsp;&nbsp;(originally the <b>-E</b> flag)<br>
+<b>3</b>&nbsp; Output spectral magnitude values only &nbsp;&nbsp;(originally the <b>-X</b> flag)<br>
+</p>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+
+<p>
+<i>infile</i> &#150; the input is a MONO soundfile<br>
+<blockquote>
+Stereo or multi-channel input must first be split into separate channels using <a href="cgrohous.htm#CHANS"><b>HOUSEKEEP CHANS 2</b></a> or <a href="cmcrefmn.htm#CHANNELX"><b>CHANNELX</b></a>. The individual mono files are then PVOC-analysed and processed separately, before being re-synthesised (<a href="#USAGESYNTH">PVOC SYNTH</a>) and re-combined using <a href="cgromixr.htm#INTERLEAVE"><b>SUBMIX INTERLEAVE</b></a> or <a href="cmcrefmn.htm#INTERLX"><b>INTERLX</b></a>. 
+</blockquote>
+<i>outfile</i> &#150; the output is an analysis file (<b>.pvx</b> or <b>.ana</b> ) in Mode 1. <b>The file extension should be specified in the filename.</b>
+	<p>
+	<blockquote>
+	In Modes 2 and 3, the output is thought to be a binary data file.  
+These options have been retained from the original PVOC, but in fact we are unclear as to what they produce and what program could read the 
+data!  If any CDP user has made use of these options and could enlighten us further, please do so.<br>
+	</blockquote>
+	</p>
+<b>-c</b><i>points</i> &#150; the number of analysis points (2-32768 &#150 a power of 2) Default: 1024 <br>
+	<blockquote>
+    <p>
+    More points give better frequency resolution, but worse time resolution: i.e., detail is lost in rapidly changing spectra.
+    </p><p>
+    <b>NB: The .ana format has an upper limit of 8192 points. For this reason, users are recommended to use the .pvx format for all values.</b> 
+    </p><p>
+	<i>Points</i> is the same as the value entered for the <b>-N</b> flag in the early versions of PVOC. 
+ 	You will sometimes see references to <b>-N</b> in the CDP PVOC documentation.	
+	</blockquote>
+	</p>
+<b>-o</b><i>overlap</i> filter overlap factor (1 &#150; 4)  Default: 3 
+(originally the <b>-W</b> flag)<br>
+</p>
+</blockquote>
+
+<p>
+End of PVOC ANAL<br>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr> <!-- ********************************************************** -->
+<h2 id="USAGEXTRACT">PVOC EXTRACT &#150; Analyse, then 
+resynthesise sound with various options</h2>
+<em>The flags mentioned (-W, -C) refer to Old Usage pre-Release 4.</em>
+
+<h3>		
+Usage
+</h3>
+<b>pvoc extract</b> <i>infile outfile</i> <b>-c</b><i>points</i> 
+<b>-o</b><i>overlap</i> <b>-d</b><i>dochans</i> 
+<b>-l</b><i>lochan</i> <b>-h</b><i>hichan</i> 
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+
+<p>
+<i>infile</i> &#150; the input is a soundfile<br>
+<i>outfile</i> &#150; the output is a soundfile<br>
+<b>-c</b><i>points</i> &#150; the number of analysis points (2-32768 &#150 a power of 2) 
+Default: 1024 (originally the <b>-N</b> flag)<br>
+	<blockquote>
+	<p>
+	More points give better frequency resolution, but worse time 
+	resolution:  i.e., detail is lost in rapidly changing spectra<br>
+	</p><p>
+    If <i>points</i> is greater than 8192, the analysis will use the <b>.pvx</b> format
+    </p>
+	</blockquote>
+
+<b>-o</b><i>overlap</i> filter overlap factor (1 &#150; 4)  Default: 3 
+(was the <b>-W</b> flag)<br>
+<b>-d</b><i>dochans</i> resynthesise ODD (<b>1</b>) or EVEN (<b>2</b>) 
+channels only (was the <b>-C</b> flag)<br>
+<b>-l</b><i>lochan</i> ignore analysis channels below this when 
+resynthesising (Default: 0)<br>
+<b>-h</b><i>hichan</i> ignore analysis channels above this when 
+resynthesising (Default: highest channel)<br>
+	<p>
+	<blockquote>
+	<i>Lochan</i> and <i>hichan</i> refer to channels rather than 
+	analysis points.  There is 1 channel for every 2 points.<br>
+	<i>Hichan</i> should therefore not be &gt; analysis points&#47;2<br>
+	To default to topmost channel, set at 0.<br>
+	<p>
+	<b>NB:</b> If no flags are set, the output sound will be the 
+	same as the input.
+	</p>
+	<p>
+	See <a href="cstretch.htm#TIME">STRETCH TIME</a> and 
+	<a href="cstretch.htm#SPECTRUM">STRETCH SPECTRUM</a> for stretching operations.
+	</p>
+	<p>
+	For the various spectral transposition options, see the 
+	<a href="crepitch.htm">REPITCH</a>  
+	group of functions:  TRANSPOSE, TRANSPOSEF, COMBINE, COMBINEB.
+	</p>
+	</blockquote>
+	</p>
+</p>
+</blockquote>
+
+<p>
+End of PVOC EXTRACT<br>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+
+<hr> <!-- ********************************************************** -->
+<h2 id="USAGESYNTH">PVOC SYNTH</a> &#150; Resynthesis: convert spectral file 
+to soundfile
+</h2>
+<em>Synthesis was the <b>-S</b> flag in the Old Usage pre-Release 4.</em>
+
+<h3>		
+Usage
+</h3>
+<p>
+<b>pvoc synth</b> <i>infile outfile</i>
+</p>
+
+<h3>
+Parameters 
+</h3>
+<blockquote>
+
+<p>
+<i>infile</i> &#150; the input is an analysis file (<b>.pvx</b> or <b>.ana</b>). <b>The file extension should be specified in the filename.</b><br>
+<i>outfile</i> &#150; the output is a MONO soundfile
+</p>
+</blockquote>
+
+<p>
+End of PVOC SYNTH<br>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- **************************************************** -->
+<h2 id="PVOCEX2">PVOCEX2 &#150; Stereo phase vocoder based on CARL pvoc (Mark Dolson)</h2>
+
+<h3>Usage</h3>
+<p>
+pvocex2 [<b>-A |-S</b>] [<b>-f</b>x] [<b>-o</b><i>Nosc</i>] [<b>-K | -H | -R</b>] [<b>-Px | -Tx</b>] [<b>-Wx</b>] [<b>-N</b><i>samps</i>] [<b>-m</b>] [<b>-v</b>] 
+         <i>infile outfile</i>
+<p><p>
+Example command line to convert a soundfile to PVOC-EX:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>pvocex2 -A one.wav oneX.pvx</b>  [using defaults]<br><br>
+Example command line to convert a PVOC-EX file to a soundfile:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>pvocex2 -S one.pvx one.wav</b> 
+</p>
+
+<h3>Parameters </h3>
+<blockquote>
+<i>infile</i> &#150; input soundfile for analysis or PVOC-EX file (<b>.pvx</b>) for re-synthesis.<br>
+<blockquote>
+For analysis (as with PVOC ANAL), stereo or multi-channel input should first be split into separate channels using <a href="cgrohous.htm#CHANS"><b>HOUSEKEEP CHANS 2</b></a> or <a href="cmcrefmn.htm#CHANNELX"><b>CHANNELX</b></a>. <br>
+PVOCEX2 can create stereo or multi-channel analysis files, but CDP cannot process them. 
+</blockquote>
+
+<i>outfile</i> &#150; output <b>.pvx</b> file (analysis) or soundfile (synthesis).<br>
+&nbsp;&nbsp;&nbsp;  Soundfile formats supported: .wav, .aiff, .aif, .afc, .aifc<br>
+&nbsp;&nbsp;&nbsp;  N.B. the soundfile extension must be included in the filename.<br><br>
+<b>Flags:</b><br>
+<b>-A</b> &#150; perform Analysis only: output is a <b>.pvx</b> file.<br>
+<b>or</b><br>
+<b>-S</b> &#150; perform Synthesis only: input is a <b>.pvx file</b>.<br>
+<b>or</b><br>
+<b>-I</b> &#150; show Format info of <b>.pvx</b> file (no outfile required).<br>
+<b>-f</b>x &#150; set Frame Type for analysis file:
+  <ul>
+  <li>        x = 0 = Amplitude, Frequency (default)  </li>
+  <li>        x = 1 = Amplitude, Phase (= Soundhack format) </li>
+  <li>        x = 2 = Complex (real, imaginary) </li>
+  </ul>
+&nbsp;&nbsp;&nbsp;  NB: The -f flag is ignored unless -A is set.<br>
+
+<b>-o</b><i>Nosc</i> &#150; use osc-bank resynthesis using <i>Nosc</i> oscillators (default = N/2 +1)<br>
+
+<b>-K</b> &#150; use Kaiser window<br>
+<b>-H</b> &#150; use von Hann window<br>
+<b>-R</b> &#150; use Rectangular window<br>
+Default: Hamming window, or window from .pvx header<br> 
+
+<b>-P</b>x &#150; Apply Pitch scaling rate x (synthesis)<br>
+<b>-T</b>x &#150; Apply Time scaling rate x (synthesis)<br>
+NB: time/pitch scaling requires the default AMP,FREQ pvx format<br>
+
+<b>-W</b>x &#150; Set window overlap factor (analysis) Values: 0,1,2,3, default 1<br>
+<b>-N</b><i>samps</i> &#150;  Set analysis window to <i>samps</i> samples (default 1024)<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (PVOCEX2 can handle much higher values for this than PVOC ANAL, e.g. 65536 or even higher.)<br> 
+
+<b>-m</b> &#150; Write soundfile with minimum header (no PEAK data)<br>
+<b>-v</b> &#150; Suppress progress messages
+
+</blockquote>
+
+
+<h3>Understanding the PVOCEX2 Process </h3>
+
+<blockquote>
+<p>
+CDP supports two phase vocoder formats for frequency analysis files: the PVOC-EX format, devised by Richard Dobson and based on WAVE_EX (file extension <b>.pvx</b>) and the older <b>.ana</b> format. Although <a href="cpvocman.htm#USAGEANAL"><b>PVOC ANAL</b></a> can output either format, PVOCEX2 has many more options, such as the  (<b>-I</b>) flag. 
+</p><p>   
+For further details on PVOC-EX, see Richard Dobson's <a href="http://www.rwdobson.com/pvocex/pvocex.html" Target="_blank"><b>PVOC-EX page</b></a>. 
+</p><p>
+PVOCEX2 is a stereo phase vocoder, converting a soundfile to PVOC-EX or from PVOC-EX to a soundfile.<br> 
+The <b>-A</b> (analysis) or <b>-S</b> (re-synthesis) flag must be specified in the commandline. A third option (<b>-I</b>) gives information about a <b>.pvx</b> file.
+</p><p>
+Some points to note in connection with <b>.pvx</b> files:
+<ul>
+<li>Although the CDP spectral processes all support PVOC-EX, CDP cannot currently process stereo or multi-channel <b>.pvx</b> files, only mono ones.</li>
+<li>You must supply suitable file suffixes when converting, e.g. <b>myfile.wav</b>, not just <b>myfile</b>.</li>
+<li>The key analysis parameters for PVOCEX2 are the same as for <a href="cpvocman.htm#USAGEANAL"><b>PVOC ANAL</b></a>: see <b>-N</b> (points) and <b>-W</b> (overlap) flags. <br>
+Note, however, that the overlap factor for PVOCEX2 should be -W2 to match PVOC ANAL's default overlap of -o3. </li>
+<li>For historical reasons, the CDP documentation tends to assume that frequency analysis files are exclusively <b>.ana</b> files.</li>
+<li>PVOC-EX is the phase-vocoder file format used throughout Csound.</li>
+</ul>
+</p><p>
+The <i>Sound Loom</i> GUI has now been converted (vn. 17.04E) to handle <b>.pvx</b>, and <i>Soundshaper</i> will also be revised in due course. 
+</blockquote>
+
+<h3>Related functions</h3>
+<p>
+<a href="#ANA2PVX"><b>ANA2PVX</b></a>: Convert CDP analysis file (<b>.ana</b> format) to PVOC-EX format (<b>.pvx</b>)
+<br>
+<a href="#USAGEANAL"><b>PVOC ANAL</b></a>: Convert soundfile to spectral file (<b>.pvx</b> or <b>.ana</b> format)<br>
+<a href="#USAGESYNTH"><b>PVOC SYNTH</b></a>: Convert spectral file (<b>.pvx</b> or <b>.ana</b> format) to soundfile
+<p>
+End of PVOCEX2<br>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- **************************************************** -->
+<h2 id="ANA2PVX">ANA2PVX &#150; convert CDP analysis file to PVOC-EX file</h2>
+<h3>Usage</h3>
+<p>
+<b>ana2pvx</b> <i>inanalfile outfile.pvx</i>
+
+<h3>Parameters </h3>
+<blockquote>
+<i>inanalfile</i> &#150; input CDP analysis file in (<b>.ana</b>) format.<br>
+&nbsp;&nbsp;&nbsp; The suffix <b>.ana</b> should be included.<br>    
+<i>outfile</i> &#150; output mono PVOC-EX file (<b>.pvx</b>)<br>
+&nbsp;&nbsp;&nbsp; The suffix <b>.pvx</b> should be included.
+
+</blockquote>
+
+<h3>Understanding the ANA2PVX Process </h3>
+
+<blockquote>
+<p>
+<b>ANA2PVX</b> is an easy-to-use utility for converting an existing CDP spectral file in <b>.ana</b> format, as created by 
+<a href="#USAGEANAL"><b>PVOC ANAL</b></a>, to PVOC-EX format. It complements the main conversion program for PVOC-EX: <a href="#PVOCEX2"><b>PVOCEX2</b></a>.  
+</p>
+</blockquote>
+
+<h3>Related functions</h3>
+<p>
+<a href="#PVOCEX2"><b>PVOCEX2</b></a>: Stereo phase vocoder based on CARL pvoc<br>
+<a href="#USAGEANAL"><b>PVOC ANAL</b></a>: Convert soundfile to spectral file (<b>.pvx</b> or <b>.ana</b> format)<br>
+<a href="#USAGESYNTH"><b>PVOC SYNTH</b></a>: Convert spectral file (<b>.pvx</b> or <b>.ana</b> format) to soundfile
+<p>
+End of ANA2PVX<br>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ********************************************************** -->
+<h2 id="FTURANAL">FTURANAL &#150; Automatic feature extraction from an analysis file<br>
+Sub-Group of 2:  FTURANAL ANAL  FTURANAL SYNTH<h2>
+
+<h3>
+Usage
+</h3>
+<b>fturanal NAME (mode)</b> <i>infile outfile (parameters)</i>
+<br />
+where NAME can be any one of<br>
+<b>anal &nbsp;&nbsp; synth</b><br>
+<br />
+Type <b>fturanal anal</b> for more info on anal option.. ETC.
+<br />
+
+<h2 id="FTURANALANAL">FTURANAL ANAL &#150; Extract spectral features from an analysis file and output to a textfile</h2>
+
+<h3>
+Usage
+</h3>
+<b>fturanal anal 1</b> <i>inanalfil outfeaturefil marklist</i> [<b>-r</b>rand]<br />
+<b>fturanal anal 2-3</b> <i>inanalfil outfeaturfile marklist</i>
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+Extract data ...<br />
+<b>1</b> From Heads, & from Tails cut to segments, size approx equal to Heads<br />
+<b>2</b> From Heads and Tails, as defined by marklist<br />
+<b>3</b> From Tails only.
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150; input analysis file<br />
+<i>outfeaturefile</i> &#150; textfile containing spectral data<br />
+<i>rand</i> &#150; randomise timing of Tail segments (Range: 0 to 1)<br />
+<i>outfeaturefile</i> &#150; the outfile is a list of ...<br />
+<br />
+  &nbsp;&nbsp;&nbsp; (a) Segment start-times (+ duration of source).<br />
+  &nbsp;&nbsp;&nbsp; (b) (Median) Frequency of 1st formant.<br />
+  &nbsp;&nbsp;&nbsp; (c) (Median) Frequency of 2nd formant.<br />
+  &nbsp;&nbsp;&nbsp; (d) (Median) Frequency of 3rd formant.<br />
+  &nbsp;&nbsp;&nbsp; (e) Spectral brightness (Range 0 to 1).<br />
+<br />
+<i>marklist</i> &#150; a list of timemarks in source, marking (paired) Heads and Tails
+	<blockquote>
+      E.g.:  consonant onset, and vowel continuation of source.<br />
+         (It is assumed that the first mark is at a Head segment.)
+	</blockquote>
+</blockquote>
+
+<h3>      
+Understanding the FTURANAL ANAL Process
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of FTURANAL ANAL<br>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> to Spectral Index
+</p>
+
+<hr><!-- ********************************************************** -->
+<h2 id="FTURANALSYNTH">FTURANAL SYNTH &#150; Use spectral features data to reassemble MONO source file</h2>
+
+<h3>
+Usage
+</h3>
+<b>fturanal synth 1-10</b> <i>inwavfile outfile infeaturefile</i> [<b>-s</b><i>splicelen</i>]
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>&nbsp;&nbsp;1</b>  Reassemble in order of increasing 1st Formant<br />
+<b>&nbsp;&nbsp;2</b>  Reassemble in order of decreasing 1st Formant<br />
+<b>&nbsp;&nbsp;3</b>  Reassemble in order of increasing 2nd Formant<br />
+<b>&nbsp;&nbsp;4</b>  Reassemble in order of decreasing 2nd Formant<br />
+<b>&nbsp;&nbsp;5</b>  Reassemble in order of increasing 3rd Formant<br />
+<b>&nbsp;&nbsp;6</b>  Reassemble in order of decreasing 3rd Formant<br />
+<b>&nbsp;&nbsp;7</b>  Reassemble in order of increasing Brightness<br />
+<b>&nbsp;&nbsp;9</b>  Reassemble in order of increasing Formants, summed<br />
+<b>10</b> Reassemble in order of decreasing Formants, summed<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inwavfile</i> &#150; input mono soundfile<br />
+<i>outfile</i> &#150; output soundfile<br />
+<i>infeaturefile</i> &#150; a list of feature values obtained from the analysis file derived from the <i>inwavfile</i><br />
+<br />
+  &nbsp;&nbsp;&nbsp; (a) Segment start-times (+ duration of source)<br />
+  &nbsp;&nbsp;&nbsp; (b) (Median) Frequency of 1st formant<br />
+  &nbsp;&nbsp;&nbsp; (c) (Median) Frequency of 2nd formant<br />
+  &nbsp;&nbsp;&nbsp; (d) (Median) Frequency of 3rd formant<br />
+  &nbsp;&nbsp;&nbsp; (e) Spectral brightness (Range 0 to 1)<br />
+<br />
+<b>-s</b><i>splicelen</i> &#150; splice length for cutting segments, in mS (Range: 2 to 15, Default: 5)<br />
+</blockquote>
+
+<h3>
+Understanding the FTURANAL SYNTH Process
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of FTURANAL SYNTH<br>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> to Spectral Index
+</p>
+
+
+
+
+
+
+<hr> <!-- ********************************************************** -->
+<h2 id="INTRO">PVOC MANUAL</h2>
+
+<p>
+The <i>Phase Vocoder</i> is a powerful analysis/resynthesis tool with 
+important musical applications.  The <i>Phase Vocoder</i> was initially 
+ported from the CARL computer music package to the CDP Desktop System 
+through the efforts of Trevor Wishart, Andrew Bentley, and Keith Henderson 
+working with Richard Orton.  Later versions were produced by T. Wishart, 
+N. Laviers, and M. Atkins.  Martin Atkins has ported it to the Atari 
+Falcon030 and PC.  The following is an outline description of its operation 
+from a technical point of view.
+</p>
+
+
+<h2 id="WINDS">
+Windows
+</h2>
+
+<p>
+Traditional acoustics based on the analysis of the sounds of pitched 
+musical instruments teaches us that a sound may be analysed into a sum of 
+constituent sine-waves (known as partials), each having a particular 
+frequency and a particular magnitude (amplitude or `loudness'). This is 
+known as the spectrum of the sound. When these frequencies are integer 
+multiples of the smallest value (e.g. 120, 240, 360, 480 etc.) the 
+resulting sound has one specific pitch and the sine-wave components are 
+known as `harmonics'. The relative amplitude of the harmonics is partly 
+responsible for differences of timbre between one instrument and another.
+</p>
+
+<p>
+When the partials are not related in this simple manner, the resulting 
+sound may have indefinite pitch (like a bass drum) or appear to contain 
+several pitches (like a bell). At the other extreme, a sound whose spectrum 
+changes rapidly and randomly through time produces an unpitched noise 
+spectrum (like a clash cymbal or maracas).  It was also understood that 
+the loudness contour (amplitude envelope) of a sound significantly affects 
+our perception of its timbre, particularly such features as the time taken 
+to reach the maximum loudness (attack).
+</p>
+
+<p>Traditional synthesis methods were modelled on these assumptions. 
+However, more detailed analysis using computer technology has shown us 
+that even the spectrum of pitched instruments varies through time.  For 
+an accurate analysis of a sound we must therefore be able to analyse the 
+spectrum of a sound at successive instants of time which we will refer to 
+as 'windows' (to be explained in more detail below). For a good analysis 
+such windows are of the order of milliseconds in duration.
+</p>
+
+<p>The <i>Phase Vocoder</i> is a program which produces such a windowed 
+analysis of a soundfile, and will re-synthesize the sound from this analysis.
+</p>
+
+<p>In practice one cannot simply chop up a sound into chunks for analysis. 
+The arbitrary editing involved will produce segments of sound which drop 
+to zero suddenly from non-zero values at the edit points (like a synthetic 
+square-wave would do), and on analysis will contain spurious partials as 
+a result.
+</p>
+
+<p>To circumvent this problem, the sound-segments have a special kind of 
+envelope imposed on them before analysis.  There are a number of such 
+window-envelopes.  For most musical purposes the Hamming window can be 
+used and this is the default window available in the CDP implementation 
+of the Phase Vocoder (see Fig. 1).
+</p>
+
+<!-- Figure 1: -->
+<p align=center>
+<b><img src="images/pvocfig1.jpg" align=bottom border=0 width=390 height=244 
+ALT="[Figure 1 shows splice shapes around windows that prevent glitches]"></b>
+</p>
+
+<p align=center>
+<b>PVOC, Fig. 1 &#150; window envelopes</b>
+</p>
+
+<p>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+</p>
+
+<h2 id="CHANS">Channels</h2>
+
+<p>Within each <i>time-</i>window the <i>Phase Vocoder</i> divides the 
+spectrum into a number of equally spaced bands known as <b>channels</b>.  
+It then looks in each channel to see if any component of the sound is 
+present and records its amplitude and frequency.  The greater the number 
+of channels, the more detailed the analysis.
+</p>
+
+<p>
+For example, a pitched sound at 500Hz will have partials at 500 Hz, 
+1000 Hz, 1500 Hz (500*1, 500*2, 500*3) and so on.  If there were to be 
+100 analysis channels, the frequency bands will be 110.25Hz wide at a 
+sample rate of 22050 &#150; arrived at by the calculation SR/2 divided 
+by the number of analysis channels:  (22050/2)/100 = 110.25.  The various 
+partials comprising the sound will therefore each fall into one or other 
+of these 100 different channels of the <i>Phase Vocoder</i> analysis.  Note 
+that each channel can handle only one partial.
+</p>
+
+<p>
+However a sound at 25 Hz, having partials at 25 Hz, 50 Hz, 75 Hz, 100 Hz 
+etc will clearly have <i>several</i> of its lower partials falling within a 
+single channel of such an analysis.  In this case the <i>Phase Vocoder</i> 
+will fail to distinguish between the several constituent partials found 
+within a single channel and the analysis will be poor (see Fig. 2).
+</p>
+
+<p>
+<i>Therefore, the greater the number of analysis channels, the finer 
+the resolution of the analysis.</i>  The <b>general rule</b> is that the 
+sample rate divided by the value for <b>-N</b> should be less than the 
+lowest pitch in the input sound.  See below for more about channel width, 
+centres and boundaries.
+</p>
+
+<!-- Figure 2 -->
+<p align=center>
+<img src="images/pvocfig2.jpg" align=bottom border=0 width=426 height=262 
+ALT="[Figure 2 shows how wider frequency bands may contain several partials]">
+</p>
+
+<p align=center>
+<b>PVOC, Fig. 2 &#150; illustrating the frequency resolution of the 
+analysis bands (channels)</b>
+</p>
+
+<p>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+</p>
+
+<h2 id="ANALF">Structure of the analysis file</h2>
+
+<p>
+The number of channels you wish to use may be entered with the <b>-N</b> 
+flag of the <i>Phase Vocoder</i> program.  This parameter refers to value 
+pairs:  the frequency and amplitude for each component. Thus, the number of 
+analysis channels is only half the value you enter.  Therefore, always enter 
+twice the number of channels you want.  The default value is 256.  For most 
+musical applications I would recommend entering a value of at least 1024.
+</p>
+
+<p>
+Note that the Fast Fourier Transform (analysis) algorithm, which is at the 
+core of the <i>Phase Vocoder</i> is optimised to work extremely efficiently 
+with values which are powers of 2 (e.g. 256, 512, 1024, 2048) and you are 
+advised to use such values unless you have a particular reason not to do so.
+</p>
+
+<p>
+The following information should help to clarify some terminology and help 
+you to use the <i>Phase Vocoder</i> more effectively, whether for musical 
+or programming purposes.
+</p>
+
+<p>
+Study example:  when the soundfile sample rate is 44100 and the<b> -N</b> 
+value is 512, what happens?
+</p>
+
+<p>
+<blockquote>
+<b>(1)</b> &nbsp;&nbsp; The <i>sample rate</i> in the header of an analysis 
+file is the analysis sample rate (see below) while the <i>analysis 
+bandwidth</i> is equal to the sample rate of the original sound  which was 
+analysed divided by the value you entered with the <b>-N</b> flag (or, if 
+you did not use the <b>-N</b> flag, the default value of 256).   
+E.g., 44100/512 = 86.13
+</p>
+
+<p>
+<b>(2)</b> &nbsp;&nbsp; The <i>Phase Vocoder</i> produces <i>two values</i> 
+(amplitude and frequency) <i>for every analysis channel</i>.  The 
+convention in using the <i>Phase Vocoder</i> is to enter a value of 512, 
+meaning 512 value-pairs per window when you want 256 equally spaced 
+channels  (amplitude and frequency value for each) and, in general, a 
+value of 2<b>N</b> when you want <b>N</b> analysis channels.  A <b>-N</b> 
+value of 1024 is recommended.
+</p>
+
+<p>
+<b>(3)</b> &nbsp;&nbsp; The analysis actually produces <i>one extra 
+channel</i> centering on 0Hz at the start of each window. Thus if you 
+enter 512 you will produce 256 channels plus 1 extra channel at 0Hz, 
+making 257 in all.
+</p>
+
+<p><b>(4)</b> &nbsp;&nbsp; Finally, if you need to know exactly where 
+the <i>channel boundaries</i> are, you must first calculate the <i>channel 
+centres</i>.  With a <b>-N</b> value of 512, this gives 256 channels.  These 
+256 channels divide up the spectrum between 0Hz and half the sampling-rate 
+(the Nyquist frequency) into equally spaced bands, and so: if the sample 
+rate is 44100, half this is 22050, divided by 256 means that the analysis 
+bands  will centre at:-
+</p>
+
+<div align=center>
+<table border="1" cellpadding="7" bgcolor="#B0E0E6">
+<tr>
+	<td><b>1/2*SR*Ch_no:</b></td>
+	<td>0Hz</td>
+	<td>1/2 * 44100 * 1</td>
+	<td>1/2 * 44100 * 2</td>
+	<td>1/2 * 44100 * 3</td>
+	<td>..... etc</td>
+</tr>
+
+<tr>
+	<td><b>Div by Num_chnls:</b></td>
+	<td><br></td>
+	<td align=center>256</td>
+	<td align=center>256</td>
+	<td align=center>256</td>
+	<td><br></td>
+</tr>
+
+<tr>
+	<td><b>= channel centres:</b></td>
+	<td align=center>0Hz</td>
+	<td align=center>86.13 Hz</td>
+	<td align=center>172.27 Hz</td>
+	<td align=center>258.41 Hz</td>
+	<td>..... etc</td>
+</tr>
+</table>
+</div>
+
+<p>
+The <i>frequency bandwidth</i>, i.e., the distance between these channel 
+centres is 86.13 Hz.  This is quickly calculated as SR/N &#150; but more 
+technically correct expressed as (1/2*SR)/(N/2).  You may assume that the 
+<i>channel boundaries</i> lie half-way between the channel centres.  In 
+the present case (see Fig. 3) this would be at:
+</p>
+
+<p>
+<div align=center>	
+<table border="1" cellpadding="20" bgcolor="#B0E0E6">
+<tr>
+	<td><b>Channel boundaries:</b></td>
+	<td align=center>43.07 Hz</td>
+	<td align=center>129.2 Hz</td>
+	<td align=center>215.34 Hz</td>
+	<td align=center>301.48 Hz</td>
+</tr>
+</table>
+</div>
+
+<!-- Figure 3. -->
+<p align=center>
+<img src="images/pvocfig3.jpg" align=bottom border=0 width=329 height=217 
+ALT="[Figure 3 shows arrows for channel centres located in the middle 
+of the frequencies that mark the channel boundaries]">
+</p>
+
+<p align=center>
+<b>PVOC, Fig. 3 &#150; channel centres and channel boundaries</b>
+</p>
+
+<p>
+<b></b>If you examine the analysis file you will discover it consists of 
+a list of floating point numbers starting with Window 1, 0Hz channel. If 
+you entered 512 as the <b>-N</b> value, giving you (256+1) channels, you 
+will have 257 pairs of floating point numbers before you reach Window 2, 
+and so on.  Any number-manipulation program can be applied to this data 
+(bearing in mind restrictions on maximum values for amplitude and frequency) 
+so long as it generates a new analysis file of this same format.  (You could 
+generate a file with a different number of channels if you correspondingly 
+altered the information in the analysis file header).  This new file may be 
+subsequently run through the synthesis option of the <i>Phase Vocoder</i> to 
+generate a new soundfile. 
+</p>
+
+</blockquote>
+
+<p>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+</p>
+
+<h2 id="FLAGS">
+The Phase Vocoder flags &#150; with CDP parameter names (since Release 4) in 
+parentheses
+</h2>
+
+<blockquote>
+<dl>
+<dt><b>N (= <b>-c</b><i>points</i>), F, N</b> &nbsp;&nbsp; <dd>sets number 
+of channels you want in your analysis windows: (<b>N</b>/2) +1. Conversely 
+<b>F</b> is the analysis sample rate, which is the sample rate of the input 
+sound divided by the <b>N</b> value you want to use (frame overlap not 
+taken into account here &#150; see below). You cannot use both <b>N</b> 
+and <b>F</b>.
+
+<dt><b>b, e</b> &nbsp;&nbsp; <dd>As analysis programs traditionally take a long 
+time to run, you may want to analyse only a short segment of a sound 
+for test purposes;  <b>b</b> and <b>e</b> indicate the beginning (default 0) 
+and ending (default, end of file) samples for the analysis.
+
+
+<dt><b>i, j, c</b> (= <b>-d</b><i>dochans</i>) &nbsp;&nbsp; <dd>You may use 
+the <i>Phase Vocoder</i> as a powerful filter by excluding certain channels 
+from the re-synthesis.  Partials falling in the excluded channels will 
+disappear;  <b>i</b> indicates the lowest channel to be re-synthesized 
+(default 0) and <b>j</b> the uppermost (default, maximum channel value) 
+&#150; revised as <b>-l</b><i>lochan</i> and <b>-h</b><i>hichan</i> 
+parameters).
+
+<blockquote>
+Note that programs can be written to achieve more sophisticated 
+filtering routines including cross-synthesis (imposing the channel 
+amplitudes (which define the spectral envelope) from one sound onto 
+a different sound); <b>c</b> is a special option resynthesizing from 
+odd or even channels only.
+</blockquote>
+
+<dt><b>A</b> (= ANAL Mode 1), <b>E</b> (= ANAL Mode 2),<b>X</b> (= ANAL 
+Mode 3), <b>S</b> (= SYNTH) &nbsp;&nbsp; 
+<dd>If you want to manipulate the sound spectrum with the 
+program described below or with your own programs you will need to select 
+the <b>-A</b> (= ANAL Mode 1) option to generate an analysis data file to 
+submit to these programs.  On generating a transformed analysis 
+file, use the <b>-S</b> (= SYNTH) option to regenerate a sound file.  
+The (<b>-E</b>) flag generates data on the spectral envelope of the sound, 
+window by window.
+
+<dt><b>T, P</b>	&nbsp;&nbsp; <dd>The <i>Phase Vocoder</i> already contains 
+a number of options which permit you to transform the spectrum of the input 
+sound.  For example, you may transpose the pitch of a sound without changing 
+the duration (the<b> -P </b>option) or you may time-stretch or contract the 
+sound without altering its pitch (the <b>-T</b> option). <b>T</b> and 
+<b>P</b> are both multiplying factors and the default value is thus 1.0 
+in each case.  Although these effects are more rapidly achieved with a 
+harmonizer type of program for small degrees of stretching or compression, 
+the <i>Phase Vocoder</i> retains much greater fidelity to the original 
+source.<br>
+(<b>NB:</b> not implemented in Release 4 &#150; use other functions from 
+the REPITCH group.)
+
+<p>
+Furthermore the <i>Phase Vocoder</i> permits much greater degrees of 
+time-stretching or pitch-transposition than any Harmonizer algorithm.  
+For a time-stretching factor greater than ca. 8, I would recommend doing 
+the process in 2 passes - stretch 8 times, re-synthesize the sound, analyse 
+again, stretch and re-synthesize. Beyond a certain limit, even <i>Phase 
+Vocoder</i> stretching will produce artifacts of one kind or another.  For 
+example, time-stretching the sound of vocal breath by a factor of 64 
+introduces strange glissing noise-bands (these can be heard in my piece 
+<i>VOX-5</i>).
+</p>
+
+<dt><b>D, I</b>	&nbsp;&nbsp; <dd>The decimation factor and the interpolation 
+factor express certain mathematical relationships between sound and analysis 
+data.  For further details, see the specialist literature.  These two flags 
+should NOT normally be used.
+
+<dt><b>w</b> &nbsp;&nbsp; <dd>Transposing a vocal sound will distort the 
+vowel-image rendering a text distorted or incomprehensible.  This is because 
+our perception of vocal vowels (and certain characteristics of other sounds) 
+is related directly to the spectral envelope of the sound.  If we examine 
+the spectral envelope in any time-window we will usually find it has a 
+number of peaks, known as formants (see Fig. 4).
+
+<!-- Figure 4 -->
+<p align=center>
+<img src="images/pvocfig4.jpg" align=bottom border=0 width=394 height=162 
+ALT="[Figure 4 shows a dotted line across the tops of several vertical lines 
+representing frequency amplitudes;  the formants are located where the line 
+peaks]">
+</p>
+
+<p align=center>
+<b>PVOC, Fig. 4 &#150; formants in the spectral envelope</b>
+</p>
+
+<dt><b></b> &nbsp;&nbsp; <dd>Our perception of vowel 'type' is related 
+to such formants. We are able to change the pitch of a vocal sound while 
+retaining the vowel by using the <b>-w</b> flag.  In this process the 
+spectrum as a whole moves, but the spectral peaks remain in place centred 
+at their original frequencies.  Note that this implies that individual 
+components of the sound change their relative amplitude to maintain the 
+correct spectral envelope.  Unfortunately when we merely transpose a 
+sound 	in the <i>Phase Vocoder</i> we thereby move and stretch the 
+spectral envelope (see Fig. 5).
+
+<p>In order to retain the original formants of the sound we need to 
+'warp' the spectral envelope back to its original position. The 
+<b>-w</b> flag (default value 1.0) should be used to do this. Using 
+just <b>-w</b> (i.e. with no value specified) will produce the correct 
+warping for the pitch transposition you are using. Other specified values 
+of <b>-w</b> may also be entered. The program SPECF below also attempts 
+to preserve the formants of the originally analysed sound, under 
+transformation.
+</p>
+
+<!-- Figure 5. -->
+<p align=center>
+<img src="images/pvocfig5.jpg" align=bottom border=0 width=318 height=245 
+ALT="[Figure 5 Part 1 shows frequencies with formant peaks;  Part 2 
+shows the frequencies wider apart, but the peaks smoothed out (merely 
+transpose);  Part 3 shows the peaks back in place over frequencies 
+wider apart: warp used]">
+</p>
+
+<p align=center><b> PVOC, Fig. 5 &#150; using -w to warp, retaining 
+formants</b>
+</p>
+
+<p>
+<dt><b>W</b> (= <b>-o</b><i>overlap</i>),<b>M,R</b> &nbsp;&nbsp; 
+<dd>For special 
+applications we may wish to refine our analysis.  Apart from increasing 
+the number of channels we use, there are a number of other options open 
+to us.  First of all we may cause the analysis window to <i>overlap</i> 
+by varying degrees using the <b>-W</b> flag:  <b>W</b><i>0</i> is the 
+best value for analysis and <b>W</b><i>3</i> (or <b>W</b><i>0</i>) for 
+synthesis.  You can make the analysis window <i>longer</i> (which amounts 
+to the same thing as overlapping the windows) using the <b>-M</b> flag.  
+The default value of <b>M</b> is (<b>N</b>-1).  For good analysis results 
+<b>M</b> should be of the order of (4 x <b>N</b>)-1.  For good time-scaling 
+it is best to let <b>M</b>=<b>N</b>-1 (but<b> M</b> = (4+<b>N</b>) will 
+also work well).  Use odd integer values for<b> M</b> : even integers 
+will be rounded down.  Flags <b>N</b> and <b>M</b> cannot be used together.
+</p>
+
+</dl>
+</blockquote>
+
+<p>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+</p>
+
+<h2>
+A closer look at Phase Vocoder terminology and numbers<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;(additional material by A. Endrich)
+</h2>
+
+
+<p>
+Now let's go through the operation of the <i>Phase Vocoder</i> from various 
+points of view in order to clarify precisely what it is doing.  The purpose 
+is to try to show more fully where various numbers come from and to connect 
+them with the appropriate terminology.  In particular, to show how the data 
+is stored so that the meaning of some of the <i>Phase Vocoder</i> options is 
+revealed, to show how the analysis bandwidth is calculated, where the 
+analysis file's number of channels and sample rate come from, how to work 
+out in which analysis channel a particular frequency can be found.  The 
+same thing is often said several times, using slightly different words, 
+to show how the terminology is used.  Thanks to the many people who helped 
+me with this section.  Also see <a href="operpvoc.htm"><i>The Operation of the Phase Vocoder</i></a>, by Richard Dobson.
+</p>
+
+<p>
+The following concise summary should become progressively clarified as 
+this section unfolds.
+</p>
+
+<h2 id="BANDS">The value for <i>points</i> (former -N flag) and analysis 
+frequency bands</h2> 
+<p>
+The <b>-N</b> flag may very well  be the key to understanding what the 
+<i>Phase Vocoder</i> does.  This parameter is chosen by the user as the 
+`number of bandpass filters' or `channels' he or she would like to have.  
+Actually the number input for <b>N</b> is the <i>number of samples in the 
+source sound to be used per analysis frame</i>, which results in 
+(<b>N</b>/2) +1 channels. Fig. 6 sets out the basic outline of what 
+happens.  What it means will become clearer as we go on.
+</p>
+
+<!-- Figure 6 -->
+<p align=center>
+<img src="images/pvocfig6.jpg" align=bottom border=0 width=289 height=268 
+ALT="[Figure 6 shows how the FFT produces a windowed frame of (N&#47;2)+1 
+frequency amplitude pairs;  this frame is a 'bin' and contains N&#47;2 
+bandpass filters;  frames overlap to improve performance]">
+</p>
+
+<p align=center>
+<b>PVOC, Fig. 6 &#150; what the value given for N does</b>
+</p>
+
+<p>
+<b>N</b> also sets the analysis channel bandwidth: SR/<b>N</b> 
+= bandwidth.  SR is sample rate. For example: 22050/512 = a bandwidth 
+of 43.07Hz.
+</p>
+
+<h3>Let's go through this again a little more slowly</h3>
+<ul>
+<li>There is a 1-to-1 match between data in and data out. That is, for 
+every sample of source soundfile, there is <i>Phase Vocoder</i> analysis 
+data.</li>
+
+<li>Two source sound samples are used to create two data of analysis (the 
+frequency/amplitude data pair).  This is why it handles up to the Nyquist 
+frequency (ie SR/2) and not beyond it.</li>
+
+<li>The FFT analysis produces a complex number with real and imaginary 
+parts (because it is working in three dimensions).  This result is then 
+converted to the amplitude and frequency data (pair) placed in the 
+analysis file.</li>
+
+<li>The value for <b>N</b> input by the user is actually the number of 
+source sound samples used for each analysis frame. In doing so, the user 
+determines the number of analysis channels, which is (<b>N</b>/2) +1 
+because each pair of source sound samples (time domain) results in a 
+frequency/amplitude pair (spectral domain). The '+1' refers to the extra 
+channel at 0Hz.</li>
+</ul>
+
+<p>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+</p>
+
+<h2 id="ANALR">Analysis rate: the 'sample rate' of the analysis file: </h2>
+
+<p>
+Each analysis frame uses <b>N</b> samples from the source sound. 
+Therefore each second of analysis would use SR/<b>N</b> frames if the 
+frames did not overlap.
+</p>
+
+<p>
+<b>Example:</b>  22050/512 = 43.07 &#150; that is, 512 samples per frame 
+divided into the total number of source samples per second = 43.07 frames 
+per second.  This is the 'analysis sample rate' when there are no overlaps.
+</p>
+
+<p>
+However, in order to improve the analysis, <i>frames are made to 
+overlap</i>, normally by 1/8th the length of a frame (see Fig. 7).  
+Thus the frame position is moved on in steps of <b>N</b>/8 samples 
+(e.g., 512/8 = 64).  The analysis `sample' rate can be described as 
+how many of these steps of 64 samples will fit into one second of 
+sound, or, expressed another way, how many frames will be produced when 
+moving through the file in steps of 64 samples:  e.g., 22050/64 = 344 
+analysis frames per second;  this is the 'analysis sample rate'.  More 
+simply, 43.07 frames * 8 steps = 344.56 frames per second.  Thus the 
+'sample rate' of the analysis file is really a 'frame rate', and each 
+frame contains (<b>N</b>/2) +1 channels.  For convenience, the decimal 
+portion of these calculations is often omitted.
+</p>
+
+<!-- Figure 7 -->
+<p align=center>
+<img src="images/pvocfig7.jpg" align=bottom border=0 width=426 height=266 
+ALT="[Figure 7 shows 8 lines underneath each other, staggered to the 
+right;  these are the 8 overlapping frames]">
+</p>
+
+<p align=center><b>PVOC, Fig. 7 &#150; analysis sample rate = frame rate 
+per sec * number of overlaps per sec</b>
+</p>
+
+<p>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+</p>
+
+<h2 id="TERMS">Summary of Terminology:</h2>
+
+<dl>
+<dt><b>points (N)</b> <dd>The usage refers to this parameter as the 'number of 
+bandpass filters'.  The number <b>N</b> is actually the number of samples 
+used per analysis frame from the source sound (time domain), and the number 
+of bandpass filters (or 'channels') is the number of data pairs that result 
+in the frequency or spectral domain after the FFT analysis.  This is why 
+the actual number of filters or channels is (<b>N</b>/2) + 1.
+
+<dt><b>frame</b> <dd>What, then, is a 'frame'?  The frame is the basic 
+unit 'time-slice' of analysis.  It contains the data for the <b>N</b>/2 
+bandpass filters or channels.  A `<b>bin</b>' contains the data for <i>one 
+of these channels</i>.  The frame is windowed.  If <b>N</b> = 512, there 
+will be data for 256 channels in each frame: ie 256 data pairs (frequency 
+and amplitude) stored sequentially, plus one extra channel at 0Hz.
+
+<blockquote>
+Thus the amplitude value of the waveform sample (time domain) has been 
+turned into a frequency/amplitude data pair (spectral domain).  Note that 
+each of the 256 bandpass filters or channels has only two values in it:  
+i.e., each can only 'capture' one partial.
+</blockquote>
+
+<dt><b>step</b>	<dd>The number of samples the analysis is moved moved 
+forward in the source sound before creating another frame.  This step is 
+by default N/8, but the 8 can be altered by the user.  The parameter 
+option to do this is the -D flag, referred to as 'decimation'.  The word 
+'decimation' doesn't seem so odd when one realises that the larger the 
+value for D, the smaller the step will be.  The default, 8, is in fact the 
+largest allowed.
+
+
+<dt><b>window</b> <dd>refers to the fact that the bin or frame has been 
+shaped to avoid glitches.  See Fig. 1.
+</dl>
+
+<p><i>RECAP: <b>N</b> is the number of source sound samples analysed per 
+frame, yielding 256 channels +1 of analysis data in a frame or window.  
+There is by default a frame overlap of <b>N</b>/8 samples, meaning that 
+every sample contributes to 8 analysis frames.  The amount of overlap can 
+be changed, though this is not normally done.  There are therefore 
+SR/<b>step</b> samples per second or SR/<b>N</b>*8 frames per second, 
+which is the analysis `sample' rate.</i>
+</p>
+
+<p>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+</p>
+
+<h2 id="ANALB">The analysis 'bandwidth':</h2>
+<p>
+SR/2 (the Nyquist frequency) divided by N/2 (actual number of bandpass 
+filters) yields the range of frequencies handled by each filter band.  
+Example:
+
+<blockquote>
+If the sample rate is 22050, half the sample rate is 11025 samples. When 
+<b>N</b> = 512, N/2 = 256; 11025/256 = 43.07Hz per analysis channel.  This 
+can be thought of as the frequency resolution of the analysis.  One doesn't 
+divide by 257 here because 257 is the number of channel centres. 
+</blockquote>
+</p>
+
+<p>
+Now let's dig deeper still with few more questions.
+</p>
+
+<p>
+<i>What does the Nyquist frequency tell us?</i>
+</p>
+
+<blockquote>
+First of all, the point of the Nyquist frequency in this context is that 
+it tells us what frequency range is defined by a given sample rate.  The 
+Nyquist frequency is simply SR/2: half the sample rate.  Thus, the Nyquist 
+frequency for a sample rate of 22050 samples per second is 11025 (Hz).  
+This is the highest frequency which can be articulated at this sample 
+rate.  Put another way, a sample rate of 22050 defines a frequency range 
+from 0 to 11025 Hz.
+</blockquote>
+
+<blockquote>
+When the Phase Vocoder divides up the sound into a number of equally spaced 
+analysis bands or 'channels', it is dividing up the frequency range defined 
+by the sample rate.  This is why, when we're calculating the analysis 
+bandwidth, we work with the Nyquist frequency, SR/2.
+</blockquote>
+
+<p><i>How do we know how large a value to enter for <b>points (N)</b> to analyse a 
+certain sound?</i>
+</p>
+
+<blockquote>
+This is answered by the section on Channels above.  Here's some more ideas 
+on this subject.
+
+<p>
+The analysis bandwidth is the range of frequencies covered by each bandbass 
+filter or analysis channel.  It is calculated by dividing the Nyquist 
+frequency by half the value you provide for <b>N</b>: SR/2 divided by 
+<b>N</b>/2.
+</p>
+
+<p>
+<b>Some examples:</b>
+</p>
+
+<table  border="1" cellspacing="0" cellpadding="5" bgcolor="#B0E0E6">
+	<tr>
+		<td width=68 align=left valign=center><p align=left><b>SR</b></td>
+		<td width=33 align=left valign=center><p align=left><b>N<i>val</i></b></td>
+		<td width=62 align=left valign=center><p align=left><b>NyqFrq</b></td>
+		<td width=65 align=left valign=center><p align=left><b>N&#47;2</b></td>
+		<td width=148 align=left valign=top><p align=left><b>Analysis<br>Bandwidth</b></td></tr>
+
+	<tr>
+		<td  align=left valign=top><p align=left>22050</td>
+		<td  align=left valign=top><p align=left>512</td>
+		<td  align=left valign=top><p align=left>11025</td>
+		<td  align=left valign=top><p align=left>256</td>
+		<td  align=left valign=top><p align=left>43.07Hz</td></tr>
+
+	<tr>
+		<td  align=left valign=top><p align=left>44100</td>
+		<td  align=left valign=top><p align=left>512</td>
+		<td  align=left valign=top><p align=left>22050</td>
+		<td  align=left valign=top><p align=left>256</td>
+		<td  align=left valign=top><p align=left>86.13Hz</td></tr>
+
+	<tr>
+		<td  align=left valign=top><p align=left>48000</td>
+		<td  align=left valign=top><p align=left>1024</td>
+		<td  align=left valign=top><p align=left>24000</td>
+		<td  align=left valign=top><p align=left>512</td>
+		<td  align=left valign=top><p align=left>46.88Hz</td></tr>
+
+	<tr>
+		<td  align=left valign=top><p align=left>22050</td>
+		<td  align=left valign=top><p align=left>1024</td>
+		<td  align=left valign=top><p align=left>11025</td>
+		<td  align=left valign=top><p align=left>512</td>
+		<td  align=left valign=top><p align=left>21.53Hz</td></tr>
+
+	<tr>
+		<td  align=left valign=top><p align=left>22050</td>
+		<td  align=left valign=top><p align=left>2048</td>
+		<td  align=left valign=top><p align=left>11025</td>
+		<td  align=left valign=top><p align=left>1024</td>
+		<td  align=left valign=top><p align=left>10.77Hz</td></tr>
+
+</table>
+
+<p>The partials of a 'harmonic' sound are integer multiples of the 
+fundamental, meaning that each harmonic will be equally spaced by the 
+number of Hz of the fundamental itself: 110 * 1 = 110, 110 * 2 = 220, 
+110 * 3 = 330, 110 * 4 = 440, etc.
+
+
+<p>The rule of thumb here therefore, is to make sure that the analysis 
+bandwidth is smaller than the fundamental.  Be especially careful when 
+analyzing low sounds that you use a sufficiently large value for <b>N</b>.  
+Why? &#150; so that each partial of the source sound will have a separate 
+analysis channel; otherwise, several partials will be lost.
+</p>
+
+<p>It is important to realise that the above rule of thumb is really valid 
+only for 'harmonic' sounds, sounds in which all or most of the significant 
+partials are integer multiples of the fundamental. Many of the sounds we 
+work with are in fact rather complex, from mildly inharmonic sounds to 
+those containing quite a bit of 'noise' (fairly random combinations of 
+partials).  These complex sounds will, of course, also require a fine 
+resolution, such as a <b>points (N)</b> value of 2048 (1012 + 1 analysis channels).
+</p>
+
+<p>It might prove interesting however, to use a low <b>N</b> value with a 
+low or complex sound, knowing that you are going to lose data, to create 
+gross approximations, and possibly create some sonic artifacts: sound 
+effects not in the original sound, but resulting from the poor analysis.
+</p>
+
+<p>In working with the <i>Phase Vocoder</i>, it would be useful to have a 
+handy reference chart in the form of a piano keyboard or list of MIDI notes 
+with the appropriate frequency in Hz. It would be easy to work this out 
+using the CDP program INFO UNITS (was MUSUNIT).  You'll also find a chart 
+like this on p.21 of <i>The Science of Musical Sound</i>, by John R. Pierce.
+</p>
+</blockquote>
+
+<p>
+<i>What about the numbers shown in the soundfile directory display?</i>
+</p>
+
+<blockquote>
+The two numbers which may look a bit odd are the one for the number of 
+channels and the one for the sample rate.
+</p>
+
+<p>
+The figure shown as the 'number of channels' is easy:  it's the value 
+you enter for <b>N</b> plus 2 because an extra (real) channel is placed 
+at 0Hz.
+</p>
+
+<p>
+Therefore, when you enter 512, the number or channels is given as 
+514, etc., and the actual number of analysis channels is in this case 
+257.  The use of <b>N</b>/2 to calculate bandwidth still seems to be 
+valid, however.
+</p>
+
+<p>
+The figure shown as the 'sample rate' for an analysis file has been 
+explained above.
+</p>
+</blockquote>
+
+<p>
+<i>How do we relate bandwidth to channel centres and boundaries?</i>
+</p>
+
+<blockquote>
+So far, we have looked into how the analysis frequency bandwidth is 
+affected by the value we give for <b>N</b>, why the number of channels 
+and the sample rate for analysis files appear as they do in the soundfile 
+directory display.  Try performing these calculations with different 
+values for the sample rate and for <b>N</b> and check the results against 
+what actually appears in the soundfile directory display when you actually 
+run the <i>Phase Vocoder</i> with these values.
+
+<p>We can now use what we've learned from the above discussion to gain a 
+deeper understanding of two more aspects of the analysis channels 
+themselves: `centres' and 'boundaries'.  Given a sample rate of 44100 
+and an <b>N</b> value of 512, the analysis bandwidth will be 86.13Hz.  
+We're using the same numbers as on p. 3, above.  This means that channel 
+centres will occur at every 86.13Hz, starting with 0.  The channel 
+boundaries lie half way in between.
+</p>
+
+<p>
+Thus the pattern is:
+</p>
+
+<table  border="1" cellspacing="0" cellpadding="5" bgcolor="#B0E0E6">
+	<tr>
+		<td width=56 align=left valign=top><b>Channel No.</b></td>
+		<td width=62 align=left valign=top><b>Low boundary</b></td>
+		<td width=40 align=left valign=center><b>Centre</b></td>
+		<td width=65 align=left valign=top><b>High boundary</b></td>
+		<td width=194 align=center valign=center><b>Comments</b></td></tr>
+
+	<tr>
+		<td  align=center valign=top>0</td>
+		<td  align=center valign=top>0</td>
+		<td  align=center valign=top>0</td>
+		<td  align=center valign=top>43</td>
+		<td  align=center valign=top>(This is the extra channel, 
+		     with boundaries from 0 - 43 to 0 + 43)</td></tr>
+
+	<tr>
+		<td  align=center valign=top>1</td>
+		<td  align=center valign=top>43</td>
+		<td  align=center valign=top>86</td>
+		<td  align=center valign=top>129</td>
+		<td  align=center valign=top>(  86 - 43 ...   86 + 43)</td></tr>
+
+	<tr>
+		<td  align=center valign=top>2</td>
+		<td  align=center valign=top>129</td>
+		<td  align=center valign=top>172</td>
+		<td  align=center valign=top>215</td>
+		<td  align=center valign=top>(172 - 43 ... 172 + 43)</td></tr>
+
+	<tr>
+		<td  align=center valign=top>3</td>
+		<td  align=center valign=top>215</td>
+		<td  align=center valign=top>258</td>
+		<td  align=center valign=top>301</td>
+		<td  align=center valign=top>(258 - 43 ... 258 + 43)</td></tr>
+
+	<tr>
+		<td  align=center valign=top>4</td>
+		<td  align=center valign=top>301</td>
+		<td  align=center valign=top>344</td>
+		<td  align=center valign=top>387</td>
+		<td  align=center valign=top>(344 - 43 ... 344 + 43) </td></tr>
+
+</table>
+
+<p>
+As shown in the section on the `structure of the analysis file' (also see 
+Fig. 3 above).
+</p>
+
+<p>
+This shows us what's going on, but of course it's a very tedious way of 
+determining in which analysis  a given frequency in the source 
+sound might appear and this is information which we will often need.<br> 
+(For example, the former programs SPECE, SPECF and SPECSH had 
+a parameter called <i>fdcno</i> ('frequency divide channel number'), i.e., 
+the number of the channel in which a certain frequency appears, above or 
+below which we want something to happen &#150; the newer versions have built 
+this calculation into the software.)
+</p>
+
+<p>
+This information can be acquired by running the utility program 
+PITCHINFO CHANNEL.  The appropriate channel number is 
+output by the program. You can also enter a channel number and find out 
+which frequency it will contain.
+</p>
+
+<p>
+But in an effort to take another step in understanding this powerful 
+software, let's review how a particular <i>fdcno</i> is calculated. 
+</p>
+
+<ol>
+<li>We already know how to calculate the analysis channel bandwidth:  
+the Nyquist frequency (i.e., 1/2 SR) divided by the number of analysis 
+channels (<b>N</b>/2).</li>
+
+<li>We then find the channel number we need simply by dividing the 
+frequency we want to use by the analysis channel bandwidth, and rounding 
+up or down depending on whether the decimal part of the answer is above 
+or below .5. This rounding handles the presence of the additional analysis 
+channel at the beginning.</li>
+</ol>
+
+<p>
+To illustrate with numbers, when SR = 22050, <b>N</b> = 512, and the 
+frequency in question is 112Hz:
+</p>
+<blockquote>
+<ul>
+<li>11025Hz divided by 256channels = 43.07Hz bandwidth per channel<br></li>
+
+<li>112Hz (frequency we want to use)/43.07Hz bandwidth per channel = channel 
+number 2.6, which rounds to 3 (only integers make sense as channel numbers).</li>
+
+<li>Thus the frequency 112Hz will be found in the 3rd analysis channel. The following chart confirms this:</li>
+</ul>
+	<blockquote>
+	<table  border="1" cellspacing="0" cellpadding="5" bgcolor="#B0E0E6">
+	<tr>
+		<td width=53 align=left valign=top><p align=left><b>Chan No.</b></td>
+		<td width=57 align=left valign=top><p align=left><b>Low boundary</b></td>
+		<td width=44 align=left valign=center><p align=left><b>Centre </b></td>
+		<td width=69 align=left valign=top><p align=left><b>High boundary</b></td>
+		<td width=112 align=center valign=center><p align=left><b>Comments</b></td></tr>
+
+	<tr>
+		<td  align=center valign=top>   0</td>
+		<td  align=center valign=top>   0.0</td>
+		<td  align=center valign=top>   0.0</td>
+		<td  align=center valign=top>  21.53Hz</td>
+		<td  align=center valign=top><p align=left>(The extra channel)</td></tr>
+
+	<tr>
+		<td  align=center valign=top>1</td>
+		<td  align=center valign=top>  21.53</td>
+		<td  align=center valign=top>  43.06</td>
+		<td  align=center valign=top>  64.59Hz</td>
+		<td  align=center valign=top><p align=left></td></tr>
+
+	<tr>
+		<td  align=center valign=top>2</td>
+		<td  align=center valign=top>  64.59</td>
+		<td  align=center valign=top>  86.12</td>
+		<td  align=center valign=top>107.65Hz</td>
+		<td  align=center valign=top><p align=left></td></tr>
+
+	<tr>
+		<td  align=center valign=top>3</td>
+		<td  align=center valign=top>107.65</td>
+		<td  align=center valign=top>129.18</td>
+		<td  align=center valign=top>150.71Hz</td>
+		<td  align=center valign=top><p align=left></td></tr>
+
+	<tr>
+		<td  align=center valign=top>4</td>
+		<td  align=center valign=top>150.71</td>
+		<td  align=center valign=top>172.24</td>
+		<td  align=center valign=top>193.77Hz</td>
+		<td  align=center valign=top><p align=left></td></tr>
+
+	</table>
+	</blockquote>
+</blockquote>
+</blockquote>
+
+<p>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+</p>
+
+<h2>Conclusion</h2>
+
+<p>
+We have traced what happens to the <b>source samples</b> as they are 
+analysed, put into <b>bins</b> containing one channel each;  then <b>N</b>/2 
+channels are assembled into a <b>frame</b>, which is <b>windowed</b>, and 
+8 frames <b>overlap</b> if the step by which the analysis moves on is 
+1/8th of a frame.  The <b>analysis sample rate</b>, which appears in the 
+sample rate part of the soundfile display, is therefore very different from 
+the sample rate of the source sound because it is really a <b>frame 
+rate</b>:  the number of frames per second -- which must take account of 
+the frame overlap.
+</p>
+
+<p>
+The discussion of <b>channel centres</b>, <b>boundaries</b> and 
+<b>bandwidth</b> helps us understand how a given analysis may or may not 
+effectively capture the frequency information of a given soundfile.  This 
+information is also relevant to understanding what is meant when one of the 
+spectral manipulation programs does something with channels, such as select 
+the loudest component after comparing equivalent channels in several analysis 
+files.  Each channel will contain only one partial, so if there are 5 
+soundfiles, only one partial will 'go through to the next round':  the 
+partials belonging to 4 of the soundfiles will be dropped.
+</p>
+
+<p>
+The way the frequency-amplitude information is derived from the 
+amplitude-time information is a complicated process, with many ambiguities 
+and approximations. Many things can be happening in the analysis bandwidth 
+which the software may not deal with as intelligently as it might.  This is 
+one of the reasons why experimentation and careful listening are very 
+important aspects of working with the spectral dimension.
+</p>
+
+<p>
+Richard Dobson's text 
+<a href="operpvoc.htm"><i>The Operation of the Phase Vocoder</i></a> takes us 
+deeper into these uncharted but vitally important areas, but the most 
+beneficial of all will be your own exploration of these programs.  These 
+is no substitute for entering into the psycho-acoustic experience of 
+the results as a discerning and practiced musician.
+</p>
+</blockquote>
+
+<p>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+
+
+<!-- 
+<hr>
+<h2 id="OLDUSAGE">OLD USAGE</h2>
+
+<blockquote>
+<i>Retained here for reference: in case any CDP users are still working with 
+previous versions of the program, and to cross-reference any descriptions 
+of pvoc flags which may occur in the CDP documentation.  The present CDP version 
+(from Release 4 onwards) is optimised for basic operations, so it is recommended that 
+existing CDP users retain their older version if they have been using 
+the various flag options available there.</i>
+</blockquote>
+
+<p>
+<b>pvoc  [<i>flags</i>]  <i>infile  outfile</i></b><br>
+</p>
+
+<p>
+<h3>Examples:</h3><br>
+<code>
+<b>pvoc</b>  <b>-N</b><i>1024</i> <b>-T</b><i>4.7 </i> 
+<i>in_orig_sound  out_stretched_sound</i><br>
+<b>pvoc  -N</b><i>512</i> <b>-A  </b><i>in_orig_sound  
+out_analysis_file</i><br>
+<b>pvoc  -S</b>  <i>in_analysis_file  out_new_soundfile</i>
+</code>
+</p>
+
+<p>
+<h3>
+Flags:
+</h3>
+
+<p>
+<b>-R</b><i>sr</i>  input sample rate (automatically read from stdin)<br>
+
+<b>-N<i>n</b>um</i>  number of source samples per frame (Default is 
+256 unless <b>-F</b> is specified);  values must be powers of 2, e.g., 
+256, 512, 1024, 2048) &#150; produces <b>N</b>/(2+1) chnls<br>
+
+<b>-F</b><i>frq</i>  specify fundamental frequency (<b>R</b>/256) DON'T 
+USE <b>-F</b> AND <b>-N </b><br>
+
+<b>-M</b><i>a_wlen</i>  analysis window length (<b>N</b>-1 unless <b>-W</b> 
+is specified)<br>
+
+<b>-W</b><i>o_factor</i>  filter overlap factor: {<b>0</b>, <b>1</b>, 
+<b>2</b> (Default), <b>3</b>} DON'T USE <b>-W</b> AND <b>-M</b><br>
+
+<b>-L</b><i>s_wlen</i>  synthesis window length (<b>M</b>)<br>
+
+<b>-D</b><i>d_factor</i>  decimation factor (min (<b>M</b>/(8*T)), 
+(<b>M</b>/8)<br>
+
+<b>-I</b><i>i_factor</i>  interpolation factor (= <b>T</b> * <b>D</b>)<br>
+
+<b>-T</b><i>t_factor</i>  time-scale factor (a multiple:  1.0 = no change) 
+values &gt; 1 stretch, &lt; 1 compress<br>
+
+<b>-P</b><i>p_factor</i>  pitch-scale factor (a multiple:  1.0 = no 
+change)  DON'T USE <b>-T</b> AND<b> -P</b><br>
+
+<b>-C</b><i>channel</i>  re-synthesize odd (<b>1</b>) or even (<b>2</b>) 
+channels only<br>
+
+<b>-i</b><i>channel_no  </i>re-synthesize bandpass filters <b>i</b> 
+thru <b>i</b> only<br>
+
+<b>-j</b><i>channel_no  </i>re-synthesize bandpass filters <b>i</b> 
+thru <b>j</b> only<br>
+
+<b>-b</b>[<i>s_sample</i>]  starting sample (Default is 0 &#150; beginning 
+of file)<br>
+
+<b>-e</b><i>e_sample</i>  final sample (end of input)<br>
+
+<b>-w</b>[<i>w_factor</i>]  warp factor for spectral envelope (Default: 
+1.0) &#150; retains formant shape, e.g., of a voice<br>
+
+<b>-A</b>  analysis only;  output will be analysis data<br>
+
+<b>-E</b>  analysis only;  output will be spectral envelope<br>
+
+<b>-X</b>  analysis only;  output will be magnitude values<br>
+
+<b>-S</b>  synthesis only;  input must be analysis data<br>
+
+<b>-K</b>  use Kaiser filter instead of hamming<br>
+
+<b>-V</b>  verbose:  summarize analysis data in the file <i>pvoc.s</i>
+</p>
+
+<p><b>NB</b> &#150; The key flags for the majority of applications 
+include:  <b>-N</b>, or <b>-F</b>, <b>-A</b>, <b>-T</b> or <b>-P</b>, 
+<b>-S</b>, <b>-i</b>, <b>-j</b>, <b>-b</b>, <b>-e</b>, and <b>-w</b>.  
+The others are for specialist applications.  A command line with a 
+soundfile input and without <b>-A</b> or <b>-S</b> will perform both, as 
+in the first example command line above.
+</p>
+
+<p>
+<a href="#PVOCTOPICS"><b>Return</b></a> to list of Topics<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+-->
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 17 Nov 2025<br>
+    Documentation: Trevor Wishart and Archer Endrich<br>
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br>
+    Composers Desktop Project<br>
+    Email: composersdesktop@gmail.com<br>
+    &#169 Copyright 1998-2021 Trevor Wishart, Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+
+</body>
+
+</html>

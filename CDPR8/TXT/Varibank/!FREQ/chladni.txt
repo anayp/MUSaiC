@@ -1,0 +1,2 @@
+; Chladni plate.txt
+0.0 62 -3db 107 -3db 360 -3db 460 -3db 863 -3db

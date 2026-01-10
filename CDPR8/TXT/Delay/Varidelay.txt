@@ -1,0 +1,19 @@
+		SOUNDSHAPER SETTINGS FILE (Date: 22/03/2013)
+
+Process:		Varidelay	(CDP: modify revecho 2)
+Infile:		E:\SNDS\TMP\~A_0.wav
+Duration:	2.100000
+Outfile:	
+Outfile Dir:	E:\SNDS\TMP\
+
+SSHAPER MODE:	3
+DELAY:		9.3
+MIX:		0.8
+FEEDBACK:	-0.66
+TAIL:		5
+PRESCALE:	1
+SEED:		NO
+LFO MOD:	0.36
+LFO FREQ:	0.05
+LFO PHASE:	0.5
+LFO DELAY:	0

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <! cdpedit.htm  CDP Guide: Edit-Mix -->
+
+<head>
+  <meta charset="utf-8">
+  <title>CDP-Edit</title>
+  <link rel="stylesheet" type="text/css" href="cdpguide.css">
+  <link rel="stylesheet" href="menu.css">
+  <link rel="icon"  href="images/cdp_favicon.ico">  
+    <style>
+	  a { text-decoration: none }
+	  a:hover { color:#FF3333;
+      text-decoration: underline } 
+      a:link {color: #000099}
+      a:visited {color: ##993399}
+      a:active {color: #0000FF}         	
+    </style>  
+</head>
+
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(51, 0, 51);">
+    
+<!--  LEFT COLUMN  -->   
+
+  <div id="left" class="column">
+	<div class="top-left"> <!--Left Hdr -->
+
+	</div> <!-- end of left hdr -->
+			
+	<div class="bottom-left"> <!-- SIDEBAR -->
+<!--
+<div align="center"> <img src="images/CDPCIRCS2.gif"  alt="CDP Logo"> </div>	
+-->
+  <dl>
+  <dt><a href="cdpguide.html"><b>CDP GUIDE: INDEX</b></a>
+  <hr>
+  <dt><a href="cdpsnd.html#SOUNDFILES"><b>SOUNDFILES:</b></a>
+  <dt><a href="cdpsnd.html#ENVELOPE"><b>&nbsp;ENVELOPE</b></a>
+  <dt><a href="cdpsnd.html#FILTER"><b>&nbsp;FILTER</b></a>
+  <dt><a href="cdpsnd.html#PITCH"><b>&nbsp;PITCH</b></a>
+  <dt><a href="cdpsnd.html#REVDELAY"><b>&nbsp;REVERB/DELAY</b></a>
+  <dt><a href="cdpsnd.html#EXTEND"><b>&nbsp;EXTEND/SEGMENT</b></a>
+  <dt><a href="cdpsnd.html#REORDER"><b>&nbsp;RE-ORDER</b></a>
+  <dt><a href="cdpsnd.html#GRAIN"><b>&nbsp;GRANULAR</b></a>
+  <dt><a href="cdpsnd.html#PSOW"><b>&nbsp;PITCH-SYNC GRAINS</b></a>
+  <dt><a href="cdpsnd.html#TEXTURE"><b>&nbsp;TEXTURE</b></a>
+  <dt><a href="cdpsnd.html#RETIME"><b>&nbsp;RETIME</b></a>
+  <dt><a href="cdpsnd.html#WAVESETS"><b>&nbsp;WAVESETS</b></a>
+  <hr>
+  <dt><a href="cdpspect.html#SPECFILES"><b>SPECTRAL FILES:</b></a>
+  <dt><a href="cdpspect.html#SPECENV"><b>&nbsp;RESHAPE</b></a>
+  <dt><a href="cdpspect.html#SPECFILT"><b>&nbsp;FILTER</b></a>
+  <dt><a href="cdpspect.html#PCHFRQ"><b>&nbsp;PITCH/FREQ</b></a>
+  <dt><a href="cdpspect.html#MORPH"><b>&nbsp;MORPH</b></a>
+  <dt><a href="cdpspect.html#FORMANTS"><b>&nbsp;FORMANTS</b></a>
+  <dt><a href="cdpspect.html#COMBINE"><b>&nbsp;COMBINE</b></a>
+  <dt><a href="cdpspect.html#TIME"><b>&nbsp;TIME</b></a>
+  <dt><a href="cdpspect.html#SPECUTILS"><b>&nbsp;SPEC UTILS</b></a>
+  <hr>
+  <dt><a href="cdppitch.html#PCHFILES"><b>PITCH-DATA:</b></a>
+  <dt><a href="cdppitch.html#PCHCONV"><b>&nbsp;CONVERSIONS</b></a>
+  <dt><a href="cdppitch.html#PCHPROCESS"><b>&nbsp;PITCH PROCESSES</b></a>
+  <dt><a href="cdppitch.html#PCHSUPPORT"><b>&nbsp;SUPPORT FUNCTIONS</b></a>
+  <hr>
+  <dt><a href="#EDITMIX"><b>EDIT / MIX:</b></a>
+  <dt><a href="#EDIT"><b>&nbsp;EDIT</b></a>
+  <dt><a href="#LEVEL"><b>&nbsp;LEVEL</b></a>
+  <dt><a href="#CHANNELS"><b>&nbsp;CHANNELS</b></a>
+  <dt><a href="#SPATIAL"><b>&nbsp;SPATIAL</b></a>
+  <dt><a href="#MIX"><b>&nbsp;MIX</b></a>
+  <dt><a href="#UTILS"><b>&nbsp;SNDFILE UTILS</b></a>
+  <hr>
+  <dt><a href="cdpother.html"><b>OTHER FUNCTIONS:</b></a>
+  <dt><a href="cdpother.html#SYNTH"><b>&nbsp;SYNTHESIS</b></a>
+  <dt><a href="cdpother.html#DATA"><b>&nbsp;GENERATE DATA</b></a>
+  <dt><a href="cdpother.html#INFO"><b>&nbsp;INFORMATION</b></a>
+  <dt><a href="cdpother.html#SYSUTILS"><b>&nbsp;SYSTEM UTILS</b></a>
+  </dl>
+
+	</div> <!-- end of Sidebar -->
+</div> <!-- end of Left Column -->
+
+<!--- START OF RIGHT COLUMN -->
+<div id="right" class="column"> <!-- NB shared class -->
+
+   <div class="top-right"> <!--Right Hdr -->
+
+      <div align="center">
+      <img src="images/cdplogo2.jpg"  alt="CDP Logo">
+      </div>
+      
+   <!-- ----------------- MENU BAR ------------------- -->
+   <!---- NB If class='has-sub' then put </li> AFTER <ul> -->
+
+
+   <div id='cssmenu'>  
+   <ul>
+   <li class='has-sub'><a href="..\html\ccdpndex.htm"><span><b>INDEX</b></span></a>
+     <ul>
+     <li><a href="..\html\cdphome.htm"><span><b>HOME PAGE</b></span></a>
+     <li><a href="..\html\ccdpndex.htm"><span><b>MAIN INDEX</b></span></a>
+	 <li><a href="..\html\cbutnndx.htm"><span><b>Table Index</b></span></a></li>
+     <li><a href="..\html\alphindex.htm"><span><b>A-Z Function Index</b></span></a></li>
+     <li class='last'><a href="..\html\calphndx.htm"><span><b>Operations Index</b></span></a></li>
+     </ul>	
+   </li>
+   <li><a href="..\html\cgroundx.htm"><span><b>TIME-DOMAIN</b></span></a></li>
+   <li><a href="..\html\cspecndx.htm"><span><b>SPECTRAL</b></span></a></li>
+   <li><a href="..\html\graphic.htm"><span><b>GRAPHIC</b></span></a></li>
+   <li class='active has-sub'><a href="#"><span><b>EXPLAIN</b></span></a>
+   	  <ul>
+   	    <li><a href="..\html\charts.htm"><span><b>CHARTS</b></span></a></li>
+   	    <li><a href="..\html\tutorials.htm"><span><b>TUTORIALS</b></span></a></li>
+   	  </ul>
+   </li> 
+   <li class='last'><a href="updates.htm"><span><b>DOWNLOADS</b></span></a></li>   
+   </ul>
+   </div> <!-- end of menu -->
+   
+
+   </div> <!-- End of Right Hdr -->        
+   
+   
+<div class="bottom"> <!-------------- MAIN CONTENT ----------------->
+
+    
+    <table id="EDITMIX" bgcolor="#950000" border="0" width="100%">
+      <tbody>
+        <tr>
+          <td bgcolor="#ffffff" width="72"><img
+              src="images/cdpcircs72.jpg" nosave="" height="47"
+              width="72"></td>
+          <td>
+            <center><b><font face="Arial, Helvetica"><font
+                    color="#ffffff"><font size="+2">CDP GUIDE: &nbsp;&nbsp;  EDIT / MIX  PROCESSES</font></font></font></b></center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+<blockquote>
+    
+    <div align="right">
+	<i><b>PREVIOUS:&nbsp; <a href="cdppitch.html"><b>PITCH</a></b></i>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<i><b>NEXT:&nbsp; <a href="cdpother.html"><b>SYNTH/INFO/DATA</a></b></i>
+    </div>
+
+<p>
+CDP does not come with its own visual sound-editor (although both main GUIs include one), but its Edit and Mix functions include all the fundamental operations found in those editors, such as cutting, pasting and extracting segments, as well as those associated with the mixing desk: spatial distribution and channels, level and balance, as well as mixing sounds. A growing number of functions extend these principles into less familiar areas, such as multi-channel spatial distribution. Finally, this section catalogues some soundfile utilities.
+</p>
+<p>
+<h3>EDIT / MIX CATEGORIES:</h3>
+<ol>
+<li><a href="#EDIT"><b>EDIT</b></a></li>
+<li><a href=""LEVEL"><b>LEVEL</b></a></li>
+<li><a href="#CHANNELS"><b>CHANNELS</b></a></li>
+<li><a href="#SPATIAL"><b>SPATIAL</b></a></li>
+<li><a href="#MIX"><b>MIX</b></a></li> 
+<li><a href="#UTILS"><b>SOUNDFILE UTILITIES</b></a></li>
+</ol>
+</p>
+
+<!---------------------------------------------------------------------------------------->
+<h2 id="EDIT" style="color: #ffffff; background-color: #950000">&nbsp;EDITING SOUNDFILES &nbsp;&nbsp;&nbsp; (CDP groups: SFEDIT, HOUSEKEEP, ENVEL, EXTEND, MCTOOLS)</h2>
+<p>
+Cut and paste sounds, including extracting segments to separate files. Other processes mask portions with silence and switch between soundfiles.
+</p>
+<h3>CUT FUNCTIONS</h3>
+<ul>
+<li><a href="../html/cgroedit.htm#CUT"><b>Cut</b></a> extracts a segment as a separate soundfile, using given START and END times. <a href="../html/cgroedit.htm#CUTEND"><b>Cutend</b></a> measures the cut from the end of the file.</li>
+<li><a href="../html/cgroedit.htm#ZCUT"><b>Zcut</b></a> (<i>Soundshaper: Zerocut</i>): as <b>Cut</b>, but makes the cut at the nearest zero crossover points.</li>
+<li><a href="../html/cgroedit.htm#WAVEFORM"><b>Waveform (R8)</b></a> extracts a segment to make a wavetable. Mode 1 etracts a group of half-<b><i>wavesets</i></b>, Mode 2 etracts any short segment (up to 10"), while Mode 3 superimposes the segment on a sine wave. In each case, the cut segment is abutted to its inversion, making a symmetrical wavecycle and doubling its duration.   </li>
+<li><a href="../html/cgroedit.htm#EXCISE"><b>Excise</b></a> cuts out and discards the selected segment.</li>
+<li><a href="../html/cgroedit.htm#EXCISES"><b>Excises</b></a> (<i>Soundshaper: Discards</i>) discards listed portions of a sound.</li>
+<li><a href="../html/cgrohous.htm#EXTRACT"><b>Topntail</b></a> (<b><i>housekeep extract 2</b></i>) trims the sound, removing low level signal from start and/or end. It uses a <b>GATE</b> level, above which the signal is accepted.<br>
+<a href="../html/cgroenvl.htm#TOPANTAIL"><b>TopanTail2</b></a> (<i>Soundshaper: Trim</i>) is a newer and more versatile trimming function, with separate start and end gate levels and a backtracking option.</li>
+</ul>
+
+<h3>CUT WITH MULTIPLE OUTPUTS</h3>
+<ul>
+<li><a href="../html/cgroedit.htm#CUTMANY"><b>Cutmany</b></a> (<i>Soundshaper: Multicut</i>) cuts listed portions of sound and extracts these to separate files.</li>
+<li><a href="../html/cgroedit.htm#ZCUTS"><b>Zcuts</b></a> (<i>Soundshaper: Zerocuts</i>) makes cuts at nearest zero crossover points and extracts these to separate files. LIke many CDP functions, this requires a text <i>times file</i> of segment start and end times, though these can be approximate as the function will find the nearest zero crossings. </li>
+<li><a href="../html/cgroedit.htm#SYLLABLES"><b>Syllables</b></a> is a variant of Cutmany, aimed at extracting syllables, which tend to run into each other. It allows a degree of dovetailing before and after the segment times specified. However, a good sound editor is needed to set the cut-times, and in the same editor you can just test and cut the syllable(s) you want. (Not recommended.)</li> 
+<li><a href="../html/cgrohous.htm#EXTRACT"><b>Gate-extract</b></a> (<b><i>housekeep extract 1</b></i>) cuts the soundfile into separate files, using a <b>GATE</b> level to find cut points. Parameter values can be tested in advance by running Mode 6, which writes the times of events to a textfile. (Setting GATE=0.035 and MINLENGTh=0.05 seems to produce good results.)  </li>
+<li><a href="../html/cgrohous.htm#GATE"<b>Housekeep Gate</b></a> (<i>Soundshaper: ZeroExtract</i>) extracts segments to separate files, cutting at zero amplitude points (there is no GATE). <br>&nbsp;&nbsp;&nbsp;<b>WARNING:</b> this function tends to extract hundreds of tiny files!</li>
+<li><a href="../html/cgroenvl.htm#TIMEGRID"><b>Timegrid</b></a> segments the soundfile using a constant time-interval, but each outfile is the original length, with the segment preceded and followed by silence. Like Partition and Isolate, this allows the segments to be treated individually and remixed.</li>
+<li><a href="../html/cgroedit.htm#ENVCUT"><b>Envcut (R8)</b></a> cuts the sound into enveloped segments which are adjacent or separated by a time-step. Like <b>Timegrid</b>, there is a regular segment length.</li>
+<li><a href="../html/cgroedit.htm#DISTCUT"><b>Distcut (R8)</b></a> cuts the sound into waveset groups which are adjacent or separated by a time-step. The regular segment length is measured in pseudo-wavecycles and each is given a falling envelope.</li>  
+<li><a href="../html/cgroedit.htm#RANDCHUNKS"><b>Randchunks</b></a> cuts the soundfile into a given number of separate files, with segments chosen randomly according to a given length.</li>
+<li><a href="../html/cgroedit.htm#RANDCUTS"><b>Randcuts</b></a> is similar to <b>Randchunks</b>, but the number of cuts decided by average segment length (itself randomly variable). This function can generate a large number of output files.</li>
+
+<li><a href="../html/cgroedit.htm#PACKET"><b>Packet</b></a> isolates or generates one or more sound packets (short enveloped sound grains), suitable for use within the TEXTURE suite.</li>
+
+<li><a href="../html/cgroedit.htm#PARTITION"><b>Partition</b></a> and <a href="../html/cgroedit.htm#ISOLATE"><b>Isolate</b></a> both partition sound into separate output streams: Partition by wavesets, Isolate by cut-times or level. The original segment times are retained by inserting silences, so that the outputs may be treated separately and remixed. <a href="../html/cgroedit.htm#REJOIN"><b>Rejoin</b></a> re-mixes the segments created by Isolate.</li>
+<li><a href="../html/cgroedit.htm#CANTOR"><b>Cantor</b></a> cuts holes (reduced level) in the manner of a Cantor Set (holes within holes). The output is a series of sounds with more and more holes cut.</li>
+
+
+</ul>
+
+<h3>PASTE</h3>
+<ul>
+<li><a href="../html/cgroedit.htm#INSERT"><b>Insert</b></a> inserts a second sound at the given time, either overwriting or spreading the original. Allowing for the splice length can sometimes be an issue.</li>  
+<li><a href="../html/cgroedit.htm#REPLACE"><b>Replace</b></a> discards a portion of the source (specified by start and end times) and replaces it with another sound. The second sound can be longer or shorter than the segment it replaces, as it is a straight substitution: the duration of the original segment is not maintained.<br>
+Unfortunately, CDP has no mechanism for processing just part of a soundfile: you have to extract the segment, process it and then insert the treated sound, overwriting the original. (Soundshaper does this as a composite procedure [SEGCUT plus SEGPASTE], but it is still messy compared with most editors where you simply highlight a section and alter it. The problem is caused largely by the need for output files, with no provision for simply holding the processed version in memory.) </li>
+
+<li><a href="../html/cgroedit.htm#INSIL"><b>Insil</b></a> inserts silence into the soundfile (except at the start or end).</li>
+<li><a href="../html/cgroedit.htm#PREFIXSIL"><b>Prefix Silence</b></a> (<i>Soundshaper: Presil</i>) adds silence to the start of the soundfile: a useful pre-mixing function, as it delays the sound relative to others in the mix.</li>
+<li><a href="../html/cgroedit.htm#"SILEND><b>Silend</b></a> (<i>Soundshaper: Endsil</i>) adds silence to the end of a soundfile. This is often done prior to adding reverberation, which needs room for its "tail".</li>
+<li><a href="../html/cgroedit.htm#"MANYSIL><b>Manysil</b></a> (<i>Soundshaper: Silences</i>) inserts multiple silences at a list of times. </li>
+<li><a href="../html/cgroedit.htm#"NOISECUT><b>Noisecut</b></a> aims to replace signal noise with silence. Unfortunately, it is hard to get it to recognise noise. (Not recommended.)</li>
+<li><a href="../html/cgroedit.htm#MASKS"><b>Masks</b></a> overwrites listed portions with silence (hence the sounding portions retain their timings). A number of different Masks mixed together can create an interesting rhythmic and/or spatial sequence. </li>
+<li><a href="../html/cgroedit.htm#TWIXT"><b>Twixt</b></a> and <a href="../html/cgroedit.htm#SPHINX"><b>Sphinx</b></a> (<i>Soundshaper: Switch</i>) switch between different soundfiles running in parallel &#150; at specified times, by permutation, or randomly.</li>
+</ul>
+
+<h3>SPLICE AND SEQUENCE</h3>
+<p>
+CDP has several functions which realise a sequence of sounds just like a MIDI sequence, using different sound-sources. <b>Sequence2</b> has the fullest set of parameters and plays multiple sounds. Three other sequence functions use less detailed data files.
+<ul>
+<li><a href="../html/cgroedit.htm#JOIN"><b>Join</b></a> splices two or more soundfiles together end to end and is the normal workhorse for this basic task. Sounds are joined in the order given as inputs. The input sounds must have the same channel-count.</li>
+<li><a href="../html/cmcrefmn.htm#NJOIN"><b>Njoin</b></a>: an alternative splicing program, designed particularly for multi-channel sounds. The files to mix are listed in a textfile and must match in sample rate and in number of channels.</li>
+<li><a href="../html/cgroedit.htm#"#JOINSEQ"><b>Joinseq</b></a> joins soundfiles end-to-end following a number sequence, with sounds identified by their order of input. The whole sample is played each time: there is no duration field.</li>
+<li><a href="../html/cgroedit.htm#JOINDYN"><b>Joindyn</b></a>: as Joinseq, but the data file adds a field for level.</li>
+<li><a href="../html/cgroextd.htm#SEQUENCE"><b>Sequence</b></a> (<i>Soundshaper: Sampleseq</i>): like a sampler, this plays a sequence of a single sound sample using a text file of:<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;<i><b>time, &nbsp; transposition</b> (in semitones),&nbsp; <b>relative level</b> (<1 or >1)</i>.<br>
+	The whole sample is played each time: there is no duration field. </li>
+<li><a href="../html/cgroextd.htm#"><b>Sequence2</b></a> (<i>Soundshaper: Sequencer</i>) is a multi-source sequencer using a text data file of: <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;<i><b>sound-number, &nbsp; time, &nbsp; pitch, &nbsp; level, &nbsp; duration.</i></b> <br>
+This is clearly the most versatile of the different sequencing functions, though it lacks any spatial provision. The sound lasts for the duration specified, whether it is finished or not.</li>
+
+</ul>
+
+<!---------------------------------------------------------------------------------------->
+<h2 id="LEVEL" style="color: #ffffff; background-color: #950000">&nbsp;LEVEL &nbsp;&nbsp;&nbsp; (CDP groups: MODIFY, HOUSEKEEP, ENVEL, MULTI-CHAN, DISTORT) </h2>
+<p>
+Various functions for adjusting gain, inverting phase and gating sounds. (See also <a href="../html/cgroenvl.htm#WARP"><b>Envel Warp</b></a> functions which do the same sort of thing):
+  
+<ul>
+<li><a href="../html/cgromody.htm#LOUDNESS"><b>Gain</b></a> (<b><i>modify loudness 1/2</b></i>) sets or alters the level in a soundfile: values are 0-1 or in dB (<=0). </li>
+<li><a href="../html/cgromody.htm#LOUDNESS"><b>Normalise</b></a> (<b><i>modify loudness 3</b></i>)raises or lower the maximum level to the given level. (c.f. <a href="../html/cgroenvl.htm#WARP">Envel Warp 1</a>)</li>
+<li><a href="../html/cgromody.htm#LOUDNESS"><b>ForceLevel</b></a> (<b><i>modify loudness 4</b></i>) forces the level to the given level or the maximum possible.</li>
+<li><a href="../html/cgromody.htm#LOUDNESS"><b>Equalise</b></a> (<b><i>modify loudness 8</b></i>) forces the maximum level of all files to that of loudest sound.</li>
+<li><a href="../html/cgromody.htm#"><b>Balance</b></a> (<b><i>modify loudness 5</b></i>) forces the maximum level to that of a second sound.</li>
+<li><a href="../html/cgromc.htm#FRAMESHIFT"><b>Multi-channel Gain</b></a> (<b><i>frame shift 7</b></i>) applies gain to one or more specified channels in a multi-channel file.</li>
+
+
+<li><a href="../html/cgromody.htm#PHASE"><b>Phase</b></a> inverts the phase of the signal: positive becomes negative and vice-versa. An alternative function is <a href="../html/cgromody.htm#LOUDNESS"><b>Modify Loudness 6</b></a>. An inverted signal mixed with the original produces silence. (This is a useful way of testing whether two processes produce exactly the same result.)  </li>
+
+
+<li><a href="../html/cgrohous.htm#CHANPHASE"><b>ChanPhase</b></a> inverts the phase of one channel. This solved a problem specific to SoundLoom, but might have other uses. </li>
+<li><a href="../html/cgrohous.htm#GATE-R6"><b>Gate</b></a> cuts out any signal which falls below a given threshold level (c.f. <a href="../html/cgroenvl.htm#WARP"><b>Envel Warp 8</b></a>). The gated signal is either replaced with silence or removed altogether, shortening the file-length. (N.B. this function is not the same as HOUSEKEEP GATE, which extracts segments to separate files using a gate.) </li>
+<li><a href="../html/cdistort.htm#CLIP"><b>Clip (R8)</b></a> distorts the signal by clipping it (cutting off the top of the waveform) when it reaches a certain level.</li>
+<li><a href="../html/cdistort.htm#OVERLOAD"><b>Overload</b></a> similarly clips the top of the signal, optionally replacing it with a waveform.</li>
+<li><a href="../html/cdistort.htm#QUIRK"<b>Quirk (R8)</b></a> distorts the signal by raising sample values to a power.</li>
+
+</ul>
+</p>
+
+
+<!---------------------------------------------------------------------------------------->
+<h2 id="CHANNELS" style="color: #ffffff; background-color: #950000">&nbsp;CHANNELS &nbsp;&nbsp;&nbsp; (CDP groups: HOUSEKEEP, MODIFY, MCTOOLS, SFEDIT, SUBMIX, MULTI-CHAN)</h2>
+<p>
+These processes handle channel operations: split a sound into its separate channels (or selected ones); interleave files to make a stereo or multi-channel file; convert between mono, stereo and multi-channel files; manipulate channels in multi-channel space by rotation, renumbering, etc.
+<ul>
+<li><a href="../html/cgrohous.htm#CHANS"><b>Extract chans</b></a> (<b><i>housekeep chans 2</b></i>) splits (channelises) a stereo or multi-channel file into separate monos, from where they can be processed individually.</li>
+<li><a href="../html/cmcrefmn.htm#CHANNELX"><b>ChannelX</b></a> similarly extracts the selected channel(s) from a stereo or multi-channel file, to separate mono soundfiles.<br>
+An alternative function extracting one channel (<a href="../html/cgrohous.htm#CHANS"> <i><b>housekeep chans 1</b></i></a>) is also available.</li>
+<li><a href="../html/cgrohous.htm#PAIREX"><b>Pairex (R8)</b></a> extracts any two channels, as a stereo pair, from a multi-channel file.</li>
+<li><a href="../html/cgromody.htm#SPACE"><b>Mirror</b></a> (<b><i>modify space 2</b></i>) swaps channels in a stereo file. (The function will accept more than two channels, but returns a stereo file.)</li>
+<li><a href="../html/cgroedit.htm#SUBTRACT"><b>Subtract</b></a> subtracts a mono file from one channel of another (stereo or multi-chan) file: a solution looking for a problem?</li>
+<li><a href="../html/cgrohous.htm#CHANS"><b>Zero chan</b></a> (<b><i>housekeep chans 3</b></i>) zeros the signal in one channel of a stereo file.</li><br>
+
+<li><a href="../html/cgromixr.htm#INTERLEAVE"><b>Interleave</b></a> or <a href="../html/cmcrefmn.htm#INTERLX"><b>Interlx</b></a>: these functions merge up to 16 mono or 8 stereo files to make a (Wave-Ex) multi-channel file. <b>Interleave</b> requires mono inputs whereas <b>Interlx</b> can merge stereo or multi-channel files, with the same channel-count.</li>
+
+<li><a href="../html/cgrohous.htm#REPAIR"><b>Repair (R8)</b></a> is a quirky function for interleaving mono files of the same length. Four sources 1,2,3,4 with <i>outchans</i>=2 produces two stereo outputs: 1+3 and 2+4; with <i>outchans</i>=4 it outputs a single 4-channel file (1+2+3+4). With 12 inputs and <i>outchans</i>=4, there are three outputs: 1+4+7+10, 2+5+8+11, 3+6+9+12. <br>
+It is surely much easier just to use <a href="../html/cmcrefmn.htm#INTERLX"><b>Interlx</b></a> to interleave mono or stereo inputs of different lengths in any order you like.</li><br>
+
+<li><a href="../html/cgrohous.htm#CHANS"><b>MtoS</b></a> (<b><i>housekeep chans 5</b></i>) converts a mono file to stereo: the channels are identical.</li>
+<li><a href="../html/cgrohous.htm#CHANS"><b>StoM</b></a> (<b><i>housekeep chans 4</b></i>) convert a stereo or multichannel to mono: the channels are mixed. There is an option to invert channel 2 before mixing (ignored in a multi-chan file) &#150 see also ChanPhase above.</li>
+<li><a href="../html/cgromc.htm#MTON"><b>MtoN</b></a> converts mono to multi-channel, with the same signal in all channels.</li>
+<li><b>StoN</b> is a Soundshaper composite function using <a href="../html/cmcrefmn.htm#INTERLX"><b>Interlx</b></a>, duplicating a stereo file in chans. 1-2, 3-4, 5-6 etc. of a multi-channel file.</li>
+<li><a href="../html/cgromc.htm#MCHSTEREO"><b>MchStereo</b></a> places several stereo files within a multi-channel space.</li>
+<li><a href="../html/cmcrefmn.htm#CHORDER"><b>ChOrder</b></a> re-orders channels within a multi-channel soundfile.</li>
+<li><a href="../html/cgromc.htm#FRAMESHIFT"><b>Frame Shift</b></a> has several modes to move channels around in a multi-channel file: changing order, swapping, mirroring and  rotating.</li>
+
+
+</ul>
+</p>
+
+<!---------------------------------------------------------------------------------------->
+<h2 id="SPATIAL" style="color: #ffffff; background-color: #950000">&nbsp;SPATIAL &nbsp;&nbsp;&nbsp; (CDP groups: MODIFY, MULTI-CHAN, MCTOOLS)</h2>
+<p>
+Spatial processes pan sound across stereo or multi-channel space, including ambisonics. The multi-channel functions either distribute a mono sound across multi-channel space, or re-order the spatial distribution within a multi-channel file (e.g. by changing channel order or rotation).
+<ul>
+<li><a href="../html/cgromody.htm#SPACE"><b>Pan</b></a> (<b><i>modify space 1</b></i>) spatialises a mono soundfile within stereo space, using a fixed value or breakpoint datafile of pan positions. Pan values can simulate space beyond full left or right, by attenuating the sound. (Soundshaper permits different parameter settings for each channel.)</li>
+<li><a href="../html/cgromody.htm#SCALEDPAN"><b>ScaledPan</b></a> is a variant of Pan, in which a breakpoint pan file is automatically scaled in time to fit the length of the input sound.</li>
+
+<li><b>Panmix</b> is a Soundshaper composite function: two mono inputs are each placed in stereo space using <b>Pan</b>, then mixed together. This simulates the mixing-desk, where each mono channel is panned before mixing.</li>
+<li><a href="../html/cgromody.htm#SPACE"><b>Narrow</b></a> (<b><i>modify space 4</b></i>) narrows or inverts the stereo image of a stereo sound.</li>
+<li><a href="../html/cgromody.htm#PHASE"><b>Phase Shift</b></a> (Phase Mode 2) enhances stereo separation by shifting the phase of the signal.</li>
+<li><a href="../html/cgrohous.htm#TOSTEREO"><b>ToStereo (R8)</b></a> gradually diverges from a mono mix to full stereo. Input and output can be stereo or multi-channel.</li>
+
+<h3>Pan Data Functions</h3)<br>
+
+<li><a href="../html/cgromody.htm#SPACE"><b>MirrorPan</b></a> (<b><i>modify space 3</b></i>) inverts the stereo image in a pan breakpoint file.</li>
+<li><a href="../html/cgromody.htm#FINDPAN"><b>Findpan</b></a> (INFO function) finds the pan position, at any time-point, within a stereo file created using Pan.</li>
+<li><a href="../html/cgromody.htm#DSHIFT"><b>DShift</b></a> (DATA function): from a pan breakpoint file, this calculates the necessary transposition to simulate Doppler shift.</li></ul>
+</ul>
+
+<h3>MULTI-CHANNEL</h3>
+<ul>
+<li><a href="../html/cgromc.htm#MCHANPAN"><b>MchanPan</b></a> (<b><i>mchanpan 1</i></b>) pans a sound in multi-channel space.</li>
+<li><a href="../html/cgromc.htm#MCHANPAN"><b>Rotate</b></a> (<b><i>mchanpan 9</i></b>) rotates a sound in multi-channel space. (See also ABFPAN below.)</li>
+<li><a href="../html/cgromc.htm#SPINSTEREO"><b>Spin Stereo (R8)</b></a> rotates a stereo image across stereo space or 3 channels of multi-channel space, both with optional doppler shift. At very slow speeds, this can give a general stereo enhancement instead of a noticeable rotation.</li>
+<li><a href="../html/cgromc.htm#SPINQUAD"><b>Spin Quad (R8)</b></a> rotates two stereo images across 5 channels of multi-channel space, with optional doppler shift. </li>
+<li><a href="../html/cgromc.htm#MCHANPAN"><b>Pan Set</b></a> (<b><i>mchanpan 7</i></b>) pans from one set of channnel positions to another, passing through the centre. </li>
+<li><a href="../html/cgromc.htm#MCHANPAN"><b>Spread</b></a> (<b><i>mchanpan 4</i></b>) spreads a sound across multi-channel space, outwards from a central channel.</li>
+<li><a href="../html/cgromc.htm#MCHANPAN"><b>Antiphon</b></a> (<b><i>mchanpan 6</i></b>) pans antiphonally between sets of channels. The set switches after a specified time. </li>
+<li><a href="../html/cgromc.htm#MCHANPAN"><b>Spread Events</b></a> (<b><i>mchanpan 3</i></b>): as MchanPan Spread, except that the spread is of silence-separated events.</li>
+<li><a href="../html/cgromc.htm#PANORAMA"><b>Panorama</b></a> places (mono) files spatially in surround-sound. To place a single stereo sound, channelise it first; to place one mono sound, copy it first. Natively, <b>Panorama</b> produces a multi-channel mixfile (<b>.mmx</b>) for use with <a href="../html/cgromc.htm#NEWMIX"><b>NEWMIX</b></a> (see below). (Soundshaper also puts it in a batch file that includes NEWMIX and produces a soundfile.) </li>
+<li><a href="../html/cgromc.htm#MCHANPAN"><b>Switch Events</b></a> (<b><i>mchanpan 2/5/10</i></b>): the input switches between output channels at the ocurrence of each new silence-separated event, with antiphonal and random options.</li>
+
+<li><a href="../html/cgromc.htm#TANGENT"><b>TANGENT</b></a> is a subgroup of four functions that aim to produce the effect of a repeated sound or sounds passing across multi-channel space at a tangent to a circle of 8 loudspeakers. Natively, the <b>TANGENT</b> functions produce a multi-channel mixfile (<b>.mmx</b>) for use with <a href="../html/cgromc.htm#NEWMIX"><b>NEWMIX</b></a> (see below). (Soundshaper also puts some of them in a batch file that includes NEWMIX and produces a soundfile.) </li> 
+ 
+<a href="../html/cgromc.htm#TRANSIT"><li><b>TRANSIT</b></a> is a subgroup of six functions that aim to produce the effect of a repeated sound or sounds passing into and across 8-channel space, with possible filtering and/or doppler-shift. (A ring of speakers is presumed.) Natively, the <b>TRANSIT</b> functions produce a multi-channel mixfile (<b>.mmx</b>) for use with <a href="../html/cgromc.htm#NEWMIX"><b>NEWMIX</b></a> (see below). (Soundshaper also puts some of them in a batch file that includes NEWMIX and produces a soundfile.) It might be worth comparing both TANGENT and TRANSIT with the possibilities offered by MCHANPAN, which can also pan a repeated sound across multi-channel space.</li> 
+
+<li><a href="../html/cmcrefmn.htm#ABFPAN"><b>Ambisonic Pan</b></a> (<b><i>abfpan/abfpan2</i></b>) generates a fixed or simple periodic rotating pan around the listener, using ambisonic encoding. It can also generate a rotating or fixed multi-channel pan without ambisonic output. </li>
+<li><a href="../html/cmcrefmn.htm#FMDCODE"><b>Ambisonic Decode</b></a> (<b><i>fmdcode</i></b>) decodes a 1st or 2nd order B-Format (ambisonic) soundfile to a choice of speaker layouts. A suitable input file may be created using <b>Ambisonic Pan</b>. There is a wide range of output options and speaker layouts.</li>
+</ul>
+
+<!---------------------------------------------------------------------------------------->
+<h2 id="MIX" style="color: #ffffff; background-color: #950000">&nbsp;MIX &nbsp;&nbsp;&nbsp; (CDP groups: SUBMIX, MCTOOLS, MULTI-CHAN) </h2>
+<p> 
+There are three categories of mix processes in CDP:
+<ul>
+<li>Simple mixing functions avoiding the use of a mixfile</li>
+<li><b>Mix</b> and <b>Newmix</b>, which employ a mixfile</li>
+<li>Mixfile functions that manipulate mixfiles.</li>
+</ul> 
+</p>
+<p>
+CDP Mix functions are best for mixing small sounds to create larger units. Although larger mixes are perfectly possible, a visual editor is more intuitive and tends to have better controls. 
+
+
+<h3>SIMPLE MIXING FUNCTIONS</h3>
+
+<ul>
+<li><a href="../html/cgromixr.htm#MERGEMANY"><b>Mergemany</b></a> (<i>Soundshaper: Mixmany</i>) mixes several files with the same number of channels.</li>
+
+<li><a href="../html/cmcrefmn.htm#NMIX"><b>NMix</b></a> (<i>Soundshaper: MchMixtwo</i>) is a simple mix of two mono, stereo or multichannel files, with an optional time OFFSET. Files must have the same channel-count.</li>
+
+<li><a href="../html/cgromixr.htm#MERGE"><b>Merge</b></a> (<i>Soundshaper: MixTwo/MergeTwo</i>): a quick mix of two soundfiles (mono, stereo or multi-channel), which can have different channel counts (although output is always mono or stereo). There are a number of useful optional parameters.</li>
+
+<li><b>PreMix</b> is a Soundshaper composite function setting Start-time, Level and Pan prior to mixing with e.g. Merge or MergeMany. These are same three parameters used in a mixfile; it is often more convenient to pre-set and test these values before mixing. It also allows Level and Pan to be altered throughout the mix, which the MIX program does not.</li>
+
+<li><a href="../html/cgromixr.htm#BALANCE"><b>Balance</b></a> mixes two sounds, with a balance control and optional Start and End times. Mono and stereo soundfiles may be mixed freely, but multi-channel files must have the same channel-count. The balance control can vary the effect of any process mixed with its source, and do so over time.</li>
+
+<li><a href="../html/cgromixr.htm#CROSSFADE"><b>Crossfade</b></a> performs a quick cross-fade between two sounds with the same channel count.</li>
+
+<li><a href="../html/cgromixr.htm#FADERS"><b>Faders</b></a> mixes a number of sources with a time-variable level for each, the equivalent of movable faders on a mixing desk.
+The level variations are entered in a textfile of: <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;<b><i>time, level#1, level#2,...</i></b>etc. <br>
+Levels are continuously varied between different values and are automatically scaled to avoid overflow.</li>
+
+<li><a href="../html/cgromixr.htm#"><b>InBetween/2</b></a> generates multiple outputs representing the changing balance between two inputs. <b>InBetween2</b> attempts to synchronize the zero-crossings in the two input soundfiles. </li>
+</ul>
+
+<h3>MIX USING MIXFILE</h3>
+<p>
+CDP has two dedicated mixfile formats for mixing: one for mono/stereo and the other for multi-channel output. 
+</p>
+<ul>
+<li><a href="../html/cgromixr.htm#MIX"><b>Mix</b></a> mixes together the soundfiles listed in a text mixfile (<b>.mix</b>). This has any number of lines of: <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><i>soundfile-name, start-time, level_chan1, pan_chan1, [level_chan2, pan_chan2]</i></b>. <br>
+Note that level and pan are fixed for the duration of the mix; they cannot be continuously altered.<br>
+For further details see <a href="../html/filestxt.htm#MIXFILES"><b>File Formats</b></a>.</li><br>
+
+<li><a href="../html/cgromc.htm#NEWMIX"><b>Newmix</b></a> (<i>Soundshaper: MchMix</i>) mixes files to multi-channel, using a multi-channel mixfile format (<b>.mmx)</b>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><i>soundfile-name, start-time, no_chans, routing1, level1, [routing2, level2, ... to no_outchans]  </i></b> <br>
+where no_chans is the number of input channels. Inputs may be mono, stereo or multi-channel. Routing maps each input channel to an output one, with a level; an input channel may be routed to more than one output channel. Note that level and routing are fixed for the duration of the mix; they cannot be continuously altered.<br>
+For further details see <a href="../html/filestxt.htm#MIXFILES"><b>File Formats</b></a>.  </li><br>
+</ul>
+<p>
+Soundshaper has a dedicated MIX PAGE for both programs. It creates a basic mixfile on the Mix Page from the selected sounds. The start-time, level and pan can be set/altered for each sound, then the mix can be performed without seeing a mix list. Alternatively, a mix list can be created, saved to a mixfile, edited etc., &#150 essential when one or more of the sounds is repeated in the mix or a mix is reproduced with different sounds. 
+</p>
+
+
+<h3 id="MIXFILES">FUNCTIONS MANIPULATING MIXFILES (<b>.mix</b>)</h3>
+<ul>
+<li><a href="../html/cgromixr.htm#ATTENUATE"><b>Attenuate</b></a> alters the overall level in a mixfile.</li>
+<li><a href="../html/cgromixr.htm#GETLEVEL"><b>GetLevel</b></a> tests the maximum level of a mix, as defined in a mixfile.</li>
+<li><a href="../html/cgromixr.htm#SHUFFLE"><b>Shuffle</b></a> alters the order of events in a mixfile.</li>
+<li><a href="../html/cgromixr.htm#PAN"><b>Pan</b></a> sets or resets the starting pan positions in a mixfile, in accordance with an overall <b><i>time pan</i></b> textfile, but it does not enable that position to change as the mixed sound plays.</li>
+<li><a href="../html/cgromixr.htm#SPACEWARP"><b>Spacewarp</b></a> alters pan positions in a mixfile. These are fixed positions, though: pan cannot be altered as the mixed sound plays.</li>
+<li><a href="../html/cgromixr.htm#SYNC"><b>Sync/SyncAttack</b></a> synchronises the attack, middle or end points of soundfiles in a mixfile, or a textfile containing a list of soundfiles only.</li>
+
+<li><a href="../html/cgromixr.htm#TIMEWARP"><b>Timewarp</b></a> offers 16 ways of altering the timings of events in a mixfile or the gaps between start times.</li>
+</ul>
+<p>
+Further ancillary functions help in creating mixfiles. (In some cases, simple text editing of the file may be quicker!)
+<ul>
+<li><a href="../html/cgromixr.htm#DUMMY"><b>Dummy</b></a> creates a basic mixfile (<b>.mix</b>) ready for further editing of levels and pan position.</li>
+<li><a href="../html/cgromc.htm#MULTIMIX"><b>Multimix</b></a> likewise creates a basic mixfile (<b>.mmx</b>) for multi-channel mixing with <a href="../html/cgromc.htm#NEWMIX"><b>Newmix</b></a>.</li>
+<li><a href="../html/cgromixr.htm#ATSTEP"><b>Atstep</b></a> and <a href="../html/cgromixr.htm#ONGRID"><b>OnGrid</b></a> create a basic mixfile with regular start times (Atstep) or following a list of times (Ongrid).</li>
+<li><a href="../html/cgromixr.htm#ADDTOMIX"><b>AddtoMix</b></a> adds further soundfiles to the mixfile.</li>
+<li><a href="../html/cgromixr.htm#MODEL"><b>Model</b></a> replaces soundfiles in a mixfile. </li>
+<li><a href="../html/cgromixr.htm#TEST"><b>Test</b></a> tests a mixfile, checking both that all the soundfiles listed in it are still valid and that the syntax of the mixfile is correct.</li>
+</ul> 
+</p> 
+
+<!---------------------------------------------------------------------------------------->
+<h2 id="UTILS" style="color: #ffffff; background-color: #950000">&nbsp; SOUNDFILE UTILITIES &nbsp;&nbsp;&nbsp; (CDP groups: MCTOOLS, HOUSEKEEP, MODIFY)</h2>
+
+
+<h3>RECORDING and PLAYBACK</h3>
+<ul>
+<li><a href="../html/csysutil.htm#RECSF"><b>RecSF</b></a> records a (multi-channel) soundfile from a specified device in a number of formats (WAV,AIFF,AIFC or ambisonic AMB), using 24-bit resolution by default (16-bit and 32-bit floats also supported) and supporting all the usual sample rates.</li><br>
+
+<li><a href="../html/csysutil.htm#PAPLAY"><b>PAPlay</b></a> plays a (multi-channel) soundfile, with a wide range of options, including support for WAVE_EX and ambisonic files (<b>.amb</b>) and output to a wide range of speaker layouts. ASIO and DirectSound are supported in Windows, and CoreAudio and Jack in OS X.</li><br>
+
+<li><a href="../html/csysutil.htm#PVPLAY"><b>PVPlay</b></a> plays (multi-channel) soundfiles and frequency analysis files (<b>.ana, .pvx</b>). The available options are virtually identical to PAPLAY, including support for ambisonic files (<b>.amb</b>) and output to a wide range of speaker layouts. </li>
+
+<p>
+Full details of these functions are available at Richard Dobson's <a href="http://www.rwdobson.com/mctools.html#MCTOOLS"><b>MC-TOOLS PAGE</b></a> on his website.
+</p>
+
+<li><a href="../html/csysutil.htm#LISTAUDEVS"><b>ListAudevs</b></a> lists the audio devices on your system, with the same details as listed under PVPlay, PAPlay and RecSF.</li>
+
+</ul>
+
+<h3>OTHER SOUNDFILE UTILITIES</h3>
+<ul>
+<li><a href="../html/cmcrefmn.htm#COPYSFX"><b>CopySFX</b></a> is CDP's "Swiss army knife" for copying/converting file-types. CDP supports only <b>.wav</b> and <b>.aif</b> file formats (not <b>.mp3</b>, <b>.flac</b> etc.), but has full support for file types within the two formats (<b>.aifc</b> and <b>.afc</b> are also supported). The default in all CDP processing is that the outfile has the format of the infile. <b>CopySFX</b> supports a wide range of input and output types, with special support for multi-channel <b>WAVE_EX</b> and Ambisonic (<b>.amb</b>) files.</li><br>
+
+<li><a href="../html/cgrohous.htm#RESPEC"><b>Respec</b></a> changes the header of the soundfile:<br>
+ 	&#150;&nbsp;<b>Resample</b> the sound at a new sample rate.  <br>
+	&#150;&nbsp;<b>Integer-Float</b>: converts between Integer ("shorts") and Floating-point soundfile formats ("floats").<br>
+	&#150;&nbsp;<b>Rewrite Header</b>: the information in the soundfile header is changed but the actual sample data is left untouched. Directly changing the sample rate will change the speed, for example.
+ <br> </li>
+<li><a href="../html/cmcrefmn.htm#CHXFORMAT"><b>CHXFormat</b></a> changes the soundfile header of a multi-channel WAVE_EX file to switch the GUID type between plain WAVE_EX and Ambisonic (<b>.amb</b>), or change the speaker-position value to specify a particular speaker layout, as listed under PAPLAY/PVPLAY (0=generic WAVE_EX). Unusually for CDP, this is a <b><i>destructive</i></b> function, which should be used with care: copy the file first. </li>
+
+<li><a href="../html/cgromody.htm#RADICAL"><b>Degrade</b></a> (<b><i>modify radical 4</b></i>) reduces the sample rate, possibly lowering the pitch, and/or lowers the bit-resolution, which reduces the precision of the data, making the material sound coarser. For example, it can reduce speech to not much more than the rhythm and pitch contour, especially in conjunction with <a href="../html/cblur.htm#BLUR"><b>Blur</b></a>.</li>
+
+<br>
+
+<li><a href="../html/cgrohous.htm#EXTRACT"><b>DCRemove</b></a> (<b><i>housekeep extract 4</b></i>) shifts (offsets) the entire signal to eliminate unwanted DC component</li>
+<!--
+<li><b>DCFix (R8)</b></a> replaces DC signal by silence (untested at the time of writing).</li>
+-->
+<li><a href="../html/cgrohous.htm#DEGLITCH"><b>Deglitch</b></a> attempts to remove glitches in a soundfile. </li>
+<li><a href="../html/cgrohous.htm#ENDCLICKS"><b>Endclicks</b></a> removes clicks at the start or end of a soundfile. </li>
+
+<!--
+<li><b></b></a>   </li>
+<li><b></b></a>   </li>
+-->
+
+</ul>
+</p>
+
+<br>
+
+
+
+
+<!--------------- BACK / NEXT TABLE ------------->
+
+            <div align="center">
+              <table border="0" cellpadding="0" cellspacing="0"
+                width="50%">
+                <tbody>
+                  <tr>
+                    <td valign="top" align="center">
+                        <b><i>PITCH PROCESSES</b></i></td>
+                    <td valign="top" align="center">
+			<i><b>SYNTH/INFO/DATA</b></i></td>
+                  </tr>
+                  <tr>
+                    <td valign="top" align="center">
+			<a href="cdppitch.html"><img alt="BACK" src="images/BACK.gif"
+                          border="0" width="54" height="44"></a></td>
+                    <td valign="top" align="center">
+			<a href="cdpother.html"><img alt="NEXT" src="images/NEXT.gif"
+                          border="0" width="54" height="44"></a></td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+            </div>
+
+
+
+<p align="center">
+<small><b>The descriptions above are adapted from the Soundshaper manual and do not necessarily reflect the views of CDP.<br>
+For details of each function, always refer to the <a href="../html/cdphome.htm"><b>CDP Reference Documentation</b></a>.<br>
+For further details about CDP see the Composers' Desktop Project <a href="http://www.composersdesktop.com">website</a>.</b></small>   
+</p>
+
+</blockquote>
+
+<br>
+
+<!-- ----------------------------   End of Main Text ------------------------------ -->
+	<table style="text-align: left; width: 100%; " border="0" cellpadding="8" cellspacing="0">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top; background-color: #d9b18c"><b>NEXT PAGE:</b> 
+              <b><a href="cdpother.html">&nbsp;<b>SYNTH / INFO / DATA PROCESSES</b></a>
+	  </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+<!-- ************************************************************* -->
+
+      <div class="footer">
+        <p> 
+		   &nbsp;<b><i>Last Updated 30 Apr 2023 for CDP8&nbsp;&nbsp;
+          © Copyright 2021-23 Robert Fraser and CDP</i></b>
+        <br>
+    
+        </p>
+      </div>
+      
+
+  </div> <!-- END of MAIN CONTENT (bottom right) --> 
+</div> <!-- END OF RIGHT COLUMN -->
+
+</body>
+</html>   

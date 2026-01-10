@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- aebigone.htm  - HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>GrainMill Example</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "CDPCSSDF.CSS" />
+<link rel="icon"  href="../images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "../images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="../../../ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="../../../html/tutorials.htm" Target="_top"><b>Tutorials Index</b></a> 
+  <dt><a href="../../../cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="../../../filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr><br>
+  <dt><a href="#PREPARE"><b>Prepare soundfile</b></a>
+  <dt><a href="#APPROACH"><b>Complex textures</b></a>
+  <dt><a href="#COMMENTARY"><b>Detailed commentary</b></a>
+  <dt><a href="#STUDYING"><b>Each parameter</b></a>
+  <dt><a href="#SUMMARY"><b>Composer tips</b></a>
+  <br><br>
+  <dt><a href="#SUGGESTIONS"><b>Procedure Suggestions</b></a>
+
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+	<p>
+	<IMG SRC="../images/cdpcircs.jpg" ALT="CDP circles logo"><br clear>
+	<b>Composers' Desktop Project</b></a>
+	</p>
+
+<h1 align=center>'BIG-ONE' &#150; A <i>GrainMill</i> Example with<br>
+    Time-varying Breakpoint Files </h1>
+
+<h2 align=center><font color="#3366ff">prepared and annotated by Archer Endrich</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "left" id="BIGONETOP">CONTENTS</h2>
+<blockquote>
+<ul>
+<li><b><a href="#PREPARE">Prepare</a> the example soundfile</b></li>
+<li><b><a href="#APPROACH">Approaching</a> complex textures</b></li>
+<li><b><a href="#COMMENTARY">Detailed commentary</a> on the example</b></li>
+<li><b><a href="#STUDYING">Studying</a> the contribution of each parameter</b></li>
+<li><b><a href="#SUMMARY">Summary</a> of composer tips</b></li>
+<br>
+<li><b><a href="#SUGGESTIONS"><b>Procedure Suggestions</b></a></li>
+</ul>
+</blockquote>
+<hr>
+<!-- ========================================================================= -->
+
+<h2>
+<font color="#DAA520" id="PREPARE">Preparing the Soundfile</font>
+</h2>
+
+<div align=center>
+<p>
+<table border=1 cellpadding=7>
+<caption><font color="#339900"><b>Infile (input) &amp; Outfile (result)</b>
+</font></caption>
+
+<tr>
+<th align=center><b>Soundfiles</b></th>
+<th align=center><b>.GRN File</b></th>
+<th align=center><b>What you hear:</b></th>
+</tr>
+
+<tr>
+<td align=center><a href="balsam.wav">balsam</a></td>
+<td align=center>None</td>
+<td>Input soundfile: P. Karkut saying 'balsam of nature', 
+mono, 1.9 sec.</td>
+</tr>
+
+<tr>
+<td align=center><a href="bigone.mp3">bigone</a></td>
+<td align=center><b>bigone.grn</b></td>
+<td>Complex, multi-breakpoint example which seeks to 
+unfurl the spoken text into a dramatic, but controlled texture.</td>
+</tr>
+
+</table>
+</p>
+</div>
+
+<p>
+<br />
+</p>
+
+<blockquote>
+<p>
+<b>NB:</b> &nbsp;To make the output soundfile <b>Open</b> the 
+<i>balsam</i> soundfile and <b>Load</b> <i>bigone.grn</i>.  You 
+will also need to edit the output duration box to 29.5.  It doesn't 
+know how to do this itself because it doesn't know what's in the 
+Timestretch breakpoint file.  If you find that some of the source 
+material is being truncated, make the output duration longer.  
+Click on <b>Make it</b> and <b>Save As</b> <i>bigone.wav</i>.  See 
+<a href="#SUGGESTIONS">Procedure Suggestions</a>.
+</p>
+</blockquote>
+
+<p>
+<a href="#BIGONETOP"><b>Return</b></a> to top of file.
+<br>
+</p>
+
+
+<h2>
+<font color="#DAA520" id="APPROACH">Approaching the Study and Creation 
+of Complex Textures</font>
+</h2>
+
+<blockquote>
+<p>
+<i>Bigone</i> has been devised as a way of illustrating the controlled 
+texturing of material.
+</p>
+
+<p>
+Firstly, a sound editor was used to display the soundfile and 
+determine where the different consonants and syllables occurred.  
+These time points were then used in the breakpoint files to 'unfurl' 
+the sound in various ways.
+</p>
+
+<p>
+Alternatively, you can extract the amplitude envelope of the 
+sound, using <b>File&#47;Extract from sfile</b> in the Breakpoint 
+Editor.  You will probably need to cut down on the number of time-points 
+displayed, using <b>Edit&#47;Reduce</b>;  then you will have something 
+manageable as a breakpoint file.  You can then use this file directly 
+as a starting point for time-contours related to the amplitude profile 
+of the original sound.
+</p>
+
+<p>
+The salient features of the sound, the spoken text can be shown as 
+follows, with their time points.
+</p>
+
+
+<div align=center>
+<p>
+<table border=1 cellpadding=7>
+<caption><font color="#339900"><b>Time-point analysis of sonic features</b>
+</font></caption>
+
+<tr>
+<th align=center><b>Time-points</b></th>
+<td><b>0.0</b></td>
+<td><b>0.23</b></td>
+<td><b>0.44</b></td>
+<td><b>0.69</b></td>
+<td><b>0.85</b></td>
+<td><b>1.01</b></td>
+<td><b>1.11</b></td>
+<td><b>1.39</b></td>
+<td><b>1.49</b></td>
+<td><b>1.63</b></td>
+</tr>
+
+<tr>
+<th align=center><b>Syllables</b></th>
+<td><b>Bal ....</b></td>
+<td><b>s ......</b></td>
+<td><b>sam ....</b></td>
+<td><b>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+<td><b>of .....</b></td>
+<td><b>n ......</b></td>
+<td><b>Na .....</b></td>
+<td><b>t ......</b></td>
+<td><b>tu .....</b></td>
+<td><b>ure ....</b></td>
+</tr>
+
+</table>
+</p>
+</div>
+
+<p>
+To map out what happens and how the various breakpoint files interact, 
+I relate everything to the input file time-points (as above).  I
+haven't worked out how to draw all the parameters graphically on 
+one diagram, so I employ the following compromise solution.  
+(I have template pages on which to make these diagrams, so I don't 
+have to start from scratch each time.)
+	<ol>
+	<li>I write out a grid of regularly spaced time points.</li><br />
+	<br />
+
+	<li>Above that, I spread out the salient features of the 
+	sound, as syllables if text, graphically in some way if not.
+	<li>Above that I place the specific time-points at which 
+	these salient features occur.</li><br />
+	<br />
+
+	<li>On the very top I write the Timestretch values, locating 
+	them above the parts of the sound to which they relate.  In 
+	this case, they are timed to match exactly the placement of 
+	the syllables.</li><br />
+	<br />
+
+	<li>Below the regular time-grid I draw out the upper and lower 
+	pitch transposition time contours, with a central axis at 0.</li><br />
+	<br />
+
+	<li>Below that I write a line of Density values, locating 
+	them where they belong against the sound.</li><br />
+	<br />
+
+	<li>Below the Density line I write a line of Grainsize values, 
+	also locating them where they belong against the sound.</li><br />
+	<br />
+
+	<li>Then, looking at the Density and Grainsize values, I 
+	(as best I can) fill in the space between the upper and 
+	lower pitch traces in a way which reflects their values.
+	</ol>
+This gives me a reasonably graphic representation of what I'm doing, 
+which I can listen to during playback and consider what changes to 
+the parameters might be effective.  Taking the trouble to map things 
+out like this will probably only be useful for achieving very precise 
+effects or for study purposes.
+</p>
+
+<p>
+Another important tool is the <b>File&#47;Compare with</b> function in 
+the Breakpoint Editor.  Using this tool, one can see how one breakpoint 
+file maps against another, whether the upper and lower traces of the 
+same parameter, or the time contours for two different parameters.  
+In practice, this is the quickest and most direct way to 'work' one 
+parameter against another, such as Timestretch and Density.
+</p>
+</blockquote>
+
+<p>
+<a href="#BIGONETOP"><b>Return</b></a> to top of file.
+<br>
+</p>
+
+
+<h2>
+<font color="#DAA520" id="COMMENTARY">Commentary on each syllable 
+of the example</font>
+</h2>
+
+<blockquote>
+<p>
+	<ul>
+	<li><b>Bal</b> &#150; The (output) sound begins with a high 
+	Density set within a tight pitch range, which slowly expands 
+	a little bit.  The Density gradually lessens (20 to 9.5) during 
+	this section, to ease off after the initial 'plosive', and the 
+	Grainsize expands from 39 to 91 (ms) to make the texture 
+	smoother as the Density lessens.  The Timestretch is fairly 
+	high (18), but also lessening, as a part of the 'easing off'.</li><br />
+	<br />
+
+	<li><b>s</b> &#150; I wanted to focus on the s's here, creating 
+	a whole texture of just s's.  Timestretch, Density and Grainsize 
+	all increase in order to achieve this, while the pitch range 
+	expands just a little more.</li><br />
+	<br />
+
+	<li><b>sam</b> &#150; Timestretch, Density and Grainsize 
+	continue to increase as the 's' merges into the 'sam'.  The 
+	lower pitch trace drops to deepen the tone as the texture 
+	thickens.</li><br />
+	<br />
+
+	<li><b>'</b> &#150; With the closing of the 'm', there is almost 
+	a complete gap in the sound, so all parameters immediately drop 
+	to lower values.  Density drops to 2 and Timestretch to 3, 
+	which, relative to the rest of the sound, closes up most of the 
+	gap.  It is held at 3 during this gap by an additional time-point 
+	just before the next section.  This keeps it from expanding 
+	during the section.</li><br />
+	<br />
+
+	<li><b>of</b> &#150; The pitch contouring is used to place the 
+	'of' grains into an upward rising funnel.  Timestretch is 
+	changed to 10 and is held there while Density begins a dramatic 
+	rise towards 19.  At the same time, the Grainsize gradually 
+	reduces to 35 ms, making a transition to the next two sections, 
+	where many short grains populate a wide pitch range and the longest 
+	expansion of material in the sound.</li><br />
+	<br />
+
+	<li><b>n</b> &#150; As is the way with speech, the consonant 
+	'n' starts to appear before the full voiced syllable 'Na', so 
+	this becomes a section in itself.  In particular, Timestretch 
+	starts to move again, going from 10 to 24 in the space of 0.1 
+	sec of <i>infile</i>.  This helps make a transition into the 
+	texture which follows.</li><br />
+	<br />
+
+	<li><b>Na</b> &#150; This becomes the strongest gesture of the 
+	whole sound, with the highest transposition supported by a wide 
+	pitch range and the highest values for Timestretch (24), 
+	Density (19) and the 2<sup>nd</sup> smallest value for Grainsize 
+	(35 ms).</li><br />
+	<br />
+
+	<li><b>t</b> &#150; Again, the 't' precedes the 'ture' by a little 
+	bit, and to make the most of it, Timestretch and Density stay 
+	high, though reduced slightly, and Grainsize stays at 35 ms.  
+	However, the pitch transpositions begin a descent, moving towards 
+	the final 'cadence' of the sound.</li><br />
+	<br />
+
+	<li><b>tu</b> &#150; Now Timestretch and Density are allowed to 
+	lessen, to 14 and 12 respectively, while Grainsizes begin to 
+	elongate.  The pitch traces draw together, moving towards the 
+	original pitch level of the sound.  These features are all 
+	'cadential' in nature (closing, focusing, easing).</li><br />
+	<br />
+
+	<li><b>ure</b> &#150; With the pitch traces focusing in on 0 and 
+	the Timestretch reducing to 9.8, a slight increase in Density 
+	(to 10) and in Grainsize (to 14) give a bit of flurry at the end 
+	in an attempt to capture and make something of the last bits of 
+	the 'ure', which has a tendency to fade away too suddenly.
+	</ul>
+</p>
+</blockquote>
+
+<p>
+<a href="#BIGONETOP"><b>Return</b></a> to top of file.
+<br>
+</p>
+
+
+<h2>
+<font color="#DAA520" id="STUDYING">Studying the contribution of 
+each parameter</font>
+</h2>
+
+<blockquote>
+<p>
+Ensure that <i>bigone.grn</i> is Loaded and in its original state.  How 
+each parameter contributes to the result, and in particular, the role 
+of each breakpoint file, can then be observed by taking it away.  
+You can do this by making the following adjustments in the dialogue 
+box, <b>Making</b> and <b>Playing</b> the result each time.  With 'write 
+to named output' NOT ticked in <b>Options&#47;Settings</b>, you can 
+work with temporary files which are only <b>Saved</b> to disk if you 
+explicitly choose to do so.
+</p>
+
+<p>
+<b>NB:</b> &nbsp; Make these changes to each parameter individually, 
+restoring the original value of the previous parameter before moving 
+on to the next parameter.  Most of the time this is done simply by 
+re-ticking the breakpoint file(s).
+</p>
+
+<p>
+	<ol>
+	<li><b>Move Timestretch to 1 </b> &#150; This is the Default value 
+	and comes up automatically when you untick the breakpoint file.  
+	This wipes out just about every other effect and even truncates 
+	the file (whether you leave the long time in place or move the 
+	slider, which resets it to the length of the <i>infile</i>.  This 
+	illustrates how the Timestretch parameter has been honed in 
+	<i>bigone.grn</i> to give all the other effects the time they 
+	need to unfold.</li><br />
+	<br />
+
+	<li><b>Move Density to 2</b> &#150; Having unticked the breakpoint 
+	file and moved the Density slider to 2, the resulting sound is 
+	stretched out as before, but the even spread of grains takes a 
+	good deal of the definition, the sense of 'gesture', out of the 
+	pitch shapes.  One hears the pitch shapes as more of a steady 
+	contour-arc.  Density is used here, therefore, to intensify 
+	the gestures.</li><br />
+	<br />
+
+	<li><b>Move Grainsize to 106 ms</b> &#150; This Default value 
+	will pop up when you untick the breakpoint file.  This has less 
+	of a dramatic effect on the result than the previous alterations.  
+	However, it does smooth out the texture, whereas the use of smaller 
+	grains at key points served to intensify the density and 
+	strengthen the gesture.</li><br />
+	<br />
+
+	<li><b>Move Grainsize to 24 ms</b> &#150;
+	<blockquote>
+	Be careful here.  Moving the Grainsize slider again has the 
+	extra effect of resetting the output duration to the length of 
+	the <i>infile</i>.  So you need to edit the output duration box, 
+	re-entering the desired duration (28.8);  otherwise, the soundfile 
+	will be severely truncated.  Both the Timestretch and the Grainsize 
+	parameter sliders operate in this way, because they both affect 
+	the output duration in a way which the program cannot know yet.  
+	The Rule of Thumb is first to move the slider and then to 
+	re-entere the output duration.
+	</blockquote>
+	The effect of the small grainsize is to produce an evenly dense 
+	texture.  The intense, swarming effect can be useful, but again 
+	reduces the gestural definition of the sound.</li><br />
+	<br />
+
+	<li><b>Move Grainsize to 200 ms</b> &#150; Now each grain will 
+	contain a bigger chunk of the <i>infile</i> (0.2 sec), long 
+	enough to pick up some semantic sense in each grain.  The 
+	result is, therefore, that of a disjointed, fragmented vocal 
+	outpouring.  (Increasing the Wander parameter would augment 
+	this effect &#150; see below).</li><br />
+	<br />
+
+	<li><b>Move Pitch to 0</b> &#150; The original Grainsize 
+	breakpoint file is restored now, but both upper and lower 
+	pitch traces are disabled and the Pitch transposition value 
+	is set at 0.  This produces a very interesting result.  The 
+	source soundfile itself has a natural pitch contour, which 
+	is still there.  The Timestretch and grain Density time 
+	contours are operating, but the dense texture stays focused 
+	on the sound's original, natural pitch contour instead of 
+	spreading out as before.  Thus we hear a resonant, textured, 
+	but very focused version of the original, moving along its 
+	original contour like a swarm of insects moving in a thin line.  
+	Whether this brings out the best in this particular <i>infile</i> 
+	is a good question, but it is certainly an effect which will 
+	serve a useful compositional purpose.</li><br />
+	<br />
+
+	<li><b>Move Loudness to a constant -9.6dB</b> &#150; The pitch 
+	contours are restored, so everything is as it was, except that 
+	now all the grains are equally loud.  You may agree that his 
+	also 'pulls the texture together', making it sound more 
+	even and focused.  The previous wide range of grain amplitudes 
+	created a more disparate, mottled, effect &#150; a richer 
+	texture, yes, but not always what you might want.</li><br />
+	<br />
+
+	<li><b>Move Space to Centre</b> &#150; The Loudness breakpoint 
+	file is restored, and the Space ones disabled.  To my ear, 
+	this makes the sound too focused and counteracts the presence 
+	of multiple grains.  Perhaps it seems 'unnatural' to have 
+	them all in one place.  Spatial diffusion and random values 
+	seem to play an important role in multi-event textures, of 
+	which so many are known to us through the natural world (e.g., 
+	rain).  So we notice these things.  Fractal processes may 
+	bring us even closer to a feeling of 'naturalness' in textured 
+	music.</li><br />
+	<br />
+
+	<li><b>Move Wander to its maximum (1.9)</b> &#150;  The Loudness 
+	range is restored, so only Wander is different from before.  
+	Amazing!  This causes a huge increase in the degree of chaos 
+	in the texture, because each grain is being taken from somewhere 
+	else within a (moving) 1.9 sec chunk (search range) of 
+	<i>infile</i>.
+	</ol>
+</p>
+</blockquote>
+
+<p>
+<a href="#BIGONETOP"><b>Return</b></a> to top of file.
+<br>
+</p>
+
+
+
+<h2>
+<font color="#DAA520" id="SUMMARY">Summary of Composer Tips</font>
+</h2>
+
+<blockquote>
+<p>
+	<ul>
+	<li>Spend some time listening to Nature's many multi-event 
+	textures (rain, insects, thunder, running water, frogs, 
+	starlings, sparrows and other bird groups, wind through leaves, 
+	hooves of herds on the move, crashing waves, etc.  Ask: what 
+	is the morphology of the component 'grains', and what are some 
+	possible psychological analogues of such morphologies? Do any sonic 
+	'gestures' stand out? What pitch and density contours can be 
+	identified?  Similarly for people-created multi-event urban 
+	textures.</li><br />
+	<br />
+
+	<li>Prepare a soundfile for input which has the kind of 
+	timbral and gestural components and changes which you want 
+	to develop in your granular sound.  This gives you more of a 
+	start than a steady-state sound would.</li><br />
+	<br />
+
+	<li>Identify the timing of key events in your <i>infile</i>.  
+	This makes it possible to shape this input with precision.  
+	(Breakpoint file times relate to the <i>infile</i>.)</li><br />
+	<br />
+
+	<li>Where there is a wide pitch range, a low Density will result 
+	in very few and very sporadic grains.  If you are imagining 
+	this wide vertical pitch range filled up with a rich texture, 
+	use a Density high enough to achieve this.</li><br />
+	<br />
+
+	<li>Similarly, if you place a large pitch range and a high 
+	Density somewhere, but your Timestretch is negligible, there 
+	may be very little time in which the multi-events can take 
+	place.  You may therefore also want to give things a little 
+	more time by increasing the Timestretch during this passage.</li><br />
+	<br />
+
+	<li>Remember the Rule of Thumb about the Timestretch and 
+	Grainsize parameters:  move the slider first, and then 
+	adjust the output duration.
+	</ul>
+</p>
+
+<p>
+<a href="#BIGONETOP"><b>Return</b></a> to top of file.
+<br>
+</p>
+</blockquote>
+
+
+<hr><!-- ----------------------------------------------------- -->
+
+<h2>
+<font color="#DAA520" id="SUGGESTIONS">Procedure Suggestions</font>
+</h2>
+
+<blockquote>
+<p>
+<ul>
+<li>Invoke this HTML Study file and start up <i>GrainMill</i> by 
+double-clicking on their name or icon, respectively.</li><br />
+<br />
+
+<li>In <i>GrainMill</i>, <b>Open</b> the input soundfile <i>balsam.wav</i>.</li><br />
+<br />
+
+<li>In <i>GrainMill</i>, under <b>Options/Settings</b>:
+	<ul>
+	<li>Set the Working Directory to the directory where the 
+	.GRN files example (and <i>balsam</i> &#150; or another soundfile 
+	of about the same duration (10 secs) are located.
+	<li>You are recommended not to select 'Write to named outfile' 
+	(i.e., leave it unticked);  then you can try out different 
+	parameter settings while writing to temporary files, only 
+	saving when you choose to do so (using <b>Save As</b>).
+	<li>Tick 'Keep Dialog Visible' so it's readily available 
+	for Loading new .GRN files or making changes to the 
+	parameters.
+	</ul></li><br />
+<br />
+
+<li>In <i>GrainMill</i>, <b>Load</b> <i>bigone.grn</i>, <b>Make</b> 
+the sound, and <b>Save Soundfile</b> as <i>bigone</i> (with the appropriate 
+extension for your system).</li><br />
+<br />
+
+<li>When loading the .GRN file, in all probability you will be given 
+a message stating that your current directory and the directory named 
+in the .GRN file are not the same, and asked if you want to change to 
+the 'new directory'.  The 'new directory' would be the one named in the 
+.GRN file, so the answer is NO, i.e., you want to stay in the working 
+directory you've already selected.  If you then re-save the .GRN file, 
+the new version of the file will contain a reference to your own 
+directory setup.</li><br />
+<br />
+
+<li>Go back to this HTML Play file and play the sound you've just made, 
+comparing input and output: <i>balsam</i> and <i>bigone</i>.  
+<li>You can see all the parameter settings in the <i>GrainMill</i> 
+dialog box, but it might also be useful to print them out.  These 
+are the files with the <b>.txt</b> extension.  You can also save 
+your own settings as a text file with <b>Save as Text</b>.</li><br />
+<br />
+
+<li><b>Hint:</b> &nbsp;Use <b>File&#47;Compare with</b> in the Breakpoint 
+Editor to see both the upper and lower breakpoint traces for a parameter 
+at the same time.  You will probably need to click on the <b>Align 
+Vertical</b> button.</li><br />
+<br />
+
+<li>Using the temporary file mechanism in <i>GrainMill</i>, you can 
+try out other changes to the parameters in a non-destructive way, 
+i.e., leaving the saved soundfile in tact.  You only overwrite it if 
+you <b>Save</b>.  You can of course <b>Save As</b> some interesting 
+sonic result to a new soundfile name.</li><br />
+<br />
+
+<li>You can also use this HTML Play file as a place to edit in your 
+own comments about the example or even to add your own examples.
+</ul>
+</p>
+</blockquote>
+
+
+<br>
+
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 30 Oct 2021 -- HTML5 version<br>
+    Revisions: Robert Fraser<br>
+    Documentation: Archer Endrich<br />
+    	Text last updated: 23 July 1999<br />
+	Release 5 revisions: 19 May 2005<br />
+	5 October 2005<br />
+	<b>mp3</b> format changes: 21 February 2010 (sources or near sources 
+	are kept as <b>wav</b>)<br />
+	Thanks to Peter Karkut for permitting the use of his soundfile.<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2021 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

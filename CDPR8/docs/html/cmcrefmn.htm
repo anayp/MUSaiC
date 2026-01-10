@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cmcrefmn.htm  MULTI-CHANNEL TOOLKIT - HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP M-C TOOLKIT</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <dt><a href="#INTRO"><b>Introduction</b></a>
+  <br /><br />
+  <dt><a href="#MCTOOLSLIST"><b>M-C TOOLS:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ABFPAN"><b>ABFPAN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ABFPAN2"><b>ABFPAN2</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CHANNELX"><b>CHANNELX</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CHORDER"><b>CHORDER</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#CHXFORMAT"><b>CHXFORMAT</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#COPYSFX"><b>COPYSFX</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FMDCODE"><b>FMDCODE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#INTERLX"><b>INTERLX</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#NJOIN"><b>NJOIN</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#NMIX"><b>NMIX</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#PAPLAY"><b>PAPLAY</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#RMSINFO"><b>RMSINFO</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SFPROPS"><b>SFPROPS</b></a>
+
+  <br><br>
+  <b>Other Multi-Channel:</b><br>
+  <dt>&nbsp;&nbsp;<a href = "cgromc.htm"><b>MULTI-CHAN GROUP</b></a>
+
+  <!-- 
+  <br /><br /> 
+  <dt><a href = "#FOCUSTECHNICAL"><b>Technical</b></a>
+  <br /><br />
+   -->
+  <br /><br />
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <div align=center>
+   <br>
+   <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+   </div>
+
+   <h1 align=center id="MCCONTENTS"> <!-- id prob not needed? Was font color="0000BB" -->
+   CDP Multi-Channel Toolkit<br>
+   &#126; by R W Dobson &#126;
+   </h1>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="MCTOOLSLIST">Multi-Channel File Handling Functions </h2>
+
+<dl>
+<dt><a href="#INTRO"><b>INTRODUCTION</b></a>
+<dd>About the Multi-Channel Toolkit, 'surround sound' and Ambisonic B-Format</dd>
+<br /><br />
+<dt><a href="#ABFPAN"><b>ABFPAN</b></a>
+<dd>Apply a fixed or orbiting 1<sup><small>st</small></sup> order 
+    B-Format pan to mono soundfile</dd>
+<dt><a href="#ABFPAN2"><b>ABFPAN2</b></a>
+<dd>Apply a fixed or orbiting 2<sup><small>nd</small></sup> order 
+    B-Format pan to mono soundfile</dd>
+<dt><a href="#CHANNELX"><b>CHANNELX</b></a>
+<dd>Extract all or selected channels from a multi-channel soundfile</dd>
+<dt><a href="#CHORDER"><b>CHORDER</b></a>
+<dd>Reorder soundfile channels in multi-channel soundfile</dd>
+<dt><a href="#CHXFORMAT"><b>CHXFORMAT</b></a>
+<dd>Modify WAVE_EX header to change GUID and&#47;or speaker positions</dd>
+<dt><a href="#COPYSFX"><b>COPYSFX</b></a>
+<dd>Copy soundfiles &#47; convert from one format to another</dd>
+<dt><a href="#FMDCODE"><b>FMDCODE</b></a>
+<dd>Decode 1<sup><small>st</small></sup> or 2<sup><small>nd</small></sup> 
+order B-Format soundfile to a choice of speaker layouts</dd>
+<dt><a href="#INTERLX"><b>INTERLX</b></a>
+<dd>Interleave mono or stereo files into a multi-channel file</dd>
+<dt><a href="#NJOIN"><b>NJOIN</b></a>
+<dd>Concatenate multiple soundfiles into a single file, with optional CUE list for 
+CD burning</dd>
+<dt><a href="#NMIX"><b>NMIX</b></a>
+<dd>Simple mix of two multi-channel soundfiles, with optional offset</dd>
+<dt><a href="#PAPLAY"><b>PAPLAY</b></a>
+<dd>Playback of multi-channel soundfiles</dd>
+<dt><a href="#RMSINFO"><b>RMSINFO</b></a>
+<dd>Scan file and report RMS and average power level statistics</dd>
+<dt><a href="#SFPROPS"><b>SFPROPS</b></a>
+<dd>Display soundfile details, with WAVE_EX speaker positions</dd>
+</dl>
+</p>
+
+<hr><!-- ********************************************************************* -->
+
+<h2 id="INTRO">Introduction</h2>
+
+<h3>About the Multi-Channel Toolkit</h3>
+
+<blockquote>
+<p>
+The CDP MULTI-CHANNEL TOOLKIT comprises a suite of command-line programs (for Windows, OS X and Linux) to assemble and manipulate the channels of multi-channel soundfiles. It supports the standard PCM WAVE and AIFF file formats, with a special emphasis on Microsoft's
+ <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd757714%28v=vs.85%29.aspx"  Target="_blank"><b>WAVEFORMATEXTENSIBLE</b></a> (WAVE_EX) file format. 
+</p>
+
+<p>
+The WAVE_EX format incorporates two features of special interest - the ability to associate one of eighteen named speaker positions with a channel (e.g. for 5.1 surround sound), and support for third-party custom file formats. In this respect the TOOLKIT supports and demonstrates the new <a href="http://dream.cs.bath.ac.uk/researchdev/wave-ex/bformat.html" Target="_blank"><b>AMB file format</b></a> for Ambisonic B-Format surround audio, based on WAVE_EX.  An important use of the TOOLKIT is to assemble individual audio channels into a B-Format file (see <a href="#INTERLX"><b>INTERLX</b></a>) for use with one of the many decoders now available as standalone applications or plugins. It will also decode a B-Format file in WAVE_EX format (see <a href="#FMDCODE"><b>FMDCODE</b></a>).
+</p>
+
+<p>
+The TOOLKIT programs do not perform any signal processing on the audio (except where B-Format encoding or decoding is applied). A comprehensive suite of tools for processing multi-channel files can be found in CDP's <a href = "cgromc.htm"><b>MULTICHANNEL</b></a> program group.
+</p>
+
+<p>
+To get reasonable use out the programs a <b>multi-channel soundcard</b> is required - i.e., one that provides a 'device' which can accept a single file up to the number of channels the card supports. Some of the programs have valuable use even without a multi-channel card. For example, <a href="#PAPLAY"><b>PAPLAY</b></a> can mix a quadrophonic soundfile down to stereo, while <a href="#COPYSFX"><b>COPYSFX</b></a> is the CDP's "Swiss-army knife" for file-format conversion and will convert between a 'standard' multi-channel file and a WAVE_EX file.
+</p>
+
+<p>
+The following sample formats (WAVE, WAVE_EX, AIFF, AIFF_C) are supported:
+  <ul>
+  <li>16-bit integer</li>
+  <li>32-bit integer</li>
+  <li>32-bit floating-point (AIFF written in AIFF-C format)</li>
+  <li>24-bit ('packed')</li>
+  </ul>
+</p>
+
+
+<p>
+Note also:
+<ul>
+<li>All programs support the maximum 4GB files sizes available in the WAVE and AIFF file formats.</li> 
+<li>OS X: for all programs the minimum OS version supported is now 10.5 (Leopard). The programs are Intel only.</li> 
+<li>All programs read and write the new <b>PEAK chunk</b>, and in many cases this information is displayed on the console.</li> 
+<li>All programs can recognize a Windows 'shortcut' to a soundfile, so long as it is in the form "soundfile.wav.lnk" - i.e the WAV or AIF extension is there.  Shortcuts to CDP soundfiles can be created with the System Utility program, <a href="csysutil.htm#ALIAS"><b>ALIAS.</b></a></li>
+<li>Sources for the programs (including Linux) are now available as part of the <a href="http://www.unstablesound.net/cdp.html"><b>CDP source release</b></a> under the LGPL licence. (No binary downloads are available for Linux.)</li>
+</ul>
+</p>
+</blockquote>
+
+<h3>
+Surround Sound
+</h3>
+
+<blockquote>
+<p>
+
+Interest in <b>'surround sound'</b> is growing rapidly, and composers using 
+computer-based digital equipment are now extending their use of PAN into the various types of 'surround': adding 'depth' in the horizontal plane, truly vertical and fully spherical dimensions, ideally in a way which is interactive in the performance situation.
+</p>
+
+<p>
+How you organise your loudspeaker layout is up to you. For the beginner, matching channels to speakers can be quite confusing. The MULTI-CHANNEL TOOLKIT supports a wide variety of speaker layouts (see <a href="#COPYSFX"><b>COPYSFX</b></a> and <a href="#INTERLX"><b>INTERLX</b></a>; <a href="#PAPLAY"><b>PAPLAY</b></a> and <a href="#FMDCODE"><b>FMDCODE</b></a>), which include the following:
+</p>
+</blockquote>
+
+<div align="left">
+<IMG SRC = "images/mclayouts.gif">
+</div>
+
+<blockquote>
+<p>
+However, many of the CDP processes in the <a href="cgromc.htm"><b>MULTICHANNEL group</b></a> tend to assume a clockwise ring numbering (not directly supported by the TOOLKIT):
+	<div align="center">
+	<IMG SRC = "images/ring.jpg">
+	</div>
+</p>
+
+<p>
+For these programs, if you require a different layout, the TOOLKIT's <a href="#CHORDER"><b>CHORDER</b></a> can be used to convert the channel numbering. 
+</p>
+
+<p>
+One simple solution is to use "generic" WAVE_EX files, in which channels are matched to no specific speaker layout, but are sent to the soundcard in ascending order. You can then hook up the channel outputs to your favoured speaker layout. Alternatively, you might use a popular speaker layout, such as 5.1 or 7.1 cinema surround, and write WAVE_EX files that support this layout. A third option is to experiment with Ambisonics. 
+
+</p>
+</blockquote>
+
+<h3>Ambisonic B-Format</h3>
+<blockquote>
+<p>
+Unlike other multi-channel surround formats, Ambisonics' transmission channels do not carry speaker signals. Instead, they contain a speaker-independent representation of a sound field called <b>B-format</b>, which is then decoded to the listener's speaker setup (Wikipedia).
+</p>
+<p>  
+Ambisonics can be encoded within either .WAV or .AIFF formats; however, there was initially no way of distinguishing between Ambisonic B-format files and plain multi-channel files. For this reason, CDP's Richard Dobson has defined a simple B-Format specialization of WAVE_EX that supports up to third-order B-Format streams (i.e. up to sixteen channels). It is now widely known and used as the <b>AMB</b> format. The CDP MULTI-CHANNEL TOOLKIT includes support for AMB files. A B-Format stream can be decoded to a wide range of speaker layouts (using <a href="#FMDCODE"><b>FMDCODE</b></a>), including the ubiquitous but otherwise unambitious 5.1 cinema surround arangement.
+</p>
+
+<p>
+For more information on Ambisonics, see the <a href="https://en.wikipedia.org/wiki/Ambisonics" Target="_blank"><b>Wikipedia article</b></a> on the subject. <br>
+Read more about the AMB format in Richard's article <a href="http://www.rwdobson.com/bformat.html" Target="_blank"><b>The AMB Ambisonic File Format</b></a>. 
+</p>
+</blockquote>
+  					   	
+
+<p>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top">
+<b>Return</b></a> to 'Groucho' Time-Domain Index<br />
+</p>
+
+
+
+<hr><!-- ********************************************************** -->
+<h2 id="ABFPAN">ABFPAN &#150; Apply a fixed or orbiting 
+1<sup><small>st</small></sup> order B-Format pan to mono soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+
+
+<b>abfpan</b> [<b>-b</b>] [<b>-x</b>] [<b>-o</b><i>N</i>] 
+<i>infile outfile startpos endpos</i>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; standard <b>mono</b> .wav  (any of the sample 
+   formats listed above)<br>
+<i>outfile</i> &#150; Default:  create a standard 4-channel 
+<b>.wav</b> soundfile.  Or use <b>-o</b> flag to write B-Format.<br>
+<i>startpos</i> &#150; rotation start position (Range: greater than 0.0 
+and less than 1.0.  0.0 and 1.0 = Centre Front)<br />
+<i>endpos</i> &#150; determines the nature of the rotation:
+	<ul>
+	<li>&lt; 0.0 gives anticlockwise rotation (negative numbers)</li>
+	<li>&gt; 0.0 gives clockwise rotation</li>
+	<li>units give number of revolutions</li>
+	<li>fractions give final position</li>
+	<li>set <i>endpos</i> = <i>startpos</i> for a fixed pan</li>
+	</ul>
+<b>-b</b> &#150; write output as horizontal Ambisonic B-Format (<b>.amb</b>):
+the standard format<br />
+<b>-x</b> &#150; write B-Format (WAVE_EX) format file.  This requires 
+an <b>.amb</b> or a <b>.wav</b> file extension. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Default: write a standard multi-channel file (WAVE, AIFF).
+	<blockquote>
+	Note that ABFPAN requires the <b>-x</b> flag to create 
+	a WAVE_EX file.  This flag should always be used when writing 
+	a <b>.wav</b> format file.  Use the <b>-b</b> flag to write 
+	the B-Format channels.  <i>Both flags are needed to create an 
+	<b>AMB</b> format file.</i>  Such a file can then be decoded using 
+	<a href = "#FMDCODE"><b>FMDCODE</b></a> to a choice of speaker layouts.
+	</blockquote>
+<b>-o</b><i>N</i> &#150; the number of B-Format output 
+   channels:  <i>N</i> = 3 or 4 only. <br> 
+&nbsp;&nbsp;&nbsp;&nbsp; (Default:  write a standard 4-channel .wav
+   file.)
+</blockquote>
+</p>
+
+<h3>
+About ABFPAN
+</h3>
+
+<blockquote>
+<p>
+ABFPAN generates a simple periodic rotating pan around the listener, 
+using 1<sup><small>st</small></sup>-order B-Format (horizontal) 
+encoding.  The <i>startpos</i> and <i>endpos</i> values determine 
+the number of revolutions performed over the duration of the file.  
+	<ul>
+	<li>Identical values will result in a fixed radial position.</li>
+	<li>Integer positions define Centre Front.</li>
+	<li>A negative <i>endpos</i> value generates an anti-clockwise 
+	   pan.</li>
+	<li>Pans a sound ambisonically in a circle round the listener, 
+	    between given start and end positions.</li>
+	<li>Multiple rotations are possible.</li>
+	<li>Output is either a standard (decoded) quad soundfile, or 
+	    Horizontal B-Format (standard WAVE file).</li>
+	<li>The latter can be converted to the WAVE_EX format by 
+	    <a href=#COPYSFX><b>COPYSFX</b>.</a></li>
+	</ul
+</p>
+</blockquote>
+
+<p>
+End of ABFPAN<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="ABFPAN2">ABFPAN2 &#150; Apply a fixed or orbiting 
+2<sup><small>nd</small></sup> order B-Format pan to mono soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+
+<p>
+<b>abfpan2</b> [<b>-g</b><i>gain</i>] [<b>-w</b>] [<b>-p</b>[<i>deg</i>]] 
+<i>infile outfile startpos endpos</i>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>infile</i> &#150; standard <b>mono</b> .wav (any of the sample 
+   formats listed above)<br />
+<i>outfile</i> &#150; a 2<sup><small>nd</small></sup>-order B-Format soundfile
+(use <b>.amb</b> extension). Note that the default .wav output is in WAVE_EX format. 
+Or use the <b>-w</b> flag to write a plain WAVE format file.<br>
+<i>startpos</i> &#150; rotation start position (Range: greater than 0.0 
+and less than 1.0.  Both 0.0 and 1.0 = Centre Front:  i.e., they are 
+the same place.)<br />
+<i>endpos</i> &#150; determines the nature of the rotation:
+	<ul>
+	<li>&lt; 0.0 gives anticlockwise rotation (negative numbers)</li>
+
+	<li>&gt; 0.0 gives clockwise rotation</li>
+
+	<li>units give number of revolutions</li>
+
+	<li>fractions give final position</li>
+
+	<li>set <i>endpos</i> = <i>startpos</i> for a fixed pan</li>
+
+	</ul>
+
+<b>-g</b><i>gain</i> &#150; scale <i>infile</i> amplitude by 
+a factor of <i>gain</i> amount.  <i>Gain</i> must be &gt; 0.<br />
+<b>-w</b> &#150; write standard (plain) WAVE format multi-channel 
+soundfile (<b>.wav</b> &#47; <b>.aiff</b>). <br> 
+&nbsp;&nbsp; Default: write WAVE_EX B-Format. The plain WAVE format file may be needed by some legacy applications.<br />
+<b>-p</b>[<i>deg</i>] &#150; write a full 9-channel (periphonic) 
+B-Format soundfile.  <br>
+&nbsp;&nbsp;  Default:  write a 5-channel (2<sup><small>nd</small></sup>-order horizontal) file.<br>
+<i>deg</i> sets an optional fixed height argument, in degrees.  Range: -180 
+to +180, where -90 = nadir, +90 = zenith (directly above).  
+Default:  <i>deg</i> = 0, with which the height channels (Z, R, 
+S, T) will be empty.
+
+</blockquote>
+</p>
+
+<h3>
+About ABFPAN2
+</h3>
+
+<blockquote>
+<p>
+This new extended version of ABFPAN employs 
+2<sup><small>nd</small></sup>-order B-Format encoding, with optional 
+fixed elevation.  Output is in <b>AMB</b> format, and there is no decoded 
+output option.  A horizontal-only output comprises five channels, and 
+one with height ('periphonic') comprises 9 channels.
+</p>
+
+<p>
+ABFPAN2, like ABFPAN, generates a simple periodic 
+rotating pan around the listener, but this time using 
+2<sup><small>nd</small></sup>-order B-Format encoding.  The pan arguments (<i>startpos</i> and <i>endpos</i>) are the same 
+as in ABFPAN.  The 
+<i>startpos</i> and <i>endpos</i> values determine the number of 
+revolutions performed over the duration of the file.  
+	<ul>
+	<li>Identical values will result in a fixed radial position.</li>
+	<li>Integer positions define Centre Front.</li>
+	<li>A negative <i>endpos</i> value generates an anti-clockwise 
+	   pan.</li>
+	<li>Pans a sound ambisonically in a circle round the listener, 
+	    between given start and end positions. </li>
+	<li>Multiple rotations are possible.</li>
+	<li>Output is either a 2<sup><small>nd</small></sup>-order 
+	    B-Format multi-channel soundfile, or a standard (decoded) 
+	    quad soundfile (<b>-w</b> flag). </li>
+	<li>The latter can be converted to the WAVE_EX format by 
+	    COPYSFX.</li>
+	</ul
+</p>
+</blockquote>
+
+<p>
+End of ABFPAN2<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="CHANNELX">CHANNELX &#150; Extract all or selected channels 
+from a multi-channel soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<p>
+<b>channelx</b> [<b>-o</b><i>basename</i>] <i>infile chan_no</i> 
+[<i>chan_no...</i>]
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<b>-o</b><i>basename</i> &#150; base name (with extension) of outfiles (appended *_cN for ch N)
+	<blockquote>
+	<b>NB:</b> the channels of WAVE_EX files are written 
+	as standard soundfiles.
+	</blockquote>
+<i>infile</i> &#150; input multi-channel soundfile<br />
+<i>chan_no</i> &#150; channel number(s) of channels to extract
+	<blockquote>
+	List a single integer to extract one channel, or 
+	several integers separated by spaces to extract 
+	several channels, up to the number of channels in the 
+	file.
+	</blockquote>
+</blockquote>
+</p>
+
+<h3>
+About CHANNELX
+</h3>
+
+<p>
+	<ul>
+	<li>CHANNELX extracts all or selected channels of a multi-channel 
+	soundfile file to separate output mono soundfiles.</li>
+	<li>The channels are counted from 1.</li>
+	<li>By default the output soundfiles are named as <i>infile_c1</i>, 
+	<i>infile_c2</i> etc., with the source file extension.</li>
+	<li>Alternatively, you can use the <b>-o</b> flag to define 
+	a custom name.</li>
+	</ul>
+</p>
+
+<p>
+<b>ALSO SEE:</b>
+<a href = "cgrohous.htm#CHANS"><b>HOUSEKEEP CHANS 2</b></a> &#150; extracts all channels from a soundfile.
+</p>
+
+<p>
+End of CHANNELX<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="CHORDER">CHORDER &#150; Re-order soundfile channels 
+in a multi-channel soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<p>
+<b>chorder</b> <i>infile outfile orderstring</i> 
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>infile</i> &#150; input multi-channel soundfile
+	<blockquote>
+	Infile</i> channels are mapped in order as a = 1, b = 2 ... z = 26. <br>
+	For example, the channels in a 4-channel file are represented by the characters
+ 	<code><b>abcd</b></code>.  Any other character is an error.
+	</blockquote>
+<i>outfile</i> &#150; output multi-channel soundfile with re-ordered 
+channels.  <br>
+&nbsp;&nbsp;&bull;&nbsp;The <b>.amb</b> extension is supported for the outfile.<br>
+&nbsp;&nbsp;&bull;&nbsp;Note that the <i>infile</i> (WAVE_EX) speaker positions are discarded.<br><br>
+<i>orderstring</i> &#150; the order string is made up of any 
+combination of characters, a to z inclusive, e.g. <code><b>dcba</b></code>
+	<ul>
+	<li>Characters are confined to those of the input channels and MUST be lower case.</li>
+	<li>Characters may be used more than once. 
+	Duplicate characters duplicate the corresponding input channel.</li>
+	<li>The zero character ('0') may be used to set a silent 
+	channel.</li>
+	<li>A maximum of 26 channels (a-z) is supported for both input 
+	and output.</li>
+	</ul>
+
+</blockquote>
+</p>
+
+<h3>
+About CHORDER
+</h3>
+
+<p>
+CHORDER expedites many of the tasks previously requiring a combination 
+of CHANNELX (extract channels) and INTERLX (interleave channels).  Channels may be re-ordered while retaining the number of them.  The program also supports both extracting a subset of 
+input channels (e.g., 1<sup><small>st</small></sup>-order channels 
+from a 2<sup><small>nd</small></sup> or 3<sup><small>rd</small></sup> 
+order file), and augmenting the channel count by duplicating 
+input channels and&#47;or defining a number of empty (silent) 
+channels.  All <b>.wav</b> output files are in WAVE_EX format &#150; 
+the speaker positions (and&#47;or the GUID) can be changed using 
+<a href = "#CHXFORMAT"><b>CHXFORMAT</b></a>:
+</p>
+<blockquote>
+<p>
+<b>Example 1:</b>  Convert anti-clockwise quad layout to standard 
+surround quad.  The command lines are:<br />
+&nbsp;&nbsp;<code>chorder inregular.wav outquad.wav abcd</code><br />
+&nbsp;&nbsp;<code>chxformat -s0x33 outquad.wav</code>
+</p>
+
+<p>
+<b>Example 2:</b> Convert 5.0 surround file to 5.1 (with silent 
+LFE channel).  The command lines are:<br />
+&nbsp;&nbsp;<code>chorder in50.wav out51.wav abc0de</code><br />
+&nbsp;&nbsp;<code>chxformat -s0x3f out51.wav</code>
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b> <a href = "#FMDCODE"><b>FMDCODE</b></a> and <a href = "#CHXFORMAT"><b>CHXFORMAT</b></a>.
+</p>
+
+<p>
+End of CHORDER<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="CHXFORMAT">CHXFORMAT &#150; Modify WAVE_EX header to 
+change GUID and&#47;or speaker positions
+</h2>
+
+<blockquote>
+<p style="background-color: #E0E0E0">
+<font color="#FF0000">
+
+<b>WARNING: this program is destructive - it modifies the header of the infile.</b><br> File system errors are always a danger. Do not use with files that cannot be replaced - use <a href="#COPYSFX"><b>COPYSFX</b></a> instead. It can also be used safely in test mode to report relevant header properties. In this release this program is marked as beta. While extensively tested (it employs full header parsing, it does not take any "short cuts"), as a destructive program it comes with no guarantees, nor warranty. <br>
+<b>Note that only the file header is modified;&nbsp;&nbsp;the audio data itself is untouched.</b></font>
+</p>
+</blockquote>
+
+<h3>
+Usage
+</h3>
+<p>
+<b>chxformat</b> [<b>-m</b>] | [[<b>-t</b>] [<b>-g</b><i>GUID</i>]
+[<b>-s</b><i>mask</i>]] <i>filename</i> 
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>filename</i> &#150; input multi-channel soundfile in the WAVE_EX 
+format<br />
+<b>-m</b> &#150; display list of WAVEX mask values.  This option is 
+not to be used in combination with other options.<br />
+<b>-t</b> &#150; test only:  do not modify file.
+	<ul>
+	<li>If only <i>filename</i> is given (the infile), the program 
+	prints the current GUID type and speaker mask.</li>
+
+	<li>In test mode, the program checks <i>filename</i>, prints 
+	the current channel mask as binary, and, if the <b>-s</b> option 
+	is set, the new mask in binary.</li>
+	</ul>
+<b>-g</b><i>GUID</i> &#150;  change GUID type between PCM and AMB.
+	<ul>
+	<li><i>GUID</i> = <b>1</b> is for Plain WAVEX</li>
+	<li><i>GUID</i> = <b>2</b> is for AMB</li>
+	</ul>
+<b>-s</b><i>mask</i> &#150; change speaker position mask.
+	<ul>
+	<li><i>mask</i> = <b>0</b> unsets the channel mask, otherwise 
+	set to <i>mask</i>.</li>
+	<li><i>mask</i> may be given in decimal or hexadecimal 
+	(prefix '0x') &#150; note examples given in <a href=#CHORDER><b>CHORDER</b></a> section.</li>
+	<li>Note that speaker positions are only supported for WAVEX PCM 
+	files.</li>
+	<li>If <i>GUID</i> is set to <b>2</b>, the <b>-s</b> option 
+	should not be used. </li>
+        <li>Any existing speaker positions will be set to zero.</li>
+	<li>Type <code>chxformat -m</code> at the console to see a list of WAVEX <i>mask</i> values.</li>
+
+	</ul>
+
+</blockquote>
+</p>
+
+<h3>
+About CHXFORMAT
+</h3>
+
+<blockquote>
+<p>
+CHXFORMAT operates exclusively on files in the WAVE_EX format.  Some 
+familiarity with this format is advisable before using this program.
+</p>
+
+<p>
+The <b>-g</b> option can be used to change a file from AMB format to 
+<b>.wav</b> or <i>vice versa</i>, e.g., to be able to load a 
+B-Format file into an editor or DAW that does not know about the 
+AMB format.  The program automatically assigns the appropriate 
+GUID according to whether the samples are integer or floating-point.
+</p>
+
+<p>
+The <b>-s</b> option is used the change the contents of the WAVE_EX 
+speaker position flags, either to zero (generic WAVE_EX) or to some 
+other layout.  The flag value can be entered in either decimal or 
+hexadecimal form.
+</p>
+
+<p>
+Use the <b>-m</b> option on its own to see the list of available 
+positions, together with examples of the most common layouts.
+</p>
+
+<p>
+Use the <b>-t</b> option to see the current speaker layout of the 
+file, and to verify the chosen speaker layout.  The layout value is 
+printed in binary, to facilitate checking against the position list.
+</p>
+
+<p>
+Finally, use CHXFORMAT with just a file name to see the relevant 
+properties of <i>filename</i>.  For a comprehensive general format 
+report, use <a href = "#SFPROPS">SFPROPS</a>.
+</p>
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b> <a href = "#CHORDER"><b>examples</b></a> of use with CHORDER.
+</p>
+
+<p>
+End of CHXFORMAT<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="COPYSFX">COPYSFX &#150; Copy&#47;convert soundfiles
+</h2>
+
+<h3>
+Usage
+</h3>
+
+<p>
+<b>copysfx</b> [<b>-d</b>] [<b>-h</b><i>N</i>] [<b>-s</b><i>N</i>] 
+[<b>-t</b><i>N</i>]  <i>infile outfile</i>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>infile</i> &#150; a <b>wav</b> or <b>aif</b> soundfile<br>
+
+<i>outfile</i> &#150; a <b>wav</b> or <b>aif</b> soundfile. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;Default in all cases: <i>outfile</i> has the format of the <i>infile</i>.<br><br>
+
+<b>-d</b> &#150; apply TPDF (2-LSB triangular) dither to a 16-bit 
+<i>outfile</i><br />
+<b>-h</b><i>N</i> &#150; write minimum header:<br>
+	<ul>
+	<li><b>0</b> = minimum (no extra data:  this avoids incompatibility 
+	    with software which cannot read the extra data)</li>
+	<li><b>1</b> = PEAK data only</li>
+	<li>Default (flag not used): include PEAK data.</li>
+	</ul>
+
+<b>-s</b><i>N</i> &#150; force output sample type to type <i>N</i><br />
+	<blockquote>
+	<b>Available sample types:</b>
+		<ol>
+		<li>16-bit integers (shorts)</li>
+		<li>32-bit integer (longs)</li>
+		<li>32-bit floating-point</li>
+		<li>24-bit integer 'packed'</li>
+		</ol>
+	Default (flag not used): format of <i>infile</i>
+	</blockquote>
+
+<b>-t</b><i>N</i> &#150; write <i>outfile</i> format as type <i>N</i><br>
+	<blockquote>
+	<b>Possible formats:</b>
+	<ol start = 0>
+	<li> &#150; (default) standard soundfile (<b>.wav</b>, 
+	<b>.aif</b>, <b>.afc</b>, <b>.aifc</b>)</li>
+	<li> &#150; generic WAVE_EX (no speaker assignments)</li>
+	<li> &#150; WAVE_EX mono&#47;stereo&#47;quad (LF, RF, LR, RR) &#150  
+	<i>infile</i> number of channels must match</li>
+	<li> &#150; WAVE_EX quad surround (L, C, R, S) &#150   <i>infile</i> 
+	must be quad</li>
+	<li> &#150; WAVE_EX 5.1 format surround &#150   <i>infile</i> must 
+	be 6-channel</li>
+	<li> &#150; WAVE_EX Ambisonic B-Format (W, X, Y, A ...) &#150   
+	the <b>.amb</b> extension is supported</li>
+	<li> &#150; WAVE_EX 5.0 surround &#150  <i>infile</i> must be 5-channel</li>
+	<li> &#150; WAVE_EX 7.1 surround &#150  <i>infile</i> must be 8-channel</li>
+	<li> &#150; WAVE_EX cube surround &#150  <i>infile</i> must be 8-channel</li>
+	<li> &#150; WAVE_EX 6.1 Surround &#150  <i>infile</i> must be 7-channel<br>
+	</ol>
+	<b>NB: Types 1 to 8 are for WAV format only.</b>
+	</blockquote>
+
+</blockquote>
+</p>
+
+<h3>
+About COPYSFX
+</h3>
+
+<blockquote>
+<p>
+COPYSFX is the primary workhorse program in the TOOLKIT for copying and converting files from one format to another.
+</p>
+
+<p>
+By default COPYSFX writes a PEAK chunk to the output soundfile.  This 
+stores the position and value of the first absolute maximum sample in 
+each channel, together with a timestamp.  Almost all the TOOLKIT 
+programs print the PEAK data to the screen on completion.  It can 
+also be shown via <a href = "#SFPROPS"><b>SFPROPS</b></a>.  For integer 
+formats, the value will of necessity be clipped to 1.0.  For 
+floating-point formats the value reflects the true peak values in 
+the file.
+</p>
+
+<p>
+It is still common for many applications to assume a fixed 
+length header, and be broken by any file with additional chunks 
+such as the PEAK data.  For such applications, use the <b>-h</b> flag to write a
+"minimal" header with no extra chunks.
+</p>
+
+<p>
+Note that while <a href = "#CHXFORMAT"><b>CHXFORMAT</b></a> 
+can save considerable disk space and time by changing the header of 
+a file directly, it is inherently risky.  COPYSFX is non-destructive and, if space and
+time permit, is still the recommended tool for format conversion. 
+CHXFORMAT may however be required where it is desired to set an unusual or experimental 
+speaker mask not supported by <a href="#COPYSFX"><b>COPYSFX</b><a>.
+</p>
+
+<p>
+<b>ALSO SEE</b> further explanations in the <a href="csysutil.htm#COPYSFXU">
+<b>System Utilities</b></a> Manual.
+</p>
+
+</blockquote>
+
+<p>
+End of COPYSFX<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="FMDCODE">FMDCODE &#150; Decode 1<sup><small>st</small></sup> 
+or 2<sup><small>nd</small></sup> order B-Format soundfile to a choice of 
+speaker layouts
+</h2>
+
+<h3>
+Usage
+</h3>
+<p>
+<b>fmdcode</b> [<b>-x</b>] [<b>-w</b>] <i>infile outfile layout</i> 
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>infile</i> &#150; input 1<sup><small>st</small></sup>
+or 2<sup><small>nd</small></sup> order B-Format soundfile in WAVE_EX format (including <b>.amb</b>).<br>
+<i>outfile</i> &#150; appropriately decoded multi-channel soundfile 
+in one of the WAVE formats<br><br>
+<b>-w</b> &#150; write plain WAVE outfile format.<br>
+Default <b>.wav</b> output format is generic WAVE_EX (channels delivered to soundcard in ascending order).<br />
+
+<b>-x</b> &#150; write standard WAVE_EX speaker positions to the 
+header.  This applies to compatible layouts only and requires 
+the <b>.wav</b> extension.<br><br>
+
+<i>layout</i> &#150; one of the choices below. <br> 
+The output channel 
+order is <b>anticlockwise</b> from Centre Front except where indicated. <br> 
+Layouts marked with an asterisk (*) are compatible with WAVE_EX 
+speaker position order.<br />
+<b>Available speaker layouts:</b>
+	<ol>
+	<li> &#150; * mono (= W signal only)</li>
+	<li> &#150; * stereo (quasi mid&#47;side, = W +- Y)</li>
+	<li> &#150; square</li>
+	<li> &#150; * quad (FL, FR, RL, RR order)</li>
+	<li> &#150; pentagon</li>
+	<li> &#150; * 5.0 surround (WAVE_EX order)</li>
+	<li> &#150; * 5.1 surround (WAVE_EX order, silent LFE)</li>
+	<li> &#150; hexagon</li>
+	<li> &#150; octagon 1 (front pair, 45&deg;)</li>
+	<li> &#150; octagon 2 (front centre speaker)</li>
+	<li> &#150; cube (as <b>3</b>, low-high interleaved, 
+	     <i>Csound</i> compatible)</li>
+	<li> &#150; cube (as <b>4</b>, low quad 
+		followed by high quad)</li>
+	</ol>
+</blockquote>
+</p>
+
+<h3>
+About FMDCODE
+</h3>
+
+<blockquote>
+<p>
+With the exception of layouts <b>6</b> and <b>7</b>, this program 
+implements the widely used Furse-Malham decoding coefficients for 
+1<sup><small>st</small></sup> and 2<sup><small>nd</small></sup> order 
+B-Format.  These coefficients are also employed in the <i>bformenc1</i> 
+and <i>bformdec1</i> opcodes for <i>Csound</i>.  Layout option 
+<b>11</b> (cube) corresponds to the one employed by <i>bformdec1</i>, 
+while layout option <b>12</b> is (approximately) WAVE_EX-compatible.
+</p>
+
+<p>
+In all cases (as in <i>Csound</i>) the 'controlled opposites' (also 
+known as 'in-phase') decoding solutions are employed, without either 
+shelf filters or distance compensation.  These features may appear in 
+a future release.  These solutions apply to <i>regular </i> geometric 
+layouts &#150; that is, where speakers are evenly distributed around the 
+circle, as in the diagrams below:
+</p>
+
+<p>
+<div align = center>
+<IMG SRC = "images/rwdspeakerpos1-600px.jpg"></a><br />
+<br />
+<b><font size = +1>Type 3: square  &nbsp;&nbsp;&nbsp; Type 5: 
+pentagon &nbsp;&nbsp;&nbsp; Type 8: hexagon</font></b>
+</div>
+</p>
+
+<p>
+In options <b>9</b> and <b>10</b>, two alternative octagonal layouts 
+are defined, depending on the use of either one speaker at centre 
+front, or two left and right of centre front, as in the diagram 
+below:
+</p>
+
+<p>
+<div align = center>
+<IMG SRC = "images/rwdspeakerpos2-450px.jpg"></a><br />
+<br />
+<b><font size = +1>Type 9: octagon 1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Type 10: octagon 2</font></b>
+</div>
+</p>
+
+<p>
+As the figures show, in all these cases the <i>outfile</i> channels 
+(speaker feeds) are ordered <b><i>anti-clockwise</i></b> relative to centre front.  
+The opposite order is also widely demonstrated in the literature.  
+Should this order be required, the program <a href = "#CHORDER">
+<b>CHORDER</b></a> can be used to reverse the sequence.
+</p>
+
+<p>
+The principle of B-Format encoding and reproduction is predicated on 
+such regular layouts, which extend to the periphonic case ('with-height' 
+reproduction) using shapes such as the simple cube and the 
+dodecahedron.  The MULTI-CHANNEL TOOLKIT does not currently 
+address layouts involving more than eight speakers.  A diagram for 
+a basic cube layout is given below.
+</p>
+
+<p>
+<div align = center>
+<IMG SRC = "images/rwdcube150px.jpg"></a><br />
+<br />
+<b><font size = +1>Typical cube periphonic layout</font></b>
+</div>
+</p>
+
+<h3>
+About WAVE_EX-compatible speaker layouts
+</h3>
+
+<p>
+As the usage message indicates, the majority of these regular layouts 
+are not compatible with the WAVE_EX speaker positions.  Despite the 
+fact that they are described by name rather than by precise co-ordinates, 
+their positions are in general <i>assumed</i>, e.g., by reference to 
+standard irregular layouts such as the ITU 5.1 surround layout as 
+shown below (sub-woofer omitted):
+</p>
+
+<p>
+<div align = center>
+<IMG SRC = "images/rwdsurround5_0-200px.jpg"></a><br />
+<br />
+<b><font size = +1>ITU 5.1 surround layout</font></b>
+</div>
+</p>
+
+<p>
+The order of the speaker position flags in WAVE_EX is based on 
+alternating left&#47;right pairs (e.g., layout <b>4</b> &#150; 
+rectangular quad).  We can use the applicable WAVE_EX positions 
+to represent this layout only with the understanding that the 
+front pair are spaced to subtend <i>not</i> the conventional 
+stereo 30&deg; angles left and right of centre front, <i>but</i> 
+45&deg; angles, such that the four speakers form an exact 
+square.
+</p>
+
+<p>
+With the same understanding, the cube layout type <b>12</b> can 
+also be presented in WAVE_EX, as that includes support for 'TOP' 
+positions matching the usual 'LOW' positions.  However, even here 
+we must take care:  the purely horizontal layouts naturally address 
+speakers arranged at head height.  In contrast (and as with all such 
+layouts), the B-Format cube layout places the listener in the 
+<i>centre</i> of the cube, so that speakers are equidistantly 
+<i>below</i> and <i>above</i> the listener.  To achieve such a 
+layout in a practical context, these low speakers are typically 
+placed at floor level.
+</p>
+
+<p>
+
+</p>
+As WAVE_EX does not define much in the way of regular layouts, by 
+default the program sets the speaker position flags to zero.  This 
+signifies a 'generic' layout, in which the channels are delivered 
+to the soundcard in simple ascending order.  It is then up to the 
+user to route those outputs appropriately.  One advantage of this 
+approach is that it bypasses attempts by the operating system to re-map the signals to
+whatever layout it thinks you have!   To write such layouts with 
+the appropriate WAVE_EX speaker mask, use the <b>-x</b> flag.  
+Advanced users can use <a href = "#CHXFORMAT">CHXFORMAT</a> to 
+experiment with speaker masks for the other regular layouts.  
+Attempting to play such files directly using standard Windows 
+players such as <i>Media Player</i> is very likely to give 
+unintended results.  See the description of <a href = 
+"#PAPLAY"><b>PAPLAY</b></a> for more information regarding this issue.
+</p>
+
+<h3>
+About 5.1 layouts, types 6 and 7
+</h3>
+
+<p>
+As noted above, these layouts are not derived from the 
+Furse-Malham specifications.  The coefficients for the 5.0 and 
+5.1 layouts (using the so-called 'velocity' decode option) have 
+been kindly supplied by David Moore as a result of recent research 
+employing advanced High-Performance Audio Computing (HiPAC) 
+techniques.  They are a result of a research project employing 
+advanced high-performance computing techniques (HPC) to find 
+optimal coefficients through the use of exhaustive search 
+algorithms.
+</p>
+
+<p>
+For B-Format decoding, the LFE (low-frequency effects) channel 
+(the '1' of '5.1') is not used.  Accordingly, two decode options are 
+provided, supporting five- and six-channel files.  The latter thus 
+includes an empty LFE channel.  When using the WAVE_EX speaker 
+option (<b>-x</b> flag) you may need to use the six-channel option 
+to ensure your OS (and hardware) can render the file correctly.
+</p>
+
+<p>
+Where possible, a second-order B-Format source should be employed.  
+This is generally held to decode better to the ITU layout than 
+first-order.  For casual exploration of B-Format surround, this 
+layout appeals as it corresponds to the expected speaker layouts 
+for home cinema.  Note however that for best results the speakers 
+should be identical (or at least very closely matched) and full-range.  
+For a simple test, <a href = "#ABFPAN2"><b>ABFPAN2</b></a> can be used to 
+pan a sound around a circle, using 2<sup><small>nd</small></sup>-order 
+encoding.
+</p>
+
+</blockquote>
+
+<p>
+End of FMDCODE<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<p>
+<h2 id="INTERLX">INTERLX &#150; Interleave mono or stereo files to make 
+a multi-channel file
+</h2>
+
+	<blockquote>
+	<b>This is the basic program for making multi-channel files.</b>
+	</blockquote>
+
+<h3>
+Usage
+</h3>
+
+<p>
+<b>interlx</b> [<b>-t</b><i>N</i>] <i>outfile infile1 infile2</i> 
+[<i>infile3 ... infile16</i>]
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>outfile</i> &#150; the output format is taken from <i>infile1</i><br>
+<i>infile1 infile2</i> &#150; input mono or stereo soundfiles to 
+interleave.  Files must match in sample rate 
+and in number of channels, but may have different sample types.<br />
+<i>infile 3 ... infile16</i> &#150; additional input soundfiles to 
+interleave (up to 16, max.)<br><br>
+<b>-t</b><i>N</i> &#150; write <i>outfile</i> format as type <i>N</i><br />
+<b>Available speaker layouts:</b>
+	<ol start = 0>
+	<li> &#150; (default) standard soundfile (<b>.wav</b>, 
+	<b>.aif</b>, <b>.afc</b>, <b>.aifc</b>)</li>
+	<li> &#150; generic WAVE_EX (no speaker assignments)</li>
+	<li> &#150; WAVE_EX mono&#47;stereo&#47;quad (LF, RF, LR, RR) &#150  
+	<i>infile</i> number of channels must match</li>
+	<li> &#150; WAVE_EX quad surround (L, C, R, S) &#150   <i>infile</i> 
+	must be quad</li>
+	<li> &#150; WAVE_EX 5.1 format surround &#150   <i>infile</i> must 
+	be 6-channel</li>
+	<li> &#150; WAVE_EX Ambisonic B-Format (W, X, Y, A ...) &#150   
+	the <b>.amb</b> extension is supported</li>
+	<li> &#150; WAVE_EX 5.0 surround &#150  <i>infile</i> must be 5-channel</li>
+	<li> &#150; WAVE_EX 7.1 surround &#150  <i>infile</i> must be 8-channel</li>
+	<li> &#150; WAVE_EX cube surround &#150  <i>infile</i> must be 8-channel</li>
+	<li> &#150; WAVE_EX 6.1 Surround &#150  <i>infile</i> must be 7-channel<br>
+		&nbsp;&nbsp;(B-Format decoding is not yet available for this layout.)</li>
+	</ol>
+	<blockquote>
+	<b>NB:</b> Types <b>1</b> to <b>8</b> are for WAV format only.<br>  
+	In all cases the <i>outfile</i> has the sample format of <i>infile 1</i>.
+	</blockquote>
+
+<p>
+<b>Please also note:</b>
+	<ul>
+	<li>The same <i>infile</i> can be listed multiple times, for example, to write a mono file as stereo, quad, etc.</li>
+	<li>To create a silent channel, for <i>infile2</i> onwards, 
+	    use 0 (zero) as the filename.  <i>Infile1</i> must be 
+	    a soundfile.</li>
+	<li>Speaker-positions in WAVE_EX <i>infiles</i> are ignored.</li> 
+	<li>The <b>.amb</b> B-Format extension is supported.  The 
+	    program will issue a warning if the channel count is anomalous. Known B-Format channel counts are:  3, 4, 5, 6, 7, 8, 9, 11, 
+	    16.</li>
+	</ul>
+</p>
+</blockquote>
+
+
+<h3>
+About INTERLX
+</h3>
+
+<blockquote>
+<p>
+This program complements <a href = "#CHANNELX"><b>CHANNELX</b></a>, and is 
+the primary workhorse for assembling multi-channel files from multiple 
+input files.  As the usage message shows, it serves two key tasks:  to 
+create WAVE_EX files in particular formats, and to create AMB B-Format 
+files from mono input files comprising individual B-Format signals.  
+For the latter task, use <code>-t1</code> to make a generic WAVE_EX 
+file &#150; no speaker positions are defined for the AMB format.
+</p>
+</blockquote>
+
+<p>
+End of INTERLX<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="NJOIN">NJOIN &#150; Concatenate multiple soundfiles into a single file, 
+with optional CUE list output for CD burning
+</h2>
+
+<h3>
+Usage
+</h3>
+
+<p>
+<b>njoin</b> [<b>-s</b>secs</i> | <b>-S</b><i>secs</i>] 
+[<b>-c</b><i>cuefile</i>] [<b>-x</b>] <i>filelist.txt</i> 
+[<i>outfile</i>]
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>filelist.txt</i> &#150; text file containing a list of soundfiles 
+in order, one complete file path per line.
+	<ul>
+       	<li>Files must match in sample rate and in number of channels, but can have 	different sample types.</li>
+	<li>Channel spec (if present) must be the same, but files with no 
+	spec are assumed to be compatible. </li>
+	<li>In OS X, use of the <code>&#126;&#47;</code> notation for the 
+	user's home directory is supported in <i>filelist</i>.</li>
+	</ul>
+
+<i>outfile</i> &#150; optional output soundfile of joined up (multi-channel) 
+soundfiles.  The output sample format is taken from the soundfile with 
+the highest precision.  If no <i>outfile</i> is specified, the program 
+merely scans the files and prints a report to the console.
+
+<p>
+<b>-s</b><i>secs</i> &#150; separate files with silence of <i>secs</i> seconds<br />
+<b>OR</b><br>
+<b>-S</b><i>secs</i> &#150; as above, but with no silence before the first soundfile.
+	<blockquote>
+	Default: soundfiles are joined with no gap.
+	</blockquote>
+<b>-c</b><i>cuefile</i> &#150; if <i>outfile</i> is 
+used, generate a cue textfile as the <i>cuefile</i><br />
+<b>-x</b> &#150; strict:  allow only CD-compatible files: files must be stereo, 
+use a sample rate of 44100 and have a minimum duration of 4 seconds.<br />
+</p>
+</blockquote>
+
+<h3>
+About NJOIN
+</h3>
+
+<blockquote>
+<p>
+This utility program stands somewhat apart from the others in that it 
+is only indirectly concerned with multi-channel files.  Its primary 
+purpose is simply to concatenate multiple files into one output file.  
+Channel counts and sample rates must match.  Secondarily the program 
+supports preparation for CD-R burning by means of basic support for the 
+standard CUE list file, used by a number of CD burning applications.  
+Files can be separated (prefixed) by a defined amount of silence.
+</p>
+
+<p>
+The program exits with an error message if the total duration exceeds 
+the 4 Gigabyte capacity of the file format.  When used without an 
+<i>outfile</i> argument, the program computes the total duration and 
+reports to the console.
+</p>
+
+</blockquote>
+
+<p>
+End of NJOIN<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="NMIX">NMIX &#150; simple mix of two multi-channel files, 
+with optional offset
+</h2>
+
+<h3>
+Usage
+</h3>
+
+<p>
+<b>nmix</b> [<b>-d</b>] [<b>-f</b>] [<b>-o</b><i>offset</i>] 
+<i>infile1 infile2 outfile</i>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>infile1 infile2</i> &#150; input soundfiles to mix<br>
+	<ul>
+	<li>Files must have the same channel count, but 
+	    can have different sample rates.</li>
+	<li>WAVE_EX files must have the same speaker layout.</li>
+	</ul>
+<b>-d</b> &#150; apply TPDF dither (16-bit format output only)<br />
+<b>-f</b> &#150; set the output sample type to 32-bit floating-point ('floats').  <br>
+&nbsp;&nbsp;&nbsp;&nbsp;Default: <i>outfile</i> type is that of <i>infile1</i>.<br />
+<b>-o</b> <i>offset</i> &#150; start <i>infile2</i> at <i>offset</i> 
+seconds
+</blockquote>
+</p>
+
+<h3>
+About NMIX
+</h3>
+
+<p>
+<blockquote>
+There is nothing much to say about this program: it mixes the two 
+named soundfiles together.  The channel counts (and speaker layouts, 
+if any) must match.  Note that it does not use a CDP <i>mixfile</i> as 
+input.
+</blockquote>
+</p>
+
+<p>
+<b>ALSO SEE:</b> <a href="cgromixr.htm#MERGE"><b>SUBMIX MERGE</b></a>
+</p>
+
+<p>
+End of NMIX<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="PAPLAY">PAPLAY &#150; Playback of multi-channel soundfiles
+</h2>
+
+<h3>Usage</h3>
+
+<p>
+<b>paplay</b> [<b>-B</b><i>N</i>] [<b>-d</b><i>N</i>] [<b>-g</b><i>N</i>] [<b>-h</b><i>N</i>]
+[<b>-i</b>] [<b>-l</b>]  [<b>-b</b>[<i>N</i>] | <b>-m</b>[<i>S</i>]] [<b>-u</b>] [<b>-x</b>]
+<i>soundfile</i> [<i>from</i>] [<i>to</i>]
+</p>
+
+<h3>Parameters</h3>
+
+<p>
+<blockquote>
+<i>soundfile</i> &#150; handles a variety of standard and multi-channel 
+soundfiles. <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;<b>NB:</b> You need to supply the extension explicitly with 
+this program.<br />
+<i>from</i> &#150; optional start-time in seconds (Default = 0).<br>  
+<i>to</i> &#150; optional end-time in seconds (Default= end-of-file)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Enables arbitrary block to be played and looped.<br><br>
+
+
+<b>-d</b><i>N</i> &#150; use output Device <i>N</i><br />
+<b>-g</b><i>N</i> &#150; apply gain factor <i>N</i> to input<br />
+
+<b>-B</b><i>N</i> &#150; set memory buffer size to N frames (default: 32768) <br>
+               &nbsp;&nbsp;&nbsp;&nbsp; N must be a power of 2 (e.g 4096, 8192, 16384 etc).<br>
+<b>-h</b><i>N</i> &#150; set hardware blocksize to N frames (32 < N <= BN/4). Default: from soundcard.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; N is recommended to be a power of two size. <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; Where set, buffer sizes are doubled internally for sample rates &gt;48KHz.<br>
+
+<b>-i</b> &#150; play immediately (do not wait for keypress)<br>
+<b>-l</b> &#150; loop file continuously, from start-time to end-time<br>
+<b>-m</b>[<i>S</i>] &#150; render using channel map string S. (Use -m without parameter for usage.) <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;S (order string) = any combination of characters a-z inclusive.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;No. of characters in S sets no. of output channels &#150; 
+    must be supported by selected device.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Further details &#150; see 
+	<a href="#CHORDER"><b>CHORDER</b></a> <i>orderstring</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>NB</b>: -m cannot be combined with -b (B-Format decoding).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If channel mapping is used, a B-format file (AMB) will be rendered without decoding.
+<br>
+<b>-u</b> &#150; suppress elapsed time updates<br>
+<b>-x</b> &#150; apply WAVE_EX infile channel mask to Direct Sound audio stream (ignored if -m or -b used)<br>
+
+<b>-b</b><i>N</i> &#150; apply 1<sup><small>st</small></sup>-order 
+B-Format decoding to a standard soundfile, which must have at least 
+3 channels.  <br>
+&nbsp;&nbsp;&nbsp;&nbsp; B-Format (<b>.amb</b>) files will be decoded automatically.<br />
+&nbsp;&nbsp;&nbsp;&nbsp; The output channel order is anticlockwise from Centre Front except where indicated.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Layouts marked with an asterisk (*) are compatible with WAVE_EX speaker position order.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <b><i>N</i> sets the speaker layout to one of the following:</b>
+	<ol>
+	<li> &#150; * mono (= W signal only)</li>
+	<li> &#150; * stereo (quasi mid&#47;side, = W +- Y)</li>
+	<li> &#150; square</li>
+	<li> &#150; * quad (FL, FR, RL, RR order) &#150; default</li> 
+	<li> &#150; pentagon</li>
+	<li> &#150; * 5.0 surround (WAVE_EX order)</li>
+	<li> &#150; * 5.1 surround (WAVE_EX order, silent LFE)</li>
+	<li> &#150; hexagon</li>
+	<li> &#150; octagon 1 (front pair, 45&deg;)</li>
+	<li> &#150; octagon 2 (front centre speaker)</li>
+	<li> &#150; cube (as <b>3</b>, low-high interleaved, 
+	     <i>Csound</i> compatible)</li>
+	<li> &#150; * cube (as <b>4</b>, low quad followed by high quad)</li>
+NB: no decoding is performed if the -m flag is used.
+	</ol>
+
+Please also note:
+	<ul>
+	<li> On Windows, ASIO as well as DirectSound is supported. </li>
+	<li> OS X version supports Jack as well as Core Audio.</li>
+	<li> Windows only: use the <b>-x</b> flag option to send 
+	WAVE_EX speaker positions (for starred layouts) to the hardware.  The default is to 
+	send a zero mask, so that channels map directly to successive hardware outputs.</li>
+	<li> PAPLAY reads the PEAK chunk if present to rescale over-range floating-point ('floatsam') files.</li>
+	<li> Type PAPLAY without arguments to display the usage message followed by a list of the available audio 	devices. Note that input and output devices are listed separately, so that the list can become quite long! The 	current default output is indicated by a leading asterisk before the device number (see example below).</li>
+	<li> For ASIO multi-channel, you may need to select the highest device 
+	number:</li>
+	</ul>
+</p>
+
+
+<p>
+<table>
+<tr>
+<th>Device</th><th>Input</th><th>Output</th><th>Name</th>
+</tr>
+
+<tr>
+<td>0</td><td>2</td><td>0</td><td>Primary Sound Capture Driver</td>
+</tr>
+
+<tr>
+<td>1</td><td>2</td><td>0</td><td>Microphone (Realtek High Definition 
+Audio)</td>
+</tr>
+
+<tr>
+<td>2</td><td>2</td><td>0</td><td>Monitor (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>3</td><td>2</td><td>0</td><td>Line 1&#47;2 (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>4</td><td>2</td><td>0</td><td>S&#47;PDIF (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>*5</td><td>0</td><td>2</td><td>Primary Sound Driver</td>
+</tr>
+
+<tr>
+<td>6</td><td>0</td><td>2</td><td>Line 1&#47;2 (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>7</td><td>0</td><td>6</td><td>Speakers (Realtek High Definition 
+Audio)</td>
+</tr>
+
+<tr>
+<td>8</td><td>0</td><td>2</td><td>S&#47;PDIF (M-Audio Delta Audiophile)</td>
+</tr>
+
+<tr>
+<td>9</td><td>0</td><td>2</td><td>Realtek Digital Output (Realtek High 
+Definition Audio)</td>
+</tr>
+
+<tr>
+<td>10</td><td>6</td><td>4</td><td>M-Audio Delta ASIO</td>
+</tr>
+
+</table>
+
+</blockquote>
+</p>
+
+<h3>
+About PAPLAY
+</h3>
+
+
+<blockquote>
+<p>
+The same B-Format decoding is employed here as in <a href = "#FMDCODE">
+<b>FMDCODE</b></a>.  As in that program, no shelf filters or nearfield 
+compensation are employed.
+</p>
+
+<p>
+The <b>-i</b> flag is provided primarily to enable the program 
+to be invoked from a scripting language (e.g., TCL/Tk, MatLab, 
+Octave, Tabula Vigilans, etc.) or from batch files, where it is 
+inconvenient to interact with the program via the keyboard.  Otherwise, 
+note that when launched, the program <i>waits for a keypress</i> to 
+commence playback.  As the first block of data is pre-loaded, playback 
+will effectively start immediately.
+</p>
+
+<p>
+<b>Testing audio routing</b><br />
+<br />
+It is strongly recommended that users test their routing before 
+trying to play a multi-channel file.  The MULTI-CHANNEL TOOLKIT 
+can itself be used to prepare suitable test materials.
+</p>
+
+<p>
+One approach is to create a special file (e.g., of spoken idents, or 
+clearly distinguishable tones), with each channel clearly identified 
+in sequence.  The <b>-l</b> flag can be used to loop this or any 
+file until stopped via CTRL-C, while any necessary adjustments to 
+routing or levels are made.  For B-Format playback, it is especially 
+important that all speakers are as closely matched in level and 
+distance as possible, and that any mixer or other level controls 
+are ganged together.
+</p>
+
+<p>
+Such a file is especially easy to create using <i>Audacity</i>:  
+record each ident in sequence as a new track.  Then use <b>Export</b> 
+with <b>Advanced Mixing Options</b> enabled, to save each track as 
+a channel of a multi-channel soundfile.  You can use 
+<a href = "#COPYSFX"><b>COPYSFX</b></a> to convert this file into the required 
+WAVE_EX format.  Alternatively, use the <b>Export Multiple</b> option to 
+save each track as a separate numbered file, and create the final 
+multi-channel file using <a href = "#INTERLX"><b>INTERLX</b></a>.  This 
+approach is indicated, for example, when the same idents can be 
+used, in different combinations, for a variety of multi-channel 
+layouts.
+</p>
+
+<p>
+To check that speaker levels are exactly matched, a file with test 
+signals is required, with (ideally) a loudness meter at the listening 
+position.  This is especially important if unmatched speakers (and 
+amplifiers) are employed!
+</p>
+
+<p>
+<b>OS X</b><br />
+<br />
+It goes without saying that PAPLAY uses CoreAudio.  OS X itself 
+recognises both WAVE_EX files and the most standard speaker layouts 
+and renders them (e.g., via <i>Quicktime</i>) appropriately, given 
+multi-channel hardware.  PAPLAY simply sends the channels in order 
+to the chosen device.
+</p>
+
+<p>
+The historical limitations (and bugs) with respect to the WAVE formats 
+associated with earlier Macintosh systems are long gone, and with the 
+move to Intel processors the case for using WAVE (in general) over 
+the AIFF formats is even stronger.  The AIFF format is now arguably 
+all but obsolete &#150; such definitions as exist in the AIFF and 
+AIFFC specifications for multi-channel files are variously obsolete 
+and ambiguous.  Apple's replacement for the AIFF family is the new 
+CAF file format.  Support for this may appear in later updates to 
+the MULTI-CHANNEL TOOLKIT.
+</p>
+
+<p>
+<b>Windows</b><br />
+<br />
+PAPLAY supports both the DirectSound and the ASIO 
+APIs.  Accordingly, the displayed list of devices will be longer 
+than before, with the same hardware identified for each API as 
+appropriate. In Windows, it is not necessary to set a device number if you wish
+to play the file on the default audio playback device set in Control Panel.
+</p>
+
+<p>
+Note the <b>-x</b> flag, exclusive to the Windows platform.  Windows 
+recognises a very limited set of standard speaker layouts.  These 
+can be selected (in this example, in XP) via the <b>Advanced</b> 
+button on the Audio page of <b>Sound and Audio device Properties</b>.  
+To play a multi-channel WAVE_EX file using <b>Media Player</b> or 
+other Windows-standard player, users will need to check which layout 
+is selected.  If there is any mismatch, such as trying to play a 
+5.1 file to stereo speakers, the Windows kernel mixer will attempt 
+to map the audio channels to that layout in some representative 
+way.  This has some virtues, such as being able to audition an 
+arbitrary multi-channel file over stereo speakers.  Many commercial 
+editors and DAWs perform in much the same way, sending the WAVE_EX 
+channel mask directly to the subsystem.  Should the user want to 
+replicate this behaviour using PAPLAY, the <b>-x</b> flag can be 
+used.  This flag is not available in the OS X version of PAPLAY.
+</p>
+
+<p>
+Note, however, that when Windows plays, for example, a quad soundfile 
+to a stereo device, the rear channels are typically rendered at a 
+lower level.
+</p>
+
+<p>
+For such tasks as B-Format decoding to relatively unorthodox layouts 
+such as hexagon or octagon, this automatic remapping is not useful 
+beyound a simple integrity check.  The default behaviour of PAPLAY is 
+to send a 'generic' mask value of zero to the audio subsystem, so 
+that channels are simply mapped to successive device outputs.
+</p>
+
+</blockquote>
+
+<p>
+End of PAPLAY<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="RMSINFO">RMSINFO &#150; Scan file and report RMS and 
+average power level statistics
+</h2>
+
+<h3>
+Usage
+</h3>
+
+<p>
+<b>rmsinfo</b> [<b>-n</b>] <i>infile</i> [<i>startpos</i> 
+[<i>endpos</i>]]
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<b>-n</b> &#150; include equivalent 0dBFS-normalised RMS 
+and AVG levels. <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;Use this flag to see the equivalent levels 
+if the file is normalised to 0dBFS.<br />
+<i>infile</i> &#150;  handles a variety of standard and 
+multi-channel soundfiles<br />
+<i>startpos</i> &#150; start position in seconds at which to 
+begin the scan<br />
+<i>endpos</i> &#150; position in seconds at which to end the scan
+	<blockquote>
+	To stop a scan early, use CTRL-C.  The program will 
+	report levels up to that point.
+	</blockquote>
+</blockquote>
+</p>
+
+<h3>
+About RMSINFO
+</h3>
+
+<blockquote>
+<p>
+Standard output shows:
+	<ul>
+	<li>RMS level</li>
+	<li>Average level</li>
+	<li>DC level (bipolar average)</li>
+	</ul>
+</p>
+
+<p>
+RMSINFO complements <a href="#SFPROPS"><b>SFPROPS</b></a> by determining the overall power level 
+(loudness) of each channel of the input soundfile.  It uses two  
+types of computation:  RMS (Root-Mean-Square) and raw average 
+(normalised sum of all samples).  In addition, it displays the 
+average level of any DC present.  All levels are calculated 
+relative to the digital peak at 0dBFS.  Thus a full-range sinusoid 
+will have a reported RMS level of -3dB.
+</p>
+
+<p>
+For sustained sounds, the RMS and average levels will be very 
+similar.  For percussive, speech-based, and other sounds with 
+widely differing amplitudes, they may be markedly different &#150; 
+the average level will be lower than the RMS level.  In such cases, 
+the information reported gives an overall indication of the 
+'peakiness' of a file, and may be a guide to the choice of 
+compressor thresholds.
+</p>
+
+<p>
+Note that for <i>static</i> B-Format soundfields &#150; i.e., no 
+motion of sources &#150; the information will demonstrate the 
+standard -3dB reduction of the W signal (as employed in all 
+the TOOLKIT programs and in keeping with the Furse-Malham 
+conventions).
+</p>
+
+<p>
+For <i>mobile</i> sources, e.g., from using <a href = "#ABFPAN2">
+<b>ABFPAN2</b></a>, the levels may well be reported as equal, depending on 
+the overall bias (if any) of the panning.  The final reported value 
+represents the average over the whole file.
+</p>
+
+<p>
+Other conventions for B-Format streams are under consideration within 
+the surround sound community, in particular, normalisation schemes 
+that avoid the traditional -3dB reduction of W.  This will in principle 
+lead to RMS values for W that are closely similar to those of other 
+channels.
+</p>
+
+<p>
+The program recognises that it can take a long time to scan a large 
+file.  The optional arguments <i>startpos</i> and <i>endpos</i> 
+(which can be invoked separately) can be used to select a selection 
+of a file to be scanned.  Also, CTRL-C can be used to terminate the 
+program, in which event the levels <i>up to that point</i> will be 
+displayed.
+</p>
+</blockquote>
+
+<p>
+End of RMSINFO<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="SFPROPS">SFPROPS &#150; Display soundfile details, with 
+WAVE_EX speaker positions
+</h2>
+
+<h3>
+Usage
+</h3>
+
+<!-- 
+<p>
+<b>sfprops</b> <i>infile</i>
+</p>
+-->
+
+<p>
+<b>sfprops</b> [<b>-c | -d | -r</b>] <i>infile</i>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>infile</i> &#150;  handles a variety of standard and multi-channel soundfiles<br>
+Flag options for single data report:<br>
+<b>-c</b> &#150; print number of channels in file <br>
+<b>-d</b> &#150; print duration of file (secs)<br>
+<b>-r</b> &#150; print sample rate of file   
+
+</blockquote>
+</p>
+
+<h3>
+About SFPROPS
+</h3>
+
+
+<blockquote>
+<p>
+This is a purely informative program: in addition to reporting the 
+standard properties of a soundfile, it gives details of any WAVE_EX 
+speaker positions and identifies the layout when it is one of the 
+standard ones supported by other MULTI-CHANNEL TOOLKIT
+programs.  It prints all PEAK information if present.  Use 
+<a href = "#CHXFORMAT">CHXFORMAT</a> to find low-level information 
+on the WAVE_EX speaker mask.
+</p>
+
+<p>
+Note that it will identify 7.1 and cube speaker layouts.  The 
+PEAK chunk report includes a level report in dB.  SFPROPS 
+displays the soundfile properties on the console:  duration, 
+number of sample frames, sample rate, etc.
+</p>
+
+</blockquote>
+
+<p>
+<b>ALSO SEE:</b> <a href = "cgroinfo.htm#PROPS"><b>SNINDFO PROPS</b></a>.
+</p>
+
+<p>
+End of SFPROPS<br>
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to CDP Master Index<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+
+<!-- 
+<p>
+PROGRAM TEMPLATE
+
+<h2 id=" "> &#150; Gated sound extraction with 
+end trims and backtracking
+</h2>
+
+<h3>
+Usage
+</h3>
+<b></b> <i></i> [<b>-d</b><i>N</i>] <i></i> 
+<br />
+
+<p>
+Example command line to create ... :<br>
+	<blockquote>
+	<b><code></code></b>
+	</blockquote>
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> &#150; <br />
+<b>2</b> &#150; <br />
+<b>3</b> &#150; <br />
+<b>4</b> &#150; 
+</blockquote
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i></i> &#150; <br />
+<i></i> &#150; <br />
+<i></i> &#150; <br />
+<i></i> &#150; 
+</blockquote>
+
+<h3>
+Understanding the ... Function
+</h3>
+
+<blockquote>
+...
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+...
+</blockquote>
+
+<p>
+End of ...<br />
+<a href="#MCTOOLSLIST"><b>Return</b></a> to list of M-C Tools<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a>
+to 'Groucho' Time-Domain Index<br />
+</p>
+-->
+
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 12 May 2023 for CDP8<br />
+    Documentation: Archer Endrich; Revisions: Robert Fraser<br>
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

@@ -1,0 +1,3422 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cdistort.htm - Reference for the DISTORT functions HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP DISTORT Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cgroundx.htm" Target="_top"><b>'Groucho' Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <dt><a href="#DISTORTLIST"><b>DISTORT:</b></a>
+  <dt>&nbsp;&nbsp;<a href="#AVERAGE"><b>AVERAGE</b></a>
+  <dt>&nbsp;&nbsp;<a href="#CYCLECNT"><b>CYCLECNT</b></a>
+  <dt>&nbsp;&nbsp;<a href="#DELETE"><b>DELETE</b></a>
+  <dt>&nbsp;&nbsp;<a href="#DIVIDE"><b>DIVIDE</b></a>
+  <dt>&nbsp;&nbsp;<a href="#ENVELOPE"><b>ENVELOPE</b></a>
+  <dt>&nbsp;&nbsp;<a href="#FILTER"><b>FILTER</b></a>
+  <dt>&nbsp;&nbsp;<a href="#FRACTAL"><b>FRACTAL</b></a>
+  <dt>&nbsp;&nbsp;<a href="#HARMONIC"><b>HARMONIC</b></a>
+  <dt>&nbsp;&nbsp;<a href="#INTERACT"><b>INTERACT</b></a>
+  <dt>&nbsp;&nbsp;<a href="#INTERPOLATE"><b>INTERPOLATE</b></a>
+  <dt>&nbsp;&nbsp;<a href="#MULTIPLY"><b>MULTIPLY</b></a>
+  <dt>&nbsp;&nbsp;<a href="#OMIT"><b>OMIT</b></a>
+  <dt>&nbsp;&nbsp;<a href="#OVERLOAD"><b>OVERLOAD</b></a>
+  <dt>&nbsp;&nbsp;<a href="#PITCH"><b>PITCH</b></a>
+  <dt>&nbsp;&nbsp;<a href="#PULSED"><b>PULSED</b></a>
+  <dt>&nbsp;&nbsp;<a href="#REFORM"><b>REFORM</b></a>
+  <dt>&nbsp;&nbsp;<a href="#REPEAT"><b>REPEAT</b></a>
+  <dt>&nbsp;&nbsp;<a href="#REPEAT2"><b>REPEAT2</b></a>
+  <dt>&nbsp;&nbsp;<a href="#REPLACE"><b>REPLACE</b></a>
+  <dt>&nbsp;&nbsp;<a href="#REPLIM"><b>REPLIM</b></a>
+  <dt>&nbsp;&nbsp;<a href="#REVERSE"><b>REVERSE</b></a>
+  <dt>&nbsp;&nbsp;<a href="#SHUFFLE"><b>SHUFFLE</b></a>
+  <dt>&nbsp;&nbsp;<a href="#TELESCOPE"><b>TELESCOPE</b></a>
+  <br><br>
+  <b>OTHERS:</b><br>
+  <dt>&nbsp;&nbsp;<a href="#CLIP"><b>CLIP</b></a>
+<dt>&nbsp;&nbsp;<a href="#DISTCUT"><b>DISTCUT</b></a>
+<dt>&nbsp;&nbsp;<a href="#DISTMARK"><b>DISTMARK</b></a>
+<dt>&nbsp;&nbsp;<b>DISTMORE</b>:
+<dt>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#DISTMOREBRIGHT"><b>BRIGHT</b></a>
+<dt>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#DISTMOREDOUBLE"><b>DOUBLE</b></a>
+<dt>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#DISTMORESEGSBKWD"><b>SEGSBKWD</b></a>
+<dt>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#DISTMORESEGZIG"><b>SEGZIG</b></a>
+<dt>&nbsp;&nbsp;<a href="#DISTORTT"><b>DISTORTT</b></a>
+<dt>&nbsp;&nbsp;<a href="#DISTREP"><b>DISTREP</b></a>
+<dt>&nbsp;&nbsp;<a href="#DISTSHIFT"><b>DISTSHIFT</b></a>
+<dt>&nbsp;&nbsp;<a href="#DISTWARP"><b>DISTWARP</b></a>
+<dt>&nbsp;&nbsp;<a href="#FRACTALWAVE"><b>FRACTAL WAVE</b></a>
+<dt>&nbsp;&nbsp;<a href="#QUIRK"><b>QUIRK</b></a>
+<dt>&nbsp;&nbsp;<a href="#SCRAMBLE"><b>SCRAMBLE</b></a>
+<dt>&nbsp;&nbsp;<a href="#SPLINTER"><b>SPLINTER</b></a>
+
+
+  <br><br>
+  <dt><a href="#PSEUDOWAVECYCLES"><b>WHAT ARE WAVESETS?</b></a>
+  <dt><a href="#RWDDIST"><b>INTRO TO DISTORT</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <div align=center>
+   <br>
+   <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+   </div>
+
+   <h1 align=center>CDP 'Waveset' DISTORT Functions</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+
+<h2 align=center id="DISTORTLIST">Functions to DISTORT soundfiles via wavesets ('pseudo-wavecycles')</h2>
+<p>
+The <b>DISTORT</b> suite of functions uses what are termed <i><b>wavesets</b></i>, or <i><b>pseudo-wavecycles</b></i>. These are explained <a href="#PSEUDOWAVECYCLES"><b>here</b></a>.
+</p><p>
+Most of these functions do produce distortion, but some do not, and a lot depends on the source file and settings of the various parameters, especially <b>group-size</b> (the number of pseudo-cycles in a group). Similarly, a newer group (mostly prefixed <b>DIST</b>) deals with wavesets, but may or may not produce distortion. Finally, two functions have been included here (<a href="#CLIP"><b>CLIP</b></a> and <a href="#QUIRK"><b>QUIRK</b></a>) that do normally distort the signal, but not by processing wavesets.
+</p> 
+
+
+<dl>
+<dt><a href="#AVERAGE">DISTORT <b>AVERAGE</b></a> <dd>Average the waveshape over <i>N</i> 
+'wavecycles'</dd>
+<dt><a href="#CLIP"><b>CLIP</b></a> <dd>Clip a signal </dd>
+<dt><a href="#CYCLECNT">DISTORT <b>CYCLECNT</b></a> <dd> Count 'wavecycles' in soundfile</dd>
+<dt><a href="#DELETE">DISTORT <b>DELETE</b></a> <dd>Time-contract soundfile by deleting 
+'wavecycles'</dd>
+
+<dt><a href="#DISTCUT"><b>DISTCUT</b></a> <dd> Cut sound into elements with falling envelope</dd>
+<dt><a href="#DISTMARK"><b>DISTMARK</b></a> <dd> Interpolate between waveset-groups at marked points</dd>
+<dt><a href="#DISTMOREBRIGHT"><b>DISTMORE BRIGHT</b></a> <dd> Reorder sound segments in order of average zero-crossing rate</dd>
+<dt><a href="#DISTMOREDOUBLE"><b>DISTMORE DOUBLE</b></a> <dd> Double (quadruple etc.) frequency of each waveset</dd>
+<dt><a href="#DISTMORESEGSBKWD"><b>DISTMORE SEGSBKWD</b></a> <dd> Reverse certain (sets of) segments</dd>
+<dt><a href="#DISTMORESEGZIG"><b>DISTMORE SEGZIG</b></a> <dd> Zigzag across tail segments or across whole soundfile</dd>
+<dt><a href="#DISTORTT"><b>DISTORTT</b></a> <dd> Repeat wavesets within given duration </dd>
+<dt><a href="#DISTREP"><b>DISTREP</b></a> <dd> Timestretch soundfile by repeating wavesets</dd>
+<dt><a href="#DISTSHIFT"><b>DISTSHIFT</b></a> <dd> Time-shift or swap wavecycles</dd>
+<dt><a href="#DISTWARP"><b>DISTWARP</b></a> <dd> Warp wavecycles by a multiplier</dd>
+
+<dt><a href="#DIVIDE">DISTORT <b>DIVIDE</b></a> <dd>Distortion by dividing 'wavecycle' 
+frequency</dd>
+<dt><a href="#ENVELOPE">DISTORT <b>ENVEL</b></a> <dd>Impose envelope over each group 
+of <i>cyclecnt</i> 'wavecycles'</dd>
+<dt><a href="#FILTER">DISTORT <b>FILTER</b></a> <dd>Time-contract a sound by filtering 
+out 'wavecycles'</dd>
+<dt><a href="#FRACTAL">DISTORT <b>FRACTAL</b></a> <dd>Superimpose miniature copies 
+of source 'wavecycles' onto themselves</dd>
+
+<dt><a href="#FRACTALWAVE"><b>FRACTAL WAVE</b></a> <dd>Fractally distort an input sound or wavecyle </dd>
+
+<dt><a href="#HARMONIC">DISTORT <b>HARMONIC</b></a> <dd>Harmonic distortion by 
+superimposing 'harmonics' onto 'wavecycles'</dd>
+<dt><a href="#INTERACT">DISTORT <b>INTERACT</b></a> <dd>Time-domain interaction 
+of two sounds</dd>
+<dt><a href="#INTERPOLATE">DISTORT <b>INTERPOLATE</b></a> <dd>Time-stretch file by 
+repeating 'wavecycles' and interpolating between them</dd>
+<dt><a href="#MULTIPLY">DISTORT <b>MULTIPLY</b></a> <dd>Distortion by multiplying 
+'wavecycle' frequency</dd>
+
+
+<dt><a href="#OMIT">DISTORT <b>OMIT</b></a> <dd>Omit <i>A</i> out of every <i>B</i> 
+'wavecycles', replacing them with silence</dd>
+<dt><a href="#OVERLOAD">DISTORT <b>OVERLOAD</b></a> <dd>Clip the signal with noise 
+or a (possibly timevarying) waveform</dd>
+<dt><a href="#PITCH">DISTORT <b>PITCH</b></a> <dd> Pitchwarp 'wavecycles' of sound</dd>
+<dt><a href="#PULSED">DISTORT <b>PULSED</b></a> <dd> Impose regular pulsations on 
+a sound</dd>
+<dt><a href="#QUIRK"><b>QUIRK</b></a> <dd>Distort signal by raising sample values to a power </dd>
+<dt><a href="#REFORM">DISTORT <b>REFORM</b></a> <dd> Modify the shape of 'wavecycles'</dd>
+<dt><a href="#REPEAT">DISTORT <b>REPEAT</b></a> <dd>Timestretch soundfile by 
+repeating 'wavecycles'</dd>
+<dt><a href="#REPEAT2">DISTORT <b>REPEAT2</b></a> <dd>Repeat 'wavecycles' without 
+time-stretching</dd>
+<dt><a href="#REPLACE">DISTORT <b>REPLACE</b></a> <dd>The strongest 'wavecycle' in 
+a <i>cyclecnt</i> group replaces the others</dd>
+<dt><a href="#REPLIM">DISTORT <b>REPLIM</b></a> <dd>Timestretch by repeating 
+'wavecycles' (below a specified frequency)</dd>
+<dt><a href="#REVERSE">DISTORT <b>REVERSE</b></a> <dd>Cycle-reversal distortion in 
+which the 'wavecycles' are reversed in groups</dd>
+<dt><a href="#SCRAMBLE"><b>SCRAMBLE</b></a> <dd>Scramble waveset order randomly or by size and level </dd>
+<dt><a href="#SHUFFLE">DISTORT <b>SHUFFLE</b></a> <dd>Distortion by shuffling 
+'wavecycles'</dd>
+<dt><a href="#SPLINTER"><b>SPLINTER</b></a> <dd> Create splinters by repeating &amp; shrinking selected waveset-group </dd>
+<dt><a href="#TELESCOPE">DISTORT <b>TELESCOPE</b></a> <dd>Time-contract sound by 
+telescoping <i>N</i> wavecycles into 1</dd>
+<br>
+SEE ALSO:<br>
+<dt><a href = "cgroedit.htm#PARTITION"><b>PARTITION</b></a>
+ <dd>Partition a mono soundfile into disjunct files in blocks defined by groups of wavesets</dd>
+<br>
+<dt><a href="#PSEUDOWAVECYCLES"><b>Technical Discussion</b></a>
+  <dd>Description of a 'Pseudo-wavecycle'</dd>
+<dt><a href="#RWDDIST"><b>The Wavecycle DISTORT Functions</b></a>
+  <dd>Richard Dobson's Introduction to the T Wishart Wavecycle Distort Functions </dd>
+</dl>
+
+<p>
+The aural results of the DISTORT and other WAVESET processes are highly variable, so the Musical Applications 
+sections below are notably sparse.  You'll get the best results by experimenting yourself! 
+</p>
+<hr><!-- ********************************************************** -->
+
+<h2 id="AVERAGE">DISTORT AVERAGE &#150; Average the waveshape 
+over <i>N</i> 'wavecycles'
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort average</b> <i>infile outfile cyclecnt</i> 
+<b>-m</b><i>maxwavelen</i> <b>-s</b><i>skipcycles</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; soundfile to process (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>cyclecnt</i> &#150; number of cycles over which to average 
+(Range: &gt; 1)
+	<blockquote>
+	<i>cyclecnt</i> may vary over time.
+	</blockquote>
+<b>-m</b><i>maxwavelen</i> &#150; maximum permissible wavelength in 
+seconds (Default: 0.50)<br>
+<b>-s</b><i>skipcycles</i> &#150; (integer) number of wavecycles to 
+skip at start of file
+</blockquote>
+
+<h3>
+Understanding the DISTORT AVERAGE Process
+</h3>
+
+<blockquote>
+<p>
+DISTORT AVERAGE performs a mathematical averaging of the data in 
+<i>cyclecnt</i> <a href="#PSEUDOWAVECYCLES">pseudo-wavecycles</a>.  
+The effect is more akin to a loss of resolution than the blurring 
+which might be expected.  Values below 10 retain some semblance of 
+the original, while values of, for example, 100 seem to create a 
+kind of 'sample hold' effect.  For modest distortion, values 5 or 
+less are recommended.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Mushy, watery, aspects of tracing, discrete sample-hold effects...
+</p>
+</blockquote>
+
+<p>
+End of DISTORT AVERAGE<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions 
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> to 
+'Groucho' Time-Domain Index
+</p>
+
+<p>
+<hr><!-- **************************************************** -->
+</p>
+<h2 id="CLIP">CLIP &#150; Clip a signal
+</h2>
+
+<h3>Usage</h3>
+<b>clip clip 1</b> <i>infile outfile level</i><br>
+<b>clip clip 2</b> <i>infile outfile fraction</i><br>
+<br />
+
+<h3>Modes</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Clip signal at specified level<br />
+<b>2</b>&nbsp; Clip half-waveforms at specified fraction<br />
+</blockquote>
+
+<h3>Parameters</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile</i> &#150; output soundfile<br />
+<i>level</i> &#150; level in original signal at which to clip (Range: 0 to 1)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	An error message is given if none of the original signal exceeds <i>level</i>.<br>
+<i>fraction</i> &#150; fraction of original signal at which to clip (Range: 0 to 1; 1= no change)<br />
+</blockquote>
+
+<h3>
+Understanding the CLIP Process
+</h3>
+
+<blockquote>
+<p>
+Clipping a signal cuts off the top of the waveform when the level exceeds 100%, introducing distortion. <b>CLIP</b> produces this distortion at lower signal levels.<p>
+<p>
+In Mode 1, <i>level</i> sets the level at which to clip the signal. This acts as a gate value: if too high, an error message may remind the user that the signal never reaches that level. If set lower, the signal is raised (or appears to be raised) so that all values that exceed that level are clipped. (In many cases, this may not result in an obvious distortion, because most of the signal may be unclipped.)
+</p><p>
+In Mode 2, half-waveforms are clipped at a given <i>fraction</i> of the original. This seems to give a more obvious distortion, even though the signal level appears to change little. Again, a lower value produces more clipping and more distortion.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3> 
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of CLIP<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions 
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index 
+for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> to 
+'Groucho' Time-Domain Index
+</p>
+
+
+<hr><!-- ********************************************************** -->
+<h2 id="CYCLECNT">DISTORT CYCLECNT &#150; Count 'wavecycles' in soundfile
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort cyclecnt</b> <i>infile</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; soundfile to examine (mono only)<br>
+</blockquote>
+
+<h3>
+Understanding the DISTORT CYCLECNT Function
+</h3>
+
+<blockquote>
+<p>
+DISTORT CYCLECNT checks the waveform of the <i>infile</i> for zero 
+crossings, determining how many segments lie between these crossings.  
+It then displays this figure on screen.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This information &#150; the number of 'waveycles' in a file &#150; can 
+help predict the level of distortion a given process might produce.
+</p><p>
+Knowing the total number of 'wavecycles' also enables you to set a suitable value for several parameters found in the DISTORT programs.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT CYCLECNT<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="DELETE">DISTORT DELETE &#150;Time-contract soundfile by deleting 
+'wavecycles'</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort delete mode</b> <i>infile outfile cyclecnt</i> 
+<b>-s</b><i>skipcycles</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> &nbsp; One 'wavecycle' in every <i>cyclecnt</i> 'wavecycles' is 
+retained<br>
+<b>2</b> &nbsp; The strongest (single) 'wavecycle' in every <i>cyclecnt</i> 
+'wavecycles' is retained<br>
+<b>3</b> &nbsp; The weakest (single) 'wavecycle' in every <i>cyclecnt</i> 
+'wavecycles' is deleted
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; soundfile to process (mono only)<br>
+<i>outfile</i> &#150; output, time-contracted, soundfile<br>
+<i>cyclecnt</i> &#150; groups of 'wavecycles':  really the level of 
+resolution at which the process will work
+	<blockquote>
+	<i>cyclecnt</i> may vary over time.
+	</blockquote>
+<b>-s</b><i>skipcycles</i> &#150; (integer) number of 'wavecycles' to 
+skip at start of file
+</blockquote>
+
+<h3>
+Understanding the DISTORT DELETE Process
+</h3>
+
+<blockquote>
+<p>
+Mode <b>1</b> dramatically removes data from the <i>infile</i>, leaving 
+very little behind.  Mode <b>2</b>, because it sets out to retain 
+the strongest (i.e., highest amplitude) 'wavecycle' in each set, retains 
+more recognisable features from the original.  Mode <b>3</b> takes this 
+further be deleting the weakest (i.e., lowest amplitude) 'wavecycle' in 
+each set.  The three Modes, therefore, enable the user to target levels 
+of recognisability.
+</p>
+
+<p>
+Because the 'wavecycles' are of irregular lengths, the idea of 'resolution' 
+is only relative.  However, it helps picture the degree to which the 
+<i>infile</i> is divided up into units.  Then one 'wavecycle' from each 
+of these units is retained or deleted according to the operation 
+of each mode.
+</p>
+
+<p>
+The <i>skipcycles</i> parameter makes it possible to have this process 
+begin some time after the start of the sound, e.g., so that its start 
+transient, so vital to the recognition of the source of a sound, is not 
+affected.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This process achieves a time-compression and textural roughening of 
+the source.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT DELETE<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ******************************************************* -->
+<h2 id="DISTCUT">DISTCUT &#150; Cut sound into elements with falling envelope</h2>
+
+<h3>
+Usage
+</h3>
+<b>distcut distcut 1</b> <i>infile generic_outfilename cyclecnt exp</i> [<b>-c</b><i>limit</i>]<br />
+OR<br />
+<b>distcut distcut 2</b> infile generic_outfilename cyclecnt cyclestep exp</i> [<b>-c</b><i>limit</i>]
+<br />
+
+<h3>
+Modes
+</h3>
+<b>1</b> Waveset-groups are adjacent<br />
+<b>2</b> Set gap between waveset-groups<br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (<b>MONO</b>)<br />
+<i>outfile</i> &#150; output soundfile<br />
+<i>cyclecnt</i> &#150; number of wavesets in each outfile (Range: 1 to 1000, up to the number in the infile.)<br />
+<i>cyclestep</i> (Mode 2) &#150; number of wavesets steps from start of one group to start of next. (Range: 1 to 1000, up to the number in the infile.) <br>
+&nbsp;&nbsp;(In mode 1 : cyclestep = cyclecnt: waveset-groups are abutted and disjunct)<br />
+<i>exp</i> &#150; envelope decay shape: 1 = linear, >1 = more rapid decay,  <1 = less rapid decay<br />
+<b>-c</b><i>limit</i> &#150; minimum level of output events to accept (in dB, e.g. 70 = -70dB).
+</blockquote>
+
+<h3>
+Understanding the DISTCUT Process
+</h3>
+
+<blockquote>
+<p>
+DISTCUT cuts segments from the infile, producing multiple outputs, each with a falling envelope. Segment lengths are set by groups of wavesets (<i>cyclecnt</i>), defined by zero-crossings. The decay creates enveloped segments that do not end abruptly.
+</p><p> 
+In Mode 1, segments are consecutive, wherease in Mode 2 they are separated by <i>cyclestep</i>, which is the number of cycles from the start of one segment to the start of the next. The optional parameter <i>limit</i> sets a gate level above which the segment must rise to be accepted. 
+</p><p> 
+DISTCUT is is closely related to ENVCUT, which extracts segments to a given length, also with a falling envelope.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+DISTCUT may have uses in creating segments for TEXTURE, or for other creative mixes derived from the same material.
+</p>
+</blockquote>
+
+<p>
+End of DISTCUT
+</p><p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="DISTMARK">DISTMARK &#150; Interpolate between waveset-groups at marked points</h2>
+
+<h3>
+Usage
+</h3>
+<b>distmark distmark 1</b> infile outfile marklist unitlen [<b>-s</b>tstretch] [<b>-r</b>rand] [<b>-f</b>] [<b>-t</b>]<br />
+<b>distmark distmark 2</b> infile outfile marklist unitlen [<b>-s</b>tstretch] [<b>-r</b>rand] [<b>-f</b>]
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> Interpolate between waveset-groups at marked points<br />
+<b>2</b> Interpolate within alternate marked blocks
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (<b>MONO</b>)<br />
+<i>outfile</i> &#150; output soundfile (<b>MONO</b>)<br />
+<i>marklist</i> &#150; list of times within source at which to find waveset-groups<br />
+<i>unitlen</i> &#150; approximate size of waveset group to find (mS); can vary over time. (Range: 0.5 to 1000 mS)<br />
+	<blockquote>
+      Minimum <i>unitlen</i> < &#189; of minimum step between times in <i>marklist</i>
+	</blockquote>
+<b>-s</b>tstretch</i> &#150; timestretch distances between marks, in making output. (Range: 1 to 256)<br />
+<b>-r</b>rand</i> &#150; randomise duration of interpolated wavesets (Range: 0 to 1)<br />
+	<blockquote>
+     Randomisation decreases waveset lengths (heard 'pitch' is higher).
+	</blockquote>
+<b>-f</b> &#150; Flip phase of alternate wavesets<br />
+<b>-t</b> &#150;  Add original (remaining) tail of source sound to output</blockquote>
+
+<h3>
+Understanding the DISTMARK Process
+</h3>
+
+<blockquote>
+<p>
+DISTMARK interpolates between wavesets at marked times (<i>marklist</i> textfile). The aural effect of this is a stream of short repeated segments, with one block merging into the next block. Mode 2 interpolates within alternate marked blocks. 
+</p><p>
+<i>Unitlen</i> sets the approximate size of the waveset group to find and hence the speed of repetition. Setting this too high may produce the CDP Error "Invalid Data". This is caused by infringing the rule that <i>unitlen</i> must be < &#189; the minimum step between times in the <i>marklist</i>. If <i>unitlength</i> is very short (e.g. 20mS), the effect is more like synthesis, or LOOP with a short progression time, and typically with a rather buzzy quality.
+</p><p>
+<i>Tstretch</i> stretches the overall output length of the process.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of DISTMARK
+</p><p>
+<p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="DISTMORE">DISTMORE &#150; A group of additional waveset distortion programs</h2>
+<p>
+Sub-Group of 4:<br> 
+<a href="#DISTMOREBRIGHT"><b>DISTMORE BRIGHT</b></a> &nbsp; 
+<a href="#DISTMOREDOUBLE"><b>DISTMORE DOUBLE</b></a> &nbsp; 
+<a href="#DISTMORESEGSBKWD"><b>DISTMORE SEGSBKWD</b></a> &nbsp; 
+<a href="#DISTMORESEGZIG"><b>DISTMORE SEGZIG</b></a>
+</p>
+
+<h3>
+Usage
+</h3>
+<b>distmore NAME (mode)</b> <i>infile outfile (parameters)</i><br />
+where NAME can be any one of: <b>bright   double   segsbkwd   segszig</b>
+<br />
+Type <b>distmore bright</b> for the Usage of <b>distmore bright</b> .. etc.
+<br />
+
+<h2 id="DISTMOREBRIGHT">DISTMORE BRIGHT &#150; Reorder sound segments in order of average zero-crossing rate</h2>
+
+<h3>
+Usage
+</h3>
+<b>distmore bright 1-3</b> infile outfile marklist [<b>-s</b><i>splicelen</i> <b>-d</b>]
+<br />
+
+<h3>
+Modes
+</h3>
+<blockquote>
+Extract data ... <br />
+<b>1</b> From Heads, &amp; from Tails cut to segments, size approx equal to Heads<br />
+<b>2</b> From Heads and Tails, as defined by <i>marklist</i><br />
+<b>3</b> From Tails only
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input mono soundfile<br />
+<i>outfile</i> &#150; output mono soundfile<br />
+<i>marklist</i> &#150; a list of timemarks in source, marking (paired) Heads and Tails, e.g.: consonant onset, and vowel continuation of source.   (It is assumed that the first mark is at a Head segment.)<br />
+<b>-s</b><i>splicelen</i> &#150; length of splice. (Range: 2 to 15 mS)<br />
+<b>-d</b> &#150; output in decreasing order of brightness. (Default: increasing)
+</blockquote>
+
+<h3>
+Understanding the DISTMORE BRIGHT Process
+</h3>
+
+<blockquote>
+<p>
+DISTMORE BRIGHT is one of many processes using wavesets  &#150; pseudo-cycles based on zero-crossings. In this process, it re-orders elements based on the average zero-crossing rate.
+</p><p> 
+Segments are selected from a datafile list of times (<i>marklist</i>). These are paired into what are called 'Heads' and 'Tails': a Head is taken to mark a 'consonant' onset in the source and a Tail its 'vowel' continuation. The first mark is assumed to start a Head segment. At least two pairs of time-values must be given. 
+</p><p>
+Note that the <b>-d</b> flag produces a different order of segments.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The process can be an effective way of re-ordering the elements in a sound. It is useful for the list of times to match the onset of events in the source soundfile. For vocal sounds, this would normally be the start of each syllable; in a melodic sequence, the start of each note; for drumming, the start of each beat or drumstroke, etc. The program then successfully re-orders the segments, splicing them together. 
+</p>
+</blockquote>
+
+<p>
+End of DISTMORE BRIGHT 
+</p><p>
+<p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<hr><!-- ********************************************************** -->
+<h2 id="DISTMOREDOUBLE">DISTMORE DOUBLE &#150; Double (quadruple etc.) frequency of each waveset</h2>
+
+<h3>
+Usage
+</h3>
+<b>distmore double</b> <i>infile outfile mult</i>
+<br />
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (MONO)<br />
+<i>outfile</i> &#150; output soundfile (MONO)<br />
+<i>mult</i> &#150; octave step up (Range: 1 to 4 octaves, possibly fractional)<br />
+</blockquote>
+
+<h3>
+Understanding the DISTMORE DOUBLE Process
+</h3>
+
+<blockquote>
+<p>
+DISTMORE DOUBLE is a variant of DISTORT MULTIPLY. Like the latter program, wavesets (pseudo-wavecycles) are raised in frequency. However, depending on the material, the perceived pitch may remain the same, but with an altered brightness.
+ 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of DISTMORE DOUBLE 
+</p><p>
+<p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+<h2 id="DISTMORESEGSBKWD">DISTMORE SEGSBKWD &#150; Reverse certain (sets of) segments</h2>
+
+<h3>
+Usage
+</h3>
+<b>distmore segsbkwd 1-9</b> <i>infile outfile marklist</i>
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> Reverse Tails<br />
+<b>2</b> Reverse Heads<br />
+<b>3</b> Reverse Head+Tail pairs<br />
+<b>4</b> Reverse Head & Tail+Head+Tail set<br />
+<b>5</b> Reverse Head+Tail+Head+Tail set<br />
+<b>6</b> Reverse Head & Tail+Head+Tail+Head+Tail set<br />
+<b>7</b> Reverse Head+Tail+Head+Tail+Head+Tail set<br />
+<b>8</b> Reverse Head & Tail+Head+Tail+Head+Tail+Head+Tail set<br />
+<b>9</b> Reverse Head+Tail+Head+Tail+Head+Tail+Head+Tail set
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (MONO)<br />
+<i>outfile</i> &#150; output soundfile (MONO)<br />
+<i>marklist</i> &#150; a list of timemarks in source, marking (paired) Heads and Tails, e.g., consonant onset, and vowel continuation of source. It is assumed that the first mark is at a Head segment.
+</blockquote>
+
+<h3>
+Understanding the DISTMORE SEGSBKWD Process
+</h3>
+
+<blockquote>
+<p>
+The process reverses selected segments given in a datafile list of times (<i>marklist</i>). The times are paired into what are called Heads and Tails: a Head typically marks a consonant onset in the source and a Tail its vowel continuation.  It is assumed that the first mark is at a Head segment. At least two pairs of time-values must be given. The various modes offer a wide range of Head and Tails combinations.
+</p><p>
+As with DISTMORE BRIGHT, the Head and Tails principle can be applied to different types of material, such as vocal syllables, notes in a melodic sequence, or drum beats. 
+</p><p>
+A similar process <b>DISTORT REVERSE</b> also reverses groups of wavesets, but using a given number of wavecycles. DISTMORE SEGSBKWD produces more coherent segments by identifying them by times. 
+<p>
+</blockquote>
+
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+DISTMORE SEGSBKWD is a reasonably effective way of reversing the elements in a sound, without reversing their order. If followed by <i>modify radical 1</i> (REVERSE), the elements are played forwards, as in the source, but the order of elements is reversed. 
+</p>
+</blockquote>
+
+
+<p>
+End of DISTMORE SEGSBKWD 
+</p><p>
+<p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+<h2 id="DISTMORESEGZIG">DISTMORE SEGZIG &#150; Zigzag across tail segments or across whole soundfile</h2>
+
+<h3>
+Usage
+</h3>
+<b>distmore segszig 1</b> <i>infile outfile marklist repets</i> [<b>-s</b><i>shrinkto</i>] [<b>-p</b><i>prop</i>] [<b>-l</b>]<br />
+<b>distmore segszig 2</b> <i>infile outfile  repeats</i> [<b>-s</b><i>shrinkto</i>] [<b>-p</b><i>prop</i>] [<b>-l</b>]<br />
+<b>distmore segszig 3</b> <i>infile outfile  repeats dur</i> [<b>-s</b><i>shrinkto</i>] [<b>-p</b>prop]
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> Zigzag across tail segments of a soundfile while playing it<br />
+<b>2</b> Zigzag across entire soundfile<br />
+<b>3</b> Zigzag across entire soundfile, specifying proportion of tail to use
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile<br />
+<i>outfile</i> &#150; output soundfile<br />
+<i>marklist</i> (Mode 1) &#150; a list of times in source, marking (paired) Heads and Tails, e.g. consonant onsets, and vowel continuations in source.  (The first mark is assumed to be a Head segment).  In Modes 2 and 3, the whole file is processed.<br />
+<i>repeats</i> &#150; number of zigzags. (Range: 1 to 64; can vary over time)<br />
+<b>-s</b><i>shrinkto</i> &#150; if set to zero, has no effect.  Otherwise Zigzags contract to minimum size <i>minsiz</i> in mS (Range 31 upwards).<br />
+<i>dur</i> (Mode 3) &#150; duration of zig-zagged output (secs). (Range: from <i>repeats</i>+1 x File-length to 64 x infile-length) <br />
+<b>-p</b><i>prop</i> &#150; proportion of Tail to use. Default: all of it. (Can vary over time)<br />
+	<blockquote>
+     CARE: If the length of used-portion of any particular tail is too short, (less than <i>shrinkto</i> size), zigs for that tail will not shrink.
+	</blockquote>
+<b>-l</b> &#150; shrink zigs logarithmically (Default: linear shrink)
+</blockquote>
+
+<h3>
+Understanding the DISTMORE SEGSZIG Process
+</h3>
+
+<blockquote>
+<p>
+DISTMORE SEGSZIG applies the idea of zig-zagging within a soundfile to waveset groups. Zig-zagging (see esp. EXTEND ZIGZAG) involves playing a segment forwards and then backwards. Like other processes within the DISTMORE program (BRIGHT and SEGSBKWD), this function can use (in Mode 1) a list of times that are assumed to represent paired Heads and Tails of vocal sounds: a Head typically marks a consonant onset in the source and a Tail its vowel continuation. At least two pairs of time-values must be given and the first marker is taken to be a Head segment. 
+
+<i>Repeats</i> sets the number of repeats required (including the reversal). <i>Dur</i> (Mode 3 only) sets the outfile-length. The optional parameter <i>shrinkto</i> allows the zigzags to shrink to a minimum size, while <i>prop</i>  optionally allows less than 100% of the tail to be used.
+
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+As with DISTMORE BRIGHT and SEGSBKWD, the Head and Tails principle can be applied to different types of material, such as vocal syllables, notes in a melodic sequence, or drum beats. It is useful to give the start times of these elements for Mode 1, but similar segments are extracted in an "intelligent" way in Modes 2 and 3.
+
+</p>
+</blockquote>
+
+<p>
+End of DISTMORE SEGSZIG
+</p><p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+<h2 id="DISTORTT">DISTORTT &#150; Repeat wavesets within given duration</h2>
+
+<h3>
+Usage
+</h3>
+<b>distortt repeat</b> <i> infile outfile gpcnt rpt offset dur</i> [<i>-t</i>]
+<br />
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+<i>infile</i> &#150; input soundfile (MONO)<br />
+<i>outfile</i> &#150; output soundfile (MONO)<br />
+<i>gpcnt</i> &#150; number of wavesets in the group to be repeated.<br>
+<i>rpt</i> &#150; number of repetitions of each waveset group.<br> 
+<i>offset</i> &#150; time to skip before starting waveset process: sound in offset is prefixed before the processed sound.<br> 
+<i>dur</i> &#150; required duration of output.<br>
+<b>-t</b> &#150; telescope: skip wavesets so output is of similar size to input.
+
+</blockquote>
+
+<h3>
+Understanding the DISTORTT Process
+</h3>
+
+<blockquote>
+<p>
+DISTORTT is a variant of DISTORT REPEAT and DISTREP. In this case, the outfile length is specified directly, rather than as a number of wavesets. However, setting the <b>-t</b> flag produces an outfile of similar length to the infile, by skipping some wavesets.   
+</p><p>
+The <i>offset</i> parameter specifies how much of the source sound to keep before starting the process. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+
+</p>
+</blockquote>
+
+<p>
+End of DISTORTT 
+</p><p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+<h2 id="DISTREP">DISTREP &#150; Timestretch soundfile by repeating wavesets</h2>
+
+<h3>
+Usage
+</h3>
+<b>distrep distrep</b> <i> mode infile outfile multiplier ccyleccnt</i> [<b>-k</b><i>skipcycles</i>] [<b>-s</b><i>splicelen</i>]
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> Timestretch file by repeating 'wavecycles'<br />
+<b>2</b> Repeat 'wavecycles', but skip cycles to avoid timestretch
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (MONO)<br />
+<i>outfile</i> &#150; output soundfile (MONO)<br />
+<i>multiplier</i> &#150; no. of times each wavecycle (group) repeats. (Range: 2 to 32767, integer)<br />
+<i>cyclecnt</i> &#150; (integer) is the number of wavecycles in repeated groups. (Range: 1 to 32767)<br />
+<b>-k</b><i>skipcycles</i> &#150; number of cycles to ignore (skip over) at start of file. (Range: 0-32767) <br />
+<b>-s</b><i>splicelen</i> &#150; mS splices of repeated blocks (Range: 0-50 mS; default 15 mS)<br />
+<br />
+<i>multiplier</i> and <i>cyclecnt</i> may vary over time
+</blockquote>
+
+<h3>
+Understanding the DISTREP Process
+</h3>
+
+<blockquote>
+<p>
+DISTREP is an updated version of DISTORT REPEAT, with the option of added splices between repeated blocks.
+</p><p>
+The repetition of the 'wavecycles' stretches out the sound, making it both longer and more granular in texture.  This granularity is increased if (increasingly larger) groups of <i>cyclecnt</i> 'wavecycles' are used:  then the whole group repeats <i>multiplier</i> times.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Like DISTORT REPEAT, DISTREP produces long, grainy (distorted) sounds.  The sense of stretching out the original is very apparent.
+</p><p>
+As noted with DISTORT REPEAT, using a small group of cycles (e.g. 10 or less) and a large-ish number of repetitions (e.g. 10-20), arbitrary melodies can arise. These could then be quantised to a given scale with REPITCH QUANTISE.
+</p>
+</blockquote>
+
+<p>
+End of DISTREP 
+</p><p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- *****************************************************  -->
+<h2 id="DISTSHIFT">DISTSHIFT &#150; Time-shift or swap wavecycles</h2>
+
+<h3>
+Usage
+</h3>
+<b>distshift distshift 1</b> <i>infile outfile grpcnt shift</i><br>
+<b>distshift distshift 2</b> <i>infile outfile grpcnt</i>
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> Shift alternate (groups of) half-wavecycles forward in time<br>
+&nbsp;&nbsp;&nbsp; (wrapping back around zero-time if pushed beyond sound end)<br />
+<b>2</b> Swap alternate half-wavecycle (groups)
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+<i>infile</i> &#150; input soundfile (MONO)<br />
+<i>outfile</i> &#150; output soundfile (MONO)<br />
+<i>grpcnt</i> &#150; size of elements to operate on:<br />
+	<blockquote>	 
+     <b>1</b> = single half-waveset<br />
+     <b>2</b> = 1 waveset + single half-waveset<br />
+     <b>3</b> = 2 wavesets + single half-waveset<br />
+      &nbsp;&nbsp;&nbsp;etc.<br>
+    (Range: 1 to 32767)
+	</blockquote>
+<i>shift</i> &#150; move alternate groups forward by <i>shift</i> waveset(group)s. (Range: 1 to 32767)
+</blockquote>
+
+<h3>
+Understanding the DISTSHIFT Process
+</h3>
+
+<blockquote>
+<p>
+DISTSHIFT shifts alternate wavesets (pseudo-wavecyles) in time or swaps them. The time-shift is expressed as a number of half-cycles, which can vary from source to source. Large group sizes create fairly random and radical exchanges of material.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of DISTSHIFT 
+</p><p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- *****************************************************  -->
+<h2 id="DISTWARP">DISTWARP &#150; Warp wavecycles by a multiplier</h2>
+
+<h3>
+Usage
+</h3>
+<b>distwarp distwarp 1</b> <i>infile outfile warp</i><br>
+<b>distwarp distwarp 2</b> <i>infile outfile warp wavesetcnt</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> Warp-multiplier increments samplewise<br>
+<b>2</b> Warp-multiplier increments wavesetwise.<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+<i>warp</i> &#150; (progressive) sample multiplier (Range: 0.0001 to 0.1).<br>
+<i>wavesetcnt</i> &#150; the number of wavesets after which the warp value increments (Range: 1 to 100) 
+</blockquote>
+
+<h3>
+Understanding the DISTWARP Process
+</h3>
+
+<blockquote>
+<p>
+DISTWARP warps by applying a multiplier, either to each sample or to groups of wavesets. It appears to emphasise amplitude (to be confirmed). In Mode 1 (samplewise), it can produce a distinct pitch - especially towards the top of the <i>warp</i> range &#150; this can be varied over time. In waveset mode, the groups are accented and distorted.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of DISTWARP 
+</p><p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p> 
+
+<hr><!-- ********************************************************** -->
+<h2 id="DIVIDE">DISTORT DIVIDE &#150; Distortion by dividing 'wavecycle' 
+frequency</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort divide</b> <i>infile outfile N</i> [<b>-i</b>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>N</i> &#150; divider (Range: integer only, 2 to 16)<br>
+<b>-i</b> &#150; use waveform interpolation: slower but cleaner<br>
+</blockquote>
+
+<h3>
+Understanding the DISTORT DIVIDE Process
+</h3>
+
+<blockquote>
+<p>
+Without altering duration, this process effectively lowers the sound 
+while adding a rough texture.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is a useful form of distortion because it roughens the sound 
+without being too violent about it. 
+</p>
+</blockquote>
+
+<p>
+End of DISTORT DIVIDE<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="ENVELOPE">DISTORT ENVEL &#150; Impose envelope over each 
+group of <i>cyclecnt</i> 'wavecycles'</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort envel 1-2</b> <i>infile outfile cyclecnt</i> 
+<b>-t</b><i>troughing</i> <b>-e</b><i>exponent</i><br>
+<b>distort envel 3</b> <i>infile outfile cyclecnt troughing</i> 
+<b>-e</b><i>exponent</i><br>
+<b>distort envel 4</b> <i>infile outfile envfile cyclecnt</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> &nbsp; Rising envelope<br>
+<b>2</b> &nbsp; Falling envelope<br>
+<b>3</b> &nbsp; Troughed envelope<br>
+<b>4</b> &nbsp; User-defined envelope<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>envfile</i> &#150; defines user envelope as <i>time value</i> pairs 
+(Range of <i>value</i> is 0 to 1)
+	<blockquote>
+	The time units in <i>envfile</i> are in fact arbitrary because 
+	in each case the envelope is stretched to fit the duration of 
+	each <i>cyclecnt</i> set.
+	</blockquote>
+<i>cyclecnt</i> &#150; number of 'wavecycles' under a single envelope<br>
+[<b>-t</b>]<i>troughing</i> &#150; the trough depth of the envelope 
+(Range: 0 [most troughed] to 1 [least troughed], Default = 0)<br>
+<b>-e</b><i>exponent</i> &#150; exponent to shape envelope rise or decay
+	<ul>
+	<li>&lt; 1 will produce a curve which starts quickly and slows down</li>
+	<li>&gt; 1 will produce a curve which starts slowly and speeds up</li>
+	<li>Omitting this parameter will result in a linear rise or decay</li>
+	</ul>
+	<blockquote>
+	<i>cyclecnt</i>, <i>troughing</i> and <i>exponent</i> may vary 
+	over time.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the DISTORT ENVEL Process
+</h3>
+
+<blockquote>
+<p>
+The process takes the amplitude envelope data for each group of 
+<i>cyclecnt</i> 'wavecycles' and adjusts this data to form a single 
+envelope shape (for that group) according to the mode selected.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The same pattern repeats (irregularly), being reasonably fine or 
+quite coarse depending on the size of <i>cyclecnt</i>.  This can 
+be likened to creating a somewhat irregular sawtooth edge on the sound.
+</p>
+
+<p>
+The <i>exponent</i> and <i>envfile</i> parameters can be used to 
+customise&#47;intensify the effect of the enveloping.
+</p>
+
+<p>
+Here are some possible results with different values for <i>cyclecnt</i> :
+<ul>
+<li><b>Small values</b> (1 &#150; 3), can produce a timbral 
+distortion of the source.</li>
+<li><b>Medium values</b> can produce a granular modification.</li>
+<li><b>Very Large values</b> (64+) can result in the superposition 
+of a repeating envelope (e.g., like a tremolando).  But, with a 
+natural rather than a synthetic source, this is likely to have a 
+natural-sounding variability, due to the variable durations of the 
+wavecycles which are being counted.</li>
+<li>It is interesting to <b>gradually increase</b> the <i>cyclecnt</i> 
+and hear the sound cross these different perceptural boundaries.</li>
+</ul>
+</p>
+
+<p>
+One of the most telling applications of DISTORT ENVEL is to create 
+irregular phasing effects.  The most important tool for this is a 
+time-varying breakpoint file for <i>cyclecnt</i>, which can be used 
+to introduce large variations in the length of each envelope shape.  
+If this is done in two different ways (i.e., two different breakpoint 
+files), then the two resultant (mono) files can be combined with 
+<a href="cgromixr.htm#INTERLEAVE">SUBMIX INTERLEAVE</a> to form a 
+stereo file with phased <i>cyclecnt</i> envelope shapes.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT ENVEL<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="FILTER">DISTORT FILTER</a> &#150; Time-contract a sound by 
+filtering out 'wavecycles'</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort filter 1-2</b> <i>infile outfile freq</i> 
+[<b>-s</b><i>skipcycles]</i><br>
+<b>distort filter 3</b> <i>infile outfile freq1 freq2</i> 
+[<b>-s</b><i>skipcycles</i>]<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> &nbsp; Omit cycles below <i>freq</i><br>
+<b>2</b> &nbsp; Omit cycles above <i>freq</i><br>
+<b>3</b> &nbsp; Omit cycles below <i>freq1</i> and above <i>freq2</i><br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>freq</i> &#150; frequency in Hz (Range: 10.0 to 22050.0)<br>
+<i>freq1</i> &#150; frequency in Hz to delete below<br>
+<i>freq2</i> &#150; frequency in Hz to delete above
+
+<ul>
+<li><i>freq</i>, <i>freq1</i> and <i>freq2</i> may vary over time.</li>
+<li><b>NB:</b> Time-varying <i>freq1</i> and <i>freq2</i> may not 
+cross each other, nor be equal.</li>
+<li><i>Freq</i> here relates simply to the length of a 'wavecycle'.
+A high value signifies a short 'wavecycle', and <i>v.vs.</i></li>
+</ul>
+
+<b>-s</b><i>skipcycles</i> &#150; (integer) number of 'wavecycles' to 
+skip at start of file<br>
+</blockquote>
+
+<h3>
+Understanding the DISTORT FILTER Process
+</h3>
+
+<blockquote>
+<p>
+Period and frequency are inverse functions.  Therefore it is possible 
+to relate the length of a 'wavecycle' to the frequency it would have 
+were it to recur regularly.  This program therefore filters by removing 
+'wavecycles' shorter or longer than those relating to a specific, 
+user-defined, frequency.
+</p>
+
+<p>
+The duration of the <i>outfile</i> is affected by this process:  because 
+'wavecycles' are being removed, the <i>outfile</i> will be shorter, by 
+varying degrees.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The aural effect of the DISTORT FILTER process is actually like 
+gating.  In gating, you can imagine a horizontal line drawn through 
+the time&#47;amplitude display of a soundfile.  If the peaks above the 
+line are retained (by filtering out lower frequencies), you just hear 
+them (joined up).  Similarly, if you filter out above the line, the 
+peaks are gone, leaving the lower sound material (joined up).
+</p>
+
+<p>
+The difference here is that the process is operating on 'pseudo-wavecycles' 
+according to their length, so here the results are more unpredictable and 
+also distort the sound to some degree, depending on where the horizontal 
+line &#150; the frequency variable(s) &#150; is drawn.  Technically, 
+the process is akin to low-, high- and band-pass filters, but aurally 
+it is more like gating.
+</p>
+
+<p>
+You can therefore use this procedure to cut out some and distort 
+other material in a sound.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT FILTER<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="FRACTAL">DISTORT FRACTAL &#150; Superimpose miniature copies 
+of source 'wavecycles' onto themselves</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort fractal</b> <i>infile outfile scaling loudness</i> 
+[<b>-p</b><i>pre_attenuation</i>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>scaling</i> &#150; (integer) division of scale of source wave 
+(Range: 2 to sample_rate&#47;2)<br>
+<i>loudness</i> &#150; loudness of scaled component relative to source 
+(Loudness of source is reckoned to be 1.0)
+	<blockquote>
+	<i>scaling</i> and <i>loudness</i> may vary over time.
+	</blockquote>
+<b>-p</b><i>pre_attenuation</i> &#150; apply attenuation to <i>infile</i> 
+before processing<br>
+</blockquote>
+
+<h3>
+Understanding the DISTORT FRACTAL Process
+</h3>
+
+<blockquote>
+<p>
+Note the very wide range of <i>scaling</i>.  Because it is a divisor, 
+the larger the value of <i>scale</i> the shorter will be the miniature 
+copies to be superimposed.
+</p>
+
+<p>
+These superimposed copies can be made to increase (be careful!) or 
+decrease in amplitude with the <i>loudness</i> parameter.  Using a 
+value of 1.0 maintains the original amplitude of the <i>infile</i>, 
+which will be heard as pretty much as the original, but with the 
+superimpositions on top of it.  <i>Loudness</i> is therefore a means 
+of balancing the input and the processed sound components.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is a powerful and somewhat wild tool for producing distortion 
+effects.  The higher the value of <i>scaling</i>, the more the 
+superimposed copies appear as a sheen of distortion above the original 
+sound.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT FRACTAL<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+<h2 id="FRACTALWAVE">FRACTAL WAVE &#150; Fractally distort an input sound or wavecyle</h2>
+
+<h3>
+Usage
+</h3>
+<b>fractal wave 1</b> <i>inf outf shape</i> [<b>-m</b><i>maxfrac</i>] [<b>-t</b><i>str</i>] [<b>-i</b><i>warp</i>] [<b>-s</b>] [<b>-o</b>]<br />
+<b>fractal wave 2</b> <i>inf outf shape dur</i> [<b>-m</b><i>maxfrac</i>] [<b>-t</b><i>str</i>] [<b>-i</b><i>warp</i>] [<b>-s</b>]
+<br />
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> Fractally distort soundfile by transposition<br />
+<b>2</b> Generate fractal wave from (mono) input wavecycle 
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i>(Mode <b>1</b>) &#150; input soundfile (1 or more channels)<br> 
+or (Mode <b>2</b>) wavecycle (such as that generated by WAVEFORM<br />
+<i>outfile</i> &#150; output soundfile<br />
+<i>shape</i> &#150; breakpoint textfile of:
+  <ul>
+  <li>(Mode <b>1</b>): time and transposition pairs, defining the contour of the largest fractal shape<br>
+Time: 0 to file-length (secs); transposition: -12.0 to +12.0 (semitones)   </li>
+
+  <li>(Mode <b>2</b>) time and MIDI-pitch pairs, defining the contour of the largest fractal shape.<br>
+Times start at zero and increase; final time indicates duration of pattern; MIDI: 0 to 127 (value at final time is ignored) </li>
+  </ul>
+<i>dur</i> (Mode 2) &#150; Output duration (Range: 1-7200 secs) <br />
+<b>-m</b><i>maxfrac</i> &#150; maximum degree of fractalisation (time-variable). If not set (or zero), fractalisation proceeds until the minimum possible wavelength is reached.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;
+Range: 0-1000, but 10 is a safer maximum to avoid  "too high MIDI pitch" error.<br>
+<b>-t</b><i>str</i> &#150; time stretch of fractal pattern (time-variable) Range: 1.0 to 2.0. If zero, no timestretching is done.<br />
+<b>-i</b><i>warp</i> &#150; interval warping of fractal pattern (time-variable).  If set to zero, no warping is done.<br />
+<b>-s</b> &#150; shrink pitch-intervals as fractal time-scales shrink<br />
+<b>-o</b> &#150; breakpoint data read using time in outfile (Default: use time in infile).
+</blockquote>
+
+<h3>
+Understanding the FRACTAL WAVE Process
+</h3>
+
+<blockquote>
+<p>
+In Mode 1, FRACTAL WAVE distorts the whole soundfile by adding transposed versions of <i>shape</i> data. In Mode 2, where the input is a wavecycle, it generates fractals using MIDI-pitch data (in <i>shape</i>) to define the pitch shape. Both versions of the shape are timed. Transposition happens over the total duration specified in <i>shape</i> 
+and is then repeated over every resulting sub-unit of the pattern, over every sub-sub-unit, etc. until the smallest time-unit is reached.
+</p><p>
+The process may best be understood by taking a steady-pitched source and experimenting first with Mode 1, then extracting a wavecycle from the source using <b>WAVEFORM</b> and applying it to Mode 2.
+</p><p> 
+In Mode 1, the output length is conditioned by the infile; in Mode 2, it is supplied by the user (<i>dur</i>). 
+The fractal pattern may optionally be timestretched (<i>str</i>) and/or interval-warped (<i>warp</i>).
+</p><p>
+See also the spectral version <b>FRACTAL SPECTRUM</b>.
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+
+
+<p>
+End of FRACTAL WAVE<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="HARMONIC">DISTORT HARMONIC &#150; Harmonic distortion by 
+superimposing 'harmonics' onto 'wavecycles'</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort harmonic</b> <i>infile outfile harmonics-file</i> 
+[<b>-p</b><i>pre_attenuation</i>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>harmonics-file</i> &#150; contains <i>harmonic_number amplitude</i> 
+pairs
+	<ul>
+	<li>The amplitude of the source sound is taken to be 1.0</li>
+	<li><i>Amplitude</i> range: 0.000031 to 32.0</li>
+	<li>Harmonics range from 2 to 1024</li>
+	</ul>
+<b>-p</b><i>pre_attenuation</i> &#150; apply attenuation to <i>infile</i> 
+before processing<br>
+</blockquote>
+
+<h3>
+Understanding the DISTORT HARMONIC Process
+</h3>
+
+<blockquote>
+<p>
+Harmonic distortion multiplies and adds within a single 'wavecycle' 
+&#150; possibly several times.  For each <i>harmonic_number</i> in 
+the <i>harmonics-file</i>, DISTORT HARMONIC scales and copies the 
+shape of the 'wavecycle' <i>harmonic_number</i> times and adds the 
+result to the original at the given <i>amplitude</i> (relative to 
+that of the <i>infile</i>).  This is by direct analogy to harmonic 
+additive synthesis, in which a complex pitched sound is created by 
+adding sinusoidal partials.  Indeed, DISTORT HARMONIC can be used for 
+just this purpose by using a sine wave as input.
+</p>
+
+<p>
+There is no internal scaling of harmonic amplitude values.  It will be 
+necessary in many cases to scale the <i>infile</i> with the <i>prescale</i> 
+parameter to avoid overflow.  <i>Prescale</i> is a multiplier, like an 
+ordinary gain factor.  (See the <a href="gadbchrt.htm#GAINDBCHART">
+<b>Gain &#150; dB Chart</b>)</a>.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The higher 'harmonics' of the 'wavecycles' are heard as faster versions 
+superimposed  on the original 'wavecycle' and on the lower 'harmonics'.  
+Therefore, the application is to add these higher and denser levels of 
+distortion to the sound.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT HARMONIC<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="INTERACT">DISTORT INTERACT &#150; Time-domain interaction 
+of two sounds</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort interact mode</b> <i>infile1 infile2 outfile</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> &nbsp; Interleave 'wavecycles' from the two infiles<br>
+<b>2</b> &nbsp; Impose 'wavecycle' lengths of 1<sup>st</sup> file on 'wavecycles' 
+of 2<sup>nd</sup>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile1</i> &#150; input soundfile number 1 (mono only)<br>
+<i>infile2</i> &#150; input soundfile number 2 (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+</blockquote>
+
+<h3>
+Understanding the DISTORT INTERACT Process
+</h3>
+
+<blockquote>
+<p>
+In Mode <b>1</b> material from both soundfiles is audibly apparent 
+due to the interleaving process.  In Mode <b>2</b>, the distortion 
+is almost total: the alteration of the 'wavecycle' lengths of the 
+second sound changes it to a burbly, bubbly, seething mass.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+DISTORT INTERACT can be used to achieve distortion which combines data 
+from two different sounds or distortion which totally alters a sound.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT INTERACT<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="INTERPOLATE">DISTORT INTERPOLATE &#150;Time-stretch file by 
+repeating 'wavecycles' and interpolating between them</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort interpolate</b> <i>infile outfile multiplier</i> 
+[<b>-s</b><i>skipcycles</i>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>multiplier</i> &#150; (integer) number of times each 'wavecycle' 
+repeats
+	<blockquote>
+	<i>multiplier</i> may vary over time.
+	</blockquote>
+<b>-s</b><i>skipcycles</i> &#150; (integer) number of 'wavecycles' to 
+skip at start of file
+</blockquote>
+
+<h3>
+Understanding the DISTORT INTERPOLATE Process
+</h3>
+
+<blockquote>
+<p>
+With this process, the shape of a 'wavecycle' is transformed into that 
+of the next over <i>multiplier</i> repetitions.  Note that this is 
+waveshape-based interpolation, not a spectral interpolation, and that 
+the length of the 'wavecycle' is also transformed by the process.
+</p>
+
+<p>
+The effect of the transformation is drastic, leading to a strongly 
+granular <i>outfile</i>.  The length of the <i>outfile</i> increases 
+in step with the value of <i>multiplier</i>, as does the apparent 
+pitchiness.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The interpolation process adds a modulatory quality to the output, 
+so that the successive wavecycles gliss and bend as they flow into 
+one another.  Even so, as <i>multiplier</i> increases, the perception 
+of separate 'grains', i.e., 'wavecycles' increases.  A value of 32, 
+for example, changes the sound to a strange stream of modulating tones.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT INTERPOLATE<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="MULTIPLY">DISTORT MULTIPLY &#150; Distortion by multiplying 
+'wavecycle' frequency</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort multiply</b> <i>infile outfile N</i> [<b>-s</b>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>N</i> &#150; multiplier (Range: 2 to 16, integer only)<br>
+<b>-s</b> &#150; smoothing (try this if glitches appear)<br>
+</blockquote>
+
+<h3>
+Understanding the DISTORT MULTIPLY Process
+</h3>
+
+<blockquote>
+<p>
+The duration of the sound is not changed, only the frequency of the 'wavecycles', with the result that their pitch rises. Depending on the material, the perceived pitch may remain the same, however, but with an altered brightness.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The distortion is relatively mild, in that the original sound remains 
+recognisable.  However, the surface is textured and the pitch rises 
+with each increase in the value of <i>N</i>.  DISTORT MULTIPLY can 
+be used, for example, to create high, modulating, grainy vocal sounds.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT MULTIPLY<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="OMIT">DISTORT OMIT &#150; Omit <i>A</i> out of every <i>B</i> 
+'wavecycles', replacing them with silence</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort omit</b> <i>infile outfile A B</i>
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>A</i> &#150; number of 'wavecycles' to omit<br>
+<i>B</i> &#150; size of group of 'wavecycles' out of which to omit 
+<i>A</i> 'wavecycles'
+	<blockquote>
+	<i>A</i> may vary over time, but must <b>always</b> be less 
+	than <i>B</i>.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the DISTORT OMIT Process
+</h3>
+
+<blockquote>
+<p>
+Because the omitted 'wavecyles' are replaced by silence, the overall 
+duration of the sound does not change.  The larger the proportion of 
+'wavecycles' omitted from <i>B</i>, of course, the more distorted the 
+the sound becomes.  This distortion is like a rough texturing, rather 
+than the highly modulatory results of some of the other processes.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This process can be used, therefore, to achieve a rough texturing 
+with no loss of duration.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT OMIT<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="OVERLOAD">DISTORT OVERLOAD</a> &#150; Clip the signal with 
+noise or a (possibly timevarying) waveform</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort overload 1</b> <i>infile outfile clip-level depth</i><br>
+<b>distort overload 2</b> <i>infile outfile clip-level depth freq</i><br>
+
+<h3>
+Modes
+</h3>
+<blockquote>
+<b>1</b> &nbsp; Clip signal<br>
+<b>2</b> &nbsp; Clip and add waveform</i>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>clip-level</i> &#150; level at which the signal is to be clipped 
+(Range: 0 to 1)  The signal level is renormalised after clipping.<br>
+<i>depth</i> &#150; depth of the pattern of distortion imposed on clipped 
+stretches of the signal.  (Range: 0 to 1)<br>
+<i>freq</i> &#150; frequency of the waveform imposed on clipped stretches 
+of the signal
+	<blockquote>
+	<i>clip-level</i>, <i>depth</i>, and <i>freq</i> may vary over 
+	time.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the DISTORT OVERLOAD Process
+</h3>
+
+<blockquote>
+<p>
+The <i>clip-level</i> parameter is rather like a 'gate' level.  If the 
+signal level is already high, anything over, for example, 0.1 is likely 
+to push it into distortion, and values considerably higher than this 
+will make it heavily distorted.  However, if it only distorts, Trevor 
+advises me, when it reaches a level of, for example, 0.99, it is not 
+going to be distorted very often.
+</p>
+
+<p>
+The sound doesn't actually have amplitude overload, because it is distorted 
+by 'slicing off' the top (clipping) where it would have overloaded.  The 
+sound becomes loud and 'strained', like a voice which is shouting too 
+loudly.
+</p>
+
+<p>
+Mode <b>2</b> can add an extra ringing sound as the value for <i>freq</i> 
+gets higher, e.g., 2000Hz and beyond.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Given the trials made so far, this can be a fairly subtle effect, but the 
+words 'straining', 'loud', 'uncompromising' seem appropriate as the 
+amplitude gets pushed towards the top of the range.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT OVERLOAD<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="PITCH">DISTORT PITCH &#150; Pitchwarp 'wavecycles' of sound</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort pitch</b> <i>infile outfile octvary</i> [<b>-c</b><i>cyclelen</i>] 
+[<b>-s</b><i>skipcycles</i>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>octvary</i> &#150; maximum possible transposition up or down in 
+(fractions of) octaves (Range &gt; 0.0 to 8.0)
+	<blockquote>
+	Note that the pitch of <b>each</b> 'wavecycle' is varied by 
+	a random amount within the range of <i>octvary</i> octaves up 
+	to <i>octvary</i> octaves down:  i.e., the value for 
+	<i>octvary</i> covers a total up&#47;down range of 
+	2 * <i>octvary</i>.
+	</blockquote>
+<b>-c</b><i>cyclelen</i> &#150; mamimum number of 'wavecycles' between 
+the generation of transposition values (Range: &gt; 1, Default: 64)
+	<blockquote>
+	<i>octvary</i> and <i>cyclelen</i> may vary over time.
+	</blockquote>
+<b>-s</b><i>skipcycles</i> &#150;  (integer) number of 'wavecycles' to 
+skip at start of file
+</blockquote>
+
+<h3>
+Understanding the DISTORT PITCH Process
+</h3>
+
+<blockquote>
+<p>
+The random up&#47;down movement of the 'wavecycles' within the total 
+<i>octvary</i> range produces a great deal of bending of the sound, 
+especially if the original alters its pitch a good deal.  It is better, 
+therefore, to start with relatively small values for <i>octvary</i> 
+&#150; e.g., less than 1 &#150; so that you start to use this function 
+with some degree of control over the results.
+</p>
+
+<p>
+The full power of DISTORT PITCH doesn't really come into its own until 
+time-varying parameters are used, especially for <i>cyclecnt</i>.  Large 
+values for the latter will serve to slow down the rate of change.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+DISTORT PITCH is useful for creating 'flexitones' (to coin a term) &#150; 
+with distortion, of course.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT PITCH<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<hr><!-- ********************************************************** -->
+<h2 id="PULSED">DISTORT PULSED &#150; Imposed regular pulsations on a 
+sound</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort pulsed 1</b> <i>infile outfile stime dur frq frand trand arand 
+transp tranrand</i> [<b>-s -e</b>]<br />
+OR<br />
+<b>distort pulsed 2-3</b> <i>infile outfile stime dur frq frand trand arand 
+cycletime transp tranrand</i> [<b>-s -e</b>]<br />
+<br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> &nbsp;&nbsp;&nbsp; Impose impulse-train on source<br />
+<b>2,3</b> &nbsp;Use a segment of the source as the looped content of a synthetic 
+impulse-train<br />
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>stime</i> &#150; time in the source sound where the impulses begin.  In 
+Mode <b>3</b>, <i>stime</i> is given as <b>samplecnt</b>, i.e., number of 
+samples<br />
+<i>dur</i> &#150; length of time that the impulses continue<br />
+<i>frq</i> &#150; number of impulses per second<br />
+<i>frand</i> &#150; number of semitones by which to randomise the frequency 
+of the impulses<br />
+<i>trand</i> &#150; amount of time in seconds by which to randomise the 
+relative time positions of amplitude peaks and troughs from impulse to 
+impulse<br />
+<i>arand</i> &#150; randomisation of the amplitude shape created by the 
+peaks and troughs from impulse to impulse<br />
+<i>cycletime</i>  &#150; Mode <b>2</b>: duration in seconds of 
+wavecycles to grab as sound substance inside the impulses<br />
+OR Mode <b>3</b>: number of wavecycles to grab as sound substance inside the 
+impulses<br />
+<i>transp</i> &#150; transposition contour of sound inside each impulse<br />
+<i>tranrand</i> &#150; randomisation of transposition contour from impulse 
+to impulse<br />
+<b>-s</b> &#150; keep start of source sound, before impulses begin (if any)<br />
+<b>-e</b> &#150; keep end of source sound, after impulses end (if any)
+	<p>
+	<blockquote>
+	Only works on MONO files
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the DISTORT PULSED Process
+</h3>
+
+<blockquote>
+<p>
+Distort a sound by imposing a series of impulses on the source, 
+or on a specific waveset segment of the source.  An impulse is like 
+a brief event created by a sharp envelope on the sound.  The sound 
+inside the impulse might glissando slightly, as if whatever 
+is causing the impulsion has warped the sound by its impact. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT PULSED<br>
+<a href="#DISTORTLIST">Return</a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+<h2 id="QUIRK">QUIRK &#150; Distort signal by raising sample values to a power</h2>
+
+<h3>
+Usage
+</h3>
+<b>quirk quirk 1-2</b> <i>infile outfile powfac</i>
+
+<h3>
+Modes
+</h3>
+<blockquote>
+<b>1</b>&nbsp; Apply power factor over amplitude range of individual half-wavesets<br>
+<b>2</b>&nbsp; Apply power factor over amplitude range of entire signal
+
+</blockquote>
+
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+<i>infile</i> &#150; input soundfile (MONO).<br>
+<i>outfile</i> &#150; output soundfile.<br>
+<i>powfac</i> &#150; exponent. (Range: 0.01 to 100; &lt;1 exaggerates signal contour; &gt;1 smooths signal contour.)
+
+</blockquote>
+
+
+<h3>
+Understanding the QUIRK  Process
+</h3>
+
+<blockquote>
+<p>
+QUIRK introduces distortion into a signal by raising sample values to a power.  The power factor (<i>powfac</i> ) is applied to individual half-wavesets (pseudo half-cycles) or to the whole file. <i>powfac</i>  values less than 1 tend to flatten the tops of the waveform, while values >1 tend to narrow the waveform shape, modifying the timbre accordingly. With higher values of <i>powfac</i>  (e.g. >5), the signal is in danger of disappearing altogether; however, this is also a simple means of finding the times of its most prominent peaks.
+</p><p>
+Quirk may be compared with Cross-modulation (modify radical 6), which produces similar distortion if the signal is multiplied with itself.
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of QUIRK
+</p><p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ****************************************************** -->
+<h2 id="REFORM">DISTORT REFORM &#150; Modify the shape of 'wavecycles'</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort reform 1-7</b> <i>infile outfile</i><br>
+<b>distort reform 8</b> <i>infile outfile exaggeration</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b> &nbsp; Convert to fixed level square wave<br>
+<b>2</b> &nbsp; Convert to square wave<br>
+<b>3</b> &nbsp; Convert to fixed level triangular wave<br>
+<b>4</b> &nbsp; Convert to triangular wave<br>
+<b>5</b> &nbsp; Convert to inverted half-cycles<br>
+<b>6</b> &nbsp; Convert to click stream<br>
+<b>7</b> &nbsp; Convert to sinusoid<br>
+<b>8</b> &nbsp; Exaggerate waveform contour<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>exaggeration</i> &#150; exaggeration factor (Range: 0.000002 to 40.0)
+	<blockquote>
+	<i>exaggeration</i> may vary over time.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the DISTORT REFORM Process
+</h3>
+
+<blockquote>
+<p>
+This process reads each 'wavecycle' (sound inbetween zero crossings) and 
+replaces it with a different waveform of the same length.  Several 
+waveform options are provided.  Those which do not fix the amplitude 
+level respond to the varying amplitude levels of each successive 
+wavecycle, thus producing an additional (and arbitrary) distortion 
+feature.
+</p>
+
+<p>
+The 'fixed level' options produce consistently loud output.
+</p>
+
+<p>
+The 'click' option replaces each 'wavecycle' with a mishmash of square 
+pulses several samples long (random sizes), which sounds a bit like a 
+rattle.
+</p>
+
+<p>
+The 'sinusoid' option, as might be expected, is relatively smooth.  It 
+is actually a subtle form of filtering.  The sine waves vary in length 
+and amplitude because they are based on 'wavecycles' and because only 
+some of the 'wavecycles' are replaced.
+</p>
+
+<p>
+The 'exaggeration' option just seems to add a surface buzz.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Modes <b>1</b> and <b>3</b> create quite vigorous forms of distortion.  
+The other modes are more restrained, offering a variety of gently 
+distorted versions of the original.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT REFORM<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="REPEAT">DISTORT REPEAT &#150; Timestretch soundfile by repeating 'wavecycles'</h2>
+
+<h3>
+Usage
+</h3>
+
+<b>distort repeat</b> <i>infile outfile multiplier</i> 
+[<b>-c</b><i>cyclecnt</i>] [<b>-s</b><i>skipcycles</i>]
+<br>
+
+<p>
+Example command line:
+	<blockquote>
+	<b><code>distort repeat infile outfile 5 -c3 -s20</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile to process (mono only)<br>
+<i>outfile</i> &#150; soundfile output after processing<br>
+<i>multiplier</i> &#150; number of times (integer) each 'wavecycle' 
+(group) repeats<br>
+<b>-c</b><i>cyclecnt</i> &#150; number of 'wavecycles' (integer) in 
+repeated groups<br>
+<b>-s</b><i>skipcycles</i> &#150; number of 'wavecyles' (integer) to 
+skip at start of file
+	<blockquote>
+	<i>multiplier</i> and <i>cyclecnt</i> may vary over time.
+	</blockquote> 
+</blockquote>
+
+<h3>
+Understanding the DISTORT REPEAT Process
+</h3>
+
+<blockquote>
+<p>
+The repetition of the 'wavecycles' stretches out the sound, making it 
+both longer and more granular in texture.  This granularity is increased 
+if (increasingly larger) groups of <i>cyclecnt</i> 'wavecycles' are 
+used:  then the whole group repeats <i>multiplier</i> times.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+DISTORT REPEAT produces long, grainy (distorted) sounds.  The sense of 
+stretching out the original is very apparent.
+</p>
+
+<p>
+A significant application of DISTORT REPEAT is that, by increasing the 
+<i>cyclecnt</i> factor, one crosses the pitch-perception boundary:  
+that is, starting with a noisy sound in which all the wavecycles are 
+randomly different, one ends up with, for example, 7 repetitions of 
+the <b>same</b> wavecycle, followed by 7 of another and so on &#150; 
+and each of these comprise sufficient repetitions for us to hear 
+<b>pitch</b>.  Thus the noise source becomes a string of pitch beads, 
+each of arbitrary timbre.  With a <i>cyclecnt</i> of, for example, 
+128, one can even get a slowish random melody.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT REPEAT<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="REPEAT2">DISTORT REPEAT2 &#150; Repeat 'wavecycles' 
+without time-stretching</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort repeat2</b> <i>infile outfile multiplier</i> 
+[<b>-c</b><i>cyclecnt</i>] [<b>-s</b><i>skipcycles</i>]
+<br />
+
+<p>
+Example command line:
+	<blockquote>
+	<b><code>distort repeat2 infile outfile 10 -c10 -s0</code></b>
+	</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile to process (mono only)<br>
+<i>outfile</i> &#150; soundfile output after processing<br>
+<i>multiplier</i> &#150; number of times (integer) each 'wavecycle' 
+(group) repeats<br>
+<b>-c</b><i>cyclecnt</i> &#150; number of 'wavecycles' (integer) in 
+repeated groups<br>
+<b>-s</b><i>skipcycles</i> &#150; number of 'wavecyles' (integer) to 
+skip at start of file
+	<blockquote>
+	<i>multiplier</i> and <i>cyclecnt</i> may vary over time.
+	</blockquote> 
+</blockquote>
+
+<h3>
+Understanding the DISTORT REPEAT2 Process
+</h3>
+
+<blockquote>
+<p>
+Repeating the 'wavecycles' without time-stretching (as in 
+<a href="#REPEAT">DISTORT REPEAT</a>) enables you to increase the 
+strength of the distortion with the <i>multiplier</i> parameter without 
+making the output file any longer than the original.  Larger values 
+for <i>cyclecnt</i> increases the length of <i>infile</i> that is 
+affected.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Higher values for <i>multiplier</i> increase the distortion, while 
+higher values for <i>cyclecnt</i> increase the length of <i>infile</i> 
+that is processed as one unit.
+</p>
+
+<p>
+Thus we could have:
+	<ul>
+	<li>a low value for <i>multiplier</i> coupled with a high value 
+	for <i>cyclecnt</i> &#150; this will produce a bit of distortion 
+	while the source remains recognisable</li>
+	<li>a high value for <i>multiplier</i> coupled with a low value 
+	for <i>cyclecnt</i> &#150; this will produces a great deal of 
+	distortion, but the effect is limited because only a few cycles 
+	are affected as a unit</li>
+	<li>high values for both parameters &#150; this appears to create 
+	the most distortion</li>
+	</ul>
+</blockquote>
+
+<p>
+End of DISTORT REPEAT2<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+
+<h2 id="REPLACE">DISTORT REPLACE &#150; The strongest 'wavecycle' in 
+a <i>cyclecnt</i> group replaces the others</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort replace</b> <i>infile outfile cyclecnt</i> 
+[<b>-s</b><i>skipcycles</i>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>cyclecnt</i> &#150; (integer) size of group of 'wavecycles'
+	<blockquote>
+	<i>cyclecnt</i> may vary over time.
+	</blockquote>
+<b>-s</b><i>skipcycles</i> &#150; number of 'wavecyles' (integer) to 
+skip at start of file<br>
+</blockquote>
+
+<h3>
+Understanding the DISTORT REPLACE Process
+</h3>
+
+<blockquote>
+<p>
+The replacing action serves to simplify the sound.  Note that the 
+single strong 'wavecycle' in the group will take the place of 
+several others, which will be deleted.  This simplification becomes 
+extreme when the <i>cyclecnt</i> is high, leading to a 'sample-hold' 
+kind of stepped effect.  Time-varying <i>cyclecnt</i> makes it possible 
+to introduce gradual change.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+With DISTORT REPLACE we can achieve a simplification of the sound, up 
+to very clear 'sample-hold' type stepped tones.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT REPLACE<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="REPLIM">DISTORT REPLIM &#150; Timestretch by repeating 
+'wavecycles' (below a specified frequency)</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort replim</b> <i>infile outfile multiplier</i> 
+[<b>-c</b><i>cyclecnt</i>] [<b>-s</b><i>skipcycles</i>] 
+[<b>-f</b><i>hilim</i>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br />
+<i>outfile</i> &#150; output soundfile<br />
+<i>multiplier</i> &#150; the number of times each wavecycle (group) 
+repeats (Integer)<br />
+<b>-c</b><i>cyclecnt</i> &#150; the number of wavecycles 
+in repeated groups <br />
+<b>-s</b><i>skipcycles</i> &#150; the number of wavecycles 
+to skip at the beginning of the soundfile<br />
+<b>-f</b><i>hilim</i> &#150; the frequency below which cycles 
+are counted<br />
+	<p>
+	<blockquote>
+	<i>multiplier</i> and <i>cyclecnt</i> may vary over time<br />
+	NB: Works only on MONO soundfiles.
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the DISTORT REPLIM Process
+</h3>
+
+<blockquote>
+<p>
+This function is like DISTORT REPEAT, but with a slight change.  Here 
+the length of wavecycle to be affected can be set.  Thus, if you set 
+a mid-range frequency, only those <i>below</i> that frequency will 
+repeat, and the others (above the frequency) will be discarded 
+(filtered out).  Hence the name 'REP-LIM', meaning 'repeat (with a) 
+limit'.
+</p>
+
+<p>
+DISTORT REPLIM is therefore like a filtering program that also repeats 
+wavecycles.  In the DISTORT set, the wavecycles are wavelengths that 
+occur between zero crossings, so distortion also occurs.
+</p>
+
+<p>
+It is helpful to remember that wavelength is inversely proportional 
+to frequency.  <a href="glosstec.htm#WAVELENGTH">Wavelength</a> is the 
+actual physical length of the oscillation, and 
+<a href="glosstec.htm#FREQUENCY">frequency</a> is the number of 
+cycles that occur in one second (i.e., Hertz).  These two aspects 
+of sound are inversely proportional to one another: <i>P</i> = 1/<i>f</i>.  
+For example, a sound oscillating at 100 Hz will have a period, i.e., a 
+wavelength of 1/100 meters = 0.01 meters (0.39 inch).  A sound 
+oscillating at 1000Hz will have a wavelength of 1/1000 meters = 
+0.001 meters (0.039 inch).
+</p>
+
+<p>
+Short wavecycles are therefore higher in pitch and long ones are lower in 
+pitch.  When the frequency setting for DISTORT REPLIM is high, the filter 
+point is set higher and more of the sound will be retained.  Here we are 
+dealing with 'pseudo-wavecycles' (portions of soundfile between zero 
+crossings), which is what introduces distortion into the equation.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The net result of the function is to create repetition distortion while 
+filtering out a user-definable amount of the higher frequencies.  Remember 
+that the relative amounts of high and low frequencies in the <i>infile</i> 
+will affect the results.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT REPLIM<br>
+<a href="#DISTORTLIST">Return</a> to List of functions for interacting 
+spectra at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="REVERSE">DISTORT REVERSE &#150; Cycle-reversal distortion in 
+which the 'wavecycles' are reversed in groups</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort reverse</b> <i>infile outfile cyclecnt</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>cyclecnt</i> &#150; number of 'wavecycles' in a reversed group 
+(Range: &gt; 0)
+	<blockquote>
+	<i>cyclecnt</i> may vary over time.
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the DISTORT REVERSE Process
+</h3>
+
+<blockquote>
+<p>
+Here the original soundfile is grouped into a series of 'wavecycles' 
+with <i>cyclecnt</i> 'wavecycles' in each group.  Then each of these 
+groups of 'wavecycles' is reversed.
+</p>
+
+<p>
+The term 'distortion' here is something of a misnomer, because no 
+distortion process is applied to the 'wvecycles' themselves.  Instead, 
+<i>cyclecnt</i> sets the number of 'wavecycles' which are to be copied 
+in reverse as a group to the <i>outfile</i>.  For example, if 
+<i>cyclecnt</i> = 3, 15 'wavecycles' reversed in groups of 3 will 
+assume the order: 3-2-1, 6-5-4, 9-8-7, 12-11-10, 15-14-13.  Thus, 
+not only is the sound material backwards, but the reversed 1<sup>st</sup> 
+'wavecycle' is now adjacent to the reversed 6<sup>th</sup> 'wavecycle'.
+</p>
+
+<p>
+This mimics the classical tape studio technique of cutting up a 
+length of tape into segments (of varying lengths), reversing the 
+segments, and joining up the reversed pieces.
+</p>
+
+<p>
+The result will be similar to a random brassage because of the differing 
+lengths of the 'wavecycles'.
+</p>
+
+<p>
+The process moves steadily through the <i>infile</i> from beginning to 
+end, so the normal order of the (reversed) events is preserved.  It is 
+surprising how normal the output can be.  With mid-range values for 
+<i>cyclecnt</i> (say, 30 to 100), one hears the original breaking up, 
+but only with very large values for <i>cyclecnt</i> does one hear the 
+sound sweeping backwards in large swathes.  Again, it is a question 
+of 'resolution':  the size of the units being manipulated.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+A small value for <i>cyclecnt</i> will produce a grainy result, 
+mid-values a 'broken up' result, and large values swathes of reversed 
+sound.  If the value for <i>cyclecnt</i> exceeds the number of 
+'wavecycles' in the <i>infile</i>, you will be told that the "sound 
+source is too short...".  <a href="#CYCLECNT"><b>DISTORT CYCLECNT</b></a> 
+returns the number of 'wavecycles' in a sound, should you want to 
+provide a value for <i>cyclecnt</i> which is right up to the limit.
+</p>
+
+<p>
+Reversing the output of DISTORT REVERSE turns the <i>cyclecnt</i> groups 
+back the other way while reading the whole soundfile from back to 
+front, producing an interesting mixture of forwards and backwards!
+</p>
+
+<p>
+Using the time-varying option for <i>cyclecnt</i> provides an 
+opportunity for dramatic or gradual changes in the output.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT REVERSE<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+<h2 id="SCRAMBLE">SCRAMBLE &#150; Scramble waveset order randomly or by size and level</h2>
+
+<h3>
+Usage
+</h3>
+<b>scramble scramble &nbsp;&nbsp;&nbsp;&nbsp;1-2</b>&nbsp; <i>infile outfile dur seed</i> [<b>-c</b><i>cnt</i>] [<b>-t</b><i>trns</i>] [<b>-a</b><i>atten</i>]<br>
+<b>scramble scramble &nbsp;&nbsp;&nbsp;&nbsp;3-4</b>&nbsp;  <i>infile outfile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; seed</i> [<b>-c</b><i>cnt</i>] [<b>-t</b><i>trns</i>] [<b>-a</b><i>atten</i>]<br>
+<b>scramble scramble &nbsp;&nbsp;&nbsp;&nbsp;5-8</b>&nbsp;  <i>infile outfile cuts seed</i> [<b>-c</b><i>cnt</i>] [<b>-t</b><i>trns</i>] [<b>-a</b><i>atten</i>]<br>
+<b>scramble scramble &nbsp; 9-10&nbsp;</b><i> infile outfile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; seed</i> [<b>-c</b><i>cnt</i>] [<b>-t</b><i>trns</i>] [<b>-a</b><i>atten</i>]<br>
+<b>scramble scramble 11-14&nbsp;</b><i> infile outfile cuts seed</i> [<b>-c</b><i>cnt</i>] [<b>-t</b><i>trns</i>] [<b>-a</b><i>atten</i>]<br>
+
+
+
+<h3>
+Modes
+</h3>
+<blockquote>
+Reassembly is:<br>
+<b>1</b> &nbsp;&nbsp; In random order.<br>
+<b>2</b> &nbsp;&nbsp;  In permuted random order (all wavesets used before any are re-used).<br>
+<b>3</b> &nbsp;&nbsp;  In order of increasing size (falling pitch).<br>
+<b>4</b> &nbsp;&nbsp;  In order of decreasing size (rising pitch).<br>
+<b>5</b> &nbsp;&nbsp;  In order of increasing size, in each segment.<br>
+<b>6</b> &nbsp;&nbsp;  In order of decreasing size, in each segment.<br>
+<b>7</b> &nbsp;&nbsp;  In order of increasing then decreasing size.<br>
+<b>8</b> &nbsp;&nbsp;   In order of decreasing then increasing size.<br>
+<b>9</b> &nbsp;&nbsp;  In order of increasing level.<br>
+<b>10</b>&nbsp; In order of decreasing level.<br>
+<b>11</b>&nbsp; In order of increasing level, in each segment.<br>
+<b>12</b>&nbsp; In order of decreasing level, in each segment.<br>
+<b>13</b>&nbsp; In order of increasing then decreasing level.<br>
+<b>14</b>&nbsp; In order of decreasing then increasing level.<br>
+
+</blockquote>
+
+
+<h3>
+Parameters
+</h3>
+<blockquote>
+<i>infile</i> &#150; input soundfile (MONO).<br>
+<i>outfile</i> &#150; output soundfile (MONO).<br>
+<i>dur</i> &#150; duration of output file. (Range: 1 to 7200 secs)<br>
+<i>cuts</i> &#150; textfile of (increasing) times in source: process in each separate segment. (Range: &gt;0 to file-length)<br> 
+<i>seed</i> &#150; random seed; same seed with same random parameters gives same output. (Range: 0 to 256) <br>
+<b>-c</b><i>cnt</i> &#150; number of wavesets in waveset-groups to be scrambled. (Range: 1 to 256) <br>
+<b>-t</b><i>trns</i> &#150; range of any random transposition of wavesets. (Range: 0 to 12 semitones) <br>
+<b>-a</b><i>atten</i> &#150; range of any random attenuation of wavesets. (Range: 0 to 1)
+
+</blockquote>
+
+
+
+<h3>
+Understanding the SCRAMBLE  Process
+</h3>
+
+<blockquote>
+<p>
+As the name suggests, this process scrambles the order of wavesets (pseudo-wavecycles): randomly and by size and level. The fourteen modes set out the various possibilities. Some modes use a <i>cuts</i> datafile of times to define the segments. These can be set to the start of each segment that might be re-positioned. There is scope for optional random transposition and attenuation. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of SCRAMBLE
+</p><p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+
+<hr><!-- ********************************************************** -->
+
+<h2 id="SHUFFLE">DISTORT SHUFFLE</a> &#150; Distortion by shuffling 
+'wavecycles'</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort shuffle</b> <i>infile outfile domain-image</i> 
+[<b>-c</b><i>cyclecnt</i>] [<b>-s</b><i>skipcycles</i>]
+<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>domain</i> &#150; set of letters representing consecutive 
+(groups of) 'wavecycles'<br>
+<i>image</i> &#150; set of letters which forms some permutation of the 
+<i>domain</i> set
+	<ul>
+	<li>Items from <i>domain</i> may be reordered, omitted or duplicated.</li>
+	<li>A typical <i>domain</i> could be <b>abcd</b></li>
+	<li>A typical <i>image</i> might be <b>aacccbdd</b> or <b>dccbba</b> 
+	or <b>dac</b> etc.</li>
+	<li>The <i>domain</i> and <i>image</i> sets <b>must</b> be 
+	connected with a dash</li>
+	<li>Full example: <b>abcd-aacccbdd</b></li>
+	</ul>
+
+<b>-c</b><i>cyclecnt</i> &#150; the size of 'wavecycle' groups to process:  
+each character in <i>domain-image</i> represents <i>cyclecnt</i> groups 
+of 'wavecycles' (Default: 1)
+	<blockquote>
+	<i>cyclecnt</i> may vary over time.
+	</blockquote>
+<b>-s</b><i>skipcycles</i> &#150; number of 'wavecyles' (integer) to 
+skip at start of file<br>
+</blockquote>
+
+<h3>
+Understanding the DISTORT SHUFFLE Process
+</h3>
+
+<blockquote>
+<p>
+A simple reordering in which <i>domain</i> and <i>image</i> have the same 
+number of characters will suitably roughen up the sound.  As the 
+<i>image</i> duplicates characters, some time-stretching will occur.
+</p>
+
+<p>
+Introducing higher <i>cyclecnt</i> values will mean that the <i>infile</i> 
+is processed in larger units, increasing the recognisability of the 
+original.  Note that, in spite of the higher <i>cyclecnt</i>, 
+time-stretching does not result &#150; unless <i>domain</i> characters 
+repeat in the <i>image</i>.
+</p>
+
+<p>
+Thus, a <i>domain-image</i> of <b>abc-cba</b> would be:
+	<blockquote>
+	<b>3-2-1, 6-5-4</b> etc.
+	</blockquote>
+but with a <i>cyclecnt</i> of 5,
+	<blockquote>
+		<ul>
+		<li><b>a</b> would comprise <b>1-2-3-4-5</b> (in the 
+		<i>domain</i>)</li>
+		<li><b>b</b> would comprise <b>6-7-8-9-10</b> (in the 
+		<i>domain</i>)</li>
+		<li><b>c</b> would comprise <b>11-12-13-14-15</b> (in 
+		the <i>domain</i>)</li>
+		</ul>
+
+	and the <i>image</i> <b>c-b-a</b> would now be:<br>
+	<b>11-12-13-14-15, 6-7-8-9-10, 1-2-3-4-5</b> &#150; 
+	<b>26-27-28-29-30, 21-22-23-24-25, 16-17-18-19-20</b>
+	</blockquote>
+Note how the <i>cyclecnt</i> 'wavecycles' proceed sequentially forward 
+in the file, even though the <i>image</i> involves a reversal of the 
+<i>domain</i>.  This is what produces the increased recognisability.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The possibilities focus here on sculpting the roughness of the distortion 
+along with time-stretch factors.  Lots of room for playing with the 
+<i>image</i> shapes.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT SHUFFLE<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ========================================================================= -->
+<h2 id="SPLINTER">SPLINTER &#150; Create splinters by repeating & shrinking selected waveset-group</h2>
+
+<h3>
+Usage
+</h3>
+<b>splinter splinter 1-4 </b> <i>infile outfile target wcnt shrcnt ocnt p1 p2</i>  <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<b>-e</b><i>ecnt</i>] [<b>-s</b><i>scv</i>] [<b>-p</b><i>pcv</i>] [<b>-f</b><i>frq</i> |<b>-d</b><i>dur</i>] [<b>-r</b><i>rand</i>] [<b>-v</b><i>shrand</i>] [<b>-i</b>] [<b>-I</b>]
+
+
+<h3>
+Modes
+</h3>
+<blockquote>
+<b>1, 3 </b> Splinters lead into the original sound.   Mode 1: splinters change pitch.<br>
+<b>2, 4 </b> Splinters emerge from the original sound. Mode 2: splinters change pitch.
+
+</blockquote>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile.<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>target</i> &#150; time in the source immediately before the desired waveset group. (Range: 0 to file-length secs.)<br>
+<i>wcnt</i> &#150; number of wavesets used to create the splinter group. Must be &lt; <i>frq</i> in 'length' (if <i>frq</i> used)<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;(Range: 1 to 256; maximum length 1 minute)<br>
+<i>shrcnt</i> &#150; number of waveset-group repeats that are shrunk. (Range: 2 to 256)<br>
+<i>ocnt</i> &#150; number of maximally-shrunken splinters beyond the shrink <i>shrct</i>. (Range: 0 to 256)<br>
+<i>p1</i> &#150; pulse-speed of waveset repetitions at the originating waveset (Range: 0 to 50 Hz).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If zero, Pulse-speed 1 is determined by the duration of the selected waveset-group (<i>wcnt</i>).<br>  
+<i>p2</i> &#150; pulse-speed at end of repetitions (<i>shrcnt+ocnt</i> splinters away). (Range: 0 to 50 Hz)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If zero, Pulse-speed 2 = Pulse-speed 1.<br>
+<b>-e</b><i>ecnt</i> &#150; number of extra regular pulses beyond <i>shrcnt+ocnt</i>. (Range: 0 to 10000)<br>
+<b>-s</b><i>scv</i> &#150; shrinkage curve. (Range: 0.1-10; 1 = linear, &gt;1 contracts more rapidly near originating waveset, &lt;1 less rapidly) <br>
+<b>-p</b><i>pcv</i> &#150; pulse-speed curve. (Range: 0.1-10; 1 = linear, &gt;1 accelerates more rapidly near originating waveset, &lt;1 less rapidly)<br>  
+<b>-f</b><i>frq</i> (Modes1+2) &#150; approx. frequency (1/wavelength) of maximally-shrunk splinters. (Range: 1000 Hz-Nyquist/2; default: c.6000 Hz)<br>  
+<b>-d</b><i>dur</i> (Modes3+4) &#150; approx. duration of maximally-shrunk splinters (Range: 5 to 50 mS).<br> 
+<b>-r</b><i>rand</i> &#150; randomisation of pulse timing; may vary over time. (Range: 0 to 1)<br>
+<b>-v</b><i>shrand</i> &#150; randomisation of pulse shrinkage; may vary over time. (Range: 0 to 1)<br>
+<b>-i</b> &#150; mix all source into output. (Default: source used only where there are no splinters.)<br> 
+<b>-I</b> &#150; mix none of source into output.
+</blockquote>
+
+
+
+<h3>
+Understanding the SPLINTER Process
+</h3>
+
+<blockquote>
+<p>
+SPLINTER cuts a short segment from the soundfile (at or near <i>target</i>) and repeats it as pulses, shrinking and optionally transposing it on each repetition. This pulsed portion is either followed by the reset of the soundfile (Modes 1,3) or precedes it (Modes 2,4). Alternatively, the option NOT to mix any of the source (flag <b>-I</b>) will just give the pulsed segment. In Modes 1 and 2, the splinters also change pitch.
+</p><p> 
+The segment length is a group of pseudo-cycles (<i>wcnt</i>), so may be a bit hard to predict. <i>Shrcnt</i> and <i>ocnt</i> determine the number of pulses &#150; those that are shrunk and those after the shrinkage, while <i>ecnt</i> can extend this number further. Pulse-speeds 1 (<i>p1</i>) and 2 (<i>p2</i>) set the speed of repetition, which can be arranged so that the repetitions speed up or slow down; if  <i>p1</i> is zero, the speed is taken from the waveset group length <i>wcnt</i> . The speed of pulse and shrinkage can be skewed by <i>pcv</i> and <i>scv</i>, respectively. 
+</p><p> 
+Modes 1 and 2 gradually change pitch with each repetition; Modes 3 and 4 do not. <i>Frq</i> optionally sets a goal frequency to reach. In this context, the group of cycles has a notional 'frequency' (see also other waveset processes affecting frequency); if this exceeds <i>frq</i>, a CDP Error is raised.
+</p><p> 
+Optional parameters include duration (<i>dur</i>, Modes 3 and 4), which sets the length of maximally shrunk splinters; <i>rand</i> and <i>shrand</i>, which randomize pulse and shrink timing, respectively.
+
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<p>
+End of SPLINTER
+</p><p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+
+<hr><!-- ********************************************************** -->
+<h2 id="TELESCOPE">DISTORT TELESCOPE</a> &#150; Time-contract sound by 
+telescoping <i>N</i> wavecycles into 1</h2>
+
+<h3>
+Usage
+</h3>
+<b>distort telescope</b> <i>infile outfile cyclecnt</i> 
+[<b>-s</b><i>skipcycles</i>] [<b>-a</b>]<br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input soundfile (mono only)<br>
+<i>outfile</i> &#150; output soundfile<br>
+<i>cyclecnt</i> &#150; the number of 'wavecycles' in a group<br>
+	<blockquote>
+	<i>cyclecnt</i> may vary over time.
+	</blockquote>
+<b>-s</b><i>skipcycles</i> &#150; number of 'wavecyles' (integer) to 
+skip at start of file<br>
+<b>-a</b> &#150; telescope to an average 'wavecycle' length (Default: 
+telescope to the longest 'wavecycle' length)<br>
+</blockquote>
+
+<h3>
+Understanding the DISTORT TELESCOPE Process
+</h3>
+
+<blockquote>
+<p>
+Although at first rather like DISTORT OMIT, here the 'wavecycles' are 
+not deleted as such.  Instead, they are superimposed (i.e., mixed) onto 
+each other, with shorter 'wavecycles' being stretched to fit the 
+longest one in each group of <i>cyclecnt</i> 'wavecycles'.  The 
+<i>outfile</i> will usually be much shorter than the <i>infile</i> and 
+can be reduced to a mere blip with this process.
+</p>
+
+<p>
+The <b>-a</b> flag tells the program to telescope to the <b>average</b> 
+'wavecycle' length, rather than to the longest.  Since the longest 
+'wavecycle' in each group is compressed by this method, the <i>outfile</i> 
+will be even shorter.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+Interesting results can be achieved with small values for <i>cyclecnt</i>, 
+the output tending to have a 'mushy' quality.  It responds well to 
+pitched material, producing a singing, if mushy, tone.
+</p>
+</blockquote>
+
+<p>
+End of DISTORT TELESCOPE<br>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+
+<hr><!-- ********************************************************** -->
+ 
+<h2 id="PSEUDOWAVECYCLES">WAVESETS: technical description of a 'Pseudo-wavecycle'</h2>
+
+<blockquote>
+<p>
+A pseudo-wavecyle is a way of dividing up the <b>whole</b> signal by 
+taking chunks which stretch from <b>one</b> zero-crossing, through a 
+<b>second</b> to a <b>third</b>.  The reason these divisions of the 
+signal are called 'pseudo' is because these segments of the waveform do 
+not <i>necessarily</i> correspond to <i>real</i> wavecycles.
+</p>
+
+<p>
+For example, a possible <i>true</i> wavecycle (corresponding to the 
+fundamental of a pitch) of a sound might cross the zero more than 
+twice, as in Figure 1.  But this divides into two pseudo-wavecycles, 
+as in Figure 2.  Note that each of these pseudo-wavecycles crosses 
+the zero at three points.
+</p>
+
+<div align=center>
+<p>
+<IMG SRC = "images/dstrtfigspp.jpg" ALT="[Figure 1 shows a sine-like waveform 
+with 5 crossings:  starting at zero, it goes up (big), down (small), 
+up (small), down (big) and ends by coming back up to zero.  In Figure 2 
+this waveform is broken at its center into 2 separate waveforms, each 
+with 3 crossings]"></a>
+</p>
+</div>
+</blockquote>
+
+<blockquote>
+For more technical discussion of these processes, see Richard Dobson's 
+<br /><a href="#RWDDIST"><b>Introduction to the DISTORT Functions</b></a>
+</blockquote>
+
+<p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<hr><!-- ********************************************************** -->
+<h1 align=center id="RWDDIST">
+Introduction to the T Wishart DISTORT  Functions
+</h1>
+
+<h2 align=center>
+by Richard Dobson
+</h2>
+
+<h2 id="TOPICS">About the Waveset DISTORT Functions</h2>
+
+<p>
+<blockquote>
+<dl>
+<dt><a href="#PSEUDO"><b>These 'Wavecycles' are pseudo</b></a>
+<dt><a href="#PREDICT"><b>Predictability Factors</b></a>
+<dt><a href="#PHASE"><b>Phase Relationships</b></a>
+<dt><a href="#EXPERI"><b>Experimental</b></a>
+<dt><a href="#MUSIC"><b>Musical Applications</b></a>
+ </dl>
+</blockquote>
+
+
+<h2 id="PSEUDO">Pseudo-wavecycles:</a> a non-linear process </h2>
+
+<p>
+These functions have in common a graphical approach to sound transformation.  
+That is to say, whereas orthodox time-domain transformation techniques 
+apply some mathematical modification to successive samples (see, for 
+example, ring modulation with <a href="cgromody.htm#RADICAL"><b>MODIFY RADICAL</b></a>), these DISTORT functions take as their basis the concept of the 'wavecycle',  i.e., the set of 
+samples between two sucessive zero crossings.
+</p>
+
+<p>
+They are therefore highly non-linear, in the sense that the output of one 
+of these DISTORT functions depends on the waveform contour of the infile.  
+This contour does of course reflect the general sonic nature of the infile 
+&#150; a simple periodic sound will have regular, clearly defined and 
+similar wavecycles, whereas a noisy or otherwise complex sound will be 
+seen as a chain of wavecycles each different in shape, amplitude and 
+duration.
+</p>
+
+<p>
+The functions therefore take an essentially 'granular' view of a soundfile, 
+much as a graphic artist might view an image as a set of variably-sized 
+pixels (picture elements).  Composers working with granulation techniques 
+should find them especially interesting.  While they can be applied to 
+any sort of source sound, the most controlled and predictable results 
+(given that they can often be impossible to predict!) are likely to be 
+obtained from source sounds designed for the purpose of applying granular 
+transformations.
+</p>
+
+<p>
+For a simple geometric waveform such as a sine or triangle wave, the 
+size of a wavecycle will indeed correspond to the true wavelength (or 
+'instantaneous pitch') of the input signal, but for more complex (i.e., 
+wiggly) sounds, periodic or otherwise, it can be expected to vary widely 
+and irregularly, as multiple zero-crossings within a single period of the 
+infile are counted (erroneously, in a sense) as complete wavecycles in 
+their own right.  Therefore, although it is true to say that, the higher 
+the pitch of the infile, the greater the number of wavecycles in each 
+second, it is not completely true.  Rather, there will be AT LEAST that 
+many, and probably many more.  In short, no general advice can be given 
+about cyclecount parameter values, as these will depend almost entirely 
+on the nature of the infile.
+</p>
+
+
+
+<h2 id="PREDICT">Predictability</a> Factors </h2>
+
+<p>
+The factors determining the degree of predictability in using these 
+functions may be summarized as follows:
+
+<ul>
+<p>
+<li>High predictability:</li>
+	<ul>
+	<li>Simple geometric waveforms &#150; sine, triangle, etc</li>
+	<li>Simple periodic waveforms &#150; upper partials weaker than 
+	    fundamental</li>
+	<li>Low rates of change in the above &#150; simple vibrato or tremolo</li>
+	<li>Heavily low-pass filtered sounds</li>
+	<li>Output from <a href="#OMIT"><b>DISTORT OMIT</b></a>, <a href="#REVERSE"><b>DISTORT REVERSE</b></a>, <a href="#SHUFFLE"><b>DISTORT SHUFFLE</b></a> 
+	    (see below)</li>
+	<li>Use of large wavecycle groups.</li>
+	</ul>
+</p>
+
+<p>
+<li>Medium predictability:</li>
+	<ul>
+	<li>Periodic waveforms with one or more partials stronger than 
+	    the fundamental &#150; many acoustic intrumental sounds</li>
+	<li>Moderately low-pass filtered sounds</li>
+	<li>Presence of transients &#150; instrumental attacks, noise</li>
+	<li>Fast or irregular modulation</li>
+	<li>'Granular' sounds</li>
+	<li>Low level of noise</li>
+	<li>Phase shifts</li>
+	<li>Use of medium-length wavecycle groups (brassage rates)</li>
+	</ul>
+</p>
+
+<p>
+<li>High to impossible predictability:</li>
+	<ul>
+	<li>Inharmonic sounds &#150; bells, etc</li>
+	<li>High levels of noise</li>
+	<li>Rapid or chaotic transients</li>
+	<li>Speech</li>
+	<li>Dominant high frequencies</li>
+	<li>Processing confined to single wavecycles.</li>
+	</ul>
+</ul>
+</p>
+
+
+<h2 id="PHASE">Phase</a> Relationships </h2>
+
+<p>
+In a periodic (pitched) sound, the phase relationships between 
+individual harmonic partials will often determine the number of 
+zero-crossings internal to a period.  Thus two soundfiles, identical 
+apart from some  (ofen inaudible) differences in phase, can lead to 
+widely different outfiles when distorted by the same function.  Note also 
+that the wavecycle technique, while 'accurate' for simple pitched sounds, 
+shows a deliberate disregard for phase or other forms of discontinuity, 
+resulting in the introduction of various forms of mostly mild transient 
+distortion (glitches) in the outfile.  These may of course be desired, 
+but in perhaps the majority of cases some form of filtering will need 
+to be applied.
+</p>
+
+<p>
+Given the graphic nature of these functions, it follows that inspection 
+of outfiles and prospective infiles with a graphic display of the 
+soundfile will help in understanding how a particular function works, 
+and also in predicting the effect a function will have.
+</p>
+
+
+<h2 id="EXPERI">Experimental,</a> with minimal error-checking </h2>
+
+<p>
+As is the nature of experimental software, error checking is kept to 
+a minimum.  Some essential tests are made, for example to avoid division 
+by zero and similar hazards.  Beyond these, few constraints are imposed 
+on parameter ranges.  It is especially important to remember the fact 
+that you are working with digital samples - trying to envelope wavecycles 
+in high frequency signals (where a wavecycle may only amount to a handful 
+of samples) cannot be expected to produce predictable results.  A 'robust' 
+function might set a lower limit on the length of a wavecycle, but none 
+of these functions do so &#150; the only method is to use <a href="#FILTER"><b>DISTORT FILTER</b></a> 
+(see below) to remove wavecycles below a user-defined cut-off 
+length.
+</p>
+
+<p>
+In almost all situations, therefore, putting prospective sounds through 
+a strong low-pass filter such as <a href="cgrofilt.htm#LOHI"><b>FILTER LOHI</b></a> will minimize unpleasant distortion and maximize interesting and attractive transformations.  
+It follows that it is also worth using the highest possible sample rate.
+</p>
+
+
+<h2 id="MUSIC">Musical</a> Applications </h2>
+
+<p>
+There are two primary uses for these functions.  The first is simply to 
+apply more or less extreme distortion or granulation to a specific 
+infile.  The second is the development of granular textures through 
+the manipulation of wavecycles &#150; infiles are thought of as 'libraries' 
+or databases of wavecycles.  It is important to develop a clear strategy 
+for using a sequence of distort functions.  A key stage in this strategy 
+might well be step one: to create a soundfile of KNOWN WAVECYCLE 
+CHARACTERISTICS.
+</p>
+
+<p>
+Note that there are two general types of distort function:  those that 
+operate on <b>individual</b> wavecycles (<a href="#DIVIDE"><b>DISTORT DIVIDE</b></a>, 
+<a href="#FRACTAL"><b>DISTORT FRACTAL</b></a>,<a href="#HARMONIC"><b>DISTORT HARMONIC</b></a>, 
+<a href="#INTERACT"><b>DISTORT INTERACT</b></a>), and the rest, which work on or output 
+<b>groups</b> of wavecycles.  <a href="#MULTIPLY"><b>DISTORT MULTIPLY</b></a> also outputs groups of 
+wavecycles when multiplying the wavecycle frrequency.  Considerable 
+flexibility can be obtained if the size of each group is highly composite 
+(.e.g., a power of 2), so that 'groups within groups' can be manipulated.
+Note the use of a several linked DISTORT operations in the following 
+procedures.
+</p>
+
+<p>
+For example, weak wavecycles can be removed (<a href="#OMIT"><b>DISTORT OMIT</b></a>, 
+<a href="#DELETE"><b>DISTORT DELETE</b></a>,<a href="#REPLACE"><b>DISTORT REPLACE</b></a>).  
+The remainder might be repeated with interpolation 
+(<a href="#INTERPOLATE"><b>DISTORT INTERPOLATE</b></a>) to form larger groups, which are then reordered 
+(<a href="#SHUFFLE"><b>DISTORT SHUFFLE</b></a>) or enveloped (<a href="#ENVELOPE"><b>DISTORT ENVEL</b></a>).
+</p>
+
+<p>  
+Alternatively, they might be enveloped first, and the resulting wavecycles 
+reordered or repeated.  A short section might be removed (<a href="sfedit.htm#CUT"><b>SFEDIT CUT</b></a>) and interpolated (<a href="#INTERPOLATE"><b>DISTORT INTERPOLATE</b></a>) over a long range, to create a timbrally simple file which might then be the source for a new sequence of 
+operations, such as fractal or harmonic transformation 
+(<a href="#FRACTAL"><b>DISTORT FRACTAL</b></a>, <a href="#HARMONIC"><b>DISTORT HARMONIC</b></a>).
+</p>
+
+<p>
+Finally, it is well worth exploring the potential of the function 
+<a href="#PITCH"><b>DISTORT PITCH</b></a> to colour vocal sounds.  Voices can be made higher and 
+lighter or deeper and more growley, either all at once or over a period of time.
+</p>
+
+<p>
+<a href="#DISTORTLIST"><b>Return</b></a> to list of DISTORT functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cgroundx.htm" Target="_top"><b>Return</b></a> 
+to 'Groucho' Time-Domain Index
+</p>
+
+<p>
+Last updated: 1 Apr 2023<br>
+Indexing Updated: 30 June 2015<br />
+&#169; 1996 Richard Dobson &amp; CDP
+</p>
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 2 Apr 2023 for CDP8<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

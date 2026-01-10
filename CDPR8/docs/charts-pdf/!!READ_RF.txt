@@ -1,0 +1,8 @@
+This folder contains the docs that are already published as PDFs in the normal CDP documention, hence included as PDFs in CDPDocs.zip.
+
+They're all also included in soundshaper.net/CDPDocs/PDF
+whose source is C:\WEBSITE\Soundsaper.net\CDPDocs\PDF
+
+They're also all included in docs-pdf (as duplicates)
+
+Updated Apr 3 '20, revised May'23 - RF

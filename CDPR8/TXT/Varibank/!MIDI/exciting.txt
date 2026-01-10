@@ -1,0 +1,10 @@
+;T-V resonance based around pitches of "exciting.wav"
+0.00  70 -3dB	72 -3dB	  76 -3dB   78 -3dB   71 -3dB
+0.80  70 -3dB	72 -3dB	  76 -3dB   78 -3dB   71 -3dB 
+0.81  71 -3dB	72 -3dB	  75 -3dB   77 -3dB   70 -3dB
+1.69  71 -3dB	72 -3dB	  75 -3dB   77 -3dB   70 -3dB
+1.70  70 -3dB	71 -3dB	  75 -3dB   76 -3dB   70 -3dB
+3.65  70 -3dB	71 -3dB	  75 -3dB   76 -3dB   70 -3dB
+3.66  71 -3dB	72 -3dB	  73 -3dB   75 -3dB   78 -3dB
+4.04  71 -3dB	72 -3dB	  73 -3dB   75 -3dB   78 -3dB
+4.05  70 -3dB	71 -3dB	  74 -3dB   76 -3dB   79 -3dB 

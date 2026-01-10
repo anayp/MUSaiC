@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cahcsnd3.htm  - HTML5 version -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CSOUND TUTORIAL 3</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "CDPCSSDF.CSS" />
+<link rel="icon"  href="../images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "../images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="../../html/ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="../../html/tutorials.htm" Target="_top"><b>Tutorials Index</b></a> 
+  <hr>
+  <br />
+
+  <dt><a href="#SIGPROC"><b>PART 3<br>
+  <dt>Signal Processing:</b></a>
+  <br><br>
+  <dt><a href="#AAMPENV"><b>Envelopes</b></a>
+  <dt><a href="#BCHOR"><b>Chorusing</b></a>
+  <dt><a href="#CFM" ><b>Freq Mod</b></a>
+  <dt><a href="#DRM"><b>Ring Mod</b></a>
+  <dt><a href="#EBUZZ"><b>Buzz</b></a>
+
+  <br><br>
+  <dt><a href="cahcsnd1.htm"><b>PART 1<br>
+  <dt>Origins of Csound</b></a>
+  <br><br>
+  <dt><a href="cahcsnd2.htm"><b>PART 2<br>
+  <dt>Simple Guide to Csound</b></a> 
+
+
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+     	<div align=center>
+     	<br>
+     	<img src="../images/cdplogo2.jpg" ALT="CDP Logo">
+     	</div>
+
+   <h1 align=center>&#126; GETTING STARTED WITH <i>CSOUND</i> &#126; <br>
+   by Andy Hunt</h1>
+
+
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<blockquote>
+<p id="SIGPROC">
+<font size=5><b>PART 3 &#150; Signal Processing</b></font>
+</p>
+
+	<blockquote>
+	<p>
+	In Section 2 we studied the 'OSCIL' unit generator.  This was 
+	created in an orchestra file.  We then made several different score 
+	files to use this orchestra to do additive synthesis, create beat 
+	frequencies and complex frequencies.
+	</p>
+
+
+	<p>
+	We shall now turn our attention to some common signal processing techniques:
+	<ul>
+	<li><b>A &#150; <a href="#AAMPENV">Amplitude Envelopes</a> 
+	    &#150; the 'ADSR' shapes found on synthesisers</b>
+	<li><b>B &#150; <a href="#BCHOR">Chorusing</a> &#150; a means of 
+	    enriching a sound</b>
+	<li><b>C &#150; <a href="#CFM">Frequency Modulation</a> &#150; 
+	    the basis of the Yamaha synthesis technique (FM)</b>
+	<li><b>D &#150; <a href="#DRM">Ring Modulation</a> &#150; 
+	    multiplying two oscillators to distort the harmonic ratios</b>
+	<li><b>E &#150; <a href="#EBUZZ">Buzz</a> &#150; generating 
+	    partials using a 'complex oscil' unit generator</b>
+	</ul>
+	</p>
+
+	</blockquote>
+
+</blockquote>
+<hr>
+
+<!-- ========================================================================= -->
+<h2 id="AAMPENV"><b>A &#150; Amplitude Envelopes</b></h2>
+
+<p>
+We are probably familiar with the enveloping functions on many 
+synthesisers:  Attack-Decay-Sustain-Release (ADSR):
+	<ul>
+	<li><b>Attack</b> &#150; the time from the start to the peak of a sound;
+	<li><b>Decay</b>&nbsp; &#150; the loss of volume from the initial peak. <br> 
+	   The speed at which this happens very much influences the sound.   For example, a quick decay after a fast attack can result in a bell-like sound, but if this decay is slowed down, the bell-like effect is gradually lost.
+	<li><b>Sustain</b> &#150; the continuation level of the sound until the key is released;
+	<li><b>Release</b> &#150; the speed at which the sound dies away after the key has been released.
+	</ul>
+</p>
+
+<p>The following diagram summarises this:
+<p align=center>
+<img src="images/cah3figADSR.jpg" align=bottom border=0 width=353 height=162>
+</p>
+
+<p>
+The <i>Csound</i> signal processing unit <b>LINEN</b> models this 
+process in software.  This is a three-part time-based amplitude 
+envelope, in which the:
+	<ul>
+	<li>the attack period is called 'rise time',
+	<li>the 'decay time' comes last and takes the amplitude back down to 0.   'Release  time'  is not meaningful in this  context  because there isn't anything to release.   (<i>Csound</i> isn't associated  with key presses in the same way as synthesizers are.)
+	<li>the sustain period is what is left after subtracting the rise time and the decay time from the total duration;  the 'amplitude' is the level reached during the sustain period.  The program calculates this.
+	</ul>
+</p>
+
+<p align=center>
+<img src="images/cah3figLINEN1.jpg" align=bottom border=0 width=333 height=137>
+</p>
+
+<p>
+The following diagram illustrates the data flow of the LINEN generator:
+</p>
+
+<p align=center><img src="images/cah3figLINEN2.jpg" align=bottom border=0 
+width=336 height=336>
+</p>
+
+<p>
+The following is an orchestra which uses LINEN:
+<p>
+<pre><code><b>;toot3.orc</b>
+sr     =  22050
+kr     =   1470
+ksmps  =     15
+nchnls =      1
+instr 3
+
+;output generator ampl rise dur decay
+<b>k1</b>      linen     p4,  p6,  p3, p7
+<b>a1</b>      oscil     <b>k1</b>,  p5,  1
+out    <b>a1</b>
+endin
+
+</code></pre></p>
+
+
+<p>
+The following is a score to provide some notes and other data for this 
+orchestra:
+</p>
+
+<p>
+<pre><code>
+<b>;toot3.sc</b>
+
+f1  0  4096  10  1	;sine wave made with GEN10
+<b>
+;p1    p2    p3   p4     p5      p6     p7</b>
+;instr start dur  ampl   freq    rise   decay
+i3     0     1    10000  440     .5     .7
+i3     1.5   1    10000  440     .9     .1
+i3     3     1    5000   880     .02    .99
+i3     4.5   1    5000   880     .7     .01
+i3     6     2    20000  220     .5     .5
+e
+</code></pre></p>
+
+<p>
+OK  &#150;  this gives us the general idea, but too many different 
+parameters are changing at once.  Try the following score, which 
+keeps all the parameters the same except 'rise' (which gets shorter) 
+for the first 7 notes, then holds that steady while 'decay' starts to 
+get longer for the next 7 notes.  The procedure here is important.  
+It's 'scientific method' procedure, where one tries to keep all the 
+variables the same except one, so that one can clearly observe what 
+happens when that one variable alters.
+</p>
+
+<p><pre><code>
+<b>;toot3.sc</b> - alternative version no.1
+
+f1  0  4096  10  1
+<b>
+;p1    p2    p3   p4     p5    p6   p7</b>
+;instr start dur  ampl   freq  rise decay
+i3     0     1.5  10000  440   .9   .7
+i3     2     1.5  10000  440   .7   .7
+i3     4     1.5  10000  440   .5   .7
+i3     6     1.5  10000  440   .3   .7
+i3     8     1.5  10000  440   .15  .7
+i3     10    1.5  10000  440   .04  .7
+i3     12    1.5  10000  440   .02  .7
+i3     14    1.5  10000  440   .02  .02
+i3     16    1.5  10000  440   .02  .1
+i3     18    1.5  10000  440   .02  .3
+i3     20    1.5  10000  440   .02  .6
+i3     22    1.5  10000  440   .02  .8
+i3     24    1.5  10000  440   .02  1.0
+i3     26    1.5  10000  440   .02  1.5
+i3     28    1.5  10000  440   .02  2.0
+e
+</code></pre></p>
+
+<p>
+The next version illustrates psycho-acoustic phenomena associated with 
+the attack ('rise') period of a sound.  As the attack gets shorter and 
+shorter the whole character of the sound alters, sounding like breath, 
+or a 'tut', or a click, with areas of overlap.  See if you agree with 
+the designations in comments.
+</p>
+
+<p><pre><code>
+<b>;toot3.sc</b> - alternative version 2
+
+f1  0  4096  10 1
+<b>
+;p1    p2    p3   p4    p5    p6     p7</b>
+;instr start dur  ampl  freq  rise   decay  perception
+i3   0     1.5  10000   440   .9     .5     ;long
+i3   2     1.5  10000   440   .7     .5     ;long
+i3   4     1.5  10000   440   .5     .5     ;long
+i3   6     1.5  10000   440   .3     .5     ;long
+i3   8     1.5  10000   440   .15    .5     ;long/short
+i3   10    1.5  10000   440   .07    .5     ;long/short
+i3   12    1.5  10000   440   .04    .5     ;short
+i3   14    1.5  10000   440   .02    .5     ;short/breath
+i3   16    1.5  10000   440   .015   .5     ;breath
+i3   18    1.5  10000   440   .01    .5     ;breath
+i3   20    1.5  10000   440   .005   .5     ;breath/'tut'
+i3   22    1.5  10000   440   .004   .5     ;'tut'
+i3   24    1.5  10000   440   .003   .5     ;'tut'
+i3   26    1.5  10000   440   .002   .5     ;'tut'/spit
+i3   28    1.5  10000   440   .001   .5     ;click
+i3   30    1.5  10000   440   .0005  .5     ;click
+e
+</code></pre></p>
+
+<!-- ========================================================================= -->
+<h2 id="BCHOR"><b>B &#150; Chorusing</b></h2>
+
+<p>
+This is a technique by which the sound of a note or chord is enriched and 
+made to sound fuller.  It is actually done by creating beat frequencies, 
+that is, by making several copies of the note at slightly different 
+frequencies.
+</p>
+
+<p>In Part 2, we did this by creating a score which had separate but 
+simultaneous notes, each on a different frequency.  We are now going 
+to create beats<i> in the orchestra itself.</i>  This means that every 
+note of the score which uses this orchestra will  have beats.
+</p>
+
+<p>The schematic diagram of an orchestra which does this looks  like 
+this:
+</p>
+
+<p align=center>
+<img src="images/cah3figchorus.jpg" align=bottom border=0 width=389 height=266>
+</p>
+
+<p>
+This diagram shows that the orchestra has three simultaneous oscillators, 
+each one tuned slightly differently.  The one in the middle is the 
+unchanged frequency; the one on the left tunes down slightly by 
+multiplying the input frequency by 0.99, and the one on the right 
+tunes up slightly by multiplying the input frequency by 1.01.
+</p>
+
+<p>
+The orchestra text file looks like this:
+<pre><code>
+<b>;chorus.orc</b>
+sr =   22050
+kr =    1470
+ksmps =   15
+nchnls =   1
+
+instr 4
+
+inote = cpspch(p5)               ;convert octave.00 pitch notation to cps
+<b>k1</b1>  linen  10000,  p6,  p3,  p7  ;envelope shape each note
+a1  oscil  <b>k1</b>,  inote * .99, 1	 ;pitch detuned down slightly
+a2  oscil  <b>k1</b>,  inote * 1.01, 1  ;pitch detuned up slightly
+a3  oscil  <b>k1</b>,  inote, 1         ;pitch unchanged
+<b>a1</b>  = (a1+a2+a3)		 ;combine the 3 pitch variants
+    out  <b>a1</b>
+endin
+
+</code></pre></p>
+
+
+<p>
+In case of amplitude overload, the line which sums the outputs could be 
+divided by 3:  <b>a1</b>  = (a1+a2+a3)/3
+</p>
+<br>
+
+<h3><b>Csound Pitch Notation</b></h3>
+
+<p>
+In the <b>octave.00</b> pitch notation, the 'octave' means which octave 
+(middle C is octave 8);  the '.00' notations are semitones between the 
+octaves, from 0 (.00 = C) to 11 (.11 = B-natural).
+</p>
+
+<p>
+This chart will help orientate you:
+</p>
+
+<div align=center>
+<table  cellspacing=0 cellpadding=1>
+	<tr>
+		<td width=129 align=left valign=top><p align=left><b>Csound pitch</b></td>
+		<td width=109 align=left valign=top><p align=left><b>MIDI note</b></td>
+		<td width=78 align=left valign=top><p align=left><b>Freq</b></td>
+	</tr>
+
+	<tr>
+		<td  align=left valign=top><p align=left>  8.09</td>
+		<td  align=left valign=top><p align=left>  69 </td>
+		<td  align=left valign=top><p align=left>  440 Hz</td>
+	</tr>
+
+	<tr>
+		<td  align=left valign=top><p align=left>  3.00</td>
+		<td  align=left valign=top><p align=left>    0</td>
+		<td  align=left valign=top><p align=left>      8 Hz</td>
+	</tr>
+
+	<tr>
+		<td  align=left valign=top><p align=left>12.09</td>
+		<td  align=left valign=top><p align=left>127</td>
+		<td  align=left valign=top><p align=left>7040 Hz</td>
+	</tr>
+
+	<tr>
+		<td  align=left valign=top><p align=left>  1.00</td>
+		<td  align=left valign=top><p align=left>  -</td>
+		<td  align=left valign=top><p align=left>      2 Hz</td>
+	</tr>
+
+	<tr>
+		<td  align=left valign=top><p align=left>  0.00</td>
+		<td  align=left valign=top><p align=left>  -</td>
+		<td  align=left valign=top><p align=left>      1 Hz</td>
+	</tr>
+
+</table>
+</div>
+
+
+<p>
+The sound is enriched by the combination of the original pitch with the 
+versions detuned above and below.   It is possible for the amplitude to 
+get out of hand when combining pitches like this, so it would be wise to 
+add something to the orchestra to handle this:
+</p>
+
+<p>
+<code>iamp  = ampdb(p4) ;get amp from p4 and convert decibel notation 
+to linear amplitude
+</code>
+</p>
+
+<p>
+<code>iscale = iamp*.333 ;pre-divide (multiply *.333) each by a third so 
+that when added together they do not exceed the maximum value
+</code>
+</p>
+
+<p>
+The resulting changing amplitude value, 'iscale', is placed in the 
+LINEN generator in place of a fixed amplitude value.  Thus, instead 
+of a single fixed amplitude value there is a changing set of values 
+comprising the rise and fall of the envelope shape.  Try to think 
+about this for a  moment and actually picture the whole envelope 
+shape in place of the single value.  Understanding how and where 
+you can position whole shapes in place of single values is one of 
+the keys to opening up the potential of <i>Csound</i>.
+</p>
+<br>
+
+<h3><b>Csound Rates of Operation</b></h3>
+
+<p>
+The <b>i</b> of 'iamp', 'iscale' and 'inote' means 'initialisation'.  
+This means that <i>Csound</i> will do this operation at the beginning 
+of each note of the score so that it will take on a single value.  This 
+is a good place to mention that <i>Csound</i> has three 'rates'.  The 
+other two are audio <b>a</b> and control <b>k.</b>  In the audio rate, 
+there is a value for every sample of sound.  In the control rate, there 
+is one value for a whole group of sound samples <b>ksmps</b>.  A number 
+of operations, such as envelopes, work perfectly well at this slower 
+rate, and therefore save memory and processing time.  Look back at the 
+orchestras we've met so far and notice how some variables begin with the 
+letter <b>a</b> (meaning 'audio rate') and others with <b>k</b> (meaning 
+'control rate').
+</p>
+
+<p>
+When we create the score for this orchestra, there is another way that 
+we can enrich the sound, and that is by enriching the partials of the 
+sine wave generator.  Up until now, we have only used the fundamental, 
+thereby creating the purest of sine waves:
+</p>
+
+<p>
+<code>f1  0  4096  10  1</code>
+</p>
+
+<p>
+But GEN10 also allows us to set the harmonics, giving them an amplitude 
+value relative to 1.  So the next version of our score does this, giving 
+the first harmonic a value of .1 and the second harmonic a value of .025.  
+The first harmonic is an octave above the fundamental, and the second 
+harmonic is a fifth above that (in line with the harmonic series):
+</p>
+
+<p>
+<code>f1  0  4096  1  .1  .025</code>
+</p>
+
+<p>
+One could take this process further, and also experiment with changing 
+the weighting, making certain harmonics stronger and others weaker (in 
+amplitude).
+</p>
+
+<p>
+The score that follows plays a series of separate notes and then a series 
+of chords.  Note how the chorusing effect becomes richer with the chords.
+</p>
+
+<p><pre><code>
+;chorus2.sc </b>
+
+f1  0  4096  10  1  .1  .025  ;sine wave with 3 partials
+<b>
+;p1    p2    p3   p4    p5    p6     p7 </b>
+;instr start dur  ampl  freq  attack release
+i4     0     1    75    8.04  .1     .7
+i4     1     1    70    8.02  .07    .6
+i4     2     1    75    8.00  .05    .5
+i4     3     1    70    8.02  .05    .4
+i4     4     1    85    8.04  .1     .5
+i4     5     1    80    8.04  .05    .5
+i4     6     1    85    8.04  .03    .9
+;chords begin here
+i4     8     3    70    8.04  .03    .5
+i4     8     3    72    8.00  .04    .5 
+
+i4     11    3    70    8.07  .03    .5
+i4     11    3    72    8.04  .04    .5
+
+i4     14    4    73    8.09  .03    .5
+i4     14    4    72    8.05  .04    .5
+i4     14    4    74    8.00  .05    .5
+
+i4     18    4    73    8.07  .03    .5
+i4     18.1  4    72    8.04  .04    .5
+i4     18.2  4    74    8.00  .05    .5
+e
+</code></pre></p>
+<br>
+
+<!-- ========================================================================= -->
+<h2 id="CFM"><b>C &#150; Frequency Modulation</b></h2>
+
+<p>
+Frequency Modulation ('FM') has proven to be a very effective method of 
+enriching sound:  it achieves remarkably complex results in a very simple 
+way, though the predictability factor is not very high:  small changes 
+can result in dramatic, unexpected results.
+</p>
+
+<p>
+Frequency modulation is a form of non-linear (ie irregular) audio 
+distortion at higher frequencies and amplitudes.  We are familiar 
+with instrumental vibrato at low frequencies and amplitudes: a pitch 
+wavers slightly up and down a few times a second.  The perceived pitch 
+is the relatively steady part of what we hear and is  called, in this 
+context, the 'carrier': because it 'carries' the slower, wavering 
+component.  The latter is called the 'modulator'.
+</p>
+
+<p>
+First, a generic flow diagram for frequency modulation:
+</p>
+
+<p align=center>
+<img src="images/cah3figfm.jpg" align=bottom border=0 width=312 height=298>
+</p>
+
+<p>
+The orchestra for frequency modulation, really a simple vibrato 
+instrument, is correspondingly straightforward:
+
+<p>
+<pre><code>
+<b>;fm1.orc</b>
+sr  = 22050
+kr   =  1470
+ksmps = 15
+nchnls =  1
+
+instr 1
+<b>avib</b>  oscil  p7, p6, 1		;p7 = modulation vibrato depth
+		;p6 = modulation vibrato rate
+<b>aout</b>  oscil  p4, p5 + <b>avib</b>, 1	;p4 = note amplitude ('carrier' volume) 
+		;p5 = note frequency ('carrier' pitch)
+         out    <b>aout</b>
+<b></b>endin
+</code></pre>
+</p>
+
+<p>
+If we revise what the components of the oscil generator are, we can see 
+what's happening here.  The three fields are amplitude, frequency and 
+wavetable.  We create the vibrato oscillation when we make 'avib', 
+giving separate pfields in the score to hold the amplitude and frequency 
+information.  This is the modulator.  We have to apply this to (combine 
+this with) the carrier.  This we do simply by adding it to the frequency 
+field of the carrier.  Thus the faster wave of the carrier has added to 
+it the slower amplitude-frequency pattern of the modulator, and the 
+modulator movement is heard to wobble the steadier carrier wave.
+</p>
+
+<p>
+And now the score, using a simple sine wave, changing one parameter 
+only in each group of notes:
+</p>
+
+<p><pre><code>
+<b>;fm1.sc</b>
+
+f1 0 4096 10 1
+
+;first, gradually increase the vibrato depth
+<b>
+;p1    p2    p3   p4     p5     p6       p7</b>
+;instr start dur  ampl   freq	vib.frq  vib.amp
+i1      0    4    10000  440    5        0
+i1      5    4    10000  440    5        3
+i1     10    4    10000  440    5        6
+i1     15    4    10000  440    5        10
+i1     20    4    10000  440    5        15
+;now hold vibrato depth steady and increase vibrato rate
+i1     25    4    10000  440    2        4
+i1     30    4    10000  440    5        4
+i1     35    4    10000  440    7        4
+i1     40    4    10000  440    12       4
+i1     45    4    10000  440    20       4
+i1     50    4    10000  440    100      4
+;now we can seriously incease the modulation depth
+i1     55    4    10000  440    100      10
+i1     60    4    10000  440    100      50
+i1     65    4    10000  440    100      100
+i1     70    4    10000  440    100      500
+i1     75    4    10000  440    100      1000
+i1     80    4    10000  440    100      5000
+;finally, we'll change the modulation frequency slightly
+i1     85    4    10000  440    100      500
+i1     90    4    10000  440    105      500
+i1     95    4    10000  440    110      500
+i1    100    4    10000  440    120      500
+e
+</code></pre></p>
+
+<p>
+You must listen to this score &#150; and think about the parameters 
+&#150; while you listen to the sound output.
+</p>
+
+<p>
+It is clear, then, that we have with <i>Csound</i> complete and precise 
+software control over the making of frequency  modulation effects.
+</p>
+
+
+<!-- ========================================================================= -->
+<h2 id="DRM"><b>D &#150; Ring Modulation</b></h2>
+
+<p>
+Yet another method by which we can enrich the sound is ring modulation.  
+This was a familiar feature of many of the early analog synthesizers.  
+It is achieved by a very simple process of multiplying together the 
+output of two different oscillators; this distorts the harmonic ratios 
+by creating sum &amp; difference tones.  (As waves can be expressed as 
+sine functions, multiplying two waves means multiplying two sine 
+functions.  By the laws of trigonometry, this will involve the sum 
+and difference of the two.)
+</p>
+
+<p>
+This is expressed in a schematic way in the following flow diagram:
+</p>
+
+<p align=center>
+<img src="images/cah3figrm.jpg" align=bottom border=0 width=574 height=294>
+</p>
+
+<p>
+We can think about what happens by considering the graphs.  When the 
+two waves are multiplied together, a more complex pattern of partials 
+emerges.  The following orchestra and score illustrates ring modulation:
+</p>
+
+<p>
+<pre><code>
+<b>;rm1.orc</b> - simple ring modulation instrument
+sr  =    22050
+kr  =     1470
+ksmps =     15
+nchnls =     1
+
+;multiplication instrument
+
+instr 1
+<b>a1</b>  oscil  p6, p7, 1
+<b>a2</b>  oscil  p4, p5, 1
+      out    <b>a1 * a2</b>	;NB  <b>*</b> not <b>+</b>
+endin
+
+;simple oscillator for comparison
+instr 2
+<b>a3</b>  oscil  p4, p5, 1
+      out    <b>a3</b>
+endin
+</code></pre>
+</p>
+
+<p>
+In the score below, note that the duration of the first event is 6 
+seconds;  the second event comes in after three seconds, so they 
+overlap, thus combining the sound of the two events;  both are 
+produced with the simple oscillator defined as instr 2.  This is 
+not ring modulation, but is here so that we can compare the two 
+tones sounding together, i.e., added, and two tones multiplied 
+together.  After the initial 6 seconds, and we then hear the ring 
+modulation effect for four seconds.</p>  
+<p>
+The <b>s</b> in the score is a section divider, used so that we can 
+start each section at time 0.</p>
+
+<p>
+The value given for amplitude2 in p6 is very low.  The reason for 
+this is that when a1 is multiplied by a2, the amplitudes are also 
+multiplied (p6 * p4) resulting in the more normal value of 20000.  
+We could have used equal amplitudes and then scaled the output as 
+illustrated in the section on Chorusing.
+</p>
+
+<p><pre><code>
+<b>;rm1.sc</b>
+
+f1 0 4096 10 1  ;sine wave
+<b>
+;p1    p2    p3   p4    p5    p6    p7</b>
+;instr start dur  amp   freq  amp2  freq2   ;comments
+i2     0     6    2000  440                 ;tone 1
+i2     3     3    2000  163                 ;tone 1+tone2
+i1     6     4    2000  440   10    163     ;tone 1*tone2
+s
+i2     0     6    2000  440                 ;tone 1
+i2     3     3    2000  420                 ;tone 1+tone2
+i1     6     4    2000  440   10    420     ;tone 1*tone2
+s
+i2     0     6    2000  440                 ;tone 1
+i2     3     3    2000  20                  ;tone 1+tone2
+i1     6     4    2000  440   10    20      ;tone 1*tone2
+s
+i2     0     6    2000  440                 ;tone 1
+i2     3     3    2000  881                 ;tone 1+tone2
+i1     6     4    2000  440   10    881     ;tone 1*tone2
+s
+i2     0     6    2000  440                 ;tone 1
+i2     3     3    2000  1000                ;tone 1+tone2
+i1     6     4    2000  440   10    1000    ;tone 1*tone2
+s
+i2     0     6    2000  440                 ;tone 1
+i2     3     3    2000  3864                ;tone 1+tone2
+i1     6     4    2000  440   10    3864    ;tone 1*tone2
+e
+</code></pre></p>
+<br>
+
+<!-- ========================================================================= -->
+<h2 id="EBUZZ"><b>E &#150; Buzz</b></h2>
+
+<p>
+The Buzz unit generator automatically produces N partials &#150; i.e., 
+as many as you want: whatever value you enter for N. Thus you can 
+produce quite a complex sound with one line of code.  The example 
+given here illustrates what happens as the number of partials is 
+increased.  The buzz orchestra is so amazingly simple that it's a 
+very useful unit generator to explore, especially as the results 
+are often rich enough to provide some good material.</p>
+
+<p><pre><code>
+<b>;buzz1.orc</b> - buzz orchestra
+
+sr =   22050
+kr =    1470
+ksmps =   15
+nchnls =   1
+
+instr 1
+<b>k1</b>  linen  p4, p6, p3, p7	;envelope
+a1  buzz   <b>k1</b>, p5, p8, 1	;oscillator &#150; p8 is N partials
+      out    a1
+endin
+</code></pre>
+</p>
+
+<p>
+Buzz is therefore using a constant amplitude shape k1 as defined by 
+<b>linen</b> (ampl-p4, attack-p6, duration-p3, decay-p7).  The next 
+parameter is pitch (p5) which in our score remains constant, then the 
+number of partials (p8), which steadily increases in the score, and 
+finally wavetable 1, again using only a simple sine wave.
+</p>
+
+<p>
+In the score, note the use of dots as a way of repeating the parameter 
+data.  Also note that the frequency selected is very low.  This brings 
+more of the higher partials into a readily audible range, thus making 
+the buzz effect more noticeable.
+
+<p><pre><code>
+<b>;buzz1.sc </b>- buzz score
+
+f1  0  8192  10  1	;note the larger table
+<b>
+;p1    p2    p3   p4    p5    p6    p7     p8</b>
+;instr start dur  ampl  freq  rise  decay  partials
+i1     0     2    30000 40    .1    .1     5
+i1     3     .    .     .      .     .     6
+i1     6     .    .     .      .     .     7
+i1     9     .    .     .      .     .     8
+i1     12    .    .     .      .     .     10
+i1     15    .    .     .      .     .     15
+i1     18    .    .     .      .     .     20
+i1     21    .    .     .      .     .     40
+i1     24    .    .     .      .     .     80
+e
+</code></pre></p>
+<br>
+
+<!-- ========================================================================= -->
+<h2><b>Summary</b></h2>
+
+<p>
+It would be wonderful to go through all the unit generators of 
+<i>Csound</i> in this way, but hopefully this will be sufficient to 
+provide a good start on using this powerful tool.  The next step could 
+be to select another unit generator and explore it in a similar way.  
+After that you could work through the <b>Csound Tutorial</b> by Richard 
+Boulanger in the new <i>Csound Reference Manual</i> 
+(now located <a href="http://www.csounds.com/toots/" Target="blank"><b>here</b></a> [R.F.]).
+</p>
+
+<p>
+<i>The Csound Book</i> and <i>The Csound Catalogue</i> (ed. R. Boulanger) 
+are also now available.  These are absolute goldmines of information 
+about all aspects of <i>Csound</i>.
+
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    &#169; 1993 Andy Hunt, York, N. Yorks., England<br>
+    <address>
+    Last Updated Jan. 2016 -- HTML5 version<br />
+    Revisions: Robert Fraser<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

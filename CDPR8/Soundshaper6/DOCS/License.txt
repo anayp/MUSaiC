@@ -1,0 +1,43 @@
+SOUNDSHAPER: USER INTERFACE for the CDP SOUND PROCESSING SUITE (Version 6.3)       view at this width>>>>
+=========================================================================================================
+LICENCE AGREEMENT
+-----------------
+You should read carefully the following terms and conditions before using SOUNDSHAPER ("THE SOFTWARE").  
+THE SOFTWARE is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties. THE SOFTWARE is licensed, not sold.
+By installing and using THE SOFTWARE you agree to be bound by the terms of this license agreement.
+
+You are hereby licensed to install and use THE SOFTWARE without charge.
+You may make as many copies of THE SOFTWARE and documentation as you 
+wish; give exact copies of THE SOFTWARE and documentation in its unmodified form to anyone, including distribution via electronic means.  There is no charge for any of the above.
+
+You are specifically prohibited from altering any part of THE SOFTWARE or its documentation, 
+charging, or requesting donations, for any such copies, however made; and from distributing THE 
+SOFTWARE and/or documentation with other products (commercial or otherwise) without prior written 
+permission from Ensemble Software.
+
+OTHER RIGHTS AND LIMITATIONS.
+You may not reverse engineer, decompile, or disassemble THE SOFTWARE.
+You may not rent or lease THE SOFTWARE.
+You may permanently transfer all of your rights under this License Agreement, provided you transfer all of THE SOFTWARE and the accompanying files (including all component parts, the documentation, any upgrades, and this License Agreement), and the recipient agrees to the terms of this License Agreement.
+
+DISCLAIMER OF WARRANTY
+----------------------
+THE SOFTWARE AND THE ACCOMPANYING FILES ARE SUPPLIED "AS IS" WITHOUT WARRANTIES AS TO 
+PERFORMANCE OR MERCHANTABILITY OR ANY OTHER WARRANTIES WHETHER EXPRESSED OR IMPLIED.
+BECAUSE OF THE VARIOUS HARDWARE AND SOFTWARE ENVIRONMENTS INTO WHICH THE SOFTWARE MAY BE PUT,
+NO WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERRED. 
+
+YOU, THE USER, ASSUME THE ENTIRE RISK OF USING THE SOFTWARE; NEITHER THE AUTHOR OR ENSEMBLE SOFTWARE SHALL BE LIABLE FOR ANY DAMAGE THAT MAY BE CAUSED BY USE OF THE SOFTWARE. IF THE SOFTWARE OR WRITTEN MATERIALS ARE DEFECTIVE YOU, AND NOT ENSEMBLE SOFTWARE OR ITS DEALERS, DISTRIBUTORS, AGENTS, OR EMPLOYEES, ASSUME THE ENTIRE COST OF ALL NECESSARY SERVICING, REPAIR, OR CORRECTION.
+NEITHER ENSEMBLE SOFTWARE NOR ANYONE ELSE WHO HAS BEEN INVOLVED IN THE CREATION, PRODUCTION, 
+OR DELIVERY OF THE SOFTWARE SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, CONSEQUENTIAL OR INCIDENTAL 
+DAMAGES (INCLUDING DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS 
+INFORMATION, AND THE LIKE) ARISING OUT OF THE USE OR INABILITY TO USE THE SOFTWARE EVEN IF
+ENSEMBLE SOFTWARE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+ANY LIABILITY OF THE SUPPLIER WILL BE LIMITED EXCLUSIVELY TO PRODUCT REPLACEMENT ONLY. 
+
+=================================================================================================
+SOUNDSHAPER (v.6.3)
+COPYRIGHT © Ensemble Software 2024 
+www.ensemble-software.net
+

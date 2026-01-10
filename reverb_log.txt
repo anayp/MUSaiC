@@ -1,0 +1,20 @@
+
+reverb: Multi-channel reverberator
+	Version 1.1 Release 4 CDP 1998,1999
+usage: reverb [flags] infile outfile rgain mix rvbtime absorb
+                                 lpfreq trailertime [times.txt]
+flags    : any or all of the following:
+   -cN   : create outfile with N channels (1 <= N <= 16 : default =  2)
+   -eFILE: read early reflections from breakpoint textfile FILE
+   -f    : force floating-point output (default: infile format)
+   -HN   : apply Highcut filter with cutoff freq N Hz to infile (6db/oct)
+   -LN   : apply Lowcut filter with cutoff freq N Hz to infile	(12dB/oct)
+   -pN   : force reverb predelay to N msecs (shifts early reflections)
+rgain    : set level of dense reverb (0.0 <= rgain <= 1.0)
+mix      : dry/wet balance (source and reverb): 1.0<-- mix -->= 0.0
+rvbtime  : reverb decay time (to -60dB) in seconds
+absorb   : degree of hf damping to suggest air absorption: 0.0 <= absorb <= 1.0
+lpfreq   : lowpass filter cutoff freq (Hz) applied at input to reverb
+           to disable either filter (absorb, lpfreq), use the value 0
+trtime   : trailer time added to outfile for reverb tail (secs)
+times.txt: list of delay times (msecs) for 6 comb and 4 allpass filters

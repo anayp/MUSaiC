@@ -1,0 +1,2023 @@
+USAGE NOTES FOR SOUNDSHAPER 6
+==============================
+© Robert Fraser, Ensemble Software and CDP, 2021.
+Content is liable to change as Soundshaper is updated.
+Portions of this text have been adapted from CDP Help, with permission.
+You are welcome to adapt the text for your own (non-commercial) use:
+• The usage for a process begins with an ID no. in square brackets
+  and ends with the next ID no. Avoid using lines beginning with a square-bracket '[' ! 
+• Comment lines beginning with // are not displayed.
+• If you translate any of the text, please share it with us, to help othere users.
+------------------------------------------------------------------------------------------------------
+//SPECTRAL PROCESSES
+[1]    SpecGain
+SPECGAIN (CDP: spec gain): amplify or attenuate the spectrum. 
+
+SpecGain applies gain to a spectral file, amplifying ot attenuating it.
+
+PARAMETER
+GAIN: Attenuate (<1) or increase (>1) the amplitude. 
+Range: 0-1-10000; T-V
+
+[2]  SpecGate
+SPECGATE (CDP: spec gate): eliminate channel data below a threshold amplitude
+
+Specgate cuts out low level signal in each frequency channel over time.
+
+PARAMETER
+THRESHOLD: Lowest acceptable amplitude level
+  Range: 0 to 1; T-V
+
+[3] Bare
+BARE (CDP: spec bare): Zero non-harmonic data (requires Pitch File)
+
+(Spec)Bare retains harmonic partials only, using pitch data file as reference. Normally, the pitch file would be extracted from the same source: in Soundshaper, when Infile 2 is requested, click on the same cell as Infile 1, and it will be converted automatically.
+
+Note that a composite version, automatically extracting the pitch data from the input file, is available under the Spectral Utils menu. 
+
+PARAMETERS: None
+• OPTION: More body in resulting spectrum.
+
+NOTES
+For more creative applications, the pitch file could come from another source; this would retain such of File 2's pitch that was already in File 1 (if any). The two files must be the same length.
+When tried with Infile1: speech and Infile2: Piano A440, the speech was indeed filtered to A440 and its harmonics, without becoming strongly pitched.
+
+[4]    SpecClean
+SPECCLEAN (CDP: spec clean): remove noise (original version)
+
+SpecClean deletes channel data when it falls below a threshold in comparative Noisefile.
+Needs comparison files (Infile2:Noise 3:Signal) cut from Infile.
+This process has now been superseded by a newer version, CLEAN: see SPECTRAL | FILTER | CLEAN.
+
+[5]    SpecCut
+SPECCUT (CDP: spec cut): extract a portion of an analysis file.
+
+SpecCut cuts and keeps a segment from an analysis file at the times specified.
+
+PARAMETERS
+START: time in infile where cut segment begins.
+  Range: 0 - filelength-1 window (secs)
+END: time in infile where cut segment ends.
+  Range: 1 window - filelength (secs)
+
+[6]  Grab
+GRAB (CDP: spec grab): extract a single analysis window 
+
+Grab extracts a single analysis window at time point specified.
+This process is built into Soundshaper's implementation of GLIDE. There are no known uses for the function otherwise.
+
+PARAMETER:
+TIME: location of the window to grab; grabs last window if beyond end of file.
+  Range: 0 to file-length (secs)
+
+[7]  Expand: 
+EXPAND (CDP: spec magnify): time-expand single spectrum 
+
+Expand extracts a single analysis window (spectrum) at TIME seconds and expands it over DUR seconds, producing a static sound. Note that DUR is the output length.
+
+PARAMETERS
+TIME:  Time in the file where the single window to expand occurs. 
+  Range: 0 - file length (secs.)
+DUR: The output file length; also how long the spectral analysis window is held for.
+  Range: >0 - any value (secs.) Must be > analysis window-length.
+
+NOTES
+EXPAND creates a static sound out of a single moment. It may be compared with HOLD, FREEZE and STEPFREEZE, and to an extent with GLIDE. 
+
+[8]    SpecStretch
+SPECSTRETCH (CDP: stretch spectrum): Stretch/compress frequencies across the spectrum.
+
+SpecStretch shifts frequencies to stretch or compress their intervals, producing inharmonic sounds (c.f. SHIFT). The frequency gaps between partials are stretched (max stretch>1) or compressed (max stretch<1) above or below the dividing frequency freq split. The result is to turn harmonic into inharmonic sounds.
+The stretch factor exponent determines whether the stretching/compression is linear or exponential. The depth of the stretch effect can be varied.  
+
+MODES
+ 1. Above given freq: Stretch or compress above dividing frequency
+ 2. Below given freq: Stretch/compress below dividing frequency
+
+PARAMETERS
+FREQ SPLIT:  The dividing frequency above (Mode 1) or below (Mode 2) which frequencies are stretched / compressed. 
+  Range: 5-22050 Hz
+MAX STRETCH: Transposition ratio of the topmost component (upward stretch): stretched (values >1) or compressed (values <1). For a downward stretch, it is (presumably) the transposition ratio of the lowest component to be stretched.
+  Range:  0.000454 to 2205 (=1/10 of full freq. range). Soundshaper: 0.001-1-100 but these limits can be exceeded.
+EXPONENT: Stretch factor determining type of stretch curve applied to all components between freq split and the limit set by max stretch.
+  Range: 0.02-50.0  (<1=decreasing stretch; >1=increasing stretch)
+(DEPTH)  Extent of stretch effect from 0 (no effect) to 1 (full effect) 
+  Range: 0-1, default 1(?). T-V
+
+NOTES
+Upwards stretch: if the dividing frequency is set higher than the source's lowest frequency, much of the original may be preserved. Equally if the frequencies above this are stretched too much, they will not be heard at all.
+
+[9]  Timestretch:
+TIMESTRETCH (CDP: stretch time):  variable timestretch (preserving pitch) 
+
+Timestretch stretches or shrinks the sound over time, without changing frequency. It creates extra time-windows to expand the overall time-base of the sound, without a change of frequency. The stretching itself can be time-varying. If the stretch factor TSTRETCH is <1, a time-shrinking occurs.
+ 
+MODES
+ 1. Timestretch
+(2. Calculate outfile length -- available as Mode 4 of CALCSTRETCH - INFO menu.)
+
+PARAMETER
+TSTRETCH:  Stretch factor. If time-varying, the stretch itself varies between successive times.
+  Range: 0.0001-1-10000 (<1 shrinks, >1 stretches).  T-V (times must increase, even if slightly).
+Example of T-V file:
+0.0    1.0        start with no timestretch to preserve original attack transients
+0.199 1.0        still no timestretch; if e.g. 1.2 here, there would be an increasing stretch from 1 to 1.2 over the times 0 to 0.199"
+0.2    2.0        timestretch of 2...
+3.0    2.0        ...lasts until this time       
+4.0    1.0        from 3" to 4", the stretch is reduced back to original state, which lasts until the end of the sound.
+
+NOTES
+In the Phase Vocoder (PVOC), spectral analysis takes place at regular time-intervals (windows). Timestretching creates extra windows to expand the timebase, without changing the frequency. 
+It's easily demonstrated that extra windows are created: count the number in the original (Menu: Info>Spectral>Windows; CDP: specinfo windowct) and those in a 10 times stretch: there are 10 times as many. (Presumably amplitude values are interpolated between successive windows of the original file.)
+
+The ability to preserve the original attack by using a time-varying TSTRETCH is often important. Be careful to have two successive lines of the same value if you want a static stretch factor over that time (see e.g. lines 3 and 4 in above example).
+
+For slowing down or transposing a sound, a combination of SPEED and TIMESTRETCH is useful.
+Slowing to half-speed:
+Source —>Speed x 2—>Timestretch x 0.5 —>Speed x 0.5
+is a good alternative to:
+Source —>Transpose x 2 —> Speed x 0.5
+
+For octave transposition upwards:
+Source —>Speed x 2—>Timestretch x 2
+is a good alternative to:
+Source —>Transpose x 2
+
+TIMESTRETCH might also be combined with GLIDE: both can provide an output of 'any' desired length, and the timestretched file can provide an evolving spectral envelope for GLIDE's output, using CROSS, VOCODE or PUTFMTS.
+
+See also TRANSPOSE and related functions, which change the pitch without changing the time.
+
+[10]   AltHmcs
+ALTHMCS (CDP: pitch altharms): delete alternate harmonics
+ALTHMCS deletes odd or even harmonics, using a pitch data file as reference. The second file normally comes from the same source: in Soundshaper, when Infile 2 is requested, click on the same cell as Infile 1, and it will be converted automatically.
+
+Note that a composite version, automatically extracting the pitch data from the input file, is available under the Spectral Utils menu.
+
+MODES
+ 1 Delete odd harmonics
+ 2 Delete even harmonics
+
+PARAMETERS: none
+• OPTION: Alternative spectral reconstruction (no further information).
+
+NOTES
+Extracting both the odd and even harmonics is one possible way of achieing pseudo-stereo separation. The two outputs can be processed separately and mixed together afterwards.
+
+[11]   Octmove - LEGACY, now incorporated within PCHSHIFT as a composite.
+OCTMOVE (CDP: pitch octmove): 'octave' transposition preserving formants
+
+OCTMOVE transposes by whole-numbered frequency ratio, preserving time and the spectral envelope. This function needs a second Infile: a binary pitch file derived from the source. In Soundshaper, when Infile 2 is requested, click on the same cell as Infile 1, and it will be converted automatically (unless there is no definite pitch to trace).  Despite the title, other ratios such as 3 (12th) also work.
+
+MODES
+ 1. Up:  Transpose up
+ 2. Down: Transpose down
+ 3. Down with bass boost (or gain reduction)
+
+PARAMETERS
+TRANSPOS'N: Transposition expressed as multiple (Mode 1) / ratio (Modes 2/3): 2 is 8ve, 3 is 12th, 4 is two 8ves, etc.
+  Range: 2 to 4096 Whole-numbered values only: fractional values are ignored.
+BASS BOOST: Boost or reduce gain.
+  Range: 0-1-50 T-V
+
+NOTES
+OCTMOVE works well in transposing a steady-pitched sound, preserving formants without producing artefacts. This is because the pitch tracking has been done already by the pitch data file. However, in a complex sound of varying pitch, it is likely to give a wildly changing transposition!
+To obtain unsupported transposition intervals, try running the program more than once, e.g. Up x 3 followed by Down x 5.
+
+
+[12]  Transpch
+TRANSPCH (CDP: pitch transp): transpose (part of) the spectrum
+ 
+TRANSPCH transposes all or part of the spectrum, preserving time but not the spectral envelope. Partials above or below a frequency split point are transposed. Though the function is designed to transpose a given frequency range, this can in fact be the whole spectrum.
+
+TRANSPCH also shifts the spectral envelope, so that formants are moved and not preserved. For this reason, the process works best for non-vocal sounds in which the formant resonances are less obvious.
+
+MODES
+ 1. Octave up:  Partials above freq split are transposed up an octave. 
+ 2. Octave down:  Partials below freq split are transposed down an octave
+ 3. Octave up+down:  Partials above freq split are transposed up an octave; those below it down an octave. 
+ 4. Pitch up: Partials above freq split are transposed up by transposn semitones.
+ 5. Pitch down: Partials below freq split are transposed down by transposn semitones.
+ 6. Pitch up+down: Partials above freq split are transposed up by transposn semitones; those below it by transp down semitones.
+
+PARAMETERS
+FREQ SPLIT: shift above/below this frequency.
+  Range: 5-22050 Hz.  T-V
+TRANSPOSN: Number of (possibly fractional) semitones to shift up (in Modes 4+6) or down (in Mode 5).
+  Range: -96.0 to +96.0  T-V
+TRANSP DOWN: Number of (possibly fractional) semitones to shift down (in Mode 6).
+  Range: -96.0 to +96.0  T-V
+(DEPTH):  Depth of effect - degree to which source partials are replaced
+  Range: 0-1 (0 - no replacement, 1 - full replacement)  T-V
+
+NOTE
+This process is now part of a process group, accessed from the Spectral Pitch/Freq menu as the item "Transpose pitch preserving time" (Shortcut: Shift+Ctrl+#).
+
+[13]   Tune
+TUNE (CDP: pitch tune/ tunevary): retune spectrum to specified pitches and their harmonics
+
+TUNE shifts partials to the nearest pitch (or its harmonic) in the given list. From a text file of specified frequencies or MIDI pitches, TUNE adds their harmonics to create an overall template set of frequencies.   FOCUS sets the degree to which existing frequencies are forced on to the given template and CLARITY the degree to which non-template frequencies are suppressed. TRACE sets the number of channels to be retained - and hence to be retuned; less prominent channels are lost. BASSCUT sets a bottom frequency below which frequencies are not tuned. 
+
+Mode 3 (CDP: tunevary) adds time-variable tuning. The datafile (VARIPCH) has lines of TIME followed by a number of (possibly fractional) MIDI pitch values. Each line must have the same number of pitches. Though pitches' values are interpolated from one time to the next, the effect is not always continuous, which may be caused by frequency components being suddenly pulled towards different template frequencies as part of the TUNE process.
+
+MODES
+ 1 Frequencies: Tuning data file gives frequencies (program adds harmonics).
+ 2 MIDI pitches: Tuning data file gives MIDI pitch values (program adds harmonics).
+ 3 Variable Pitch: Time-varying retuning of spectrum (CDP: tunevary) 
+
+PARAMETERS
+FREQDATA (Mode 1 only): tuning text data file (.tun) listing a set of frequencies.
+Values in Hz.; fractional values are allowed. 
+Example - A440 and some 8ve transpositions:
+	220
+	330
+	440
+	550
+MIDIDATA (Mode 2 only): tuning text data file (.tun) listing a set of MIDI pitch values.
+Values: MIDI pitch (1-128); fractional values are allowed (e.g. 64.5).
+Example - chord of A major:
+	57
+	64
+	69
+	73
+	76
+(FOCUS)  Degree of focusing of pitches onto the template  (T-V) 
+  Range: 0-1; CDP default: 1. Recommended: 1. 
+(CLARITY) Extent to which non-template partials are suppressed (T-V)
+  Range: 0-1; CDP default: 0. Recommended: 1. 
+(TRACE): number of spectral channels (per analysis window) to be replaced by template freqs (T-V) 
+  Range: 1-no. of analysis channels (e.g. 1-1024)
+(BASS CUTOFF): tune only frequencies above this and ignore all lower ones (T-V)
+  Range: 20-20kHz Full range: 9-22050 Hz.
+VARIPCH (Mode 3 only): data file consisting of lines of TIME MIDI_PITCH1, (MIDI_PITCH2,...)
+  Ranges Time: 0 - file-length (secs)
+         MidiPitch: 1-127 (Mid C =60) 
+
+NOTES
+In most cases, TUNE produces a very natural-sounding re-tuning. The general spectral envelope and dynamic articulation of the original are unaffected: if an appropriate channel (one that is retuned and not suppressed) has only a small amplitude, then that component will likewise have a small amplitude. Similarly, the A major example above could tune birdsong without introducing bass components, as there would be none in the original.  
+
+It can be useful to prepare the source by transposition or spectral filtering. Sometimes it is better to mix a number of PICKs (each tuned to a specific pitch+harmonics) to make up the desired chord, or to split the chord into smaller units and TUNE each separately.
+
+A more subtle problem is that the program does involve some thinning of the sound, leading to amplitude loss and a less defined stereo image. A number of smaller tuned chordal units suitably mixed and panned can overcome this difficulty.
+
+Tune is complemented by related tuning possibilities in VARIBANK and (from CDP7) in ACCUMULATE (CDP: superaccu), MORPHPEAKS and MORPHTUNE (CDP: newmorph/2), as well as GLIDE and PICK.
+
+[14]  Pick
+PICK (CDP: pitch pick): retain only selected frequencies which may be in sound
+
+PICK retains only the specified frequencies, if they are in the sound.  It locates the analysis channels which would contain the specified sets of partials, and adjusts the frequency data in those channels onto the specified frequencies. Other frequencies are supressed under the control of the CLARITY parameter.
+
+MODES
+ 1. Fundamental and harmonics: retain a (possibly arbitrary) 'fundamental' frequency and its harmonics (F, 2F, 3F etc).
+ 2. Fundamental and octaves: retain 'fundamental' frequency and its octave transpositions (F, F*2, F*4 etc).
+ 3. Fundamental and odd harmonics: retain 'fundamental' frequency and odd-numbered harmonics of it (F, 3F, 5F, etc.).
+ 4. Fundamental and frequency step: partials are successive linear steps (each of freq step) from the 'fundamental' (F+n, F+2n, F+3n etc.).
+ 5. Shifted harmonics: 'fundamental' and each harmonic are shifted by added frequency (F+n, 2F+n, 3F+n etc.).
+
+PARAMETERS
+FUNDAMENTAL  The fundamental frequency from which the partials are derived - may be an arbitrary value not present in the sound.
+  Range: 10-22050 Hz.
+FREQ STEP Frequency added in steps to 'fundamental' (Mode 4) or as linear shift (Mode 5).
+  Range: 10-22050 (though max. frequency of highest partial is also 22050.)
+(CLARITY)  extent to which data in other channels is suppressed.
+  Range: 0-1, default 1. T-V
+ 
+NOTES
+PICK is an important tool for tuning sounds. It is related to TUNE, but operates more specifically on single pitches and their related harmonic or inharmonic partials. Extracting and mixing a number of PICKs of different pitches can produce a stronger tuned chord than TUNE, and the separate PICKed signals can also be distributed spatially or treated independently (by transposition, filtering, delay etc.)
+
+If the specified frequencies are not strong in the source sound, the return signal is likely to be weak, but you can help overcome this by transposing the sound beforehand or mixing a number of (possibly arbitary) transpositions.    Modes 2 and 3 are likely to produce a rather thin sound.
+
+[15]   SpecChord
+SPECCHORD (CDP: pitch chord): spectral harmoniser, preserving time and optionally spectral envelope.
+
+SpecChord: transposed versions of the sound are implanted onto the original. The aural results are, however, not the same as you get with STACK or TRANSPOSE. SpecChord appears to duplicate the spectral frequency content, whereas each TRANSPOSE has a separate spectral envelope (dynamic contour).
+
+MODES
+ 1 Harmonise: Make chord preserving time but not spectral envelope
+ 2 Chord with formants (freq): Make chord preserving formants extracted by freq
+ 3 Chord with formants (pitch): Make chord preserving formants extracted by pitch
+
+PARAMETERS
+TRANSPOSE: Textfile of transposition values in semitones (-48 to +48)
+(LOW FREQ): filter out all frequencies lower than this
+  Range: 20-20kHz
+(HIGH FREQ): filter out all frequencies higher than this
+  Range: 20-20kHz
+(CHANNELS): No. of frequency channels per point used to extract spectral contour
+  Range: 1-100  (fewer is more accurate)
+(BANDS): No. of pitch bands per octave used to extract spectral contour 
+  Range: 1-12 (greater is more accurate)
+
+• OPTION: Fuller spectrum
+
+[16]   MorphHmcs
+MorphHmcs (CDP: specross partials): interpolate between harmonics of 2 pitched sounds.
+
+MorphHmcs morphs the harmonics of pitched sound 1 (e.g. speech) towards those of pitched sound 2 (e.g. stable).
+The function attempts to track spectral peaks in each source and transform those of sound 1 to match those of sound 2.  The result may seem more like an altered sound 2 than sound 1.
+
+PARAMETERS
+INTERP: Degree of interpolation between Input 2 (0) and Input 1 (1). T-V: times taken from Input 1.
+IN TUNE: Range within which harmonics are regarded as 'in tune'. 
+  Range: 0-6 semitones; default 1.
+WINDOWS: Minimum number of adjacent analysis windows needed to confirm signal as pitched. 
+  Range: 1 to no. of windows.
+SIGNAL: Signal-Noise - how many dBs below max.level are still regarded as potential pitch; lower levels treated as noise.
+  Range:  0-100dB; default 80dB
+HARMONICS: number of loudest peaks which must be harmonics to confirm signal is pitched. 
+  Range: 0-8; default 5.
+LOFREQ: Lowest acceptable frequency for a pitch. 
+  Range: 10-2750 Hz; default 10 Hz.
+HIFREQ: Highest acceptable frequency for detecting pitch. 
+  Range: 10-2750 Hz; default 2750 Hz.
+THRESHOLD: minimum acceptable level of usable harmonic, relative to loudest in window (lower is ignored) Range: 0-1.
+OUT LEVEL: output level; use to vary level relative to other applications of Input 1.
+  Range: 0-1; default 1.0
+
+• OPTION - Retain amps: Retain amplitude fluctuations of Input 1 under those of Input 2.
+• OPTION - Extend pitch: Extend first stable pitch of Input 1 back to the start of the outfile. (Otherwise, the start of Input 1 is assumed to be pitched.)
+
+NOTES:
+An articulated sound 1 takes on the pitch of stable sound 2, while retaining some of its own dynamic contour. A steady-pitched sound 1 similarly acquires most of the pitch qualities of an articulated sound 2, again with some of its own dynamics.
+
+Having got CDP error messages with perfectly normal sources and parameter values, I would recommend making the two file the same length (this cured the problem). 
+
+[17] Filter
+FILTER (CDP: hilite filter): filter the spectrum 
+
+FILTER is a general spectral filter with High/Low/Band pass options. Though implemented in the frequency domain, this filter has a traditional selection of filter types and controls, including time-varying frequency and Q
+
+MODES
+ 1/2/5. High Pass: Filter frequencies below cutoff frequency (Freq1). Mode 2 normalizes result and Mode 5 adds Gain control.
+ 3/4/6. Low Pass: Filter frequencies above cutoff frequency (Freq1). Mode 4 normalizes result and Mode 6 adds Gain control.
+ 7/8/9. Band Pass / Notch: For Modes 7/8 Bandpass, filter frequencies outside frequency band (Freq1-Freq2). For Mode 9 Notch, filter frequencies inside frequency band (Freq1-Freq2). Mode 8 normalizes result.
+
+PARAMETERS
+FREQ1:  The cutoff frequency, or (in Band/Notch Modes 7-9) the lower limit of the frequency band. For High Pass, frequencies are filtered below this frequency; for Low Pass, they are filtered above it.
+  Range: 10-22050 Hz T-V
+FREQ2:  Band Pass / Notch (Modes 7-9) only: the upper limit of the frequency band. Frequencies are filtered outside the band in Band Pass modes, while in Notch mode it is the band itself that is filtered. 
+  Range: 10-22050 Hz. Freq2 must be higher than freq1. T-V
+BANDWIDTH ('Q'): The filter's sharpness, in Hz.  Controls the steepness of the decay above/below freq1 and freq2 (as appropriate). Smaller= narrower "skirts" (more focused filter). The decay of amplitude is from freq1 to freq1+bandwidth (Low-pass); from freq1 to freq1-bandwidth (High-pass); and from freq1 to freq1-bandwidth as well as freq2 to freq2+bandwidth (Band-pass/notch).
+  Range: 1-22050 Hz.  T-V
+GAIN  Amplify or lower the level of the output sound. As filtering reduces the level of the signal, you may wish to raise the output level here. 
+  Range: 0.001-1-10000, default 1.
+ 
+NOTES
+By working in the frequency domain, the program is capable of very precise and very sharp filtering. The bandwidth of the filter "skirts" ('Q') is also time-variable. With time-varying FREQ1 (and FREQ2), various filter-sweep effects are possible.  
+
+[18] Graphic
+GRAPHIC (CDP: hilite greq): filter out or retain specified freq. bands (no amplitude control).
+
+GRAPHIC is a spectral graphic equalizer retaining or rejecting specified frequency bands. A graphic equalizer without the graphics. Controlled by datafiles, it can have any number of bands, but none of them are time-varying, i.e. there is no amplitude control. 
+
+MODES
+ 1. Single bandwidth    specified by datafile GREQ1
+ 2. Separate bandwidths specified by datafile GREQ2
+
+OPTION
+• Reject Bands - check this option to create a bank of notch filters. (Unchecked: retain specified bands.)
+
+PARAMETERS
+GREQ1  Text datafile defining a single bandwidth in octaves, followed by a list of centre frequencies, one per band.
+Example: a number of narrow bands centred around harmonics of A 110Hz.
+	0.1
+	110
+	220
+	440
+	550
+	660
+	880
+	1100
+GREQ2  Text datafile of pairs of values, one per band, of: centre frequency and bandwidth
+Example: a number of bands centred around odd-numbered harmonics of Ab 100Hz; the higher bands have progressively wider bandwidth.
+	100      0.25
+	300      0.50
+	500      0.75
+	700      1.00
+	900      1.25
+	1100    1.50
+	1300    1.75
+	1500    2.00
+
+NOTES
+This program looks decidedly old-fashioned in an era of sophisticated graphic controls. However, the ability to define a detailed filterbank in a sinmple text file is also very powerful. Soundshaper's GraphEdit has two presets which can be employed to generate 1/3-8ve and 2/3-8ve sets of data for greq2. 
+
+[19]   Band: Split spectrum into bands and process these individually.
+BAND (CDP: hilite band): split spectrum into bands and process these individually.
+
+** STATUS IN DOUBT** Possibly works with one band only? Put in Xtra, but no longer supported in Soundshaper.
+
+[20]   Arpeggiate
+ARPEGGIATE (CDP: hilite arpeg): arpeggiate the spectrum
+
+ARPEGGIATE highlights partials during a frequency sweep. A waveform sweeps up and down through the spectrum at a specified rate (frequency), selecting or emphasizing the partials it passes through, or which lie below or above it.
+The focus (selection/emphasis) is on a band of frequencies (by default the channel bandwidth) -- the Sweep Band, whose centre is sweeping up and down. The sweep is between lo freq and hi freq; these limits define the main Frequency Band.
+In Modes 1-3*, only the selected partials are played; in Modes 5-6, these partials are amplified; Modes 7-8 initially play the selected components, then the whole sound as normal.
+
+MODES
+ 1. On:      Play only partials within arpeggiated Frequency Band.                           
+ 2. Below: Play only partials within and below Frequency Band.
+ 3. Above: Play only partials within and above Frequency Band.
+ 4. Boost:  Emphasise partials within Frequency Band; others are unamplified.
+ 5. Boost below: Emphasise partials within and below Frequency Band after initial sweep (not wave type 1).
+ 6. Boost above: Emphasise partials within and above Frequency Band after initial sweep (not wave type 4).
+ 7. Once below:  Play only partials within and below Frequency Band once; then play whole sound as normal (not wave type 1).
+ 8. Once above: Play only partials within and above Frequency Band once; then play whole sound as normal (not wave type 4).
+
+PARAMETERS
+WAVE TYPE: The waveform used for the sweep.
+  Values: 1. DOWN-RAMP   2. SINE   3. SAW   4. UP-RAMP (See Mode for certain restrictions.)
+RATE:  Number of sweeps per second
+  Range: 0.001- 344.5 Hz  T-V (varies with PVOC Analysis Sample Rate e.g. 344.531 is for 1024 points)
+(START PHASE):  Initial phase of sweep waveform. May have limited effect on sound.    
+  Range: 0-1.  (Mode 8: must be > 0.5 with sine/saw wave types)
+(LO FREQ):  Lowest frequency that arpeggiation sweeps down to.
+  Range: 5-22050 Hz, default 0 Hz. T-V
+(HI FREQ):  Highest frequency that arpeggiation sweeps up to.
+  Range: 5-22050 Hz, default 22050 (Nyquist). T-V
+(BANDWIDTH):  BANDWIDTH of Sweep Band, in Hz.  (Not Modes 5 and 6.)
+  Range: c. 43 - 22050 Hz. Min. and default = channel bandwidth (Nyquist/channel_count). T-V
+(AMPLIFY):  Amplification of arpeggiated partials; (0 to 10000, default 10.0)
+  Range: 0 to 10000, default 10.0. T-V
+(DECAY RATE):  Non-linear rate of decay of arpeggiated tones (default linear); > 1 is faster, < 1 is slower. Range: 0.02 to 50.0, default 1 (linear). Values higher than about 7 can reduce output to silence.  T-V
+(SUSTAIN):  Number of analysis windows over which arpeggiated partial sustained. High values, especially combined with a long decay time, can cause amplitude overflow.
+  Range (windows): 1 - number of windows; default 3. T-V
+
+NOTES
+Mode 1 picks out the component partials in turn: this can be useful for analysing the content of an inharmonic sound.  The process PLUCK offers a means of emphasising the partials once picked out.
+Mode 2 is akin to a filter-sweep effect: the partials are arpeggiated on top of the original sound.
+There appears to be a delay before the effect kicks in.
+N.B. * Soundshaper's mode numbering is slightly different from CDP's.
+
+[21] Pluck
+PLUCK (CDP: hilite pluck): emphasise spectral changes (esp. following ARPEGGIATE)
+
+Boost amplitude of new spectral components, especially for use with ARPEGGIATE and TRACE. 
+
+PARAMETER
+GAIN: Amplitude gain applied to newly prominent spectral components. Range 0.0001 to 1000. T-V
+
+NOTES: This function may help to enhance a series of harmonic 'blips' extracted via ARPEGGIATE, and just possibly TRACE (if heavily thinned), or other staccato material. It doesn't really produce a plucking effect.
+
+[22]  Trace
+TRACE (CDP: hilite trace): thin spectrum by keeping loudest partials (with optional filtering)
+
+TRACE retains the loudest N spectral components per analysis window. (Opposite of SUPPRESS.)
+
+MODES
+ 1. Trace partials:  retain loudest N spectral components (see trace parameter)
+ 2. Trace and filter (high pass): retain loudest N spectral components above low freq and zero those   below it.
+ 3. Trace and filter (low pass): retain loudest N spectral components below high freq and zero those above it.
+ 4. Trace and filter (band pass): retain loudest N spectral components between low freq and high freq and zero those outside the band.
+
+OPTION
+• Reverse filter: Reject channels inside the filter band and retain those outside.
+
+PARAMETERS
+TRACE: Number of spectral components (channels), in order of loudness, to retain in each analysis window.
+  Range: 1-no. of chans (e.g. 1-1024)  T-V
+LOW FREQ:  Filter out all frequencies lower than this.
+  Range:  5-22050 Hz  T-V
+HIGH FREQ: Filter out all frequencies higher than this.
+  Range:  5-22050 Hz  T-V
+
+NOTES
+Like SUPPRESS, this function provides a 'ghost' of the sound, which often remains surprisingly coherent even with just a few partials retained. A trace function is also built into the processes BLUR+TRACE and TUNE.
+
+[23]   BlurTrace
+BLURTRACE (CDP: hilite bltr): time-average spectrum and keep loudest partials.
+
+BLURTRACE blurs the spectral data over time and thins it as well. 
+Legacy only: this function is now Mode 2 of BLUR. Please use BLUR for new patches and presets.
+
+
+[24] Accumulate
+ACCUMULATE (CDP: superaccu): sustain spectral bands with optional tuning 
+
+ACCUMULATE is an extension of the original function ACCU (CDP: focus accu), with additional modes to tune the sustained spectral channels to specified resonant frequencies (expressed as MIDI values).
+
+Mode 1 has no tuning, and simply sustains each spectral band until louder data appears in that band (traditional ACCUMULATE). DECAY optionally decays the sustained sound by the given amount, per second. GLIS optionally glissandos the sustained bands up or down at GLIS octaves per second. There is an option to reassign these glissandoing frequencies to the appropriate spectral channels.
+
+In Mode 2, the starting resonances are forced onto the tempered (chromatic) scale. In Mode 3, they are forced onto a harmonic (i.e.pitch) set, specified in the datafile TUNING, which is a list of MIDI pitch values. In Mode 4, those same values are interpreted as a harmonic field, meaning that they are duplicated in all available octaves. (See documentation on TEXTURE for further explanation of harmonic set/field.)  
+
+MODES
+ 1 Sustain: sustain each spectral band until louder data appears in that band.
+ 2 Tempered: force start of resonances on to tempered scale.
+ 3 Harmonic set: force start of resonances on to harmonic set.
+ 4 Harmonic field: force start of resonances on to harmonic field.
+
+PARAMETERS
+TUNING: Set of frequencies (plus 8ve transpositions: Mode 4) for tuning the starting resonance
+  Range: 1-127 (MIDI pitch values; 60=Middle C; fractional values allowed).
+(DECAY): Sustained channel data decays by this factor each second 
+  Range: 0.001-0.9, default 1.0: no decay
+(GLIS): Sustained channel data glissandos at "glis" octaves per second 
+  Range: -21.53 to +21.53 (8ves/sec), depending on PVOC settings, default 0; T-V  
+(The min. and max. values are as above, though Soundshaper may show a wider range for a low PVOC points setting such as 512.)
+
+OPTION
+• Gliss to Chan: re-assign glissandoing pitches to appropriate spectral channels
+
+NOTES
+The tuning has a dramatic effect on speech, especially in Mode 2.
+The original function ACCU is still available in the XTRA menu, especially to support patches that might use it.
+
+
+[25] Exaggerate
+EXAGGERATE (CDP: focus exag): exaggerate (or broaden) the spectral contour.
+
+EXAGGERATE focuses or broadens the spectral contour by narrowing or broadening the spectral peaks (formants). It narrows the spectral peaks (formants), focussing on them. Alternatively it broadens them, making them sound more fuzzy, as in SPREAD.  
+
+The program alters the spectral envelope, i.e. the amplitude contour across the frequency spectrum. Formants are areas of higher amplitude, or  spectral peaks, while areas of relatively lower amplitude (e.g. in between harmonics) are known as spectral troughs. The program emphasizes (narrows) the peaks at the expense of the troughs (EXAGG <1); or conversely it can broaden the width of the formants (EXAGG >1) so that they are less clear and the sound becomes more fuzzy.
+
+PARAMETERS
+EXAGG  Value < 1 exaggerates: narrows formants / focuses on spectral peaks; value > 1 widens formants.
+The range can be misleading, as you need a lower value to exaggerate more, while a higher one will broaden.
+  Range: 0.001-1000, default 1. T-V
+ 
+NOTES
+Exaggerating the spectral peaks can make partials stand out individually (as different formants are prominent over time), not unlike ARPEGGIATE or TRACE. Widening the formants, and giving them less focus, in effect gives more relative prominence to the troughs and the result may be an increasingly fuzzy or noise-like sound. 
+
+[26] Focus
+FOCUS (CDP: focus focus): create filters centred on formants to focus spectral energy
+
+FOCUS focuses on spectral peaks (formants), by treating peaks as centre frequencies of a filter set.
+It uses filtering to emphasize the most prominent spectral peaks (formants) found across a given time-window. 
+
+MODES
+ 1. Frequency-based extraction of spectral envelope
+ 2. Pitch-based extraction of spectral envelope
+
+PARAMETERS
+CHANNELS - Mode 1:  No. of frequency channels per point used to extract spectral contour (fewer more accurate).  Range: 1-100
+BANDS - Mode 2: No. of pitch bands per octave used to extract spectral contour (greater more accurate)
+  Range:  1-12
+PEAKS   No. of peaks to search for within the time-window, e.g. 6 would emphasize the 6 most prominent peaks. Range:  1-16 (Soundshaper default: 6)
+BANDWIDTH: Bandwidth of peak-centred filters, in Octaves. Range:  0.084 to 10.0 (octaves); default 1
+(BOT FREQ)   Lower limit of frequency range used to search for peaks
+  Range:  20-20000  T-V
+(TOP FREQ)   Upperlimit of frequency range used to search for peaks 
+  Range: 20-20000  T-V
+(WINDOWS)  Number of windows over which to average search for peaks. Attempts to retain only peaks which are stable over time. N.B. This is a moving time-window, not a fixed time-range.
+  Range: 2-no. of windows in file; default 9
+
+NOTES
+The process is analagous to Exaggerate (narrowing peaks) and the output is rather similar. Key parameters are peaks, bandwidth and windows, then bot/top freq if you want to concentrate on a particular frequency band.
+
+[27]   Fold
+FOLD (CDP: focus fold): octave-transpose frequencies into specified range.
+
+FOLD octave-transposes spectral components into a narrower range. Components lower than low freq are transposed up until they lie within the range, while those higher than high freq are likewise transposed down.  If transposed information competes for the same (output) channel, the component with the highest amplitude is retained. Because the transpositions are by octave, the resultant sounds are normally timbral variants of the original.
+
+OPTION
+• Fuller spectrum - uses a different algorithm
+
+PARAMETERS
+LOW FREQ:  Lowest frequency of range: lower frequencies are 8ve-transposed up.
+  Range: 5-22050 Hz. T-V
+HIGH FREQ: Highest frequency of range: higher frequencies are 8ve-transposed down.
+  Range: 5-22050 Hz. T-V 
+ 
+NOTES
+Try experimenting first with a steady-pitched note. If the fundamental and perhaps a couple of the lower harmonics are transposed up into a band originally occupied by higher harmonics, the resultant sound will proabably retain the original fundamental pitch (caused by the difference tones created among the newly placed partials), but with an altered timbre.  With inharmonic tones that do not have a clear fundamental, a FOLD upwards in pitch will still create a sound closely related to the original and not unlike a high-pass filtering.
+
+Time-varying low freq and/or high freq with frequency bands of relatively narrow pitch can give an effect like ARPEGGIATE, picking out different (groups of) frequency components in turn.
+
+[28]   Freeze
+FREEZE (CDP: focus freeze): freeze spectrum at given times.
+
+FREEZE freezes the spectral amplitudes or frequencies, or both, at the times specified. The frozen portions substitute for the original: the outfile is not lengthened. 
+The modes do not always give the result you might expect: Mode 1 can appear to freeze frequency, not amplitude, whereas Mode 2 can appear to freeze amplitudes and not frequencies! (This is not really a fault: see NOTES.)
+Freezing both (Mode 3) is equivalent to HOLD. Unlike HOLD, the frozen portions overwrite the original sound — the sound is not lengthened.
+
+MODES
+ 1. Freeze amplitudes: frequency changes in the frozen portion are unaffected
+ 2. Freeze frequencies: amplitude changes in the frozen portion are unaffected
+ 3. Freeze amplitudes and frequencies.
+
+PARAMETER
+FREEZE: data file of times at which the spectrum is frozen / unfrozen, where freeze times are preceded by the markers:
+    'a' ='after this time': use window here as freeze window for spectrum after this time.
+    'b' ='before this time': use window here as freeze window for spectrum before this time.
+  Range: 0- file-length
+Example: Freeze at 2" and unfreeze at 4".
+	0.0          
+	a2.0
+	4.0
+
+NOTES
+Like HOLD, freezing is a way of stopping the continuous spectral evolution which normally takes place in a sound.
+
+One reason for Modes 1 and 2 not doing what you might expect is that changing frequency is not the same as tracking partials: "PVOC does not capture the time-changing partials of the sound, but only a moment to moment snapshot of the sound, and the energy in each frequency band at that time." Freezing amps within a channel effectively sustains the frequency band that channel represents. In Mode 2, for a sound that is glissandoing: "as it is the changing AMPLITUDE of the channels which causes some to be emphasized more than others, [and] channel amplitudes [are] changing over time as the source glisses upwards, we still hear a gliss". (T.W.)
+
+[29]   Stepfreeze
+STEPFREEZE (CDP: focus step): freeze spectrum at regular intervals.
+
+STEPFREEZE freezes/unfreezes the spectrum at regular timesteps, alternating between the two.  Freezing is equivalent to HOLD; unlike HOLD, the frozen portions overwrite the original sound — the sound is not lengthened. With STEPFREEZE, the freezing occurs at regular time-intervals. Small timesteps produce a granulation or "sample-and-hold" effect.
+
+PARAMETER
+TIMESTEP: the time-period over which to freeze/unfreeze (secs.) Can be small, but must be > two analysis windows, typically 0.006 secs.
+  Range: Minimum as above or 0.01 (Soundshaper) ; Max: file-length (in theory).
+
+NOTES: See also FREEZE, HOLD, EXPAND.
+
+[30]   Average
+AVERAGE (CDP: blur avrg): average spectral energy over adjacent frequency channels
+
+AVERAGE roughens the sound by averaging the spectral amplitude over adjacent frequency channels. The amplitude in adjacent channels is averaged out over a given number of (adjacent) channels, without affecting the frequencies of those channels. This broadens, or defocuses, spectral peaks and leads to a noisier or rougher sound.
+
+PARAMETER
+CHANNELS  Number of channels over which to average the amplitude.
+  Range: 2 to no. of freq. chans/2. T-V
+ 
+NOTES
+The process operates on the spectral envelope and introduces a rougher or noisier sound by averaging the energy over a number of frequency channels. The result may be similar to Exaggerate (widening formants) and Spread.
+ 
+[31]   Blur
+Blur (CDP: blur blur): blur the spectral data over time and optionally thin it.
+
+BLUR averages the spectral amplitude over time. It blurs amplitude detail over the number of time-windows specified by the WINDOWS parameter. Blur interpolates between the amplitudes in the first and last windows of the group only, and produces a linear scale of values for the windows inbetween. The degree of blurring may be time-varied.
+Mode 2 adds a TRACE option to thin the spectrum by retaining only the N loudest channels (c.f. TRACE).
+
+MODES
+ 1. Blur: time-average the spectral amplitude
+ 2. Blur and Trace: also thin the spectrum by retaining only the loudest channels (trace parameter).
+
+PARAMETERS
+WINDOWS: The number of time-windows over which to blur: interpolate amplitude from 1st to last of group
+  Range: 1-no. of windows;  T-V
+  Soundshaper shows the max. value possible, which is equivalent to the file-length.
+TRACE: Number of spectral components (channels), in order of loudness, to retain in each analysis window.
+  Range: 1-no. of channels;   T-V
+  The maximum value depends on PVOC analysis settings.
+
+NOTES
+BLUR may be compared with AVERAGE, which averages the amplitudes frequency-wise across a number of adjacent channels, thus spreading the spectral peaks. BLUR averages over time, so that the rhythmic and dynamic changes over time are blurred. (When done to a instrumental passsage, notes may be lost.)
+
+BLUR is an effective way of altering the quality of a sound, particularly in conjunction with other processes, such as TIMESTRETCH. Various BLURs of different degrees of blurring may be mixed together to create an evolving sound. The process softens the attack transients, so is effective with plucked or percussive sounds. By time-varying the value for windows from low to high, you can transform the sound from the original to a very blurred effect.
+
+[32]   Suppress
+SUPPRESS (CDP: blur suppress): thin spectrum by rejecting loudest partials.
+
+SUPPRESS rejects the loudest N spectral components per analysis window, retaining what's left.  (Opposite of TRACE.)
+
+PARAMETER
+SUPPRESS: Number of spectral components (channels) to reject in each analysis window.
+Range: 1-no. of chans (e.g. 1-1024)  T-V
+
+NOTES: Like TRACE, this function provides a 'ghost' of the sound, which often remains surprisingly coherent even with just a few partials retained. 
+
+[33]   Chorus
+CHORUS (CDP: blur chorus): randomise amplitudes and/or frequencies of partials.
+
+CHORUS produces a chorus effect by random variation of amplitudes and/or frequencies. Value ranges for AMP SPREAD and FREQ SPREAD can take the process well beyond its title.
+
+MODES
+ 1.   Amplitudes: randomise amplitudes only
+ 2.   Frequencies: randomise frequencies only
+ 3,4. Freqs up/down: randomise frequencies upwards only (Mode 3) or downwards only (Mode 4).
+ 5-7. Amps and Freqs: randomise amplitudes and frequencies (Mode 5); amplitudes, plus frequencies upwards (Mode 6); amplitudes, plus frequencies downwards (Mode 7).
+
+PARAMETERS
+AMP SPREAD  Maximum random scatter of partial amplitudes. Values above c.400 seem to make little difference. 
+  Range: 1-1028. Typical chorus value (Mode 1): 40-100. T-V
+FREQ SPREAD Maximum random scatter of partial frequencies.
+  Range: Typical chorus value (Mode 2): 1.01 or 1.02; double this for Modes 3/4. T-V
+
+NOTES
+To create a chorus effect, keep freq spread to a very small value (<1.05) and/or keep amp spread to a medium value (40-100). Higher values for freq spread create a burbling effect, while those for amp spread sound much the same for any medium or high value.
+
+[34]   SpecDrunk
+SPECDRUNK (cdp: blur drunk): random walk through spectral analysis time-windows 
+
+SpecDrunk is the spectral equivalent of DRUNK (q.v.). It takes a "random walk" through the analysis windows,  moving through the file reading windows, but jumping backwards or forwards at random. The size of the random jumps cannot be greater than MAX_STEP.  Like DRUNK, the process always reads forwards and proceeds until the specified output duration has been generated.
+
+PARAMETERS
+MAX STEP:  Range (in windows) for the walk: maximum size of jump to next window. Leaps that would go beyond the file length are reflected back inside.
+  Range: 1 - 64 (?) 
+  (CDP manual gives 64 max., but more is possible; however it's less than no. of  windows/2.)
+START TIMEL: Time in file where walk should begin.
+  Range: 1 to file-length (secs)
+DURATION: Required duration of output file after re-synthesis - can be longer than input file. 
+  Range: 1 - 32767 (secs)
+
+• OPTION No repeats: ignore window repeats, i.e. steps of zero length.
+ 
+NOTES
+If the range (max step) is small (e.g. 10 windows), the output tends to linger around the start-point in the file, progressing very slowly away from it in an arbitrary direction. This results in a mix of time-stretching and slow wandering through the source. If large, the drunken walk tends to leap about wildly in the file, scrambling the source sound.
+
+[35] Shuffle
+SHUFFLE (CDP: blur shuffle): permutate spectral analysis windows.
+
+SHUFFLE shuffles time-windows in a spectral analysis file. The order of analysis windows is permutated according to a text pattern. The program requires a "domain" pattern of consecutive windows, e.g. abcd, and a shuffle pattern ("image") of how these are to be permutated, e.g. aabbccdd. Windows are shuffled in groups: the windows parameter sets the size of the group. The permutated pattern is repeated.
+
+PARAMETERS
+DOMAIN: Text pattern of consecutive windows or window groups, from which the shuffle pattern (image) is taken.
+  Text box.  Examples: abcd, abcde. 
+IMAGE: Shuffle pattern made from the domain pattern: e.g. ababcbcdcded from domain abcde. The permutation is repeated.
+  Text box. Examples: aabbccdd (repeat each group), dcba (reverse order of groups), abacada, dabacaea, aaeebbeecceeddee, etc.
+If we number the window-groups as 1,2,3,4,5,6,7,8,...etc. then a domain of abcd and a shuffle-pattern of dcba would produce 4-3-2-1, 8-7-6-5, 12-11-10-9, etc.
+WINDOWS: Number of windows in group. (Windows are shuffled in groups.)
+  Range: 1 - number of windows.
+
+NOTES
+SHUFFLE is a handy way of time-expanding the sound by repetition, or altering it by imposing any repetitive pattern you choose, including reversing groups of windows.
+See also: GRNSHUFFLE (shuffles grains of sound) and CYCSHUFFLE (shuffles pseudo-wavecycles)
+
+[36] Weave
+WEAVE (CDP: blur weave): patterned sequence of single time-windows (repeated until end of file) 
+Move through the spectral file in time, according to  patterned sequence.
+WEAVE plots a course through analysis windows using a specific sequence relative to the starting point. The sequence is defined in a text data file: see WEAVE parameter.
+
+PARAMETERS
+WEAVE: Text data file defining list of steps in windows +/- : first value is starting window; the last window must be greater than this and none may be less than it. When finished, the pattern is repeated from the point reached.
+Range: -128 to +128. The file can have any name.
+Example:          
+ 0                   
+ 7
+ 4
+ -6
+ 5
+ 9
+ 4
+ -15
+Actual window sequence would be 1, 8, 12, 6, 11, 20, 24, 9;   16, 20, 14, 19, 28, 32, 36, 21;  28, 32, 26, ...etc.
+
+USAGE
+WEAVE is similar to SHUFFLE but plots a defined course through the analysis windows, weaving backwards and forwards as defined by the weave file. This creates a sequence of single windows taken from various points relative to the start window: you can jump to points forwards or backwards in the soundfile, at which point it reads a single window.
+
+[37]   SpecNoise
+SPECNOISE (CDP: blur noise): add noise to spectrum.
+
+SPECNOISE saturates the spectrum with noise by progressively making the data in every channel, ­most of which is actually low level noise, equally loud.
+
+PARAMETER
+NOISE  The degree of saturation with noise (0: no noise to 1: fully saturated). 
+  Range: 0-1
+
+NOTES
+A value of 1 does not necessarily produce pure noise -- the original signal may still be detectable -- which may make this function more useful than the description suggests.
+
+[38]   Scatter
+SCATTER (CDP: blur scatter): thin spectrum randomly 
+
+SCATTER thins the spectrum by removing frequencies chosen randomly: it keeps N randomly chosen frequency blocks per analysis window.
+
+PARAMETERS
+KEEP: Number of randomly-chosen frequency blocks to retain in each analysis window.
+  Range: 1-no. of chans (e.g. 1-1024)  T-V
+BLOCK SIZE: Frequency range of blocks, rounded to multiple of channel bandwidth.
+  Range: 1 channel-11025 Hz; default 1 chan. bandwidth (e.g. 43.066 Hz.)  T-V
+
+OPTIONS
+• Randomize keep: randomise number of blocks kept (1 to KEEP no.)
+• No normalisation: turn off normalisation of resulting sound (default: normalise).
+
+[39]  Spread
+SPREAD (CDP: blur spread): spread spectral peaks
+
+SPREAD introduces noise into the spectrum by spreading the spectral peaks, exaggerating the less prominent (noise) constituents.  The effect is similar to AVERAGE and can be time-varied. The key parameter is SPREAD, despite being optional.
+
+MODES
+ 1. Frequency-based extraction of spectral envelope
+ 2. Pitch-based extraction of spectral envelope
+
+PARAMETERS
+CHANNELS (Mode 1):  No. of frequency channels per point used to extract spectral contour (fewer more accurate) Range: 1-100
+BANDS (Mode 2): No. of pitch bands per octave used to extract spectral contour (greater more accurate)
+  Range:  1-12
+(SPREAD):  Degree of spreading of spectrum 
+  Range: 0-1, default 1. T-V 
+
+[40]   Shift
+SHIFT (CDP: strange shift): inharmonic shift of spectrum by constant amount.
+
+SHIFT shifts all frequencies up or down, producing inharmonic sounds. It adds a value (positive or negative) to all specified frequencies. The whole spectrum may be shifted (Mode 1), or you can shift above or below a given point (the "divide frequency": Modes 2 & 3), or shift only within or outside a given frequency band (Modes 4 & 5).
+
+MODES
+ 1. Shift whole spectrum: Raise/lower all partials by shift frequency.
+ 2. Shift above divide freq.: Raise/lower partials above dividing frequency freq split.
+ 3. Shift below divide freq.: Raise/lower partials below dividing frequency freq split.
+ 4. Shift inside freq. range: Raise/lower partials inside range low freq to high freq.
+ 5. Shift outside freq. range: Raise/lower partials outside range low freq to high freq.
+
+OPTION
+• Interpolate logarithmically between frequency values when time-varying (default: linear).
+
+PARAMETERS
+SHIFT FREQ:  Shift value added to all partials within specified range (see Modes).
+A positive value compresses the intervals between partials, negative stretches them (+/-22050 Hz)
+  Range: -22050 to +22050 Hz, but note that partials shifted below 10Hz (?) or above 22050 Hz will be lost. T-V
+FREQ SPLIT: (divide-frequency): shift above (MOde 2) or below (Mode 3) this point.
+  Range: 10.77-22039.23 Hz for 512 chans. T-V
+LOW FREQ: Bottom frequency of range to shift within (Mode 4) or outside (Mode 5)
+  Range:  10.77-22039.23 Hz for 512 chans. T-V
+HIGH FREQ: Top frequency of range to shift within (Mode 4) or outside (Mode 5)
+  Range: 10.77-22039.23 Hz for 512 chans. T-V
+ 
+NOTES
+Spectral shifting raises or lowers frequencies, but also alters the musical intervals between partials. Harmonic sounds in particular become inharmonic ("bell-like"). Shifting upwards narrows the ratios between partials, while shifting down widens them. Partials which are shifted outside the total frequency range are lost. As all parameters are time-varying, there is great scope here for evolving timbral change.
+
+This process is grouped with a variant, FMTFREQ (CDP specfnu 13), which aims to preserve the original formants. 
+
+[41]   Gliss
+GLISS (CDP: strange glis): endlessly rising/falling Shepard tone or inharmonic glissando.
+
+GLISS creates a glissando while retaining the spectral contour, including articulation. It attempts to re-create, in the spectral domain, the effect of a Shepard tone, that is, one which rises or falls endlessly without ever changing octave. Shephard tones achieve this by subtly increasing the level of upper harmonics while at the same time decreasing that of lower ones, so that the timbre is static but the pitch seems to be constantly falling. This is not so easy to achieve with any sound as input.
+
+MODES
+ 1 Shephard tones (Freq) - spectral envelope extracted frequency-wise
+ 2 Shephard tones (Pitch) - spectral envelope extracted pitch-wise
+ 3 Inharmonic glissando (Freq) - spectral envelope extracted frequency-wise
+ 4 Inharmonic glissando (Pitch) - spectral envelope extracted pitch-wise
+ 5 Self gliss (Freq) - spectral envelope extracted frequency-wise
+ 6 Self gliss (Pitch) - spectral envelope extracted pitch-wise
+
+PARAMETERS
+CHANNELS (Modes 1,3,5): No. of freq.channels per point used to extract spectral envelope
+  Range: 1-100
+BANDS (Mode 2,4,6): No.of pitch bands per octave used to extract spectral envelope
+  Range: 1-12
+GLISS RATE: rate of glissando
+  Range: c. -344 to +344 semitones/sec (same Analysis Sample rate)
+SPACING (Modes 3,4): Spacing of partials
+  Range: > channel bandwidth (Hz.) - lower limit is adjusted by Soundshaper
+TOPFREQ: Top frequency of spectrum
+  Range: >twice channel bandwidth to 22050 (Hz) - lower limit is adjusted by Soundshaper 
+
+
+[42]   Waver
+WAVER (CDP: strange waver): Oscillate between harmonic and inharmonic state.
+
+WAVER is a variant of spectral STRETCH. Stretching oscillates from original (harmonic) state to the maximum stretch factor (stretch) and back. Parameters are much the same as in SpecStretch, though compression is not available.
+
+MODES
+ 1. Standard: Linear stretching above the dividing frequency.
+ 2. Exponential: Exponential stretching above the dividing frequency.
+
+PARAMETERS
+VIB FREQ:  Oscillating frequency. Minimum value is determined by file length: longer sounds are permitted slower oscillations.
+  Range: Min-172.26 Hz; Min: >1/File-length; T-V
+STRETCH: Stretch factor: sets the maximum spectral stretch (oscillation from harmonic to stretch.).
+High value will start oscillation at high frequency, even if bot freq is low.
+  Range:  1 to 2205 (=1/10 of full freq. range). T-V
+BOT FREQ: The dividing frequency above which frequencies are stretched. If set high-ish, most of the original will also be present.
+  Range: 10-22050 Hz
+EXPONENT: Stretch factor determining type of stretch curve.
+  Range: 0.02-50.0  (<1=decreasing stretch; >1=increasing stretch)
+
+NOTES: depending on the speed of vib freq, the original harmonic state may not be heard. As in all LFO modulations, when vib freq exceeds about 50Hz, it creates a steady frequency of its own. WAVER has a tendency to jump in frequency, according to settings.
+
+
+[43]   InvertSpec
+INVERTSPEC (CDP: specnu slice 5): Invert spectrum around a given frequency (not MChan).
+
+INVERTSPEC inverts the spectrum. Partials are inverted around a given frequency: if they were originally above the frequency, they appear an equivalent amount below it, and vice versa. 
+
+PARAMETER
+INVERT: Frequency (f) around which to invert the spectrum.
+It is assumed that frequencies originally below this (f-n) are placed the same amount above it (f+n), while those originally above it (f+n) are placed the same amount below (f-n). 
+  Range:  1 chan. bandwidth (c.44Hz) - c.20000 Hz.
+
+NOTES
+Inverting the spectrum will turn high frequencies (such as high harmonics) into low ones and vice versa. You can also expect a harmonic sound to become inharmonic. If a high invert_frequency figure is given, the lowest of the original frequencies may well disappear, being beyond the Nyquist frequency (and our hearing). Equally, if a very low figure is given, high frequency data is inverted too low to be heard (or to be resolved within the channel bandwidth). Soundshaper's data range is therefore more than generous for most purposes, despite being less than the full legal CDP range.
+
+As the resultant sound is often a bit "thin", it's worth carrying out a few inversions at different frequencies (e.g. 1k, 2k and 4k) and mixing the result.
+The process can also be an effective way of disguising a vocal sound.
+   
+[44]   Mirror
+MIRROR (CDP: strange invert): invert spectral envelope (harmonics only).
+
+MIRROR reverses the spectral envelope in frequency from top to bottom, so that the energy associated with high sounds is applied to low ones and vice-versa; this also tends to create a noisier spectrum. There is an option of retaining the original amplitude envelope. 
+
+MODES
+ 1. Invert spectrum - normal inversion, zeroing inharmonic frequencies.
+ 2. Retain envelope - retain the original amplitude envelope
+
+PARAMETERS - none
+ 
+NOTES
+In a typical (harmonic) instrumental tone, the higher harmonics are weaker than the lower ones. By inverting the spectral envelope, this situation is reversed and the weak higher harmonics gain the amplitude and prominence of the lower ones. The result is a noticeable brightening of the timbre, sometimes verging on distortion. Note that inharmonic frequencies, including those that would make up the noise component in the sound, are removed.  The time-varying spectral envelope also includes the variation of the overall amplitude envelope; Mode 2 retains this original envelope. 
+
+[45]   Glide
+GLIDE (CDP; morph glide): glissando between spectral windows in two files
+
+GLIDE interpolates frequencies only, between two single spectra.  One is taken from File 1 at a specified time, and one from File 2 at a specified time in that file. The outfile length is set by the user. The effect is usually that of a gradual glissando between the two spectra.
+The files must be different (or output is silent); to get round this in Soundshaper, copy File 1 (e.g. A_0 to B_0) and select the copy as File 2.
+
+PARAMETERS
+OUTLENGTH:  The length of the output file
+  Range: 2 analysis windows (e.g. 00.5805 for default 1024-point PVOC) to 32767 secs.
+  Soundshaper suggests a smaller range but this can be exceeded.
+FROM: Time of Window in File1.
+  Range: 0-filelength secs. (File 1)
+TO:  Time of Window in File 2. 
+  Range: 0-filelength secs.(Soundshaper displays File 1's maximum, but you can exceed this if File 2 is longer.)
+ 
+NOTES
+GLIDE's output has no dynamic contour; in this respect it is a bit like FREEZE or EXPAND or HOLD, but with changing frequency content. As the interpolation begins at the start and ends at the very end of the output, it can be useful to prolong the start and/or the end (of the outfile) with HOLD.
+
+GLIDE can be musically effective when mixed with a related dynamically changing sound, e.g. one beginning with File 1 and ending with File 2, created via MORPH.
+Another useful hybrid is to impose a time-varying spectral envelope on it, using CROSS, VOCODE or PUT FORMANTS. For example, CROSS allows one sound to create the (frequency-related) dynamic content, while GLIDE determines the actual frequencies. The result here usually seems like a variant of CROSS's source.
+Example:
+Source —> Glide (Infile 2 from Source copy) —>CROSS —>PVOC_SYNTH (to .wav)
+Source copy —> Timestretch (matching Glide out-length) —> CROSS (Infile2)
+
+CDP reference Help refers to the process GRAB; this is built into Soundshaper's implementation.
+
+
+[46]   Bridge
+BRIDGE (CDP: morph bridge): morph between two spectra.
+
+BRIDGE morphs between two spectra. Morphing interpolates between the frequency and amplitude values in one file and another, making a transition ('morph') between them. BRIDGE morphs between a spectrum (a specific window^) in one file and one in another file, each at specified times. A number of interpolation Modes are offered.
+The outfile length appears to be the length of File 2 (whether END is specified or not).
+
+MODES
+ 1. Interpolated: Output level is direct result of interpolation
+ 2. Minimum of both: Output level follows moment to moment minimum of 2 infile amplitudes
+ 3. Follow File1: Output level follows moment to moment amplitude of infile1
+ 4. Follow File2: Output level follows moment to moment amplitude of infile2
+ 5. Move 1 -> 2: Output level moves, through interpolation, from that of Infile1 to that of Infile2
+ 6. Move 2 -> 1: Output level moves, through interpolation, from that of Infile2 to that of Infile1
+
+PARAMETERS (all optional: defaults are used if not set)
+(START):  Time in Infile 1 of start window for interpolation.
+  Range: 0- file length (approx.*) of File1 secs; 
+  default: 0.0. (*Latest start-point is file-length minus twice window-gap^.)
+(END):  Time in Infile 1 of end window for interpolation. 
+  Range: Near 0* to file length of File1 secs, restricted to 1.0 due to CDP error; 
+  default: end_of_file
+Must be > than amp start  (*Earliest end-point is twice window-gap^.)
+(FREQ START): Amount of 2nd sound's FREQUENCY interpolation at start time.
+  Range: 0-1; default 0
+(FREQ END):  Amount of 2nd sound's FREQUENCY interpolation at end time.
+  Range: 0-1; default 1
+(AMP START): Amount of 2nd sound's AMPLITUDE interpolation at start time.
+  Range: 0-1; default 0
+(AMP END): Amount of 2nd sound's AMPLITUDE interpolation at end time.
+  Range: 0-1; default 1
+(OFFSET):  Optional time-delay of entry of 2nd file 
+  Range: 0-file length (approx*) of File1 secs; default 0.0  (*Max: filelength-window-gap^)
+
+NOTES:
+While MORPH interpolates between the values in the two files while they continue to evolve over time, BRIDGE interpolates between the spectra at two specific times: one in the first file and one in the second.  If morphing across the whole of both files, BRIDGE Mode 1 appears to be identical to MORPH.  BRIDGE does, however, offer alternatives for the output level, as appropriate to the input files.
+
+^Window/Window-gap: when a sound is converted to a spectral file via PVOC, the frequency spectrum is analysed every few milliseconds; window-gap is the time between these analysis 'windows'.
+
+[47]   Morph
+MORPH (CDP: morph morph): morph between one spectrum and another.
+
+MORPH interpolates between the frequency and amplitude values in one file and another, making a transition ('morph') between them, over time. It interpolates each successive window^ in the first file with its corresponding simultaneous window^ in the second file.
+
+MODES
+ 1. Linear/exponential: interpolate linearly or exponentially (see EXP parameters).
+ 2. Cosine: interpolate over a cosinusoidal spline.
+
+PARAMETERS
+AMP START:  Time when amplitude interpolation begins
+  Range: 0- file length (approx.*) of File1 secs. (*Latest start-point is file-length minus twice window-gap^.)
+AMP END:  Time when amplitude interpolation ends
+  Range: Near 0* to file length of File1 secs. Must be > than amp start  (*Earliest end-point is twice window-gap^.) In practice, amp end must not be later than the length of the shorter file. 
+FREQ START: Time when frequency interpolation starts
+  Range: 0- file length (approx.*) of File1  secs. (*Latest start-point is file-length minus twice   window-gap^.)
+FREQ END:  Time when frequency interpolation ends
+  Range: Near 0* to file length of File1 secs. Must be > than freq start  (*Earliest end-point is twice window-gap^.) In practice, freq end must not be later than the length of the shorter file.
+AMP EXP: Amplitude interpolation slope: increasing (exp >1); decreasing (exp <1).
+  Range: 0.02 to 50.00
+FREQ EXP: Frequency interpolation slope: increasing (exp >1); decreasing (exp <1)
+  Range: 0.02 to 50.00
+(OFFSET):  Optional time-delay of entry of 2nd file  (Called 'stagger' in CDP documentation)
+  Range: 0-file length (approx*) of File1 secs. Default 0.0  (*Max: filelength-window-gap^)
+
+NOTES:
+MORPH v. BRIDGE: MORPH interpolates between the values in the two files while they continue to evolve over time. BRIDGE interpolates between the spectra at two specific times: one in the first file and one in the second.
+MORPH: the end of amp. or freq. interpolation should not be beyond the end of the shorter soundfile.
+
+^Window/Window-gap: when a sound is converted to a spectral file via PVOC, the frequency spectrum is analysed every few milliseconds; window-gap is the time between these analysis 'windows'.
+
+[48][49]   
+GetPitch/GetPchBrk (CDP: repitch getpitch 1/2): extract pitch from spectrum, to binary pitch file (.frq) / breakpoint file (.pch / .brk). 
+
+GetPitch extracts pitch from a frequency analysis file (.ana)* to a binary file (.frq). There are several optional parameters, but the default values work well. The HARMONICS parameter, which sets how many harmonics must be present to establish pitch (default 5), might need to be lowered in some cases.   
+(*In Soundshaper, the input file can be a soundfile; the program makes the necessary file conversions.)
+
+GetPitchBrk extracts pitch to a breakpoint text data file (.pch or .brk). An extra parameter ERROR sets a range of acceptable error in data reduction; the default value is 1/4 semitone.  (The suffix .pch is gradually being added to Soundshaper, but may not be fully supported yet.) The breakpoint file can be fully edited in Graph-Edit to change pitch or timings. For data reduction, see also CDP's BrkEdit.
+
+In Soundshaper's menus, you can use current settings for pitch extraction, as set in SetGetPch (or its default values), or use a parameter page to set parameter values yourself.
+
+PARAMETERS
+(TUN RANGE): tuning range within which harmonics are regarded as being in tune
+  Range: 0-6; default 1 (semitones)
+(TIME RANGE): Minimum no. of adjacent time-windows that must be pitched in order to extract a pitch value
+  Range: 0-100; default 2 (windows)
+(SIG NOISE): signal to noise threshold; lower levels are treated as unpitched noise, not signal.
+  The scale used is in dB below the maximum level.
+  Range: 0-100; default 80 (deciBels)
+(HMC PEAKS): number of spectral peaks, out of the 8 loudest, that must be harmonics to confirm the sound is pitched
+  Range: 1-8; default 5 (peaks)
+(LOW PITCH): lowest frequency acceptable as pitch
+  Range: 10-Nyquist/8 Hz; default 10 Hz (Nyquist/8 is 2756 Hz for 44.1KHz Sampling Rate; 6KHz for 96KHz SR)
+(HIGH PITCH): highest frequency acceptable as pitch; should be > LOW PITCH
+  Range: 10-Nyquist/8 Hz; default 10 Hz (Nyquist/8 is 2756 Hz for 44.1KHz Sampling Rate; 6KHz for 96KHz SR)
+- - - - -
+(ERROR) GETPITCHBRK only: acceptable error in data reduction to breakpoint file
+  Range: 0.1-3 semitones Full range: 0.00002 to 12 semitones; default 0.25 
+
+OPTIONS
+• Alternative pitch-finding algorithm
+• (GETPICH only) Retain unpitched windows: interpolate between adjacent pitched windows (Default: not set) 
+
+
+[50]   1FmtGet
+1FMTGET (CDP: oneform get): extract formants at a specific time in a formant file (.for).
+
+1FmtGet extracts a single spectral envelope at a specific time in a formant file. This is dynamically static, having no time-changing amplitude. It can be used with 1FmtPut to impose the formants on another sound, or combined with a pitch file to create a
+ 
+PARAMETER:
+TIME in the sound to extract single set of formants
+  Range: 0 to file-length secs  
+
+[51]  1FmtPut
+1FMTPUT (CDP: oneform put): impose single set of formants
+
+1FmtPut imposes single-moment-formants on a spectral analysis file. Formants can be imposed on (top of) the analysis file's spectral envelope (Mode 1), or can replace the latter (Mode 2).  In Mode 2, as the formants are static (as opposed to a dynamically changing spectral envelope), the result is a static sound with frozen amplitudes, but a changing spectrum/pitch.  
+
+MODES
+1 Impose formants: impose single-moment-formants on the analysis file (formants are added to the existing ones)
+2 Replace formants: replace existing formants with single-moment-formants.
+
+PARAMETERS
+(LOWLIM): Bottom frequency of range to retain
+  Range: 20-20k (Hz)
+(HILIM): Top frequency of range to retain 
+  Range: 20-20k (Hz) and >LOWLIM 
+(GAIN): Overall gain on output.
+  Range: 0-1
+
+NOTES
+The single spectral contour is applied to the whole sound, acting like a static graphic-equaliser. This will be effective only if the target sound has something to be filtered; e.g., if the formant-shape is imposed on a narrow-bandwidth signal, there may be little effect.
+
+[52]  1FmtCombine
+1FMTCOMBINE (CDP: oneform combine): make new spectrum from pitch file and 1Fmt file
+
+1FmtCombine combines pitch and single-moment-formant data to make a new spectral analysis file. As the formants are static (as opposed to a dynamically changing spectral envelope), the result is a static sound with changing pitch. 
+
+PARAMETERS: none
+
+[53] Selfsim
+SELFSIM (CDP: selfsim): replace spectral windows with similar more prominent ones.
+
+SELFSIM replaces less prominent spectral time-windows with the more prominent windows which are most similar to them in spectral envelope, scaling for any overall level difference between the two.
+
+There is one parameter, the "self-similarity index" SIMILAR, which sets the number of windows to replace with similar ones.
+
+SIMILAR uses the following replacement rule: a value of 1 uses the loudest window to replace the most similar window, then the next loudest window to replace the window most similar and so on, with appropriate overall-loudness scaling.  With value 2, the loudest windows replaces the TWO most similar windows: if window A replaces B, and C is most similar to B, then A also replaces C, etc.
+
+PARAMETER
+SIMILAR: no. of similar windows to replace, e.g. 2: loudest replaces 2 most similar, next loudest replaces next 2 etc.
+  Range: 1 to no. of windows-1
+
+NOTES
+SELFSIM tends to give a "crackly" break-up of the sound (esp. if process repeated).
+The process can run quite slowly.
+
+[54] ACCU
+ACCU (CDP: focus accu): sustain each spectral band with optional glissando
+
+ACCU sustains each spectral band until louder data appears in that band. DECAY optionally decays the sustained sound by the given amount, per second. GLIS optionally glissandos the sustained bands up or down at GLIS octaves per second. There is an option to reassign these glissandoing frequencies to the appropriate spectral channels.
+
+ACCU is the original process Accumulate. It has now been superseded by a newer ACCUMULATE (CDP: superaccu) with additional modes to tune the sustained spectral channels to specified resonant frequencies (expressed as MIDI values). It is retained here in the XTRA menu, so that legacy patches may be reproduced correctly.
+
+PARAMETERS
+(DECAY): Sustained channel data decays by this factor each second (T-V)
+  Range: 0.001-1.0, default 1.0: no decay
+(GLIS): Sustained channel data glissandos at GLIS octaves per second 
+  Range: -21.53 to +21.53 (8ves/sec), depending on PVOC settings, default 0; (T-V)  
+(The min. and max. values are as above, though a wider range may be shown for a low PVOC points setting such as 512.)
+
+[55] Glisten
+Glisten (CDP: glisten): partition sound into random sets of spectral chans and play sets in order.
+
+GLISTEN plays a selection of randomly chosen spectral channels for a time, then a different set of randomly chosen channels for the same time, and so on. Other channels are zeroed. (When all sets have been played, a new group is made by random partition, and so on.) The "glistening" effect comes from the varying spectral drop-out, a smaller number of channels having a more pronounced effect.
+
+GRPDIV defines how many sets there will be, and hence how many channels in each, though the actual number is randomly variable by DIVRAND. The selection itself is made randomly by the function. 
+
+SETDUR sets how long each set of channels persists before a switch to the next set. This is given in no. of windows: hit F3 to see the time-length of a window (typically about 3 ms). The value is randomly variable by DURRAND.
+
+Finally, PCHSHIFT offers random variation in pitch from one set to the next.
+
+PARAMETERS
+GRPDIV:  Number of sets to divide analysis-channels into,
+         e.g. 4 divides 512 chans into 4 sets of 128 randomly chosen chans.
+  Range: 2 to channel-count; must be an exact divisor of channel-count (hit F3 to see this).
+SETDUR: Time the set persists for (in windows), before a switch to the next set.
+  Range: 1-1024 (windows, where 1 window = c.2.95ms in a 512-channel analysis.)
+(PCHSHIFT): Maximum range of random pitch shifting (+/-) between sets.
+  Range 0 to 12 (semitones); default 0
+(DURRAND):  Randomization of SETDUR, i.e. length set persists. At maximum, the randomization would be between 1 and SETDUR.
+  Range 0 - 1.
+(DIVRAND): Randomize no. of channels in each set ; if >0, sets have different sizes.
+  Range 0 - 1
+
+
+[56] Hybrids
+HYBRIDS (CDP: specsphinx): create hybrids by imposing amps on freqs or multiplying spectra.
+
+HYBRIDS: Mode 1 is a variant of CROSS, which replaces the channel amplitudes with those of Infile2. In CROSS, you set the degree of replacement; here it is the degree of retention. With Hybrids, you can also inject some of the frequencies of Infile 2 into the output spectrum (FREQBALANCE).
+
+Mode 2 multiplies the two spectra, with BIAS setting the proportion of the original added to the output: <0 adds File1; >0 adds File2. In practice, Bias -1 = Bypass, Bias 1 = CROSS, while Bias=0 makes a new hybrid, normally a convincing vocoding effect.
+
+The outfile length is approx. that of Infile 2.
+
+MODES
+ 1 Impose channel amps of File2 on channel freqs of File1
+ 2 Multiply spectra of File2 with that of File 1
+
+PARAMETERS
+(AMPBALANCE) Mode1: Proportion of File1's amplitudes that are retained 
+  Range: 0-1, default 0		T-V
+(FREQBALANCE) Mode1: Proportion of File2 frequencies that are injected into output spectrum 
+  Range: 0-1, default 0		T-V
+(BIAS): proportion of original added to output 
+  Range: -1 to 0 to +1 (<0 adds File1; >0 adds File2)	T-V
+(GAIN): Overall gain on output 
+  Range: 0.01 to 100		T-V
+
+NOTE
+FREQBALANCE has very little, if any, effect on the output.
+
+
+[57] Spectwin
+SPECTWIN (CDP: spectwin): combine formants / spectral envelopes of 2 spectra.
+
+SPECTWIN creates hybrid sounds by combining the formant envelopes and/or total spectral envelopes of two files. The formant envelope traces out the envelope formed by the peaks in the spectrum. The total spectral envelope traces out the envelope formed by every channel in the spectrum.  
+
+FREQINT and ENVINT specify the dominance of the spectral frequencies and spectral envelope, respectively, of Infile2. Setting both to 1 (the defaults) effectively just reproduces Infile 2 in all modes. Various hybrids can be formed by reducing the effect of one of these. Roughly speaking, if ENVINT is at maximum and FRQINT is at minimum, the result is a transformation of Infile 1 (heavily influenced by Infile 2); if the reverse (FRQINT at maximum and ENVINT at minimum), the effect is a transformation of Infile 2.  
+
+The other three parameters are linked. You can optionally duplicate Infile 1 DUPL times at higher pitches; if chosen, the interval is set as STEP semitones, and ATTEN sets how much each duplicate should be attenuated. Running this feature on its own (i.e. FRQINT+ENVINT=0 and Infile2=Infile1) is almost a spectral equivalent of STACK. Mode 3 seems the "cleanest".
+
+If one source file is longer than the other, the outfile length is that of the shorter file.
+
+MODES  Combine:
+ 1 Formant envelopes of both files
+ 2 Formant envelope of 1st file with Spectral envelope of 2nd file
+ 3 Spectral envelope of 1st file with Formant envelope of 2nd file
+ 4 Spectral envelopes of both files
+
+PARAMETERS
+FREQINT: Dominance of spectral freqs of 2nd file. 
+  Range: 0-1; default 1.0.
+ENVINT: Dominance of spectral envelope of 2nd file. 
+  Range: 0-1; default 1.0.
+DUPL: Duplicate original Infile 1 DUPL times at higher pitches.
+  Range: 0-8; default 0 (e.g. 1 imposes 1 transposed copy)
+STEP:  upwards transposition at each duplication. 
+  Range: 0-48 semitones
+ATTEN: Gain reduction from each transposition to next. 
+  Range: 0-1
+
+[58] Morphpeaks
+MORPHPEAKS (CDP: newmorph): morph between dissimilar spectra 
+
+Morphpeaks morphs between the spectral peaks of one sound and those of another. This makes it possible to morph between dissimilar sounds. 
+
+In Modes 1 and 2, the process interpolates linearly (Mode 1) or cosinusoidally (Mode 2) between the average peak channels, simultaneously moving spectral peaks, and interpolating all remaining channels.
+In Modes 3 and 4 the peaks are calculated channel-by channel, again linearly (Mode 3) or  cosinusoidally (Mode 4).
+
+In Modes 5 and 6 (again linear/cosine), Sound 1 is gradually tuned to the averaged harmonic field (See NOTES) of Sound 2. (The averaging would be required, as pitch in acoustic sounds is almost never static.) 
+
+Additionally, each mode offers different slopes (EXPONENT) for the interpolation curves: >1 = an increasing slope; 1 = linear; <1 = a decreasing slope. 
+
+STAGGER, START and END define when the interpolation begins and ends, while PEAKS sets the number of peaks to interpolate.
+
+MODES
+ 1 Ave.Peaks linear: Interpolate linearly between average peak channels.
+ 2 Ave.Peaks cosine: Interpolate cosinusoidally between average peak channel.
+ 3 Chan-by-chan linear: Interpolate linearly between peaks calculated channel-by-channel.
+ 4 Chan-by-chan cosine: Interpolate cosinusoidally between peaks calculated channel-by-channel.
+ 5 Tuned linear: Sound 1 gradually tuned to averaged harmonic field of sound 2, linearly.
+ 6 Tuned cosine: Sound 1 gradually tuned to averaged harmonic field of sound 2, cosinusoidally.
+(7 Sound 1 morphed towards sound2 in "outcnt" steps, each step a new output file. See MULTIMORPH.) 
+ 
+PARAMETERS
+STAGGER:  Time before entry of second file.
+  Range: 0- file-length secs
+START: Start time (in first file) of morph 
+  Range: 0- file-length secs
+END: End time (in first file) of morph 
+  Range: Window-gap*2 to file-length secs
+EXPONENT of interpolation: >1 increasing slope; 1 linear; <1 decreasing slope
+  Range: 0.02 to 50
+PEAKS: number of peaks to interpolate
+  Range: 1 to 16
+
+OPTIONS
+• Keep envelope: retain loudness envelope of first sound (o/p ends when 1st sound ends)
+• Interpolate peaks only: No interpolation of anything except peaks
+• Frequency only:  Only frequency is determined by peaks in sound 2.
+
+NOTES
+The end of the interpolation must not be beyond the end of one of the files.
+
+* The terms Harmonic set and Harmonic field were introduced with the Texture suite. A harmonic set (or pitch set) is a set of pitches in specific octaves, while a harmonic field (or pitch field) places the pitches in any octave (possibly within a specified range). Music already has the term "Pitch-class", where, for example, the pitch-class "C" means a C in any octave. A pitch in a harmonic field refers to a more specific frequency and can be microtonal: e.g. 60.5 is Middle C half-sharp at A=440. 
+
+
+[59]   Morphtune (CDP7)
+MORPHTUNE (CDP: Newmorph2, Modes 2-3): morph frequencies of spectral peaks 
+
+MORPHTUNE morphs the most prominent frequencies of the sound towards a different set of tuned spectral peaks. (Note that Morphpeaks also has two tuned modes.)
+
+The tunings are normally extracted from a different sound via a separate function PEAKFREQS (CDP's Newmorph2 Mode 1), which outputs a set of frequencies ("peaksfile") in order of the most prominent spectral peaks (averaged over the sound). 
+
+The input spectral analysis file is gradually tuned to the frequencies specified in the PEAKSFILE (and their octave transpositions), which may be any arbitrary set specified by the user.  
+
+START is the start-time and END the end-time of the transition. If END is set to the minimum, there is no audible transition, just the retuned sound throughout.
+
+PEAKS, the number of most-prominent source-peaks to interpolate, should normally match the number of frequencies in PEAKSFILE.
+
+MODES
+ 1(CDP Mode 2) Tuned field - linear: Interpolate linearly towards tuned peaks
+ 2(CDP Mode 3) Tuned field - cosine: Interpolate cosinusoidally towards tuned peaks
+   Sound gradually tuned as in linear mode, but interpolation here is timewise-cosinusoidal.
+
+PARAMETERS
+PEAKSFILE: textfile listing goal-peak frequencies, with the most prominent one first.
+  Range: 10? to 22050? Hz  
+File is a list of frequencies, which may be extracted from another sound via PEAKFREQS, or may be any arbitary set, e.g.:
+  220
+  330
+  440
+  550  
+  660
+START: Start time of morph.
+  Range: 0 to filelength-window_gap secs.
+END: End time of morph.
+  Range: window-gap*2 to filelength secs.
+EXPONENT of interpolation: >1 increasing slope; 1 linear; <1 decreasing slope
+  Range: 0.02 to 50
+PEAKS: number of most-prominent source-peaks to interpolate.
+  Range: 1-16
+(RAND): randomisation of the goal peak frequencies. 
+  Range 0 - 1  
+
+NOTES
+The end of the interpolation must not be beyond the end of one of the files.
+
+This is a very clean-sounding transition and a convincing re-tuning of the sound in general.
+For a slower transition, time-stretch the result, or apply EXPAND before this process.
+More than one transition can be made by applying the process more than once, taking care over START and END times.
+ 
+Morphtune looks in <User-folder>\morphtune\ for "peaksfile.txt", by default, but you can easily move the open-dialog's folder up to the root of <User-folder>, where the complementary function PEAKFREQS (Newmorph2, Mode1) places its output "peaksfile.txt".
+
+[60]
+Specgrids NOT IN USE (was 54)
+SPECGRIDS (CDP: specgrids): split spectrum into multiple files for separate processing/mixing (CDP7).
+
+SPECGRIDS partitions the spectrum into multiple files for separate processing. Like SLICE, the partitioning is by spectral channels (frequency bands).
+
+There are just two parameters:  OUTFILES - the number of output files and CHANS: the number of adjacent channels in each group (of channels). The product of the two parameters must be an exact divisor of channel count.
+
+The partitioning resembles dealing a hand of cards to a number players (=outfiles) who get so many cards each (chan. grouping). For example if there are 4 outfiles and groups of two, the channels (a-z) are split ab-ij-qr ; cd-kl-st ; ef-mn-uv ; gh-op-wx. (This is identical to SLICE Mode 1, which also specifies a number of outfiles and groups of channels.)  
+
+(If there are more outfiles than can fit on the Patchgrid, Soundshaper places them off the grid in the TEMP.OUTFILES folder, using CDP output numbering.)   
+
+PARAMETERS
+OUTFILES: no. of output files. 
+  Range: 2 to no.-of-chans. (Soundshaper: 2-16)
+CHANS: no. of adjacent spectral channels per group. 
+  Range: 1 to 1/2 x no.-of-chans.
+The product of OUTFILES and CHANS must be an exact divisor of the spectral-channel count.  
+(Hit F3 to see the number of channels and their bandwidth.)
+Example: 2 outfiles; 4 chans per group: Outfile 1. Chans 1-4,9-12,17-20... 2. Chans 5-8,13-16,21-24...
+
+NOTES
+Trevor Wishart has confirmed that this function is identical to SLICE Mode 1. (The input spec. is formatted differently.) Consequently, it was been placed in Soundshaper's XTRA menu, but has now been removed.
+
+
+[61] not in use
+
+[62]   Transpose
+TRANSPOSE (CDP: repitch transpose/transposef): change pitch (preserving time + optionally spectral envelope)
+
+TRANSPOSE transposes sound up or down in pitch, optionally preserving the spectral envelope. The time-base (i.e. speed/rhythm) is preserved. Several ways of entering the transposition are offered: by frequency ratio, octaves or semitones. There is also an option to filter out part of the spectrum.  
+In the "straight transposition" modes (1,4,7), the spectral envelope is shifted. 
+In the other modes (2/3, 5/6, 8/9) the spectral envelope is preserved. Unfortunately, these modes mostly seem to produce unwanted artefacts.
+
+MODES
+ 1   Freq.ratio: transpose by frequency ratio
+ 2/3 Freq.ratio with formants: transpose by frequency ratio preserving spectral envelope; 
+     formants extracted by freq (Mode 2) /pitch (Mode 3).
+
+ 4   Octaves: transpose by number of octaves
+ 5/6 Octaves with formants: transpose by octaves preserving spectral envelope; 
+     formants extracted by freq. (Mode 5) /pitch (Mode 6).
+
+ 7   Semitones: transpose by number of semitones
+ 8/9 Semitones with formants: transpose by semitones preserving spectral envelope; 
+     formants extracted by freq. (Mode 8) /pitch (Mode 9).
+
+PARAMETERS
+RATIO (Modes 1-3): Frequency ratio , e.g. 2=+8ve, 0.5=-8ve (T-V)
+  Range: 0.00383 to 256 
+OCTAVES (Modes 4-6): Number of (possibly fractional) octaves. (T-V)
+  Range: -8.0 to +8.0 octaves
+TRANSPOSN (Modes 7-9: Number of (possibly fractional) semitones. (T-V) 
+  Range: -96.0 to +96.0 semitones  
+(LOW FREQ):  filter out all frequencies lower than this.  (T-V)
+  Range: 5-22050 Hz.
+(HIGH FREQ): filter out all frequencies higher than this. (T-V)
+  Range: 5-22050 Hz (and >LOW FREQ if both used)
+CHANNELS (Mode 1): No. of frequency channels per point used to extract spectral contour (fewer more accurate) 
+  Range: 1-100 channels
+BANDS (Mode 2): No. of pitch bands per octave used to extract spectral contour (greater more accurate)
+  Range: 1-12 bands
+
+OPTION
+• Fuller spectrum:  a more detailed spectrum is used.
+
+[63]  TransposeTrn
+ TRANSPOSETRN: Change Pitch (preserving time) using binary Transposition File.
+TransposeTrn transposes sound up or down in pitch, optionally preserving the spectral envelope. The time-base (i.e. speed/rhythm) is preserved. The process uses a binary transposition file, created by combining Pitch Data files (.frq) and/or other Transposition files.  (See Pitch Menu > Combine.) The transposition data is supposed to come from sounds of a definite pitch.
+
+MODES
+ 1   Transpose: transpose whole spectrum using transposition file 
+ 2/3 Transpose preserving formants: transpose by transposition file preserving spectral envelope; 
+     formants extracted by freq (Mode 2) /pitch (Mode 3).
+
+OPTION
+• Fuller spectrum:  a more detailed spectrum is used.
+
+PARAMETERS
+(LOW FREQ): FILTER OPTION: filter out all frequencies lower than this. 
+  Range: 5-22050 Hz.  T-V
+(HIGH FREQ): FILTER OPTION: filter out all frequencies lower than this.
+  Range: 5-22050 Hz.  T-V
+CHANNELS (Mode 1):  No. of frequency channels per point used to extract spectral contour (fewer more accurate)
+  Range: 1-100 channels
+BANDS (Mode 2): No. of pitch bands per octave used to extract spectral contour (greater more accurate)
+  Range:  1-12 bands
+
+NOTES
+TRANSPOSE-TRN can only work where a definite pitch trace has been extracted from two sounds, one of which might be the sound to be transposed. 
+
+One use for the function might be to transpose a steady-pitched source, tracking another sound's varied pitch. Pitch traces from the two could be combined to make a transposition file which could then be applied to the source.
+
+[64]   GetFmts
+GET FORMANTS (CDP: formants get): extract spectral envelope
+
+GET FORMANTS extracts the time-varying spectral envelope, creating a formant file (.for) from a spectral analysis file (.ana). 
+The spectral envelope can be extracted either by equal frequency bands (Mode 1) or equal pitch intervals (Mode 2). You can also choose the resolution of the analysis: a larger number of frequency channels or larger pitch interval is more general, less accurate.  (An identical extraction process is built into several processes in CDP's spectral suite.)
+
+Soundshaper can also extract a formant file automatically, using default settings; when a second infile is required just click on the cell to convert: soundfile (white) or freq. analysis file (cyan blue). This procedure uses Mode 1 with CHANNELS = 1.
+
+MODES
+ 1. Formants by frequency:  frequency-based extraction of spectral envelope
+ 2. Formants by pitch: pitch-based extraction of spectral envelope
+
+PARAMETERS
+CHANNELS (Mode 1):  No. of frequency channels per point used to extract spectral contour (fewer is more accurate). 
+  Range: 1-100 channels
+BANDS (Mode 2): No. of pitch bands per octave used to extract spectral contour (greater is more accurate).
+  Range:  1-12 bands
+ 
+NOTES
+In frequency mode (1), the pitch interval of the band gets progressively smaller with higher frequency. Similarly, a pitched sound's higher harmonics have progressively smaller intervals. So sound with a lot of high-frequency detail may be more suited to a frequency-based extraction.
+
+In pitch mode (2), the pitch interval (in semitones) stays the same*. The frequency range covered by this interval will therefore be progressively wider with higher frequency. (In music, an interval is a frequency ratio — an octave is 2/1 — so although it appears to us to have the same gap, in fact it covers a progressively wider range of frequencies as we go higher in pitch.)
+
+(*Presumably a semitone resolution is not possible in the extreme bass: the second-lowest analysis frequency band from c. 43 - 86Hz, covers an interval of about 11 semitones.)
+
+[65]   PutFmts
+PUT FORMANTS (CDP: formants put): Impose spectral envelope (formant file on analysis file). 
+
+Like CROSS and VOCODE, PUT FORMANTS creates hybrid sounds, in which the characteristics of one sound are implanted on another.  Mode 1 matches CROSS: the spectral envelope of the second sound replaces that of the first. Mode 2 matches VOCODE, in which the spectral envelope of the second sound is imposed on that of the first (which still retains its own rhythmic characteristics).
+
+Infile 1 is a spectral analysis file; Ifile 2 must be a previously extracted formant file (.for).  Soundshaper can extract this automatically: just select the desired cell, containing either a soundfile (white) or an analysis file (cyan blue).  Both files must have been analysed with the same PVOC settings.
+
+MODES
+ 1. Replace formants: spectral envelope of Infile2 (.for) replaces that of Infile1 (.ana)
+ 2. Superimpose formants: spectral envelope of Infile2 (.for) imposed on top of that of Infile1 (.ana)
+
+PARAMETERS  (optional) 
+(LOW FREQ): Optional high-pass filter: filter out all frequencies lower than this. 
+  Range: 5-22050 Hz.
+(HIGH FREQ): Optional low-pass filter: filter out all frequencies higher than this ()
+  Range: 5-22050 Hz.
+(GAIN): Optional amplitude adjustment to the signal
+  Range: 0.001-1-10  (CDP: 0.000002 to 10.0);  default 1 (normally < 1.0 if required).
+
+NOTES
+The frequency-related dynamic characteristics of the modulator, Sound 2, (but not its direct signal) are imposed on to (Mode 2) or replace (Mode 1) the carrier signal (Sound 1).  The effect works best when the carrier's signal is relatively static (unrhythmic) and the modulator's is highly articulated.
+Note the difference between imposing the spectral envelope (Mode 2) and directly replacing it (Mode 1). Mode 2 preserves the rhythmic articulation of the carrier, though that of the modulating signal is superimposed on it.
+
+There is no particular reason to use this function instead of either CROSS or VOCODE, unless you want the added filtering of PUT FORMANTS. However, future functions may manipulate formant files more directly, so that you might then use PUT FORMANTS with the resultant .for file. The main use for formant files in CDP is to combine them with pitch files (.frq)  -- see the function MAKE -- to create an analysis file, from which a soundfile is made via PVOC.
+
+[66]   Vocode:  
+VOCODE (CDP: formants vocode): impose spectral envelope
+ 
+VOCODE is a cross-synthesis technique for creating hybrid sounds, in which the characteristics of one sound are imposed on another. CDP has four such programs: VOCODE, CROSS, HYBRIDS and PUT FORMANTS. In each case, two input files are needed and the characteristics of the second (the 'modulator') are implanted on the first (the 'carrier'). Both files must have been analysed with the same PVOC settings.
+
+VOCODE is a frequency-domain version of the classic vocoder (see NOTES below), imposing the spectral envelope of the second sound on top of the first. The number of bands is determined by how the spectral envelope is extracted: either by frequency -- how many channels are in each band; or pitch  -- how many bands are set per octave. If there is a lot of high-frequency energy, the frequency analysis may be better.
+
+The rhythmic articulation of the carrier is preserved, even though the imposed spectral envelope has its own frequency-related dynamic characteristics. For example, if the carrier (Infile 1) has silence-separated repetitions of a sound, these silences are preserved (you can't impose something on nothing), but the sound when present is articulated by the imposed spectral envelope (Infile 2).
+
+MODES
+ 1. Formants by frequency: extract the spectral envelope by frequency, using the channels parameter. The smallest available bandwidth is one analysis channel; for a 1024-point FFT this is c.43.07Hz., giving a 512-band vocoder. The bands are of equal frequency width, hence higher frequency bands have progressively smaller pitch.
+ 2. Formants by pitch: extract the spectral envelope by pitch, using the bands parameter. The smallest available bandwidth is one semitone. The bands are of equal musical interval, hence higher frequency bands will be progressively wider in frequency.
+
+PARAMETERS
+CHANNELS (Mode 1): no. of frequency channels used to extract spectral contour: determines width and number of formant-bands.  Minimum 1 channel per band = 512 bands for a 1024-point FFT (the default). Higher number gives broader bands - more general.
+  Range: 1-no. of channels/2
+BANDS (Mode 2): no. of pitch bands per octave used to extract spectral contour (greater more accurate).
+  Range:  1-12
+(LOW FREQ):   Optional high-pass filter: filter out all frequencies lower than this. 
+  Range: 5-22050 Hz.
+(HIGH FREQ):  Optional low-pass filter: filter out all frequencies higher than this ()
+  Range: 5-22050 Hz.
+(GAIN):   Optional amplitude adjustment to the signal
+  Range: 0.001-1-10  (CDP: 0.000002 to 10.0);  default 1 (normally < 1.0 if required). 
+
+NOTES
+The classic analogue vocoder is a dual filterbank of about 16 frequency bands each. The sound to be transformed, the carrier (e.g. piano), is passed through one bank while the controlling sound, the modulator (e.g. voice), is passed through the other. In each case the sound is split up into the various frequency bands. In the modulator's bank each band is passed through an envelope follower, which extracts the level in the band and imposes it onto the equivalent band in the carrier's bank. The carrier bands are then re-mixed. The result is that the frequency-related dynamic characteristics of the modulator (but not its direct signal) are imposed on to the carrier signal.  The effect works best when the carrier's signal is relatively static (unrhythmic) and the modulator's is highly articulated.
+
+Note the difference between imposing the spectral envelope (VOCODE) and directly replacing it (CROSS). VOCODE preserves the rhythmic articulation of the carrier though that of the modulating signal is imposed on top of it. CROSS loses the articulation of the original, the time-varying spectral envelope of the modulating signal directly replacing it.  PUT can implement both types, but requires an extracted spectral envelope (formant file .for).
+
+[67]   SeeFmts
+SEEFMTS (CDP: formants see): view formants as pseudo-soundfile (DO NOT PLAY!)
+
+Displays binary formant file (.for) as a pseudo-soundfile. Soundshaper saves this to a temp. file ~[filename]vu.wav and diaplys it in VIEWSF.
+Do not attempt to play this file!  Uncheck the SPARE FILE checkbox after use.
+
+OPTION
+• Formant-bands: display data about formant band parameters (NOT IMPLEMENTED?)
+
+[68]   GetSeeFmts 
+GET SEEFMTS (CDP: formants getsee): Get formants and view as pseudo-soundfile (DO NOT PLAY!)
+
+Extracts formant data from and analysis file (.ana) and displays it as a pseudo-soundfile. Soundshaper saves this to a temp. file ~[filename]vu.wav and diaplys it in VIEWSF. Do not attempt to play this file!  Uncheck the SPARE FILE checkbox after use.
+
+MODES
+1 Extract formants by frequency
+2 Extract formants by pitch
+
+PARAMETERS
+CHANNELS (Mode 1):  No. of frequency channels per point used to extract spectral contour (fewer is more accurate). 
+  Range: 1-100 channels
+BANDS (Mode 2): no. of pitch bands per octave used to extract spectral contour (greater more accurate).
+  Range: 1-12 bands
+
+OPTION
+• semitone bands: use semitone bands for display; default equal-frequency bands
+
+[69]   MakeSpec
+MAKESPEC (CDP: combine make): generate spectrum by combining pitch (.frq) + formant data (.for). 
+
+MAKESPEC combines a  pitch data file (.frq)  with a formant (spectral envelope) file (.for) to make a spectral file (.ana). Both files must have been derived from the same PVOC settings.  
+
+This is an essential function for retrieving sound after pitch-data operations. The program GETPITCH extracts time-varying pitch data (.frq / .pch) from a spectral analysis (if appropriate) and the PITCH suite offers a number of ways to process this information. In addition, pitch-breakpoint files can be manipulated manually in GraphEdit and converted to binary pitch files (.frq) or synthesized by PCHGEN.  By creating an spectral file (.ana), MAKESPEC provides a route back to sound.
+ 
+PARAMETERS: none 
+The process is run directly once the two input files have been chosen.
+ 
+NOTES
+It cannot be over-emphasized that if the formant file does not contain sufficient amplitude in the frequency regions of the pitches (and/or their harmonics) specified in the pitch file, then those pitches will not be heard. Indeed, the original pitch(es) of the formant file could still emerge if it shares enough partials with the repitched ones in the pitch file.
+
+Some care is therefore needed to ensure that the formant file has a wide enough spread of partials for the pitches in the .frq file, and this can  be done by first treating the original sound (from which the formant file is extracted): by spectral transposition (TRANSPOSE), by mixing a number of transpositions, by using a noise-like file, etc.
+
+See also: MakeSpec2
+
+[70]   SpecSum
+SPECSUM (CDP: combine sum): add amplitudes of two spectra
+
+SPECSUM is one of CDP's COMBINE group, which combine the spectra from two files. SPECSUM adds the amplitudes together, if they differ. It examines the amplitude levels in each analysis channel of each of the two input files. Where they differ, it adds this difference to the first file, as weighted by crossover. In other words, the result is the amplitude of Infile1 plus the difference between it and that of Infile2. Beware of possible clipping.
+
+PARAMETER
+(CROSSOVER)  For each frequency-analysis channel, the amount of the second spectrum added to the first.
+  Range: 0-1
+
+NOTES
+Using a steady tone for Infile1 and articulated speech for Infile2, the result was like a simple mix of the two signals.
+
+N.B. in Soundshaper's current stereo implementation, if both infiles are stereo, only channel 1 of Infile 2 is used, hence the pairs are: Infile1L and Infile2L, Infile1R and Infile2L.
+
+[71]   SpecDiff
+SPECDIFF (CDP: combine diff): subtract amplitudes of two spectra (Infile2 from Infile1)
+
+SPECDIFF is one of CDP's COMBINE group, which combine the spectra from two files. SPECDIFF subtracts one spectrum from another, channel by channel, as weighted by crossover. You can opt to retain any resulting negative amplitudes (in which case, beware of possible clipping).
+
+PARAMETER
+(CROSSOVER):  For each frequency-analysis channel, the amount of the second spectrum subtracted from the first.
+  Range: 0-1
+
+• OPTION: Keep negatives - retain any resulting negative amplitudes (as positive values).
+
+NOTES
+Using a steady tone for Infile1 and articulated speech for Infile2 resulted in an amplitude fluctuation of Infile1 corresponding to the speech rhythm. This could also have been achieved by envelope-following (envelope impose or replace).
+
+[72]   SpecInterl
+SpecInterl (CDP: combine interleave): interleave multiple spectra
+
+SPECINTERL interleaves the analysis windows from two or more infiles, according to LEAF SIZE.
+The outfile length appears to be that of the shortest infile.  A large leaf size flips between chunks of the two or more files. A small leaf size produces a grainy effect.
+
+LEAF SIZE: Soundshaper shows the max. no. of windows from Infile 1, but don't use more than the max. of the shortest Infile. You can find the number of windows for Infile 2 from Info | Spectral | Windows. Example: if leaf size equals 1 and there are two infiles, it takes 1 window from Infile 1, then 1 from Infile 2, then repeats this. If Leaf size=10 and there are 3 Infiles, it takes 1st 10 windows from Infile1 then 1st 10 from Infile 2, then 1st 10 from Infile 3, then next 10 from Infile 1, etc.
+
+
+PARAMETER
+LEAF SIZE:  Number of windows from each Infile to interleave as a group. 
+  Range: 1 to no. of analysis windows (not > max. of shortest file)
+
+[73]   SpecMax
+SPECMAX (CDP: combine max): retain the maximum value of multiple spectra 
+
+SPECMAX is one of CDP's COMBINE group, which combine the spectra from two files. SPECMAX takes the maximum amplitude of the two input files. It compares the amplitudes of the two spectra, channel by channel, and takes the strongest one.  Except where the sounds are competing for the same frequency space, each main frequency component will survive, resulting in a simple mix.
+
+PARAMETERS: none
+
+[74]   SpecMean
+SPECMEAN (CDP: combine mean): Average two spectra.
+
+SPECMEAN takes the mean amplitude and the mean pitch or frequency of the two input files.
+
+According to the mode, MEAN takes its amplitudes as a mean of both infiles, or from one of them. The frequencies are either a mean of the two frequencies or a mean of the two pitches. This is done channel by channel with each analysis window.
+
+MEAN has some useful optional extras in its trace-like comparison of the N loudest channels and its filtering option, with the possibility of zeroing amplitude outside the specified band.
+
+MODES
+ 1. Amp of both (P): Mean channel amplitude of both and mean of pitches
+ 2. Amp of both (F): Mean channel amplitude of both and mean of frequencies
+ 3. Amp of 1 (P): Amplitude from InFile1 and mean of pitches
+ 4. Amp of 1 (F): Amplitude from InFile1 and mean of frequencies
+ 5. Amp of 2 (P): Amplitude from InFile2 and mean of pitches
+ 6. Amp of 2 (F): Amplitude from InFile2 and mean of frequencies
+ 7. Max amp (P): Maximum amplitude of both (per channel) and mean of pitches
+ 8. Max amp (F): Maximum amplitude of both (per channel) and mean of frequencies
+
+PARAMETERS
+(CHANNELS): Number of significant channels to compare (optional). A trace option looking only at the loudest N channels.
+  Range: 2-no. of channels. Default: all in frequency range.
+(LOW-FREQ): Low frequency limit of channels to look at.
+  Range: 5-22028 Hz
+(HIGH-FREQ): High frequency limit of channels to look at.
+  Range: 48.066406 to 22050 Hz
+
+• OPTION Zero outside band: zero amplitude in channels outside freq. range specified by LOW-FREQ and HI-FREQ
+
+NOTES
+As each mode takes a mean of pitch or frequency, the result is always going to be a weird, somewhat "randomised" frequency stream. 
+
+With a steady tone for Infile1 and articulated speech for Infile2: Mode 1 produced a strange version of the speech without clear words. Mode 2 sounded like a strange new language. Mode 3 was muddy, like Mode 1, and Mode 4 was like Mode 2.  Mode 6, taking its amps from the speech, was like a slightly modulated speech, while Mode 5 was a muddy version of the same. Modes 7 and 8 are a combination of MAX (amp) and MEAN for Pitch/freq; Mode 7 was quite like Mode 1 and 8 like Mode 2.
+
+[75]   Cross
+CROSS (CDP: combine cross): replace spectral amplitudes of Infile1 with those of Infile2.
+CROSS creates a hybrid of two sounds by replacing the spectral amplitude of one sound with that of another.
+
+Cross-synthesis is a technique for creating hybrid sounds, in which the characteristics of one sound are imposed on another. CDP has four such programs: VOCODE, CROSS, HYBRIDS and PUT FORMANTS. In each case, two input files are needed and the characteristics of the second (the 'modulator') are implanted on the first (the 'carrier'). Both files must have been analysed with the same PVOC settings.
+
+CROSS directly replaces the spectral envelope of the first sound with that of the second. The only control is the degree of replacement. The rhythmic articulation of the carrier is NOT preserved. For example, where the carrier (Infile 1) has silence-separated repetitions of a sound: assuming the modulator (Infile 2) is a continuous though articulated sound (e.g. bubbles), the result is also a continuous sound, matching the latter's spectral envelope.
+
+PARAMETER
+REPLACE: degree of replacement (T-V)
+  Range: 0-1, default: 1
+
+NOTES
+The frequency-related dynamic characteristics of the modulator, Sound 2, (but not its direct signal) replace that of the carrier signal (Sound 1).  The effect works best when the carrier's signal is relatively static (unrhythmic) and the modulator's is highly articulated.
+
+Note the difference between imposing the spectral envelope (VOCODE) and directly replacing it (CROSS). VOCODE preserves the rhythmic articulation of the carrier though that of the modulating signal is imposed on top of it. CROSS loses the articulation of the original, the time-varying spectral envelope of the modulating signal directly replacing it.  PUT can implement both types, but requires an extracted spectral envelope (formant file .for).
+//-------------------------
+
+[76]   Windows 
+WINDOWS (CDP: specinfo windowcnt): Info - get number of windows in analysis file
+
+The WINDOWS function returns the number of time-windows found in a frequency-anaylsis file (.ana). This number is needed for a number of parameters used in spectral processes.
+
+PARAMETERS: none
+ 
+[77]   FrqToChan 
+FRQTOCHAN (CDP: specinfo channel): Info - get PVOC channel number for given frequency
+
+FrqToChan returns the channel number for a given frequency in a spectral file (.ana). In spectral analysis, the whole spectrum is divided into a number of frequency bands, called channels, depending on the accuracy of the analysis (i.e. the PVOC settings). The channel number may be needed for a number of parameters used in spectral processes. 
+
+PARAMETER
+FREQ: frequency for which the channel number is required
+  Range: 0-22050 Hz
+
+NOTE
+See also: ChanToFreq
+
+[78]   ChanToFrq
+CHANTOFRQ (CDP; specinfo frequency): Info - get frequency of given PVOC channel number
+
+ChanToFrq returns the centre frequency of the given channel number in a spectral file (.ana). In spectral analysis, the whole spectrum is divided into a number of frequency bands, called channels, depending on the accuracy of the analysis (i.e. the PVOC settings). The centre frequency of the band may be needed for a number of parameters used in spectral processes. 
+
+NOTE
+See also: FreqToChan
+
+[79]   Levelvu
+LEVELVU (CDP: specinfo level)): View level of analysis file as a pseudo-soundfile (DO NOT PLAY!)
+
+LEVELVU allows you to see the time-varying level of a spectral file as a pseudo-soundfile. Soundshaper saves this to a temp. file ~[filename]vu.wav and diaplys it in VIEWSF.
+Do not attempt to play this file!  Uncheck the SPARE FILE checkbox after use.
+
+PARAMETERS; none
+
+
+[80]   Octvu
+SUMARY for OCTVU (CDP: specingo octvu):Info - get spectral amplitude (textfile out)
+
+OCTVU produces a text report on the time-varying amplitude of the spectrum, measured in octave bands. TIMESTEP sets the time-range for measurement, while FUNDAMENTAL determines the pitch to measure, together with octave transpositions of this.  Band-energy is totalled over each TIMESTEP duration. The reported values are relative levels only and the lowest band includes all energy down to '0Hz'.
+
+The output is to a textfile - a default name is supplied on the parameter page, but you can change this. The file is automatically sent to the SPARE FILE slot and opened in the CDP Report Window. Close the window by clicking the CLOSE button (or Esc key). Uncheck the SPARE FILE checkbox after use.
+
+
+PARAMETERS
+TIME STEP: time over which information is gathered
+  Range: 1 window to file-length ms (Soundshaper minimum is 3 ms, based on a typical PVOC window-length)
+(FUNDAMENTAL): frequency determining octave bands: bands are centred on octave transpositions of FUNDAMENTAL
+  Range: lowest channel freq. to 10kHz. Default if not set: divisions of the Nyquist frequency
+
+NOTES
+OCTVU is one of several CDP functions giving text reports on aspects of spectral analysis files. It could have a use in, e.g. PICK, which extracts a specified frequency and its harmonics (etc.), to the extent that they are present in the sound. It might be useful to find the strongest frequencies first, before extracting them. Another related function is PEAKFREQS, which might help in setting the FUNDAMENTAL here.
+
+[81]   Peakamp
+PEAKAMP (CDP: specinfo peak): Info - Locate spectral peaks (textfile out)
+
+PEAKAMP searches the spectrum for the time-varying peak energy, i.e., the highest amplitude within the given frequency band. The energy can be averaged ofer a specified TIME WINDOW (typically 0.1 secs = c. 5 analysis windows). FREQ WINDOW sets the size of frequency bands used.
+
+The output is to a textfile - a default name is supplied on the parameter page, but you can change this. The file is automatically sent to the SPARE FILE slot and opened in the CDP Report Window. Close the window by clicking the CLOSE button (or Esc key). Uncheck the SPARE FILE checkbox after use.
+
+PARAMETERS
+(CUTOFF): Frequency above which search begins
+  Range: 10-16000 Hz Full range: 10-Nyquist less Chan.bandwidth/2
+(TIME WINDOW): size of window for averaging the energy 
+  Range: 1 window-gap to file-length secs (window gap is the time between analysis windows; varies with PVOC settings)  
+(FREQ WINDOW): size of frequency window for averaging
+  Range: 0.2 to 128 semitones Full range: 0.2 to 133.27 semitones; default 0.5
+
+OPTION
+• Adjust result for sensitivity of the ear
+
+NOTES
+See also: OCTVU, PEAKFRQ, PEAKEXTRACT
+
+[82]   Peakfrq
+PEAKFRQ (CDP: specinfo report): Info - Report freq. peaks in time-varying spectrum (Output: textfile)
+
+PEAKFRQ reports the time and frequency-band of each peak in the time-varying spectrum, or alternatively the time and loudness, or frequency only, or loudness only  - depending on the mode chosen. You also choose to extract the formants by frequency, using 1 point for every N equally-speced freq. channels or by pitch, using N equally-spaced bands per octave. PEAK sets the number of peaks to look for across the spectrum. Optionally set a frequency range to limit the search. 
+
+The output is to a textfile - a default name is supplied on the parameter page, but you can change this. The file is automatically sent to the SPARE FILE slot and opened in the CDP Report Window. Close the window by clicking the CLOSE button (or Esc key). Uncheck the SPARE FILE checkbox after use.
+
+MODES
+1 Freq & Time (F): frequency and time of spectral peaks (frequency-wise analysis)
+2 Freq & Time (P): frequency and time of spectral peaks (pitch-wise analysis)
+3 Loudness & Time (F): loudness and time of spectral peaks (frequency-wise analysis)
+4 Loudness & Time (P): loudness and time of spectral peaks (pitch-wise analysis)
+5 Frequency only (F): frequency of spectral peaks (frequency-wise analysis) 
+6 Frequency only (P): frequency of spectral peaks (pitch-wise analysis)
+7 Loudness only (F): loudness of spectral peaks (frequency-wise analysis)
+8 Loudness only (P): loudness of spectral peaks (pitch-wise analysis)
+
+PARAMETERS
+FREQ-WISE (Modes 1,3,5,7): extract formants by frequency: no. of channels per band 
+  Range: 1-50 channels (fewer is more accurate)
+PITCH-WISE (Modes 2,4,6,8): extract formants by pitch: no. of bands per 8ve
+  Range: 1-16 bands (greater is more accurate)
+PEAKS: maximum no. of peaks to find
+  Range: 1-16
+(LOW FREQ): bottom frequency to start search for peaks (T-V)
+  Range: 10-20kHz Full range: 5-22050 Hz
+(HIGH FREQ): top frequency to stop search for peaks (T-V) 
+ Range: 10-20kHz Full range: 5-22050 Hz  > LOW FREQ 
+
+NOTE
+See also: OCTVU, PEAKAMP, PEAKEXTRACT
+
+
+[83]   SpecPrint 
+SPECPRINT (CDP: specinfo print):  Info - Print spectral data to textfile (WARNING: Large O/P) 
+
+SPECPRINT gives a complete listing of the amplitude and frequency content of an analysis window. The more prominent frequencies will have higher amplitude values.
+The function writes the amplitude and frequency data for each channel, window by window, starting at TIME. The amplitude value in each channel indicates its amplitude relative to the total amplitude of the window, which is a value between 0 and 1.
+
+***** WARNING!  More than a few windows will generate a huge textfile. ***** 
+The output is to a textfile - a default name is supplied on the parameter page, but you can change this. The file is automatically sent to the SPARE FILE slot and opened in the CDP Report Window. Close the window by clicking the CLOSE button (or Esc key). Uncheck the SPARE FILE checkbox after use.
+
+PARAMETERS
+TIME: time at which the printout begins
+  Range: 0-file-length secs
+WINDOWS: no. of windows to print (KEEP THIS LOW!)
+  Range: 1-1075 (recommended <5)
+
+[84]   PeakExtract
+PEAKEXTRACT (CDP: peak extract): Info - Extract spectral peaks from spectral analysis file. (Output: textfile)
+
+PEAKEXTRACT searches for peaks in the spectrum, based on a method using median amplitudes. 
+Key parameters:
+WIN SIZE: the process divides each analysis window into a number of (overlapping) sub-windows whose width is determined by WINSIZE, in semitones. Smaller values reduce the number of peaks found.
+PEAK SIZE: in each sub-window, the process finds the median amplitude of the channels. It then looks for those channels whose amplitude is peak times louder than the median and initially assumes these are spectral peaks. 
+FLOOR: sets a minimum amplitude the peaks must also exceed to be accepted as true peaks.
+TUNE: if any peaks are harmonics of other peaks, they are rejected if they are in (TUNE-semitones) range of the expected frequency of a harmonic. 
+
+The output is to a textfile - a default name is supplied on the parameter page, but you can change this. The file is automatically sent to the SPARE FILE slot and opened in the CDP Report Window. Close the window by clicking the CLOSE button (or Esc key). Uncheck the SPARE FILE checkbox after use.
+
+MODES
+1  List spectral peaks by freq. and mplitude as they vary in time (no. of peaks may vary)
+2  Stream spectral peaks, using the maximum number of peaks found.
+3  Stream spectral peaks, using the most prominent pitches found.
+4  List most prominent peaks found as fixed average values of pitch and relative amp. 
+
+PARAMETERS
+WIN SIZE: width of window used to search for peaks in spectrum
+  Range: 1-96 semitones; recommended: 12
+PEAK SIZE: to retain as peak, channel amp must be PEAK SIZE times greater than the median amp of all channels
+  Range: 1-1000; recommended >1.5
+FLOOR: amplitude peaks must exceed to be retained
+  Range: 0.0001 to 1.0; recommended 0.001
+MIN FREQ: bottom frequency to accept as a peak
+  Range: 1-channel bandwidth (e.g. 43.066 Hz) to Nyquist (22050 Hz)
+MAX FREQ: top frequency to accept as a peak
+  Range: 1-channel bandwidth (e.g. 43.066 Hz) to Nyquist (22050 Hz)  > MIN FREQ  
+(TUNE): Discard peak if a harmonic of another peak to within TUNE semitones
+  Range: 0 - 6 semitones (default 1) 0 = all peaks are retained. 
+
+OPTIONS
+• No amplitudes
+• MIDI-pitch output
+• Quantize freqs: frequencies quantized to equal tempered scale in quarter-tones (50 cents)
+• Mark peak-free segments with zeros in output
+• Varibank format for output (not Mode 1). Cancels peak-free option; amps are set to 1.0 if 'No amplitudes' option chosen 
+
+NOTES
+PEAKEXTRACT is one of several CDP functions giving text reports on aspects of spectral analysis files. 
+See also: OCTVU, PEAKAMP, PEAKFRQ. A fuller description is given in the CDP reference.
+
+[85] PeakFreqs
+PEAKFREQS (CDP: newmorph2 Mode 1): find frequencies of the most prominent spectral peaks 
+
+PEAKFREQS is normally applied before MORPHTUNE (CDP: newmorph2 Mode 2/3); in Soundshaper it is currently a separate operation.
+
+The function finds the frequencies of the most prominent spectral peaks (in order of prominence) and outputs these to a textfile list, called "peaksfile.txt" by default.  Note that the output is simply a list of frequencies, time-averaged over the file: no times or amplitudes are given, as in the Info function PEAKFRQ.
+
+MODE
+1 Average harmonic field: Extract average harmonic field of sound.
+
+PEAKS: number of most-prominent source-peaks to find.
+  Range: 1-16
+
+NOTE
+The default output folder in Soundshaper is the root of [User-folder] (e.g. \CDP\TXT). You may prefer to choose a subfolder of this called \morphtune if this exists. The complementary operation Morphtune (CDP Newmorph2, Modes 2-3) looks in <User-folder>\morphtune\ for "peaksfile.txt", by default. You may of course save to any name, not necessarily "peaksfile.txt".
+
+
+[86]   GetHmcs 
+GETHMCS (CDP get_partials hmc): extract relative amplitudes of harmonics in a pitched source
+
+GetHmcs displays the relative amplitudes of harmonics in a pitched source at a particular time in the source analysis file (TIME). Partials are ignored if they are too weak relative to the fundamental (set this with THRESHOLD). CDP has two further modes using a single analysis window got via GRAB; these are not currently supported (as TIME does the same job).
+
+The output is to a textfile - a default name is supplied on the parameter page, but you can change this. The file is automatically sent to the SPARE FILE slot and opened in the CDP Report Window. Close the window by clicking the CLOSE button (or Esc key). Uncheck the SPARE FILE checkbox after use.
+
+MODES
+1 Frequencies and amplitudes
+2 MIDI pitches and amplitudes
+
+
+PARAMETERS
+FUNDAMENTAL: any (normally low) frequency which may have harmonics 
+  Range: 10-22050 Hz
+THRESHOLD: level (relative to the fundamental) below which partials are ignored
+  Range: 
+TIME: approx time of analysis window to use to find fundamental & harmonics
+  Range: 0- file-length (secs)
+
+OPTION
+• Varibank output
+
+  
+[87] MULTIMORPH  (CDP 7 - newmorph mode 7)
+MULTIMORPH (CDP: newmorph 7): morph with multiple outputs 
+
+MULTIMORPH is Mode 7 of MORPHPEAKS (CDP: newmorph), implemented separately because of its multiple outputs. MORPHPEAKS morphs between the spectral peaks of one sound and those of another.  This makes it possible to morph between dissimilar sounds.  In Multimorph, Sound 1 is morphed towards Sound2 in OUTCNT steps, each step a new output file.  PEAKS gives the number of peaks to interpolate.
+
+MODE
+Multi-outs: Interpolate between spectra and generate multiple outputs
+
+PARAMETERS
+PEAKS: number of peaks to interpolate
+  Range: 1 to 16
+OUTCNT: number of output files to generate
+  Range: 1-16
+
+OPTIONS
+• Keep envelope: retain loudness envelope of first sound (o/p ends when 1st sound ends)
+• Interpolate peaks only: No interpolation of anything except peaks
+• Frequency only:  Only frequency is determined by peaks in sound 2.
+
+[88] Bare 
+BARE (CDP: spec bare): Zero non-harmonic data (composite version: extracts Pitch File)
+
+(Spec)Bare retains harmonic partials only. In this composite version, pitch data is extracted from the input source.
+
+PARAMETERS: None
+• OPTION: More body in resulting spectrum.
+
+NOTES
+Tests have not revealed much difference between the processed output and the input sound.
+The original version is still available under the Pitch data menu: in this case the pitch file can come from another source.
+
+[89] AltHmcs
+ALTHMCS (CDP: pitch altharms): delete alternate harmonics
+ALTHMCS deletes odd or even harmonics, using a pitch data file as reference. In this composite version the pitch data is extracted from the input file.
+
+MODES
+ 1 Delete odd harmonics
+ 2 Delete even harmonics
+
+PARAMETERS: none
+• OPTION: Alternative spectral reconstruction (no further information).
+
+NOTES
+Extracting both the odd and even harmonics is one possible way of achieing pseudo-stereo separation. The two outputs can be processed separately and mixed together afterwards.
+The original version is still available under the Pitch data menu: in this case the pitch file can come from another source.
+
+
+[90]   Hold
+HOLD (CDP: focus hold): hold spectrum at given times and lengths
+
+HOLD time-expands the sound using a list of times and hold-durations, lengthening the file (.ana). Whereas EXPAND creates a static sound out of a single moment, HOLD is like a musical tenuto, freezing the spectrum at given times.
+
+PARAMETER
+HOLDTIME: data file of times and durations. After the duration period, the "hold" is released, until the next time occurs. The last time must be less than the file-length.
+Example of alternating holds and releases:
+	time duration
+	0.5  0.5	(held from 0.5 to 1.0)
+	1.5  0.5	(held from 1.5 to 2.0)
+	2.5  0.5	(held from 2.5 to 3.0)
+	3.5  0.5	(held from 3.5 to 4.0)
+	4.5  0.5	(held from 4.5 to 5.0)
+
+NOTES
+It is important to find interesting times where the spectrum might be held. One use is in conjunction with GLIDE, whose transition stops right at the end of the output file; it is more natural to HOLD the final sound for a short time. Compare also with FREEZE and STEPFREEZE.
+
+[91] Vowels
+VOWELS (CDP: hilite vowels): impose vowels on a sound
+
+VOWELS attempts to impose the formant characteristics associated with vowels on to the sound, in a time-varying manner. The vowel data values are continuous from one time to the next; in the example below, the vowel from time 0 to 0.7 is static, but between 0.72 and 1.44 changes from ee to o.
+
+PARAMETERS
+VOWELS:  Datafile of times (in secs., increasing from 0) and vowels, the latter coded as:
+ee: as in 'heat'     i:  as in 'hit'      e:  as in 'pet'      ai: as in 'hate'
+a:  as in 'pat'      ar: as in 'heart'    o:  as in 'hot'      or: as in 'taught'
+oa: as in 'boat'     u:  as in 'hood'     oo: as in 'mood'
+xx: as in Southern English 'hub'       x:  neutral vowel in 'herb' or 'the'
+(English pronunciation is implied.)
+Example:
+	0       ai
+	0.7     ai
+	0.72    ee
+	1.44    o
+	2.17    oa
+
+HALF WIDTH:  of formant peaks in Hz, as fraction of formant centre frequency
+  Range: 0.01-1-10 Default: 0.25
+STEEPNESS:  Resonance of formant peaks, similar to 'Q' in filtering (smaller is narrower; more sharply defined). Range: 0.01-1-10 Default: 3.0
+PEAK RANGE:  Ratio of (max) peak height to (max) total range of peak height  
+  Range: 0-1, default 0.95. 
+THRESHOLD:  Proportion of spectral window level compared with vowel envelope level  
+  Range: 0-1, default 0.5.
+ 
+NOTES
+To be convincing, the source sound must have a wide range of frequencies. For example, it is not possible to bring out the vowel 'oo' (formant centres 320 and 800 Hz), if there are no frequencies present below 1000Hz.
+Most of the parameters, apart from vowels, are over-detailed and work well enough with their default values. Steepness may be worth setting to control the width of the peaks. The program clearly succeeds in colouring the sound, but direct vocoding with a spoken/sung vowels may often be more convincing. 
+See also the sister program PCHVOWELS which operates on a pitch file.
+
+[92]   Clean
+CLEAN (CDP: specnu clean): eliminate low-level bands compared with noise file
+
+CLEAN attempts to reduce noise in a signal by eliminating low-level bands that are quieter than those in a comparative 'noise file' (Input 2). The 'noise' signal is a sample of noise (only), normally from the signal file. It could be ambient noise, for example. 
+Mode 2 additionally subtracts noise from bands that have been passed.
+PERSIST allows you to decide how long a signal must persist to be retained. 
+NOISEGAIN allows you to boost the noise signal to make it a more effective cleaner. 
+
+The process differs from an earlier version (SPECCLEAN: see Spectral Utils menu) by having the PERSIST parameter. In the earlier version, bands near the noise threshold were judged as signal, or noise, from one analysis window to another and this constant switching led to an unwanted "bubble" effect. 
+
+MODES
+ 1 CLEAN: Eliminate freq bands quieter than noise file
+ 2 SUBTRACT: Eliminate freq bands quieter than noise file and subtract noise from those passed.
+ 
+PARAMETERS
+PERSIST: Minimum time for which the signal must be greater than the noise level to be retained.
+  Range 0-1000 ms
+NOISEGAIN: Multiply levels in noise file channels before comparison with signal. 
+  Range 1 - 40
+
+NOTES
+Experimentally, the technique could be used to remove content (in File2) which *might* be in the original (File1), and so thin it. In a test, this worked well with two steady-state sounds, the signal being a complex chordal sound and 'noise' file being a whirring sound. 
+
+[93]   Specrand
+SPECRAND (CDP: specnu rand):  randomise order of spectral windows 
+
+SPECRAND randomises the order of analysis time-windows (like SHUFFLE and DRUNK). The TIMESCALE parameter defines the time-period over which to randomize windows. You can randomize single windows or groups of consecutive windows: GROUPING sets the number of windows in a group. Larger groups will shuffle bigger chunks of the sound (a window is typically c.2.9 ms long).
+
+PARAMETERS
+(TIMESCALE): time over which to randomise windows 
+  Range: min. 3 windows to file-length; default: whole file
+(GROUPING): no. of windows in each group (to randomize groups of windows).
+  Range: 1 to windows/2 ;default 1. (Hit F3 to see no. of windows.)
+
+[94]   Remove
+REMOVE (CDP: specnu remove): remove unwanted pitch and harmonics
+
+REMOVE subtracts from the signal a given pitch and its harmonics, or (Mode 2) it can invert this and remove everything BUT these same frequencies. All pitches between MIDIMIN and MIDIMAX are removed.
+The process is intended for cleaning up recordings, but might have some creative uses, too.
+
+MODES
+ 1 Remove pitch + hmcs: remove a pitch and its harmonics up to a specified frequency limit.
+ 2 Retain pitch+Hmcs: remove everything but the specified pitch and its harmonics.
+
+PARAMETERS
+MIDIMIN: Lowest pitch to remove 
+  Range: 1-127 (MIDI pitch, where MidC=60)
+MIDIMAX: Highest pitch to remove
+  Range: 1-127 (MIDI pitch, where MidC=60)
+RANGETOP: top frequency to search, for harmonics to be eliminated
+  Range: 10-20kHz 
+ATTEN: Attenuation of suppressed components 
+ Range: 0 (none) to 1 (max)
+
+NOTES
+Removing more is not necessarily better as the resulting hole in the spectrum can appear to emphasize the very pitch(band) you wanted to eliminate. Trevor Wishart writes: "There are lots of complications in removing a pitch from a sound, which the user will discover. If you remove too many harmonics, the hole itself seems to produce the very pitch you were trying to remove! I have no idea why this is. The high frequency limit should therefore be kept as low as possible if you are seriously attempting to remove an existing pitch element from a sound." 
+
+Mode 2 might be applied first (then replaced with Mode 1), to check the pitch is actually there as you think.
+
+[95]   Slice
+SLICE (CDP: specnu splice): extract slices of the spectrum into separate files (MULTI-OUTS: mono)
+
+SLICE cyclically partitions the spectrum into separate files by frequency band.  The separate files can then be given individual treatment, such as delay, panning, transposition etc., after which they can be mixed or interleaved to reconstruct a single sound. In Soundshaper, the files are normally output to the patch grid in separate rows.
+
+Bands are selected by the bandwidth parameter, defined as number of analysis channels (Mode 1), frequency (Mode 2) or pitch (Mode 3). 
+The extracted bands are distributed to the output files in turn. If the number of bands exceeds the number of output files, the distribution cycles round to File 1, then File 2, etc.  
+
+The cyclical nature of this distribution may be compared with the issuing of playing cards in a card game: with 3 players, Player 1 would get cards 1, 4, 7, etc; Player 2 cards 2, 5, 8, etc; Player 3 cards 3, 6, 9 etc.
+
+MODES
+ 1. Channel Bands: Extract bands of equal numbers of spectral analysis channels
+ 2. Frequency Bands:  Extract bands of equal frequency width
+ 3. Pitch bands: Extract bands of equal pitch interval (in semitones)
+(4. Slice by Harmonics: not yet implemented.)
+
+PARAMETERS
+FILE COUNT  The desired number of output files. 
+  Range: 1 - no limit, but restricted in Soundshaper to 10, to fit within 10 patch rows. This may be exceeded if you have more patch rows or the output is not being sent to the patchgrid.
+BANDWIDTH Width of each extracted band
+  Mode 1: number of analysis channels
+    Range: 1-no. of channels (Soundshaper gives max. 500)
+  Mode 2: frequency  
+    Range: 5-20000 Hz
+  Mode 3: Pitch interval 
+    Range: 1-36 semitones.
+These ranges are arbitrary and could be exceeded; e.g. 2 files each of 48 semitones would be feasible.
+
+NOTES
+Depending on the source material, some bands may be silent or have low level. 
+To avoid the cyclical distribution of bands, choose a number of output files appropriate to the bandwidths: e.g. Mode 3: 4 files of 5500 Hz; Mode 4: 6 files of 21 semitones. Conversely, the Moiré effect of the cycling may be desirable, e.g. 4 files of four semitones each (cycled) could be useful for channel separation and panning.
+
+SLICE can be used to convert mono to pseudo-stereo, if the slices are panned differently.
+
+[96]   SliceHmcs: Extract soundfiles by tracking harmonics [REL 6 To come]
+
+[97]   Squeeze
+SQUEEZE (CDP: specnu squeeze): squeeze spectrum in freq. range around a specified centre frq. 
+
+The idea behind SQUEEZE is that frequencies are pulled in towards a given centre frequency, What actually emerges is a sound based on the pitch F (c.349Hz). This is not really what was intended, but given that pitch can be transposed, it is quite a useful function for forcing a sound on to a specific pitch, with a variety of timbral colourings determined by both CENTRE FREQUENCY and SQUEEZE (e.g. try it with speech).
+
+PARAMETERS
+CENTRE FREQUENCY: Frequencies are squeezed around this
+  Range: 0- 22050 Hz (Soundshaper: 20-10kHz; can be exceeded).
+SQUEEZE: Amount of squeezing of the spectrum (<1)
+  Range: 1/No_chans to <1. (Soundshaper: 0.002 to 0.999)  
+
+NOTES
+It is acknowledged that the function is probably faulty; however, it may have some uses as it is.
+
+[98]  MAKESPEC2
+MAKESPEC2 (CDP: combine make2): generate spectrum by combining pitch (.frq), formant (.for) and envelope data (.evl). 
+
+MAKESPEC2 (c.f. MAKESPEC) combines a pitch data file (.frq) with a formant (spectral envelope) file (.for) and an envelope file (.evl) to make a spectral file (.ana). All three input files must have been derived from the same PVOC settings (must have the same channel count). For this reason, the envelope file should have been extracted from a spectral file (.ana) using ENVANAL (see menu: Envelope | Extract).  
+
+MAKESPEC2 complements MAKESPEC in retrieving sound after pitch-data operations. The program GETPITCH extracts time-varying pitch data (.frq / .pch) from a spectral analysis (if appropriate) and the PITCH suite offers a number of ways to process this information. In addition, pitch-breakpoint files can be manipulated manually in GraphEdit and converted to binary pitch files (.frq) or synthesized by PCHGEN.  By creating a spectral file (.ana), MAKESPEC and MAKESPEC2 provide a route back to sound.
+ 
+PARAMETERS: none 
+The process is run directly once the three input files have been chosen.
+NB: Soundshaper cannot auto-convert Infile 3. Make sure this is a native envelope file (.evl), extracted from a spectral file using ENVANAL. 
+ 
+NOTES
+It cannot be over-emphasized that if the formant file does not contain sufficient amplitude in the frequency regions of the pitches (and/or their harmonics) specified in the pitch file, then those pitches will not be heard. Indeed, the original pitch(es) of the formant file could still emerge if it shares enough partials with the repitched ones in the pitch file.
+
+Some care is therefore needed to ensure that the formant file has a wide enough spread of partials for the pitches in the .frq file, and this can  be done by first treating the original sound (from which the formant file is extracted): by spectral transposition (TRANSPOSE), by mixing a number of transpositions, by using a noise-like file, etc.
+
+[99]  SpecJoin 
+SpecJoin (CDP: analjoin join): concatenate two or more spectral analysis files
+
+SPECJOIN attempts to join two or more analysis files.
+
+PARAMETERS: none
+
+[ 

@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cfocus.htm  - HTML5 version (partial: mainly the indexing; not really using semantic tags yet;  couldn't get a table to centre using an id, so put the centring inside the 'table' tag;  tables probably should be replaced with something else? -->
+
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>CDP FOCUS Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <!-- list-style-type NOT removing bullets in IE9, using Definition List -->
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cspecndx.htm" Target="_top"><b>Spectral Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#FOCUSLIST"><b>FOCUS:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#ACCU"><b>ACCU</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#EXAG"><b>EXAG</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FOCUS"><b>FOCUS</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FOLD"><b>FOLD</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#FREEZE"><b>FREEZE</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#HOLD"><b>HOLD</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#STEP"><b>STEP</b></a>
+  <br><br>
+  <b>OTHERS:</b><br>
+  <dt>&nbsp;&nbsp;<a href="#SPECFOLD"><b>SPECFOLD</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SUPERACCU"><b>SUPERACCU</b></a>
+
+  <!-- 
+  <br /><br /> 
+  <dt><a hrref = "#FOCUSTECHNICAL"><b>Technical</b></a>
+  <br /><br />
+   -->
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+  <div id = "head">
+  <!--
+  <p> <IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a> </p>
+  -->
+  <div align=center>
+  <br>
+  <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+  </div>
+
+  <h1 align=center>CDP Functions to FOCUS Spectral Data</h1>
+  <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+  </div>  <!-- End of 'head' -->
+
+<h2 align = "center" id="FOCUSLIST">Functions which FOCUS Spectral Data</h2>
+
+<!-- This little table centred by putting the align within the table tag -->
+
+<table border="1" cellpadding="4" bgcolor="#B0E0E6" align = center>
+<caption><h3>Quick Musical Overview</h3></caption>
+
+<tr>
+<th>Musical Effect</th>
+<th>FOCUS Module(s)</th>
+</tr>
+
+<tr>
+<td><b>internal glissandos</b></td>
+<td><b>ACCUMULATE, SUPERACCU</b></td>
+</tr>
+
+<tr>
+<td><b>tonal changes</b></td>
+<td><b>EXAG, FOCUS, FOLD, SPECFOLD</b></td>
+</tr>
+
+<tr>
+<td><b>sample-hold</b></td>
+<td><b>FREEZE, HOLD, STEP</b></td>
+</tr>
+
+</table>
+
+<dl>
+<dt><a href="#ACCU">FOCUS <b>ACCU</b></a> <dd>Sustain each spectral band, until louder data appears in that band
+<dt><a href="#EXAG">FOCUS <b>EXAG</b></a> <dd>Exaggerate the spectral (formant) contour
+<dt><a href="#FOCUS">FOCUS <b>FOCUS</b></a> <dd>Focus spectral energy onto the peaks in 
+the spectrum
+<dt><a href="#FOLD">FOCUS <b>FOLD</b></a> <dd>Octave-transpose spectral components into a specified frequency range
+<dt><a href="#FREEZE">FOCUS <b>FREEZE</b></a> <dd>Freeze the spectral characteristics 
+in a sound, at given times, for specified durations
+<dt><a href="#HOLD">FOCUS <b>HOLD</b></a> <dd>Hold sound spectrum, at given times
+<dt><a href="#SPECFOLD"><b>SPECFOLD</b></a> <dd> Fold, invert or randomise the spectrum </dd>
+<dt><a href="#STEP">FOCUS <b>STEP</b></a> <dd>Step-frame through a sound by freezing the spectrum at regular time intervals
+<dt><a href="#SUPERACCU"><b>SUPERACCU</b></a> <dd>Sustain each spectral band until louder data appears in that band</dd>
+<!-- 
+<dt><a href="#FOCUSTECHNICAL"><b>Technical</b></a> <dd>On focusing 
+spectral data (not written yet)
+ -->
+</dl>
+
+<p>
+<blockquote>
+<i>The 'typical command lines' shown below use parameters described in 
+the text and should produce good results, although exactly what happens 
+is dependent on the nature of the input sound.  The complex sound 
+used was that of a strum on a 3 ft spring, 1 cm diameter.  The pitched 
+sound was a sustained French horn tone.</i>
+</blockquote>
+</p>
+
+<p>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index<br>
+</p>
+
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="ACCU">FOCUS ACCU &#150; Sustain (accumulate) each spectral 
+band, until louder data appears in that band
+</h2>
+
+<em><b>This function has been superseded and extended by <a href="#SUPERACCU">SUPERACCU</a>.</b></em>
+
+<h3>
+Usage
+</h3>
+<b>focus accu</b> <i>inanalysisfile outanalysisfile</i> <b>-d</b><i>decay</i> 
+<b>-g</b><i>glis</i>
+<br />
+
+<p>
+Typical command line:
+<blockquote>
+<b>focus accu raspdt.ana raspdtacc.ana -d0.75 -g-0.9</b>
+</blockquote>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalysisfile</i> &#150; input analysis file<br />
+<i>outanalysisfile</i> &#150; output analysis file<br />
+<b>-d</b><i>decay</i> sustained channel data decays by a factor of 
+<i>decay</i> each second<br>
+	<blockquote>
+	(Possible Range: 0.001000 to 1.0.  Default is 1.0.  &nbsp;&nbsp; 
+	&#150; Suggested effective Range:  0.000001 to 0.5)<br>
+	</blockquote>
+<b>-g</b><i>glis</i> sustained channel data glissandos at <i>glis</i> 
+octaves per second<br>
+	<blockquote>
+	(Approximate Range: &nbsp; -11.7 to 11.7.  Default is 0)<br>
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the FOCUS ACCU Process
+</h3>
+<blockquote>
+
+<p>
+Frequencies are sustained into subsequent windows.  The overall effect is 
+one of sustaining, but one which also makes the spectrum more complex.
+</p>
+
+<p>
+The <i>gliss</i> parameter appears to change the result the most.  It 
+produces glissandos within the spectrum of the sound.  Very effective 
+slow glissandos are produced when <i>gliss</i> is near 0, e.g., -0.9 
+or 0.1.  At 0.5, there are several glissandos, at 1, they are fairly 
+fast, and at 10 it becomes a wash.
+</p>
+
+<p>
+The range allowed for <i>gliss</i> is really very extreme, especially 
+in the negative range below zero.  Values e.g., of -5.0 or less lead to 
+the sound settling down to a steady, sustained pitch after an initial 
+short glisssando.  <b>Recommended effective range is from -0.5 to 10</b>.
+</p>
+
+<p>
+The <i>delay</i> parameter is important for making the glissandos more 
+perceptible.  A low value of e.g., 0.1 is really very dry, whereas 
+something like 0.75 brings out the glissandos nicely, with a kind of 
+reverberant aura.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+The main type of output from this function creates a supple, internally 
+modulating sound, moving slowly at the low end of the <i>gliss</i> range 
+and increasingly quickly as one moves towards the high end.
+</p>
+
+<p>
+With a clearly pitched input, the results are aurally clearer, but 
+otherwise similar.  TIMESTRETCH applied to these results produces 
+nicely slow-moving timbral and pitch changes.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO: <a href="#SUPERACCU"><b>SUPERACCU</b></a></b>, 
+<a href="chilite.htm#ARPEG"><b>HILITE ARPEG</b></a>. 
+Churning, bubbly textures can also be achieved with 
+<a href="cblur.htm#SCATTER"><b>BLUR SCATTER</b></a> (high values for 
+<i>keep</i>) and <a href="chilite.htm#TRACE"><b>HILITE TRACE</b></a> (low 
+value for <i>channels</i>).
+<br>
+</p>
+
+<p>
+End of FOCUS ACCU<br>
+<a href="#FOCUSLIST">Return</a> to List of functions to FOCUS spectral 
+features at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** --> 
+<h2 id="EXAG">FOCUS EXAG &#150; Exaggerate spectral contour
+</h2>
+
+
+<h3>
+Usage
+</h3>
+<b>focus exag</b> <i>inanalysisfile outanalysisfile exaggeration</i>
+<br>
+
+<p>
+<b>Typical command line:</b><br />
+<b>focus exag raspdt.ana raspdtexg.ana 0.5</b>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalysisfile</i> &#150; input analysis file<br />
+<i>outanalysisfile</i> &#150; output analysis file<br />
+<i>exaggeration</i>  &#150; <b>&lt 1</b> widens troughs and narrows 
+formants (focuses on the peaks);  <b>&gt 1</b> narrows troughs and 
+widens formants (diffusing the peaks).  Range: 0.00100 to 1000.
+	<p>
+	<blockquote>
+	<i>exaggeration</i> may vary over time
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the FOCUS EXAG Process
+</h3>
+
+<blockquote>
+<p>
+FOCUS EXAG plays with the frequency focus of regions of high amplitude 
+among the partials of a spectrum.  A spectral peak is an area of high 
+amplitude among the frequencies of the spectrum.  A trough is an area of 
+low amplitude between spectral peaks.  Formants are slightly more than 
+spectral peaks: i.e., they are the area around a spectral peak, and might 
+be narrow, wide etc.).
+	<ul>
+	<li>Narrowing the formants (&lt; 1) increases the frequency 
+	focus of each peak area, and therefore acts like an increasingly 
+	tight filter.</li>
+	<li>Widening the formants (&gt; 1) reduces the frequency focus 
+	of the formants, and therefore makes the sound increasingly 
+	fuzzy.</li>
+	</ul>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+<p>
+FOCUS EXAG can be used to make a sound thinner and pitched, just as 
+a bandpass filter can create pitches within a complex sound.  Working 
+in the spectral domain, it does this by manipulating frequency regions 
+of high amplitude, otherwise known as 'formants'.  These can be 
+visualised as little mountain peaks.  'Narrowing' the formants means 
+making the 'mountains' narrower and its sides steeper;  furthermore, 
+the material inbetween virtually disappears.  'Widening' the formants 
+means making the mountainsides slope more gradually, therefore 
+encompassing more of the surrounding region.  Because this is actually 
+moving the position of partials, this results in timbral change and 
+the addition of noise elements, hence the fuzziness refered to above.
+</p>
+
+<p>
+I have found that a value of <i>exag</i> = 0.5 maintains a nice balance 
+between the original and the treated sound.  Lower values start to 
+produce results reminiscent of BLUR TRACE, while higher values, e.g., 
+10, produce quite a fuzzy, noisy result, at least with a complex sound 
+as input.  5 with a pitched sound produced a light buzz sheen on it.
+</p>
+
+<p>
+It can also be used in connection with the extraction of a spectral envelope 
+in order to alter the contour shape.
+</p>
+</blockquote>
+
+<h3> Related Functions</h3>
+<p>
+<a href="cspecfnu.htm#NARROW"><b>SPECFNU: NARROW FORMANTS</b></a> (Mode 1) <br><br>
+
+<b>SEE ALSO:</b> <a href="cformant.htm#GET"><b>FORMANTS GET</b></a>, 
+<a href="cformant.htm#PUT"><b>FORMANTS PUT</b></a> and <a href="chilite.htm#TRACE">
+<b>HILITE TRACE</b></a>.
+<br>
+</p>
+
+<p>
+End of FOCUS EXAG<br>
+<a href="#FOCUSLIST">Return</a> to List of functions to FOCUS spectral 
+features at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+ 
+<h2 id="FOCUS">FOCUS FOCUS &#150; Focus spectral energy onto the peaks in 
+the spectrum</h2>
+
+<h3>
+Usage
+</h3>
+<b>focus focus</b> <i>inanalysisfile outanalysisfile</i> <b>-f</b><i>N</i> &#124; <b>-p</b><i>N</i> [<b>-i</b>] <i>pk</i> <i>bw</i> [<b>-b</b><i>bt</i>] 
+[<b>-t</b><i>tp</i>] [<b>-s</b><i>val</i>]
+<br>
+
+<p>
+<b>Typical command line:</b><br />
+<b>focus focus raspdt.ana raspdtfoc.ana -f1 16 0.09 -b20 -t20000</b>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalysisfile</i> &#150; input analysis file<br />
+<i>outanalysisfile</i> &#150; output analysis file<br />
+<b>-f</b>  extract formant envelope linear frequency-wise, using 
+1 point for every <i>N</i> equally-spaced frequency-channels<br>
+<b>-p</b>  extract formant envelope linear pitchwise, using <i>N</i> 
+equally-spaced pitch-bands per octave<br>
+<b>-i</b> quicksearch for formants (less accurate)<br> 
+<i>pk</i> (maximum) number of peaks to find  Range 1 &#150; 16<br>
+<i>bw</i> bandwidth of peak-centred filters, in octaves<br>
+<b>-b</b><i>bt</i>  bottom frequency at which to start the search for 
+peaks<br>
+<b>-t</b><i>tp</i>  top frequency at which to end the search for peaks<br>
+<b>-s</b><i>val</i>  the number of windows over which the peaks are 
+averaged.  This is an attempt to retain only peaks which are STABLE over 
+time.  Range: 2 &#150; 4097.  Default is 9.<br>
+	<p>
+	<blockquote>
+	<i>bw</i> (bandwidth), <i>bt</i> (bottom frequency) &amp; <i>tp</i> 
+	(top frequency) may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+
+<h3>
+Understanding the FOCUS FOCUS Process
+</h3>
+<blockquote>
+<p>
+The program searches out the most prominent and persistent spectral 
+peaks in a sound, creates a set of filters centred on those peaks, 
+and then filters the sound with those filters.  This focuses the 
+spectral energy of the sound around those persistent spectral peaks.
+</p>
+
+<p>
+The <i>channels</i> and <i>bandwidth</i> parameters are both the key 
+sensitive areas affecting the outcome.  Increasing the number of 
+channels moves the output towards a BLUR TRACE result, while wider 
+bandwidths, as one would expect, 'let through' more of the original 
+sound.
+</p>
+
+<p>
+I found that there was a good balance between original and processed 
+sound with these parameter settings: <i>Channels</i> = 1, <i>Peaks</i> 
+= 16, <i>Bandwidth</i> = 0.09, <i>Lofrq</i> = 20 and <i>HiFrq</i> = 20000.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+<p>
+The results depend very much on the spectral configuration of the source, 
+so this function needs to be explored on a 'try it and see' basis.  On 
+the whole, it appears to be an alternative approach to BLUR TRACE type 
+effects, i.e., data reduction.  However, trials with a pitched sound did 
+produce fairly similar results.
+</p>
+</blockquote>
+
+<p>
+<b>SEE ALSO:</b> <a href="chilite.htm#TRACE"><b>HILITE TRACE</b></a>.
+<br>
+</p>
+
+<p>
+End of FOCUS FOCUS<br>
+<a href="#FOCUSLIST">Return</a> to List of functions which focus 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+ 
+<h2 id="FOLD">FOCUS FOLD &#150; Octave-transpose spectral components 
+into a specified frequency range</h2>
+
+<p>NB: There is a newer version of this process: <a href="#SPECFOLD"><b>SPECFOLD</b></a>.
+</p>
+
+<h3>
+Usage
+</h3>
+<b>focus fold</b> <i>inanalysisfile outanalysisfile lofrq hifrq</i> <b>-x</b>
+<br>
+
+<p>
+<b>Typical command line:</b><br />
+<b>focus fold raspdt.ana raspdtfold.ana 100 900 -x</b>
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<p>
+<blockquote>
+<i>inanalysisfile</i> &#150; input analysis file<br />
+<i>outanalysisfile</i> &#150; output analysis file<br />
+<i>lofrq</i> lowest frequency of range into which the spectrum is folded<br>
+<i>hifrq</i> highest frequency of range into which the spectrum is folded<br>
+<b>-x</b> fuller spectrum<br>
+	<p>
+	<blockquote>
+	<i>lofrq</i> and <i>hifrq</i> may vary over time<br>
+	</blockquote>
+	</p>
+</blockquote>
+</p>
+
+<h3>
+Understanding the FOCUS FOLD Process
+</h3>
+<blockquote>
+<p>
+This process octave transposes all the analysis data of a sound into a 
+specified frequency range.  Anything below the range is octave-transposed 
+up until it is in (the bottom of) the range.  Anything above gets 
+octave-transposed down until it is in (the top of) the range.
+</p>
+
+<p>
+If more than two pieces of transposed information compete for the same 
+channel in the resultant file, the data of the lowest amplitude is thrown 
+away.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+<p>
+The key here is the frequency band:  high wide it is and where in the 
+frequency range it is placed.  Fairly narrow bands seem the most useful 
+for this function, otherwise too much of the original comes through, 
+so there is not very much change to the sound.
+</p>
+
+<p>
+A low-placed range such as 100 to 900 (Hz) produces a deep, muffled 
+sound, with the amount of internal modulation dependent on how much 
+the spectrum of the original input changes.  With a rasping spring 
+sound, this produced an 'eerie wind', such as one might imagine a 
+passing spaceship to sound like.  On a pitched sound, these parameters 
+resulted in a double pitch: the original and the folded down.
+</p>
+
+<p>
+A high-placed range such as 1800 to 3200 yields a fairly high and 
+thin, slightly ringing sound.  With the rasping spring sound, this 
+prouced a somewhat ethereal sound.  On a pitched sound, these parameters 
+were rather high, and not very much of the input remained.
+</p>
+
+<p>The <i>fuller spectrum</i> option does seem to strengthen the 
+effect, perhaps bringing through a little more of the original 
+sound.
+</p>
+
+<p>
+This process will focus the energy in a tight band while retaining the 
+pitch characteristics (because of the octave-transpose).  It is therefore 
+a way to intensify a sound.  However there may also be a radical and 
+somewhat unpredictable transformation of the sound, depending on the 
+input.  It seems most effective with sounds containing many and complex 
+partials.
+</p>
+</blockquote>
+
+<h3> Related Functions </h3>
+<p><a href="#SPECFOLD"><b>SPECFOLD</b></a>
+<br><br>
+<b>SEE ALSO:</b> <a href="cstrange.htm#INVERT"><b>STRANGE INVERT</b></a> (NB: 
+seems to overload easily).
+<br>
+</p>
+
+<p>
+End of FOCUS FOLD<br>
+<a href="#FOCUSLIST">Return</a> to List of functions which focus 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+ 
+<h2 id="FREEZE">FOCUS FREEZE &#150; Freeze spectral characteristics 
+in a sound, at given times</h2>
+
+<h3>
+Usage
+</h3>
+<b>focus freeze mode</b> <i>inanalysisfile outanalysisfile datafile</i>
+<br>
+
+<p>
+<b>Typical command line:</b><br />
+<b>focus freeze 3 raspdt.ana raspdtfrz.ana freeze.txt</b><br />
+(See example datafiles in the text below.)
+</p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; freeze channel amplitudes<br>
+<b>2</b>&nbsp; freeze channel frequencies<br>
+<b>3</b>&nbsp; freeze channel amplitudes &amp; frequencies<br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalysisfile</i> &#150; input analysis file<br />
+<i>outanalysisfile</i> &#150; output analysis file<br />
+<i>datafile</i> &#150; text file containing times at which the spectrum is 
+frozen.  These times may be preceded by character <b>markers</b>:<br>
+	<p>
+	<blockquote>
+	<b>a</b> use window here as freezewindow for spectrum AFTER this 
+	time<br>
+	<b>b</b> use window here as freezewindow for spectrum BEFORE this 
+	time<br>
+	<p>
+	Otherwise, times are <i>end&#47;start</i> of freeze established 
+	at one of these markers.
+	</p>
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the FOCUS FREEZE Process
+</h3>
+
+<blockquote>
+<p>
+FOCUS FREEZE freezes the spectrum on one window's frequencies or amplitudes. 
+If the frequencies are frozen, the amplitudes continue to move, and 
+v.vs.: if the amplitudes are frozen, the frequencies continue to move.
+</p>
+
+<p>
+The following <i>datafiles</i> illustrate how <b>a</b> (AFTER) and <b>b</b> 
+(BEFORE) work.
+</p>
+
+<p>
+<blockquote>
+<table border=1 bgcolor="#B0E0E6" cellpadding=4 align = "center">
+<tr>
+<th><b>marker</b>&amp;times</th>
+<th>(action)</th>
+</tr>
+<tr>
+<td><b>a</b>1.0</td>
+<td>(freeze AFTER this time)</td>
+</tr>
+<tr>
+<td>&nbsp;3.0</td>
+<td>(unfreeze)</td>
+</tr>
+<tr>
+<td><b>a</b>4.0</td>
+<td>(freeze AFTER this time)</td>
+</tr>
+<tr>
+<td>&nbsp;5.0</td>
+<td>(unfreeze)</td>
+</tr>
+</table>
+</blockquote>
+</p>
+
+
+<p>
+Here we take the values of the window at 1.0 sec. and freeze them until 
+the 3 sec. mark.  Then the window is unfrozen, and the sound continues 
+as normal until 4.0, whereupon it is frozen again with the values at 
+4.0 sec., until 5.0.  (The action comments are of course not included in 
+the file!).  Similarly:
+</p>
+
+<p>
+<table border=1 bgcolor="#B0E0E6" cellpadding=4 align = "center">
+<tr>
+<th><b>marker&amp;times</b></th>
+<th>(action)</th>
+</tr>
+<tr>
+<td>&nbsp;2.0</td>
+<td>(no freezing action here)</td>
+</tr>
+<tr>
+<td><b>b</b>3.0</td>
+<td>(value taken here and applied backwards until 2.0)</td>
+</tr>
+<tr>
+<td>&nbsp;4.0</td>
+<td>(unfrozen between 3.0 and 4.0)</td>
+</tr>
+<tr>
+<td><b>b</b>5.0</td>
+<td>(value taken here and applied backwards until 4.0)</td>
+</tr>
+</table>
+</p>
+
+<p>
+One can also mix <b>a</b> and <b>b</b> as long as the two operations 
+don't overlap. E.g.,
+</p>
+
+<p>
+<table border=1 bgcolor="#B0E0E6" cellpadding=4 align = "center">
+<tr>
+<th><b>marker&amp;times</b></th>
+<th>(action)</th>
+</tr>
+<tr>
+<td><b>a</b>2.0</td>
+<td>(freezing starts here, value taken from 2.0)</td>
+</tr>
+<tr>
+<td>&nbsp;3.0</td>
+<td>(unfreeze)</td>
+</tr>
+<tr>
+<td>&nbsp;4.0</td>
+<td>(freezing starts here, value taken from 5.0)</td>
+</tr>
+<tr>
+<td><b>b</b>5.0</td>
+<td>(value taken from here and applied backwards until 4.0)</td>
+</tr>
+</table>
+</blockquote>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This process prolongs specific timbral configurations in the sound, 
+so it is a way of stopping the continuous spectral evolution which 
+normally takes place in a sound.  The results will vary enormously 
+depending on the source and of course the contents of the spectrum 
+at the freeze points.  Static and stepped qualities are introduced 
+into the sound by this process.
+</p>
+</blockquote>
+
+<p>
+End of FOCUS FREEZE<br>
+<a href="#FOCUSLIST">Return</a> to List of functions which focus 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+ 
+<h2 id="HOLD">FOCUS HOLD &#150; Hold sound spectrum, at given 
+times</h2>
+
+<h3>
+Usage
+</h3>
+<b>focus hold</b> <i>inanalysisfile outanalysisfile datafile</i>
+<br>
+
+<p>
+<b>Typical command line:</b><br />
+<b>focus hold raspdt.ana raspdthold.ana holds.txt</b><br />
+(See example datafile in the text below.)
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalysisfile</i> &#150; input analysis file<br />
+<i>outanalysisfile</i> &#150; output analysis file<br />
+<i>datafile</i> &#150; contains a list of paired <i>times</i> at 
+which the spectrum is held and a <i>hold-duration</i> for each 
+time.  These data items must be paired correctly.
+</blockquote>
+
+<h3>
+Understanding the FOCUS HOLD Process
+</h3>
+<blockquote>
+<p>
+The process expands each hold window to the duration given, before 
+proceeding to the next window.  The output file is therefore longer 
+than the input file.  The timbral quality of the held sections depends 
+on what is happening at the point(s), the window(s), where the holds 
+occur.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+This is like SPEC MAGNIFY except that a list of times and hold-durations 
+can be given.  The key is to identify the times when the most interesting 
+spectral data is present.  Alternatively, you may just want to introduce 
+some additional sustaining.  Note that the soundfile plays normally at 
+the times when the holds finish.  This means that you can create outputs 
+which mix normal and held sections in various ways.
+</p>
+
+<p>
+For example, a useful objective is to alternate the original sound with 
+the held spectrum.  This is done in the following file (for a 5 sec. source), 
+where the length of time held (0.6 sec.) is shorter than the time-interval 
+to the next hold point (1 sec.).  Thus the sound is 'released' after 1 
+second and the original sounds for 0.4 second until the next hold point 
+is reached:
+<pre>
+Hold_start_time Length_of_time_held
+0.5		0.6
+1.5		0.6
+2.5		0.6
+3.5		0.6
+4.5		0.4
+</pre>
+</p>
+
+<p>
+The above alternation of original and held was very noticeable with a 
+complex input such as the spring strum (raspdt.wav).  However, with 
+a clear, steady pitch such as a horn sound, there were some light 
+surface changes, but overall a smooth flow between original and 
+held &#150; this could therefore be a useful way to extend, i.e., 
+lengthen, a pitched sound, as it adds the held sections to the duration 
+of the soundfile.
+</p>
+</blockquote>
+
+<p>
+End of FOCUS HOLD<br>
+<a href="#FOCUSLIST">Return</a> to List of functions which focus 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** -->
+
+ 
+<h2 id="STEP">FOCUS STEP &#150; Step-frame through sound by 
+freezing spectrum at regular time intervals</h2>
+
+<h3>
+Usage
+</h3>
+<b>focus step</b> <i>inanalysisfile outanalysisfile timestep</i>
+<br>
+
+<p>
+<b>Typical command line:</b><br />
+<b>focus step raspdt.ana raspdtstep.ana 0.1</b><br />
+</p>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalysisfile</i> &#150; input analysis file<br />
+<i>outanalysisfile</i> &#150; output analysis file<br />
+<i>timestep</i> duration of the steps.  Must be &gt;= the duration of 
+two analysis frames.  The value here is rounded internally to a 
+multiple of analysis frame time.
+</blockquote>
+
+<h3>
+Understanding the FOCUS STEP Process
+</h3>
+<blockquote>
+<p>
+This is an automatic FREEZE of the spectrum at intervals of <i>timestep</i>, 
+similar to the familiar 'sample-hold' effect.  The main thing here is 
+that the time intervals are <i>regular</i>.  Thus the spectrum of the 
+sound, which normally is constantly changing, is frozen with the values at 
+the beginning of each <i>timestep</i>.
+</p>
+
+<p>
+The effect with fairly large <i>timesteps</i> can be a relatively 
+slow-moving sample-hold effect.  But as the duration of the <i>timestep</i> 
+was shortened, the complex source developed regular 'jangling' effect, while 
+the clearly pitched source only changed its tone.
+</p>
+
+<p>
+The 'jangling' effect seems to occur with <i>timestep</i> at about 
+0.1 or even 0.05.  At 0.25, the sample-hold is quite noticeable, 
+rather slow at 0.5 and probably too slow at 1.0 &#150; but this setting 
+could be used to produce sections of steady-state material that can 
+then be CUT and used elsewhere.
+</p>
+
+<p>
+<i>Timestep</i> can be very small.  The Phase Vocoder reference manual 
+explains that the value shown by DIRSF for the sample rate of an analysis 
+file is actually frame rate:  the number of analysis frames per second, 
+e.g. 172 or 344 etc.  (The sample rate and value for <b>-N</b> both alter 
+the frame rate.)  So if you divide 1 sec by the frame rate, you will learn 
+the duration of one frame:  e.g., 1&#47;344 = 0.0029 (2.9ms).  As 
+<i>timestep</i> gets larger, timbral alteration increases.
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+<p>
+It is recommended that you start exploring this function by using very 
+small values for <i>timestep</i>.  This should produce a granulation 
+effect.  But note that it is doing this without creating enveloped 
+'grains' as does MODIFY BRASSAGE.  It is working directly on the spectrum 
+of the sound.  
+</p>
+</blockquote>
+
+<p>
+End of FOCUS STEP<br>
+<a href="#FOCUSLIST">Return</a> to List of functions which focus 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ========================================================================= -->
+<h2 id="SPECFOLD">SPECFOLD &#150; Fold, invert or randomise the spectrum</h2>
+
+<p>NB: This is a newer version of <a href="#FOLD"><b>FOCUS FOLD</b></a>.
+</p>
+
+<h3>
+Usage
+</h3>
+<b>specfold specfold 1</b> <i>inanalfile outanalfile stt len cnt</i>  [<b>-a</b>]<br>
+<b>specfold specfold 2</b> <i>inanalfile outanalfile stt len</i>      [<b>-a</b>]<br>
+<b>specfold specfold 3</b> <i>inanalfile outanalfile stt len seed</i> [<b>-a</b>]<br>
+
+<h3>
+Modes
+</h3>
+<blockquote>
+<b>1</b> &nbsp; Fold the spectrum.<br>
+<b>2</b> &nbsp; Invert the spectrum.<br>
+<b>3</b> &nbsp; Randomise the spectrum.<br>
+</blockquote>
+
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>inanalfile</i> &#150;  input analysis file.<br>
+<i>outanalfile</i> &#150;  output analysis file.<br>
+<i>stt</i> &#150;  lowest spectral channel to process (Range: &gt;=1) <br>
+<i>len</i> &#150;  number of channels to process (&gt;= 4); for folding (Mode 1) this must be an even number.<br>
+<i>cnt</i> &#150;  (Mode 1) number of folds (less than <i>len</i>).<br>
+<i>seed</i> &#150; (Mode 3) seed value sets a specific random permutation of channels. (Range: 1 to 64)<br>
+<b>-a</b> &#150; process the amplitudes only. Default: process frequencies and amplitudes.
+
+</blockquote>
+
+<h3>
+Understanding the SPECFOLD Process
+</h3>
+
+<blockquote>
+<p>
+SPECFOLD is a newer alternative to the processes <a href="#FOLD"><b>FOCUS FOLD</b></a> and <a href="cspecnu.htm#SLICE"><b>SPECNU SLICE</b></a>(Mode 5: Invert spectrum), offering also a randomising of spectral frequencies. For all three modes, the frequency range to work within is set by the lowest channel (<i>stt</i>) and the number of channels <i>len</i> to process above that. (The utility SPECINFO FREQUENCY reports the centre frequency for any given channel, while SPECINFO CHANNEL gives the channel for a given frequency.)
+</p><p>
+The folding process in Mode 1 is as follows:
+<ul>
+<li>Channels in the fold group are split into two equal sets of consecutive channels.</li>
+<li>Values in the first set are moved from channel N to channel 2N.</li>
+<li>Values in the second set are assigned to remaining channels, in descending order.</li>
+<li><i>cnt</i> sets the number of fold groups to fit into the frequency range defined by <i>stt</i> and <i>len</i>.
+</ul>
+</p><p>
+Mode 2 inverts the spectrum, putting high frequency channels into low ones and vice versa, while Mode 3 randomly permutates the channels within the channel range.
+</p><p>   
+Setting the <b>-a</b> flag processes just the amplitudes, not the frequencies; in a typical sound with harmonics reducing in amplitude as frequency rises, this should make the sound brighter. Overall, the channel settings tend to brighten the sound considerably, above the lowest channel (set this higher to preserve the bass).  
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+...
+</p>
+</blockquote>
+
+<h3> Related Functions </h3>
+<p>
+<a href="cspecnu.htm#SLICE"><b>SEPCNU SLICE Mode 5</b></a> (invert)<br>
+<a href="cstrange.htm#INVERT"><b>STRANGE INVERT</b></a><br>
+<a href="cspecfnu.htm#RANDSHIFT"><b>SPECFNU: RANDOMISE PARTIALS</b></a> (Mode 19) 
+</p>   
+
+<p>
+End of SPECFOLD<br>
+<a href="#FOCUSLIST">Return</a> to List of functions which focus spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+
+</p>
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="SUPERACCU">SUPERACCU &#150; Sustain each spectral band until louder data appears in that band</h2>
+
+<h3>
+Usage
+</h3>
+<b>superaccu superaccu 1</b> <i>inanalysisfile outanalysisfile </i> [<b>-d</b><i>decay</i>] [<b>-g</b><i>glis</i>] [<b>-r</b>]<br />
+<b>superaccu superaccu 2</b> <i>inanalysisfile outanalysisfile </i> [<b>-d</b><i>decay</i>] [<b>-g</b><i>glis</i>] [<b>-r</b>]<br />
+<b>superaccu superaccu 3</b> <i>inanalysisfile outanalysisfile tuningtextfile</i> [<b>-d</b><i>decay</i>] [<b>-g</b><i>glis</i>] [<b>-r</b>]<br />
+<b>superaccu superaccu 4</b> <i>inanalysisfile outanalysisfile tuningtextfile</i> [<b>-d</b><i>decay</i>] [<b>-g</b><i>glis</i>] [<b>-r</b>]
+<br />
+
+<p>
+Example command line to sustain until louder data is present:<br>
+</p>
+	<blockquote>
+	<b><code>superaccu superaccu 3 rasp.ana raspsuperaccu.ana supaccutune.txt -d0.5 -g0.9 </code></b><br />
+	(<i>supaccutune.txt</i>:  60 63 67 70 73)
+	(This example seemed to produce rather too much 'resonant tail' &#150; the last 10 seconds were inaudible;  the input file was 10 seconds long.  So you may need to CUT some of the latter part of the output analysis file with SPEC CUT.)
+	</blockquote>
+<p></p>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Operates like <a href = "cfocus.htm#ACCU">FOCUS ACCU</a><br />
+<b>2</b>&nbsp; Forces the (start of) resonances to the tempered scale<br />
+<b>3</b>&nbsp; The frequencies are specified in a 'tuning' file (a 'harmonic set')<br />
+<b>4</b>&nbsp; The frequencies and their octaves are specified in a 'tuning' file (a harmonic field) 
+</blockquote
+
+<h3><h3>
+ Parameters
+</h3>
+
+  <blockquote>
+  <i>inanalysisfile</i> &#150; input analysis file<br>
+  <i>outanalysisfile</i> &#150; output analysis file<br>
+  <i>tuningtextfile</i> &#150; text file containing the set of
+  frequencies in (possibly fractional) MIDI values (1-128) for
+  tuning the onsets of the resonance<br>
+  [<b>-d</b><i>decay</i>] &#150; sustained channel data attenuates by
+  the factor <i>decay</i> per second. Possible Range: <b>&gt;</b>0.0
+  to 0.9 Default: 1.0 (no attenuation)<br>
+  [<b>-g</b><i>glis</i>] &#150; sustained channel data glissandos at <i>glis</i>
+  octaves per second. Approximate Range: -11.7 to 11.7 Default: 0<br>
+  [<b>-r</b>] &#150; reassign the glissandoing pitches to appropriate channels
+  </blockquote>
+
+<h3>
+Understanding the SUPERACCU Process
+</h3>
+
+<blockquote>
+<p>
+Superaccu is an extension of FOCUS ACCU, with additional modes to tune the sustained spectral channels to a resonance template.  The tuning has a remarkable effect on speech, especially in Mode 2.
+</p>
+For SUPERACCU, you might have a statement saying something like:  "Warning: High values of <i>decay</i> can generate very long soundfiles."  I tried a Decay rate of .88 with a 6 second speech file, and got a 78 second long ringing after the original talking.  Quite lovely, but something to warn folks about. (Warren Burt)
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+...
+</blockquote>
+
+<p>
+End of SUPERACCU<br />
+<a href="#FOCUSLIST"><b>Return</b></a> to list of FOCUS functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cspecndx.htm" Target = "_top"><b>Return</b></a> to Spectral Index
+</p>
+
+<!-- ************************************************************* -->
+
+<!-- 
+<hr>
+<p>
+<h2 id="FOCUSTECHNICAL">Technical Discussion about focusing spectral 
+data</h2>
+
+<p>
+...
+</p>
+
+<p>
+End of Technical Discussion<br>
+
+<a href="#FOCUSLIST">Return</a> to List of functions which focus 
+spectral data at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+ -->
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 27 Apr 2023 for CDP8<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

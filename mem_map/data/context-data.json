@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "updated_at": "2026-01-10T22:30:00Z",
+  "repo": {
+    "name": "CDP",
+    "root": "F:/CDP"
+  },
+  "content": {
+    "nodes": [],
+    "edges": []
+  },
+  "views": []
+}

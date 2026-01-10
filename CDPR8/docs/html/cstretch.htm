@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- cstretch.htm  - HTML5 version -->
+
+<head>
+<title>CDP STRETCH Functions</title>
+<meta charset="UTF-8" />
+	<link rel = "stylesheet"
+	 type = "text/css"
+	 href = "cdpmanshtml5.css" />
+<link rel="icon"  href="images/cdp_favicon.ico">
+    <style>
+	a { text-decoration: none }
+	a:hover { color:#FF3333;
+          text-decoration: underline }          	
+    </style>
+</head>
+
+<body>
+
+<div id = "left"> <!-- Keep indexing on left ABOVE headlines so index goes to top of page -->
+
+  <p>
+  <div align = "center">
+  <IMG SRC = "images/cdpcircs90.jpg"></a>
+  </div>
+  </p>
+
+  <p>
+  <nav>
+  <dl>
+  <dt><a href="ccdpndex.htm" Target="_top"><b>Main Index</b></a>
+  <dt><a href="cspecndx.htm" Target="_top"><b>Spectral Index</b></a> 
+  <dt><a href="filestxt.htm" Target="_blank"><b>File Formats</b></a>
+  <hr>
+  <br />
+  <dt><a href="#STRETCHLISTING"><b>STRETCH:</b></a>
+  <dt>&nbsp;&nbsp;<a href = "#SPECTRUM"><b>SPECTRUM</b></a><br>
+  <dt>&nbsp;&nbsp;<a href = "#TIME"><b>TIME</b></a>
+ <br><br>
+ <b>OTHERS:</b>
+ <dt>&nbsp;&nbsp;<a href="#SPECTSTR"><b>SPECTSTR</b></a>
+<br><br> 
+
+  <b>UTILITY:</b><br>
+  <dt>&nbsp;&nbsp;<a href = "#STRETCHA"><b>STRETCHA</b></a><br />
+  <br>
+  <dt><a href = "#STRETCHTECHNICAL"><b>TECHNICAL</b></a>
+  </dl>
+  </p>
+
+</div>  <!-- End of left index panel -->
+
+<div id = "right"> <!-- Keep headlines here so index goes to top of page -->
+
+   <div id = "head">
+   <!-- 
+   <p><IMG SRC="images/cdpcircs.jpg" align=left ALT="CDP circles logo"></a></p>
+   -->
+   <div align=center>
+   <br>
+   <img src="images/cdplogo2.jpg" ALT="CDP Logo">
+   </div>
+
+   <h1 align=center>
+   CDP Spectral STRETCH Functions</h1>
+   <h2 align=center><font color="#3366ff"> (with Command Line Usage)</font></h2>
+   </div>  <!-- End of 'head' -->
+
+
+<!-- ========================================================================= -->
+<h2 align = "center" id="STRETCHLISTING">Functions to Stretch the Time or Frequency 
+Components of a Sound</h2>
+
+
+
+<dl>
+<dt><a href="#SPECTSTR"><b>SPECTSTR</b></a> <dd> Time-stretch analysis file, suppressing artefacts when stretch &gt; 1 </dd>
+<dt><a href="#SPECTRUM">STRETCH <b>SPECTRUM</b></a> <dd>stretch&#47compress the frequency components of a sound in an inharmonic way</dd>
+<dt><a href="#TIME">STRETCH <b>TIME</b></a> <dd>stretch&#47compress a sound in time without changing the pitch</dd>
+<dt><a href="#STRETCHA"><b>STRETCHA</b></a> <dd>Utility to Calculate <i>timestretch</i> factor relating to beats and tempo for use with <a href="cstretch.htm#TIME">STRETCH TIME</a></dd>
+<dt><a href="#STRETCHTECHNICAL"><b>Technical Discussion</b></a> <dd>Stretching Frequency Components</dd>
+</dl>
+
+<p>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ========================================================================= -->
+<h2 id="SPECTSTR">SPECTSTR &#150; Time-stretch analysis file, suppressing artefacts when stretch is &gt; 1.0  </h2>
+
+<p>NB: This function is a newer version of <a href="#TIME"><b>STRETCH TIME</b></a>.</p>
+
+<h3>
+Usage
+</h3>
+<b>spectstr stretch</b> <i>infile outfile timestretch d-ratio d-rand</i><br>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150;  input analysis file<br>
+<i>outfile</i> &#150;  output analysis file<br>
+<i>timestretch</i> &#150;  stretch/shrink multiplier, which may itself vary over time. (Range: 0.0001 to 10000; &lt;1 shrinks the time)<br>
+<i>d-ratio</i> &#150; proportion of channels to discohere. (Range: 0 to 1)<br>
+<i>d-rand</i> &#150; frequency randomisation of discohered channels. (Range: 0 to 1)<br> 
+
+</blockquote>
+
+
+<h3>
+Understanding the SPECTSTR Process
+</h3>
+
+<blockquote>
+<p>
+Timestretch stretches or shrinks the sound over time, without changing frequency. It creates extra time-windows to expand the overall time-base of the sound, without a change of frequency. The stretching itself can be time-varying. If the stretch factor TSTRETCH is <1, a time-shrinking occurs.
+</p><p>
+SPECTSTR is identical to the original <a href="#TIME"><b>STRETCH TIME</b></a> process in respect of time-stretching, but adds the DISCOHERE and RANDOMISE parameters. It is not clear yet what is meant by "discohere" in the context of time-stretching. 
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+<p>
+See <a href="#TIME"><b>STRETCH TIME</b></a> 
+</p>
+</blockquote>
+
+<p>
+End of SPECTSTR<br>
+<a href="#STRETCHLISTING">Return</a> to List of stretch functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+
+
+
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="SPECTRUM">STRETCH SPECTRUM &#150; stretch&#47compress frequency 
+components of <i>infile</i></h2>
+
+<h3>		
+Usage
+</h3>
+<b>stretch spectrum mode</b> <i>infile outfile frq_divide maxstretch 
+exponent</i> <b>-d</b><i>depth</i><br>
+
+<h3>
+Modes
+</h3>
+
+<blockquote>
+<b>1</b>&nbsp; Stretch above the <i>frq_divide</i><br>
+<b>2</b>&nbsp; Stretch below the <i>frq_divide</i><br>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>frq_divide</i>  is the frequency above or below which spectral stretching 
+takes place<br>
+<i>maxstretch</i>  is the transposition ratio of the topmost spectral 
+components<br>
+<i>exponent</i>  specifies the type of stretching required (&gt 0)<br>
+<b>-d</b><i>depth</i> stretch effect on source (from 0 (no effect) to 
+1 (full effect)<br>
+	<blockquote>
+	<i>depth</i> can vary over time<br>
+	</blockquote>
+</blockquote>
+
+<h3>
+Understanding the STRETCH SPECTRUM Process
+</h3>
+<blockquote>
+
+<p>
+The STRETCH SPECTRUM process is a means to warp the spectrum of a sound.  For 
+example, a harmonic sound may become inharmonic, in a controllable way.  
+(It is derived from CDP's former function SPECE.)
+</p>
+
+<p>
+The STRETCH SPECTRUM process gives us control over the way in which we 
+stretch the spectrum of a sound.  It should be used for stretching as 
+opposed to shifting the spectrum of a sound.  The stretching operation 
+begins at the <i>frq_divide</i> and proceeds upwards.  
+</p>
+
+<p>
+The main thing to appreciate regarding STRETCH SPECTRUM is that the stretch 
+factor is scaled across the frequencies, beginning at 1 at the 
+<i>frq_divide</i> (no stretch) and gradually increasing or decreasing until 
+reaching <i>maxstretch</i> of the uppermost channel in which a frequency is 
+found (not &gt Nyquist).  Overall, it is rather like stretching or compressing 
+a rubber sheet &#150; the whole sheet is warped by the stretching process 
+and the partials are thereby moved.
+</p>
+
+<p>
+The scaling of <i>maxstretch</i> is linear (even increments) when 
+<i>exponent</i> is an integer.  If <i>exponent</i> is &lt; 1.0, the 
+stretch curve will rise quickly and then tend to even out.  If 
+<i>exponent</i> is &gt; 1.0, the stretch curve will start to rise 
+slowly and then gradually rise more quickly.
+</p>
+
+<p>
+The stretching operation expands or contracts the frequency gap between 
+partials.  The <a href="#STRETCHTECHNICAL"><b>Technical Discussion</b></a> 
+offers some supplementary observations about how to think about what 
+this means.
+</p>
+
+<p>
+Under this operation the frequency ratios between the partials of the 
+original sound are not preserved.  Thus, for example, a sound with 
+harmonically related partials, e.g., 100, 200, 300, 400 Hz (common 
+factor, 100) will end up with partials which are not harmonically 
+related, e.g., 110, 213, 316, 419 Hz (no common factor).  Such an 
+inharmonic spectrum will normally be perceived as containing several 
+pitches or (with a small stretch) strong spectral colouration.  So 
+the stretching operation usually increases inharmonicity and the 
+timbral richness of a sound.
+</p>
+
+<h3>
+Use of <i>maxstretch</i>
+</h3>
+
+<p>
+<i>Maxstretch</i> specifies the amount of stretch to be applied to the 
+partial found in the uppermost channel.  The partial in the channel 
+corresponding to <i>frq_divide</i> does not move (<i>maxstretch</i> = 1).  
+Inbetween components will be moved by an amount corresponding to their 
+relative position.
+</p>
+
+<p>
+<b>Special Note</b> - components stretched beyond the Nyquist frequency 
+(sr/2) are made to disappear so that the maximum component we will 'hear' 
+will be the one marked 'X' in the above diagram.  Hence a <i>maxstretch</i> 
+value &gt 1 may be something of a fiction in practice because partials 
+stretched beyond Nyquist actually disappear.
+</p>
+</blockquote>
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+<p>
+The image of frequencies on a rubber sheet, referred to above, can help 
+point us in the direction of the possible applications of this process.  
+We can picture the frequencies drawn on the sheet with the lower 
+frequencies at the bottom and the higher frequencies at the top.  
+When we stretch or compress the bottom of the sheet, the frequencies 
+get further apart (i.e., pushing the bottom frequencies lower) or closer 
+together (higher).  This will deepen or tighten the tone, as well as 
+make it become more inharmonic at the same time.
+</p>
+
+<p>
+Similarly, when the top of the sheet is stretched or compressed, the 
+frequencies become further apart (higher:  top ones pushed up) or closer 
+together (this will lower and bunch up the high frequencies), with a 
+similar increase in inharmonicity.
+</p>
+
+<p>
+As ever, the results are greatly affected by the nature of the 
+<i>infile</i>.  Experiments with a vocal <i>infile</i> should reveal 
+the way it acts on a sound in an easily perceptible manner.  Probably 
+the single most important parameter is <i>frq-divide</i>:  where the 
+split point is placed.  The quickest way to determine the frequency 
+range of a sound is to use a tuning fork.  Trial and error (i.e., 
+guessing) can also be a fairly quick way to get results.  Charts 
+of the frequency ranges occupied by various types of sound can also 
+be instructive.
+</p><p>
+For further discussion of stretching frequency components see: <a href = "#STRETCHTECHNICAL"><b>Stretching in the Spectral Domain</b></a>
+</p>
+</blockquote>
+<p>
+End of STRETCH SPECTRUM<br>
+<a href="#STRETCHLISTING">Return</a> to List of stretch functions 
+at top of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<hr><!-- ****************************************************** --> 
+
+<h2 id="TIME">STRETCH TIME &#150; stretch&#47compress duration of 
+<i>infile</i> without changing the pitch</h2>
+
+<p>NB: A newer version of this process is available: <a href="#SPECTSTR"></b>SPECTSTR</b></a>
+</p>
+
+<h3>		
+Usage
+</h3>
+<b>stretch time 1</b> <i>infile</i> <i>outfile timestretch</i><br>
+<b>stretch time 2</b> <i>infile timestretch</i><br>
+
+<blockquote>
+In Mode 2, the program calculates the length of the output only, and does 
+not produce an <i>outfile</i>.
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>infile</i> &#150; input analysis file made with PVOC<br>
+<i>outfile</i> &#150; output analysis file<br>
+<i>timestretch</i>  single value or the name of a <i>time timestretch</i> 
+breakpoint file of values.  <i>Timestretch</i> is used as a multiple.<br>
+</blockquote>
+
+<h3>
+Understanding the STRETCH TIME Process
+</h3>
+<blockquote>
+<p>
+The key here is to time stretch the sound without altering the pitch.  This 
+can be used either to lengthen or compress the duration.  Formerly SPECSTR, 
+meaning 'spectrum time-stretching', the internal prolongation of spectral 
+data is itself subject to temporal control according to the amount of 
+stretch specified at different times.
+</p>
+
+<p>
+The fact that the time can be set in the breakpoint file provides an 
+important tool.  For example, it can be used to retain the ability to 
+recognise the source of the sound.  We often can identify a sound 
+according to the way it begins, its 'attack transient'.  This can be 
+kept unchanged by giving a <i>timestretch</i> of 1 for this part of 
+the sound.  Then the stretching can begin, so we retain the 
+recognisability of the sound while stretching it in time.  Retaining 
+recognisability is often a very important compositional issue.
+</p>
+
+<p>
+The breakpoint file sets <i>time</i> and <i>timestretch</i> factors in such 
+a way that <i>change is gradual</i> (interpolated) between different times 
+with different stretch factors.  For example:
+<pre>
+<font color="#FF0000">[time stretch]</font>
+0.0   1.0
+1.0   1.0
+2.0   2.5
+</pre>
+</p>
+
+<p>
+During the 1<sup><small>st</small></sup> second of the sound, there 
+will be no change.  During the 2<sup><small>nd</small></sup> second 
+of the sound, the spectrum will be gradually stretched to 2.5 
+times its original length.
+</p>
+
+<p>
+Two different stretch factors cannot be assigned to the same time.  At 
+least a slight difference in time is required.  So, for virtually 
+instantaneous changes in the stretch factor, use values such as:
+<pre>
+<font color="#FF0000">[time stretch]</font>
+2.0   2.5
+2.01  1.5
+</pre>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+<blockquote>
+<p>
+The stretching can be imagined in a quite literal way.  This is illustrated 
+by time stretching a sound which contains strong beat patterns.  As the 
+stretch gets longer, one really begins to hear the pulse slow down.
+</p>
+
+<p>
+Very long time stretches might best be done in stages rather than all at once.  
+If the whole sound is not required, one way to proceed is to cut out a 
+portion after each time stretch (say a stretch factor between 5 and 10) 
+with <a href="cspecxedi.htm#CUT">SPEC CUT</a> and then restretch that 
+portion.  Otherwise, time is wasted as the sound gets longer and longer.
+</p>
+</blockquote>
+
+<p>
+End of STRETCH TIME<br>
+<a href="#STRETCHLISTING">Return</a> to List of stretch functions at top of 
+this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+
+<hr><!-- ****************************************************** -->
+
+<h2 id="STRETCHA">STRETCHA &#150; Utility to calculate <i>timestretch</i> factor relating to beats and tempo for use with <a href="#TIME">STRETCH TIME</a>
+</h2>
+
+<h3>
+Usage
+</h3>
+<b>stretcha</b> <b>-c</b> <b>-d</b><i>dur</i> | <b>-f</b><i>sndfile</i> | (<b>-b</b><i>beats</i> <b>-t</b><i>tempo</i>) <b>-T</b><i>outtempo</i> 
+<br />
+<b>stretcha</b> <b>-s</b> <b>-d</b><i>dur</i> | <b>-f</b><i>sndfile</i> | (<b>-b</b><i>beats</i> <b>-t</b><i>tempo</i>) <b>-D</b><i>outdur</i> | (<b>-B</b><i>outbeats</i> <b>-T</b><i>outtempo</i>)
+<br />
+<b>stretcha</b> <b>-s</b> <b>-t</b><i>intempo</i> <b>-T</b><i>outtempo</i>
+<br />
+<p>
+Example command lines (in these examples 'bdt.wav' is 4.9 seconds long):<br>
+	<blockquote>
+	Mode <b>1</b>. <b>-c</b> flag:<br />
+	(1) <b><code>stretcha -c -d8 -T90</code></b> &nbsp;[Result: 12 beats (8 seconds fills 12 beats at MM = 90]<br />
+	(2) <b><code>stretcha -c -fbdt.wav -T108</code></b> &nbsp;[Result: 8.819878 beats (the input soundfile fills 8.819878 beats at MM=108]<br />
+	(3) <b><code>stretcha -c -b8 -t60 -T72</code></b> &nbsp;[Result: 9.6 beats (8 beats at MM=60 becomes 9.6 beats at MM=72]<br />
+	<br />
+	Mode <b>2</b>. <b>-s</b> flag:<br />
+	(1) <b><code>stretcha -s -d8 -D12</code></b> &nbsp;[Result: <i>stretchfactor</i> = 1.5 (use to make 8 seconds fill 12 seconds]<br />
+	(2) <b><code>stretcha -s -d8 -B4 -T50</code></b> &nbsp;[Result: <i>stretchfactor</i> = 0.6 (use to make a specified duration fill 4 beats at MM=50]<br />
+	(3) <b><code>stretcha -s -fbdt.wav -D12</code></b> &nbsp;[Result: <i>stretchfactor</i> = 2.449014 (use to make a 4.9 second soundfile fill 12 seconds]<br />
+	(4) <b><code>stretcha -s -fbdt.wav -B4 -T50</code></b> &nbsp;[Result: <i>stretchfactor</i> = 0.977605 (use to make a 4.9 second soundfile fill 4 beats at MM=50]<br />
+	(5) <b><code>stretcha -s -b8 -t84 -D12</code></b> &nbsp;[Result: <i>stretchfactor</i> = 2.449014 (use to make 8 beats at MM=84 fill 12 seconds]<br />
+	(6) <b><code>stretcha -s -b8 -t84 -B6 -T96</code></b> &nbsp;[Result: <i>stretchfactor</i> = 0.5625 (use to make 8 beats at MM=72 fill 6 beats at MM=96]<br />
+	<br />
+	Mode <b>3</b>. <b>-s</b> flag:<br />
+	<b> <code>stretcha <b>-s</b> <b>-t</b>66 <b>-T</b>120</code></b> &nbsp;[Result: <i>stretchfactor</i> = 0.550 (use to convert a passage moving at tempo MM=66 to one moving at tempo MM=120]
+	</blockquote>
+</p>
+
+<h3>
+Modes (as illustrated by the above command lines)
+</h3>
+
+<blockquote>
+Mode <b>1</b>: &nbsp;(three input options &rArr; a specified tempo)<br />
+<b>-c</b> &#150; takes as inputs: a duration OR a soundfile OR (a number of (possibly fractional) beats and a tempo) and also an output tempo<br />
+	<blockquote>
+	1. IN: <b>-d</b><i>dur</i> &nbsp;OUT: <b>-T</b><i>outtempo</i> &rArr; displays how many beats there will be at the new tempo<br>
+	2. IN: <b>-f</b><i>sndfile</i> &nbsp;OUT: <b>-T</b><i>outtempo</i> &rArr; displays how many beats the length of the input soundfile will fill at the new tempo<br>
+	3. IN: <b>-b</b><i>beats</i> <b>-t</b><i>tempo</i> &nbsp;OUT: <b>-T</b><i>outtempo</i> &rArr; displays how many beats there are at the new tempo<br>
+	</blockquote>
+
+Mode <b>2</b>: &nbsp;(three input options &rArr; to a specified duration OR to a number of beats at a given tempo)<br />
+<b>-s</b> &#150; takes as inputs: a duration OR a soundfile OR a number of (possibly fractional) beats and a tempo and also an output duration OR a number of (possibly fractional) output beats and an output tempo <br>
+	<blockquote>
+	1. IN: <b>-d</b><i>dur</i> &nbsp;OUT: <b>-D</b><i>outdur</i> &rArr; displays the <i>stretchfactor</i> needed to change one duration to the other<br>
+	2. IN: <b>-d</b><i>dur</i> &nbsp;OUT: <b>-B</b><i>beats</i> <b>-T</b><i>tempo</i> &rArr; displays the <i>stretchfactor</i> needed to convert an input duration to a given number of beats at a given tempo<br>
+	3. IN: <b>-f</b><i>sndfile</i> &nbsp;OUT: <b>-T</b><i>outdur</i> &rArr; displays the <i>stretchfactor</i> needed to convert a given input soundfile to a specified duration<br>
+	4. IN: <b>-f</b><i>sndfile</i> &nbsp;OUT: <b>-B</b><i>beats</i> <b>-T</b><i>tempo</i> &rArr; displays the <i>stretchfactor</i> needed to convert a given input soundfile to a given number of beats at a given tempo<br>
+	5. IN: <b>-b</b><i>beats</i> <b>-t</b><i>tempo</i> &nbsp;OUT: <b>-T</b><i>outdur</i> &rArr; displays the <i>stretchfactor</i> needed to convert a given number of beats at a given tempo to a specified duration<br>
+	6. IN: <b>-b</b><i>beats</i> <b>-b</b><i>tempo</i> &nbsp;OUT: <b>-T</b><i>outtempo</i> &rArr; displays the <i>stretchfactor</i> needed to convert a given number of beats at a given tempo to specified number of beats a specified tempo</<br>
+	</blockquote>
+
+Mode <b>3</b>: &nbsp;(input tempo &rArr; output tempo)<br>
+<b>-s</b> &#150; takes as inputs:  an input tempo and an output tempo;
+	<blockquote>
+	1. IN: <b>-t</b><i>tempo</i> OUT: <b>-T</b><i>tempo</i> &nbsp;(displays the <i>stretchfactor</i> to change from the first tempo to the second)<br>
+	</blockquote
+</blockquote>
+</blockquote>
+
+<h3>
+Parameters
+</h3>
+
+<blockquote>
+<i>dur</i> &#150; an input length of time in seconds<br />
+<i>sndfile</i> &#150; an input soundfile<br />
+<i>beats</i> &#150; an input number of (possibly fractional) beats<br />
+<i>tempo</i> &#150; an input tempo at which the beats occur<br />
+<i>outdur</i> &#150; an output length of time in seconds<br />
+<i>outbeats</i> &#150; an output number of (possibly fractional) beats<br />
+<i>outtempo</i> &#150; an output tempo
+</blockquote>
+
+<h3>
+Understanding the STRETCHA Function
+</h3>
+
+<blockquote>
+<p>
+STRETCHA is a utility program for use with <a href = "cstretch.htm#TIME">STRETCH TIME</a>. 
+It takes a bit of calculating to work out how to make a soundfile fit specific numbers of possibly fractional beats.  STRETCHA does the work for you.  When a soundfile is named as in input, its duration is automatically determined.  It can also handle durations and beats as inputs or as outputs to add extra flexibility.
+</p>
+
+<p>
+Note that, if you do not have the environment variable CDP_SOUND_EXT SET, you will have to include the .wav extension with the soundfile name.  The commandline environment also enables you to write the output to a file rather than just see it displayed on the screen.  This is done with the redirection symbol <b>&gt;</b> as in this example command line:<br />
+<code>stretcha -s -fbdt.wav -D8 >strfac.txt</code>.
+</p>
+
+<p>
+The stretch factor is then used with the CDP program STRETCH TIME.  While most of the options are fairly straightforward, note that some possibilities are not covered directly but require two steps.  The three <b>-c</b> options of Mode <b>1</b>, for example, which convert to a specified tempo, display only "number of beats at new tempo" &#150; it does not actually give a <i>stretchfactor</i>.  It gives the number of beats that will result.  You can then use this information to fill in the 'beats' parameter value in Mode <b>2</b> options to get the <i>stretchfactor</i> to convert the input beats and tempo to a specified duration (option 5) OR tempo (option 6).
+	<blockquote>
+	To illustrate this two step process, if you input a <i>duration</i> of 4 seconds and an <i>outtempo</i> of MM = 90: Mode <b>1</b> option 1 (<code>stretcha -c -d4 -T90</code>), the program tells you that 6 crotchets will result.  Now you can use that information to calculate the required <i>stretchfactor</i> to fill a specified duration: Mode <b>2</b>, option 5 (<code>stretcha -s -b6 -t90 -D10</code>), yielding a stretch factor of 2.5.  Thus 4 seconds changes to 6 crotchets at MM = 90, and this will fill 10 seconds with a stretch factor of 2.5.  You have thus gone from duration to duration while specifying a specific number of beats at a given tempo.  What you need to do depends on the nature of the material with which you start.
+	</blockquote>
+</p>
+
+<p>
+It may also be useful to know the actual duration that results from a given number of beats at a given tempo.  For example, if you want 4 beats at MM = 72 to be changed to 7.5 beats at MM = 108, you will have to know what duration the later produces (to use Mode <b>2</b> option 5).  The program doesn't provide this facility, but it is easily calculated as <b><code>numbeats * 60.0&#47;tempo</code></b>, which in this case is <code>7.5 * (60.0&#47;108)</code>, giving 4.1666 seconds.  Then you can use: <code>stretcha -s -b4 -t72 -D4.1666</code>, giving a stretch factor of 1.249980.
+</p>
+
+<p>
+You can also calculate the duration of the input portion of beats at a tempo and then use the input and output duration option (Mode <b>2</b> option 1).  Thus <code>4 * (60.0&#47;72) = 3.3333</code>:  <code>stretcha -s -d3.3333 -D4.1666</code> gives a stretch factor of 1.249980.
+	</ul>
+</p>
+</blockquote>
+
+<h3>
+Musical Applications
+</h3>
+
+<blockquote>
+It may be helpful to separate out all the options.  This reveals how easy it is to use.  In the examples, the soundfile <i>bdt.wav</i> is used.  Its duration is 4.90 seconds, as shown by <code>dirsf bdt.wav</code>.  I've used numbers that enable you to see and compare the results quite easily.
+<ul>
+Mode <b>1</b>:
+  <blockquote>
+  <b>1. Inputs: duration and output tempo, Output: number of beats</b><br />
+	<dl><dd>
+	<code>stretcha -c -ddur -Touttempo</code><br />
+	Example:  <code>stretcha -c -d4 -T120</code><br />
+	Result:  number of beats at new tempo = 8.0 crotchets
+	</dd></dl>
+
+  <b>2. Inputs: soundfile and output tempo, Output: number of beats</b><br />
+	<dl><dd>
+	<code>stretcha -c -finsnd.wav -Touttempo</code><br />
+	Example:  <code>stretcha -c -fbdt.wav -T120</code><br />
+	Result:  number of beats at new tempo = 9.799864 crotchets
+	</dd></dl>
+
+  <b>3. Inputs: beats &amp; tempo and output tempo, Output: number of beats</b><br />
+	<dl><dd>
+	<code>stretcha -c -bbeats -ttempo -Touttempo</code><br />
+	Example:  <code>stretcha -c -b4 -t60 -T120</code><br />
+	Result:  number of beats at new tempo = 8.0 crotchets
+  <br />
+  </blockquote>
+</ul>
+
+<ul>
+Mode <b>2</b>:
+  <blockquote>
+  <b>1. Inputs: duration and output duration, Output: stretch factor</b><br />
+	<dl><dd>
+	<code>stretcha -s -ddur -Doutdur</code><br />
+	Example:  <code>stretcha -s -d4 -D8</code><br />
+	Result:  stretch factor is 2.0
+	</dd></dl>
+
+  <b>2. Inputs: duration and output beats &amp; tempo, Output: stretch factor</b><br />
+	<dl><dd>
+	<code>stretcha -s -dduration -Bbeats -Ttempo</code><br />
+	Example:  <code>stretcha -s -d4 -B8 -T90</code><br />
+	Result:  stretch factor is 1.333333
+	</dd></dl>
+
+  <b>3. Inputs: soundfile and output duration, Output: stretch factor</b><br />
+	<dl><dd>
+	<code>stretcha -s -finsnd.wav -Doutdur</code><br />
+	Example:  <code>stretcha -s -fbdt.wav -D8</code><br />
+	Result:  stretch factor is 1.632676</dd></dl>
+
+  <b>4. Inputs: soundfile and output beats and tempo, Output: stretch factor</b><br />
+	<dl><dd>
+	<code>stretcha -s -finsnd.wav -Boutbeats -Touttempo</code><br />
+	Example:  <code>stretcha -s -fbdt.wav -B8 -T90</code><br />
+	Result:  stretch factor is 1.08845</dd></dl>
+  <b>5. Inputs: beats &amp; tempo and output duration, Output: stretch factor</b><br />
+	<dl><dd>
+	<code>stretcha -s -bbeats -ttempo -Doutdur</code><br />
+	Example:  <code>stretcha -s -b4 -t60 -D8</code><br />
+	Result:  stretch factor is 2.0
+	</dd></dl>
+  <b>6. Inputs: beats &amp; tempo and output beats &amp; tempo, Output: stretch factor</b><br />
+	<dl><dd>
+	<code>stretcha -s -bbeats -ttempo -Boutbeats -Touttempo</code><br />
+	Example:  <code>stretcha -s -b4 -t60 -B8 -T90</code><br />
+	Result:  stretch factor is 1.333333
+	</dd></dl>
+  <br>
+  </blockquote>
+</ul>
+
+<ul>
+Mode <b>3</b>:
+  <blockquote>
+  <b>1. Input: tempo, Output: tempo</b><br />
+	<dl><dd>
+	<code>stretcha -s -ttempo -Touttempo</code><br />
+	Example:  <code>stretcha -s -d60 -D90</code><br />
+	Result:  stretch factor is 0.666667
+	</dd></dl>
+  </blockquote>
+</ul>
+</blockquote>
+
+<h3>
+Historical Note 
+</h3>
+  <blockquote>
+I (AE) asked Trevor to write this program several years ago in order to help create passages of music using regular beat patterns.  The source code has been lost for all these years, but an enquiry from Arthur Green, who found the program in his directory of CDP programs and discovered that it would not work on a 64-bit PC, led Richard Dobson to search out the source and recompile it for us.
+  </blockquote>
+
+<p>
+End of STRETCHA<br />
+<a href="#STRETCHLISTING"><b>Return</b></a> to list of STRETCH functions at 
+top of this file<br />
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> to Main Index for 
+the CDP System.<br />
+<a href="cgroundx.htm#startpos" Target="_top"><b>Return</b></a>
+to Groucho Index<br />
+</p>
+
+<hr> 
+
+<h2 id="STRETCHTECHNICAL">Technical Discussion of Stretching in the 
+Spectral Domain</h2>
+
+<p>
+<b>To help visualise what might be happening with the spectrum, here 
+are some observations about 'interval', 'frequency' and 'partials':</b>
+</p>
+
+<blockquote>
+<p>
+Bear in mind that the partials of a tone are closer together in pitch 
+the higher their frequency.  This is because pitches are the logarithm 
+of frequency.  This means that going up in pitch by equal amounts, we 
+<b>add intervals</b> &#150; such as going up by one octave &#150; but 
+we <b>multiply frequencies</b> &#150; times 2 to go up one octave.
+</p>
+
+<p>
+For example, going up one octave from 400 Hz takes us to 800 Hz, but 
+going up an equivalent one octave from 4000 Hz takes us to 8000 Hz, 
+i.e., 10 times as far in terms of frequency.
+</p>
+
+<p>
+Looking at this the other way round, going up by 400 Hz, e.g., 
+from 400 Hz to 800 Hz, takes us up an octave;  but going up 400 Hz 
+from 4000 Hz to 4400 Hz takes us up only a very small interval.
+</p>
+
+<p>
+The harmonic partials, being integer multiples of the fundamental, 
+are equally spaced in <b>frequency</b> (e.g., 400 (400 * 1), 800 
+(400 * 2), 1200 (400 * 3), 1600 (400 * 4) &#150; all are 400 Hz apart).  
+As a result, the pitch-intervals between them get smaller and smaller 
+as we rise in frequency.
+</p>
+</blockquote
+
+<p>
+The stretching operation therefore expands or compresses the 
+frequency (i.e., partial) spacings.  But in the higher end of the 
+spectrum, it is useful to remember that the intervals involved will 
+be very small.  The aural effect of the stretching process will relate 
+in part to the inharmonic relationships created (or altered) among the 
+intervals defined by the frequencies.
+</p>
+
+<p>
+End of Technical Discussion<br>
+<a href="#STRETCHLISTING">Return</a> to List of stretch functions at top 
+of this file<br>
+<a href="ccdpndex.htm" Target="_top"><b>Return</b></a> 
+to Main Index for the CDP System.<br>
+<a href="cspecndx.htm" Target="_top">Return</a> 
+to Spectral Index
+</p>
+
+<!-- ********************************************************** -->
+  <div id = "footer">
+   <p>
+    <address>
+    Last Updated 3 Apr 2023 for CDP8<br />
+    Documentation: Archer Endrich<br />
+    Revisions: Robert Fraser<br>
+    All observations &amp; ideas for improvement appreciated<br />
+    Composers Desktop Project Ltd<br />
+    Email: cdpse9@gmail.com<br />
+    &#169; Copyright 1998-2023 Archer Endrich &amp; CDP<br>
+    </address>
+   </p>
+  </div>
+
+</div> <!-- End of 'right' (contents) indentation -->
+
+</body>
+
+</html>

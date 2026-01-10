@@ -1,0 +1,30 @@
+{
+    "project": "LoopDemo",
+    "tempo": 140,
+    "timeUnits": "beats",
+    "tracks": [
+        {
+            "name": "LoopedKick",
+            "type": "sample",
+            "source": "examples/kick.wav",
+            "events": [
+                {
+                    "time": 0.0,
+                    "dur": 0.5,
+                    "loop": true,
+                    "loopCount": 4,
+                    "gainDb": -2.0,
+                    "pan": -0.5
+                },
+                {
+                    "time": 8.0,
+                    "dur": 0.25,
+                    "loop": true,
+                    "loopDur": 2.0,
+                    "gainDb": 0.0,
+                    "pan": 0.5
+                }
+            ]
+        }
+    ]
+}

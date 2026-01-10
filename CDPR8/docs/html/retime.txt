@@ -1,0 +1,249 @@
+retime retime 1 infile outfile refpoints tempo
+retime retime 2 infile outfile resyncdata tempo peakwidth splicelen (This mode is not available on the Command Line. It is available in Sound Loom.)
+retime retime 3 infile outfile minsil inpkwidth outpkwidth splicelen
+retime retime 4 infile outfile tempo minsil pregain
+retime retime 5 infile outfile factor minsil [-sstart -eend -async]
+retime retime 6 infile outfile retempodata tempo offset minsil pregain
+retime retime 7 infile outfile retempodata offset minsil pregain
+retime retime 8 infile outfile tempo eventtime beats repeats minsil
+retime retime 9 infile outfile maskdata minsil
+retime retime 10 infile outfile minsil equalise [-mmeter -ppregain]
+retime retime 11 infile minsil
+retime retime 12 infile outfile.txt
+retime retime 13 infile outfile goalpeaktime
+retime retime 14 infile outfile goalpeaktime peaktime
+
+--------------------------------------------------------------
+
+1-10
+retime infile outfile  /various_params/
+
+11:
+retime infile /various_params/
+
+12:
+retime infie outfile.txt /various params/
+
+The Modes and their Parameters
+
+1 NORMALISE
+Expand envelope so that the highest envelope point is at the maximum possible amplitude value.
+
+================================================================================================
+1 PULSED PEAKS: output user-specified peaks at regular pulse at given tempo
+	Output user-specified peaks at regular pulse at given tempo.
+2 REPOSITITION specified peaks at specified times at given tempo
+3 SHORTEN silence-separated events.
+	Shorten existing (silence-separated) events.
+4 PULSED: find silence-separated events and output at regular pulse 
+	Find existing (silence-separated) events and output at regular MM.
+5 SPEED: change speed of silence-separated events
+	Find existing (silence-separated) events and change speed by factor.
+6  Reposition s-s events at specified beats
+	Find existing (silence-separated) events: position at specified beats.
+7  Reposition s-s events at specified times
+	Find existing (silence-separated) events: position at specified times.
+8  REPEAT s-s event
+	Mark one (silence-separated) event within a soundfile,
+	OR the 1st event of "cnt" events (see below),
+	and repeat it (or them) at a specified tempo WITHIN the original sound.
+9  MASK s-s events using a pattern
+	Replace by silence (silence-separated) events in specified pattern. Maskdata: file with sequence of 0s and 1s: 0 masks event: 1 reveals event.
+10 ACCENTS: adjust the levels of s-s events
+	Adjust levels (silence-separated) events, so more equal, or accented.
+
+11  FIND DURATIONS 
+	MODE 11 Finds durations of shortest and longest (silence-separated) event.  
+
+12  FIND START of sound in file  (1st non-zero sample).
+13  MOVE FOUND PEAK  
+	Find sound peak and move all data so peak goes to specified time.     Find or specify pk and move it to specified time
+14  MOVE SPECIFED PEAK 
+	Specify peak position, then move data so peak goes to specified time.
+
+=================================================================================================
+retime retime 1
+USAGE:
+retime retime 1 infile outfile refpoints tempo
+
+Output user-specified peaks at regular pulse at given tempo.
+
+Best applied to files with clear peaks.
+
+REFPOINTS    times of peaks in the infile which will become on-the-beat events
+             in the outfile.
+TEMPO        Tempo of OUTFILE, as a MM (vals > 20 to 400)
+             OR (for vals below 1.0) a beat duration in secs.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 2
+Mode only accessible via Sound Loom Properties Files
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 3
+USAGE:
+retime retime 3 infile outfile minsil inevwidth outevwidth splicelen
+
+Shorten existing (silence-separated) events.
+
+MINSIL       Dur (mS) of min silence between events (Range 2000/srate to 10000).
+INEVWIDTH    (Min) width (in mS) of events in infile (Range 1 -1000)
+OUTEVWIDTH   Width (in mS) of events in outfile (Range 1- 1000)
+SPLICELEN    Dur of splices (mS) cutting events in outfile (Range 1- 1000).
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 4
+USAGE:
+retime retime 4 infile outfile tempo minsil pregain
+
+Find existing (silence-separated) events and output at regular MM.
+
+TEMPO        Tempo of OUTFILE, as a MM (vals > 20 to 6000)
+             OR (for vals below 1.0) a beat duration in secs.
+MINSIL       Dur (mS) of min silence between events (Range 2000/srate to 10000).
+PREGAIN      Gain of input signal (Range >0 to 1).
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 5
+USAGE:
+retime retime 5 infile outfile factor minsil [-sstart -eend -async]
+
+Find existing (silence-separated) events and change speed by factor.
+
+MINSIL       Dur (mS) of min silence between events (Range 2000/srate to 10000).
+FACTOR       Speed-change factor (can vary over time) (Range 0.01 - 100).
+START        Time at which speed changing begins.
+END          Time at which speed changing ends.
+SYNC         Approx time of infile-event which syncs with its copy in output.
+             (Time should be WITHIN the event. Zero implies sync at 1st event).
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 6
+USAGE:
+retime retime 6 infile outfile retempodata tempo offset minsil pregain
+
+Find existing (silence-separated) events: position at specified beats.
+
+RETEMPODATA  File contains position of events in outfile, in BEATS,
+             where events assumed to start at beat zero.
+TEMPO        Tempo of OUTFILE, as a MM (vals > 20 to 1000)
+             OR (for vals below 1.0) a beat duration in secs.
+OFFSET       Time of first sounding event in output file (Range 0 -1000).
+MINSIL       Dur (mS) of min silence between events (Range 2000/srate to 10000).
+PREGAIN      Gain of input signal (Range >0 to 1).
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 7
+USAGE:
+retime retime 7 infile outfile retempodata offset minsil pregain
+
+Find existing (silence-separated) events: position at specified times.
+
+RETEMPODATA  File contains position of events in outfile, in SECONDS,
+             where events assumed to start at time zero.
+MINSIL       Dur (mS) of min silence between events (Range 2000/srate to 10000).
+PREGAIN      Gain of input signal (Range >0 to 1).
+OFFSET       Time of first sounding event in output file (range 0 - 1000).
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 8
+USAGE:
+retime retime 8 infile outfile tempo eventtime cnt repeats minsil
+
+Mark one (silence-separated) event within a soundfile,
+OR the 1st event of "cnt" events (see below),
+and repeat it (or them) at a specified tempo WITHIN the original sound.
+
+TEMPO        Tempo of OUTFILE, as a MM (vals > 20 to 1000)
+             OR (for vals below 1.0) a beat duration in secs.
+EVENTTIME    Time (roughly) of (1st) event to repeat (time must be INSIDE event).
+CNT          Number of (silence-separated) events to capture (Range 1 to 24).
+REPEATS      No. of times to repeat event(s): (NB: 2 repeats of A produces AAA).
+             (Range 1 to 1000).
+MINSIL       Dur (mS) of min silence between events (Range 2000/srate to 10000).
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 9
+USAGE:
+retime retime 9 infile outfile maskdata minsil
+
+Replace by silence (silence-separated) events in specified pattern.
+
+MASKDATA     File with sequence of 0s and 1s: 0 masks event: 1 reveals event.
+             0s and 1s must be separated by space, or on different lines.
+             Pattern of masking is repeated once its end is reached.
+MINSIL       Dur (mS) of min silence between events (Range 2000/srate to 10000).
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 10
+USAGE:
+retime retime 10 infile outfile minsil evening [-mmeter] [-mpregain]
+
+Adjust levels (silence-separated) events, so more equal, or accented.
+
+MINSIL   Dur (mS) of min silence between events (Range 2000/srate to 10000).
+PREGAIN  Gain of input signal (Range >0 to 1).
+METER    Pattern of accented beats.
+         0 : no events emphasized.
+         3 : every 3rd event accented.
+EVENING  Range 0 - 1.
+    With METER 0: the events are evened-out in level by "EVENING".
+    0 has no effect, while 1 tries to make event-levels equal.
+    Intermediate values produce more or less evening-out of levels.
+    With nonzero METER e.g. 3,
+    unaccented beats take level relative specified in "EVENING".
+    e.g. Evening = 0.3 sets unaccented beats to 1/3 level of accented.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 11
+USAGE:
+retime retime 11 infile minsil
+
+MODE 11 Finds durations of shortest and longest (silence-separated) event.
+
+MINSIL   Dur (mS) of min silence between events (Range 2000/srate to 10000).
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 12
+USAGE:
+retime retime 12 infile outfile.txt
+
+Find start of sound in file (1st non-zero sample).
+
+Outfile must have '.txt' extension.
+If file already exists, output is APPENDED to that file.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 13
+USAGE:
+retime retime 13 infile outfile goalpeaktime
+
+Find sound peak and move all data so peak goes to specified time.
+
+GOALPEAKTIME Time to which file peak is moved (Range 0 - 3600)
+(must be greater than the original peaktime).
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+E:\SOUNDS\TMP>retime retime 14
+USAGE:
+retime retime 14 infile outfile goalpeaktime peaktime
+
+Specify peak position, then move data so peak goes to specified time.
+
+GOALPEAKTIME Time to which file peak is moved (Range 0 - 3600).
+             (must be greater than the original peaktime).
+PEAKTIME     Time of existing peak in file.
+
+
+
+
+=================================================================================================
+AE:
+---
+
+
+1  Specify the times of peaks in the input. Output these at a regular pulse in the given tempo
+2  Synchronise specified peaks to specified times at a specified tempo (Also see Mode 2 below. This mode is not available on the Command Line. It is available in Sound Loom.)
+3  Shorten existing events in the input sound. This process shortens the events in the infile. It assumes these events are separated by silences, however short.
+4  Find existing events in the input sound and output them at a regular tempo (MM). This process assumes that these events are separated by silences, however short.
+5  Find events in the input sound and change their speed by a factor. This process assumes these events are separated by silences, however short.
+6  Position events in the input sound at specified beats in the output. This process assumes these events are separated by silences, however short.
+7  Position events in the input sound at specified times in the output. This process assumes these events are separated by silences, however short.
+8  Specify an event within the input sound and repeat it at a specified tempo. This process assumes these events are separated by silences, however short.
+9  Replace some events in the input sound by silence, using a specified pattern of 'deletions'. This process can be used to change the rhythmic pattern of the input events. It assumes these events are separated by silences, however short.
+10  Adjust the levels of events in the input sound, changing the pattern of accents. This process can be used to change the accenting pattern of the input events. It assumes these events are separated by silences, however short.
+11  Finds durations of shortest and longest events in the input sound (not silences). This process assumes these events are separated by silences, however short. Output is to the Console.
+12  Find the start of the sound in the file (the 1st non-zero sample). The starttime of the event is written to a new, or an existing datafile. The latter allows several sounds to be run through the process to the same datafile, accumulating a list of the starttimes of each sound processed. – On the Sound Loom a list of sounds on the Chosen Files can be processed via the Bulk Process mechanism, to produce a single output datafile.
+13  Find the peak in the input sound and move all the data so the peak is at a specified time. This process allows the peak within a soundfile to be placed at a specific time after the file start. To achieve this, the entire sound is moved by inserting or removing silence.
+14  Specify an event in the input sound and move all the data so the event is at a specified time. This process allows the event you specify within the input soundfile to be placed at a specific time after the file start. To achieve this, the entire sound is moved by inserting or removing silence.
+
+
+
