@@ -6,8 +6,10 @@ description: Use the Composer Desktop Project (CDP/CDPR8) CLI tools to synthesiz
 # CDP CLI Skill
 
 ## Paths
-- CDP root: `./CDPR8`
-- CDP binaries: `./CDPR8/_cdp/_cdprogs`
+## Paths
+- **Config**: `musaic.config.json` (managed via `musaic.ps1 setup`)
+- CDP root: Configurable (default `./CDPR8`)
+- CDP binaries: Configurable (default `_cdp/_cdprogs` inside root)
 - Helper scripts (repo): 
     - **CDP Sequencer** (`cdp-sequencer.ps1`): 
       - Renders JSON scores to WAV/MP3.
@@ -44,7 +46,7 @@ Optional:
       - `-MasterGlue`: Optional bus compressor.
       - `-Play` (switch): Auto-play result.
 - **Assets**: `examples/kick.wav` (generated test sample).
-- Outputs: `./output`
+- Outputs: Defaults to `./output` or configured `outputDir` in `musaic.config.json`.
 
 ## Quick Usage
 ### DAW / Sequencer (Recommended)

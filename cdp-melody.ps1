@@ -1,5 +1,5 @@
 param(
-    [string]$OutWav = "output/cdp-melody.wav",
+    [string]$OutWav, # Optional override
     [switch]$ToMp3,
     [switch]$Play
 )
@@ -9,9 +9,27 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 $root = $PSScriptRoot
-$cdpBin = Join-Path $root "CDPR8\\_cdp\\_cdprogs"
+
+# --- Configuration ---
+$configHelper = Join-Path $PSScriptRoot "musaic-config.ps1"
+if (-not (Test-Path $configHelper)) { throw "Missing musaic-config.ps1" }
+. $configHelper
+$cfg = Get-MusaicConfig
+$cdpBin = $cfg.cdpBin
 $synthExe = Join-Path $cdpBin "synth.exe"
 $paplayExe = Join-Path $cdpBin "paplay.exe"
+
+# Resolve ffmpeg from config
+$ffmpeg = $cfg.ffmpegPath
+function Run-Ffmpeg {
+    param($ArgsList)
+    if ($script:ffmpeg -eq "ffmpeg") {
+        & "ffmpeg" @ArgsList
+    }
+    else {
+        & $script:ffmpeg @ArgsList
+    }
+}
 
 if (-not (Test-Path $synthExe)) {
     throw "Missing synth.exe at $synthExe (is CDPR8 extracted beside this script?)"
@@ -19,6 +37,14 @@ if (-not (Test-Path $synthExe)) {
 
 function Test-Command {
     param([string]$Name)
+    if ($Name -eq "ffmpeg") {
+        if ($script:ffmpeg -eq "ffmpeg") {
+            try { Get-Command "ffmpeg" -ErrorAction Stop | Out-Null; return $true } catch { return $false }
+        }
+        else {
+            return (Test-Path $script:ffmpeg)
+        }
+    }
     try { Get-Command $Name -ErrorAction Stop | Out-Null; return $true } catch { return $false }
 }
 
@@ -31,28 +57,33 @@ $modeMap = @{
 
 # Simple motif; tweak durations/amps as desired.
 $notes = @(
-    [pscustomobject]@{ Name="A4";   Waveform="sine";   Freq=440;    Dur=0.5;  Amp=0.75 },
-    [pscustomobject]@{ Name="C5";   Waveform="saw";    Freq=523.25; Dur=0.6;  Amp=0.70 },
-    [pscustomobject]@{ Name="E5";   Waveform="square"; Freq=659.25; Dur=0.55; Amp=0.60 },
-    [pscustomobject]@{ Name="A5";   Waveform="sine";   Freq=880;    Dur=0.75; Amp=0.80 },
-    [pscustomobject]@{ Name="E5";   Waveform="ramp";   Freq=659.25; Dur=0.45; Amp=0.55 },
-    [pscustomobject]@{ Name="C5";   Waveform="saw";    Freq=523.25; Dur=0.65; Amp=0.65 },
-    [pscustomobject]@{ Name="A4";   Waveform="sine";   Freq=440;    Dur=0.8;  Amp=0.75 }
+    [pscustomobject]@{ Name = "A4"; Waveform = "sine"; Freq = 440; Dur = 0.5; Amp = 0.75 },
+    [pscustomobject]@{ Name = "C5"; Waveform = "saw"; Freq = 523.25; Dur = 0.6; Amp = 0.70 },
+    [pscustomobject]@{ Name = "E5"; Waveform = "square"; Freq = 659.25; Dur = 0.55; Amp = 0.60 },
+    [pscustomobject]@{ Name = "A5"; Waveform = "sine"; Freq = 880; Dur = 0.75; Amp = 0.80 },
+    [pscustomobject]@{ Name = "E5"; Waveform = "ramp"; Freq = 659.25; Dur = 0.45; Amp = 0.55 },
+    [pscustomobject]@{ Name = "C5"; Waveform = "saw"; Freq = 523.25; Dur = 0.65; Amp = 0.65 },
+    [pscustomobject]@{ Name = "A4"; Waveform = "sine"; Freq = 440; Dur = 0.8; Amp = 0.75 }
 )
 
 $sr = 48000
 $ch = 2
 
-if (-not [System.IO.Path]::IsPathRooted($OutWav)) {
+if ([string]::IsNullOrWhiteSpace($OutWav)) {
+    $OutWav = Join-Path $cfg.outputDir "cdp-melody.wav"
+}
+elseif (-not [System.IO.Path]::IsPathRooted($OutWav)) {
     $OutWav = Join-Path $root $OutWav
 }
+
 $outDir = Split-Path $OutWav
 if (-not (Test-Path $outDir)) {
     New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 }
 
 $outMp3 = [System.IO.Path]::ChangeExtension($OutWav, ".mp3")
-$tmpDir = Join-Path $root "output\\melody_tmp"
+
+$tmpDir = Join-Path $cfg.outputDir "melody_tmp"
 if (Test-Path $tmpDir) { Remove-Item -Recurse -Force $tmpDir }
 New-Item -ItemType Directory -Force -Path $tmpDir | Out-Null
 
@@ -96,19 +127,29 @@ $segmentPaths | ForEach-Object { "file '$($_)'" } | Set-Content -Path $listFile 
 
 if (Test-Path $OutWav) { Remove-Item -Force -Path $OutWav }
 Write-Host "Concatenating segments -> $OutWav"
-& ffmpeg -y -f concat -safe 0 -i $listFile -c copy $OutWav | Out-Null
-if ($LASTEXITCODE -ne 0) {
-    throw "ffmpeg concat failed with exit code $LASTEXITCODE"
+
+$concatArgs = @("-y", "-f", "concat", "-safe", "0", "-i", $listFile, "-c", "copy", $OutWav)
+if ($script:ffmpeg -eq "ffmpeg") {
+    $p = Start-Process "ffmpeg" -ArgumentList $concatArgs -NoNewWindow -Wait -PassThru
+}
+else {
+    $p = Start-Process $script:ffmpeg -ArgumentList $concatArgs -NoNewWindow -Wait -PassThru
+}
+
+if ($p.ExitCode -ne 0) {
+    throw "ffmpeg concat failed with exit code $($p.ExitCode)"
 }
 
 $madeMp3 = $false
 if ($ToMp3 -and (Test-Command ffmpeg)) {
     Write-Host "Encoding MP3 -> $outMp3"
-    & ffmpeg -y -i $OutWav -codec:a libmp3lame -qscale:a 2 $outMp3 | Out-Null
+    $mp3Args = @("-y", "-i", $OutWav, "-codec:a", "libmp3lame", "-qscale:a", "2", $outMp3)
+    Run-Ffmpeg -ArgsList $mp3Args | Out-Null
     if ($LASTEXITCODE -eq 0 -and (Test-Path $outMp3)) {
         $madeMp3 = $true
         Write-Host "MP3 ready: $outMp3"
-    } else {
+    }
+    else {
         Write-Warning "ffmpeg failed to encode MP3."
     }
 }
@@ -120,10 +161,12 @@ if ($Play) {
     if (Test-Path $paplayExe) {
         Write-Host "Playing via paplay..."
         & $paplayExe $playTarget
-    } elseif (Test-Command ffplay) {
+    }
+    elseif (Test-Command ffplay) {
         Write-Host "Playing via ffplay..."
         & ffplay -nodisp -autoexit $playTarget
-    } else {
+    }
+    else {
         Write-Warning "No player found (paplay/ffplay). Use your preferred player to audition: $playTarget"
     }
 }

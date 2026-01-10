@@ -1,0 +1,5 @@
+{
+    "cdpRoot": "./CDPR8",
+    "outputDir": "./output",
+    "ffmpegPath": "ffmpeg"
+}

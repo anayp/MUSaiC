@@ -16,7 +16,15 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$cdpBin = "f:\CDP\CDPR8\_cdp\_cdprogs"
+
+# --- Configuration ---
+$configHelper = Join-Path $PSScriptRoot "musaic-config.ps1"
+if (-not (Test-Path $configHelper)) { throw "Missing musaic-config.ps1" }
+. $configHelper
+$cfg = Get-MusaicConfig
+$cdpBin = $cfg.cdpBin
+$ffmpeg = $cfg.ffmpegPath
+
 $sndInfo = Join-Path $cdpBin "sndinfo.exe"
 $pitchExe = Join-Path $cdpBin "pitch.exe"
 $viewExe = Join-Path $cdpBin "view.exe"
@@ -26,7 +34,7 @@ $InputFile = (Resolve-Path $InputFile).Path
 
 function Get-Loudness {
     # ffmpeg volumedetect
-    $p = Start-Process ffmpeg -ArgumentList "-i", $InputFile, "-af", "volumedetect", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "vol_err.txt"
+    $p = Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", "volumedetect", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "vol_err.txt"
     $err = Get-Content "vol_err.txt"
     $mean = ($err | Select-String "mean_volume") -replace ".*mean_volume:\s*", "" -replace " dB", ""
     $max = ($err | Select-String "max_volume") -replace ".*max_volume:\s*", "" -replace " dB", ""
@@ -40,7 +48,7 @@ function Get-Loudness {
 function Get-Lufs {
     # ffmpeg ebur128=peak=none
     # output: "I:         -14.5 LUFS"
-    $p = Start-Process ffmpeg -ArgumentList "-i", $InputFile, "-af", "ebur128=peak=none", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "lufs_err.txt"
+    $p = Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", "ebur128=peak=none", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "lufs_err.txt"
     $err = Get-Content "lufs_err.txt"
     
     # scan for "I:" followed by number
@@ -62,7 +70,7 @@ function Get-Onsets {
     # silencedetect=noise=-30dB:d=0.05
     $filter = "silencedetect=noise=$($OnsetThresholdDb)dB:d=$($OnsetMinDur)"
     
-    $p = Start-Process ffmpeg -ArgumentList "-i", $InputFile, "-af", $filter, "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "onset_err.txt"
+    $p = Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", $filter, "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "onset_err.txt"
     $err = Get-Content "onset_err.txt"
     
     # Parse "silence_end: 12.345"
@@ -80,7 +88,7 @@ function Get-Onsets {
 
 function Get-Beats {
     # ffmpeg bpm
-    $p = Start-Process ffmpeg -ArgumentList "-i", $InputFile, "-af", "bpm", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "bpm_err.txt"
+    $p = Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", "bpm", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "bpm_err.txt"
     $err = Get-Content "bpm_err.txt"
     $bpmLines = $err | Select-String "BPM"
     
@@ -237,11 +245,12 @@ $finalData = @{
 
 # --- Output ---
 $baseDetail = [System.IO.Path]::GetFileNameWithoutExtension($InputFile)
-$outDir = Join-Path $PSScriptRoot "output\analysis"
-if (-not (Test-Path $outDir)) { New-Item -ItemType Directory -Force -Path $outDir | Out-Null }
+# Default output directory from config
+$defaultOut = Join-Path $cfg.outputDir "analysis"
+if (-not (Test-Path $defaultOut)) { New-Item -ItemType Directory -Force -Path $defaultOut | Out-Null }
 
-$jsonPath = Join-Path $outDir "$baseDetail.json"
-$txtPath = Join-Path $outDir "$baseDetail.txt"
+$jsonPath = Join-Path $defaultOut "$baseDetail.json"
+$txtPath = Join-Path $defaultOut "$baseDetail.txt"
 
 $finalData | ConvertTo-Json -Depth 3 | Out-File -FilePath $jsonPath -Encoding UTF8
 Write-Host "JSON: $jsonPath"

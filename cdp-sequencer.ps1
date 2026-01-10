@@ -13,20 +13,33 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-# --- Dependency Checks ---
-if (-not (Get-Command "ffmpeg" -ErrorAction SilentlyContinue)) {
-    throw "ffmpeg is not in your PATH. Please install ffmpeg."
-}
-
 try {
     # --- Configuration ---
-    $cdpBin = Join-Path $PSScriptRoot "CDPR8\\_cdp\\_cdprogs"
+    $configHelper = Join-Path $PSScriptRoot "musaic-config.ps1"
+    if (-not (Test-Path $configHelper)) { throw "Missing musaic-config.ps1" }
+    . $configHelper
+    $cfg = Get-MusaicConfig
+
+    # Validation of ffmpeg
+    $ffmpeg = $cfg.ffmpegPath
+    if ($ffmpeg -eq "ffmpeg") {
+        if (-not (Get-Command "ffmpeg" -ErrorAction SilentlyContinue)) {
+            throw "ffmpeg is not in your PATH. Please install ffmpeg or configure it in musaic.config.json."
+        }
+    }
+    else {
+        if (-not (Test-Path $ffmpeg)) {
+            throw "Configured ffmpeg not found at: $ffmpeg"
+        }
+    }
+
+    $cdpBin = $cfg.cdpBin
     $synthExe = Join-Path $cdpBin "synth.exe"
     $reverbExe = Join-Path $cdpBin "reverb.exe"
     $modifyExe = Join-Path $cdpBin "modify.exe"
 
-    $workDir = Join-Path $PSScriptRoot "output\\tmp_sequencer"
-    $outDir = Join-Path $PSScriptRoot "output"
+    $workDir = Join-Path $cfg.outputDir "tmp_sequencer"
+    $outDir = $cfg.outputDir
 
     if (-not (Test-Path $synthExe)) { throw "Missing synth.exe at $synthExe" }
     # reverb and modify checks are now lazy in Apply-Effect
@@ -242,13 +255,13 @@ try {
                     $segFx = Join-Path $WorkDir "track_${TrackName}_seg${idx}_fx.wav"
 
                     $cutArgs = @("-y", "-i", $InputFile, "-ss", $startSec, "-t", $segDur, $segFile)
-                    $pCut = Start-Process -FilePath "ffmpeg" -ArgumentList $cutArgs -NoNewWindow -PassThru -Wait
+                    $pCut = Start-Process -FilePath $ffmpeg -ArgumentList $cutArgs -NoNewWindow -PassThru -Wait
                     if ($pCut.ExitCode -ne 0) { throw "Tremolo segment cut failed for $TrackName" }
 
                     $rateStr = ([double]$entryRate).ToString("0.000", [System.Globalization.CultureInfo]::InvariantCulture)
                     $depthStr = ([double]$depth).ToString("0.000", [System.Globalization.CultureInfo]::InvariantCulture)
                     $fxArgs = @("-y", "-i", $segFile, "-filter:a", "tremolo=f=${rateStr}:d=${depthStr}", $segFx)
-                    $pFx = Start-Process -FilePath "ffmpeg" -ArgumentList $fxArgs -NoNewWindow -PassThru -Wait
+                    $pFx = Start-Process -FilePath $ffmpeg -ArgumentList $fxArgs -NoNewWindow -PassThru -Wait
                     if ($pFx.ExitCode -ne 0) { throw "Tremolo effect failed for $TrackName" }
 
                     $segFiles += $segFile
@@ -267,7 +280,7 @@ try {
                     }
                     Set-Content -Path $listFile -Value $listLines -Encoding ascii
                     $concatArgs = @("-y", "-f", "concat", "-safe", "0", "-i", $listFile, "-c:a", "pcm_s16le", $OutputFile)
-                    $pCat = Start-Process -FilePath "ffmpeg" -ArgumentList $concatArgs -NoNewWindow -PassThru -Wait
+                    $pCat = Start-Process -FilePath $ffmpeg -ArgumentList $concatArgs -NoNewWindow -PassThru -Wait
                     if ($pCat.ExitCode -ne 0) { throw "Tremolo concat failed for $TrackName" }
                 }
 
@@ -285,7 +298,7 @@ try {
                 $rateStr = ([double]$rateHz).ToString("0.000", [System.Globalization.CultureInfo]::InvariantCulture)
                 $depthStr = ([double]$depth).ToString("0.000", [System.Globalization.CultureInfo]::InvariantCulture)
                 $args = @("-y", "-i", $InputFile, "-filter:a", "tremolo=f=${rateStr}:d=${depthStr}", $OutputFile)
-                $p = Start-Process -FilePath "ffmpeg" -ArgumentList $args -NoNewWindow -PassThru -Wait
+                $p = Start-Process -FilePath $ffmpeg -ArgumentList $args -NoNewWindow -PassThru -Wait
                 if ($p.ExitCode -ne 0) { throw "Effect tremolo failed with code $($p.ExitCode)" }
             }
         }
@@ -302,7 +315,7 @@ try {
         
         try {
             # ffmpeg returns 1 if no output file, ignore error
-            $p = & "ffmpeg" "-i" $File 2> $probeFile
+            $p = & $ffmpeg "-i" $File 2> $probeFile
         }
         catch {}
         
@@ -321,7 +334,7 @@ try {
         $probeFile = Join-Path $workDir "probe_duration.txt"
 
         try {
-            & "ffmpeg" "-i" $File 2> $probeFile | Out-Null
+            & $ffmpeg "-i" $File 2> $probeFile | Out-Null
         }
         catch {}
 
@@ -378,7 +391,7 @@ try {
         
         $argsMix = @("-y", "-i", $InputFile, "-filter_complex", $filterStr, $mixOut)
         
-        $pMix = Start-Process -FilePath "ffmpeg" -ArgumentList $argsMix -NoNewWindow -PassThru -Wait
+        $pMix = Start-Process -FilePath $ffmpeg -ArgumentList $argsMix -NoNewWindow -PassThru -Wait
         if ($pMix.ExitCode -ne 0) {
             Write-Warning "Mixer failed for track $TrackName"
             return $InputFile
@@ -449,7 +462,7 @@ try {
                 $ffmpegArgs += "-filter_complex", $filterComplex, "-map", "[out]", $trackStem
             
                 # Write-Host "FFmpeg args: $ffmpegArgs"
-                $p = Start-Process -FilePath "ffmpeg" -ArgumentList $ffmpegArgs -NoNewWindow -PassThru -Wait
+                $p = Start-Process -FilePath $ffmpeg -ArgumentList $ffmpegArgs -NoNewWindow -PassThru -Wait
                 if ($p.ExitCode -ne 0) { 
                     Write-Warning "Failed to render track $($track.name)"
                 }
@@ -546,7 +559,7 @@ try {
                     if ($null -ne $dur) { $ffArgs += "-t", $dur }
                     $ffArgs += $tempSnippet
                      
-                    $p = Start-Process -FilePath "ffmpeg" -ArgumentList $ffArgs -NoNewWindow -PassThru -Wait
+                    $p = Start-Process -FilePath $ffmpeg -ArgumentList $ffArgs -NoNewWindow -PassThru -Wait
                     if ($p.ExitCode -ne 0) {
                         Write-Warning "Failed to extract snippet for looping event $i in $($track.name)"
                         continue
@@ -580,7 +593,7 @@ try {
                     
                     $loopArgs += $snippetFile
                      
-                    $p = Start-Process -FilePath "ffmpeg" -ArgumentList $loopArgs -NoNewWindow -PassThru -Wait
+                    $p = Start-Process -FilePath $ffmpeg -ArgumentList $loopArgs -NoNewWindow -PassThru -Wait
                     if ($p.ExitCode -ne 0) {
                         Write-Warning "Failed to loop event $i in $($track.name)"
                         continue
@@ -594,7 +607,7 @@ try {
                     if ($null -ne $dur) { $ffArgs += "-t", $dur }
                     $ffArgs += $snippetFile
                 
-                    $p = Start-Process -FilePath "ffmpeg" -ArgumentList $ffArgs -NoNewWindow -PassThru -Wait
+                    $p = Start-Process -FilePath $ffmpeg -ArgumentList $ffArgs -NoNewWindow -PassThru -Wait
                 }
 
 
@@ -625,7 +638,7 @@ try {
                 $ffmpegArgs += "-filter_complex", $filterComplex, "-map", "[out]", $trackStem
             
                 # Write-Host "FFmpeg args: $ffmpegArgs"
-                $p = Start-Process -FilePath "ffmpeg" -ArgumentList $ffmpegArgs -NoNewWindow -PassThru -Wait
+                $p = Start-Process -FilePath $ffmpeg -ArgumentList $ffmpegArgs -NoNewWindow -PassThru -Wait
                 if ($p.ExitCode -eq 0) {
                     # Sprint 7: Cleanup Temp for Samples
                     if (-not $KeepTemp) {
@@ -683,7 +696,7 @@ try {
         $ffmpegArgs += "-filter_complex", $filterComplex, "-map", "[out]", $OutWav
     
     
-        $p = Start-Process -FilePath "ffmpeg" -ArgumentList $ffmpegArgs -NoNewWindow -PassThru -Wait
+        $p = Start-Process -FilePath $ffmpeg -ArgumentList $ffmpegArgs -NoNewWindow -PassThru -Wait
         if ($p.ExitCode -ne 0) { throw "FFmpeg master mix failed." }
         
         # --- Mastering Pass ---
@@ -731,7 +744,7 @@ try {
         # Optional MP3 Conversion
         if ($OutMp3) {
             $mp3Args = @("-y", "-i", $OutWav, $OutMp3)
-            $p = Start-Process -FilePath "ffmpeg" -ArgumentList $mp3Args -NoNewWindow -PassThru -Wait
+            $p = Start-Process -FilePath $ffmpeg -ArgumentList $mp3Args -NoNewWindow -PassThru -Wait
             if ($p.ExitCode -ne 0) { throw "FFmpeg MP3 conversion failed." }
             Write-Host "Converted to $OutMp3"
         }

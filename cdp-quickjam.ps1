@@ -10,9 +10,16 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 $root = $PSScriptRoot
-$cdpBin = Join-Path $root "CDPR8\\_cdp\\_cdprogs"
+
+# --- Configuration ---
+$configHelper = Join-Path $PSScriptRoot "musaic-config.ps1"
+if (-not (Test-Path $configHelper)) { throw "Missing musaic-config.ps1" }
+. $configHelper
+$cfg = Get-MusaicConfig
+$cdpBin = $cfg.cdpBin
 $synthExe = Join-Path $cdpBin "synth.exe"
 $paplayExe = Join-Path $cdpBin "paplay.exe"
+$ffmpeg = $cfg.ffmpegPath
 
 if (-not (Test-Path $synthExe)) {
     throw "Missing synth.exe at $synthExe (is CDPR8 extracted beside this script?)"
@@ -20,38 +27,46 @@ if (-not (Test-Path $synthExe)) {
 
 function Test-Command {
     param([string]$Name)
+    if ($Name -eq "ffmpeg") {
+        if ($script:ffmpeg -eq "ffmpeg") {
+            try { Get-Command "ffmpeg" -ErrorAction Stop | Out-Null; return $true } catch { return $false }
+        }
+        else {
+            return (Test-Path $script:ffmpeg)
+        }
+    }
     try { Get-Command $Name -ErrorAction Stop | Out-Null; return $true } catch { return $false }
 }
 
 $presets = @(
     [pscustomobject]@{
-        Name = "sine440"
-        Waveform = "sine"
-        Freq = 440
-        Amp = 0.8
-        Dur = 2.5
-        SR = 48000
-        Ch = 2
+        Name        = "sine440"
+        Waveform    = "sine"
+        Freq        = 440
+        Amp         = 0.8
+        Dur         = 2.5
+        SR          = 48000
+        Ch          = 2
         Description = "Warm sine at concert A"
     },
     [pscustomobject]@{
-        Name = "saw220"
-        Waveform = "saw"
-        Freq = 220
-        Amp = 0.7
-        Dur = 2.5
-        SR = 48000
-        Ch = 2
+        Name        = "saw220"
+        Waveform    = "saw"
+        Freq        = 220
+        Amp         = 0.7
+        Dur         = 2.5
+        SR          = 48000
+        Ch          = 2
         Description = "Bright saw at A2"
     },
     [pscustomobject]@{
-        Name = "square330"
-        Waveform = "square"
-        Freq = 330
-        Amp = 0.6
-        Dur = 2.0
-        SR = 48000
-        Ch = 2
+        Name        = "square330"
+        Waveform    = "square"
+        Freq        = 330
+        Amp         = 0.6
+        Dur         = 2.0
+        SR          = 48000
+        Ch          = 2
         Description = "Hollow square at E4"
     }
 )
@@ -109,7 +124,7 @@ $dur = [double]$preset.Dur
 $freq = [double]$preset.Freq
 $amp = [double]$preset.Amp
 
-$outDir = Join-Path $root "output"
+$outDir = $cfg.outputDir
 if (-not (Test-Path $outDir)) {
     New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 }
@@ -142,11 +157,17 @@ $madeMp3 = $false
 if ($ToMp3 -and (Test-Command ffmpeg)) {
     $ffArgs = @("-y", "-i", $wavPath, "-codec:a", "libmp3lame", "-qscale:a", "2", $mp3Path)
     Write-Host "Encoding MP3 with ffmpeg..."
-    & ffmpeg @ffArgs | Out-Null
+    if ($ffmpeg -eq "ffmpeg") {
+        & ffmpeg @ffArgs | Out-Null
+    }
+    else {
+        & $ffmpeg @ffArgs | Out-Null
+    }
     if ($LASTEXITCODE -eq 0 -and (Test-Path $mp3Path)) {
         $madeMp3 = $true
         Write-Host "Wrote MP3: $mp3Path"
-    } else {
+    }
+    else {
         Write-Warning "ffmpeg failed to encode MP3; WAV is still available."
     }
 }
@@ -158,10 +179,12 @@ if ($Play) {
     if (Test-Path $paplayExe) {
         Write-Host "Playing via paplay..."
         & $paplayExe $playTarget
-    } elseif (Test-Command ffplay) {
+    }
+    elseif (Test-Command ffplay) {
         Write-Host "Playing via ffplay..."
         & ffplay -nodisp -autoexit $playTarget
-    } else {
+    }
+    else {
         Write-Warning "No player found (paplay/ffplay). Use your preferred player to audition: $playTarget"
     }
 }

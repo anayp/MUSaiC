@@ -3,6 +3,24 @@
 ## Overview
 MUSaiC is a CLI-first, automation-driven DAW system that composes, renders, and analyzes music through a structured project model. It combines CDP (Composer's Desktop Project) DSP tools with a sequencing/rendering engine, plus optional VST hosting for instrument and FX chains. The goal is to let a CLI workflow author a full song iteratively, then render, refine, and audit the output with analysis data.
 
+## Setup
+To initialize the environment and configuration:
+
+```powershell
+./musaic.ps1 setup -CdpRoot ./CDPR8
+```
+
+To verify the installation:
+```powershell
+./musaic.ps1 doctor
+```
+
+## Quick Start
+Generated score:
+```powershell
+./cdp-sequencer.ps1 -ScorePath examples/mixer_demo.json -OutWav output/mixer_demo.wav
+```
+
 ## Vision
 Enable an interactive workflow where a user can describe a musical intent (form, tempo, key, instrumentation, FX) and MUSaiC builds a renderable session that can be refined over time.
 
@@ -23,7 +41,7 @@ Use arpeggios and pads, Iris for instruments, BreakTweaker preset 3 for beats."
 ## MVP Capabilities (Today)
 - JSON-driven sequencing for synth and sample tracks.
 - Beat or second time units.
-- Offline mixdown with ffmpeg.
+- Configurable output directory (defaults to `./output`, set via `musaic.config.json`).
 - Per-track mixer controls (gainDb, pan, mute). Pan uses parser-safe arithmetic.
 - **Synth Amp**: Folded into mixer gain (amp -> dB) to avoid binary crashes.
 - Sample looping for clip events; Auto-cleanup of temp files (`-KeepTemp` to override).

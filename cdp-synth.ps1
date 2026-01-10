@@ -6,7 +6,12 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-$cdpBin = Join-Path $PSScriptRoot "CDPR8\\_cdp\\_cdprogs"
+# --- Configuration ---
+$configHelper = Join-Path $PSScriptRoot "musaic-config.ps1"
+if (-not (Test-Path $configHelper)) { throw "Missing musaic-config.ps1" }
+. $configHelper
+$cfg = Get-MusaicConfig
+$cdpBin = $cfg.cdpBin
 $synthExe = Join-Path $cdpBin "synth.exe"
 
 if (-not (Test-Path $synthExe)) {
@@ -23,7 +28,8 @@ $config = ConvertFrom-Json -InputObject $configJson
 if ($config -is [System.Array]) {
     if ($config.Count -eq 1) {
         $config = $config[0]
-    } else {
+    }
+    else {
         throw "Config JSON must contain a single object, not $($config.Count) items."
     }
 }
@@ -34,7 +40,8 @@ if ($null -eq $config) {
 $configKeys = $config.PSObject.Properties.Name
 if ($configKeys) {
     Write-Host "Loaded config keys: $($configKeys -join ', ')"
-} else {
+}
+else {
     Write-Host "Loaded config has no keys; falling back to defaults."
 }
 
@@ -92,11 +99,18 @@ if ($amplitude -eq $null -or $amplitude -eq "") { $amplitude = 1 } else { $ampli
 
 $output = Get-ConfigValue -Obj $config -Name "output"
 if ([string]::IsNullOrWhiteSpace($output)) {
-    $output = "output\\cdp-$waveform.wav"
+    $output = Join-Path $cfg.outputDir "cdp-$waveform.wav"
 }
-if (-not [System.IO.Path]::IsPathRooted($output)) {
+elseif (-not [System.IO.Path]::IsPathRooted($output)) {
+    # If explicitly relative (./...), resolve from root. 
+    # If just filename, maybe put in output? The instructions say: "If user provides a relative output path, resolve it relative to repo root."
+    # Wait, instructions: "If user provides an explicit absolute output path, respect it. If user provides a relative output path, resolve it relative to repo root. If script auto-generates a path, place it under cfg.outputDir."
+    
+    # So if $output is set in JSON ("output": "foo.wav"), is that explicit relative? Yes.
     $output = Join-Path $PSScriptRoot $output
 }
+
+$output = [System.IO.Path]::GetFullPath($output)
 $outDir = Split-Path $output
 if (-not (Test-Path $outDir)) {
     New-Item -ItemType Directory -Force -Path $outDir | Out-Null

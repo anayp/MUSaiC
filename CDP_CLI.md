@@ -150,8 +150,8 @@ Standardized JSON analysis including BPM, pitch estimate, loudness, and duration
 ```powershell
 .\cdp-analyze.ps1 -InputFile "loop.wav"
 # Outputs:
-#   output/analysis/loop.json (analysis + warnings)
-#   output/analysis/loop.txt (human-readable summary)
+#   output/analysis/loop.json (or configured outputDir/analysis/_...)
+#   output/analysis/loop.txt
 ```
 JSON fields:
 - `analysis.tempo_bpm`
@@ -194,5 +194,7 @@ Manage global project context.
 - **cdp-meta.ps1**: CLI for managing `meta.json` files.
 
 ## Requirements
-- CDP `synth.exe`, `reverb.exe`, `modify.exe` in local `CDPR8\_cdp\_cdprogs`.
-- `ffmpeg` in PATH.
+## Requirements
+- Run `.\musaic.ps1 setup` to configure paths.
+- CDP `synth.exe`, `reverb.exe`, `modify.exe` (configured via `musaic.config.json`).
+- `ffmpeg` (configured via `musaic.config.json` or PATH).

@@ -43,7 +43,13 @@ if ($ConfigPath) {
     }
 }
                     
-$cdpBin = "f:\CDP\CDPR8\_cdp\_cdprogs"
+# --- Configuration ---
+$configHelper = Join-Path $PSScriptRoot "musaic-config.ps1"
+if (-not (Test-Path $configHelper)) { throw "Missing musaic-config.ps1" }
+. $configHelper
+$sysCfg = Get-MusaicConfig
+$cdpBin = $sysCfg.cdpBin
+
 $modifyExe = Join-Path $cdpBin "modify.exe"
 $pvocExe = Join-Path $cdpBin "pvoc.exe"
 
