@@ -2,6 +2,9 @@ output/*.wav
 output/*.mp3
 output/meta_*.json
 output/tmp_sequencer
+output/melody_tmp/
+sequencer_transcript.txt
+strict_debug*.txt
 *.log
 *.zip
 .vscode/

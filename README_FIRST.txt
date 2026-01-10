@@ -2,7 +2,7 @@ INSTALLING CDP (Composers Desktop Project) for PC
 ==================================================
 
 • Copy the folder CDPR8 to a location of your choice.
-  The default is C:\CDPR8
+  The default is ./CDPR8
   DO NOT INSTALL IN "Program Files" OR ANY OTHER FOLDER WITH SPACES IN THE NAME
 
 • Two User Interfaces are supplied: SoundLoom and Soundshaper.

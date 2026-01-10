@@ -1,7 +1,0 @@
-file 'F:\CDP\output\\melody_tmp\seg-01-A4.wav'
-file 'F:\CDP\output\\melody_tmp\seg-02-C5.wav'
-file 'F:\CDP\output\\melody_tmp\seg-03-E5.wav'
-file 'F:\CDP\output\\melody_tmp\seg-04-A5.wav'
-file 'F:\CDP\output\\melody_tmp\seg-05-E5.wav'
-file 'F:\CDP\output\\melody_tmp\seg-06-C5.wav'
-file 'F:\CDP\output\\melody_tmp\seg-07-A4.wav'

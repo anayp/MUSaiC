@@ -1,5 +1,0 @@
-Loading score: examples\sample_beat_test.json
-Target Output: F:\CDP\output\SampleBeat-master.wav
-Timing Mode: beats (Tempo: 120 BPM)
-Processing Track: Kick (sample)
-Processing Sample Track: Kick
