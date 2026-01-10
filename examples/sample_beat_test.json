@@ -1,0 +1,25 @@
+{
+    "project": "SampleBeat",
+    "tempo": 120,
+    "timeUnits": "beats",
+    "tracks": [
+        {
+            "name": "Kick",
+            "type": "sample",
+            "source": "examples/kick.wav",
+            "amp": 0.5,
+            "events": [
+                {
+                    "time": 0.0,
+                    "dur": 0.25,
+                    "loop": true,
+                    "loopCount": 4
+                },
+                {
+                    "time": 1.0,
+                    "dur": 1.0
+                }
+            ]
+        }
+    ]
+}

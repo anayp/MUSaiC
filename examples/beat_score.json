@@ -1,0 +1,63 @@
+{
+    "project": "BeatDemo",
+    "tempo": 120,
+    "timeUnits": "beats",
+    "tracks": [
+        {
+            "name": "KickOnBeats",
+            "type": "synth",
+            "waveform": "square",
+            "amp": 0.8,
+            "events": [
+                {
+                    "time": 0.0,
+                    "dur": 0.25,
+                    "pitch": 36
+                },
+                {
+                    "time": 1.0,
+                    "dur": 0.25,
+                    "pitch": 36
+                },
+                {
+                    "time": 2.0,
+                    "dur": 0.25,
+                    "pitch": 36
+                },
+                {
+                    "time": 3.0,
+                    "dur": 0.25,
+                    "pitch": 36
+                }
+            ]
+        },
+        {
+            "name": "OffBeatHat",
+            "type": "synth",
+            "waveform": "saw",
+            "amp": 0.4,
+            "events": [
+                {
+                    "time": 0.5,
+                    "dur": 0.1,
+                    "pitch": 80
+                },
+                {
+                    "time": 1.5,
+                    "dur": 0.1,
+                    "pitch": 80
+                },
+                {
+                    "time": 2.5,
+                    "dur": 0.1,
+                    "pitch": 80
+                },
+                {
+                    "time": 3.5,
+                    "dur": 0.1,
+                    "pitch": 80
+                }
+            ]
+        }
+    ]
+}

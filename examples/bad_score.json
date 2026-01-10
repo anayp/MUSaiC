@@ -1,0 +1,14 @@
+{
+    "project": "BadScore",
+    "tracks": [
+        {
+            "name": "BrokenTrack",
+            "type": "synth",
+            "events": [
+                {
+                    "time": 0
+                }
+            ]
+        }
+    ]
+}

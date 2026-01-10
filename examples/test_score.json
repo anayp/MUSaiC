@@ -1,0 +1,26 @@
+{
+    "project": "Test Score",
+    "tempo": 120,
+    "tracks": [
+        {
+            "name": "Melody",
+            "type": "synth",
+            "waveform": "saw",
+            "amp": 0.5,
+            "events": [
+                { "time": 0.0, "dur": 0.5, "pitch": 60 },
+                { "time": 0.5, "dur": 0.5, "pitch": 62 },
+                { "time": 1.0, "dur": 1.0, "pitch": 64 }
+            ]
+        },
+        {
+            "name": "Bass",
+            "type": "synth",
+            "waveform": "square",
+            "amp": 0.6,
+            "events": [
+                { "time": 0.0, "dur": 2.0, "pitch": 48 }
+            ]
+        }
+    ]
+}

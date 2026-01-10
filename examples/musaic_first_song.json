@@ -1,0 +1,66 @@
+{
+  "project": "MUSaiC_First_Song",
+  "tempo": 140,
+  "timeUnits": "beats",
+  "tracks": [
+    {
+      "name": "Arp",
+      "type": "synth",
+      "waveform": "saw",
+      "amp": 0.35,
+      "events": [
+        { "time": 0.0, "dur": 0.5, "pitch": 62 },
+        { "time": 0.5, "dur": 0.5, "pitch": 64 },
+        { "time": 1.0, "dur": 0.5, "pitch": 66 },
+        { "time": 1.5, "dur": 0.5, "pitch": 69 },
+        { "time": 2.0, "dur": 0.5, "pitch": 71 },
+        { "time": 2.5, "dur": 0.5, "pitch": 69 },
+        { "time": 3.0, "dur": 0.5, "pitch": 66 },
+        { "time": 3.5, "dur": 0.5, "pitch": 64 },
+        { "time": 4.0, "dur": 0.5, "pitch": 62 },
+        { "time": 4.5, "dur": 0.5, "pitch": 64 },
+        { "time": 5.0, "dur": 0.5, "pitch": 66 },
+        { "time": 5.5, "dur": 0.5, "pitch": 69 },
+        { "time": 6.0, "dur": 0.5, "pitch": 71 },
+        { "time": 6.5, "dur": 0.5, "pitch": 69 },
+        { "time": 7.0, "dur": 0.5, "pitch": 66 },
+        { "time": 7.5, "dur": 0.5, "pitch": 64 }
+      ]
+    },
+    {
+      "name": "Pad",
+      "type": "synth",
+      "waveform": "ramp",
+      "amp": 0.22,
+      "events": [
+        { "time": 0.0, "dur": 4.0, "pitch": 62 },
+        { "time": 4.0, "dur": 4.0, "pitch": 64 }
+      ]
+    },
+    {
+      "name": "Bass",
+      "type": "synth",
+      "waveform": "square",
+      "amp": 0.4,
+      "events": [
+        { "time": 0.0, "dur": 1.0, "pitch": 38 },
+        { "time": 1.0, "dur": 1.0, "pitch": 38 },
+        { "time": 2.0, "dur": 1.0, "pitch": 38 },
+        { "time": 3.0, "dur": 1.0, "pitch": 38 },
+        { "time": 4.0, "dur": 1.0, "pitch": 40 },
+        { "time": 5.0, "dur": 1.0, "pitch": 40 },
+        { "time": 6.0, "dur": 1.0, "pitch": 40 },
+        { "time": 7.0, "dur": 1.0, "pitch": 40 }
+      ]
+    },
+    {
+      "name": "Kick",
+      "type": "sample",
+      "source": "examples/kick.wav",
+      "amp": 0.9,
+      "events": [
+        { "time": 0.0, "dur": 0.25, "loop": true, "loopCount": 16 }
+      ]
+    }
+  ]
+}

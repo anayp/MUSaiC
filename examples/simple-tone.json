@@ -1,0 +1,9 @@
+{
+  "waveform": "sine",
+  "sampleRate": 48000,
+  "channels": 2,
+  "durationSeconds": 2.5,
+  "frequencyHz": 440,
+  "amplitude": 0.8,
+  "output": "output/cdp-sine.wav"
+}

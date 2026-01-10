@@ -1,0 +1,60 @@
+{
+    "project": "Demo Score",
+    "tempo": 120,
+    "tracks": [
+        {
+            "name": "Arp",
+            "type": "synth",
+            "waveform": "square",
+            "amp": 0.4,
+            "effects": [
+                {
+                    "type": "reverb",
+                    "room_size": 2.5,
+                    "mix": 0.4
+                }
+            ],
+            "events": [
+                {
+                    "time": 0.0,
+                    "dur": 0.2,
+                    "pitch": 60
+                },
+                {
+                    "time": 0.25,
+                    "dur": 0.2,
+                    "pitch": 64
+                },
+                {
+                    "time": 0.5,
+                    "dur": 0.2,
+                    "pitch": 67
+                },
+                {
+                    "time": 0.75,
+                    "dur": 0.2,
+                    "pitch": 72
+                }
+            ]
+        },
+        {
+            "name": "PitchedSweep",
+            "type": "synth",
+            "waveform": "saw",
+            "amp": 0.3,
+            "effects": [
+                {
+                    "type": "pitch",
+                    "semitones": -5
+                }
+            ],
+            "events": [
+                {
+                    "time": 1.0,
+                    "dur": 1.0,
+                    "pitch": 60
+                }
+            ]
+        }
+    ]
+}
