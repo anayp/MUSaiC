@@ -5,6 +5,8 @@ output/tmp_sequencer
 output/melody_tmp/
 sequencer_transcript.txt
 strict_debug*.txt
+instructions_for_antigravity.md
+done_by_antigravity.md
 *.log
 *.zip
 .vscode/
