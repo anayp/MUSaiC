@@ -1,8 +1,0 @@
-;list of sounds in order
-1
-2
-3
-2
-3
-2
-1

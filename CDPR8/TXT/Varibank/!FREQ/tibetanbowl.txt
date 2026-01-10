@@ -1,2 +1,0 @@
-;tibetan bowl.txt
-0.0 221 -3db 614 -3db 1145 -3db 1804 -3db 2577 -3db 3456 -3db 4419 -3db

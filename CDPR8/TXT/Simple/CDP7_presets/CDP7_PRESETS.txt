@@ -1,8 +1,0 @@
-CDP 7 PRESETS
-===============
-The older presets for TEXTURE SIMPLE have been retained as legacy.
-SIMPLE was changed in CDP Release 8 by the addition of a new compulsory parameter OMIT.
-Presets in the main folder have been re-cast to include this parameter.
-The presets in this folder can still be run (they refer to a legacy version of SIMPLE), but only if texture.exe in your _cdprogs folder is the Rel.7 one.
-TextureR7.exe has been provided, but first you will have to rename the new version to textR8.exe and the R7 version to texture.exe.
- 

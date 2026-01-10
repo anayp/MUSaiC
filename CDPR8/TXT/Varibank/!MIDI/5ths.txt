@@ -1,3 +1,0 @@
-;Chord of 5ths from A2-G#5 
-0.00  45 -3dB	52 -3dB	  59 -3dB   66 -3dB   73 -3dB 80 -3dB 
-;5.00  45 -3dB	52 -3dB	  59 ;-3dB   66 -3dB   73 -3dB 80 -3dB 

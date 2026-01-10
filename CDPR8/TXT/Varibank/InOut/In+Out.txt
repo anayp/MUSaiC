@@ -1,4 +1,0 @@
-;Domt. 9th down to single note, then out to 4ths/2nds chd.
-0.00  60 -3dB   64 -3dB   67 -3dB   70 -3dB   72 -3dB
-3.00  66 -1.5dB 66 -1.5dB 66 -1.5dB 66 -1.5dB 66 -1.5dB
-6.25  60  0dB   62  0dB   65  0dB   70  0dB   72  0dB

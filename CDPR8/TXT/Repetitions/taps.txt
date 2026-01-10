@@ -1,7 +1,0 @@
-; times match Tapdelay default
-0
-0.003
-0.025089
-0.04471
-0.066097
-0.075

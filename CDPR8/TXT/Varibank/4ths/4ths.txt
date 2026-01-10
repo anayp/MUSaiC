@@ -1,3 +1,0 @@
-;4ths chord - MIDI piitches
-0.00  60 -3dB	65 -3dB	  70 -3dB   75 -3dB   80 -3dB 
-;5.00  60 -3dB	65 -3dB	  70 -3dB   75 -3dB   80 -3dB 
