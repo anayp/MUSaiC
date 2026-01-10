@@ -63,4 +63,46 @@
   - **Pan**: Use parser-safe arithmetic.
   - **Transform**: `pvoc` mode now prioritizes fallback to `modify speed` if `stretch`/`strans` binaries are unstable in the environment.
   - **Cleanup**: Auto-delete temp files unless `-KeepTemp` used.
-- Git initialized and committed.
+- Git initialized and committed "Sprint 9: verify outputs, docs, and pvoc behavior".
+
+## [2026-01-10 23:00] - Sprint 11: TUI & Ecosystem
+**TUI Timeline**:
+- Created `cdp-timeline.ps1` for lightweight ASCII score visualization (no audio render).
+- Supports `-Resolution bar|beats|ticks` and `-Width` constraints.
+- Verified with `mixer_demo` and `breakbeat_blast` json files.
+
+**Ecosystem**:
+- Populated `mem_map/data/context-data.json` with node relationships for sequencer/timeline.
+- Updated Docs (`README`/`MUSaiC`/`SKILL`) with Timeline usage.
+- Corrected Sprint 9 log entry match exact git commit message.
+
+## [2026-01-10 23:25] - Sprint 12: Project Metadata
+**Meta Layer**:
+- Created `docs/meta-schema.md` and `examples/musaic_meta.json`.
+- Implemented `cdp-meta.ps1` CLI (Init/Show/Update).
+- Updated `cdp-sequencer.ps1` to accept `-MetaPath` and fallback to meta tempo/units.
+
+**Fixes**:
+- Hardened `Get-Channels` in sequencer to use `&` call operator and `try/catch` for robust ffmpeg probing in Strict Mode.
+- Fixed `Apply-Mixer` variable scope issues preventing rendering in Strict Mode.
+
+**Verification**:
+- Verified `meta_fallback_test` (Missing tempo in score -> 155 BPM from meta).
+- Validated `mixer_demo` regression PASS.
+
+## [2026-01-10 23:35] - Sprint 13: Metadata Refinement
+**Feature: Nested Metadata Updates**
+- Refactored `cdp-meta.ps1` to support dot-notation (e.g. `sections.0.name`).
+- Implemented robust recursive traversal for object/array paths with type inference.
+- Verified:
+  - `.\cdp-meta.ps1 -Init output\meta_new.json` -> Success.
+  - `.\cdp-meta.ps1 -Update ... -Set "sections.0.name=intro", "sections.0.length=16"` -> Success.
+  - `.\cdp-meta.ps1 -Show ...` -> Confirmed updates.
+  - `cdp-sequencer.ps1 -MetaPath ...` -> Confirmed fallback works with new meta file.
+
+**Documentation & Ecosystem**:
+- `docs/MUSaiC.md` & `CDP_CLI.md`: Documented Metadata workflow and CLI usage.
+- `mem_map`: Added nodes for `meta-schema.md` and related artifacts.
+- `README.md`: Added **Phase F: Loudness Pass** plan (Sequencer Limiter + Analysis LUFS).
+
+**Outcome**: Metadata system is now fully flexible and integrated. Ready for Loudness/Mastering phase.

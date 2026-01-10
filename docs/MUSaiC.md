@@ -17,7 +17,23 @@ Use arpeggios and pads, Iris for instruments, BreakTweaker preset 3 for beats."
 - **Section**: A labeled song segment (intro, verse, chorus) with local harmony and instrumentation rules.
 - **Track**: A signal path with a source (synth/sample/VST) and a chain of effects.
 - **Clip/Event**: Time-stamped data for notes, samples, automation, or pattern triggers.
+- **Project Metadata**: Persistent musical context (tempo, key, scale, sections, notes) stored alongside scores for cross-machine continuity.
 - **Render Graph**: Offline render plan that maps the session to actual audio files.
+
+## Project Metadata
+MUSaiC projects use a standalone `meta.json` file to store persistent context, allowing instruments and scores to share global settings like tempo and key without rigorous coupling.
+
+### CLI Usage (`cdp-meta.ps1`)
+- **Initialize**: `.\cdp-meta.ps1 -Init meta.json` (Creates from template)
+- **View**: `.\cdp-meta.ps1 -Show meta.json` (Displays Identity, Context, Sections)
+- **Update**: `.\cdp-meta.ps1 -Update meta.json -Set "key=value"`
+  - Supports dot-notation for nested fields: `-Set "sections.0.name=Verse1"`
+  - Auto-converts numbers and booleans.
+
+### Sequencer Integration
+`cdp-sequencer.ps1` accepts an optional `-MetaPath` argument. If provided, it loads the metadata and uses its values as fallbacks for missing score properties:
+- `tempo`: If not in score, read from `meta.tempo`.
+- `timeUnits`: If not in score, read from `meta.timeUnits`.
 
 ## MVP Capabilities (Today)
 - JSON-driven sequencing for synth and sample tracks.
@@ -29,6 +45,7 @@ Use arpeggios and pads, Iris for instruments, BreakTweaker preset 3 for beats."
 - Basic effects via CDP (reverb, pitch/varispeed).
 - Sample analysis (BPM, pitch estimate, RMS/peak, duration, warnings).
 - Time/pitch transforms via robust tool selection (tries `stretch`/`strans` first, falls back to `modify`).
+- **TUI Timeline**: `cdp-timeline.ps1` for lightweight ASCII score visualization.
 
 ## Target Capabilities
 1) **Composition**

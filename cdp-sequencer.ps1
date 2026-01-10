@@ -2,6 +2,7 @@ param(
     [string]$ScorePath = ".\\examples\\effects_demo.json",
     [string]$OutWav, # Optional override
     [string]$OutMp3, # Optional mp3 output
+    [string]$MetaPath, # Optional path to meta.json
     [switch]$Play,
     [switch]$KeepTemp # Sprint 7: Default cleans up notes
 )
@@ -34,14 +35,29 @@ try {
 
     # --- Load Score ---
     Write-Host "Loading score: $ScorePath"
+    Write-Host "DEBUG: Reading content..."
     if (-not (Test-Path $ScorePath)) {
         throw "Score file not found: $ScorePath"
     }
     $score = Get-Content -Raw -Path $ScorePath | ConvertFrom-Json
+    Write-Host "DEBUG: Score loaded. Checking MetaPath: $MetaPath"
+
+    # --- Load Metadata (Optional) ---
+    $meta = $null
+    if ($MetaPath) {
+        if (Test-Path $MetaPath) {
+            Write-Host "Loading Metadata: $MetaPath" -ForegroundColor Cyan
+            $meta = Get-Content -Raw $MetaPath | ConvertFrom-Json
+        }
+        else {
+            Write-Warning "Metadata file not found: $MetaPath"
+        }
+    }
 
     # --- Helper: Safe Property Access ---
     function Get-Prop {
         param($Obj, $Name, $Default)
+        # Write-Host "DEBUG: Get-Prop $Name"
         if ($null -eq $Obj) { return $Default }
         # Iteration is safe in strict mode
         foreach ($p in $Obj.PSObject.Properties) {
@@ -61,8 +77,17 @@ try {
     Write-Host "Target Output: $OutWav"
 
     # --- Timing Setup ---
-    $timeUnits = Get-Prop $score "timeUnits" "seconds"
-    $tempo = Get-Prop $score "tempo" 120
+    # Score takes precedence, fallback to Meta
+    $defUnits = "seconds"
+    $defTempo = 120
+    
+    if ($meta) {
+        $defUnits = Get-Prop $meta "timeUnits" "seconds"
+        $defTempo = Get-Prop $meta "tempo" 120
+    }
+
+    $timeUnits = Get-Prop $score "timeUnits" $defUnits
+    $tempo = Get-Prop $score "tempo" $defTempo
     $beatSec = 60.0 / $tempo
 
     function Get-Seconds {
@@ -177,7 +202,14 @@ try {
         param($File)
         # Naive check using ffmpeg stderr output
         $probeFile = Join-Path $workDir "probe.txt"
-        $p = Start-Process "ffmpeg" -ArgumentList "-i", $File -NoNewWindow -Wait -PassThru -RedirectStandardError $probeFile
+        
+        try {
+            # ffmpeg returns 1 if no output file, ignore error
+            $p = & "ffmpeg" "-i" $File 2> $probeFile
+        }
+        catch {}
+        
+        # $p is not process object here, but we check file content
         if (Test-Path $probeFile) {
             $info = Get-Content $probeFile -Raw
             if ($info -match "mono") { return 1 }
@@ -191,8 +223,7 @@ try {
         param($InputFile, $TrackName, $GainDb, $Pan, $WorkDir)
         
         $mixOut = Join-Path $WorkDir "track_${TrackName}_mix.wav"
-        
-        # Invariant formatting
+
         $pVal = ($Pan + 1.0) / 2.0
         $pStr = $pVal.ToString("0.00", [System.Globalization.CultureInfo]::InvariantCulture)
         $gStr = $GainDb.ToString("0.00", [System.Globalization.CultureInfo]::InvariantCulture)

@@ -20,6 +20,9 @@ description: Use the Composer Desktop Project (CDP/CDPR8) CLI tools to synthesiz
     - **Session Composer** (`music-session.ps1`): Generates scores from JSON sessions.
     - **Analysis** (`cdp-analyze.ps1`): Outputs JSON/Text to `output/analysis/` with BPM, pitch, loudness, duration, and warnings.
     - **Transform** (`cdp-transform.ps1`): Supports `-ConfigPath`; `-Method pvoc` automatically bypasses legacy tool issues by checking for `stretch`/`strans` first.
+    - **Timeline** (`cdp-timeline.ps1`): Visualizes JSON scores as ASCII lanes locally (`-Resolution ticks/beats/bars`).
+    - **Metadata** (`cdp-meta.ps1`): Manages project context (`-Init`, `-Show`, `-Update`) in `meta.json`.
+    - **Sequencer**: Accepts `-MetaPath` to fallback to project tempo/units if missing in score.
 - **Assets**: `examples/kick.wav` (generated test sample).
 - Outputs: `F:\CDP\output`
 

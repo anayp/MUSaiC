@@ -1,0 +1,22 @@
+{
+    "project_name": "New MUSaiC Project",
+    "version": "0.1.0",
+    "created_at": "",
+    "updated_at": "",
+    "tempo": 120,
+    "timeUnits": "beats",
+    "key": "C",
+    "scale": "major",
+    "sections": [
+        {
+            "name": "init",
+            "length": 16,
+            "notes": "Placeholder section"
+        }
+    ],
+    "instrumentation": [],
+    "sound_palette": "Default",
+    "arrangement_notes": "",
+    "linked_scores": [],
+    "last_render": ""
+}

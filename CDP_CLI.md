@@ -17,6 +17,7 @@ CLI- **Parameters**:
   - `-OutMp3 <path>`: Optional MP3 conversion
   - `-Play`: Auto-play result
   - `-KeepTemp`: Preserve temporary note files (debug only). Default removes them.
+  - `-MetaPath <path>`: Optional `meta.json` source for global context (Tempo default).
 - **Mixer**:
   - Supports `gainDb`, `pan` (-1.0 to 1.0), and `mute`.
   - Synth tracks are generated at full amplitude; track `amp` is converted to dB and applied at mix time.
@@ -124,10 +125,18 @@ Generate a sequencer score from high-level session data.
 .\cdp-sequencer.ps1 -ScorePath examples/musaic_generated.json
 ```
 
+### Metadata (`cdp-meta.ps1`)
+Manage global project context.
+```powershell
+.\cdp-meta.ps1 -Init meta.json
+.\cdp-meta.ps1 -Update meta.json -Set "sections.0.name=Verse"
+```
+
 ## Scripts
 - **cdp-sequencer.ps1**: Core engine. Parses JSON, renders synth notes via `synth.exe`, trims samples via `ffmpeg`, applies effects (reverb/pitch), and mixes everything.
 - Mixer note: if `ffmpeg` pan/gain filters error, the sequencer warns and keeps the raw stem.
 - **cdp-wrapper.ps1**: Interactive menu to browse `examples/*.json` and render/play them.
+- **cdp-meta.ps1**: CLI for managing `meta.json` files.
 
 ## Requirements
 - CDP `synth.exe`, `reverb.exe`, `modify.exe` in local `CDPR8\_cdp\_cdprogs`.

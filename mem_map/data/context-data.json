@@ -1,13 +1,63 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-01-10T22:30:00Z",
+  "updated_at": "2026-01-10T22:55:00Z",
   "repo": {
     "name": "CDP",
     "root": "F:/CDP"
   },
   "content": {
-    "nodes": [],
-    "edges": []
+    "nodes": [
+      {
+        "id": "cdp-sequencer.ps1",
+        "type": "file",
+        "desc": "Primary audio rendering engine using CDP binaries and ffmpeg mixing."
+      },
+      {
+        "id": "cdp-timeline.ps1",
+        "type": "file",
+        "desc": "ASCII TUI visualization of scores; no audio rendering."
+      },
+      {
+        "id": "mixer_demo.json",
+        "type": "example",
+        "desc": "Demonstrates Pan/Gain features."
+      },
+      {
+        "id": "cdp-meta.ps1",
+        "type": "file",
+        "desc": "CLI for managing project metadata (meta.json)."
+      },
+      {
+        "id": "musaic_meta.json",
+        "type": "example",
+        "desc": "Template for project metadata."
+      },
+      {
+        "id": "meta-schema.md",
+        "type": "file",
+        "desc": "Documentation for meta.json fields and structure."
+      }
+    ],
+    "edges": [
+      {
+        "source": "meta-schema.md",
+        "target": "musaic_meta.json",
+        "relation": "defines_structure",
+        "desc": "Schema defines the fields used in the template."
+      },
+      {
+        "source": "cdp-timeline.ps1",
+        "target": "cdp-sequencer.ps1",
+        "relation": "visualizes_same_model",
+        "desc": "Both consume the MUSaiC JSON score format."
+      },
+      {
+        "source": "cdp-meta.ps1",
+        "target": "cdp-sequencer.ps1",
+        "relation": "provides_context",
+        "desc": "Sequencer reads meta.json for fallback global settings."
+      }
+    ]
   },
   "views": []
 }

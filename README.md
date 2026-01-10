@@ -17,6 +17,7 @@ Use arpeggios and pads, Iris for instruments, BreakTweaker preset 3 for beats."
 - **Section**: A labeled song segment (intro, verse, chorus) with local harmony and instrumentation rules.
 - **Track**: A signal path with a source (synth/sample/VST) and a chain of effects.
 - **Clip/Event**: Time-stamped data for notes, samples, automation, or pattern triggers.
+- **Project Metadata**: Persistent musical context (tempo, key, scale, sections, notes) stored alongside scores for cross-machine continuity.
 - **Render Graph**: Offline render plan that maps the session to actual audio files.
 
 ## MVP Capabilities (Today)
@@ -29,6 +30,7 @@ Use arpeggios and pads, Iris for instruments, BreakTweaker preset 3 for beats."
 - Basic effects via CDP (reverb, pitch/varispeed).
 - Sample analysis (BPM, pitch estimate, RMS/peak, duration, warnings).
 - Time/pitch transforms via robust tool selection (tries `stretch`/`strans` first, falls back to `modify`).
+- **TUI Timeline**: `cdp-timeline.ps1` for lightweight ASCII score visualization.
 
 ## Target Capabilities
 1) **Composition**
@@ -54,6 +56,7 @@ Use arpeggios and pads, Iris for instruments, BreakTweaker preset 3 for beats."
 Canonical JSON or YAML representation of a session.
 - `session.json` stores global project data.
 - `score.json` stores note/sample events.
+- `meta.json` stores persistent musical context (tempo, key, scale, sections, notes).
 - `analysis.json` stores computed analysis output.
 
 ### 2) Sequencing + Rendering
@@ -136,6 +139,20 @@ Minimal session shape for future:
    - Reaper or VST host integration for Iris/BreakTweaker.
 4) **Phase D: Arrangement Engine**
    - Section-based composition and evolution over time.
+5) **Phase E: Metadata Continuity**
+   - Persistent metadata files for tempo/key/scale/notes across sessions and machines.
+6) **Phase F: Loudness Pass**
+   - Implement master bus limiter/maximizer in `cdp-sequencer.ps1`.
+   - Add target LUFS validation in `cdp-analyze.ps1`.
+
+## Future: Loudness Pass (Plan)
+To ensure reliable output levels for AI auditing:
+1. **Sequencer Update**: Add `-MasterLimit <dB>` switch to `cdp-sequencer.ps1`.
+   - Use `ffmpeg` `alimiter` filter on the final master mix.
+   - Default to `-1.0 dB` TP (True Peak).
+2. **Analysis Update**: Add LUFS (Loudness Units Full Scale) implementation to `cdp-analyze.ps1`.
+   - Use `ffmpeg` `ebur128` filter to measure integrated loudness.
+   - Report pass/fail against a target (e.g. -14 LUFS).
 
 ## Open Questions
 - Preferred VST host path: Reaper integration vs standalone?
