@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-01-10T22:55:00Z",
+  "updated_at": "2026-01-11T00:07:00Z",
   "repo": {
     "name": "CDP",
     "root": "F:/CDP"
@@ -8,9 +8,16 @@
   "content": {
     "nodes": [
       {
+        "id": "cdp-analyze.ps1",
+        "type": "file",
+        "desc": "Analyzes audio (BPM, Pitch, Vol). Includes EBU R128 LUFS measurement.",
+        "updated_at": "2026-01-11T00:07:00Z"
+      },
+      {
         "id": "cdp-sequencer.ps1",
         "type": "file",
-        "desc": "Primary audio rendering engine using CDP binaries and ffmpeg mixing."
+        "desc": "Primary audio rendering engine using CDP binaries and ffmpeg mixing. Now supports loudness normalization (-MasterLufs) and limiting (-MasterLimitDb).",
+        "updated_at": "2026-01-11T00:07:00Z"
       },
       {
         "id": "cdp-timeline.ps1",

@@ -1,0 +1,6 @@
+Analysis Report: info for kick.wav
+----------------------------------------
+Duration: 
+Sample Rate: 
+Channels: 
+Peak: 

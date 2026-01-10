@@ -1,0 +1,16 @@
+{
+  "details": {
+    "filesize": 50128
+  },
+  "analysis": {
+    "tempo_bpm": null,
+    "pitch_hz": null,
+    "rms_db": -5.0,
+    "peak_db": -1.9,
+    "duration": "0.500000"
+  },
+  "warnings": [
+    "Could not detect BPM",
+    "Could not estimate Pitch"
+  ]
+}

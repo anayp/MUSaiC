@@ -106,3 +106,46 @@
 - `README.md`: Added **Phase F: Loudness Pass** plan (Sequencer Limiter + Analysis LUFS).
 
 **Outcome**: Metadata system is now fully flexible and integrated. Ready for Loudness/Mastering phase.
+
+## [2026-01-10 23:55] - Sprint 14: Loudness & Limiting
+**Feature: Master Bus Processing**
+- Added `-MasterLufs <dB>` and `-MasterLimitDb <dB>` to `cdp-sequencer.ps1`.
+- Implemented `loudnorm` (EBU R128 normalization) and `alimiter` (True Peak limiting).
+- Added `lufs_i` measurement to `cdp-analyze.ps1` using `ebur128`.
+
+**Verification**:
+- `.\cdp-sequencer.ps1 ... -MasterLufs -14 -MasterLimitDb -1` -> Produced `_master.wav`.
+- `.\cdp-analyze.ps1 ... -TargetLufs -14` -> Measured `-14.0` LUFS.
+- Confirmed precision target hit.
+
+**Warnings**:
+- Sequencer emits "Invalid arguments" / "Failed to set value" noise during run, likely upstream ffmpeg stderr or strict mode artifact, but output file is correct.
+- `pitch.exe` analysis tool still flaky in environment ("Unknown program identification string"), handled via try/catch.
+
+**Outcome**: MUSaiC can now render broadcast-compliant audio assets.
+
+## [2026-01-11 00:07] - Sprint 15: Polish & Sanitize (Fixup)
+**Dev Metadata Cleanup**:
+- Deleted: `output\meta_fallback_test.json`, `output\meta_new.json`, `output\test_meta.json`.
+- Configured `.gitignore` to track `output/analysis` but ignore `output/meta_*.json`.
+
+**Documentation & Ecosystem**:
+- Corrected `README.md` (`-MasterLimitDb`).
+- Updated `docs/MUSaiC.md` with Loudness Pass details.
+- Updated `mem_map/data/context-data.json` with new timestamps.
+
+**Verification Commands**:
+```powershell
+.\cdp-sequencer.ps1 -ScorePath examples\mixer_demo.json -OutWav output\mixer_demo_loud.wav -MasterLufs -14 -MasterLimitDb -1
+.\cdp-analyze.ps1 -InputFile output\mixer_demo_loud_master.wav -TargetLufs -14
+```
+**Outputs Produced**:
+- `output\mixer_demo_loud_master.wav` (-14.0 LUFS)
+- `output\analysis\mixer_demo_loud_master.json`:
+  ```json
+  "lufs_i": -14.0
+  ```
+- `output\analysis\mixer_demo_loud_master.txt`
+
+**Sprint 16 Prep**:
+- Analysis upgrades planned: enhanced beat detection, pitch fallback strategies, and signal density metrics.

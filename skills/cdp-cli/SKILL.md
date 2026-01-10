@@ -18,11 +18,26 @@ description: Use the Composer Desktop Project (CDP/CDPR8) CLI tools to synthesiz
       - Flags: `-OutWav <path>`, `-OutMp3 <path>`, `-Play`, `-KeepTemp`.
     - **CDP Wrapper** (`cdp-wrapper.ps1`): Simple menu for rendering.
     - **Session Composer** (`music-session.ps1`): Generates scores from JSON sessions.
-    - **Analysis** (`cdp-analyze.ps1`): Outputs JSON/Text to `output/analysis/` with BPM, pitch, loudness, duration, and warnings.
+    - **Analysis**
+`cdp-analyze.ps1 -InputFile <wav>`
+Returns JSON object with:
+- `tempo_bpm`: Estimated BPM
+- `pitch_hz`: Estimated average pitch
+- `rms_db`: RMS amplitude
+- `peak_db`: Peak amplitude
+- `lufs_i`: Integrated Loudness (LUFS)
+- `duration`: Length in seconds
+
+Optional:
+- `-TargetLufs <double>`: Validates output against target (+/- 1.0 LU).
     - **Transform** (`cdp-transform.ps1`): Supports `-ConfigPath`; `-Method pvoc` automatically bypasses legacy tool issues by checking for `stretch`/`strans` first.
     - **Timeline** (`cdp-timeline.ps1`): Visualizes JSON scores as ASCII lanes locally (`-Resolution ticks/beats/bars`).
     - **Metadata** (`cdp-meta.ps1`): Manages project context (`-Init`, `-Show`, `-Update`) in `meta.json`.
     - **Sequencer**: Accepts `-MetaPath` to fallback to project tempo/units if missing in score.
+      - `-MetaPath <path>` (optional): Path to `meta.json` project context.
+      - `-MasterLufs <double>` (optional): Target Integrated LUFS (e.g. -14).
+      - `-MasterLimitDb <double>` (optional): True Peak Limit in dB (e.g. -1.0).
+      - `-Play` (switch): Auto-play result.
 - **Assets**: `examples/kick.wav` (generated test sample).
 - Outputs: `F:\CDP\output`
 

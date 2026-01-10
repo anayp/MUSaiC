@@ -1,6 +1,7 @@
 output/*.wav
 output/*.mp3
-output/analysis/
-output/tmp_sequencer/
+output/meta_*.json
+output/tmp_sequencer
+*.log
 *.zip
 .vscode/

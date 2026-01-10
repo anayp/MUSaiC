@@ -1,0 +1,12 @@
+Analysis Report: debug_loud_master
+----------------------------
+BPM:   
+Pitch:  Hz
+RMS:   -12.1 dB
+Peak:  -4.8 dB
+LUFS:  -14
+Dur:   1.750000
+
+Warnings:
+Could not detect BPM
+Could not estimate Pitch

@@ -3,7 +3,10 @@ param(
     [string]$Mode = "all",
     
     [Parameter(Mandatory = $true)]
-    [string]$InputFile
+    [string]$InputFile,
+    
+    [Parameter(Mandatory = $false)]
+    [double]$TargetLufs
 )
 
 $ErrorActionPreference = "Stop"
@@ -26,6 +29,26 @@ function Get-Loudness {
         RMS_dB  = if ($mean) { [double]$mean } else { $null }
         Peak_dB = if ($max) { [double]$max } else { $null }
     }
+}
+
+function Get-Lufs {
+    # ffmpeg ebur128=peak=none
+    # output: "I:         -14.5 LUFS"
+    $p = Start-Process ffmpeg -ArgumentList "-i", $InputFile, "-af", "ebur128=peak=none", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "lufs_err.txt"
+    $err = Get-Content "lufs_err.txt"
+    
+    # scan for "I:" followed by number
+    # regex: I:\s+([-\d\.]+) LUFS
+    
+    $iVal = $null
+    foreach ($line in $err) {
+        if ($line -match "I:\s+([-\d\.]+)") {
+            $iVal = [double]$Matches[1]
+            # Keep reading, ebur128 outputs periodically, final summary is at end.
+            # But usually the last match is the integrated whole-file summary if filter ran to completion.
+        }
+    }
+    return $iVal
 }
 
 function Get-Beats {
@@ -124,6 +147,7 @@ function Get-Info {
 Write-Host "Analyzing $InputFile..."
 
 $loudness = Get-Loudness
+$lufsI = Get-Lufs
 $bpm = Get-Beats
 $pitch = Get-PitchEstimate
 $dur = Get-Info
@@ -133,12 +157,23 @@ $analysis = [ordered]@{
     pitch_hz  = $pitch
     rms_db    = $loudness.RMS_dB
     peak_db   = $loudness.Peak_dB
+    lufs_i    = $lufsI
     duration  = $dur
 }
 
 $warnings = @()
 if (-not $bpm) { $warnings += "Could not detect BPM" }
 if (-not $pitch) { $warnings += "Could not estimate Pitch" }
+
+if ($TargetLufs) {
+    if ($null -eq $analysis.lufs_i) {
+        $warnings += "Could not measure LUFS for target validation."
+    }
+    elseif ($analysis.lufs_i -lt ($TargetLufs - 1.0) -or $analysis.lufs_i -gt ($TargetLufs + 1.0)) {
+        $found = $analysis.lufs_i
+        $warnings += "Loudness miss: Found $found LUFS, Target $TargetLufs (+/- 1)"
+    }
+}
 
 $finalData = @{
     analysis = $analysis
@@ -165,6 +200,7 @@ $report += "BPM:   $($analysis.tempo_bpm)`n"
 $report += "Pitch: $($analysis.pitch_hz) Hz`n"
 $report += "RMS:   $($analysis.rms_db) dB`n"
 $report += "Peak:  $($analysis.peak_db) dB`n"
+$report += "LUFS:  $($analysis.lufs_i)`n"
 $report += "Dur:   $($analysis.duration)`n"
 if ($warnings.Count -gt 0) {
     $report += "`nWarnings:`n" + ($warnings -join "`n")
@@ -175,4 +211,5 @@ Write-Host "Text: $txtPath"
 
 # Cleanup
 if (Test-Path "vol_err.txt") { Remove-Item "vol_err.txt" -ErrorAction SilentlyContinue }
+if (Test-Path "lufs_err.txt") { Remove-Item "lufs_err.txt" -ErrorAction SilentlyContinue }
 if (Test-Path "bpm_err.txt") { Remove-Item "bpm_err.txt" -ErrorAction SilentlyContinue }

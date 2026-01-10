@@ -3,6 +3,8 @@ param(
     [string]$OutWav, # Optional override
     [string]$OutMp3, # Optional mp3 output
     [string]$MetaPath, # Optional path to meta.json
+    [double]$MasterLufs, # Optional LUFS target
+    [double]$MasterLimitDb, # Optional TP Limit
     [switch]$Play,
     [switch]$KeepTemp # Sprint 7: Default cleans up notes
 )
@@ -545,6 +547,50 @@ try {
     
         $p = Start-Process -FilePath "ffmpeg" -ArgumentList $ffmpegArgs -NoNewWindow -PassThru -Wait
         if ($p.ExitCode -ne 0) { throw "FFmpeg master mix failed." }
+        
+        # --- Mastering Pass ---
+        if ($MasterLufs -or $MasterLimitDb) {
+            Write-Host "Applying Mastering..."
+            $masterIn = $OutWav
+            # Create a suffix filename to avoid overwrite clash on same file input
+            $masterOut = $OutWav.Replace(".wav", "_master.wav")
+            
+            $filter = ""
+            if ($MasterLufs) {
+                # loudnorm
+                # If Limit not specified, default to -1.0
+                $tp = -1.0
+                if ($MasterLimitDb) { $tp = $MasterLimitDb }
+                
+                # loudnorm=I=-14:TP=-1:LRA=11
+                $filter = "loudnorm=I=$($MasterLufs):TP=$($tp):LRA=11"
+            }
+            elseif ($MasterLimitDb) {
+                # alimiter only
+                # alimiter=limit=1:level_in=1:level_out=1:measure=0
+                # Limit must be linear. 10^(db/20)
+                $lin = [Math]::Pow(10, $MasterLimitDb / 20)
+                # Invariant string
+                $linStr = $lin.ToString("0.0000", [System.Globalization.CultureInfo]::InvariantCulture)
+                $filter = "alimiter=limit=$($linStr):level_in=1:level_out=1:measure=0"
+            }
+            
+            if ($filter) {
+                Write-Host "Master Filter: $filter"
+                $p = Start-Process "ffmpeg" -ArgumentList "-y", "-i", $masterIn, "-filter_complex", $filter, $masterOut -NoNewWindow -PassThru -Wait
+                if ($p.ExitCode -eq 0) {
+                    # Replace original (or keep both? Instruction says 'write new file suffix _master unless -OutWav given')
+                    # Actually, we *are* writing to OutWav originally. 
+                    # If we write to _master, we should update OutWav to point to it for MP3/Play steps.
+                    $OutWav = $masterOut
+                    Write-Host "Mastered Output: $OutWav" -ForegroundColor Green
+                }
+                else {
+                    Write-Warning "Mastering failed. Keeping unmastered mix."
+                }
+            }
+        }
+        
         Write-Host "Rendered to $OutWav"
     
         # Optional MP3 Conversion

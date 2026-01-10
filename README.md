@@ -141,18 +141,13 @@ Minimal session shape for future:
    - Section-based composition and evolution over time.
 5) **Phase E: Metadata Continuity**
    - Persistent metadata files for tempo/key/scale/notes across sessions and machines.
-6) **Phase F: Loudness Pass**
-   - Implement master bus limiter/maximizer in `cdp-sequencer.ps1`.
-   - Add target LUFS validation in `cdp-analyze.ps1`.
+6) **Phase F: Loudness Pass (Done)**
+   - `-MasterLimitDb <dB>` and `-MasterLufs` implemented.
+   - Analysis reports `lufs_i` via `ebur128`.
 
-## Future: Loudness Pass (Plan)
-To ensure reliable output levels for AI auditing:
-1. **Sequencer Update**: Add `-MasterLimit <dB>` switch to `cdp-sequencer.ps1`.
-   - Use `ffmpeg` `alimiter` filter on the final master mix.
-   - Default to `-1.0 dB` TP (True Peak).
-2. **Analysis Update**: Add LUFS (Loudness Units Full Scale) implementation to `cdp-analyze.ps1`.
-   - Use `ffmpeg` `ebur128` filter to measure integrated loudness.
-   - Report pass/fail against a target (e.g. -14 LUFS).
+## Future: Polishing
+- Improve analysis accuracy (pitch detection mode).
+- TUI enhancements.
 
 ## Open Questions
 - Preferred VST host path: Reaper integration vs standalone?

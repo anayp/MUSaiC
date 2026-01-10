@@ -15,9 +15,11 @@ CLI- **Parameters**:
   - `-ScorePath <path>`: JSON score file (default `examples/effects_demo.json`)
   - `-OutWav <path>`: Output WAV filename
   - `-OutMp3 <path>`: Optional MP3 conversion
-  - `-Play`: Auto-play result
+  - `-Play` (switch): Auto-play result.
   - `-KeepTemp`: Preserve temporary note files (debug only). Default removes them.
-  - `-MetaPath <path>`: Optional `meta.json` source for global context (Tempo default).
+  - `-MetaPath <path>` (optional): Path to `meta.json` project context.
+  - `-MasterLufs <double>` (optional): Target Integrated LUFS (e.g. -14).
+  - `-MasterLimitDb <double>` (optional): True Peak Limit in dB (e.g. -1.0).
 - **Mixer**:
   - Supports `gainDb`, `pan` (-1.0 to 1.0), and `mute`.
   - Synth tracks are generated at full amplitude; track `amp` is converted to dB and applied at mix time.
@@ -92,6 +94,17 @@ See:
 
 ## 5. Helper Tools
 ### Analysis (`cdp-analyze.ps1`)
+`cdp-analyze.ps1 -InputFile <wav>`
+Returns JSON object with:
+- `tempo_bpm`: Estimated BPM
+- `pitch_hz`: Estimated average pitch
+- `rms_db`: RMS amplitude
+- `peak_db`: Peak amplitude
+- `lufs_i`: Integrated Loudness (LUFS)
+- `duration`: Length in seconds
+
+Optional:
+- `-TargetLufs <double>`: Validates output against target (+/- 1.0 LU).
 Standardized JSON analysis including BPM, pitch estimate, loudness, and duration.
 ```powershell
 .\cdp-analyze.ps1 -InputFile "loop.wav"
@@ -104,6 +117,7 @@ JSON fields:
 - `analysis.pitch_hz`
 - `analysis.rms_db`
 - `analysis.peak_db`
+- `analysis.lufs_i`
 - `analysis.duration`
 - `warnings` (array)
 

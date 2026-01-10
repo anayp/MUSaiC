@@ -45,6 +45,7 @@ MUSaiC projects use a standalone `meta.json` file to store persistent context, a
 - Basic effects via CDP (reverb, pitch/varispeed).
 - Sample analysis (BPM, pitch estimate, RMS/peak, duration, warnings).
 - Time/pitch transforms via robust tool selection (tries `stretch`/`strans` first, falls back to `modify`).
+- **Loudness Pass**: `-MasterLufs` (loudnorm) and `-MasterLimitDb` (alimiter) for broadcast-ready levels.
 - **TUI Timeline**: `cdp-timeline.ps1` for lightweight ASCII score visualization.
 
 ## Target Capabilities
@@ -149,6 +150,7 @@ Minimal session shape for future:
    - Solid score validation, robust routing, clear errors.
 2) **Phase B: Analysis**
    - Beat/pitch detection and loudness reports.
+   - `lufs_i` reporting (EBU R128).
 3) **Phase C: Plugin Hosting**
    - Reaper or VST host integration for Iris/BreakTweaker.
 4) **Phase D: Arrangement Engine**

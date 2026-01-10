@@ -1,0 +1,11 @@
+Analysis Report: kick
+----------------------------
+BPM:   
+Pitch:  Hz
+RMS:   -5 dB
+Peak:  -1.9 dB
+Dur:   0.500000
+
+Warnings:
+Could not detect BPM
+Could not estimate Pitch
