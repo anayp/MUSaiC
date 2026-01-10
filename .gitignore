@@ -13,3 +13,4 @@ MUSaiC_Architecture_Review.md
 *.zip
 .vscode/
 musaic.config.json
+TUI_design_files/
