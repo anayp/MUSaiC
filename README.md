@@ -4,6 +4,19 @@
 MUSaiC is a CLI-first, automation-driven DAW system that composes, renders, and analyzes music through a structured project model. It combines CDP (Composer's Desktop Project) DSP tools with a sequencing/rendering engine, plus optional VST hosting for instrument and FX chains. The goal is to let a CLI workflow author a full song iteratively, then render, refine, and audit the output with analysis data.
 
 ## Setup
+CDP is not bundled in this repo (size/licensing). Install CDPR8 separately and point MUSaiC at it.
+
+Helper script (download/unzip/validate):
+```powershell
+./musaic-cdp.ps1 install -ZipPath <path_to_cdp_zip> -CdpRoot ./CDPR8 -UpdateConfig
+```
+You can also use `-ZipUrl` instead of `-ZipPath` if you have a direct download link.
+
+If you already have CDPR8 somewhere:
+```powershell
+./musaic-cdp.ps1 check -CdpRoot <path_to_cdpr8>
+```
+
 To initialize the environment and configuration:
 
 ```powershell
