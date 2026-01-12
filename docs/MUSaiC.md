@@ -112,8 +112,10 @@ Current CLI output (`cdp-analyze.ps1`) includes tempo candidates, beat grid, pit
 ### 4) Plugin Hosting Strategy
 Two viable approaches:
 1) **Standalone VST host**
-   - Carla CLI to render VST instruments offline.
-   - Scriptable parameter automation via config.
+   - **Solution**: **Carla CLI** (headless mode).
+   - **Plan**: See `docs/CARLA_PLAN.md` for integration details.
+   - **Tooling**: `musaic-carla.ps1` enables offline render workflows.
+   - **Why**: Supports VST2/3, AU, LV2 across platforms without building a custom host.
 2) **Host-agnostic plugin registry**
    - Index-only discovery for VST/VST3/AU/SF2 assets until a host backend lands.
 

@@ -71,13 +71,13 @@ function Get-MusaicConfig {
     }
 
     $ffmpegPath = Resolve-AbsPath $config["ffmpegPath"] $rootDir $true
-    
+
     # New Tools
 
     $fluidsynthPath = Resolve-AbsPath ($config["fluidsynthPath"]) $rootDir $true
     $soundfontDir = Resolve-AbsPath ($config["soundfontDir"]) $rootDir
 
-    $pluginIndexPath = Resolve-AbsPath ($config["pluginIndexPath"]) $rootDir
+    $pluginIndexPath = Resolve-AbsPath ($config["pluginIndexPath"]) $rootDir    
     
     $pluginPaths = @()
     if ($config["pluginPaths"] -is [array]) {
@@ -88,15 +88,17 @@ function Get-MusaicConfig {
 
     # Return Object
     return [PSCustomObject]@{
-        cdpRoot         = $cdpRoot
-        cdpBin          = $cdpBin
-        outputDir       = $outputDir
-        ffmpegPath      = $ffmpegPath
+        cdpRoot            = $cdpRoot
+        cdpBin             = $cdpBin
+        outputDir          = $outputDir
+        ffmpegPath         = $ffmpegPath
 
-        fluidsynthPath  = $fluidsynthPath
-        soundfontDir    = $soundfontDir
-        pluginIndexPath = $pluginIndexPath
-        pluginPaths     = $pluginPaths
+        fluidsynthPath     = $fluidsynthPath
+        soundfontDir       = $soundfontDir
+        pluginIndexPath    = $pluginIndexPath
+        pluginPaths        = $pluginPaths
+        carlaPath          = Resolve-AbsPath ($config["carlaPath"]) $rootDir $true
+        dbConnectionString = $config["dbConnectionString"]
     }
 }
 

@@ -5,5 +5,7 @@
     "soundfontDir": "./soundfonts",
     "pluginPaths": [],
     "pluginIndexPath": "./plugins/plugin_index.json",
+    "dbConnectionString": "",
+    "carlaPath": "carla-single",
     "ffmpegPath": "ffmpeg"
 }

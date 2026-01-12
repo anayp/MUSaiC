@@ -38,3 +38,6 @@ STATE.md
 PLAN.md
 SUMMARY.md
 ISSUES.md
+data/pg/
+*.carla
+

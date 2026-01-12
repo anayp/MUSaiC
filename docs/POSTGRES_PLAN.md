@@ -4,6 +4,7 @@
 This document outlines the schema design and migration strategy for moving MUSaiC's project state and asset catalog to PostgreSQL.
 
 ## 1. Schema Design
+Note: The schema uses gen_random_uuid() and requires the pgcrypto extension.
 
 ### Core Tables
 
@@ -67,7 +68,24 @@ Global catalog of audio samples and files.
     - `sql/migrations/`
     - `tools/db.ps1` (Helper script to init/reset/migrate)
 
+### Tool Usage (`tools/db.ps1`)
+Use the helper script to manage the database schema.
+**Prerequisite**: Set `"dbConnectionString"` in `musaic.config.json`.
+
+- **Initialize Schema**:
+  ```powershell
+  ./tools/db.ps1 -Init
+  ```
+  Applies all SQL files in `sql/schema/`.
+
+- **Reset Schema**:
+  ```powershell
+  ./tools/db.ps1 -Reset
+  ```
+  **WARNING**: Drops the `public` schema and recreates it, wiping all data.
+
 ### Migration Strategy
 1.  **Init Script**: `tools/db.ps1 -Init` will run the base schema.
 2.  **Versioning**: A `schema_migrations` table will track applied SQL files.
 3.  **Data Persistence**: Postgres container volume will be mapped to a local `data/pg` folder (gitignored) for portability testing, or standard system install.
+
