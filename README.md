@@ -79,6 +79,73 @@ Use arpeggios and pads, Iris for instruments, BreakTweaker preset 3 for beats."
 - Time/pitch transforms via robust tool selection (tries `stretch`/`strans` first, falls back to `modify`).
 - **TUI Timeline**: `cdp-timeline.ps1` for lightweight ASCII score visualization.
 
+## TUI Preview (ASCII)
+
+These are snapshots from the local TUI design specs (not committed).
+
+### Arranger View
+```text
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ MUSaiC  project: NeonMix  │ BPM 140 │ Key D mixo │ 4/4 │ ▣ Snap:1/16 │ Loop: ON │ Render: idle             │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Tracks                     │ 1        5        9        13       17       21       25       29      33     │
+│ ┌──────────────┐           │ ─┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬─── │
+│ │[S][M] arp    │           │  │███▒███▒███▒███▒│   │   │   │   │   │   │   │   │   │   │   │   │   │    │
+│ │   ▒▒▒▒▒▒▒▒   │ Intro     │  │███▒███▒███▒███▒│   │   │   │   │   │   │   │   │   │   │   │   │   │    │
+│ └──────────────┘           │  │               │   │   │   │   │   │   │   │   │   │   │   │   │   │      │
+│ ┌──────────────┐           │  │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│   │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│   │   │   │   │   │      │
+│ │[S][ ] pad    │           │  │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│   │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│   │   │   │   │   │      │
+│ │   ▓▓▓▓▓▓▓▓   │ Verse     │  │               │   │                       │   │   │   │   │   │      │
+│ └──────────────┘           │  │               │   │   │   │   │   │   │   │   │   │   │   │   │   │      │
+│ ┌──────────────┐           │  │░░░░░░░░░░░░░░░│   │░░░░░░░░░░░░░░░░░░░░░░░░│   │░░░░░░░░░░░░░░░░░░░│      │
+│ │[ ][M] drums  │           │  │░░░░░░░░░░░░░░░│   │░░░░░░░░░░░░░░░░░░░░░░░░│   │░░░░░░░░░░░░░░░░░░░│      │
+│ │   ░░░░░░░░   │ Chorus    │  │               │   │                       │   │                     │      │
+│ └──────────────┘           │  ▲ playhead                                                                 │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Inspector: Clip “arp_intro_01”  len=4 bars  transpose=0  humanize=5%  swing=54%  velScale=1.00  quant=1/16 │
+│ Info: Split clip at playhead (S). Hold Shift for “split & duplicate”.                                      │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Mixer View
+```text
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ MUSaiC  Mixer │ BPM 140 │ Master -11.2 LUFS │ Peak -0.3 dB │ Render: done (stems+mix)                       │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Track      │ M S │ Meter (pre)                 │ Fader (dB)            │ Pan │ FX Chain                     │
+├────────────┼─────┼─────────────────────────────┼───────────────────────┼─────┼──────────────────────────────┤
+│ arp        │ □ ■ │ ▏▂▃▄▅▆▇█▇▆▅▄▃▂▁ ▌peak        │   +6 ┆               │ L20 │ Iris → Reverb → Delay         │
+│            │     │                             │      ┆     ■         │     │                              │
+│            │     │                             │   -∞ ┴────────────── │     │                              │
+├────────────┼─────┼─────────────────────────────┼───────────────────────┼─────┼──────────────────────────────┤
+│ pad        │ □ □ │ ▏▁▂▂▃▄▅▆▆▆▅▄▃▂▁  ▌peak        │   +6 ┆               │ R05 │ Iris → Chorus → Reverb        │
+│            │     │                             │      ┆   ■           │     │                              │
+│            │     │                             │   -∞ ┴────────────── │     │                              │
+├────────────┼─────┼─────────────────────────────┼───────────────────────┼─────┼──────────────────────────────┤
+│ drums      │ ■ □ │ ▏▃▄▅▆▇███▇▆▅▄▃▂▁ ▌peak        │   +6 ┆               │ C   │ BreakTweaker → Comp → Limiter │
+│            │     │                             │      ┆       ■       │     │                              │
+│            │     │                             │   -∞ ┴────────────── │     │                              │
+├────────────┴─────┴─────────────────────────────┴───────────────────────┴─────┴──────────────────────────────┤
+│ Master bus:  Meter ▏▂▃▄▅▆▇█▇▆▅▄▃▂▁ ▌  |  Target: -10.0 LUFS  |  [T] post/pre  [G] group                     │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Piano Roll View
+```text
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ MUSaiC  Piano Roll │ Track: arp │ Clip: arp_intro_01 │ Grid: 1/16 │ Scale: D mixo (highlight) │ Vel lane ON │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│      │1     2     3     4     │5     6     7     8     │9    10    11    12    │13   14   15   16         │
+│ D5   │ ┆  ■■   ┆     ┆  ■■  ┆ │ ┆  ■■   ┆     ┆  ■■  ┆ │ ┆  ■■   ┆     ┆  ■■  ┆ │ ┆  ■■   ┆     ┆  ■■  ┆  │
+│ C5   │ ┆      ┆  ■■ ┆      ┆ │ ┆      ┆  ■■ ┆      ┆ │ ┆      ┆  ■■ ┆      ┆ │ ┆      ┆  ■■ ┆      ┆      │
+│ A4   │ ┆  ■■  ┆     ┆  ■■  ┆ │ ┆  ■■  ┆     ┆  ■■  ┆ │ ┆  ■■  ┆     ┆  ■■  ┆ │ ┆  ■■  ┆     ┆  ■■  ┆      │
+│ E4   │ ┆      ┆  ■■ ┆      ┆ │ ┆      ┆  ■■ ┆      ┆ │ ┆      ┆  ■■ ┆      ┆ │ ┆      ┆  ■■ ┆      ┆      │
+│ D4   │ ┆■■■■■■■■■■■■■■■■■■■■┆ │ ┆■■■■■■■■■■■■■■■■■■■■┆ │ ┆■■■■■■■■■■■■■■■■■■■■┆ │ ┆■■■■■■■■■■■■■■■■■■■■┆    │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Velocity: 127 ▏▇▇▇▆▆▅▅▄▃▃▂▂▁ 0    | Selected: D4 @1:01 len=1/8 vel=96  | [Q] quantize [H] humanize        │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
 ## Target Capabilities
 1) **Composition**
    - Section-based arrangement (intro/verse/chorus/bridge/outro).
@@ -122,8 +189,10 @@ Current CLI output (`cdp-analyze.ps1`) includes tempo candidates, beat grid, pit
 ### 4) Plugin Hosting Strategy
 Two viable approaches:
 1) **Standalone VST host**
-   - Carla CLI to render VST instruments offline.
-   - Scriptable parameter automation via config.
+   - **Solution**: **Carla CLI** (headless mode).
+   - **Plan**: See `docs/CARLA_PLAN.md` for integration details.
+   - **Tooling**: `musaic-carla.ps1` enables offline render workflows.
+   - **Why**: Supports VST2/3, AU, LV2 across platforms without building a custom host.
 2) **Host-agnostic plugin registry**
    - Index-only discovery for VST/VST3/AU/SF2 assets until a host backend lands.
 
@@ -209,3 +278,4 @@ See `docs/DAW_GAPS.md` and `docs/TICKETS.md` for the full backlog and tool choic
 - Sample library management, routing matrix, and undo history.
 
 - Required output formats (WAV/MP3/stems/project file)?
+
