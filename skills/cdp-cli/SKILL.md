@@ -6,39 +6,29 @@ description: Use the Composer Desktop Project (CDP/CDPR8) CLI tools to synthesiz
 # CDP CLI Skill
 
 ## Paths
-## Paths
 - **Config**: `musaic.config.json` (managed via `musaic.ps1 setup`)
 - CDP root: Configurable (default `./CDPR8`)
 - CDP binaries: Configurable (default `_cdp/_cdprogs` inside root)
 - Helper scripts (repo): 
     - **CDP Sequencer** (`cdp-sequencer.ps1`): 
-      - Renders JSON scores to WAV/MP3.
+      - Output: WAV/MP3 renders from JSON scores.
       - Supports Synth and Sample tracks.
       - Features: Beat timing, Effects (reverb/pitch), Sample trimming/looping.
       - Mixer: Per-track `gainDb`, `pan`, and `mute`. Pan uses safe arithmetic; Synth Amp is folded into gain.
       - Usage: `.\cdp-sequencer.ps1 -ScorePath score.json -OutWav "my_song.wav" -Play`
-      - Flags: `-OutWav <path>`, `-OutMp3 <path>`, `-Play`, `-KeepTemp`.
+      - Flags: `-OutWav <path>`, `-OutMp3 <path>`, `-Play`, `-KeepTemp`.        
     - **CDP Wrapper** (`cdp-wrapper.ps1`): Simple menu for rendering.
     - **Session Composer** (`music-session.ps1`): Generates scores from JSON sessions.
-    - **Analysis**
-`cdp-analyze.ps1 -InputFile <wav>`
-Returns JSON object with:
-- `tempo_bpm`: Estimated BPM
-- `pitch_hz`: Estimated average pitch
-- `rms_db`: RMS amplitude
-- `peak_db`: Peak amplitude
-- `lufs_i`: Integrated Loudness (LUFS)
-- `onset_count`: Note onset count
-- `onset_density`: Onsets per second
-- `duration`: Length in seconds
-
-Optional:
-- `-TargetLufs <double>`: Validates output against target (+/- 1.0 LU).
-- `-OnsetThresholdDb`: Silence threshold for onsets.
+    - **Analysis** (`cdp-analyze.ps1`):
+      - Output: JSON/Text report with tempo, key, chords, pitch, and loop stats.
+      - Key fields: `tempo_bpm`, `tempo_method`, `tempo_confidence`, `beat_grid`, `pitch_analysis`, `key_estimate`, `chords_audio`, `loop_analysis`, `lufs_i`, `onsets`, `duration`.
+      - Optional: `-ScorePath`, `-MetaPath`, `-TargetLufs`, `-OnsetThresholdDb`.
     - **Transform** (`cdp-transform.ps1`): Supports `-ConfigPath`; `-Method pvoc` automatically bypasses legacy tool issues by checking for `stretch`/`strans` first.
     - **Timeline** (`cdp-timeline.ps1`): Visualizes JSON scores as ASCII lanes locally (`-Resolution ticks/beats/bars`).
     - **Metadata** (`cdp-meta.ps1`): Manages project context (`-Init`, `-Show`, `-Update`) in `meta.json`.
     - **Theory** (`cdp-theory.ps1`): Symbolic analysis (Key, Chords, Cadences).
+
+    - **SoundFont Bridge** (`musaic-sf2.ps1`): Render via FluidSynth with SF2 soundfonts.
     - **Sequencer**: Accepts `-MetaPath` to fallback to project tempo/units if missing in score.
       - `-MetaPath <path>` (optional): Path to `meta.json` project context.
       - `-MasterLufs <double>` (optional): Target Integrated LUFS (e.g. -14).

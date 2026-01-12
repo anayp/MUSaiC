@@ -1,5 +1,9 @@
 {
     "cdpRoot": "./CDPR8",
     "outputDir": "./output",
+    "fluidsynthPath": "fluidsynth",
+    "soundfontDir": "./soundfonts",
+    "pluginPaths": [],
+    "pluginIndexPath": "./plugins/plugin_index.json",
     "ffmpegPath": "ffmpeg"
 }

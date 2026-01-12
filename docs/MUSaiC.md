@@ -1,7 +1,7 @@
 # MUSaiC Project Documentation
 
 ## Overview
-MUSaiC is a CLI-first, automation-driven DAW system that composes, renders, and analyzes music through a structured project model. It combines CDP (Composer's Desktop Project) DSP tools with a sequencing/rendering engine, plus optional VST hosting for instrument and FX chains. The goal is to let a CLI workflow author a full song iteratively, then render, refine, and audit the output with analysis data.
+MUSaiC is a CLI-first, automation-driven DAW system that composes, renders, and analyzes music through a structured project model. It combines CDP (Composer's Desktop Project) DSP tools with a sequencing/rendering engine, plus plugin discovery and future hosting for instrument and FX chains. The goal is to let a CLI workflow author a full song iteratively, then render, refine, and audit the output with analysis data.
 
 
 ## Setup
@@ -62,6 +62,13 @@ MUSaiC projects use a standalone `meta.json` file to store persistent context, a
 - **Loudness Pass**: `-MasterLufs` (loudnorm) and `-MasterLimitDb` (alimiter) for broadcast-ready levels.
 - **Theory**: `cdp-theory.ps1` (Key, Chords, Roman Numerals).
 - **TUI Timeline**: `cdp-timeline.ps1` for lightweight ASCII score visualization.
+### Rendering Engines
+1.  **Native**: The built-in CDP synthesis engine (`synth.exe`, `reverb.exe`).
+2.  **FluidSynth**: Renders via `fluidsynth` (CLI) using SoundFonts.
+3.  **Plugin Registry**: MUSaiC provides a script `musaic-plugins.ps1` to index VST/VST3/AU/SF2 files on your system.
+    - Note: MUSaiC does not host VSTs directly yet. This index is for future VST loaders or TUI browsing.
+    - Usage: `scan` to index, `list` to view.
+
 
 ## Target Capabilities
 1) **Composition**
@@ -72,7 +79,7 @@ MUSaiC projects use a standalone `meta.json` file to store persistent context, a
    - Robust render graph: stems, buses, sends/returns, master chain.
    - Looping, slicing, crossfades, and clip-level automation.
 3) **Plugin Hosting**
-   - VST instruments/FX (Izotope Iris, BreakTweaker).
+   - VST/VST3/AU instruments and FX (user-supplied).
    - Parameter automation and preset recall.
 4) **Analysis**
    - Beat detection, pitch estimation, loudness/crest/RMS metrics.
@@ -100,16 +107,15 @@ Offline analysis scripts produce:
 - Tempo, beat grid, onset density.
 - Pitch contour or dominant pitch class.
 - Loudness (RMS/LUFS), peak, crest factor.
-Current CLI output (`cdp-analyze.ps1`) includes BPM, pitch estimate (Hz), RMS/peak dB, duration, and warnings for missing estimates.
+Current CLI output (`cdp-analyze.ps1`) includes tempo candidates, beat grid, pitch histograms, key/chords, loop metrics, RMS/peak, LUFS, duration, and warnings for missing estimates.
 
 ### 4) Plugin Hosting Strategy
 Two viable approaches:
-1) **Reaper integration**
-   - Use ReaScript + Reaper CLI to load tracks/FX and render.
-   - Supports Reaper JSFX, VST, and presets.
-2) **Standalone VST host**
-   - Carla or custom host to render VST instruments offline.
+1) **Standalone VST host**
+   - Carla CLI to render VST instruments offline.
    - Scriptable parameter automation via config.
+2) **Host-agnostic plugin registry**
+   - Index-only discovery for VST/VST3/AU/SF2 assets until a host backend lands.
 
 ## Data Model (Draft)
 Minimal session shape for future:
@@ -167,13 +173,23 @@ Minimal session shape for future:
    - Beat/pitch detection and loudness reports.
    - `lufs_i` reporting (EBU R128).
    - **Theory**: Symbolic analysis of JSON scores (Key, Chords, Cadences).
+   - **Analysis v2**: Automatic extraction of BPM, Key, Chords, Pitch Histograms, and Loop seam quality from audio.
+   - Merges symbolic theory data (from scores) with audio analysis for consistency checking.
    - **Metrics**: Crest Factor (dynamics), Onset Density (complexity).
 3) **Phase C: Plugin Hosting**
-   - Reaper or VST host integration for Iris/BreakTweaker.
+   - Standalone host integration for VST/VST3/AU instruments and FX.
 4) **Phase D: Arrangement Engine**
    - Section-based composition and evolution over time.
 
+## Missing Systems (Shortlist)
+See `docs/DAW_GAPS.md` and `docs/TICKETS.md` for the full backlog and tool choices. Highlights:
+- Project state + asset catalog (Postgres).
+- Render graph + job cache (hash-based).
+- Plugin host backend (Carla).
+- MIDI engine + tempo maps + automation envelopes.
+- Analysis upgrade (Essentia/Aubio) and time/pitch (Rubber Band/SoundTouch).
+- Sample library management, routing matrix, and undo history.
+
 ## Open Questions
-- Preferred VST host path: Reaper integration vs standalone?
 - Where should preset libraries live and how are they referenced?
 - Required output formats (WAV/MP3/stems/project file)?

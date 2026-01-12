@@ -133,35 +133,29 @@ Analyzes a MUSaiC JSON score for harmonic content.
 ### Analysis (`cdp-analyze.ps1`)
 `cdp-analyze.ps1 -InputFile <wav>`
 Returns JSON object with:
-- `tempo_bpm`: Estimated BPM
-- `pitch_hz`: Estimated average pitch
-- `rms_db`: RMS amplitude
-- `peak_db`: Peak amplitude
-- `crest_db`: Dynamic range (Peak - RMS)
-- `lufs_i`: Integrated Loudness (LUFS)
-- `onset_count`: Note onset count (via silencedetect)
-- `onset_density`: Onsets per second
-- `duration`: Length in seconds
+- `analysis.tempo_bpm`, `analysis.tempo_method`, `analysis.tempo_confidence`
+- `analysis.tempo_candidates` (IOI + ffmpeg)
+- `analysis.beat_grid` (seconds)
+- `analysis.onsets` (count, density, times)
+- `analysis.pitch_analysis` (dominant_hz, histogram, candidates, stability)
+- `analysis.key_estimate`, `analysis.chords_audio`
+- `analysis.loop_analysis` (loop_candidate, loop_score, loop_offset_ms + metrics)
+- `analysis.rms_db`, `analysis.peak_db`, `analysis.crest_db`, `analysis.lufs_i`
+- `analysis.duration`
+- `analysis.theory` (merged when score is provided)
+- `warnings`
 
 Optional:
+- `-ScorePath <json>` and `-MetaPath <json>` for consistency checks.
 - `-TargetLufs <double>`: Validates output against target (+/- 1.0 LU).
 - `-OnsetThresholdDb` / `-OnsetMinDur`: Tuning for onset detection.
-Standardized JSON analysis including BPM, pitch estimate, loudness, and duration.
 ```powershell
 .\cdp-analyze.ps1 -InputFile "loop.wav"
 # Outputs:
 #   output/analysis/loop.json (or configured outputDir/analysis/_...)
 #   output/analysis/loop.txt
 ```
-JSON fields:
-- `analysis.tempo_bpm`
-- `analysis.pitch_hz`
-- `analysis.rms_db`
-- `analysis.peak_db`
-- `analysis.lufs_i`
-- `analysis.duration`
-- `warnings` (array)
-
+Warnings are in `warnings` array (e.g., clipping, silence, key mismatch).
 
 ### Transformation (`cdp-transform.ps1`)
 ```powershell
@@ -198,3 +192,8 @@ Manage global project context.
 - Run `.\musaic.ps1 setup` to configure paths.
 - CDP `synth.exe`, `reverb.exe`, `modify.exe` (configured via `musaic.config.json`).
 - `ffmpeg` (configured via `musaic.config.json` or PATH).
+
+## Project Planning
+- Gap analysis and roadmap: `docs/DAW_GAPS.md`
+- Ticket log: `docs/TICKETS.md`
+- Release notes: `CHANGELOG.md`

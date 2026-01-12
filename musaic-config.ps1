@@ -46,60 +46,57 @@ function Get-MusaicConfig {
         $config["cdpRoot"] = $env:MUSAIC_CDP_ROOT
     }
 
-    # Resolve Paths
-    # 1. cdpRoot
-    $rawCdpRoot = $config["cdpRoot"]
-    if (-not [System.IO.Path]::IsPathRooted($rawCdpRoot)) {
-        $cdpRoot = Join-Path $rootDir $rawCdpRoot
+    # Helper to resolve absolute path
+    function Resolve-AbsPath {
+        param($p, $root, $isBin = $false)
+        if (-not $p) { return $p }
+        if ($isBin -and (-not ($p -match "[\\/]"))) { return $p } # checking if it looks like a command name
+        
+        if (-not [System.IO.Path]::IsPathRooted($p)) {
+            $p = Join-Path $root $p
+        }
+        return [System.IO.Path]::GetFullPath($p)
     }
-    else {
-        $cdpRoot = $rawCdpRoot
-    }
-    $cdpRoot = [System.IO.Path]::GetFullPath($cdpRoot)
 
-    # 2. cdpBin identification
+    # Resolve Paths
+    $cdpRoot = Resolve-AbsPath $config["cdpRoot"] $rootDir
+    
     # Standard CDP layout: cdpRoot/_cdp/_cdprogs
     $cdpInternal = Join-Path $cdpRoot "_cdp"
     $cdpBin = Join-Path $cdpInternal "_cdprogs"
-    # Fallback/Check: If user pointed directly to bin?
-    # Usually better to stick to standard structure unless explicit override needed.
-    # For now, assume standard structure inside cdpRoot.
 
-    # 3. outputDir
-    $rawOut = $config["outputDir"]
-    if (-not [System.IO.Path]::IsPathRooted($rawOut)) {
-        $outputDir = Join-Path $rootDir $rawOut
-    }
-    else {
-        $outputDir = $rawOut
-    }
-    $outputDir = [System.IO.Path]::GetFullPath($outputDir)
-
-    # Ensure output directory exists (lazy creation safe here? or just return path?)
-    # Helper usually just resolves. But script implies "Resolve outputDir and create if missing when needed."
-    # We'll just return the path, let consumer create if they write. 
-    # BUT the instructions say: "Resolve outputDir and create if missing when needed." inside helper? 
-    # "Resolve outputDir and create if missing when needed." -> implies we might want to do it here or provide a function.
-    # Let's just create it to be safe and easy.
+    $outputDir = Resolve-AbsPath $config["outputDir"] $rootDir
     if (-not (Test-Path $outputDir)) {
         New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
     }
 
-    # 4. ffmpegPath
-    $ffmpegPath = $config["ffmpegPath"]
-    # If it's just "ffmpeg", leave it for PATH lookup. 
-    # If it's a relative path, resolve it.
-    if ($ffmpegPath -ne "ffmpeg" -and -not [System.IO.Path]::IsPathRooted($ffmpegPath)) {
-        $ffmpegPath = Join-Path $rootDir $ffmpegPath
-        $ffmpegPath = [System.IO.Path]::GetFullPath($ffmpegPath)
+    $ffmpegPath = Resolve-AbsPath $config["ffmpegPath"] $rootDir $true
+    
+    # New Tools
+
+    $fluidsynthPath = Resolve-AbsPath ($config["fluidsynthPath"]) $rootDir $true
+    $soundfontDir = Resolve-AbsPath ($config["soundfontDir"]) $rootDir
+
+    $pluginIndexPath = Resolve-AbsPath ($config["pluginIndexPath"]) $rootDir
+    
+    $pluginPaths = @()
+    if ($config["pluginPaths"] -is [array]) {
+        foreach ($pp in $config["pluginPaths"]) {
+            $pluginPaths += (Resolve-AbsPath $pp $rootDir)
+        }
     }
 
     # Return Object
     return [PSCustomObject]@{
-        cdpRoot    = $cdpRoot
-        cdpBin     = $cdpBin
-        outputDir  = $outputDir
-        ffmpegPath = $ffmpegPath
+        cdpRoot         = $cdpRoot
+        cdpBin          = $cdpBin
+        outputDir       = $outputDir
+        ffmpegPath      = $ffmpegPath
+
+        fluidsynthPath  = $fluidsynthPath
+        soundfontDir    = $soundfontDir
+        pluginIndexPath = $pluginIndexPath
+        pluginPaths     = $pluginPaths
     }
 }
 
