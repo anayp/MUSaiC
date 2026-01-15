@@ -185,6 +185,11 @@ Minimal session shape for future:
 4) **Phase D: Arrangement Engine**
    - Section-based composition and evolution over time.
 
+## Tooling
+- **Database Tools (`tools/db.ps1`)**: Postgres schema initialization and migration tracking.
+- **Hashing (`tools/hash.ps1`)**: Standardized SHA256 hashing for artifact verification.
+- **Preview (`musaic-preview.ps1`)**: Quick audio preview generation.
+
 ## Missing Systems (Shortlist)
 See `docs/DAW_GAPS.md` and `docs/TICKETS.md` for the full backlog and tool choices. Highlights:
 - Project state + asset catalog (Postgres).

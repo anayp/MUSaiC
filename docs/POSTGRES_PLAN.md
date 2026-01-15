@@ -61,6 +61,19 @@ Audio or MIDI regions placed on tracks.
 - `method`: TEXT
 - `result_json`: JSONB
 
+#### `render_edges`
+- `id`: UUID (Primary Key)
+- `from_node_id`: UUID (Foreign Key -> render_nodes.id)
+- `to_node_id`: UUID (Foreign Key -> render_nodes.id)
+- `type`: TEXT (e.g., 'data_flow')
+
+#### `render_artifacts`
+- `id`: UUID (Primary Key)
+- `node_id`: UUID (Foreign Key -> render_nodes.id)
+- `path`: TEXT
+- `hash`: TEXT
+- `size_bytes`: BIGINT
+
 #### `assets`
 Global catalog of audio samples and files.
 - `id`: UUID (Primary Key)

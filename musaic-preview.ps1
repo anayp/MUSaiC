@@ -1,7 +1,9 @@
 param (
     [string]$ScorePath,
     [string]$MetaPath,
-    [switch]$Play
+    [switch]$Play,
+    [int]$PreviewBitDepth,
+    [int]$PreviewSampleRate
 )
 
 Set-StrictMode -Version Latest
@@ -20,6 +22,8 @@ $params = @{
 }
 if ($MetaPath) { $params["MetaPath"] = $MetaPath }
 if ($Play) { $params["Play"] = $true }
+if ($PreviewBitDepth) { $params["PreviewBitDepth"] = $PreviewBitDepth }
+if ($PreviewSampleRate) { $params["PreviewSampleRate"] = $PreviewSampleRate }
 
 Write-Host "Invoking Preview..." -ForegroundColor Cyan
 & $script @params

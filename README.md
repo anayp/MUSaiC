@@ -74,6 +74,12 @@ Quickly render a low-res (22kHz mono 16-bit) preview and play it:
 ./musaic-preview.ps1 -ScorePath examples/cheesy_classical_16bars.json -Play
 ```
 
+### 6. Hashing Utility
+Compute file hashes (SHA256 default) for asset tracking:
+```powershell
+./tools/hash.ps1 -Path ./output/my_render.wav
+```
+
 ## Vision
 Enable an interactive workflow where a user can describe a musical intent (form, tempo, key, instrumentation, FX) and MUSaiC builds a renderable session that can be refined over time.
 

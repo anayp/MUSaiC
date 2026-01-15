@@ -8,7 +8,11 @@ param(
     [switch]$MasterGlue, # Optional Bus Compressor
     [switch]$Play,
     [switch]$KeepTemp, # Sprint 7: Default cleans up notes
-    [switch]$Preview # Sprint 26: Low-res preview
+    [switch]$Preview, # Sprint 26: Low-res preview
+    [ValidateSet(16, 24, 32)]
+    [int]$PreviewBitDepth = 16, # Sprint 27
+    [ValidateRange(8000, 192000)]
+    [int]$PreviewSampleRate = 22050 # Sprint 27
 )
 
 Set-StrictMode -Version Latest
@@ -509,13 +513,16 @@ try {
             Write-Host "Applying Mastering/Preview..."
             $masterIn = $OutWav
             
+            $outExt = [System.IO.Path]::GetExtension($OutWav)
+            if (-not $outExt) { $outExt = ".wav" }
+            $outBase = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($OutWav), [System.IO.Path]::GetFileNameWithoutExtension($OutWav))
             if ($Preview) {
                 # Use a temp file for processing to allow moving it back
-                $masterOut = $OutWav.Replace(".wav", "_processed.wav")
+                $masterOut = "$outBase`_processed$outExt"
             }
             else {
                 # Normal mastering distinct file
-                $masterOut = $OutWav.Replace(".wav", "_master.wav")
+                $masterOut = "$outBase`_master$outExt"
             }
             
             $filters = @()
@@ -537,11 +544,11 @@ try {
             }
 
             if ($Preview) {
-                $filters += "aresample=22050,ac=1"
+                $filters += "aresample=${PreviewSampleRate},ac=1"
                 if (-not ($MasterLufs -or $MasterLimitDb)) {
                     $filters += "alimiter=limit=0.95:level_in=1:level_out=1:measure=0"
                 }
-                $extraArgs += "-sample_fmt", "s16"
+                $extraArgs += "-sample_fmt", "s${PreviewBitDepth}"
             }
             
             $filterStr = $filters -join ","
