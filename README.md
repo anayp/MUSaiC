@@ -50,6 +50,12 @@ Render using FluidSynth (requires configured `fluidsynthPath` + SoundFonts):
 ./musaic-sf2.ps1 -Command render -ScorePath examples/cheesy_classical_16bars.json -SoundfontPath ./soundfonts/GeneralUser.sf2
 ```
 
+### 4. Carla Plugin Host (Prototype)
+Prototype render using VST3 plugins via Carla (requires `carlaPath` in config). Headless support varies by version and OS:
+```powershell
+./musaic-carla.ps1 -Command render -PluginPath "<path_to_vst3>" -OutWav ./output/vst_test.wav
+```
+
 ## Vision
 Enable an interactive workflow where a user can describe a musical intent (form, tempo, key, instrumentation, FX) and MUSaiC builds a renderable session that can be refined over time.
 
@@ -278,4 +284,3 @@ See `docs/DAW_GAPS.md` and `docs/TICKETS.md` for the full backlog and tool choic
 - Sample library management, routing matrix, and undo history.
 
 - Required output formats (WAV/MP3/stems/project file)?
-

@@ -53,18 +53,51 @@ if ($Reset) {
 if ($Init) {
     Write-Host "Initializing database schema..." -ForegroundColor Cyan
     $schemaDir = Join-Path $PSScriptRoot "..\sql\schema"
+    if (-not (Test-Path $schemaDir)) {
+        Write-Error "Schema directory not found: $schemaDir"
+        exit 1
+    }
+
     $schemaFiles = Get-ChildItem -Path $schemaDir -Filter "*.sql" | Sort-Object Name
 
+    # Ensure schema_migrations table exists
+    Write-Host "Checking for migration tracking table..."
+    $checkTableCmd = "CREATE TABLE IF NOT EXISTS schema_migrations (version TEXT PRIMARY KEY, applied_at TIMESTAMP WITH TIME ZONE DEFAULT NOW());"
+    echo $checkTableCmd | psql $connString
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "Failed to ensure schema_migrations table exists."
+        exit 1
+    }
+
     foreach ($file in $schemaFiles) {
-        Write-Host "Applying $($file.Name)..."
+        $version = $file.Name
+        # Check if already applied
+        $checkCmd = "SELECT 1 FROM schema_migrations WHERE version = '$version';"
+        $result = echo $checkCmd | psql $connString -t -A
+        
+        if ($result -eq "1") {
+            Write-Host "Skipping $version (already applied)." -ForegroundColor Gray
+            continue
+        }
+
+        Write-Host "Applying $version..."
         psql $connString -f $file.FullName
         if ($LASTEXITCODE -ne 0) {
-            Write-Error "Failed to apply $($file.Name)."
+            Write-Error "Failed to apply $version."
+            exit 1
+        }
+
+        # Record migration
+        $recordCmd = "INSERT INTO schema_migrations (version) VALUES ('$version');"
+        echo $recordCmd | psql $connString
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "Failed to record migration $version."
             exit 1
         }
     }
-    Write-Host "Database initialized successfully." -ForegroundColor Green
+    Write-Host "Database migration/initialization successfully completed." -ForegroundColor Green
 }
+
 
 if (-not $Init -and -not $Reset) {
     Write-Host "Usage: ./tools/db.ps1 -Init | -Reset"

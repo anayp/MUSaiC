@@ -66,8 +66,9 @@ MUSaiC projects use a standalone `meta.json` file to store persistent context, a
 1.  **Native**: The built-in CDP synthesis engine (`synth.exe`, `reverb.exe`).
 2.  **FluidSynth**: Renders via `fluidsynth` (CLI) using SoundFonts.
 3.  **Plugin Registry**: MUSaiC provides a script `musaic-plugins.ps1` to index VST/VST3/AU/SF2 files on your system.
-    - Note: MUSaiC does not host VSTs directly yet. This index is for future VST loaders or TUI browsing.
+    - Note: MUSaiC can host VSTs via **Carla CLI** (prototype; headless render depends on version/OS).
     - Usage: `scan` to index, `list` to view.
+    - Render: `./musaic-carla.ps1 -Command render -PluginPath <path> -OutWav <path>`
 
 
 ## Target Capabilities

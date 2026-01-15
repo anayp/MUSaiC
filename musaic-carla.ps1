@@ -1,7 +1,22 @@
 param (
     [Parameter(Mandatory = $true)]
     [ValidateSet("validate", "render", "help")]
-    [string]$Command
+    [string]$Command,
+
+    [Parameter(Mandatory = $false)]
+    [string]$ProjectPath,
+
+    [Parameter(Mandatory = $false)]
+    [string]$InWav,
+
+    [Parameter(Mandatory = $false)]
+    [string]$OutWav,
+
+    [Parameter(Mandatory = $false)]
+    [string]$PluginPath,
+
+    [Parameter(Mandatory = $false)]
+    [string]$Preset
 )
 
 . "$PSScriptRoot\musaic-config.ps1"
@@ -50,11 +65,82 @@ switch ($Command) {
         }
     }
     "render" {
-        Write-Host "TODO: Implement Carla offline render workflow." -ForegroundColor Cyan
-        Write-Host "This will involve generating a .carla patch and invoking headless mode."
-        exit 1
+        $carlaPath = Resolve-CarlaPath
+        if (-not $carlaPath) {
+            Write-Error "Carla binary not found. Cannot render."
+            exit 1
+        }
+
+        if (-not $OutWav) {
+            Write-Error "-OutWav is required for render output."
+            exit 1
+        }
+
+        $config = Get-MusaicConfig
+        $outputDir = $config.outputDir
+
+        if (-not $ProjectPath) {
+            if (-not $PluginPath) {
+                Write-Error "-PluginPath is required if -ProjectPath is missing."
+                exit 1
+            }
+
+            Write-Host "Generating minimal .carla patch..." -ForegroundColor Cyan
+            $patchName = [System.IO.Path]::GetFileNameWithoutExtension($PluginPath)
+            $ProjectPath = Join-Path $outputDir "$patchName.carla"
+            
+            # Note: This is a placeholder for actual .carla XML generation.
+            # In a real scenario, we'd use a template or [xml] logic.
+            $xml = @"
+<?xml version='1.0' encoding='UTF-8'?>
+<carla-project version='2'>
+ <EngineSettings>
+  <SampleRate>44100</SampleRate>
+ </EngineSettings>
+ <Plugin>
+  <Info>
+   <Type>VST3</Type>
+   <Name>$patchName</Name>
+   <Binary>$PluginPath</Binary>
+  </Info>
+ </Plugin>
+</carla-project>
+"@
+            $xml | Out-File $ProjectPath -Encoding utf8
+            Write-Host "Created patch: $ProjectPath"
+        }
+
+        Write-Host "Invoking Carla render workflow..." -ForegroundColor Cyan
+        # Carla CLI headless render usually involves --export-to-audio-file or --render.
+        # We check help output to decide the best flag.
+        $help = & $carlaPath --help 2>&1
+        $renderFlag = $null
+        if ($help -match "--export-to-audio-file") { $renderFlag = "--export-to-audio-file" }
+        elseif ($help -match "--render") { $renderFlag = "--render" }
+
+        if (-not $renderFlag) {
+            Write-Error "Carla headless render flags not found in --help output."
+            exit 1
+        }
+
+        # Command construction
+        $args = @($ProjectPath, $renderFlag, $OutWav)
+        if ($InWav) {
+            # Some Carla versions take input via specific flags or as first arg
+            # This is highly version dependent.
+        }
+
+        Write-Host "Executing: $carlaPath $($args -join ' ')"
+        & $carlaPath $args
+
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "Carla render failed with exit code $LASTEXITCODE."
+            exit $LASTEXITCODE
+        }
+
+        Write-Host "Render completed: $OutWav" -ForegroundColor Green
     }
     "help" {
-        Write-Host "Usage: ./musaic-carla.ps1 -Command <validate|render|help>"
+        Write-Host "Usage: ./musaic-carla.ps1 -Command <validate|render|help> [-ProjectPath <path>] [-InWav <path>] [-OutWav <path>] [-PluginPath <path>] [-Preset <name>]"
     }
 }

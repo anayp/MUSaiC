@@ -76,7 +76,7 @@ Use the helper script to manage the database schema.
   ```powershell
   ./tools/db.ps1 -Init
   ```
-  Applies all SQL files in `sql/schema/`.
+  Applies all SQL files in `sql/schema/`. The script uses a `schema_migrations` table to track applied files and skip duplicates.
 
 - **Reset Schema**:
   ```powershell
@@ -86,6 +86,6 @@ Use the helper script to manage the database schema.
 
 ### Migration Strategy
 1.  **Init Script**: `tools/db.ps1 -Init` will run the base schema.
-2.  **Versioning**: A `schema_migrations` table will track applied SQL files.
+2.  **Versioning**: A `schema_migrations` table tracks applied SQL files. The script skips files already listed in this table.
 3.  **Data Persistence**: Postgres container volume will be mapped to a local `data/pg` folder (gitignored) for portability testing, or standard system install.
-
+4.  **Extensions**: Requires `pgcrypto` for UUID generation.
