@@ -17,3 +17,4 @@ with repo priorities.
 | MUS-010 | Undo/redo + revision history | Core | P2 | Open | [#17](https://github.com/anayp/MUSaiC/issues/17) | Persistent edit history. |
 | MUS-011 | Plugin presets + metadata index | Core | P2 | Open | [#18](https://github.com/anayp/MUSaiC/issues/18) | Preset discovery and recall. |
 | MUS-012 | TUI runtime (Textual) baseline | UI | P2 | Open | [#19](https://github.com/anayp/MUSaiC/issues/19) | Minimal interactive shell and views. |
+| MUS-013 | Low-res playback preview | Core | P2 | Open | [#20](https://github.com/anayp/MUSaiC/issues/20) | Render a fast preview (lower sample rate/bit depth or simplified render) for quick listening during composition. |

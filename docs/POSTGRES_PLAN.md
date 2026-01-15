@@ -41,6 +41,26 @@ Audio or MIDI regions placed on tracks.
 - `offset`: REAL (Source offset)
 - `name`: TEXT
 
+#### `render_jobs`
+- `id`: UUID (Primary Key)
+- `project_id`: UUID (Foreign Key)
+- `status`: TEXT (PENDING, RUNNING, COMPLETED, FAILED)
+- `created_at`: TIMESTAMP
+
+#### `render_nodes`
+- `id`: UUID (Primary Key)
+- `job_id`: UUID (Foreign Key)
+- `type`: TEXT (Step type)
+- `input_hash`: TEXT (Cache key)
+- `output_path`: TEXT
+- `status`: TEXT
+
+#### `analysis_cache`
+- `id`: UUID (Primary Key)
+- `asset_id`: UUID (Foreign Key)
+- `method`: TEXT
+- `result_json`: JSONB
+
 #### `assets`
 Global catalog of audio samples and files.
 - `id`: UUID (Primary Key)

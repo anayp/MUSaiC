@@ -103,6 +103,9 @@ switch ($Command) {
    <Name>$patchName</Name>
    <Binary>$PluginPath</Binary>
   </Info>
+  <Data>
+   <Preset>$Preset</Preset>
+  </Data>
  </Plugin>
 </carla-project>
 "@

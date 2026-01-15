@@ -28,6 +28,18 @@ To verify the installation:
 ./musaic.ps1 doctor
 ```
 
+### Database Configuration (Postgres)
+MUSaiC uses PostgreSQL for project state and asset tracking. Set your connection string in `musaic.config.json`:
+```json
+{
+  "dbConnectionString": "postgresql://user:pass@localhost:5432/musaic"
+}
+```
+Initialize the schema with:
+```powershell
+./tools/db.ps1 -Init
+```
+
 ## Quick Start
 
 ### 1. Basic Sequence (Synth)
@@ -54,6 +66,12 @@ Render using FluidSynth (requires configured `fluidsynthPath` + SoundFonts):
 Prototype render using VST3 plugins via Carla (requires `carlaPath` in config). Headless support varies by version and OS:
 ```powershell
 ./musaic-carla.ps1 -Command render -PluginPath "<path_to_vst3>" -OutWav ./output/vst_test.wav
+```
+
+### 5. Preview Playback
+Quickly render a low-res (22kHz mono 16-bit) preview and play it:
+```powershell
+./musaic-preview.ps1 -ScorePath examples/cheesy_classical_16bars.json -Play
 ```
 
 ## Vision

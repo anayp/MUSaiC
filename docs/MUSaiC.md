@@ -166,6 +166,7 @@ Minimal session shape for future:
 
 ## Constraints
 - Offline rendering first; real-time playback is optional.
+- **Preview Mode**: Fast, low-res (22kHz mono 16-bit) playback via `musaic-preview.ps1`.
 - ASCII-only config and logs.
 - Avoid paths with spaces for CDP compatibility.
 

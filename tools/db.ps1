@@ -3,7 +3,10 @@ param (
     [switch]$Init,
 
     [Parameter(Mandatory = $false)]
-    [switch]$Reset
+    [switch]$Reset,
+
+    [Parameter(Mandatory = $false)]
+    [switch]$Status
 )
 
 # Load configuration
@@ -99,6 +102,36 @@ if ($Init) {
 }
 
 
-if (-not $Init -and -not $Reset) {
-    Write-Host "Usage: ./tools/db.ps1 -Init | -Reset"
+if ($Status) {
+    Write-Host "Checking migration status..." -ForegroundColor Cyan
+    $schemaDir = Join-Path $PSScriptRoot "..\sql\schema"
+    $schemaFiles = Get-ChildItem -Path $schemaDir -Filter "*.sql" | Sort-Object Name
+    
+    # Check table existence first
+    $checkCmd = "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'schema_migrations');"
+    $tableExists = echo $checkCmd | psql $connString -t -A 2>&1
+    
+    if ($tableExists -ne "t") {
+        Write-Warning "Table 'schema_migrations' does not exist."
+    }
+
+    foreach ($file in $schemaFiles) {
+        $applied = "Pending"
+        $color = "Yellow"
+        
+        if ($tableExists -eq "t") {
+            $version = $file.Name
+            $checkVer = "SELECT 1 FROM schema_migrations WHERE version = '$version';"
+            $res = echo $checkVer | psql $connString -t -A 2>&1
+            if ($res -eq "1") { 
+                $applied = "Applied" 
+                $color = "Green"
+            }
+        }
+        Write-Host "[$applied] $($file.Name)" -ForegroundColor $color
+    }
+}
+
+if (-not $Init -and -not $Reset -and -not $Status) {
+    Write-Host "Usage: ./tools/db.ps1 -Init | -Reset | -Status"
 }
