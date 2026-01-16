@@ -30,8 +30,8 @@ if ($selection -match "^\d+$" -and [int]$selection -lt $scores.Count) {
     Write-Host "Target Score: $target"
     Write-Host "Project Name: $proj"
     
-    $args = @("-ScorePath", $target)
-    if (-not $NoPlay) { $args += "-Play" }
+    $procArgs = @("-ScorePath", $target)
+    if (-not $NoPlay) { $procArgs += "-Play" }
     
     & "$PSScriptRoot\cdp-sequencer.ps1" @args
 }

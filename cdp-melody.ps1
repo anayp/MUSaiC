@@ -21,7 +21,7 @@ $paplayExe = Join-Path $cdpBin "paplay.exe"
 
 # Resolve ffmpeg from config
 $ffmpeg = $cfg.ffmpegPath
-function Run-Ffmpeg {
+function Invoke-Ffmpeg {
     param($ArgsList)
     if ($script:ffmpeg -eq "ffmpeg") {
         & "ffmpeg" @ArgsList
@@ -103,7 +103,7 @@ foreach ($note in $notes) {
     $segPath = Join-Path $tmpDir ("seg-{0:00}-{1}.wav" -f $idx, $note.Name)
     $segmentPaths += $segPath
 
-    $args = @(
+    $procArgs = @(
         "wave",
         $waveMode,
         $segPath,
@@ -115,7 +115,7 @@ foreach ($note in $notes) {
     )
 
     Write-Host ("Rendering note {0}: {1} {2}Hz dur {3}s amp {4}" -f $idx, $waveform, $freq, $dur, $amp)
-    & $synthExe @args
+    & $synthExe @procArgs
     if ($LASTEXITCODE -ne 0) {
         throw "synth.exe failed on note $idx with exit code $LASTEXITCODE"
     }
@@ -144,7 +144,7 @@ $madeMp3 = $false
 if ($ToMp3 -and (Test-Command ffmpeg)) {
     Write-Host "Encoding MP3 -> $outMp3"
     $mp3Args = @("-y", "-i", $OutWav, "-codec:a", "libmp3lame", "-qscale:a", "2", $outMp3)
-    Run-Ffmpeg -ArgsList $mp3Args | Out-Null
+    Invoke-Ffmpeg -ArgsList $mp3Args | Out-Null
     if ($LASTEXITCODE -eq 0 -and (Test-Path $outMp3)) {
         $madeMp3 = $true
         Write-Host "MP3 ready: $outMp3"

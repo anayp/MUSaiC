@@ -35,7 +35,7 @@ function Get-PluginFormat {
     }
 }
 
-function Scan-Plugins {
+function Find-Plugins {
     $plugins = @()
     $crawledPaths = @()
 
@@ -144,7 +144,7 @@ if ($Command -eq "validate") {
 }
 
 if ($Command -eq "scan") {
-    Scan-Plugins
+    Find-Plugins
 }
 
 if ($Command -eq "list") {

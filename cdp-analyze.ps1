@@ -76,7 +76,7 @@ if ($targetMeta -and (Test-Path $targetMeta)) {
 
 function Get-Loudness {
     # ffmpeg volumedetect
-    $p = Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", "volumedetect", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "vol_err.txt"
+    Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", "volumedetect", "-f", "null", "-" -NoNewWindow -Wait -RedirectStandardError "vol_err.txt"
     $err = Get-Content "vol_err.txt"
     $mean = ($err | Select-String "mean_volume") -replace ".*mean_volume:\s*", "" -replace " dB", ""
     $max = ($err | Select-String "max_volume") -replace ".*max_volume:\s*", "" -replace " dB", ""
@@ -88,7 +88,7 @@ function Get-Loudness {
 }
 
 function Get-Lufs {
-    $p = Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", "ebur128=peak=none", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "lufs_err.txt"
+    Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", "ebur128=peak=none", "-f", "null", "-" -NoNewWindow -Wait -RedirectStandardError "lufs_err.txt"
     $err = Get-Content "lufs_err.txt"
     $iVal = $null
     foreach ($line in $err) {
@@ -102,7 +102,7 @@ function Get-Lufs {
 function Get-Onsets {
     $filter = "silencedetect=noise=$($OnsetThresholdDb)dB:d=$($OnsetMinDur)"
     
-    $p = Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", $filter, "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "onset_err.txt"
+    Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", $filter, "-f", "null", "-" -NoNewWindow -Wait -RedirectStandardError "onset_err.txt"
     $err = Get-Content "onset_err.txt"
     
     $onsets = @()
@@ -168,7 +168,7 @@ function Get-Onsets {
 
 function Get-Beats {
     # ffmpeg bpm
-    $p = Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", "bpm", "-f", "null", "-" -NoNewWindow -Wait -PassThru -RedirectStandardError "bpm_err.txt"
+    Start-Process $ffmpeg -ArgumentList "-i", $InputFile, "-af", "bpm", "-f", "null", "-" -NoNewWindow -Wait -RedirectStandardError "bpm_err.txt"
     $err = Get-Content "bpm_err.txt"
     $bpmLines = $err | Select-String "BPM"
     
@@ -357,7 +357,7 @@ function Get-LoopSeam {
             param($Start, $D, $Lbl)
             $sOut = "seam_$Lbl.txt"
             $argsS = "-ss", $Start, "-t", $D, "-i", $InputFile, "-af", "astats=metadata=1:reset=1", "-f", "null", "-"
-            $p = Start-Process $ffmpeg -ArgumentList $argsS -NoNewWindow -Wait -PassThru -RedirectStandardError $sOut
+            Start-Process $ffmpeg -ArgumentList $argsS -NoNewWindow -Wait -RedirectStandardError $sOut
             $txt = Get-Content $sOut -Raw
 
             $rms = -99.0
@@ -371,10 +371,10 @@ function Get-LoopSeam {
 
         function Get-F32Samples {
             param($Start, $D)
-            $args = @("-ss", $Start, "-t", $D, "-i", $InputFile, "-ac", "1", "-ar", "44100", "-f", "f32le", "-")
+            $ffmpegArgs = @("-ss", $Start, "-t", $D, "-i", $InputFile, "-ac", "1", "-ar", "44100", "-f", "f32le", "-")
             $psi = New-Object System.Diagnostics.ProcessStartInfo
             $psi.FileName = $ffmpeg
-            $psi.Arguments = ($args -join " ")
+            $psi.Arguments = ($ffmpegArgs -join " ")
             $psi.RedirectStandardOutput = $true
             $psi.RedirectStandardError = $true
             $psi.UseShellExecute = $false
@@ -565,7 +565,7 @@ $onsets.Density = $density
 
 # Crest
 $crest = $null
-if ($loudness.Peak_dB -ne $null -and $loudness.RMS_dB -ne $null) {
+if ($null -ne $loudness.Peak_dB -and $null -ne $loudness.RMS_dB) {
     $crest = $loudness.Peak_dB - $loudness.RMS_dB
 }
 

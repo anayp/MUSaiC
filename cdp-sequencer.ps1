@@ -12,7 +12,8 @@ param(
     [ValidateSet(16, 24, 32)]
     [int]$PreviewBitDepth = 16, # Sprint 27
     [ValidateRange(8000, 192000)]
-    [int]$PreviewSampleRate = 22050 # Sprint 27
+    [int]$PreviewSampleRate = 22050, # Sprint 27
+    [double]$PreviewTargetLufs = -18.0 # Sprint 30
 )
 
 Set-StrictMode -Version Latest
@@ -121,7 +122,7 @@ try {
     Write-Host "Timing Mode: $timeUnits (Tempo: $tempo BPM)"
     
     # --- Validation ---
-    function Validate-Score {
+    function Test-Score {
         param($S)
         if (-not $S.tracks) { throw "Score missing 'tracks' array." }
         foreach ($t in $S.tracks) {
@@ -131,32 +132,32 @@ try {
             if ($t.type -eq "synth") {
                 if (-not $t.events) { throw "Synth track '$($t.name)' missing 'events'." }
                 foreach ($e in $t.events) {
-                    if ($e.PSObject.Properties['time'] -eq $null) { throw "Event in '$($t.name)' missing 'time'." }
-                    if ($e.PSObject.Properties['dur'] -eq $null) { throw "Event in '$($t.name)' missing 'dur'." }
-                    if ($e.PSObject.Properties['pitch'] -eq $null) { throw "Event in '$($t.name)' missing 'pitch'." }
+                    if ($null -eq $e.PSObject.Properties['time']) { throw "Event in '$($t.name)' missing 'time'." }
+                    if ($null -eq $e.PSObject.Properties['dur']) { throw "Event in '$($t.name)' missing 'dur'." }
+                    if ($null -eq $e.PSObject.Properties['pitch']) { throw "Event in '$($t.name)' missing 'pitch'." }
                 }
             }
         }
     }
-    Validate-Score -S $score
+    Test-Score -S $score
 
     # --- Helper Functions ---
-    function Run-Synth {
+    function Invoke-Synth {
         param($Output, $Waveform, $Duration, $Freq, $Amp, $SampleRate = 48000)
     
         $modeMap = @{ sine = 1; square = 2; saw = 3; ramp = 4 }
         $mode = $modeMap[$Waveform]
         if (-not $mode) { $mode = 1 } 
 
-        $args = @(
+        $procArgs = @(
             "wave", $mode, $Output, $SampleRate, 1, 
             $Duration, $Freq
         )
-        $p = Start-Process -FilePath $synthExe -ArgumentList $args -NoNewWindow -PassThru -Wait
+        $p = Start-Process -FilePath $synthExe -ArgumentList $procArgs -NoNewWindow -PassThru -Wait
         if ($p.ExitCode -ne 0) { throw "Synth failed" }
     }
 
-    function Apply-Effect {
+    function Invoke-Effect {
         param(
             [string]$InputFile,
             [string]$OutputFile,
@@ -178,16 +179,16 @@ try {
             $lpfreq = 4000
             $tail = 1.0
 
-            $args = @($InputFile, $OutputFile, $rgain, $mix, $rvbtime, $absorb, $lpfreq, $tail)
-            $p = Start-Process -FilePath $reverbExe -ArgumentList $args -NoNewWindow -PassThru -Wait
+            $procArgs = @($InputFile, $OutputFile, $rgain, $mix, $rvbtime, $absorb, $lpfreq, $tail)
+            $p = Start-Process -FilePath $reverbExe -ArgumentList $procArgs -NoNewWindow -PassThru -Wait
             if ($p.ExitCode -ne 0) { throw "Effect reverb failed with code $($p.ExitCode)" }
         }
         elseif ($fxType -eq "pitch") {
             if (-not (Test-Path $modifyExe)) { throw "Missing modify.exe at $modifyExe needed for effect" }
             $semitones = Get-Prop $Effect "semitones" 0
             $ratio = [Math]::Pow(2, $semitones / 12)
-            $args = @("speed", 1, $InputFile, $OutputFile, $ratio)
-            $p = Start-Process -FilePath $modifyExe -ArgumentList $args -NoNewWindow -PassThru -Wait
+            $procArgs = @("speed", 1, $InputFile, $OutputFile, $ratio)
+            $p = Start-Process -FilePath $modifyExe -ArgumentList $procArgs -NoNewWindow -PassThru -Wait
             if ($p.ExitCode -ne 0) { throw "Effect pitch (modify speed) failed with code $($p.ExitCode)" }
         }
         elseif ($fxType -eq "tremolo") {
@@ -263,8 +264,8 @@ try {
                 if ($null -eq $rateHz -or $rateHz -le 0) { throw "Tremolo requires rateHz or wubsPerBeat." }
                 $rateStr = ([double]$rateHz).ToString("0.000", [System.Globalization.CultureInfo]::InvariantCulture)
                 $depthStr = ([double]$depth).ToString("0.000", [System.Globalization.CultureInfo]::InvariantCulture)
-                $args = @("-y", "-i", $InputFile, "-filter:a", "tremolo=f=${rateStr}:d=${depthStr}", $OutputFile)
-                $p = Start-Process -FilePath $ffmpeg -ArgumentList $args -NoNewWindow -PassThru -Wait
+                $procArgs = @("-y", "-i", $InputFile, "-filter:a", "tremolo=f=${rateStr}:d=${depthStr}", $OutputFile)
+                $p = Start-Process -FilePath $ffmpeg -ArgumentList $procArgs -NoNewWindow -PassThru -Wait
                 if ($p.ExitCode -ne 0) { throw "Effect tremolo failed with code $($p.ExitCode)" }
             }
         }
@@ -277,7 +278,7 @@ try {
     function Get-Channels {
         param($File)
         $probeFile = Join-Path $workDir "probe.txt"
-        try { $p = & $ffmpeg "-i" $File 2> $probeFile } catch {}
+        try { & $ffmpeg "-i" $File 2> $probeFile } catch {}
         if (Test-Path $probeFile) {
             $info = Get-Content $probeFile -Raw
             if ($info -match "mono") { return 1 }
@@ -304,9 +305,11 @@ try {
         return 0.0
     }
 
-    function Apply-Mixer {
+    function Invoke-Mixer {
         param($InputFile, $TrackName, $GainDb, $Pan, $WorkDir)
         $mixOut = Join-Path $WorkDir "track_${TrackName}_mix.wav"
+        if ($Pan -lt -1.0) { $Pan = -1.0 }
+        if ($Pan -gt 1.0) { $Pan = 1.0 }
         $pVal = ($Pan + 1.0) / 2.0
         $vLeft = 1.0 - $pVal
         $vRight = $pVal
@@ -316,8 +319,8 @@ try {
         $ch = Get-Channels $InputFile
         $filters = @("volume=${gStr}dB")
         if ($Pan -ne 0.0 -and $null -ne $Pan) {
-            if ($ch -eq 1) { $filters += "pan=stereo|c0=c0*$sL|c1=c0*$sR" }
-            else { $filters += "pan=stereo|c0=c0*$sL|c1=c1*$sR" }
+            if ($ch -eq 1) { $filters += "pan=stereo|c0=${sL}*c0|c1=${sR}*c0" }
+            else { $filters += "pan=stereo|c0=${sL}*c0|c1=${sR}*c1" }
         }
         $filterStr = $filters -join ","
         $argsMix = @("-y", "-i", $InputFile, "-filter_complex", $filterStr, $mixOut)
@@ -348,7 +351,7 @@ try {
                 $freq = 440 * [Math]::Pow(2, ($pitch - 69) / 12)
                 $amp = Get-Prop $track "amp" 0.8
                 $wave = Get-Prop $track "waveform" "sine"
-                Run-Synth -Output $noteFile -Waveform $wave -Duration $dur -Freq $freq -Amp $amp
+                Invoke-Synth -Output $noteFile -Waveform $wave -Duration $dur -Freq $freq -Amp $amp
                 $timeVal = Get-Prop $evt "time" 0.0
                 $timeSec = Get-Seconds $timeVal
                 $delayMs = [int]($timeSec * 1000)
@@ -378,7 +381,7 @@ try {
                         foreach ($fx in $track.effects) {
                             $fxType = Get-Prop $fx "type" "unknown"
                             $fxOut = Join-Path $workDir "track_$($track.name)_fx.wav"
-                            Apply-Effect -InputFile $trackStem -OutputFile $fxOut -Effect $fx -WorkDir $workDir -TrackName $track.name -TrackDurationSec $trackDurationSec
+                            Invoke-Effect -InputFile $trackStem -OutputFile $fxOut -Effect $fx -WorkDir $workDir -TrackName $track.name -TrackDurationSec $trackDurationSec
                             Move-Item -Force $fxOut $trackStem
                         }
                     }
@@ -390,7 +393,7 @@ try {
                     
                     if ($mute) { Write-Host "Track $($track.name) Muted." }
                     else {
-                        $mixed = Apply-Mixer -InputFile $trackStem -TrackName $track.name -GainDb $gainDb -Pan $pan -WorkDir $workDir
+                        $mixed = Invoke-Mixer -InputFile $trackStem -TrackName $track.name -GainDb $gainDb -Pan $pan -WorkDir $workDir
                         $trackFiles += $mixed
                     }
                 }
@@ -477,7 +480,7 @@ try {
                         foreach ($fx in $track.effects) {
                             $fxType = Get-Prop $fx "type" "unknown"
                             $fxOut = Join-Path $workDir "track_$($track.name)_fx.wav"
-                            Apply-Effect -InputFile $trackStem -OutputFile $fxOut -Effect $fx -WorkDir $workDir -TrackName $track.name -TrackDurationSec $trackDurationSec
+                            Invoke-Effect -InputFile $trackStem -OutputFile $fxOut -Effect $fx -WorkDir $workDir -TrackName $track.name -TrackDurationSec $trackDurationSec
                             Move-Item -Force $fxOut $trackStem
                         }
                     }
@@ -486,7 +489,7 @@ try {
                     $mute = Get-Prop $track "mute" $false
                     if ($mute) { Write-Host "Track $($track.name) Muted." }
                     else {
-                        $mixed = Apply-Mixer -InputFile $trackStem -TrackName $track.name -GainDb $gainDb -Pan $pan -WorkDir $workDir
+                        $mixed = Invoke-Mixer -InputFile $trackStem -TrackName $track.name -GainDb $gainDb -Pan $pan -WorkDir $workDir
                         $trackFiles += $mixed
                     }
                 }
@@ -544,11 +547,18 @@ try {
             }
 
             if ($Preview) {
-                $filters += "aresample=${PreviewSampleRate},ac=1"
+                $filters += "aresample=${PreviewSampleRate}"
+                $filters += "aformat=channel_layouts=mono"
+                
+                if (-not $MasterLufs) {
+                    $filters += "loudnorm=I=${PreviewTargetLufs}:TP=-1.5:LRA=11"
+                }
+
                 if (-not ($MasterLufs -or $MasterLimitDb)) {
                     $filters += "alimiter=limit=0.95:level_in=1:level_out=1:measure=0"
                 }
                 $extraArgs += "-sample_fmt", "s${PreviewBitDepth}"
+                $extraArgs += "-ac", "1"
             }
             
             $filterStr = $filters -join ","

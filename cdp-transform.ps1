@@ -51,13 +51,13 @@ $sysCfg = Get-MusaicConfig
 $cdpBin = $sysCfg.cdpBin
 
 $modifyExe = Join-Path $cdpBin "modify.exe"
-$pvocExe = Join-Path $cdpBin "pvoc.exe"
+# $pvocExe = Join-Path $cdpBin "pvoc.exe" (Unused)
 
 if (-not (Test-Path $In)) { throw "Input file not found: $In" }
 $In = (Resolve-Path $In).Path
 $Out = [System.IO.Path]::GetFullPath($Out)
 
-function Run-ModifySpeed {
+function Invoke-ModifySpeed {
     # modify speed 1 infile outfile ratio
     # ratio: 1.0 = normal. 2.0 = double speed (half duration, +1 octave).
     
@@ -77,7 +77,7 @@ function Run-ModifySpeed {
     if ($p.ExitCode -ne 0) { throw "modify speed failed" }
 }
 
-function Run-Pvoc {
+function Invoke-Pvoc {
     # Phase Vocoder for independent time/pitch
     # Strategy: Bypass pvoc.exe if specific tools (stretch, strans) exist.
     # pvoc.exe in this install is "light" and crashes on 'anal'.
@@ -137,10 +137,10 @@ function Run-Pvoc {
 }
 
 if ($Method -eq "fast") {
-    Run-ModifySpeed
+    Invoke-ModifySpeed
 }
 elseif ($Method -eq "pvoc") {
-    Run-Pvoc
+    Invoke-Pvoc
 }
 else {
     throw "Unknown method: $Method"

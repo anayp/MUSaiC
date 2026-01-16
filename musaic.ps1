@@ -18,7 +18,7 @@ if (-not (Test-Path $configHelper)) {
 }
 . $configHelper
 
-function Run-Setup {
+function Invoke-Setup {
     Write-Host "Running MUSaiC Setup..." -ForegroundColor Cyan
 
     $templateFile = Join-Path $PSScriptRoot "musaic.config.template.json"
@@ -51,10 +51,10 @@ function Run-Setup {
     Write-Host $json -ForegroundColor Gray
     
     # Create Output Dir if missing
-    Run-Doctor
+    Invoke-Doctor
 }
 
-function Run-Doctor {
+function Invoke-Doctor {
     Write-Host "`nRunning MUSaiC Doctor..." -ForegroundColor Cyan
     
     # Load Config
@@ -68,7 +68,7 @@ function Run-Doctor {
 
     $allPass = $true
 
-    function Check-Item {
+    function Test-Item {
         param($Name, $Condition, $Msg, $Fatal = $true)
         if ($Condition) {
             Write-Host " [PASS] $Name" -ForegroundColor Green
@@ -80,26 +80,26 @@ function Run-Doctor {
     }
 
     # 1. Check CDP Root
-    Check-Item "CDP Root" (Test-Path $cfg.cdpRoot) "Directory not found at $($cfg.cdpRoot)"
+    Test-Item "CDP Root" (Test-Path $cfg.cdpRoot) "Directory not found at $($cfg.cdpRoot)"
 
     # 2. Check CDP Bin
-    Check-Item "CDP Binaries Dir" (Test-Path $cfg.cdpBin) "Directory not found at $($cfg.cdpBin)"
+    Test-Item "CDP Binaries Dir" (Test-Path $cfg.cdpBin) "Directory not found at $($cfg.cdpBin)"
 
     # 3. Check Executables
     $exeList = @("synth.exe", "reverb.exe", "modify.exe", "sndinfo.exe", "pitch.exe")
     foreach ($exe in $exeList) {
         $path = Join-Path $cfg.cdpBin $exe
-        Check-Item "Bin: $exe" (Test-Path $path) "Executable not found at $path"
+        Test-Item "Bin: $exe" (Test-Path $path) "Executable not found at $path"
     }
 
     # 4. Check FFmpeg
     if ($cfg.ffmpegPath -eq "ffmpeg") {
         # Check PATH
         $ff = Get-Command "ffmpeg" -ErrorAction SilentlyContinue
-        Check-Item "FFmpeg (PATH)" ($ff) "ffmpeg not found in PATH."
+        Test-Item "FFmpeg (PATH)" ($ff) "ffmpeg not found in PATH."
     }
     else {
-        Check-Item "FFmpeg (Explicit)" (Test-Path $cfg.ffmpegPath) "ffmpeg not found at $($cfg.ffmpegPath)"
+        Test-Item "FFmpeg (Explicit)" (Test-Path $cfg.ffmpegPath) "ffmpeg not found at $($cfg.ffmpegPath)"
     }
 
     # 5. Check Output Dir
@@ -122,7 +122,7 @@ function Run-Doctor {
     }
     catch {}
     
-    Check-Item "Output Directory" ((Test-Path $cfg.outputDir) -and $writable) "Output dir not writable or missing at $($cfg.outputDir)"
+    Test-Item "Output Directory" ((Test-Path $cfg.outputDir) -and $writable) "Output dir not writable or missing at $($cfg.outputDir)"
 
     Write-Host "---------------------------------------------------"
     if ($allPass) {
@@ -135,8 +135,8 @@ function Run-Doctor {
 }
 
 if ($Command -eq "setup") {
-    Run-Setup
+    Invoke-Setup
 }
 elseif ($Command -eq "doctor") {
-    Run-Doctor
+    Invoke-Doctor
 }

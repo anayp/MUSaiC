@@ -101,7 +101,7 @@ Use arpeggios and pads, Iris for instruments, BreakTweaker preset 3 for beats."
 - JSON-driven sequencing for synth and sample tracks.
 - Beat or second time units.
 - Configurable output directory (defaults to `./output`, set via `musaic.config.json`).
-- Per-track mixer controls (gainDb, pan, mute). Pan uses parser-safe arithmetic.
+- Per-track mixer controls (gainDb, pan, mute). Pan uses parser-safe arithmetic. See [Mixing Guide](docs/MIXING_GUIDE.md).
 - **Synth Amp**: Folded into mixer gain (amp -> dB) to avoid binary crashes.
 - Sample looping for clip events; Auto-cleanup of temp files (`-KeepTemp` to override).
 - Basic effects (reverb, pitch/varispeed, tremolo LFO).
@@ -299,7 +299,7 @@ Minimal session shape for future:
 - TUI enhancements.
 
 ## Missing Systems (Shortlist)
-See `docs/DAW_GAPS.md` and `docs/TICKETS.md` for the full backlog and tool choices. Highlights:
+See project backlog for the full list of missing features. Highlights:
 - Project state + asset catalog (Postgres).
 - Render graph + job cache (hash-based).
 - Plugin host backend (Carla).

@@ -48,7 +48,7 @@ function Get-CdpBinPath {
     return (Join-Path $cdpInternal "_cdprogs")
 }
 
-function Check-Cdp {
+function Test-Cdp {
     param([string]$RootPath)
     $ok = $true
     $binPath = Get-CdpBinPath -RootPath $RootPath
@@ -191,7 +191,7 @@ if ($Command -eq "help") {
 $targetRoot = Resolve-CdpRootPath -PathOverride $CdpRoot
 
 if ($Command -eq "check") {
-    Check-Cdp -RootPath $targetRoot | Out-Null
+    Test-Cdp -RootPath $targetRoot | Out-Null
     exit 0
 }
 
@@ -200,7 +200,7 @@ if ($Command -eq "install") {
     if ($UpdateConfig) {
         Update-MusaicConfig -RootPath $targetRoot
     }
-    Check-Cdp -RootPath $targetRoot | Out-Null
+    Test-Cdp -RootPath $targetRoot | Out-Null
     exit 0
 }
 

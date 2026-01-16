@@ -9,7 +9,7 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-$root = $PSScriptRoot
+# $root = $PSScriptRoot (Unused)
 
 # --- Configuration ---
 $configHelper = Join-Path $PSScriptRoot "musaic-config.ps1"
@@ -134,7 +134,7 @@ $mp3Path = Join-Path $outDir ("cdp-{0}.mp3" -f $preset.Name)
 if (Test-Path $wavPath) { Remove-Item -Force -Path $wavPath }
 if (Test-Path $mp3Path) { Remove-Item -Force -Path $mp3Path }
 
-$args = @(
+$procArgs = @(
     "wave",
     $waveMode,
     $wavPath,
@@ -146,8 +146,8 @@ $args = @(
 )
 
 Write-Host "Rendering preset '$($preset.Name)': $($preset.Description)"
-Write-Host ("Command: {0} {1}" -f $synthExe, ($args -join ' '))
-& $synthExe @args
+Write-Host ("Command: {0} {1}" -f $synthExe, ($procArgs -join ' '))
+& $synthExe @procArgs
 if ($LASTEXITCODE -ne 0) {
     throw "synth.exe failed with exit code $LASTEXITCODE"
 }

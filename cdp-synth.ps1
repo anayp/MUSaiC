@@ -14,7 +14,7 @@ $cfg = Get-MusaicConfig
 $cdpBin = $cfg.cdpBin
 $synthExe = Join-Path $cdpBin "synth.exe"
 
-if (-not (Test-Path $synthExe)) {
+if ($null -eq $synthExe -or -not (Test-Path $synthExe)) {
     throw "Missing CDP synth executable at $synthExe. Check that CDPR8 is extracted beside this script."
 }
 
@@ -132,9 +132,9 @@ $args = @(
 
 Write-Host "Running CDP synth:"
 Write-Host ("Config -> waveform:{0} sr:{1} ch:{2} dur:{3} freq:{4} amp:{5}" -f $waveform, $sampleRate, $channels, $duration, $frequency, $amplitude)
-Write-Host "`"$synthExe`" $($args -join ' ')"
+Write-Host "`"$synthExe`" $($procArgs -join ' ')"
 
-& $synthExe @args
+& $synthExe @procArgs
 if ($LASTEXITCODE -ne 0) {
     throw "CDP synth failed with exit code $LASTEXITCODE"
 }

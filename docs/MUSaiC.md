@@ -85,6 +85,7 @@ MUSaiC projects use a standalone `meta.json` file to store persistent context, a
 4) **Analysis**
    - Beat detection, pitch estimation, loudness/crest/RMS metrics.
    - Ability to validate that output matches target intent.
+   - Section labeling on long audio + stem separation with per-stem analysis.
 5) **CLI + TUI**
    - Interactive selection and render triggers.
    - Structured commands for analysis and transforms.
@@ -101,7 +102,7 @@ Canonical JSON or YAML representation of a session.
 - Build event timelines per track.
 - Render sources (CDP synth, samples, VST host).
 - Apply per-track FX.
-- Mix buses, then master.
+- Mix buses, then master. See [Mixing Guide](MIXING_GUIDE.md).
 
 ### 3) Analysis Layer
 Offline analysis scripts produce:
@@ -180,6 +181,7 @@ Minimal session shape for future:
    - **Analysis v2**: Automatic extraction of BPM, Key, Chords, Pitch Histograms, and Loop seam quality from audio.
    - Merges symbolic theory data (from scores) with audio analysis for consistency checking.
    - **Metrics**: Crest Factor (dynamics), Onset Density (complexity).
+   - **Mixing Guide**: Operator loudness targets + stem analysis for gain staging.
 3) **Phase C: Plugin Hosting**
    - Standalone host integration for VST/VST3/AU instruments and FX.
 4) **Phase D: Arrangement Engine**
@@ -191,7 +193,7 @@ Minimal session shape for future:
 - **Preview (`musaic-preview.ps1`)**: Quick audio preview generation.
 
 ## Missing Systems (Shortlist)
-See `docs/DAW_GAPS.md` and `docs/TICKETS.md` for the full backlog and tool choices. Highlights:
+See project backlog for the full list of missing features. Highlights:
 - Project state + asset catalog (Postgres).
 - Render graph + job cache (hash-based).
 - Plugin host backend (Carla).

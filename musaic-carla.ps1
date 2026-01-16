@@ -127,14 +127,14 @@ switch ($Command) {
         }
 
         # Command construction
-        $args = @($ProjectPath, $renderFlag, $OutWav)
+        $procArgs = @($ProjectPath, $renderFlag, $OutWav)
         if ($InWav) {
             # Some Carla versions take input via specific flags or as first arg
             # This is highly version dependent.
         }
 
-        Write-Host "Executing: $carlaPath $($args -join ' ')"
-        & $carlaPath $args
+        Write-Host "Executing: $carlaPath $($procArgs -join ' ')"
+        & $carlaPath $procArgs
 
         if ($LASTEXITCODE -ne 0) {
             Write-Error "Carla render failed with exit code $LASTEXITCODE."
