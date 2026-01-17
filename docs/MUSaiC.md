@@ -117,7 +117,9 @@ Current CLI output (`cdp-analyze.ps1`) includes tempo candidates, beat grid, pit
 
 **Backend Pilots**:
 These tools are shells. You must provide the backend.
-- Example: `./musaic-segment.ps1 -InputFile song.wav -Backend msaf -BackendArgs ...`
+- Example: `./musaic-segment.ps1 -InputFile song.wav -Backend msaf -BackendArgs "-i", "{input}", "-o", "{output}"`
+- Placeholders `{input}` and `{output}` are automatically expanded to full paths.
+- Output directories are auto-created.
 - No analysis binaries are bundled in this repo.
 
 ### 4) Plugin Hosting Strategy

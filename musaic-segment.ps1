@@ -43,22 +43,34 @@ if (-not $BackendArgs) {
     throw "No arguments provided for backend '$exe'. This stub requires explicit args."
 }
 
+# Expand placeholders: {input} -> $fileFull, {output} -> $OutputJson
+$expandedArgs = @()
+foreach ($arg in $BackendArgs) {
+    $arg = $arg.Replace("{input}", $fileFull)
+    $arg = $arg.Replace("{output}", $OutputJson)
+    $expandedArgs += $arg
+}
+
 # --- Execution ---
 if ($DryRun) {
     Write-Host "Would run:" -ForegroundColor Cyan
-    Write-Host "$exe $BackendArgs" -ForegroundColor Green
+    Write-Host "$exe" -NoNewline -ForegroundColor Green
+    foreach ($a in $expandedArgs) { Write-Host " $a" -NoNewline -ForegroundColor Green }
+    Write-Host ""
     Write-Host "Input: $fileFull"
     Write-Host "Output: $OutputJson"
     exit 0
 }
 
-Write-Host "Running segmentation..." -ForegroundColor Cyan
-# In a real implementation, we would parse the output of the tool and normalize it to JSON.
-# Since this is a scaffold, we defer execution to the backend directly?
-# But we claim to output JSON. 
-# For now, we assume the user invokes a backend that outputs to the target, or we just run the command.
+# Ensure Output Dir Exists
+$outDir = [System.IO.Path]::GetDirectoryName($OutputJson)
+if (-not (Test-Path $outDir)) {
+    New-Item -ItemType Directory -Force -Path $outDir | Out-Null
+}
 
-$p = Start-Process -FilePath $exe -ArgumentList $BackendArgs -NoNewWindow -PassThru -Wait
+Write-Host "Running segmentation..." -ForegroundColor Cyan
+
+$p = Start-Process -FilePath $exe -ArgumentList $expandedArgs -NoNewWindow -PassThru -Wait
 if ($p.ExitCode -ne 0) {
     throw "Segmentation backend failed with exit code $($p.ExitCode)"
 }

@@ -42,10 +42,20 @@ if (-not $BackendArgs) {
     throw "No arguments provided for backend '$exe'. This stub requires explicit args."
 }
 
+# Expand placeholders: {input} -> $fileFull, {output} -> $OutputDir
+$expandedArgs = @()
+foreach ($arg in $BackendArgs) {
+    $arg = $arg.Replace("{input}", $fileFull)
+    $arg = $arg.Replace("{output}", $OutputDir)
+    $expandedArgs += $arg
+}
+
 # --- Execution ---
 if ($DryRun) {
     Write-Host "Would run:" -ForegroundColor Cyan
-    Write-Host "$exe $BackendArgs" -ForegroundColor Green
+    Write-Host "$exe" -NoNewline -ForegroundColor Green
+    foreach ($a in $expandedArgs) { Write-Host " $a" -NoNewline -ForegroundColor Green }
+    Write-Host ""
     Write-Host "Input: $fileFull"
     Write-Host "Output: $OutputDir"
     exit 0
@@ -57,7 +67,7 @@ if (-not (Test-Path $OutputDir)) {
 
 Write-Host "Running stem separation..." -ForegroundColor Cyan
 
-$p = Start-Process -FilePath $exe -ArgumentList $BackendArgs -NoNewWindow -PassThru -Wait
+$p = Start-Process -FilePath $exe -ArgumentList $expandedArgs -NoNewWindow -PassThru -Wait
 if ($p.ExitCode -ne 0) {
     throw "Stem separation backend failed with exit code $($p.ExitCode)"
 }

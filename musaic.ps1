@@ -102,7 +102,19 @@ function Invoke-Doctor {
         Test-Item "FFmpeg (Explicit)" (Test-Path $cfg.ffmpegPath) "ffmpeg not found at $($cfg.ffmpegPath)"
     }
 
-    # 5. Check Output Dir
+    # 5. Analysis backends (Non-fatal)
+    if ($cfg.segmenterPath) {
+        if (-not (Test-Path $cfg.segmenterPath)) {
+            Write-Warning " [WARN] Segmenter configured but not found: $($cfg.segmenterPath)"
+        }
+    }
+    if ($cfg.stemSeparatorPath) {
+        if (-not (Test-Path $cfg.stemSeparatorPath)) {
+            Write-Warning " [WARN] Stem Separator configured but not found: $($cfg.stemSeparatorPath)"
+        }
+    }
+
+    # 6. Check Output Dir
     if (-not (Test-Path $cfg.outputDir)) {
         # Try to create it
         try {
