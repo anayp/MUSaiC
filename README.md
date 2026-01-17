@@ -86,6 +86,15 @@ Compute file hashes (SHA256 default) for asset tracking:
 - **`musaic-stems.ps1`**: Scaffolding for stem separation (requires external backend).
 *Note: Set `segmenterPath` and `stemSeparatorPath` in `musaic.config.json`.*
 
+### Backend Pilots (No Binaries Bundled)
+MUSaiC does not bundle large analysis binaries. To use segmentation or stem separation:
+1. **Install the tool** (e.g., `spleeter`, `demucs`, `msaf`).
+2. **Configure path** in `musaic.config.json` OR pass `-Backend <command>` at runtime.
+3. **Usage Example**:
+   ```powershell
+   ./musaic-stems.ps1 -InputFile my_mix.wav -Backend demucs -BackendArgs "-n", "htdemucs", "--out", "output/stems"
+   ```
+
 ## Vision
 Enable an interactive workflow where a user can describe a musical intent (form, tempo, key, instrumentation, FX) and MUSaiC builds a renderable session that can be refined over time.
 

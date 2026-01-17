@@ -115,6 +115,11 @@ Current CLI output (`cdp-analyze.ps1`) includes tempo candidates, beat grid, pit
 - **Segmentation**: `musaic-segment.ps1` (requires external segmenter via `segmenterPath`).
 - **Stem Separation**: `musaic-stems.ps1` (requires external separator via `stemSeparatorPath`).
 
+**Backend Pilots**:
+These tools are shells. You must provide the backend.
+- Example: `./musaic-segment.ps1 -InputFile song.wav -Backend msaf -BackendArgs ...`
+- No analysis binaries are bundled in this repo.
+
 ### 4) Plugin Hosting Strategy
 Two viable approaches:
 1) **Standalone VST host**

@@ -1,0 +1,28 @@
+name: CI Smoke
+
+on: [push, pull_request]
+
+jobs:
+  smoke-test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Dependency Guard
+        shell: pwsh
+        run: |
+          $cdpExe = Join-Path $PWD "CDPR8/_cdp/_cdprogs/synth.exe"
+          $hasCdp = Test-Path $cdpExe
+          $hasFfmpeg = [bool](Get-Command ffmpeg -ErrorAction SilentlyContinue)
+          if (-not $hasCdp -or -not $hasFfmpeg) {
+            Write-Host "CI smoke skipped: missing CDP or ffmpeg."
+            "MUSAIC_SKIP_CI_SMOKE=1" | Out-File -FilePath $env:GITHUB_ENV -Append
+          }
+      - name: Doctor Check
+        shell: pwsh
+        if: env.MUSAIC_SKIP_CI_SMOKE != '1'
+        run: ./musaic.ps1 doctor
+      - name: Preview Render Smoke
+        shell: pwsh
+        if: env.MUSAIC_SKIP_CI_SMOKE != '1'
+        run: ./musaic-preview.ps1 -ScorePath examples/cheesy_classical_16bars.json -PreviewSampleRate 22050 -PreviewBitDepth 16 -PreviewTargetLufs -18
