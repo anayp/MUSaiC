@@ -7,5 +7,7 @@
     "pluginIndexPath": "./plugins/plugin_index.json",
     "dbConnectionString": "",
     "carlaPath": "carla-single",
-    "ffmpegPath": "ffmpeg"
+    "ffmpegPath": "ffmpeg",
+    "segmenterPath": "",
+    "stemSeparatorPath": ""
 }

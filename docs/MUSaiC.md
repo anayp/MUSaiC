@@ -111,6 +111,10 @@ Offline analysis scripts produce:
 - Loudness (RMS/LUFS), peak, crest factor.
 Current CLI output (`cdp-analyze.ps1`) includes tempo candidates, beat grid, pitch histograms, key/chords, loop metrics, RMS/peak, LUFS, duration, and warnings for missing estimates.
 
+**New Scaffolding (Backend Required)**:
+- **Segmentation**: `musaic-segment.ps1` (requires external segmenter via `segmenterPath`).
+- **Stem Separation**: `musaic-stems.ps1` (requires external separator via `stemSeparatorPath`).
+
 ### 4) Plugin Hosting Strategy
 Two viable approaches:
 1) **Standalone VST host**

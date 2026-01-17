@@ -80,6 +80,12 @@ Compute file hashes (SHA256 default) for asset tracking:
 ./tools/hash.ps1 -Path ./output/my_render.wav
 ```
 
+### 7. Analysis & Segmentation Stubs
+- **`tools/stem-analyze.ps1`**: Analyze mix stems for gain staging suggestions.
+- **`musaic-segment.ps1`**: Scaffolding for waveform segmentation (requires external backend).
+- **`musaic-stems.ps1`**: Scaffolding for stem separation (requires external backend).
+*Note: Set `segmenterPath` and `stemSeparatorPath` in `musaic.config.json`.*
+
 ## Vision
 Enable an interactive workflow where a user can describe a musical intent (form, tempo, key, instrumentation, FX) and MUSaiC builds a renderable session that can be refined over time.
 

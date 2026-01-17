@@ -99,6 +99,8 @@ function Get-MusaicConfig {
         pluginPaths        = $pluginPaths
         carlaPath          = Resolve-AbsPath ($config["carlaPath"]) $rootDir $true
         dbConnectionString = $config["dbConnectionString"]
+        segmenterPath      = Resolve-AbsPath ($config["segmenterPath"]) $rootDir $true
+        stemSeparatorPath  = Resolve-AbsPath ($config["stemSeparatorPath"]) $rootDir $true
     }
 }
 
