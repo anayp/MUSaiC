@@ -13,7 +13,8 @@ param(
     [int]$PreviewBitDepth = 16, # Sprint 27
     [ValidateRange(8000, 192000)]
     [int]$PreviewSampleRate = 22050, # Sprint 27
-    [double]$PreviewTargetLufs = -18.0 # Sprint 30
+    [double]$PreviewTargetLufs = -18.0, # Sprint 30
+    [switch]$PreviewDebug # Sprint 34 Fixup
 )
 
 Set-StrictMode -Version Latest
@@ -543,7 +544,7 @@ try {
             elseif ($MasterLimitDb) {
                 $lin = [Math]::Pow(10, $MasterLimitDb / 20)
                 $linStr = $lin.ToString("0.0000", [System.Globalization.CultureInfo]::InvariantCulture)
-                $filters += "alimiter=limit=$($linStr):level_in=1:level_out=1:measure=0"
+                $filters += "alimiter=limit=$($linStr):level_in=1:level_out=1"
             }
 
             if ($Preview) {
@@ -551,14 +552,16 @@ try {
                 $filters += "aformat=channel_layouts=mono"
                 
                 if (-not $MasterLufs) {
-                    $filters += "loudnorm=I=${PreviewTargetLufs}:TP=-1.5:LRA=11"
+                    $ptLufs = $PreviewTargetLufs.ToString("0.0", [System.Globalization.CultureInfo]::InvariantCulture)
+                    $filters += "loudnorm=I=${ptLufs}:TP=-1.5:LRA=11"
                 }
 
                 if (-not ($MasterLufs -or $MasterLimitDb)) {
-                    $filters += "alimiter=limit=0.95:level_in=1:level_out=1:measure=0"
+                    $filters += "alimiter=limit=0.95:level_in=1:level_out=1"
                 }
                 $extraArgs += "-sample_fmt", "s${PreviewBitDepth}"
                 $extraArgs += "-ac", "1"
+                $extraArgs += "-ar", "$PreviewSampleRate"
             }
             
             $filterStr = $filters -join ","
@@ -566,7 +569,19 @@ try {
             if ($filterStr) {
                 Write-Host "Master Filter: $filterStr"
                 $processArgs = @("-y", "-i", $masterIn, "-filter_complex", $filterStr) + $extraArgs + @($masterOut)
-                $p = Start-Process "ffmpeg" -ArgumentList $processArgs -NoNewWindow -PassThru -Wait
+                
+                if ($PreviewDebug) {
+                    $debugDir = Join-Path $outDir "analysis"
+                    if (-not (Test-Path $debugDir)) { New-Item -ItemType Directory -Force -Path $debugDir | Out-Null }
+                    $filterStr | Set-Content (Join-Path $debugDir "preview_filtergraph.txt")
+                    $processArgs -join " " | Set-Content (Join-Path $debugDir "preview_ffmpeg_args.txt")
+                    $stderrFile = Join-Path $debugDir "preview_ffmpeg_stderr.txt"
+                     
+                    $p = Start-Process "ffmpeg" -ArgumentList $processArgs -NoNewWindow -PassThru -Wait -RedirectStandardError $stderrFile
+                }
+                else {
+                    $p = Start-Process "ffmpeg" -ArgumentList $processArgs -NoNewWindow -PassThru -Wait
+                }
                 if ($p.ExitCode -eq 0) {
                     if ($Preview) {
                         Move-Item -Force $masterOut $OutWav

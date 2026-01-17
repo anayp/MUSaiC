@@ -6,7 +6,7 @@ This document outlines the gain staging strategy and mixing best practices for M
 Consistency is key for automated analysis and listening comfort.
 
 - **Preview Target**: -18 LUFS (Integrated).
-  - MUSaiC's preview mode defaults to this to ensure audible scratch renders.
+  - MUSaiC's preview mode defaults to this to ensure audible scratch renders. Customizable via `-PreviewTargetLufs`.
 - **Mix Evaluation**: -18 to -14 LUFS.
   - Leaves headroom for mastering limiters.
 - **Release Target**: -14 to -10 LUFS (Genre dependent).
@@ -68,3 +68,5 @@ Use the Stem Analyzer (`tools/stem-analyze.ps1`) to check if your gain staging i
 ```
 
 It suggests `gainDb` adjustments to hit a -18 dB RMS target per track.
+
+> **Note**: The analyzer safely copies stems to a temp location before reading to avoiding locking conflicts with active sequencer processes.

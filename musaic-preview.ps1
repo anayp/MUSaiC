@@ -3,7 +3,9 @@ param (
     [string]$MetaPath,
     [switch]$Play,
     [int]$PreviewBitDepth,
-    [int]$PreviewSampleRate
+    [int]$PreviewSampleRate,
+    [double]$PreviewTargetLufs,
+    [switch]$PreviewDebug
 )
 
 Set-StrictMode -Version Latest
@@ -24,6 +26,8 @@ if ($MetaPath) { $params["MetaPath"] = $MetaPath }
 if ($Play) { $params["Play"] = $true }
 if ($PreviewBitDepth) { $params["PreviewBitDepth"] = $PreviewBitDepth }
 if ($PreviewSampleRate) { $params["PreviewSampleRate"] = $PreviewSampleRate }
+if ($PreviewTargetLufs) { $params["PreviewTargetLufs"] = $PreviewTargetLufs }
+if ($PreviewDebug) { $params["PreviewDebug"] = $true }
 
 Write-Host "Invoking Preview..." -ForegroundColor Cyan
 & $script @params
