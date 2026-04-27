@@ -16,8 +16,7 @@ if (-not (Test-Path $configHelper)) { throw "Missing musaic-config.ps1" }
 . $configHelper
 $cfg = Get-MusaicConfig
 $cdpBin = $cfg.cdpBin
-$synthExe = Join-Path $cdpBin "synth.exe"
-$paplayExe = Join-Path $cdpBin "paplay.exe"
+$synthExe = $cfg.synthPath
 
 # Resolve ffmpeg from config
 $ffmpeg = $cfg.ffmpegPath
@@ -31,8 +30,8 @@ function Invoke-Ffmpeg {
     }
 }
 
-if (-not (Test-Path $synthExe)) {
-    throw "Missing synth.exe at $synthExe (is CDPR8 extracted beside this script?)"
+if (-not ((Test-Path $synthExe) -or (Get-Command $synthExe -ErrorAction SilentlyContinue))) {
+    throw "Missing CDP synth tool at/resolved as: $synthExe"
 }
 
 function Test-Command {
@@ -117,7 +116,7 @@ foreach ($note in $notes) {
     Write-Host ("Rendering note {0}: {1} {2}Hz dur {3}s amp {4}" -f $idx, $waveform, $freq, $dur, $amp)
     & $synthExe @procArgs
     if ($LASTEXITCODE -ne 0) {
-        throw "synth.exe failed on note $idx with exit code $LASTEXITCODE"
+        throw "CDP synth failed on note $idx with exit code $LASTEXITCODE"
     }
 }
 
@@ -158,16 +157,17 @@ if ($Play) {
     $playTarget = $OutWav
     if ($madeMp3) { $playTarget = $outMp3 }
 
-    if (Test-Path $paplayExe) {
-        Write-Host "Playing via paplay..."
-        & $paplayExe $playTarget
+    $player = Resolve-MusaicAudioPlayer
+    if ($player -eq "paplay" -or $player -eq "afplay") {
+        Write-Host "Playing via $player..."
+        & $player $playTarget
     }
-    elseif (Test-Command ffplay) {
+    elseif ($player -eq "ffplay") {
         Write-Host "Playing via ffplay..."
         & ffplay -nodisp -autoexit $playTarget
     }
     else {
-        Write-Warning "No player found (paplay/ffplay). Use your preferred player to audition: $playTarget"
+        Write-Warning "No player found (paplay/afplay/ffplay). Use your preferred player to audition: $playTarget"
     }
 }
 

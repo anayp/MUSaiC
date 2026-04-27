@@ -5,7 +5,7 @@ param(
     [switch]$ToMp3
 )
 
-# Simple CDP8 CLI jam: pick a preset, render with synth.exe, optionally play or encode to MP3.
+# Simple CDP8 CLI jam: pick a preset, render with CDP synth, optionally play or encode to MP3.
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
@@ -17,12 +17,11 @@ if (-not (Test-Path $configHelper)) { throw "Missing musaic-config.ps1" }
 . $configHelper
 $cfg = Get-MusaicConfig
 $cdpBin = $cfg.cdpBin
-$synthExe = Join-Path $cdpBin "synth.exe"
-$paplayExe = Join-Path $cdpBin "paplay.exe"
+$synthExe = $cfg.synthPath
 $ffmpeg = $cfg.ffmpegPath
 
-if (-not (Test-Path $synthExe)) {
-    throw "Missing synth.exe at $synthExe (is CDPR8 extracted beside this script?)"
+if (-not ((Test-Path $synthExe) -or (Get-Command $synthExe -ErrorAction SilentlyContinue))) {
+    throw "Missing CDP synth tool at/resolved as: $synthExe"
 }
 
 function Test-Command {
@@ -149,7 +148,7 @@ Write-Host "Rendering preset '$($preset.Name)': $($preset.Description)"
 Write-Host ("Command: {0} {1}" -f $synthExe, ($procArgs -join ' '))
 & $synthExe @procArgs
 if ($LASTEXITCODE -ne 0) {
-    throw "synth.exe failed with exit code $LASTEXITCODE"
+    throw "CDP synth failed with exit code $LASTEXITCODE"
 }
 Write-Host "Wrote WAV: $wavPath"
 
@@ -176,16 +175,17 @@ if ($Play) {
     $playTarget = $wavPath
     if ($madeMp3) { $playTarget = $mp3Path }
 
-    if (Test-Path $paplayExe) {
-        Write-Host "Playing via paplay..."
-        & $paplayExe $playTarget
+    $player = Resolve-MusaicAudioPlayer
+    if ($player -eq "paplay" -or $player -eq "afplay") {
+        Write-Host "Playing via $player..."
+        & $player $playTarget
     }
-    elseif (Test-Command ffplay) {
+    elseif ($player -eq "ffplay") {
         Write-Host "Playing via ffplay..."
         & ffplay -nodisp -autoexit $playTarget
     }
     else {
-        Write-Warning "No player found (paplay/ffplay). Use your preferred player to audition: $playTarget"
+        Write-Warning "No player found (paplay/afplay/ffplay). Use your preferred player to audition: $playTarget"
     }
 }
 

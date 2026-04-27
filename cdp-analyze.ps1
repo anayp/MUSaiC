@@ -28,7 +28,6 @@ $configHelper = Join-Path $PSScriptRoot "musaic-config.ps1"
 if (-not (Test-Path $configHelper)) { throw "Missing musaic-config.ps1" }
 . $configHelper
 $cfg = Get-MusaicConfig
-$cdpBin = $cfg.cdpBin
 $ffmpeg = $cfg.ffmpegPath
 
 # Import shared theory logic
@@ -36,9 +35,9 @@ $modulePath = Join-Path $PSScriptRoot "musaic-theory.psm1"
 if (-not (Test-Path $modulePath)) { throw "Missing musaic-theory.psm1" }
 Import-Module $modulePath -Force
 
-$sndInfo = Join-Path $cdpBin "sndinfo.exe"
-$pitchExe = Join-Path $cdpBin "pitch.exe"
-$viewExe = Join-Path $cdpBin "view.exe"
+$sndInfo = $cfg.sndinfoPath
+$pitchExe = $cfg.pitchPath
+$viewExe = Resolve-MusaicCommandPath -Name "view" -BinDir $cfg.cdpBin
 
 if (-not (Test-Path $InputFile)) { throw "Input file not found: $InputFile" }
 $InputFile = (Resolve-Path $InputFile).Path

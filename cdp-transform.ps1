@@ -50,7 +50,7 @@ if (-not (Test-Path $configHelper)) { throw "Missing musaic-config.ps1" }
 $sysCfg = Get-MusaicConfig
 $cdpBin = $sysCfg.cdpBin
 
-$modifyExe = Join-Path $cdpBin "modify.exe"
+$modifyExe = $sysCfg.modifyPath
 # $pvocExe = Join-Path $cdpBin "pvoc.exe" (Unused)
 
 if (-not (Test-Path $In)) { throw "Input file not found: $In" }
@@ -84,7 +84,7 @@ function Invoke-Pvoc {
     
     if ($Mode -eq "tempo") {
         # Try stretch.exe
-        $stretchExe = Join-Path $cdpBin "stretch.exe"
+        $stretchExe = Resolve-MusaicCommandPath -Name "stretch" -BinDir $cdpBin
         if ($false -and (Test-Path $stretchExe)) {
             try {
                 Write-Host "DEBUG: Executing $stretchExe"
@@ -96,7 +96,7 @@ function Invoke-Pvoc {
                 Write-Warning "DEBUG: Stretch exit code: $($p.ExitCode)"
             }
             catch {
-                Write-Warning "Failed to launch stretch.exe: $_"
+                Write-Warning "Failed to launch stretch tool: $_"
             }
         }
         
@@ -111,7 +111,7 @@ function Invoke-Pvoc {
     }
     elseif ($Mode -eq "pitch") {
         # Try strans.exe
-        $stransExe = Join-Path $cdpBin "strans.exe"
+        $stransExe = Resolve-MusaicCommandPath -Name "strans" -BinDir $cdpBin
         if (Test-Path $stransExe) {
             try {
                 $toolArgs = @("multi", 2, $In, $Out, $Amount)

@@ -63,11 +63,12 @@ function Test-Cdp {
         return $false
     }
 
-    $exeList = @("synth.exe", "reverb.exe", "modify.exe", "sndinfo.exe", "pitch.exe")
-    foreach ($exe in $exeList) {
-        $path = Join-Path $binPath $exe
-        if (-not (Test-Path $path)) {
-            Write-Host "[FAIL] Missing: $path" -ForegroundColor Red
+    $toolList = @("synth", "reverb", "modify", "sndinfo", "pitch")
+    foreach ($tool in $toolList) {
+        $resolved = Resolve-MusaicCommandPath -Name $tool -BinDir $binPath
+        $exists = (Test-Path $resolved) -or (Get-Command $resolved -ErrorAction SilentlyContinue)
+        if (-not $exists) {
+            Write-Host "[FAIL] Missing CDP tool '$tool' (resolved as: $resolved)" -ForegroundColor Red
             $ok = $false
         }
     }
