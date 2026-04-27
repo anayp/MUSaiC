@@ -7,9 +7,21 @@ Run the interactive loader (menu):
 ```powershell
 .\cdp-wrapper.ps1
 ```
+Run non-interactive by index:
+```powershell
+.\cdp-wrapper.ps1 -Index 0 -NoPlay
+```
 Or run the sequencer directly:
 ```powershell
 .\cdp-sequencer.ps1 -ScorePath examples\beat_score.json -Play
+```
+Or use the QoL command router:
+```powershell
+.\musaic-cli.ps1 list-examples
+.\musaic-cli.ps1 inspect-score -ScorePath examples\beat_score.json
+.\musaic-cli.ps1 render -ScorePath examples\beat_score.json
+.\musaic-cli.ps1 tui -ScorePath examples\beat_score.json -View arranger
+# Interactive keys in TUI: [a]/[m]/[p] view, [j]/[k] focused track, [q] quit
 ```
 CLI- **Parameters**:
   - `-ScorePath <path>`: JSON score file (default `examples/effects_demo.json`)
@@ -190,7 +202,7 @@ Manage global project context.
 ## Requirements
 ## Requirements
 - Run `.\musaic.ps1 setup` to configure paths.
-- CDP `synth.exe`, `reverb.exe`, `modify.exe` (configured via `musaic.config.json`).
+- CDP synth/reverb/modify tools (Windows `.exe` or extensionless binaries on macOS/Linux; configured via `musaic.config.json`).
 - `ffmpeg` (configured via `musaic.config.json` or PATH).
 
 ## Project Planning

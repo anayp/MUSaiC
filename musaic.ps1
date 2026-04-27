@@ -86,10 +86,25 @@ function Invoke-Doctor {
     Test-Item "CDP Binaries Dir" (Test-Path $cfg.cdpBin) "Directory not found at $($cfg.cdpBin)"
 
     # 3. Check Executables
-    $exeList = @("synth.exe", "reverb.exe", "modify.exe", "sndinfo.exe", "pitch.exe")
-    foreach ($exe in $exeList) {
-        $path = Join-Path $cfg.cdpBin $exe
-        Test-Item "Bin: $exe" (Test-Path $path) "Executable not found at $path"
+    $toolMap = @(
+        @{ Name = "synth"; Path = $cfg.synthPath },
+        @{ Name = "reverb"; Path = $cfg.reverbPath },
+        @{ Name = "modify"; Path = $cfg.modifyPath },
+        @{ Name = "sndinfo"; Path = $cfg.sndinfoPath },
+        @{ Name = "pitch"; Path = $cfg.pitchPath }
+    )
+    foreach ($tool in $toolMap) {
+        $found = $false
+        if ($tool.Path) {
+            if (Test-Path $tool.Path) {
+                $found = $true
+            }
+            else {
+                $cmd = Get-Command $tool.Path -ErrorAction SilentlyContinue
+                if ($cmd) { $found = $true }
+            }
+        }
+        Test-Item "CDP Tool: $($tool.Name)" $found "Tool not found at/resolved as '$($tool.Path)'"
     }
 
     # 4. Check FFmpeg

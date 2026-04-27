@@ -2,7 +2,7 @@ param(
     [string]$ConfigPath = ".\\examples\\simple-tone.json"
 )
 
-# Generate a tone with CDP's synth.exe using JSON config.
+# Generate a tone with CDP synth using JSON config.
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
@@ -11,11 +11,10 @@ $configHelper = Join-Path $PSScriptRoot "musaic-config.ps1"
 if (-not (Test-Path $configHelper)) { throw "Missing musaic-config.ps1" }
 . $configHelper
 $cfg = Get-MusaicConfig
-$cdpBin = $cfg.cdpBin
-$synthExe = Join-Path $cdpBin "synth.exe"
+$synthExe = $cfg.synthPath
 
-if ($null -eq $synthExe -or -not (Test-Path $synthExe)) {
-    throw "Missing CDP synth executable at $synthExe. Check that CDPR8 is extracted beside this script."
+if ($null -eq $synthExe -or (-not (Test-Path $synthExe) -and -not (Get-Command $synthExe -ErrorAction SilentlyContinue))) {
+    throw "Missing CDP synth tool at/resolved as: $synthExe"
 }
 
 if (-not (Test-Path $ConfigPath)) {

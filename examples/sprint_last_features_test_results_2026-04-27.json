@@ -1,0 +1,59 @@
+{
+  "timestamp_utc": "2026-04-27T07:14:50Z",
+  "feature_test_suite": "last_sprint_feature_smoke",
+  "environment": {
+    "shell": "bash",
+    "powerShell_available": false,
+    "note": "PowerShell scripts cannot be executed in this container; static and data-level checks run instead."
+  },
+  "artifacts": {
+    "new_score": "examples/classical_30s_12voices.json"
+  },
+  "checks": [
+    {
+      "name": "score.voice_count",
+      "status": "pass",
+      "details": "tracks=12"
+    },
+    {
+      "name": "score.duration_30s",
+      "status": "pass",
+      "details": "duration_sec=30.0"
+    },
+    {
+      "name": "score.min_events_per_track",
+      "status": "pass",
+      "details": "all tracks have events"
+    },
+    {
+      "name": "musaic-cli.command_tui_present",
+      "status": "pass",
+      "details": "searched musaic-cli.ps1"
+    },
+    {
+      "name": "musaic-tui.info_pane_present",
+      "status": "pass",
+      "details": "searched musaic-tui.ps1"
+    },
+    {
+      "name": "verify-sprint.script_present",
+      "status": "pass",
+      "details": "tools/verify-sprint.ps1 exists"
+    },
+    {
+      "name": "cdp-wrapper.non_interactive_index",
+      "status": "pass",
+      "details": "searched cdp-wrapper.ps1 for $Index param"
+    },
+    {
+      "name": "cross_platform_resolver_present",
+      "status": "pass",
+      "details": "searched musaic-config.ps1"
+    },
+    {
+      "name": "runtime_smoke_pwsh",
+      "status": "warn",
+      "details": "pwsh not available; skipped direct execution of PowerShell smoke commands"
+    }
+  ]
+}

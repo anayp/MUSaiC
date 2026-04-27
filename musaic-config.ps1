@@ -1,4 +1,56 @@
 
+function Test-MusaicWindows {
+    return [System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([System.Runtime.InteropServices.OSPlatform]::Windows)
+}
+
+function Resolve-MusaicCommandPath {
+    param(
+        [Parameter(Mandatory = $true)][string]$Name,
+        [string]$BinDir
+    )
+
+    $candidates = @()
+    if (Test-MusaicWindows) {
+        $candidates += "$Name.exe"
+        $candidates += $Name
+    }
+    else {
+        $candidates += $Name
+        $candidates += "$Name.exe"
+    }
+
+    if ($BinDir) {
+        foreach ($candidate in $candidates) {
+            $candidatePath = Join-Path $BinDir $candidate
+            if (Test-Path $candidatePath) {
+                return [System.IO.Path]::GetFullPath($candidatePath)
+            }
+        }
+    }
+
+    foreach ($candidate in $candidates) {
+        try {
+            $cmd = Get-Command $candidate -ErrorAction Stop
+            if ($cmd -and $cmd.Source) {
+                return $cmd.Source
+            }
+        }
+        catch {}
+    }
+
+    if ($BinDir) {
+        return [System.IO.Path]::GetFullPath((Join-Path $BinDir $candidates[0]))
+    }
+    return $candidates[0]
+}
+
+function Resolve-MusaicAudioPlayer {
+    if (Get-Command "paplay" -ErrorAction SilentlyContinue) { return "paplay" }
+    if (Get-Command "afplay" -ErrorAction SilentlyContinue) { return "afplay" }
+    if (Get-Command "ffplay" -ErrorAction SilentlyContinue) { return "ffplay" }
+    return $null
+}
+
 function Get-MusaicConfig {
     [CmdletBinding()]
     param()
@@ -90,6 +142,11 @@ function Get-MusaicConfig {
     return [PSCustomObject]@{
         cdpRoot            = $cdpRoot
         cdpBin             = $cdpBin
+        synthPath          = Resolve-MusaicCommandPath -Name "synth" -BinDir $cdpBin
+        reverbPath         = Resolve-MusaicCommandPath -Name "reverb" -BinDir $cdpBin
+        modifyPath         = Resolve-MusaicCommandPath -Name "modify" -BinDir $cdpBin
+        sndinfoPath        = Resolve-MusaicCommandPath -Name "sndinfo" -BinDir $cdpBin
+        pitchPath          = Resolve-MusaicCommandPath -Name "pitch" -BinDir $cdpBin
         outputDir          = $outputDir
         ffmpegPath         = $ffmpegPath
 

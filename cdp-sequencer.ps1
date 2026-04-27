@@ -41,14 +41,21 @@ try {
     }
 
     $cdpBin = $cfg.cdpBin
-    $synthExe = Join-Path $cdpBin "synth.exe"
-    $reverbExe = Join-Path $cdpBin "reverb.exe"
-    $modifyExe = Join-Path $cdpBin "modify.exe"
+    $synthExe = $cfg.synthPath
+    $reverbExe = $cfg.reverbPath
+    $modifyExe = $cfg.modifyPath
 
     $workDir = Join-Path $cfg.outputDir "tmp_sequencer"
     $outDir = $cfg.outputDir
 
-    if (-not (Test-Path $synthExe)) { throw "Missing synth.exe at $synthExe" }
+    function Test-ToolAvailable {
+        param([string]$ToolPath)
+        if (Test-Path $ToolPath) { return $true }
+        $cmd = Get-Command $ToolPath -ErrorAction SilentlyContinue
+        return ($null -ne $cmd)
+    }
+
+    if (-not (Test-ToolAvailable $synthExe)) { throw "Missing CDP synth tool at/resolved as: $synthExe" }
 
     # --- Cleanup & Setup ---
     if (Test-Path $workDir) { Remove-Item -Recurse -Force $workDir }
@@ -171,7 +178,7 @@ try {
         $fxType = Get-Prop $Effect "type" "unknown"
 
         if ($fxType -eq "reverb") {
-            if (-not (Test-Path $reverbExe)) { throw "Missing reverb.exe at $reverbExe needed for effect" }
+            if (-not (Test-ToolAvailable $reverbExe)) { throw "Missing CDP reverb tool at/resolved as: $reverbExe" }
 
             $rvbtime = Get-Prop $Effect "room_size" 1.0
             $mix = Get-Prop $Effect "mix" 0.5
@@ -185,7 +192,7 @@ try {
             if ($p.ExitCode -ne 0) { throw "Effect reverb failed with code $($p.ExitCode)" }
         }
         elseif ($fxType -eq "pitch") {
-            if (-not (Test-Path $modifyExe)) { throw "Missing modify.exe at $modifyExe needed for effect" }
+            if (-not (Test-ToolAvailable $modifyExe)) { throw "Missing CDP modify tool at/resolved as: $modifyExe" }
             $semitones = Get-Prop $Effect "semitones" 0
             $ratio = [Math]::Pow(2, $semitones / 12)
             $procArgs = @("speed", 1, $InputFile, $OutputFile, $ratio)

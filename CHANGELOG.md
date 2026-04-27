@@ -9,6 +9,14 @@ All notable changes to MUSaiC are documented here.
 - **Docs**: Planning docs removed from git tracking; defined `github_upload_protocol`.
 
 ## Unreleased
+- QoL: Added `musaic-cli.ps1` as a single command router for listing examples, score inspection, render/preview, timeline, and doctor checks.
+- QoL: Improved `cdp-wrapper.ps1` with non-interactive `-Index` support and fixed argument forwarding to the sequencer.
+- Portability: Added cross-platform CDP tool resolution (`tool` and `tool.exe`), plus broader playback command detection (`paplay`, `afplay`, `ffplay`).
+- TUI: Added `musaic-tui.ps1` with arranger/mixer/piano ASCII views and a lightweight interactive mode.
+- TUI UX: Added a persistent info line with current view + selected track focus and track-navigation keys (`j`/`k`).
+- Examples: Added `examples/classical_30s_12voices.json` (30-second, 12-voice classical stress test score).
+- Testing Artifacts: Added `examples/sprint_last_features_test_results_2026-04-27.json` with static/data-level smoke checks for recent sprint features.
+- Docs: Updated README and CLI guide with the new convenience workflow.
 - Core sequencer with JSON-driven synth/sample rendering.
 - Metadata workflow (`cdp-meta.ps1`) and score fallback support.
 - Analysis v2 (tempo candidates, beat grid, pitch histograms, key/chords, LUFS).

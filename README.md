@@ -5,6 +5,8 @@ MUSaiC is a CLI-first, automation-driven DAW system that composes, renders, and 
 
 ## Setup
 CDP is not bundled in this repo (size/licensing). Install CDPR8 separately and point MUSaiC at it.
+On Windows, CDP tools are typically `*.exe`; on macOS/Linux builds they may be extensionless binaries.
+MUSaiC now resolves either form automatically when checking/running tools.
 
 Helper script (download/unzip/validate):
 ```powershell
@@ -41,6 +43,18 @@ Initialize the schema with:
 ```
 
 ## Quick Start
+
+### 0. QoL CLI Wrapper
+Use a single entrypoint for common tasks:
+```powershell
+./musaic-cli.ps1 list-examples
+./musaic-cli.ps1 inspect-score -ScorePath examples/cheesy_classical_16bars.json
+./musaic-cli.ps1 render -ScorePath examples/cheesy_classical_16bars.json
+./musaic-cli.ps1 preview -ScorePath examples/cheesy_classical_16bars.json -Play
+./musaic-cli.ps1 timeline -ScorePath examples/cheesy_classical_16bars.json -Resolution ticks
+./musaic-cli.ps1 tui -ScorePath examples/cheesy_classical_16bars.json -View mixer
+./musaic-cli.ps1 doctor
+```
 
 ### 1. Basic Sequence (Synth)
 Generate a song from a score file:
@@ -86,6 +100,15 @@ Compute file hashes (SHA256 default) for asset tracking:
 - **`musaic-stems.ps1`**: Scaffolding for stem separation (requires external backend).
 *Note: Set `segmenterPath` and `stemSeparatorPath` in `musaic.config.json`.*
 
+## Optimization Planning + Verification
+- Expert panel review and critique: `experts.md`
+- Step-by-step sprint plan with required tests/evidence: `docs/OPTIMIZATION_SPRINT_PLAN.md`
+- Verification harness:
+  ```powershell
+  ./tools/verify-sprint.ps1 -SprintId S0 -Mode fast
+  ./tools/verify-sprint.ps1 -SprintId S1 -Mode full
+  ```
+
 ### Backend Pilots (No Binaries Bundled)
 MUSaiC does not bundle large analysis binaries. To use segmentation or stem separation:
 1. **Install the tool** (e.g., `spleeter`, `demucs`, `msaf`).
@@ -125,10 +148,19 @@ Use arpeggios and pads, Iris for instruments, BreakTweaker preset 3 for beats."
 - Sample analysis (BPM, pitch estimate, RMS/peak, duration, warnings).
 - Time/pitch transforms via robust tool selection (tries `stretch`/`strans` first, falls back to `modify`).
 - **TUI Timeline**: `cdp-timeline.ps1` for lightweight ASCII score visualization.
+- **TUI Views (MVP)**: `musaic-tui.ps1` for arranger/mixer/piano-roll ASCII views (view-only, early interactive mode).
 
 ## TUI Preview (ASCII)
-
-These are snapshots from the local TUI design specs (not committed).
+Current implementation:
+```powershell
+./musaic-tui.ps1 -ScorePath examples/cheesy_classical_16bars.json -View arranger
+./musaic-tui.ps1 -ScorePath examples/cheesy_classical_16bars.json -View mixer
+./musaic-tui.ps1 -ScorePath examples/cheesy_classical_16bars.json -View piano
+./musaic-tui.ps1 -ScorePath examples/cheesy_classical_16bars.json -Interactive
+```
+Current MVP TUI includes a bottom info line showing current view + selected track focus.
+Interactive keys: `[a] arranger`, `[m] mixer`, `[p] piano`, `[j]/[k]` track focus, `[q]` quit.
+The large panels below remain the target design direction; current TUI is intentionally lighter and terminal-safe.
 
 ### Arranger View
 ```text

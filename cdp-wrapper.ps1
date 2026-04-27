@@ -1,3 +1,8 @@
+param(
+    [switch]$NoPlay,
+    [int]$Index = -1
+)
+
 function Show-Menu {
     param($Items)
     for ($i = 0; $i -lt $Items.Count; $i++) {
@@ -5,8 +10,6 @@ function Show-Menu {
     }
     return Read-Host "Select a score (0-$($Items.Count-1))"
 }
-
-param([switch]$NoPlay)
 
 $examplesDir = Join-Path $PSScriptRoot "examples"
 if (-not (Test-Path $examplesDir)) {
@@ -18,7 +21,14 @@ $scores = Get-ChildItem -Path $examplesDir -Filter "*.json"
 Write-Host "=== CDP DAW Wrapper ==="
 Write-Host "Found $($scores.Count) scores."
 
-$selection = Show-Menu -Items $scores
+if ($scores.Count -eq 0) {
+    throw "No score files found in $examplesDir"
+}
+
+$selection = $Index
+if ($selection -lt 0) {
+    $selection = Show-Menu -Items $scores
+}
 
 if ($selection -match "^\d+$" -and [int]$selection -lt $scores.Count) {
     $target = $scores[[int]$selection].FullName
@@ -32,8 +42,8 @@ if ($selection -match "^\d+$" -and [int]$selection -lt $scores.Count) {
     
     $procArgs = @("-ScorePath", $target)
     if (-not $NoPlay) { $procArgs += "-Play" }
-    
-    & "$PSScriptRoot\cdp-sequencer.ps1" @args
+
+    & "$PSScriptRoot\cdp-sequencer.ps1" @procArgs
 }
 else {
     Write-Warning "Invalid selection."
